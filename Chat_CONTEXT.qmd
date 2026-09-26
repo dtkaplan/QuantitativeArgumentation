@@ -1,0 +1,129 @@
+# Context for LLM Chats
+
+These notes give some context for the "Quantitative Argumentation" project that may be useful for directing chats aimed at improvement.
+
+1. The project is focussed on delivering a complete implementation of a 6-credit-hour, general-education course for first-year college students. Three of those hours are devoted to data science and statistical modeling. That aspect of the course is not contained in this directory but is distinct from conventional intro stats courses in that it starts with multi-variate statistical modeling so that students can engage in modern forms of causal reasoning. It also covers risk as it appears in epidemiology and medical testing.
+
+2. This directory contains the chapter text (and supporting materials) for a textbook, tentatively titled "Quantitative Argumentation," which serves the other three credit hours of the overall six-credit hour course. The file naming convention, Chap_xx honors the planned order of the chapters in the book.
+
+3. In some ways, "Quantitative Argumentation" is intended as a replacement for the ubiquitous "Calc I" course, that is, calculus course most widely encountered by new college students.     
+    - "Replacement" should be interpreted as meaning "taking up the curricular space occupied by Calc I," and not as providing an alternate presentation of the traditional Calc I topics.
+    - The project retains core mathematical ideas that are useful for quantitative reasoning while rejecting the traditional ordering and symbolic machinery as the organizing structure. Some topics traditionally considered advanced, e.g. vector fields or dynamical systems, will be used but with a primarily verbal and graphical introduction.
+
+4. The student completing the course should gain these capabilities:
+    i. Understand that models, even when gross simplifications, can still be useful.
+    ii. Be able to make a basic critique of simple mathematical models, for instance, pointing out when an important covariate has been omitted or a causal flow has been reversed. 
+    iii. Distinguish "base" quantities (such as length) from rates/ratios (which will mean much the same thing in the book) and identify rates of change.
+    iv. Recognize gross errors in combining or comparing quantities with incommensurate dimensions. Here, "dimensions" is used in the sense of "dimensional analysis".
+    v. Use provided software to make graphs, run a predefined simulation and interpret the resulting data using straightforward statistical models with two or more explanatory variables.
+    vi. Be able to distinguish correctly a rate of change in a graph from a simple change or an output level.
+    vii. Understand qualitatively the respective roles and uses of prior, likelihood, and posterior in the Bayesian framework.
+
+5. "Quantitative Argumentation" is intended to be accessible to a wide range of first-year college students.
+    - Intellectually capable 
+    - Willing to reason carefully but uncomfortable with symbolic manipulation
+    - Capable of reading sophisticated prose without imposing burdens that are unlikely for a first-year college student.
+    - Capable of working with tables and graphics such as point plots, function graphs, and learning to read contour plots. 
+    - Using R in a highly scaffolded way which involves, at most, making trivial modifications to commands provided in computational chunks in the book.
+    - May not have a solid understanding or previous success in courses such as "Algebra 2" or "Trigonometry" or even "Pre-calculus" or "College Algebra." But I don't want to be "talking down" or boring to students with a strong high-school math preparation or those who have completed a traditional Calc I/II.
+    - Some aspects of conventional algebraic notation will be used in the narrative. This includes superscripts used to indicate exponentiation, subscripts for indicating a specific value of a general symbolic value, as in $a_1$, $a_2$, or $a_\star$ for an argmin or $a_0$ for the location of a zero-crossing. Square roots and radical notation will not be much needed. Function application will *always* be marked by parentheses, as in 
+    osc(x) rather than $\sin x$. 
+    - The most complex algebraic notation should be along the lines of a linear combination, e.g., a_0 + a_1 osc(x) or a composition with a linear function (e.g. osc(2(x-3)))
+    
+
+6. Crucial problems with "Calc I" are
+    - It is a course in algebraic manipulation even though the majority of students are not able to use algebra successfully and few adult professionals have any engagement with algebra except bad memories.
+    - It is overly theoretical, with emphasis on "limits" and "series and sequences." Although conventional calculus approaches the topics of differentiation and integration from this theoretical perspective, a superior understanding of the uses and relationships between these topics can be achieved simply by reference to an intuitive notion of "small."
+    - It fails to engage computing and the concepts of data organization needed at many levels in the workplace. 
+        * One aspect of this is that traditional mathematics notation, whatever it's visual appeal, has many ambiguities to the uninitiated and does not take advantages of the vast improvement in expression provided by modern computer notation. 
+        * Although iteration and random-number generation are important and accessible technologies in quantitative work, there is no algebra-based notation for these techniques.
+
+7. Notwithstanding the points in (5), a very wide range of students needs to engage with the "mathematics of change" and the many ways in which quantitative change is encountered in professional work, for instance the meaning of inflation rates.
+    - The basic "dynamical systems" or "state space" approach to describing change is more effective for student learning than the algebraic manipulation of differentiation and integration.
+    - For example, as C.P. Snow argued in "The Two Cultures" (1959), almost everyone knows what a "velocity" or "speed" is, but wide swathes of educated people cannot give a cogent description of what "acceleration" is. 
+
+8. Verbal quantitative argumentation plays an important role in public policy debates as well as in the sciences and commerce. It is also important to informed personal decision-making as with finances or assessment of health risks and medical treatment.
+
+9. Much of the central vocabulary used in traditional mathematics is ambiguous and indifferent to the often distinct uses of the same words in statistics and data science. The approach taken by "Quantitative Argumentation" is to compile a vocabulary that is consistent and distinctive, even if it is somewhat unconventional. An important example is the use of "dimension." Trying to fix the ambiguity by giving detailed and precise disambiguations conforming to traditional practice will result in cognitive overload and communication failure. The consistent use of technical vocabulary is an important style goal in "Quantitative Argumentation."
+
+10. The traditional high-school or college mathematics curriculum more or less ignores the careful treatment and accounting for units. But mastery of basic ideas of dimensional analysis provides a strong footing for thinking about calculus-level ideas without symbolic algebra.
+
+11. I still face a difficulty with the important notation of "dimension." 
+    - As explained in Chapter 2, the book uses "dimension" in three different senses. In doing this, my goal is to highlight the extremely close relationships between the three senses. I continue to search for a terminology that will highlight the connections while respecting the distinctions. 
+    - In addition, in the statistical modeling part of the course, I want to be able to use the standard vocabulary of "response variable," "explanatory variable," and "covariate." My approach to this is to define a "variable" as an column of a data frame, reserving "dimension" to refer to an aspect of a potentially complex system with many properties.
+
+12. Use a pedagogical philosophy where 
+    - examples and applications are a primary tool for introducing concepts
+    - consistently use graphics of functions with two inputs to stand for systems with a primary output and potentially many inputs. Treat functions of one input as a simplification of a more genuine situation where there are multiple inputs. 
+    - students will not be expected to do symbolic manipulation.
+    - Mathematical functions (not equations) will be at the center of models. Students will work with a set of about one dozen "basic modeling functions" that take one input and are used as canonical representations of simple relationships. 
+        - These functions will be presented graphically, with important features of the various functions (e.g. local maxima, monotonicity, upward or downward curvature, singularities and asymptotes) interpretable through graphics.
+        - The basic modeling functions will not have any parameters. Instead, the shaping of the basic function to a real-world scale of input and output will be handled consistently by linear input and output scaling, that is to say, composition with a linear function: a (x - b)
+        - The specific basic modeling functions are selected with ease of graphical interpretation in mind. 
+            * For instance, the base of the "natural logarithm" will not be fundamental. It will preferred to use base 10 and sometimes base 2. Exponentials will also preferably refer to "10 to a power" or "2 to a power."
+            * Similarly, the basic modeling function to represent an oscillation will be a sinusoid named `osc()` with a period of 1. Pi should appear only in special circumstances.
+            * The hill() and hillside() basic modeling functions will be the standard gaussian PDF and CDF. 
+    - Calculations will be handled in two ways, neither of which involves traditional algebraic manipulation:
+        i. Estimation from a graph of output level, simple change (that is, comparing the output at two different input levels), rates of change where the difference between the two input levels is used, and directional change and rate of change (as in a contour graph).
+        ii. Use of computer evaluation of a function at a specified input, or, for change and rate of change, at a pair of specified inputs.
+    - All mathematical graphics will use the two axes to represent an input (horizontal axis) and an output (vertical axis). Data graphics will always assign each axis to a variable, as in a point plot. Statistical annotations will be layed on the data using lines, curves, error bars, violin plots, etc. In data graphics, either of the two axes may be used for a categorical variable with jittering used to prevent overlap. Occasionally, a data graphic will represent the spread of a single quantity. In such cases, the horizontal axis will still play the role of an explanatory variable even though there is only one level of that variable. 
+    - Student guided computation will be primarily for exploration (as in observing the effect of a change in a model parameter), the generation of graphics and statistical annotations, and the evaluation of functions at specific input values.
+    - Introduce abstract frameworks as needed. For instance, "quantity" is a framework consisting of a numerical value along with a unit and its corresponding dimension. The "Euler framework" for dynamical systems involves a state, a state space, and a dynamical rule giving the rate of change of state as a function of the state. 
+
+13. Exercises and other supplementary materials will have these forms:
+    - Drill, which refers to isolated questions that can be answered at a glance or with a very simple computation. The drill system will always give immediate feedback to students, not just correct/incorrect but often pointing out the problem with an incorrect answer. So these are formative and re-inforcing. Drill problems will be scored automatically, e.g. fixed response or word choice or numerical value.
+    - Exercises, which will be a typically more extended topic involving some judgement or modest levels of computing. Very short essays may be involved in exercises, perhaps one or two sentences. 
+    - Discussion topics, which an instructor might use to guide a classroom discussion or as an illustration of an application of methods. 
+
+* When working on this project, treat the principles above as constraints rather than suggestions. Do not assume that conventional calculus pedagogy, terminology, notation, or chapter organization represents the desired standard.
+
+* When reviewing existing material, distinguish between:
+    i. an actual error,
+    ii. an intentional departure from convention,
+    iii. an unresolved design question, and 
+    iv. a possible improvement.
+
+* Preserve project-specific terminology unless there is evidence that it is causing a problem.
+
+## Process A: Next-chapter review
+
+When asked for a "next-chapter review" of chapter N, take into account this context file and the following specific tasks for the review. 
+
+Background: Phases I and II should produce each three to five items in prioritized order for addressing in a one- to two-hour revision by a human editor and covering the entire chapter. I may ask to "repeat" a phase, during which you can discard previous items that have been adequately handled by the revision or, if the revision is not adequate, restate them to focus on what still isn't right. The "repeat" cycle can identify new items. There may be a process of cyclical revision and review from you. The next-chapter review should not suggest revisions for the earlier chapters. Such revisions will be handled by a different process which I will explain in the future: "Previous chapter review."
+
+Phase I: Comparison to earlier chapters
+
+a.  Take Chapters 1 through N-1 as given. These are the "earlier chapters." Using the earlier chapters, consider Chapter N and point out any: 
+    - Notable strengths, being a brief note about what is working well to encourage the human editor to preserve successful examples and explanations.
+    - inconsistencies with technical vocabulary already developed
+    - unnecessary redundancies of content of chapter N with the earlier chapters. However, repetition that reinforces key ideas from earlier chapters is valuable.
+    - brief, low-cost opportunities to continue or refer to examples from the earlier chapters, even very short examples.
+b. Enumerate any small errors that you detect in Chapter N that don't necessarily relate to the earlier chapters, for instance, arithmetic, mis-spellings, and other infelicitudes. As well, check examples for numerical and dimensional coherence. 
+c. Report back on the results of (a) and (b) in an enumerated list of up to 10 items that is suited to working through the problems identified. Label suggestions as "quick edit," "small paragraph change," or "larger redesign." When you run out of items that substantially improve the chapter, you can give a shorter list or even just "no revisions indicated."
+d. DO NOT make any changes to the chapter files yourself unless they are specifically authorized by me.
+e. Prompt me to edit the chapter file and wait until I give an go-ahead for the next phase using a phrase like "Go ahead with Phase II."
+
+Phase II: Internal consistency and quality
+
+a. Consider the newly revised Chapter N looking for awkward order of presentation of topics, paragraphs, and sentences.
+b. Look for opportunities to shorten sentences or move them from passive to active voice. 
+c. Look for elements of the text that would likely be hard for the intended readership (see above) to make sense of and suggest revisions.
+d. Arrange the items from (a), (b), and (c) as a prioritized list, taking the top five priority items from any you find. I will ask for a repetition of the Phase II review if I want 
+e. Prompt me to edit the chapter file and wait until I give an go-ahead for the next phase using a phrase like "Go ahead with Phase III."
+
+Phase III: Drill problems
+
+a. Read the "Drill" file for chapter N. It has a name "Drill-N-*.qmd". It consists of quarto markup to structure the HTML output for interactivity and several individual drill questions often marked as separate sections of a tabset.
+b. Using the style of the drill questions, suggest 5 more questions about the same topics as the existing drill questions. Use, if you can, the specific format employed for multiple-choice, true/false, and short essay input from the student.
+c. Identify important themes in the Chapter file that do not have at least two or three drill questions. Suggest 5 questions that probe student understanding of these themes. 
+d. If there is no "Drill" file for chapter N, suggest 5 drill problems de novo for the Chapter and I will build upon those with hand editing to create the chapter-N drill file.
+e. Deliver your results as a quarto file with a distinct name such as Drill-suggestions-Chap-05.qmd. In a second pass, you can append to this file but without overriding any existing contents. The Drill-suggestions file does not need to include the top and bottom matter of the original Drill-N file. Just the new drill question items in a form suitable for cut-and-paste into a tabset in the original file.
+
+I may give prompts such as "Perform a next-chapter Phase II review for Chap 5" in response to which you will carry out the tasks listed under the corresponding Phase instructions. 
+
+## Process B: Previous-chapter review
+
+A previous-chapter review will involve taking Chapter N as given and suggesting revisions to Chapters 1 to N-1 that will enhance student preparation for Chapter N.
+
+To keep the process manageable, revisions for each previous chapter should focus on the direct relationship between that chapter and Chapter N. For example, in a Previous-chapter review of Chapter 5, you do not need to make recommendations for Chapter 1 to improve flow to Chapters 2 to 4. Assume instead that previous chapter reviews have already been directed for each of the earlier chapters. 
+

@@ -1,0 +1,269 @@
+---
+number-offset: 10
+crossref:
+  fig-title: "Figure 11."
+  fig-prefix: "Fig 11."
+  tbl-title: "Table 11."
+---
+
+# Hypothesis and likelihood {#sec-hypothesis-and-likelihood}
+
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{r include=FALSE}
+#| label: ch11-r-94e38a4a
+source("_start-up.R")
+```
+
+We build models based on our understanding of the systems being modeled. Naturally, this understanding is not perfect. Indeed, there can be honest dispute about how a system operates and what factors are most important in influencing its behavior.
+
+In many (most?) settings, it is not realistic to expect the modeler to get things right the first time, or even after several tries. Effective modelers treat their work as an application of the `r xf_definition("scientific method")`, iteratively refining their models based on insight and evidence.
+
+Such refinement depends on the ability to compare models to one another and pick the better one. In the language of `r xf("sec-tradeoffs")`, we might call this finding an "optimal" model. We will do this by developing an objective function that takes competing models as input and returns as output a numerical measure of each model's performance. 
+
+The method is standard in many areas of science, technology, commerce, and any field where decisions must be taken. The standard terminology, however, is not usually about comparing models. The word used most often is "hypothesis." The two words---"model" and "hypothesis"---are closely related. Every model is a formalized implementation of a hypothesis about how the system being modeled works. 
+
+There are many definitions for the word hypothesis. Often, the definitions emphasize the `r xf_definition("scientific method")`, one description of which is called the `r xf_definition("hypothetico-deductive method")`, as described [here](https://en.wikipedia.org/wiki/Hypothetico-deductive_model). In the context of the scientific method, a reasonable definition for "hypothesis" is along the lines of the following, offered by an AI prompted to define "hypothesis" specifically in the context of the scientific method:
+
+> *A hypothesis is a testable explanation for a phenomenon that serves as a starting point for further investigation through experimentation or observation.*
+
+We often think of hypotheses (and the models that implement them) as developing over time, as implied by the phrase "further investigation." But for the purposes of comparing and competing hypotheses, a better picture is that of a set of models all present at the same time, like the candidates in an election. 
+
+To choose the best among the hypotheses, we need to be able to compare them to one another in terms of their ability to account for observed data and make accurate predictions. The numerical measure, the output of our objective function, is a quantity called `r xf_definition("likelihood")`.
+
+
+## The likelihood framework {#sec-likelihood-framework}
+
+`r xf("sec-uncertainty")` discussed how to use *probability distributions* to quantify uncertainty. `r xf("sec-where-from")` introduced a Bayesian notion of where probability distributions come from: they are hypotheses concocted by humans. 
+
+In the `r xf_definition("likelihood framework")`, we replace ideas about individual hypotheses being correct or incorrect, right or wrong, true or false. Instead, we consider *collections* of hypotheses, putting them into *competition* with one another, just as sports playoffs pit different athletes or teams against one another. In sports, a higher score gives a team a claim to being better than the opponent.
+
+
+In the likelihood framework, the competing entities are hypotheses represented by probability distributions about the relative probability of each possible observed outcome. The "score" for each competing hypothesis is the "`r xf_definition("likelihood")`." And just as sports teams compete in a particular setting---a game or match---hypotheses compete in a setting: data.
+
+The reader who has never heard of "likelihood" in this sense may wonder if the framework is the right or best one for placing hypotheses into competition. We turn to the field of statistics to answer. As described in `r xf("sec-where-from")`, Bayesian and Frequentist statisticians fundamentally disagree. Despite their conflicting stances, both camps put likelihood at the center of their methodologies. 
+
+To illustrate how likelihood works, consider how to model uncertainty in the time interval between major events, for example, the time between economic depressions or the time between magnitude 6.5+ earthquakes in a region. 
+
+To be specific, suppose we have data on the timing of the last five events of some kind: events occurred in 1905, 1919, 1950, 1973, and 1990. We would like to model the uncertainty in the timing of the next event based on these observations. We have information on five observed intervals between consecutive events. Four of them are definite: 14 years between 1905 and 1919, 31 years between 1919 and 1950, 23 years between 1950 and 1973, and 17 years between 1973 and 1990. The fifth interval, between 1990 and the next event, is unknown. This doesn't mean that we have no information about it. At this time of this writing, 2027, we know the fifth interval is at least 37 years long.
+
+The standard model for the interval between random events is the exponential distribution. This has one parameter, the rate. A good choice of rate is the one most consistent with the data. Likelihood provides the measure of consistency between a hypothesized rate and the observed intervals. The exponential function `r xf("fig-exp-20-model")` shows the likelihood of any one interval observation for a hypothesized rate of 0.03. Each of the observed intervals, 14, 17, 23, and 31 years has been marked in the graph. 
+
+```{r}
+#| label: fig-exp-20-model
+#| echo: false
+#| fig-cap: "The likelihood for any observed interval under the hypothesis of an exponential distribution with rate 0.03. The four completed intervals by vertical lines. The likelihood of each is printed beside the vertical line."
+Intervals <- tibble::tibble(
+  delta = c(14, 17, 23, 31), 
+  exp_prob = dexp(delta, rate = 0.03),
+  ypos = -seq(.001,.003, length=4))
+slice_plot(dexp(delta, rate = 0.03) ~ delta, 
+           domain(delta = 1:50),
+           color = "blue") |>
+  gf_segment(0 + exp_prob ~ delta + delta, data = Intervals,
+             color = "black") |>
+  gf_point(exp_prob ~ delta, color = "black",
+           data = Intervals) |>
+  gf_text(exp_prob ~ delta, 
+  label = ~signif(exp_prob,3), data = Intervals,
+  position = position_nudge(x = 5)) |>
+  gf_text(-0.001 ~ delta, label = ~ delta, data = Intervals) |>
+  gf_labs(x = "Interval (years)", y = "Likelihood") |>
+  gf_theme(theme_minimal(base_size = 14))
+```
+ 
+The likelihood for each individual observation is the value of the likelihood function at that observation. For instance, the likelihood of an interval of 14 years is 0.0197. When there are multiple observations, we need to combine their likelihoods. How to accomplish this?
+
+The answer comes from the same feature of probability arithmetic that you may have encountered in games (or in math classes about games). For instance, the probability of rolling a 5 with a die is 1/6. The probability of rolling a 5 twice in a row involves combining the individual probabilities by multiplication: 1/6 $\times$ 1/6 = 1/36. 
+
+The overall likelihood of our four observations---intervals of 14, 17, 23, and 31 years---is the product of their individual likelihoods: $0.0197 \times 0.0180 \times 0.0150 \times 0.0118 = 6.325e-8$. This number is very small in magnitude. That's because there are very many other possibilities for the intervals that could have been observed, say, 12, 19, 24, 28 and such. Since there are so many similar sets of numbers, the likelihood of observing any particular one is small. As you'll see, the ultimate use of likelihoods is to compare them one to another, that is, to compare their *relative size*.
+
+If all we had were the four completed intervals, the overall likelihood of 6.325e-8 would be the value we assign to the specific hypothesis of an exponential distribution with a rate parameter of 0.03. We are going to put this specific hypothesis into a competition for the *best* hypothesis. As described in `r xf("sec-tradeoffs")`, to define "best," we need an *objective function* whose input will be the rate parameter and whose output will be the overall likelihood of our observed data---14, 17, 23, and 31 years---under that hypothesis.
+
+```{r}
+#| label: ch11-iekses
+#| echo: false
+data <- c(14, 17, 23, 31)
+rates = c(0.03, 0.04, 0.05, 0.06, 0.07)
+res <- matrix(0, nrow = length(rates), ncol = length(data))
+overall <- numeric(length(rates))
+for (k in seq_along(rates)) {
+  vals <- dexp(data, rates[k])
+  res[k,] <- vals |> signif(3)
+  overall[k] <- prod(vals)
+}
+res <- cbind(rates, res, signif(overall, 3)) 
+```
+
+By carrying out the same calculations we did for a rate of 0.03, we can find the likelihood for other rates. These are displayed in `r xf("tbl-several-rates")`. The workflow is this, for each row:
+
+i. set the hypothesized rate
+ii. compute the likelihood of each observation under that rate
+iii. multiply these likelihoods to get the overall likelihood for the row.
+
+This is repeated for each hypothesized rate. For the sake of conciseness, `r xf("tbl-several-rates")` shows only five hypothesized rates. See `r xf("fig-likelihood-curve")` for a more complete picture.
+
+::: {#tbl-several-rates}
+hypothesized rate | 14 | 17 | 23 | 31 | overall
+--------|----|----|----|----|-----
+0.03 per year | 0.0197 | 0.0180 | 0.0150 | 0.01180 | 6.33e-8
+0.04 per year | 0.0228 | 0.0203 | 0.0159 | 0.01160 | 8.54e-8
+0.05 per year | 0.0248 | 0.0214 | 0.0158 | 0.01060 | 8.92e-8
+0.06 per year | 0.0259 | 0.0216 | 0.0151 | 0.00934 | 7.90e-8
+0.07 per year | 0.0263 | 0.0213 | 0.0140 | 0.00799 | 6.26e-8
+
+The likelihoods of the observations under five different hypothesized rates.
+:::
+
+From the overall likelihood for each of the hypothesized rate parameters shown in `r xf("tbl-several-rates")`, we can see that a rate of 0.05 /year is more likely than our original hypothesis of 0.03 / year. But we can say more. The likelihood ratio comparing the 0.05 per year hypothesis to the 0.03 per year hypothesis is `r foo <- signif(8.92e-8 / 6.33e-8, 3); foo`. `r xf("tbl-likelihood-ratio-verbal")`, to be introduced in the next section, translates likelihood ratios into verbal statements of relative support. A likelihood ratio of `r foo` is really "no evidence" in favor of 0.05 per year versus 0.03 per year. The reason for this wimpy result is that four observations is a tiny amount of data. 
+
+If we can't argue for the 0.05 per year hypothesis over the 0.03 per year hypothesis based on the four complete observations, what possible hypotheses can we rule out. To illustrate this, we're going to extend the calculations shown in `r xf("tbl-several-rates")` to a wider range of intervals and plot the results in `r xf("fig-likelihood-curve")`.
+
+::: {.column-page-inset-right}
+```{r}
+#| label: fig-likelihood-curve
+#| echo: false
+#| layout-ncol: 3
+#| fig-cap: "Likelihood of the observed data as a function of the hypothesized *rate* parameter."
+#| fig-cap-location: bottom
+#| fig-subcap:
+#| - "The four completed intervals."
+#| - "The one incomplete interval of 37 years."
+#| - "All five intervals combined." 
+for_complete <- function(obs, rate) { 
+  res = rep(1, length(rate))
+  for (k in seq_along(obs)) {
+    res <- res * dexp(obs[k], rate)
+  }
+  res
+}
+for_incomplete <- function(obs, rate) { 
+  res = rep(1, length(rate))
+  for (k in seq_along(obs)) {
+    res <- res * (1 - pexp(obs[k], rate))
+  }
+  res
+}
+slice_plot(for_complete(c(17, 14, 23, 31), rate) ~ rate,
+  domain(rate = 0.00:0.14), npts = 1000) |>
+  #gf_refine(scale_y_log10(),
+  #scale_x_log10()) |>
+  gf_vline(xintercept = c(0.0146, 0.109),
+    color = "magenta") |>
+    gf_lims(y = c(0, 10e-8)) |>
+    gf_hline(yintercept = c(8.98e-8)*c(1, 1/6.82), color = "gray") |>
+  gf_labs(x = "Rate parameter (per year)")
+
+slice_plot(for_incomplete(37, rate) ~ rate,
+  domain(rate = 0.00:0.14), npts = 1000,
+  color = "blue") |>
+  gf_labs(x = "Rate parameter (per year)") |>
+  gf_hline(yintercept = c(1, 1/6.82), color = "gray") |>
+  gf_vline(xintercept = c(0, 0.0519), color = "magenta")
+# argM(for_complete(c(17, 14, 23, 31), rate) ~ rate, domain(rate = 0.003:0.2))
+# Zeros(for_complete(c(17, 14, 23, 31), rate) - (8.98e-8 / 6.82) ~ rate, domain(rate = 0.003:0.2))
+# argM(for_complete(c(17, 14, 23, 31), rate)* for_incomplete(37, rate) ~ rate, domain(rate = 0.003:0.2))
+# Zeros(for_complete(c(17, 14, 23, 31), rate)* for_incomplete(37, rate) - (2.12e-8/6.82) ~ rate, domain(rate = 0.003:0.2))
+# Zeros(for_incomplete(37, rate) - (1/6.82) ~ rate, domain(rate = 0.003:0.2))
+
+slice_plot(for_complete(c(17, 14, 23, 31), rate) * for_incomplete(37, rate) ~ rate,
+  domain(rate = 0.00:0.14), npts = 1000) |>
+  #gf_refine(scale_y_log10(),
+  #scale_x_log10()) |>
+  gf_vline(xintercept = c(0.0102, 0.0761),
+    color = "magenta") |>
+    gf_lims(y = c(0, 10e-8)) |>
+    gf_hline(yintercept = c(2.12e-8)*c(1, 1/6.82), color = "gray") |>
+  gf_labs(x = "Rate parameter (per year)")
+```
+:::
+
+Panel (a) shows the likelihood function for the four complete intervals, the same calculation as in `r xf("tbl-several-rates")`.
+
+Panel (b) is the likelihood function for the incomplete interval, that is, an interval that is still ongoing after 37 years from 1990 to 2027. If the rate parameter were very low, say one event per 100 years, an incomplete interval of at least 37 years is very likely. If the rate parameter were higher, say one even per 10 years, the likelihood of seeing the 37-year incomplete interval is very low.
+
+Panel (c) puts together the data from the complete and incomplete intervals. The likelihood function in (c) is the *product* of the two likelihood functions in (a) and (b). 
+
+The amount of data available dictates how precise a statement is justified by the evidence. Statisticians often quantify precision in this context by using the $\pm$ notation. For instance, an estimate of $0.03 \pm 0.01$ would indicate "95-percent confidence" that the true rate parameter lies within the interval $0.02$ to $0.04$. In each of panels (a), (b), and (c) we have indicated this 95-percent confidence interval with the vertical [magenta]{style="color: magenta;"} lines. 
+
+A good rule of thumb is that quadrupling the amount of data roughly halves the width of the confidence interval. But there is little reason to expect the new interval to be centered on the old estimate. The most one can say is that the new interval will probably overlap the original interval. That may be counter-intuitive, but uncertainty is sometimes that way!
+
+
+## Putting numerical evidence into words {#sec-evidence-into-words}
+
+A *likelihood* ratio is a measure of the strength of evidence. In interpreting likelihood, verbal ideas like "weak" evidence, "moderate," and "strong" turn out to correspond to the *magnitude* of the likelihood ratio, where "magnitude" is used in the sense of `r xf("sec-order-of-magnitude")`.
+
+The translation of a continuous quantity into a small set of verbal descriptions necessarily involves imposing some breakpoints. @tbl-likelihood-ratio-verbal provides a widely accepted set of breakpoints for translating the magnitude of the likelihood ratio into a verbal interpretation.
+
+::: {#tbl-likelihood-ratio-verbal}
+
+Magnitude | Likelihood ratio | Verbal interpretation
+----------|----|---------------
+0 | 1 | No evidence.
+1 | 10 | Limited evidence to support the hypothesis.
+2 | 100 | Moderate evidence to support the hypothesis.
+3 | 1000 | Moderately strong evidence to support the hypothesis.
+4 | 10000 | Strong evidence to support the hypothesis.
+
+A scale for translating the likelihood ratio into verbal categories.
+:::
+
+In accepting the verbal interpretations in `r xf("tbl-likelihood-ratio-verbal")` we are relying on the experience of past researchers. There's nothing wrong with that. But it would be nice to have a definite interpretation of what "limited" or "moderate" evidence constitutes. The mathematics of likelihood provide a means to do this.
+
+First, there's general consensus among statisticians and scientists that a likelihood ratio of 10,000 is sufficient to satisfy the criterion for "strong evidence" in favor of a hypothesis. Now, imagine that your observations have yielded a likelihood ratio of 100. How much more evidence would you need to collect to reach a ratio of 10,000. One answer is, you can't know for sure because you don't know in what direction the new evidence will point. 
+
+But assume you are excited enough about your existing evidence to believe it will be worthwhile to continue collecting data. Your excitement leads you to suspect that the additional data will point in approximately the same direction as your current evidence. (But there is never a guarantee!) If your suspicion were correct, you would have to plan to **double** the amount of data you use to calculate the likelihood ratio. A nice way to do this would be to have some other researcher confirm your earlier results while doubling the amount of data overall. 
+
+Explain why doubling the amount of data results in squaring the likelihood ratio.
+
+Suppose you flip a coin 10 times and get 6 heads. Are you justified in believing the coin is biased toward heads? To answer this question, you need to compare two hypotheses. One hypothesis is that the coin is not biased, that is, the likelihood of getting a head is 0.5. Statisticians refer to such a "nothing-out-of-the-ordinary" hypothesis as a `r xf_definition("Null hypothesis")`.  You need another hypothesis to compare it to, a hypothesis that specifies what is the *amount* of bias. Let's call this the "research hypothesis."" For instance, you might consider a research hypothesis that the likelihood of getting a head is 0.6.
+
+Under the Null hypothesis the likelihood of getting 6 heads and 4 tails is:
+
+$$\underbrace{0.5 \cdot 0.5 \cdot 0.5 \cdot 0.5 \cdot 0.5 \cdot 0.5}_\text{For the heads} \cdot \underbrace{0.5 \cdot 0.5 \cdot 0.5 \cdot 0.5}_\text{For the tails} = 0.0010$$
+
+Under the research hypothesis, the likelihood of getting 6 heads and 4 tails is:
+
+$$\underbrace{0.6 \cdot 0.6 \cdot 0.6 \cdot 0.6 \cdot 0.6 \cdot 0.6}_\text{For the heads} \cdot \underbrace{0.4 \cdot 0.4 \cdot 0.4 \cdot 0.4}_\text{For the tails} = 0.0012$$
+
+The likelihood ratio comparing the research hypothesis to the Null hypothesis is 1.2. This provides no reason to favor the research hypothesis. But, like a detective hunting for the criminal, you can try to collect more evidence, that is, more data. 
+
+For fun, imagine a dialog with the chief investigator (your boss) and with a likelihood expert present:
+
+Detective: Chief, I only have very preliminary evidence that the coin is biased (at 0.6), but I have a strong hunch and I'm sure it will become more convincing if I collect more data.
+
+Chief: How much time have you spent on this?
+
+Detective: Just two days. But enough to feel it in my gut that the coin is biased.
+
+Chief: It would be nice to put this case to bed, one way or the other. Take another two days and update me then. 
+
+Detective: Will do. Thanks, Chief. 
+
+*Two days later*
+
+Detective: I have been following up on the case. What I'm seeing is a match to my previous hunch, I think it's more than a hunch.
+
+Chief: Do you think you can wrap it up in another two days?
+
+Detective: I'm confident.
+
+Department Likelihood expert: Hold on. Your first two days investigation produced a likelihood ratio of 1.2. If your new data is consistent with your previous data, the combined likelihood ratio will be the square of 1.2, which is 1.44. If you were to spend another 4 days, the ratio would be 1.44 $\times$ 1.44 = 2.07. That would be laughed out of court!
+
+Chief: What would it take for the evidence to be convincing?
+
+Department Likelihood expert: For evidence "beyond a reasonable doubt", we would need a likelihood ratio of 10,000 or thereabouts. That would take about 100 days worth of data. And even after that, there's no reason to think, at this point, that things would come out the way you want.
+
+Chief: How much data would we need to convince the perp to accept a plea deal?
+
+Department Likelihood expert: For a plea deal, the required likelihood ratio would be much lower, perhaps around 100 to 1000. We're talking 50 to 75 days of evidence collecting.
+
+Chief (to Detective): I want you off the case. We've got better things to do.
+
+
+-----
+
+### New terms {#sec-new-terms-11}
+
+`r xf_new_words("11")`
+

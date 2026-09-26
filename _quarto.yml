@@ -1,0 +1,87 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Quantitative Argumentation"
+  subtitle: "Making Sense with Numbers"
+  author: "Daniel T. Kaplan"
+  chapters:
+    - index.qmd   
+
+    - part: "Foundations"
+      chapters:
+        - Chap-01-models.qmd
+        - Chap-02-systems.qmd
+        - Chap-03-quantities.qmd
+        - Chap-04-rates.qmd
+        - Chap-05-magnitudes.qmd
+
+    - part: "Using functions"
+      chapters: 
+      - Chap-06-functions.qmd
+      - Chap-07-core-modeling-functions.qmd
+      - Chap-08-uncertainty.qmd
+      - Chap-09-composing-functions.qmd
+    
+    - part: "Decision, evidence, and belief"
+      chapters: 
+        - Chap-10-tradeoffs.qmd
+        - Chap-11-likelihood.qmd
+        - Chap-12-bayes.qmd
+
+    - part: "Modeling change"
+      chapters:
+        - Chap-13-dynamics.qmd
+        - Chap-14-rates-of-change.qmd
+        - Chap-15-accumulation.qmd
+    - part: "Capstone: Toward AI"
+      chapters:
+        - Chap-16-operations.qmd
+
+
+  appendices:
+    - Appendix-Summaries.qmd
+
+format:
+  html:
+    toc: true
+    toc-depth: 1
+    number-sections: true
+
+  pdf:
+    pdf-engine: lualatex
+    documentclass: scrbook
+    fontsize: 11pt
+    mainfont: Libertinus Serif
+    sansfont: Arimo
+    number-sections: true
+    toc: true
+    toc-depth: 1
+    fig-cap-location: margin
+    linestretch: 1.1
+    mainfontoptions:
+      - Numbers=Lowercase
+      - Numbers=Proportional   
+    include-in-header:
+      text: |
+        \usepackage{amsmath}
+        \usepackage{cancel}
+        \usepackage[export]{adjustbox}
+        \makeatletter
+        \renewcommand{\part}[1]{\addcontentsline{toc}{part}{#1}}
+        \makeatother
+    fig-pos: "H"
+    geometry:
+      - top=20mm
+      - textwidth=5in
+      - marginparwidth=2in
+      - left=0.9in
+      - heightrounded  
+      - paperwidth=8.5in
+      - paperheight=11in  
+
+crossref:
+  eq-title: "Math expression"
+  eq-prefix: "Math expression"
+  thm-title: "Enrichment"

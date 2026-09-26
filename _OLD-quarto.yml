@@ -1,0 +1,114 @@
+project:
+  output-dir: docs
+  type: website
+  
+website: 
+  title: "Quantitative Reasoning: An Analysis Approach"
+  reader-mode: true
+  sidebar:
+    contents:
+      - href: "Chap-00-preface.qmd"
+        text: "Preface"
+      - section: Fundamentals
+        contents:
+        - text: "1. Argument and reasoning"
+          href: "Chap-01-models.qmd"
+          
+        - text: "2. Models"
+          href: "Chap-02-systems.qmd"
+
+        - text: "3. Quantities"
+          href: "Chap-03-quantities.qmd"
+      
+        - text: "4. Rates"
+          href: "Chap-04-rates.html"
+
+        - text: "5. Magnitudes"
+          href: "Chap-05-magnitudes.qmd"
+
+      - section: Using functions
+        contents:
+        - text: "6. Introduction to functions"
+          href: "Chap-06-functions.qmd"
+
+        - text: "7. Core modeling functions"
+          href: "Chap-07-core-modeling-functions.qmd"
+
+        - text: "8. Uncertain quantities"
+          href: "Chap-08-uncertainty.qmd"
+
+        - text: "9. Composing functions"
+          href: "Chap-09-composing-functions.qmd"
+
+        - text: "10. Tradeoffs"
+          href: "Chap-10-tradeoffs.qmd"
+
+
+      - section: Evidence and belief
+        contents:
+        - text: "11. Hypothesis and likelihood"
+          href: "Chap-11-likelihood.qmd"
+
+        - text: "12. Updating belief with evidence"
+          href: "Chap-12-bayes.qmd"
+
+      - section: Modeling change
+        contents: 
+        - text: "13. Dynamics: Modeling change"
+          href: "Chap-13-dynamics.qmd"
+
+        - text: "14. Rates of change"
+          href: "Chap-14-rates-of-change.qmd"
+         
+        - text: "15. Accumulation"
+          href: "Chap-15-accumulation.qmd"
+
+        - text: "16. Moving past two inputs"
+          href: "Chap-16-operations.qmd"
+          
+          
+      - section: "Basement"
+        contents:
+          - text: "Nothing yet"
+  navbar:
+    title: "<br>Quantitative Argumentation</br>"
+     
+format:
+  live-html:
+    theme: litera
+    css: styles.css
+    toc: true
+    cell-options:
+      lines: 3
+      render-df: gt
+    number-sections: true
+    number-depth: 2
+    mainfont: "Atkinson Hyperlegible"
+    
+  
+engine: knitr
+
+# Get around a bug in the current version of Mathjax:
+# Bug is that \mbox{} doesn't work.
+# html-math-method:
+#   method: mathjax
+#   url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+
+# Enable webR
+webr:
+  channel-type: 'automatic'
+  repos: ["https://dtkaplan.r-universe.dev"]
+  packages: ['mosaicCalc', 'ggplot2', 'ggformula', "dplyr"]
+filters:
+  - shinylive
+  - live
+  - si
+  - _extensions/exercise/exercise.lua
+
+
+critic-mode: markup
+  
+crossref:
+  eq-title: "Math expression"
+  eq-prefix: "Math expression"
+  thm-title: "Enrichment"

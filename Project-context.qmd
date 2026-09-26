@@ -1,0 +1,85 @@
+# Project Context {-}
+
+::: {.callout-warning}
+## Notes for reviewing drafts
+
+This unit will not be included in the finished book. 
+:::
+
+The project is focussed on delivering a proof of coherence and feasibility of a unified full-year course for first-year college students to replace the conventional introductory college curriculum that often consists of two mostly unrelated courses:
+
+1. A course continuing the student's high-school mathematics studies. This might take the form of "pre-calculus," or "calculus," or any of the other preliminary courses.
+
+2. A statistics/data-science course for first-year college students. 
+
+This book is intended to demonstrate a replacement for (1). The materials at the heart of the statistics introduction are not included in this volume, but already exist. For example, see the [materials for a 3-credit-hour course](https://qr2-w25.github.io/homepage/) I developed for a first-year core requirement at the University of Austin. That statistics introduction is utterly distinct from the current, mainstream, consensus Stat 101. For instance, it starts with it starts with multi-variate statistical modeling so that students can engage in modern forms of causal reasoning. It also covers risk as it appears in epidemiology and medical testing. Statistical inference is radically informed by the ASA's 2016 [statement on p-values](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108). 
+
+You may find it useful to watch a [video interview of me](https://www.youtube.com/watch?v=_WGhsW0YfSY) that touches on the motivations for the project.
+
+In some ways, "Quantitative Argumentation" is intended as a replacement for the ubiquitous "Calc I" course, that is, calculus course most widely encountered by new college students.     
+    
+- "Replacement" should be interpreted as meaning "taking up the curricular space occupied by Calc I," and not as providing an alternate presentation of the traditional Calc I topics.
+- The project retains core mathematical ideas that are useful for quantitative reasoning while rejecting the traditional ordering and symbolic machinery as the organizing structure. Some topics traditionally considered advanced, e.g. vector fields or dynamical systems, will be used but with a primarily verbal and graphical introduction.
+
+I ask the professional reviewer of these materials to keep in mind the project goals. It will be obvious to all that many standard topics in algebra/calculus and statistics are neglected entirely. This is not an omission but an intentional strategy to open up curricular space for core quantitative ideas that are important in understanding policy debates making sense of contemporary data work. 
+
+I certainly welcome arguments from traditionalists about why this topic or that needs to be retained, but I already know that what I am trying to do in this book does not match with topics and aesthetics that professional mathematicians hold dear. Comments are especially valuable when they point to inconsistencies, missed logical steps, and failure to translate essential implicit knowledge into explicit narrative. 
+
+Also note that the methods and approaches here have been tested for many years with first-year students at a range of public and private institutions.
+
+Do accept my apologies for the many drafty notes and formatting mistakes. I am distributing this in PDF format in case readers prefer to print it out. It's also intended for free, online distribution in an interactive HTML format. Many gross formatting errors in this PDF version result from HTML features (like interactivity) that I have not yet always found an equivalent that renders in PDF.
+
+## More details about project goals and philosophy {-}
+
+The student completing the course should gain these capabilities:
+    
+i. Understand that models, even when gross simplifications, can still be useful.
+ii. Be able to make a basic critique of simple mathematical models, for instance, pointing out when an important covariate has been omitted or a causal flow has been reversed. 
+iii. Distinguish "base" quantities (such as length) from rates/ratios (which will mean much the same thing in the book) and identify rates of change.
+iv. Recognize gross errors in combining or comparing quantities with incommensurate dimensions. Here, "dimensions" is used in the sense of "dimensional analysis".
+v. Use provided software to make graphs, run a predefined simulation and interpret the resulting data using straightforward statistical models with two or more explanatory variables.
+vi. Be able to distinguish correctly a rate of change in a graph from a simple change or an output level.
+vii. Understand qualitatively the respective roles and uses of prior, likelihood, and posterior in the Bayesian framework.
+
+"Quantitative Argumentation" is intended to be accessible to a wide range of first-year college students.
+    
+- Intellectually capable as might be expected of a student at a "selective" college or a flagship state university. 
+- Willing to reason carefully but uncomfortable with symbolic manipulation
+- Capable of reading sophisticated prose without imposing burdens that are unlikely for a first-year college student.
+- Capable of working with tables and graphics such as point plots, function graphs, and learning to read contour plots. 
+- Using R in a highly scaffolded way which involves, at most, making trivial modifications to commands provided in computational chunks in the book.
+- May not have a solid understanding or previous success in courses such as "Algebra 2" or "Trigonometry" or even "Pre-calculus" or "College Algebra." But I don't want to be "talking down" or boring to students with a strong high-school math preparation or those who have completed a traditional Calc I/II.
+- Some aspects of conventional algebraic notation will be used in the narrative. This includes superscripts used to indicate exponentiation, subscripts for indicating a specific value of a general symbolic value, as in $a_1$, $a_2$, or $a_\star$ for an argmin or $a_0$ for the location of a zero-crossing. Square roots and radical notation will not be much needed. Function application will *always* be marked by parentheses, as in osc(x) rather than $\sin x$. 
+- The most complex algebraic notation should be along the lines of a linear combination, e.g., a_0 + a_1 osc(x) or a composition with a linear function (e.g. osc(2(x-3)))
+
+Crucial problems with "Calc I" are
+    
+- It is a course in algebraic manipulation even though the majority of students are not able to use algebra successfully and few adult professionals have any engagement with algebra except bad memories.
+- It is overly theoretical, with emphasis on "limits" and "series and sequences." Although conventional calculus approaches the topics of differentiation and integration from this theoretical perspective, a superior understanding of the uses and relationships between these topics can be achieved simply by reference to an intuitive notion of "small."
+- It fails to engage computing and the concepts of data organization needed at many levels in the workplace. 
+    * One aspect of this is that traditional mathematics notation, whatever it's visual appeal, has many ambiguities to the uninitiated and does not take advantages of the vast improvement in expression provided by modern computer notation. 
+    * Although iteration and random-number generation are important and accessible technologies in quantitative work, there is no algebra-based notation for these techniques.
+
+Notwithstanding the points in (5), a very wide range of students needs to engage with the "mathematics of change" and the many ways in which quantitative change is encountered in professional work, for instance the meaning of inflation rates.
+    
+- The basic "dynamical systems" or "state space" approach to describing change is more effective for student learning than the algebraic manipulation of differentiation and integration.
+- For example, as C.P. Snow argued in "The Two Cultures" (1959), almost everyone knows what a "velocity" or "speed" is, but wide swathes of educated people cannot give a cogent description of what "acceleration" is. 
+
+Verbal quantitative argumentation plays an important role in public policy debates as well as in the sciences and commerce. It is also important to informed personal decision-making as with finances or assessment of health risks and medical treatment.
+
+Much of the central vocabulary used in traditional mathematics is ambiguous and indifferent to the often distinct uses of the same words in statistics and data science. The approach taken by "Quantitative Argumentation" is to compile a vocabulary that is consistent and distinctive, even if it is somewhat unconventional. An important example is the use of "dimension." Trying to fix the ambiguity by giving detailed and precise disambiguations conforming to traditional practice will result in cognitive overload and communication failure. The consistent use of technical vocabulary is an important style goal in "Quantitative Argumentation."
+
+The traditional high-school or college mathematics curriculum more or less ignores the careful treatment and accounting for units. But mastery of basic ideas of dimensional analysis provides a strong footing for thinking about calculus-level ideas without symbolic algebra.
+
+IGNORE LINES AFTER THIS POINT
+
+I have a bad habit of starting sentences with "[In or some other preposition] [section reference or some other noun], we ..." Please identify every sentence in the 16 .qmd chapters file that starts in this way, providing a CSV or other tabular form listing the first words (up to 10) of the sentence, the document name, and the line number.
+
+- response in `_bad-sentences.csv`
+
+Concision review: I would like to identify sentence fragments that are unnecessarily wordy, that is, where this is a more concise formulation that says the same thing without losing meaning. Please consult the general literature about good writing to identify such fragments and suggest more concise alternatives. Produce the output in a format that is easy for a human to read, but also is suited to a future task for you to identify such fragments in the text. 
+
+- response in `_overlong-wording.csv`
+
+See this page at [Purdue's Online writing lab](https://owl.purdue.edu/owl/general_writing/academic_writing/conciseness/eliminating_words.html)
+

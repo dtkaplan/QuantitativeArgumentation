@@ -1,0 +1,210 @@
+# Chapter Summaries {#sec-summaries}
+
+## Chapter 1: Models
+
+**Quantitative argumentation** uses quantitative **models** to strengthen everyday reasoning, support decisions, and connect real-world situations with formal reasoning.
+
+**Reasoning** transforms **givens**—--facts, observations, beliefs, assumptions, or knowledge—--into new beliefs or conclusions. **Heuristic reasoning** is broadly useful but not guaranteed; **formal reasoning** is reliable when its rules are applied correctly.
+
+A model is a **representation** of an object, process, or setting. Models serve as bridges: heuristic reasoning helps *construct* a model, which then becomes the **givens** used for formal reasoning. .
+
+Models are not intended to match the endless complexities of the real world. Instead, a good model captures essential features of the world in a way that is useful for reasoning and decision-making. **Modeling** is the iterative *process* of creating, testing, and refining models to improve their usefulness.
+
+The example of the **SIR epidemic model** illustrates how a verbal account of a system can be translated into quantitative bookkeeping that supports simulation and the exploration of possible interventions.
+
+## Chapter 2: Systems
+
+A **system** is a structure of interconnected elements. In this book's account of modeling, each element is a feature or **dimension** of the system. [Chapter 3 will introduce another, closely related meaning for "dimension" in the context of quantities]{.column-margin} In a quantitative model, dimensions are represented by **quantities**.
+
+**Operationalization** is the procedure used to translate a dimension into a measurable quantity. Operationalizations do not necessarily capture all aspects of a system, they can be a compromise between the modeler's mental image of a dimension (example: "comfort") and the practicalities of measurement. Modelers should check that a dimension's operationalization adequately represents the intended aspect of the system to suit the purpose intended for the model. 
+
+A **value** is the specific numerical level of a quantity, together with its appropriate unit. A changing value does not necessarily mean that the dimension or its operationalization has changed. For instance, the temperature of a room may change from 20°C to 22°C, but the dimension (temperature) and its operationalization (measured in degrees Celsius) remain the same.
+
+**Data** are recorded facts, findings, or measurements. A **data frame** organizes such data into rows and columns: each row represents a specimen of a common object type, each column represents a system dimension, and each cell contains a value.
+
+A **sample** is a collection of specimens drawn from a larger population; **relationships observed in data** are collective properties inferred by comparing multiple specimens to one another.
+
+## Chapter 3: Quantities
+
+A **quantity** combines a pure number with **units** and, optionally, a description of what is being measured. 
+
+**Dimensions** describe the kind of quantity being measured; **units** are standardized ways of measuring it. Multiplying or dividing base units produces derived units, while **dimensional analysis** tracks the corresponding relationships among dimensions.
+
+Dimensional analysis was invented originally for work in science, especially physics and engineering. But it is useful for quantitative work generally. For such general work, this book adds the dimensions "worth" [W] and "people" [C] (for "capita") to the standard scientific base dimensions of length [L], mass [M], time [T], and thermodynamic temperature [Θ]. The square brackets, as in [T], can be read "the dimension of ...." (Other scientific dimensions---electric current [I], amount of substance [N], and luminous intensity [J]---are not used in this book.) We will also consider the dimension of pure numbers [1] as discussed below.
+
+A **pure number** is a number without any associated units. It is useful to consider pure numbers as having their own dimension, denoted [1] in the bracket-format used in the chapter. This allows pure numbers to be treated consistently within the general dimensional analysis framework for quantities. Using the word "dimensionless" to refer to the dimension [1] is standard.
+
+Quantities can be added, subtracted, or compared only when they are commensurate, meaning they have the same dimension. Unit conversion puts commensurate quantities into a common unit; a **conversion factor**, or "flavor of one," is a dimensionless ratio of equal quantities whose units show the direction of conversion.
+
+A *quantitative change* is the to value minus the from value, so it can be positive or negative. It compares a primary quantity across a context-setting quantity (such as time), expressed as change *with respect to* that context. The dimension of a quantitative change is that of the primary quantity. ["Rates of change" (Chapter 4) are different. Their dimension reflects both the primary quantity and the context-setting quantity.]{.column-margin}. A **partial change** examines one context-setting quantity while holding others constant. 
+
+A **space** represents a collection of quantity types; a set of possible values. The space for a single quantity is a number line. Two quantities together form a coordinate plane. Larger collections form higher-dimensional spaces. Each point in the space a value for each of the quantities that make up the space.
+
+## Chapter 4: Rates
+
+A **rate** consists of one quantity divided by another and is an important way of describing the relationship between two **dimensions**. ["Dimensions" here refers to attributes of systems.]{.column-margin} The division is signified by the word **per**.
+
+Being a quantity, a rate has units and is of the corresponding dimension. ["Dimension" here refers to the type of quantity the units measure.]{.column-margin}
+
+A **conversion factor**, or flavor of one, is a dimensionless ratio of equal quantities. But even though a conversion factor is dimensionless, it has units. The units determine the direction of conversion: to convert from one unit to another, use units of to/from.
+
+A **rate of change** compares a *change* in a primary quantity with the corresponding *change* in a context-setting quantity. It is a rate, so its units identify both what is changing and what that change **with respect to**.
+
+## Chapter 5: Magnitudes
+
+**Order of magnitude** provides an alternative way of representing a number that is well suited when comparing numbers that differ by large factors. Magnitude describes the size of a number by focusing on the position of its first nonzero digit relative to the decimal point. Numbers that differ by factors of ten differ by one order of magnitude; numbers that differ by factors of 100 differ by two orders of magnitude.
+
+Unit prefixes and scientific notation make magnitude easier to see without counting zeros. In scientific notation, the mantissa gives the digits and the exponent gives the approximate magnitude.
+
+A logarithm provides a more precise, single-number representation of magnitude by incorporating both the mantissa and exponent. This book uses base-10 logarithms because they correspond directly to decimal scientific notation.
+
+Logarithms apply only to pure numbers. Before comparing quantities with logarithms, convert them to the same unit; the units do not belong inside the logarithm.
+
+Magnitude-based comparisons and graphics are useful when quantities span large ranges and the relevant comparison is a ratio. For quantities that differ by small amounts, such as ordinary changes in temperature, height, or blood pressure, direct differences are often more informative.
+
+## Chapter 6: Functions
+
+Recall that systems are collections of interconnected elements. A **function** is an important way to represent such a connection. A function takes as input *one or more* quantities and produces as output a *single* quantity. (By using multiple functions, we can represent more complex relationships and interactions within a system.) 
+
+The process by which a function turns the inputs into its output is called an **algorithm**. The several functions on calculators correspond to algorithms; you invoke the algorithm with a button press. The computer programming notation to invoke a function is different: the **function name** followed by parentheses containing the values for inputs, for example `sultriness(temperature=28, humidity=0.75)`. 
+
+When a modeler creates a new function, she does so by putting together existing functions. (See, e.g., Chapter 9 for more on building complex functions from simpler ones, such as the core modeling functions introduced in Chapter 7.)
+
+## Chapter 7: Core modeling functions
+
+As a set of basic building blocks for constructing more complex functions, this book selects eight **core modeling functions**. Each core modeling function gives a name to a simple functional pattern---a **shape** that relates a single input to the output. 
+
+Each core modeling function is like a simple plot in a collection of stories. Putting those plots together creates a richer narrative that captures more complex relationships within a system.
+
+Every core modeling function takes a single pure-number input and produces a single pure-number output. We use **input scaling** to translate a dimensioned quantity into a pure number suitable for the core function. Similarly, **output scaling** translates the pure-number output back into a quantity with meaningful units.
+
+
+ that provide simple, reusable patterns that capture common types of relationships in quantitative models.
+A core modeling function is a named, reusable relationship that transforms one pure-number input into one pure-number output. The chapter provides a small library of eight simple functions whose shapes commonly occur in quantitative models.
+
+The graph of a core function shows how its output changes as its input changes. The input and output are read from the grid, and the function’s shape provides a qualitative story about the relationship: constant, steadily increasing, oscillating, rising and falling, or changing at an increasing or decreasing rate.
+
+The eight functions are same(), flat(), hill(), hillside(), exp2(), log2(), recip(), and osc(). Their names help communicate the relationship they represent and make the functions easier to use in computer implementations.
+
+Input and output scaling translates the pure-number input and output of a core function into quantities with meaningful units. Shifting and stretching the axes preserves the function’s shape while adapting it to a particular modeling situation.
+
+A modeler can use a core function as a starting pattern, then scale and interpret it for a real system. The chapter illustrates this process by modeling global oil production with exponential growth and by using familiar temperature stories to interpret each function’s shape.
+
+## Chapter 8: Uncertainty
+
+Often, a quantitative value is uncertain. Such uncertainty is an important feature of the quantity and needs to be represented formally. A simple way to communicate the amount of uncertainty is with a **range**: a lower and upper value.
+
+A **probability distribution** is a richer and more reliable way to represent uncertainty. There are differently shaped probability distributions to reflect different patterns of uncertainty. A probability distribution is a function whose input is a possible value and whose output indicates how likely that value is relative to other possibilities.
+
+The chapter introduces three useful **distribution families**: the uniform distribution for equally possible values within a known range, the normal distribution for values concentrated around a mean with decreasing likelihood farther away, and the exponential distribution for waiting times or other quantities with greater uncertainty toward the high end. (There are many more families used by modelers. This chapter focuses on these three.) One selects a specific probability distribution from a family by choosing appropriate **parameters** that specify its shape and scale.
+
+**Simulation** is a useful computational technique that propagates uncertainty through a a system by randomly sampling inputs from their probability distributions, applying the system functions, and examining the resulting collection of outputs.
+
+## Chapter 9: Composing functions
+
+Just as a music composer can put together individual notes to form a melody, a modeler can put together simple functions (such as the core modeling functions) to **compose** a more complex representation of a system.
+
+The chapter emphasizes two main ways of composing functions: **multiplication**, which captures interactions between quantities, and **linear combinations**, which capture additive effects of multiple influences. There are many other ways to compose new functions, which we don't consider in any detail.
+
+A **linear combination** of functions adds scaled functions. The scaling is accomplished by simple multiplication of the function with a number, called a **coefficient**. In general, coefficients are conversion factors that translate the units of the original function's output into the desired units for the combined function.
+
+**Linear regression** uses **data** to select good coefficients in a linear combination. The coefficients selected in this way are called **regression coefficients**.
+
+Regretably, conventional introductory statistics courses cover only one simple aspect of regression (calling it "simple regression") which amounts to what we are calling *output scaling* of a single function. But combining multiple functions, especially functions with different inputs, is a core quantitative technique throughout the social and natural sciences called "multiple regression." Multiple regression is a foundation for understanding complex systems through data. One use of multiple regression is to model *partial change* (Chapter 3) and is associated with phrases like "after adjusting for ..." or "controlling for ..." or "holding other variables constant."
+
+## Chapter 10: Tradeoffs
+
+A **tradeoff** occurs when a decision-maker must balance competing **objectives**. **Optimization** provides a way to compare possible choices using an **objective function**, whose input is a possible choice and whose output measures the consequence of that choice in terms of the objective.
+
+The **argmax** is the *input* that produces the maximum output of an objective function; the **argmin** produces the minimum output. A single objective function can identify a mathematically best choice, but that choice may be poor if the function omits other goals that matter.
+
+When several objectives conflict, their outputs may have *different dimensions* and cannot simply be added. With multiple objectives, each policy choice produces an output from each objective function. Those several output values can be plotted as a point in the *objective space*; a space with an axis for each output objective. A graph of the objective outputs can identify choices that are dominated, meaning another choice is at least as good on every objective and better on at least one. Dominated choices can be eliminated; the remaining choices represent genuine tradeoffs.
+
+A **shadow price** quantifies the exchange between competing objectives. It expresses how much of one objective must be given up to gain more of another, helping decision-makers clarify whether a proposed trade is worthwhile within real-world resource constraints.
+
+## Chapter 11: Likelihood
+
+A **hypothesis** is a claim about something, that might be off target to a greater or a lessor degree. The modeler's understanding of how a system works, together with relevant data, inspire the modeler to formulate a hypothesis about how a system works, and a model is a formal implementation of such a hypothesis. 
+
+**Likelihood** is a quantitative measure of how well a hypothesis accounts for observed data. It is constructed by composing a probability distribution function corresponding to uncertainties in a model. The output of that probability distribution is a probability. [Technically, this may be a probability **density**. This book sidesteps that technicality When a hypothesis asswith the concept of *relative probability*.]{.column-margin} The input to the function is the entire set of observations/data.
+
+Likelihoods are meaningful only in comparison to each other. The simplest comparison concerns competing hypothetical hypotheses for a *parameter* or *set of parameters*. Each parameter value corresponds to a specific probability distribution. The same input---the entire set of observations/data---is used as the input to the probability distribution function for each of the parameter values, one at a time. A **likelihood function** maps each parameter value to the likelihood of the observed data under that parameter value.
+
+A **likelihood ratio** compares the support for one hypothesis to the support for another. If the likelihood ratio is greater than one, the hypothesis in the numerator of the ratio is preferred to the hypothesis in the denominator. However, likelihood ratios should be much greater than 1 to constitute any evidence at all for the preference. Likelihood ratios greater than 1000 provide strong evidence. A **likelihood interval** (much the same as a "confidence interval" in classical statistics) describes a range of parameter values that are well-supported by the observed data.
+
+The likelihood depends on the amount of observations/data available.  Collecting more data generally narrows the interval---quadrupling the data roughly halves the width of the interval---though it need not center the new estimate at the old one.
+
+## Chapter 12: Bayes
+
+**Bayesian reasoning** provides a way to translate a *likelihood function* into a probability distribution that takes into account other information, such as **prior** knowledge or beliefs, that is outside the observations/data used when evaluating the likelihood function. The resulting probability distribution is called a **posterior** probability distribution for the set of hypotheses under consideration (such as the possible values for a parameter).
+
+The **prior** is a probability distribution function whose input domain is the set of hypotheses under consideration. The prior assigns a relative probability to each hypothesis, reflecting the degree of belief in that hypothesis before observing the data. The **likelihood** function reflects only the observations/data, not the prior belief. 
+
+Multiplying the **prior** function by the *likelihood* function produces the *posterior* function, which is the updated state of belief *after* taking into account the observed data.
+
+There can be reasonable disagreement about the best choice of a prior, just as there can be reasonable disagreement about beliefs in general. A sensible analysis considers the extent to which the posterior is influenced by the specific prior selected. The more the observations/data, the less the influence of the prior; evidence overcomes prior belief.
+
+At any point, a prior or a posterior can be multiplied by a number without changing their meaning. A favored normalization is to select the number such that the resulting distribution sums (or integrates) to one, ensuring it is an absolute (not relative) probability distribution. (See Chapter 15).
+
+## Chapter 13: Dynamics 
+
+"Change" is the main theme of Chapters 13, 14, and 15. Up to now, we have emphasized "with respect to" change, for instance a system like A -> B where a change in A produces a change in B. Here, A is an *exogenous quantity* whose change is determined outside the system, while B is an *endogenous quantity* whose change is determined by the system. 
+
+Another important perspective on change comes from a system where the connections between elements form a loop. A simplistic example is  A -> B -> A. This is simplistic because it doesn't specify which comes first, A or B: A chicken and egg problem. 
+
+We can avoid this ambiguity by inserting an intermediary in the form of a system element describing the "change in A with respect to time." For example: 
+
+A -> B -> 'change in A with respect to time'
+
+This is called a **dynamical system** and turns the exogenous quantity A in A -> B into a quantity whose change is determined within the system.
+
+The **Euler framework** represents such a system with three components: the state, a dynamical rule that gives the state’s instantaneous rates of change, and an accounting system that accumulates those changes into a time-based trajectory.
+
+A new graphics representation helps visualize the situation. The state quantities themselves (A and B in the above) are represented by a **state space** which has a dimension for each state quantity. The instantaneous state is represented as a point in this space. The change of state (the "change in A with respect to time" in the A -> B example) is represented as a vector originating from that point. The length of the vector indicates the speed of change, what we call the **instantaneous rate of change**. 
+
+A model of a dynamical system assigns a vector to each point in the state space; that vector is a function of the position of the point, that is, the values of A and B. This collection of vectors is called the **dynamical rule** or, informally, the "flow field." 
+
+Following the flow produces a **trajectory**, the sequence of values taken up by the state quantities as they change with respect to time. A trajectory may be curved even though each individual vector is straight.
+
+Exponential growth or decay arises from system where the change in the state is proportional to the current state, for instance, A -> 'change in A with respect to time'. Perhaps surprisingly, such simple systems with multiple state variables can exhibit not just exponential behavior but also oscillations.  
+
+In a finite world, exponential growth cannot continue indefinitely. This truth emphasizes that models are always approximations which may not include all factors that eventually become relevant.
+
+## Chapter 14: Rates of change
+
+A **rate of change** compares simultaneous changes in two quantities, for instance, how B changes with respect to A. 
+
+It turns out to be useful to consider **instantaneous** rates of change, which looks at how B changes with respect to a very small change in A. "Very small" can be treated as common sense; a change that is barely noticeable. There is also a mathematical abstraction which formalizes the idea of an infinitesimally smallchange change in A and its corresponding infinitesimally small change in B. Mathematics courses such as calculus tend to emphasize the abstraction, but for practical purposes the "barely noticeable" change is often sufficient.
+
+The system A -> B can also be described as a *function* B(A), where A is the input and B is the output. The **derivative** of a function is a *new function* that gives the original function's instantaneous rate of change. We might name this function change_in_B(A), but there are a variety of mathematical notations for it such as $\partial_A B(A)$ where $\partial_A$ means "change with respect to A of ...." [Calculus students will recognize $\frac{dB}{dA}$ or $\frac{\partial B}{\partial A}$ which emphasizes that the derivative is a *rate* of change, but obscures that the derivative is a function of the with-respect-to input.]{.column-margin}  **Differentiation** is the process of calculating a derivative, and **calculus** is the broader field that studies this relationship. The derivative has the same input as the original function but a different output and dimension.
+
+In economics, business, and most other disciplines outside of math and physics, the term **marginal rate** is used instead of "instantaneous rate of change" but has the same meaning of purtaining to a small, incremental change. Marginal tax rates, for example, describe the additional tax owed on a small *increase* in income rather than the average tax owed on all income. 
+
+Tradeoff situations, with two objective functions, have two rates of change with respect to the input policy quantity. The ratio of these two rates of change is effectively the rate of change of one objective output with respect to the other objective output. This can be interpreted as a *shadow price.* An optimization example about health care in the chapter seeks a balance between two health programs at a point where the marginal benefit per dollar spent is equal across the programs.
+
+
+## Chapter 15: Accumulation
+
+**Accumulation** is the process of finding a total from a rate of change over an interval. When the rate is constant, accumulation is calculated by multiplying rate by duration; when the rate changes, the same idea is carried out by **integration**, or **anti-differentiation**.
+
+An accumulation function and its rate-of-change function contain the same information in different forms. The rate-of-change function is the **derivative** of the accumulation function, while the accumulation function is the anti-derivative of the rate. An initial value is needed to determine the vertical position of the accumulated function.
+
+The relationship between marginal and total quantities can make models easier to construct and interpret. For example, a marginal tax-rate function can be accumulated to obtain total tax owed. Similarly, modeling QALYs saved per additional dollar can be easier to justify than directly modeling total QALYs saved; accumulation then produces the total-benefit function.
+
+Accumulation is also at the core of the accounting system used in the *Euler framework* for dynamical systems.
+
+The chapter illustrates this framework with population data. Rather than extrapolating the population time series directly, modelers can estimate how the population's rate of change varies with population or time, then accumulate that rate to forecast future population. This approach makes the model's assumptions visible and provides a basis for checking whether predicted growth or decline is plausible.
+
+## Chapter 16: Toward higher dimensions
+
+Many quantitative problems involve finding inputs that produce a desired output or maximize an objective. When the function cannot be graphed or described algebraically, a modeler can estimate local rates of change and **walk uphill** by taking small steps in a direction that increases the output.
+
+For a function with several inputs, the **gradient** is a vector made from the rates of change with respect to each input. It points in the direction of steepest ascent. Repeatedly evaluating the gradient and taking small steps produces a practical **gradient ascent** algorithm for optimization, even when the function has thousands or millions of inputs.
+
+Vectors provide a way to represent points, directions, and data in spaces with any number of dimensions. The **dot product** can be used to calculate vector length as well as the angle of **alignment** between two vectors. Alignment measures similarity: positive alignment indicates similar direction, zero indicates no shared direction, and negative alignment indicates opposing direction. AI systems use such alignment to quantify similarlity of meaning, allowing them to exploit patterns of meaning expressed in different terms.
+
+A **subspace** is a lower-dimensional structure within a larger space. **Projection** represents a vector by the closest vector in the subspace, separating the part of the data captured by a pattern from the remaining residual. These operations provide the mathematical foundation for statistical modeling and for finding patterns in high-dimensional data.
+
+The chapter illustrates **supervised learning** by using labeled penguin measurements to identify species and **unsupervised learning** by finding voting patterns without using party labels or bill descriptions. Reordering and projecting high-dimensional voting data reveals factions and types of bills, showing how quantitative methods can discover patterns that require other forms of reasoning to interpret.
+
+

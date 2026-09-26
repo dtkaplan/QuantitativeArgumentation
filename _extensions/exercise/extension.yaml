@@ -1,0 +1,7 @@
+title: Exercise Shortcode
+author: Textbook Author
+version: 1.0.0
+contributions:
+  shortcodes:
+    - exercise.lua
+    

@@ -1,0 +1,160 @@
+# Preface {#sec-preface .unnumbered}
+
+
+```{r include=FALSE}
+#| label: ch00-r-53afd67e
+source("_start-up.R")
+```
+
+<!-- SI shortcode: https://github.com/GeorgRamer/si?tab=readme-ov-file -->
+
+`r qr_margin_note(
+  "https://quarto.org/",
+  "Quarto documentation"
+)`
+
+There are some domains of life and work that naturally call for numerical measurement and description, as well as decision-making informed by numerical description. For instance, money matters are fundamentally described in numbers. Numbers and quantities are also crucial to describing weather, movement on a road, consumption of water and gasoline, and, among many other things, the size, surface area, volume, and weight of objects and ourselves.
+
+In our contemporary age---so tied up with computing and data---numerical measurement, description, and decision-making have started to penetrate a huge variety of undertakings including business, government, social science, biology and medicine, and countless other areas.
+
+[All of us spend many years in school]{.smallcaps} studying mathematics. Some aspects of our studies are vitally useful in everyday life. However, much of the mathematics curriculum---particularly starting with algebra and trigonometry---has originated from the needs of physics, engineering, and the discipline of mathematics itself. 
+
+For decades, many math educators and organizations have observed that the traditional, algebra- and trigonometry-oriented math curriculum is poorly suited for preparing students to succeed in a broadly quantitative, data-oriented world. The term "quantitative reasoning" is used by these educators to signal the situation and identify those topics that are more in line with student needs. If you like, treat the "quantitative reasoning" movement as analogous to the religious Reformation, creating new points of view based on a reconsideration of traditional beliefs. This book aims to expand student access to important techniques and patterns of thought as well as to connect more strongly to data, statistics, and computing. As you will see, "quantity" adds a fundamental dimension to the more basic idea of number.
+
+The word "quantitative" stems from a Latin adjective, *quantus*, meaning "how much" or "how big." The ancient root of *quantus*---denoted *kʷo by linguists---is dated to 4500-2500 BC and is associated with other interrogative words like "what," "which," and "how." In short, "quantitative" starts as a question. 
+
+The origin of "quantitative" is utterly distinct from that of "math." Almost everybody identifies "mathematics" with a set of topics universally encountered in school: from arithmetic in primary school to the mysteries of algebra that trouble so many high-school students to the hard-to-access university-level requirements of calculus. But the word "math" originates in a Greek word meaning "knowledge," without any reference to number, size, or the school topics now associated with it.
+
+This book is about tools that support the modeling of real-world systems and the processes of drawing conclusions or decisions from those models. Our goal is not to make the reader an expert but to help the reader become a reliable witness, reporter, and interpreter of those uses in the hands of professionals.
+
+
+[The next chapters introduce the fundamental components]{.smallcaps} of modeling-based quantitative argumentation. 
+
+- The system components are **quantities**. As a concept, *quantities* are akin to *number* but involve additional information that provides basic facts about how different kinds of quantities are related to one another. 
+
+- Interactions between quantities can often be represented with the mathematical ideas of **functions** and **spaces**.
+
+- In many cases, different quantities are related by **rates** and **rates of change**. The invention of a quantitative language to reason about change and accumulation marks the historical start of the [Enlightenment](https://en.wikipedia.org/wiki/Age_of_Enlightenment) in the late 1600s.
+
+These tools provide the language and basis of quantitative **models**---the mathematical representation of real-world settings---which express our understanding of the setting and from which a handful of simple operations enable us to extract useful forms of information.
+
+The same tools are the elements of an important language to describe **uncertainty and risk** quantitatively. Increasingly, particularly over the last 40 years with the mainstream adoption of **Bayesian inference**, this language provides the means to use new **observations and evidence** to update our existing models, that is, to improve our understanding and belief of how systems work.
+
+```{dot}
+//| fig-width: 7
+//| fig-height: 9
+digraph chapter_dependencies {
+  graph [
+    rankdir=TB,
+    newrank=true,
+    compound=true,
+    nodesep=0.45,
+    ranksep=0.5,
+    splines=ortho
+  ]
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fillcolor="white",
+    color="#333333",
+    fontname="Helvetica",
+    margin="0.12,0.08"
+  ]
+
+  edge [
+    color="#555555",
+    arrowsize=0.7
+  ]
+
+  subgraph cluster_foundations {
+    label="Foundations"
+    style="rounded, filled"
+    fillcolor="#DDEBF7"
+    color="#5B9BD5"
+
+    rankdir=TB
+
+    C1 [label="1 Models"]
+    C2 [label="2 Systems"]
+    C3 [label="3 Quantities"]
+    C4 [label="4 Rates"]
+    C5 [label="5 Magnitudes"]
+    C6 [label="6 Functions"]
+    C7 [label="7 Core modeling functions"]
+
+    C1 -> C2 -> C3 -> C4 
+    C4 -> C5
+    C4 -> C6 -> C7
+  }
+
+  subgraph cluster_right {
+    label=""
+    rankdir=TB
+    style=invis
+
+    subgraph cluster_inference {
+      label="Decision, Evidence and Belief"
+      style="rounded,filled"
+      fillcolor="#E2F0D9"
+      color="#548235"
+  
+      C8  [label="8 Uncertainty"]
+      C10 [label="10 Trade-offs"]
+      C11 [label="11 Likelihood"]
+      C12 [label="12 Bayesian reasoning"]
+  
+      C10 -> C11 -> C12
+      C8 -> C11
+    }
+  
+    subgraph cluster_calculus {
+      label="Modeling Change"
+      style="rounded"
+      fillcolor="#FCE4D6"
+      color="#D6A84F"
+      style="rounded,filled"
+  
+      C9  [label="9 Composing functions"]
+      C13 [label="13 Dynamics"]
+      C14 [label="14 Rates of change"]
+      C15 [label="15 Accumulation"]
+      C16 [label="16 Operations"]
+  
+      C9 -> C13 -> C14 -> C15
+      C14 -> C16
+    }
+    C7 -> C8 [style=invis, weight=100]
+  }
+
+
+
+  
+
+  { rank=same; C1; C2; C3;}
+  { rank=same; C4; C5}
+  
+
+  { rank=same; C8; C9}
+
+  graph [
+  compound=true,
+  splines=ortho
+]
+
+C7 -> C8 [
+  ltail=cluster_foundations,
+  lhead=cluster_inference,
+  minlen=3
+]
+ 
+
+C7 -> C9 [
+  ltail=cluster_foundations,
+  lhead=cluster_calculus,
+  minlen=3
+]
+
+
+}
+```

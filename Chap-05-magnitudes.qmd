@@ -1,0 +1,470 @@
+---
+number-offset: 4
+crossref:
+  fig-title: "Figure 5."
+  fig-prefix: "Fig 5."
+  tbl-title: "Table 5."
+  tbl-prefix: "Table 5."
+---
+
+
+
+
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{r include=FALSE}
+#| label: ch05-r-18503172
+source("_start-up.R")
+```
+
+# Order of magnitude {#sec-order-of-magnitude}
+
+@fig-gdp-mortality potentially addresses a critical worldwide issue: high child mortality. Mortality ["Child Mortality" is operationalized as the rate of death of children under five years in age.]{.column-margin} ranges widely, from around 30 deaths per 1000 children down to almost zero? It is hard to tell from the graph, but it looks like the bottom end of the range is very low: about one death per 1000. Everyone would like to reduce mortality to the lowest possible level. Experience shows that vast reductions from 30 deaths per 1000 are possible, but what is a practical goal?
+
+
+
+```{r}
+#| label: ch05-r-649faba4
+#| warning: false
+#| message: false
+#| echo: false
+#| results: hide
+library(ggiraph)
+library(LSTbook)
+library(ggformula)
+csvname <- "www/child-mortality-gdp-per-capita.csv"
+
+raw <- readr::read_csv(csvname)
+
+goo <- raw |> select(Entity, Year, `Child mortality rate`, `GDP per capita`) |>
+  filter(Year %in% c(1960,2020)) |>
+  na.omit() |>
+  mutate(year = as.factor(Year)) |>
+  filter(n() == 2, .by = Entity) 
+
+Cuba <- goo |>
+  filter(Entity %in% 
+           c("Cuba", "Algeria", "Bolivia", 
+             "Botswana", "Brazil", "Canada", "Chad", "Chile",
+             "Congo", "Eswatini", "Gabon", "Ghana", "Germany",
+             "Democratic Republic of Congo"))
+
+P0 <- goo |> 
+  gf_point_interactive(`Child mortality rate` ~ `GDP per capita`,
+                       color = ~ year, alpha = 0.6,
+                       tooltip = ~ glue::glue("{Entity} {Year}<br>GDP {signif(`GDP per capita`, 3)}<br>Mortality  {round(`Child mortality rate`,1)}")) |>
+  gf_labs(y = "Child mortality rate (per 1000)", x = "GDP per capita (International Dollars)") 
+
+P1 <- P0 |>
+gf_line_interactive(`Child mortality rate` ~ `GDP per capita`, group = ~ Entity,
+           color = "black", data = Cuba, inherit=FALSE)
+
+# Not using this. Perhaps use in an exercise.
+P2 <- goo |> 
+  mutate(logChild = log10(`Child mortality rate`),
+         logGDP = log10(`GDP per capita`)) |>
+  gf_point_interactive(logChild ~ logGDP, 
+                       color = ~ year, alpha = 0.6,
+                       tooltip = ~ glue::glue("{Entity} {Year}<br>GDP {signif(`GDP per capita`, 3)}<br>Mortality  {round(`Child mortality rate`,1)}")) |>
+  gf_labs(y = "Magnitude of child mortality rate (per 1000)", x = "Magnitude of GDP per capita (International Dollars)") |>
+  gf_line_interactive(log10(`Child mortality rate`) ~ log10(`GDP per capita`),
+          group = ~ Entity, color = "black", data = Cuba, inherit=FALSE)
+
+P3 <- P1 |> gf_refine(scale_x_log10(), scale_y_log10())
+```
+
+::: {#fig-gdp-mortality cap-location=margin}
+```{r}
+#| label: ch05-r-61aa6861
+#| echo: false
+#| message: false
+P0 |> gf_girafe()
+# P2 |> gf_girafe() # deferred to later
+```
+
+Child mortality (deaths per 1000) versus GDP for 1960 and 2020 for 125 different countries. Source: Bolt and van Zanden – Maddison Project Database 2023 – with minor processing by [Our World in Data](https://ourworldindata.org/).
+:::
+
+
+::: {.content-hidden when-format="pdf"}
+[@fig-gdp-mortality is interactive; hovering the cursor over a dot causes the country name to appear, along with the precise numerical value for mortality and GDP.]{.column-margin} 
+:::
+
+Looking at the first few rows of the data behind @fig-gdp-mortality reveals its structure:
+
+```{r echo=FALSE}
+goo |> head() |> 
+  select(-year) |> 
+  mutate(
+    `Child mortality rate` = round(`Child mortality rate`, 2),
+     `GDP per capita` = round(`GDP per capita`)) |> 
+     knitr::kable()
+```
+
+Each specimen---that is, each row---is a country in a given year (1960 or 2020). The raw table, especially in its complete 250 rows, is hard to make sense of. @fig-gdp-mortality makes it easier to see patterns.
+
+The strategy that underlies such graphics, indeed much of the power of data graphics, comes from `r xf_definition("sorting")` the data values according to *a selected* quantity. Sorting helps the eye identify points that are close together in one quantity, then check whether they are close or spread out along the other quantity. Similarly, sorting facilitates checking whether points that are widely separated in one quantity are also widely separated in the other quantity. Sorting helps us identify points that fall in the same region of the coordinate plane: they are close together in the two-dimensional graphics frame.
+
+The graphical format, first of all, highlights three exceptional countries in 1960 with high mortality *and* high GDP in 1960. As it happens, all three of these countries are oil-rich. The graphical format also gives the striking impression that mortality overall went down substantially between 1960 and 2020, and that the wealthier 2020 countries had practically zero mortality.
+
+We will return to this matter in @fig-gdp-mortality-mag once we have introduced an important tool in quantitative argumentation: the comparison of *magnitudes*. The key is to focus on a number by looking at the position of the first non-zero digit relative to the decimal point. 
+
+
+## Counting digits
+
+When quantities are about the same size, it is easy to compare them to see which is bigger or smaller. For most people, the cognitive load of such comparisons is very low for values in the range 1-100. In an instant, a person can pick the larger of two quantities. Try it, which is larger: 72 or 68? No work at all.
+
+The cognitive load rises for quantities that span a much larger range, say 1 to 10,000 or larger.
+
+When quantities are a mixture of the very large and the very small, comparisons require attention. For instance, consider `r xf("tbl-GDP-short-bad")`, which shows the gross domestic product (GDP) of a handful of countries in 2024. The table standardizes values from different countries to a standard unit: United States dollars (USD). 
+
+
+::: {.content-hidden unless-format="pdf"}
+[Table 4.1: The 2024 gross domestic product of a handful of countries. The digits are correct, but the size of the numbers is hard to make out because the table ignores sensible formatting conventions. [Source: [World Bank](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=CN&name_desc=false)]]{.column-margin}
+
+Country | GDP in USD
+:--------|:----------------
+Albania   | 27177740000.00
+Australia | 1752193000000
+Bhutan    | 3019250000.00
+China     | 18743803000000
+Estonia   | 42764930000.00
+Germany   | 4659929000000
+
+
+:::
+
+:::: {.content-hidden unless-format="html"}
+::: {#tbl-GDP-short-bad cap-location="margin"}
+Country | GDP in USD
+:--------|:----------------
+Albania   | 27177740000.00
+Australia | 1752193000000
+Bhutan    | 3019250000.00
+China     | 18743803000000
+Estonia   | 42764930000.00
+Germany   | 4659929000000
+
+The 2024 gross domestic product of a handful of countries. The digits are correct, but the size of the numbers is hard to make out because the table ignores sensible formatting conventions. [Source: [World Bank](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=CN&name_desc=false)]
+:::
+::::
+
+In `r xf("tbl-GDP-short-bad")`, the numbers are "left justified", that is, their leading digits line up in a column. Unfortunately, the leading digits---27 for Albania and 18 for China---are little help in comparing the values.  
+
+Now consider the GDP numbers, written in a different format. `r xf("tbl-GDP-short-better")` makes it easy to see which countries have very large values and which comparatively smaller values. First, we have sorted the values. Sorting helps the eye compare every value to every other value in an instant. 
+
+
+:::: {.content-hidden unless-format="pdf"}
+[Table 4.2: A better presentation of the GDP data from `r xf("tbl-GDP-short-bad")`. Commas improve readability by separating thousands. The `monospace` font makes it easier to align the digits]{.column-margin}
+
+Country   | GDP in USD
+:---------|----------------:
+China     | `18,743,803,000,000`
+Germany   |  `4,659,929,000,000`
+Australia |  `1,752,193,000,000`
+Estonia   |     `42,764,930,000`
+Albania   |     `27,177,740,000`
+Bhutan    |      `3,019,250,000`
+
+:::
+
+
+:::: {.content-hidden unless-format="html"}
+::: {#tbl-GDP-short-better}
+Country   | GDP in USD
+:---------|----------------:
+China     | `18,743,803,000,000`
+Germany   |  `4,659,929,000,000`
+Australia |  `1,752,193,000,000`
+Estonia   |     `42,764,930,000`
+Albania   |     `27,177,740,000`
+Bhutan    |      `3,019,250,000`
+
+A better presentation of the GDP data from `r xf("tbl-GDP-short-bad")`.
+:::
+:::
+
+The improved format of `r xf("tbl-GDP-short-better")` also makes it clear why looking at the leading digits is not always helpful in comparing values. Instead, the first thing to look at is the *number of digits*. Because the values are all aligned to the right, we do not even need to count the number of digits; we can treat them as if we are looking at a bar graph. It is necessary to look to the leading digits *only when* the *number of digits* is the same.
+
+## Unit prefixes and scientific notation
+
+As noted in the previous section, people are quick to compare or sort numbers with 1, 2, or even three digits. Bigger numbers, however, require shifting to another mode: counting digits. Similarly, comparing tiny numbers---such as 0.000032 and 0.00018---involves counting the zeros that immediately follow the decimal point.
+
+There are two widely used techniques for formatting numbers that include information about the number of digits *directly* in the number. The logic of these two techniques will bring us very close to explaining how to construct graphics like @fig-gdp-mortality-mag.
+
+The most familiar of the two techniques involves unit prefixes. Every day, we deal with both very large and very small distances. For instance, using base SI units, the width of a typical room is about 3 m, while a bike ride to a hardware store is about 2500 m, depending on the neighborhood. The screw bought there to fix a bike could have a diameter of 0.004 m. If these numbers sound strange, it is because everyday practice is to change the units in order to avoid counting zeros. Instead of 0.004 meters, say 4 millimeters. Rather than 2500 meters, say 2.5 kilometers. 
+
+The standard prefixes "milli" and "kilo" mean, respectively, one-thousandth and one thousand. The *milli* prefix---often abbreviated simply as m---moves the decimal point 3 places to the right: 0.004 m is the same as 4 mm. Likewise, kilo (abbreviated as k) moves the decimal three places to the left: 2500 m becomes 2.5 km.
+
+The system was introduced on a limited basis by the revolutionary government of France. (See `r xf("tbl-magnitude-prefixes")`.) It has been extended to handle larger and smaller quantities on several occasions.
+
+:::: {.content-hidden unless-format="pdf"}
+
+\vspace{0.5in}
+
+[Table 4.3: Official unit prefixes that move the decimal point to avoid zero counting. The year of introduction of each prefix paints a picture of when people started to talk about quantities very large and very small. Additional prefixes, used only in very specialized situations, were added in 1964, 1991, and 2022.]{.column-margin}
+
+Abbrev. | Prefix | Moves<br> decimal point | Year introduced
+-----|----|-------|----
+    p  | pico   | 12 places to right | 1960
+    n  | nano   | 9 places to right  | 1960
+ $\mu$ | micro  | 6 places to right  | 1883
+    m  | milli  | 3 places to right  | 1794
+    c  | centi  | 2 places to right  | 1795
+    d  | deci   | 1 place to right   | 1795
+  .... | ... | ... | ...  
+    da | deca   | 1 place to left    | 1795
+    h  | hecto  | 2 places to left   | 1795
+    k  | kilo   | 3 places to left   | 1795
+    M  | mega   | 6 places to left   | 1873
+    G  | giga   | 9 places to left   | 1960
+    T  | tera  | 12 places to left  | 1960
+::::
+
+:::: {.content-hidden unless-format="html"}
+::: {#tbl-magnitude-prefixes}
+Abbreviation | Prefix | Moves decimal point | Year of introduction
+--------|-------|-------|------
+    p  | pico   | 12 places to right | 1960
+    n  | nano   | 9 places to right  | 1960
+ $\mu$ | micro  | 6 places to right  | 1883
+    m  | milli  | 3 places to right  | 1794
+    c  | centi  | 2 places to right  | 1795
+    d  | deci   | 1 place to right   | 1795
+  .... | ... | ... | ...  
+    da | deca   | 1 place to left    | 1795
+    h  | hecto  | 2 places to left   | 1795
+    k  | kilo   | 3 places to left   | 1795
+    M  | mega   | 6 places to left   | 1873
+    G  | giga   | 9 places to left   | 1960
+    T  | terra  | 12 places to left  | 1960
+
+Official unit prefixes that move the decimal point to avoid zero counting. The year of introduction of each prefix paints a picture of when people started to talk about quantities very large and very small. Additional prefixes, used only in very specialized situations, were added in 1964, 1991, and 2022.
+:::
+::::
+
+Only a handful of prefixes are in everyday use: micro, milli, kilo, mega, giga. These cover a broad range, from a tiny dose of medicine to the wealth of ultra-rich individuals. Notice that the most used prefixes each shift the decimal point by three places, enabling the range of quantities to eliminate leading or trailing zeros and be represented as numbers with one, two, or three digits plus the prefix. The 1795 prefixes that move the decimal point by 1 or 2 places have mostly fallen out of use. The most common exception is *centi*, which is widely used for length: centimeter (cm). The prefix *hecto* is in regular use to refer to area; a "hectare" is an area of (100 m)-squared, that is, (100 m)^2^ =  100^2^ m^2^ = 10,000 m^2^.
+
+For temperatures, on the other hand, the prefix system is not used. Even without prefixes, we can write everyday temperatures with two digits. 
+
+As regards time, we have an idiomatic system for avoiding zeros: seconds, minutes, hours, days, weeks, months, years, decades, centuries, millennia. The right-moving prefixes, however, are used for time: milliseconds, microseconds, and such.
+
+When talking about money, it is common to replace the Latin prefixes with words like "thousand," "million," "billion," and "trillion." Unfortunately, such words differ from language to language. The French use "milliard" and "billion" to mean what in English is a billion and a trillion, respectively. The Japanese use 4-digit groups for monetary quantities. "Man" is 1,0000 (that is, 10,000), "oku" is 1,0000,0000 (that is, one-hundred million), "cho" is 1,0000,0000,0000, which aligns with English "billion."
+
+[An anecdote: I once overheard a transaction at a London cheese shop. The American customer, perhaps familiar with kilograms and kilometers, had likely been told that 100 grams of cheese is a sensible amount to buy, but instead ordered "100 kilograms of Stilton." The shopkeeper was surprised and confused.]{.column-margin}
+
+People can easily confuse prefixes they do not use often. Such mistakes can lead to serious problems. Mistake milligrams for micrograms, and the dose of medicine will be 1,000 times too small or too large. News reports and politicians frequently confuse "million" with "billion."
+
+
+The prefix system works best when applied to units with short names, such as meters, grams, watts, joules, and so on. Things can get out of hand with derived units. For instance, a fundamental quantity used in quantum physics is Planck's constant, which has the unusual dimension [energy] $\times$ [time].
+
+::: {.column-page-inset-right}
+Planck's constant: `0.000000000000000000000000000000000662607015` m^2^ kg / s
+:::
+
+Doing calculations with such numbers is error-prone, since it is easy to omit or add zeros and hard to see at a glance that this has occurred.  Writing it more compactly with prefixes is not much help:
+
+`0.663` femtometers^2^ gm / s
+
+`r xf_definition("Scientific notation")` is helpful here. To illustrate, consider a "light year," often used to measure distances between stars. In the familiar units of kilometers, and using traditional mathematical notation, a light year is $$\color{blue}{\fbox{9.461}}\color{black}{\times 10}^{\,\color{magenta}{\fbox{12}}} .$$
+Such notation involves a kind of punctuation used to organize two numbers. The punctuation framework is $\color{blue}{\fbox{       }}\color{black}{\times 10}^{\,\color{magenta}{\fbox{   }}}$. (The colors are not part of the notation. We use them to enhance clarity of what goes where.) 
+
+The two number-roles in scientific notation have standard, if obscure, names. 
+
+- The [**mantissa**]{style="color: blue;"}, 9.461 in the example, is conventionally written with a single 1-to-9 digit to the left of the decimal point, 9 here. There can be any number of digits, including 0, to the *right* of the decimal point.
+- The [**exponent**]{style="color: magenta;"} is placed as a superscript to 10. It is always an integer, that is, a round number. In the example, the exponent is 12. 
+
+Here are a few examples of large and small numbers in scientific notation:
+
+* Planck's constant: $\color{blue}{6.62607015} \color{black}{\times 10}^{\color{magenta}{-34}}$ m^2^ kg / s
+* China GDP for 2023: $\color{blue}{1.87} \color{black}{\times 10}^{\color{magenta}{13}}$ USD
+* Value of German Mark in USD during an episode of hyperinflation: January 1923 $\color{blue}{1.4}\color{black}{\times 10}^{\color{magenta}{-4}}$ USD; October 1923 $\color{blue}{2.0} \color{black}{\times 10}^{\color{magenta}{-10}}$ USD;
+
+A primary virtue of scientific notation is that the reader does not need to count digits in order to compare two numbers. The exponent takes care of the counting for you.
+
+A flaw of this notation is that the most important number, the exponent, is written in the smallest font. In computer notation, however, the punctuation is dramatically streamlined: Planck $\mathtt{\color{blue}{6.62607015}\color{black}{e}\!\color{magenta}{-\!34}}$; China $\mathtt{\color{blue}{1.87}\color{black}{e}\color{magenta}{13}}$; German Mark $\mathtt{\color{blue}{1.4}\color{black}{e}\color{magenta}{-4}}$. The `e` in the computer notation is shorthand for "exponent."
+
+Public health workers and sociologists use a variant of scientific notation with the punctuation "per." A mortality rate of 0.0063 (deaths per person) will instead be presented as 63 deaths per 10,000 people, avoiding the need to count digits. For a rare disease, we present its prevalence across different units, e.g., cases per 100,000 people or 1,000,000 people. Naturally, 63 deaths per 10,000 people can also be sensibly written as 6.3 deaths per 1000, or, stretching things, 0.63 deaths per 100. Writing the quantity as, say, 0.063 deaths per 10 persons or 0.0063 deaths per person goes to far towards illegibility, even if mathematically justified.
+
+The names "mantissa" and "exponent" are absolutely standard. However, the idea of "the exponent of a number" is flawed. Numbers don't have exponents, scientific notation describes them in an exponent-based way.
+
+However, an important idea in quantitative argumentation is "the `r xf_definition("magnitude")` of a number." When comparing two numbers, the phrase `r xf_definition("order of magnitude")` difference can be very useful. 
+
+A good way to think about the magnitude of a number is by reference to scientific notation. The exponent in scientific notation gives a quick readout of the magnitude. For instance,
+
+a. 394.32 (that is, 3.9432e2) is a magnitude-2 number
+b. 0.14 (that is, 1.4e-1) is a magnitude-minus-1 number
+
+Comparing such different sizes of numbers as (a) and (b) is often done using the magnitude. (a) and (b) are "3 orders of magnitude" different.
+
+In @sec-mag-single-num we'll consider a more precise way to specify the magnitude of a number. The exponent in scientific notation is a rounding off of the precise magnitude.
+
+## Example: The magnitude of child mortality
+
+We return now to the patterns in child mortality across the decades and across the world. @fig-gdp-mortality showed the numbers for mortality and GDP. Now we are going to look at the same data, but using magnitudes to represent the fact.
+
+@fig-gdp-mortality-mag plots the mortality-vs-GDP data on axes that are arranged to highlight order-of-magnitude differences. In contrast to  @fig-gdp-mortality the data points are much more spread out across the graphics frame. Subtle patterns are visible that involve many more countries. 
+
+
+
+```{r}
+#| label: fig-gdp-mortality-mag
+#| message: false
+#| fig-cap: "The same data as in @fig-gdp-mortality, but placed on axes showing the *magnitude* of the number."
+#| echo: false
+P2 |> gf_girafe()
+```
+
+::: {.content-hidden unless-format="pdf"}
+[The black lines in @fig-gdp-mortality link a country's 1960 and 2020 data. See the ONLINE REFERENCE for an interactive version that labels which country is which.]{.column-margin}
+:::
+
+For instance, there are points from 1960 that are more or less directly above many points from 2020. "Directly above" means that there is little or no change in GDP but that there is a big change in mortality. This suggests that the mortality change stems to a great extent from factors other than GDP. One such factor is the introduction in the 1970s of [oral rehydration therapy](https://en.wikipedia.org/wiki/Oral_rehydration_therapy), an inexpensive but effective treatment for diarrheal illnesses that were a major cause of child mortality. This style of quantitative analysis, examining the *partial change* in one quantity while holding another constant, is detailed in `r xf("sec-rates-of-change-brief")`.
+
+## Logarithms: Just the magnitude, please {#sec-mag-single-num}
+
+Computers happily take into account the two numerals in scientific notation when doing arithmetic. But this can be hard for people. There is, however, a way to condense the two components of scientific notation into a single number conveying the same information. The basic idea is to fold the mantissa into the magnitude by allowing non-integer values for the magnitude. 
+
+The name for this condensed form of scientific notation is probably familiar to you already: `r xf_definition("logarithm")`.
+Try to put aside any anxiety you associate with that name from a previous algebra course. A logarithm is just a format for writing a number.
+
+To illustrate, consider the scientific-notation form of the 2023 GDP of China: $\mathtt{\color{blue}{1.87}e\color{magenta}{13}}$ USD. This value is somewhat greater than $\mathtt{\color{blue}{1}\color{black}{e}\color{magenta}{13}}$ USD but less than $\mathtt{\color{blue}{10}\color{black}{e}\color{magenta}{13}}$ USD. Of course, $\mathtt{\color{blue}{10}\color{black}{e}\color{magenta}{13}}$ ought to be written $\mathtt{\color{blue}{1}\color{black}{e}\color{magenta}{14}}$. The magnitude of $\mathtt{\color{blue}{1}\color{black}{e}\color{magenta}{13}}$ is 13, that is, the value of the exponent. Similarly, the magnitude of $\mathtt{\color{blue}{1}\color{black}{e}\color{magenta}{14}}$ is 14.
+
+So what is the logarithm of $\mathtt{\color{blue}{1.87}\color{black}{e}\color{magenta}{13}}$? Since the original number is between $\mathtt{\color{blue}{1}\color{black}{e}\color{magenta}{13}}$ and $\mathtt{\color{blue}{1}\color{black}{e}\color{magenta}{14}}$, its logarithm should be between 13 and 14: something like 13._ _. The digits to fill in the blanks are, to be honest, by no means obvious. Indeed, the answer was invented as recently as 1600 by John Napier (1550-1617) as an arithmetical aid. 
+The logarithm of $\mathtt{\color{blue}{1.87}\color{black}{e}\color{magenta}{13}}$ turns out to be 13.272, between 13 and 14, but closer to 13. 
+
+::: {.column-margin} 
+To help reinforce the connection between the magnitude in scientific notation and the logarithm, here are a few examples:
+
+Scientific notation | Logarithm
+-----------|----------
+`1.2325e4`   | `4.0908`
+`7.3e15` | `15.86`
+`4.1e-8` | `-7.39`
+
+:::
+
+::: {.callout-note}
+## A mathematician's generalization
+
+In algebra courses, logarithms are usually introduced in an abstract way. Usually, no mention is made of the revolution in arithmetic created by the publication of the first "table of logarithms" in 1617. Such printed tables were an essential volume of every quantitatively oriented professional, a pattern that persisted through the 1980s when electronic computers first became widely available. 
+
+Mathematicians developing a theoretical basis for logarithms invented a generalization that contains infinitely many types of logarithms, indexed by a number called the "base." The traditional logarithm, the one corresponding to scientific notation, is called "base-10." In the extended theory, any number can serve as a base and each base gives its own value for the resulting logarithm. 
+
+Much confusion and error can be avoided by sticking to base-10. We'll tend to do that in this book. However, as needed, especially in `r xf("sec-dynamics")`, we will defer to the customs of mathematically-adjacent disciplines such as physics or electrical engineering.
+:::
+
+::: {.callout-caution}
+## Units and dimensions when using logarithms
+
+A careful consideration of units and dimensions is crucial to quantitative argumentation. Logarithms, however, only apply to pure numbers. There is no use talking about the logarithm of a kg or the dimension of a magnitude. 
+
+Comparing a quantity to another naturally requires that they two quantities have the same dimension. To use logarithms sensibly, particularly when comparing quantities, make sure to convert all the quantities to the same *unit* before calculating the logarithm. 
+
+Occasionally you may encounter a phrase like "log dollars." This is not a genuine unit but a reminder that the values presented are magnitudes and that the original unit of measurement was dollars.
+:::
+
+
+## Magnitude graphics {#sec-magnitude-graphics}
+
+The method used to produce @fig-gdp-mortality-mag, the more intelligible version of the mortality-versus-GDP graph, is to set the axes' scales to reflect the *magnitude* of the quantity. For ease of interpretation it is common to label the axes in a magnitude plot with corresponding numerical values rather than magnitudes.
+
+## Order of magnitude phenomena
+
+Many phenomena and their associated quantities are best thought of in terms of magnitude rather than number. An example: Animals, including humans, go about the world in varying states of illumination, from the bright sunlight of high noon to the dim shadows of a half-moon. To see in such diverse conditions, the eye needs to respond to light intensity over a broad range of magnitudes. When comparing two numbers of different magnitudes, the phrase used is `r xf_definition("order of magnitude.")` 
+
+For instance, there is a difference of two orders of magnitude between 100 (`1e2` in scientific notation) and 10,000 (`1e4`). 
+
+
+The *lux* is the unit of illuminance in the Système international. `r xf("tbl-lux-examples")` shows the illumination in a range of familiar outdoor settings.
+
+:::: {.content-hidden unless-format="pdf"}
+Illuminance | Condition
+------------:|:---------------
+110,000 lux | Bright sunlight
+20,000 lux	| Shade illuminated by clear blue sky, midday
+1,000 lux	| Typical overcast day, midday
+400 lux	| Sunrise or sunset on a clear day (ambient illumination)
+0.25 lux |	A full Moon, clear night sky
+0.01 lux | 	A quarter Moon, clear night sky
+
+[Table 4.4: Illumination in lux in some outdoor settings. [Source](https://en.wikipedia.org/wiki/Daylight) ]{.column-margin}
+::::
+
+:::: {.content-hidden unless-format="html"}
+::: {#tbl-lux-examples}
+Illuminance | Condition
+------------:|:---------------
+110,000 lux | Bright sunlight
+20,000 lux	| Shade illuminated by clear blue sky, midday
+1,000 lux	| Typical overcast day, midday
+400 lux	| Sunrise or sunset on a clear day (ambient illumination)
+0.25 lux |	A full Moon, clear night sky
+0.01 lux | 	A quarter Moon, clear night sky
+
+Illumination in lux in some outdoor settings. [Source](https://en.wikipedia.org/wiki/Daylight) 
+:::
+::::
+
+For a creature active both night and day, the eye needs to be sensitive over a range of illumination spanning more than six orders of magnitude. To accomplish this, the eyes use several mechanisms: pupil contraction or dilation accounts for about one order of magnitude; photopic (color, cones) versus scotopic (black-and-white, rods, nighttime) accounts for about three orders of magnitude; adaptation over minutes (1 order); and squinting (1 order).
+
+More impressively, human perception of sound spans 11 orders of magnitude in the energy impinging on the eardrum. The energy density of perceptible sound ranges from the threshold of hearing at 0.000000000001 W/m^2^ to a conversational level of 0.000001 W/m^2^ to 0.1 W/m^2^ in the front rows of a rock concert. However, in terms of our subjective perception of loudness, each order-of-magnitude change is perceived the same way, whether it is from street traffic to a vacuum cleaner or from a whisper to everyday conversation. (The unit of sound measurement is the decibel (dB), with 10 decibels corresponding to an order of magnitude in the energy density of sound.) See `r xf("tbl-sound-energy")` for the dB level of a wide range of sound levels.
+
+:::: {.content-hidden unless-format="pdf"}
+\vspace{0.5in}
+
+[Table 4.5: Energy density of sound in various situations. Sound at 85 dB, for extended periods, can cause permanent hearing loss. Exposure to 120 dB of sound for 30 seconds is dangerous.]{.column-margin}
+
+Situation | Energy level (dB)
+:-------------|---------:
+Rustling leaves | 10 dB
+Whisper | 20 dB
+Mosquito buzz | 40 dB
+Normal conversation | 60 dB
+Busy street traffic | 70 dB
+Vacuum cleaner | 80 dB
+Large orchestra | 98 dB
+Earphones (high level) | 100 dB
+Rock concert | 110 dB
+Jackhammer | 130 dB
+Military jet takeoff | 140 dB
+
+
+::::
+
+
+:::: {.content-hidden unless-format="html"}
+::: {#tbl-sound-energy}
+Situation | Energy level (dB)
+:-------------|---------:
+Rustling leaves | 10 dB
+Whisper | 20 dB
+Mosquito buzz | 40 dB
+Normal conversation | 60 dB
+Busy street traffic | 70 dB
+Vacuum cleaner | 80 dB
+Large orchestra | 98 dB
+Earphones (high level) | 100 dB
+Rock concert | 110 dB
+Jackhammer | 130 dB
+Military jet takeoff | 140 dB
+
+Energy density of sound in various situations. Sound at 85 dB, for extended periods, can cause permanent hearing loss. Exposure to 120 dB of sound for 30 seconds is dangerous. 
+:::
+::::
+
+6, 60, 600, and 6000 miles per hour are quantities that successively differ in size by orders of magnitude. Such differences often point to a substantial change in context. A jog is 6 mph, a car on a highway goes 60 mph, a cruising commercial jet goes 600 mph, and a rocket passes through 6000 mph on its way to orbital velocity. The range from an infant's crawl to highway cruising covers three orders of magnitude in speed.
+
+Of course, many phenomena are **not** usefully represented by orders of magnitude. For example, the difference between normal body temperature and high fever is 0.01 orders of magnitude in temperature.[We are using the Kelvin scale, which is a physically meaningful scale for a *ratio* of temperatures.]{.column-margin} An increase of 1 order of magnitude in blood pressure from the normal level would cause instant death! The difference between a very tall adult and a very short adult is about 1/4 of an order of magnitude. 
+
+Comparing with orders of magnitude makes sense when the relevant comparison is a *ratio*. "A car is 10 times faster than a person" refers to the ratio of speeds. In contrast, we generally use *differences* to compare quantities such as body temperature, blood pressure, and adult height. Fever is only 2$^\circ$C higher in temperature than normal.  A 30 mmHg increase in blood pressure is worth noting as an indication of hypertension. [In medicine, blood pressure is measured using old-fashioned, non-SI units based on the height of a column of mercury that will balance blood pressure. The "mmHg" is short for "millimeters of mercury."]{.column-margin} A very tall and a very short adult differ by about 3 feet.
+
+Thinking in terms of orders of magnitude is appropriate when working with a set of objects whose sizes span one or many factors of 2. Comparing baseball and basketball players? No need for orders of magnitude. However, in considering the weights of mammals, from bats to whales, orders of magnitude will reveal patterns that the whales would obscure on a number-line scale.
+
+-----
+
+### New terms {#sec-new-terms-05}
+
+`r xf_new_words("05")`
+
+

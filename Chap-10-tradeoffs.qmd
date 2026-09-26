@@ -1,0 +1,268 @@
+---
+number-offset: 9
+crossref:
+  fig-title: "Figure 10."
+  fig-prefix: "Fig 10."
+  tbl-title: "Table 10."
+---
+
+```{r include=FALSE}
+#| label: ch10-r-01e639c0
+source("_start-up.R")
+```
+
+# Trade-offs {#sec-tradeoffs}
+
+The everyday verb "trade" involves exchanging one thing for another. Buying lunch is a trade: you exchange money for food. Almost always, such an exchange involves two parties, in this case  a buyer and a seller. A `r xf_definition("trade-off")` is a kind of trade that involves only one party who has to balance competing objectives. A person who decides to buy a cheaper lunch in order to have money for a movie faces a trade-off between the quality of the food and the amount of money available for entertainment.
+
+Trade-offs often involve money, but not always. For instance, a painter bending far from a ladder to get to that last little bit of unpainted third-story window trim is trading off efficiency for safety. Another painter, who climbs down and moves the ladder closer to the window, faces the same trade-off but evaluates it differently. The second painter is prioritizing safety over efficiency. 
+
+This chapter is about describing trade-offs and some of the ideas that can be used to resolve them. 
+
+
+## Optimization
+
+"Optimization" is a mathematical topic that deals with finding the best from a set of possible choices. There are many technical situations in which optimization techniques are useful. An example is calculating the coefficients used in linear regression. But it is also used, importantly, in routing and logistics, for example finding the best sequence of stops for a delivery van or the layout of transistor circuits on an integrated silicon chip.
+
+In a trade-off, the existence or meaning of "best" is not clear-cut. Still, some of the terminology from optimization is useful for describing trade-offs quantitatively. [Remember, the *domain* of a function is the space of legitimate inputs to the function.]{.column-margin} The structure of an optimization problem involves a function---called the `r xf_definition("objective function")`---whose input domain is the set of possible choices. An objective function is a tool that allows systematic comparison of the available choices in terms of the outcome each one will produce. 
+
+Optimization can involve one or more objective functions, although most mathematics courses emphasize the single-objective case. Optimization with a single objective function is a good way to introduce the basic concepts and terminology, but trade-offs typically involve multiple objective functions.
+
+An objective function is a perfectly ordinary function along the lines discussed in `r xf("sec-intro-to-functions")` or `r xf("sec-customizing-functions")`. The modeler constructs an objective function to capture a particular goal in the optimization problem. For instance, apartment hunting can be seen as an optimization problem where the input domain is the list of available apartments for rent. One typical objective is to maximize the *square footage* of the apartment, others are to minimize the rent and distance to work, and to maximize the quality of the neighborhood, etc. These are four different objectives and each is represented by its own objective function. In this case, the modeler building the objective functions would assemble a table over each of the available apartments with each objective function being a column in the table. For instance, square footage would be one column, rent another, and so on.
+
+The term "objective function" is properly descriptive. In optimization problems one has some goal in mind---the objective, the output of the function---and seeks to select an input value that will produce the largest value of that output. 
+
+Optimization problems sometimes involve situations where the goal is to minimize rather than maximize the output. Any minimization problem can be turned into a maximization problem by putting a minus sign in front of the objective function.
+
+The "solution" to the optimization problem is the input value that achieves this maximum (or minimum) output. The output achieved is called the objective function's `r xf_definition("maximum")` or `r xf_definition("minimum")`, depending on the context, but the point is to find the input value that produces it. Such an input could be reasonably called the "optimum input," but the technical name for it is the `r xf_definition("argmax")`. For a minimization problem, the corresponding word is `r xf_definition("argmin")`.
+
+"Argmax" and "argmin" are not ordinary English words; they are syllabic abbreviations, like FedEx (short for Federal Express), formed from the first syllables of words in a phrase. The phrase relevant to optimization is "the **arg**ument that produces the **max**imum output value." Keep in mind that "argument" in this phrase is used as a synonym for "input."
+
+@fig-argmax-examples shows the argmax for two example objective functions. Those functions each have an output that varies with its input. In the spirit of fun, we imagine that the output in panel (a) is the taste score assigned to a baked item and, for (b), the relative probability of locating a shipwreck. However, the output scale does not matter at all to the optimization problem. The argmax is merely the *input* that produces the maximum output.
+
+```{r}
+#| label: fig-argmax-examples
+#| echo: false
+#| message: false
+#| warning: false
+#| layout-ncol: 2
+#| fig-cap-location: "top"
+#| fig-cap: "The argmax (blue dot) for each of two example objective functions."
+#| fig-subcap:
+#| - Objective function with one input. Argmax at temperature = 315 deg F"
+#| - Objective function with two inputs.
+raw1 <- mosaicCalc::doodle_fun( ~ x, seed = 9329)
+f1 <- function(temperature) {
+    30 - 4*raw1((temperature - 325)/25)
+}
+slice_plot(f1(x) ~ x, domain(x = 250:400)) |>
+gf_point(0 ~ 315, color = "blue", size = 4) |>
+gf_labs(x = "Oven temperature (deg F)", y = "Tasters' score") |>
+gf_lims(y = c(0,100)) |>
+gf_theme(theme_minimal(base_size = 14))
+
+raw2 <- mosaicCalc::doodle_fun( ~ x + y, seed = 6493)
+
+f2 <- function(x, y) {
+    5-raw2((-x+120.6), y-10)
+}
+contour_plot(f2(x, y) ~ x + y, domain(x = 118:128, y = 5:12.5)) |>
+gf_point(7.4 ~ 122, color = "blue", size = 4) |>
+  gf_labs(x = "Longitude (deg W)", y = "Latitude (deg N)", subtitle="Relative probability of wreck") |>
+  gf_theme(theme_minimal(base_size = 14)) |>
+gf_refine(coord_fixed())
+```
+
+To judge from panel (a), the tastiest baking temperature for the item is 315 deg F. As for the shipwreck, its most likely position is (122 W, 7.4 N), but the relative probability there is not much higher than at areas within about $\pm 1$ degree of longitude and latitude. In each panel, the blue dot marks the input value, not the output value.
+
+How does one find the argmax? If you have a graph, look at it, find the point in the picture that corresponds to the peak of the hill and read off the input values for that point. 
+
+It is hard to construct useful graphics when the objective function has three or more inputs. Optimization problems with many inputs can be solved with a different technique, which we will discuss in `r xf("sec-moving-past-two-inputs")`. In training AI models, the objective function literally can have billions of inputs.
+
+The technique for finding an argmax can be implemented in software. This fact lowers the priority to the student of learning mathematical theory of optimization. The real questions one faces in optimization are how to develop a model for the objective function and whether there is an argmax at all. 
+
+## Toward trade-offs
+
+Often, the purpose of finding an argmax is to guide a decision or choice. In `r xf("fig-argmax-examples")`(a), the choice involves setting the oven temperature to produce the tastiest cake. In (b), the choice is where to start searching for the sunken wreck.
+
+Sometimes, however, the proposed objective function does not capture all relevant considerations. In such cases, the argmax of an objective function may not guide a good decision. For instance, consider the objective function that takes an automobile's speed as input and produces as output the time until the car reaches its destination. This is a minimization problem, since we want to take the least time possible to get to the destination. 
+
+```{r}
+#| label: fig-car-speed
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Time in hours to a destination 100 km away as a function of car speed. To minimize time to destination, a higher speed is better."
+distance = 100 # kilometers
+slice_plot(distance / speed ~ speed, domain(speed = 10:150)) |>
+  gf_labs(x = "Speed (km/h)", y = "Time to destination (hours)") |>
+  gf_lims(y = c(0,10)) |>
+  gf_theme(theme_minimal(base_size = 14)) |>
+  gf_segment(0 + 0 ~ 120 + 145, color = "blue", linewidth = 3,
+    arrow = arrow(type = "closed", length = unit(0.2, "inches"))) |>
+  gf_segment(9.9 + 10 ~ 10 + 10, color = "black", linewidth = 2,
+    arrow = arrow(type = "closed", length = unit(0.1, "inches"))) |>
+    gf_segment(0.667 + 0.667 ~ 149 + 150, color = "black", linewidth = 2,
+    arrow = arrow(type = "closed", length = unit(0.1, "inches")))
+```
+
+`r xf("fig-car-speed")` shows the objective function. Naturally, the faster the car goes, the less time it takes to reach the destination. We've marked the argmin at the highest value on the graphics input scale, but in some sense any input larger than this would result in an even better (lower) output, which is the meaning of the blue arrow. Keep in mind that the blue annotation corresponds to an arg**min**, even though it is at a very *high* speed. The "min" in argmin refers to the output of the objective function, not the input. The "minimum" is the about the output of the function, the "argmin" is about the input that generates the minimum output.
+
+The optimization result---the argmin of a high speed, i.e., go as fast as possible---violates any driver's common sense. The problem is that the model has only one objective: minimizing time to destination. Any responsible driver will incorporate additional objectives into the decision-making process. Let's list some of these:
+
+1. minimize time to destination
+2. maximize safety
+3. maximize fuel efficiency
+4. minimize legal violations
+
+Each of these objective functions, when considered in isolation, has its own argmax or argmin, depending on whether the output of the function is to be maximized or minimized.
+
+1. Argmin: Go as fast as possible.
+2. Argmax: Drive at a safe speed. If there is traffic, a safe speed will be similar to other cars on the road. If no traffic, heed visibility and road conditions.
+3. Argmax: Look up the most fuel-efficient speed for your car on a trustworthy web site. On a windless day, this is likely to be around 80 km/h (50 mph).
+4. Argmin: Keep speed at or under the legal speed limit.
+
+Depending on conditions, the objective functions can be in conflict with one another. For instance, when traffic is exceeding the speed limit, the safety goal conflicts with the legal compliance goal. Each of the goals (2), (3), and (4) conflict with (1). 
+
+Such conflicting objectives are the origin of trade-offs. 
+
+## Resolving trade-offs
+
+Drivers deal with the driving-speed trade-off in the previous section every day using intuition or heuristics. One important heuristic here is "obey the speed limit." By way of justification for the heuristic, a driver might argue that the speed limit is set based on safety considerations and, since the government has an interest in reducing fuel consumption, is likely close to the optimal speed for efficiency. Another heuristic is "follow the flow of traffic," which is particularly valuable when the flow of traffic exceeds the posted speed limit. And in special circumstances---snow, ice, dense fog---even the flow of traffic may not be a good guide. 
+
+It's unlikely that a careful quantitative analysis would provide better guidance than the heuristics already in use. But I want to draw on the driving situation to illustrate what mathematical approaches are available to guide decision-making in general. Using a non-controversial issue---driving---frees us from the preconceptions, political, and ethical stances that often complicate discussions in other domains, such as health care, government spending policies, and environmental regulations.
+
+Even if we do not perceive the four objectives in highway driving as active elements in our everyday choices, a simple thought experiment can reveal that each would be deemed important under changed circumstances.  
+
+For instance, suppose that fuel costs went up by a factor of 100, that is, that gasoline cost about $400 US per gallon (approximately $100 per liter). The fuel-related cost of driving a mile would increase from about 15 cents per mile to about $15 per mile. We can construct a small model to quantify the implications of this. Supposing that a highway speed reduction from 60 mph to 40 mph reduces fuel consumption by, say, 20%. Travel time on a previously 1 hour trip (60 miles at 60 mph) would increase to 1.5 hours (60 miles at 40 mph): a 30-minute increase in travel time. This time increase would be offset by the savings on fuel: the 20% reduction in fuel use would save 3 cents per mile, or $1.80 over the 60-mile trip. Judge for yourself whether a savings of $1.80 is worth the extra 30 minutes of travel time. I think most people would say no. At the higher fuel costs, the savings would be $180. I suspect most people would gladly exchange 30 minutes of their time for $180.
+
+You might discard this observation on the grounds that the hypothetical 100-fold increase in fuel costs is unrealistic. That people would change their behavior in this extreme scenario, however, is a signal that drivers are sensitive to fuel costs. Think for yourself whether a $90 savings would be worth the 30 minutes. Or perhaps $45 would be worth it, or even $15. If so, we don't need the 100-fold increase to make the point; and 8-fold increase is all that's required.
+
+Now consider a scenario in which a zero-tolerance policy to speeding is adopted. Any violation of the speed limit would lead to a suspension of your driver's license. Would this change your driving behavior? Most likely (at least until the next election when the people responsible for the policy would be thrown out of office).
+
+To simplify the discussion, `r xf("fig-two-obj-funs")` imagines an optimization context with two objective functions, Score() and Savings(). The input to each is a policy measure (analogous to the speed you choose to drive). For easier comparison between the two functions, they have been overlaid on the same plot. For each function, the argmax is an input value, that is, a point on the horizontal axis. The two functions have different argmaxes. And there are different vertical scales, one applying to Score and the other to Savings. Note that the vertical scales differ not just in amount but in dimension: one is a "Score in points" and the other is a "Savings in tons." 
+
+```{r}
+#| label: fig-two-obj-funs
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Two objective functions whose outputs have different dimension."
+score <- function(x) 200*dnorm(x, mean=3, sd=1.5)
+savings <- function(x) 315*dnorm(x, mean = 5, sd=2)
+
+DD <- data_frame(
+    policy = seq(0, 8, length=9),
+    label = LETTERS[1:9]
+)
+
+slice_plot(score(x) ~ x, domain(x = 0:8), color="darkcyan", linewidth=2) |>
+gf_label(data=DD, -3 ~ policy, label = ~label) |>
+slice_plot(savings(x) ~ x, color="maroon", linewidth=2) |>
+gf_refine(scale_y_continuous(
+    name = "Score (points)" , 
+    sec.axis = sec_axis(~ . * 3 , name = "Savings (tons)") 
+  ) 
+) |>
+gf_labs(x = "Policy Measure") |>
+gf_vline(xintercept = 3, color="darkcyan", linewidth=0.5) |>
+gf_vline(xintercept = 5, color="maroon", linewidth=0.5) |>
+gf_point(0 ~ 3, color="darkcyan", size=3) |>
+gf_point(0 ~ 5, color="maroon", size=3) |>
+gf_theme(theme_minimal(base_size = 14) ) +
+    theme(
+    axis.title.y = element_text(color = "darkcyan"),
+    axis.text.y = element_text(color = "darkcyan"),
+    axis.line.y.left = element_line(color = "darkcyan"),  
+    axis.title.y.right = element_text(color = "maroon"),
+    axis.text.y.right = element_text(color = "maroon"),
+    axis.line.y.right = element_line(color = "maroon") 
+  )
+```
+
+If Score() were the only objective function, we would set the policy measure to 3, the argmax for Score(). Similarly, if Savings() were the only objective function, we would set the policy measure to 5, the argmax for Savings().
+
+It would be handy to add the two objective functions together to produce a single function whose argmax can be conclusively found. But the outputs of the two objective functions are stated with different dimensions and units: score is in points while savings is in tons. As described in `r xf("sec-quantities")`, addition is not a valid operation when quantities have different dimensions. (A hint about what is to come: Division is valid even when the quantities have different dimensions.)
+
+But if both objectives in `r xf("fig-two-obj-funs")` are worthy of consideration, setting the policy measure at the argmax of one leads to a seriously suboptimal outcome for the other objective.
+
+Let's switch to another graphical format to illustrate the trade-off. In `r xf("fig-two-obj-funs")` the horizontal axis the the policy measure, that is, the input to the objective problems. The two vertical axes correspond to the output of the two objective functions---Score() and Savings()---one axis for each function.
+
+In `r xf("fig-both-objectives")` we re-arrange the axes. First, we delete entirely the horizontal input axis and represent the input value as the position along a curve. For clarity, `r xf("fig-two-obj-funs")` we marked with letters nine different input values. Those same letters appear in `r xf("fig-both-objectives")` as locations along the curve. But the axes for `r xf("fig-both-objectives")` are re-arranged versions of the two vertical axes from `r xf("fig-two-obj-funs")`. Each point on the curve shows the output of the Score and Savings function for one input value. For example, for the input value A, the position on the curve marked with A is based on the Score value for input A and the Savings value for input A.
+
+From `r xf("fig-both-objectives")`, what can we say about which choice is the best? 
+
+```{r}
+#| label: fig-both-objectives
+#| echo: false
+#| fig-cap: "Illustration of the trade-off between two objectives: score() and savings()."
+D <- data_frame(
+    policy = seq(0, 8, length=100),
+    score = score(policy),
+    savings = savings(policy)
+)
+DD <- data_frame(
+    policy = seq(0, 8, length=9),
+    score = score(policy),
+    savings = savings(policy),
+    label = LETTERS[1:9]
+)
+gf_path(data = D, savings ~ score) |>
+ gf_label(savings ~ score, label = ~label, data = DD) |>
+ gf_labs(y = "Savings (tons)", x = "Score (points)") |>
+ gf_theme(theme_minimal(base_size = 14) ) +
+    theme(
+    axis.title.x = element_text(color = "darkcyan"),
+    axis.text.x = element_text(color = "darkcyan"),
+    axis.line.x = element_line(color = "darkcyan"),
+    axis.title.y = element_text(color = "maroon"),
+    axis.text.y = element_text(color = "maroon"),
+    axis.line.y = element_line(color = "maroon") 
+  )
+```
+
+
+It's important to keep in mind that each of the objective functions in `r xf("fig-two-obj-funs")` is for a *maximization* problem. So bigger outputs are better.
+
+`r xf("fig-both-objectives")` lets us compare any two input choices, say D versus E or A versus B. In order to claim that one of the labeled choices is better than the other, we need the outcome on **both** graphical axes to be better for one choice than for the other. For instance, both the Score and the Savings are larger at input B than at input A. Choice B is therefore better in all respects than choice A. In contrast, when comparing D versus E, we see that E has a larger Savings but it also has a *smaller* Score.
+
+
+When comparing two inputs, as with A and B, if one is better in all respects---here this means better both in Score and in Savings---we say that one choice `r xf_definition("dominates")` the other. B dominates A. 
+
+We can compare any two input levels in this way. For instance, F *dominates* G because it has higher Savings and a higher Score. And D dominates C for the same reason. But we cannot demonstrate that F dominates D or vice versa; each is strong on one axis but weak on the other. 
+
+Since F dominates G, H, and I, we can eliminate those choices; they are sub-optimal. Similarly, D dominates C, B, and A, eliminating those as sensible choices. 
+
+Deleting all the dominated inputs, what's left? Any choice from F through E to D. 
+
+Here is another, more human oriented way to look at the situation. Suppose we have two people, one a big fan of setting the policy measure to 8, that is, favoring option I. The other is more moderate and prefers option F. Now they are presented with the objective functions in `r xf("fig-two-obj-funs")`. The F-advocate can make a compelling argument to the I-advocate. Moving from I to F will accomplish both objectives better; a win-win outcome. 
+
+If the competition were between partisans of F, E, and D, however, the win-win argument doesn't apply. To convince the F-partisans to move toward E (or further along, to D), the E-partisan would have to acknowledge that the increased outcome for Score (by about 22 points) would come at the cost of a decrease in the outcome for Savings (by about 8 tons).
+
+Another way to say this is that there is a *price* for Score in terms *of Savings. Usually, a price is a ratio of money per item, e.g. $2.89 per apple. Note that in a price, the item purchased is on the bottom of the ratio. And the top quantity does not have to be money; it could be tons of Savings. In this situation, switching between F and E entails a gain of 8 tons of Savings at the loss (that is, cost) of 22 points in Score. As a price for Score, this is 8/22 = 0.36 tons per point. Economists use the term `r xf_definition("shadow price")` for such an implicit price.
+
+Whenever there is the possibility of an exchange, a price is the quantitative indicator to help determine whether the exchange is worthwhile. You wouldn't buy a shirt if it were, in your opinion, too expensive. You get to make this choice, but knowing the price helps to make the decision criterion more clear.
+
+## Case study: Shadow prices in tuberculosis control
+
+Paul Farmer (1959–2022) was an anthropologist and physician, and famously a co-founder of Partners in Health, an organization dedicated to providing high-quality healthcare to impoverished communities around the world. A particular emphasis to PIH is the treatment of tuberculosis. Farmer both developed and advocated for the treatment of multi-drug resistant (MDR) tuberculosis, which is notably more difficult and expensive to treat than standard tuberculosis. He marshalled many arguments to allocate funds to MDR treatment, including ones about human rights and the risk of untreated MDR tuberculosis spreading within communities.
+
+In 1998, at a meeting of the American Academy of Arts and Sciences, Farmer made the case to an audience of physicians, scientists, and policymakers. One member of the audience, Russian physician Alex Goldfarb, offered another perspective on the issue, drawing on his experience managing tuberculosis programs to treat Russian prison inmates. As recounted in Tracy Kidder's 2003 biography of Farmer, *Mountains beyond Mountains* (p. 162), Goldfarb described his dilemma:
+
+> "I want to share with you a simple reality. I have six million dollars. With three million dollars I can implement DOTS [a standard treatment, but not effective for MDR] for five thousand prison inmates. And assuming that ten percent have MDR-TB, forty-five hundred will be cured and five hundred will go down with MDR-TB and die. There's nothing much you can do. So, I have a choice. And my choice is to use another three million dollars to treat the five hundred with MDR-TB, or go to another region and treat another five thousand. I'm working with limited resources. So my choice is not involved in the human rights of five-hundred people, but five-hundred people versus five thousand people. And this is a very practical question for me, because I have six million dollars. And the second question is that if I disclose to the Russian people that I spent six thousand dollars per case in MDR-TB in the prisons with tens of thousands of people dying all around, they will tell me that I am building a golden palace for a selected few. So for those of us who *have* to make those decisions with limited resources, it's a very serious question."
+
+Clearly, one objective in this situation is to save lives. More lives saved is better: a maximization problem. The other, competing objective in the situation is indicated by the phrase, "I'm working with limited resources." Seen one way, this is a simple statement of fact. But the fact emerges because an objective of the body that makes decisions about funding is to *minimize* the amount of money spent. 
+
+If the *only* objective was to minimize money spent, the decision would be straightforward: don't spend any money at all on MDR-TB, spend it on other needs. Or, If the *only* objective was to maximize the number of lives saved by treatment, the decision is equally straightforward: spend as much money as needed to save as many lives as possible. This would, of course, draw money away from other needs. The trade-off exists because we are trying to accomplish *both* objectives at the same time.
+
+The numbers given by Goldfarb indicate a shadow price of $3,000,000 per forty-five hundred cured patients, or roughly $667 per life saved from non-MDR tuberculosis. This is a tragically low price, which points to a harsh and grossly unfair allocation of resources in the broader Russian economy and prison system. Still, Goldfarb can do little about the broad situation, he has to work within the constraints of his limited budget. His choice, buy non-MDR lives at $667 per life versus buying MDR lives at $6,000 per life, still low, but much higher than $667 per life. 
+
+What would you do, instead?
+
+-----
+
+### New terms {#sec-new-terms-10}
+
+`r xf_new_words("10")`
+
+
