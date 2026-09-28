@@ -214,8 +214,6 @@ First, there's general consensus among statisticians and scientists that a likel
 
 But assume you are excited enough about your existing evidence to believe it will be worthwhile to continue collecting data. Your excitement leads you to suspect that the additional data will point in approximately the same direction as your current evidence. (But there is never a guarantee!) If your suspicion were correct, you would have to plan to **double** the amount of data you use to calculate the likelihood ratio. A nice way to do this would be to have some other researcher confirm your earlier results while doubling the amount of data overall. 
 
-Explain why doubling the amount of data results in squaring the likelihood ratio.
-
 Suppose you flip a coin 10 times and get 6 heads. Are you justified in believing the coin is biased toward heads? To answer this question, you need to compare two hypotheses. One hypothesis is that the coin is not biased, that is, the likelihood of getting a head is 0.5. Statisticians refer to such a "nothing-out-of-the-ordinary" hypothesis as a `r xf_definition("Null hypothesis")`.  You need another hypothesis to compare it to, a hypothesis that specifies what is the *amount* of bias. Let's call this the "research hypothesis."" For instance, you might consider a research hypothesis that the likelihood of getting a head is 0.6.
 
 Under the Null hypothesis the likelihood of getting 6 heads and 4 tails is:

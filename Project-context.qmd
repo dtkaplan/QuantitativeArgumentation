@@ -71,13 +71,18 @@ Much of the central vocabulary used in traditional mathematics is ambiguous and 
 
 The traditional high-school or college mathematics curriculum more or less ignores the careful treatment and accounting for units. But mastery of basic ideas of dimensional analysis provides a strong footing for thinking about calculus-level ideas without symbolic algebra.
 
+# CONCISION REVIEW
+
+I would like to identify sentence fragments that are unnecessarily wordy, that is, where this is a more concise formulation that says the same thing without losing meaning. Please consult the general literature about good writing to identify such fragments and suggest more concise alternatives. The response should take the form of a table in the Chat dialog pane that lists the identified sentences one per row. Each row should consist of a clickable link to the VS Code editor for that sentence as well as the first words (up to 10) of the faulty sentence and the first words of the suggested replacement. Give the results in a batch size of up to 10 rows. Do not edit the Chapter file, I will take care of that.
+
 IGNORE LINES AFTER THIS POINT
 
-I have a bad habit of starting sentences with "[In or some other preposition] [section reference or some other noun], we ..." Please identify every sentence in the 16 .qmd chapters file that starts in this way, providing a CSV or other tabular form listing the first words (up to 10) of the sentence, the document name, and the line number.
+I have a bad habit of starting sentences with "[In or some other preposition] [section reference or some other noun], we ..." Please identify every sentence in the 16 .qmd chapters file that starts in this way, providing 
 
 - response in `_bad-sentences.csv`
 
-Concision review: I would like to identify sentence fragments that are unnecessarily wordy, that is, where this is a more concise formulation that says the same thing without losing meaning. Please consult the general literature about good writing to identify such fragments and suggest more concise alternatives. Produce the output in a format that is easy for a human to read, but also is suited to a future task for you to identify such fragments in the text. 
+
+
 
 - response in `_overlong-wording.csv`
 
