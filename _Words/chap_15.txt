@@ -1,0 +1,27 @@
+*Vocabulary Review*
+
+- calculus (14)
+- data (2)
+- derivative (14)
+- differentiation (14)
+- dynamical rule (13)
+- euler framework (13)
+- exponential growth (13)
+- functions (6)
+- margin (14)
+- per (3)
+- point (3)
+- quantity (3)
+- rate (4)
+- rate of change (4)
+- state (13)
+- time series (13)
+- value (2)
+- with respect to (3)
+
+*New*
+
+- accumulation
+- anti-differentiation
+- incidence
+- integration

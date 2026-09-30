@@ -15,6 +15,10 @@ source("_start-up.R")
 
 # Composing functions {#sec-customizing-functions}
 
+::: {.aside}
+`r paste(readLines("_Words/chap_9.txt"), collapse = "\n")` 
+:::
+
 This chapter describes tools to build custom functions. The tools help the modeler compose a function that encompasses their ideas and data about a given relationship. 
 
 To illustrate, consider this situation: a person develops a sinus infection, ending up having to go to an urgent-care clinic for treatment. An antibiotic is prescribed, the patient picks up the prescription from the pharmacy and begins taking the medication as directed: one small pill every eight hours for seven days.
@@ -181,6 +185,13 @@ It turns out that the method of linear combinations is well suited to constructi
 
 [In everyday speech, the word "regression" means a [return to a previous, less advanced, or worse state.](https://dictionary.cambridge.org/us/dictionary/english/regression) 
 
+`r qr_margin_note(
+  "https://dictionary.cambridge.org/us/dictionary/english/regression",
+  "Definition of regression"
+)`
+
+
+
 A linear *combination* is a mathematical idea: a way to build new functions by combining existing functions. This is in not at all the meaning of the word in the phrase "linear regression." We arrived at this confusing situation by historical accident. The original usage in statistics in the 1890s reflected a misconception that treated a simple mathematical pattern as if it emerged from an underlying natural, biological, or economic process. History can be sticky; our modern understanding is better captured by the name `r xf_definition("linear modeling")`.]{.column-margin} Very often, however, the point of building a new function is to represent *data*, constructing a function that captures the patterns seen in the data. The technique for using data to inform the construction of a linear combination is traditionally called `r xf_definition("linear regression")`. 
 
 The `same()` and `flat()` core modeling functions are the most common building blocks for linear regression models, but in principle any function can be included in a linear regression. And, linear regression effectively automates the process of *output scaling* introduced in `r xf("sec-input-output-transforms")`.
@@ -200,7 +211,9 @@ We've identified four input quantities: teacher `performance`, parent's `educati
 
 Typically, as in this example, the input quantities have different dimension and are measured in different units. For example, in this example, `income` is measured in dollars (dimension {{< var dim.currency >}}), `education` in years of schooling (dimension {{< var dim.time >}}), `performance` as a score on an evaluation (dimension {{< var dim.number >}}), and `size` as the number of students in a class (also dimension {{< var dim.number >}}). [There are many scales for measuring school performance. When we talk about them, we don't typically give a unit name. For instance, a score of"600 on the SAT math test," which is roughly equivalent to a score of "25 on the ACT text," or a "gradepoint of 3.5."]{.column-margin} The output quantity, `score`, also has dimension {{< var dim.number >}} and its own units. 
 
-A linear combination is an ideal format for combining input quantities with different dimensions. It is a generalization of the **output scaling** introduced in `r xf("sec-core-modeling-functions")` which we used to convert the pure-number output of the core modeling functions to an output quantity with dimension and units. For our example, the function might be written:
+A linear combination is an ideal format for combining input quantities with different dimensions. It is a generalization of the **output scaling** introduced in `r xf("sec-core-modeling-functions")` which we used to convert the pure-number output of the core modeling functions to an output quantity with dimension and units. For our example, the function might be written this way:
+
+\newpage
 
 ```{r eval=FALSE}
 score_model <- function(performance, education, income, size) {
@@ -235,7 +248,7 @@ This mathematical fact accounts for many of the disputes one hears about in rese
 
 In reporting research results, the phrases `r xf_definition("after adjusting for")` or `r xf_definition("holding constant")`, or `r xf_definition("controlling for")` are used to signal which input quantities are used in the model. This is critical information.
 
-
+\newpage
 
 
 ## Function graphics
@@ -247,6 +260,11 @@ One function that we live with every day is the terrain around us: elevation as 
 
 1958 US Geological Survey topographical map of St. John in the US Virgin Islands in the Caribbean Sea. [Source](https://maps.lib.utexas.edu/maps/topo/virgin_islands/txu-oclc-20009999-eastern_st_john-1958.jpg)
 :::
+
+`r qr_margin_note(
+  "https://maps.lib.utexas.edu/maps/topo/virgin_islands/txu-oclc-20009999-eastern_st_john-1958.jpg",
+  "Topo map online"
+)`
 
 The topographical map has many curved lines, called *contours*. These are easiest to see for the part of the scene that is covered by water. There, the contours are thin blue lines. Each such line traces a path that maintains the same depth. 
 
@@ -261,6 +279,9 @@ Or consider the narrow neck connecting the two larger landmasses. This is marked
 The equivalent of a topographical map for functions is called a `r xf_definition("contour plot")`. The output of the function corresponds to the elevation in the map, two inputs play the roles of latitude and longitude respectively. A contour plot provides a mechanism to read off the output for given values of the inputs, but the skilled interpreter can glean more information than that. `r xf("fig-sultriness-contour")` shows an example, the heat-index function introduced in `r xf("sec-functions")`. The inputs are temperature and humidity; the output is the heat index.
 
 Panel (a) of `r xf("fig-sultriness-contour")` shows the function in tabular form, just as it was presented in the 1979 paper that introduced the heat index. Given values for the temperature and humidity, you can easily find the corresponding output from the table.
+
+Panel (b) shows the heat index function as a contour plot. By avoiding the table's visual clutter of a grid of numbers, some simple patterns can be seen. For instance, consider on (b) the heat index output for input temperatures lower than 30°C; the contours run in parallel with a slight upward slope from left to right. 
+
 
 ```{r echo=FALSE, eval=FALSE}
 my_heat_index <- function(temperature, humidity) {
@@ -283,7 +304,7 @@ hi_plot <- contour_plot(
 ggsave(hi_plot, file = "www/sultriness-contour.png")
 ```
 
-
+Such parallel contours correspond to the function being a linear combination of the inputs. The slope means that the function increases with both dry-bulb temperature and relative humidity. That the slope is shallow means that---at least in the top portion of the graphical space---the function hardly depends on humidity.
 
 ::: {#fig-sultriness-contour layout-ncol=2 fig-cap-location="top"}
 
@@ -294,9 +315,8 @@ ggsave(hi_plot, file = "www/sultriness-contour.png")
 Two graphical presentations of the heat index function. Panel (b) has been drawn with an upside-down vertical axis, the better to correspond the tabular convention of increasing values from top to bottom.
 :::
 
-Panel (b) shows the heat index function as a contour plot. By avoiding the table's visual clutter of a grid of numbers, some simple patterns can be seen. For instance, consider on (b) the heat index output for input temperatures lower than 30°C; the contours run in parallel with a slight upward slope from left to right. 
 
-Such parallel contours correspond to the function being a linear combination of the inputs. The slope means that the function increases with both dry-bulb temperature and relative humidity. That the slope is shallow means that---at least in the top portion of the graphical space---the function hardly depends on humidity.
+
 
 Now consider dry-bulb temperatures higher than 30°C, especially for humidities greater than, say, 50%. The contours are still parallel but they are heavily inclined from left to right and closely spaced together. 
 
@@ -309,16 +329,4 @@ The explanation for the big change in pattern from top to bottom on the plot is 
 A heat index of 37°C leaves no way for the body to dissipate metabolic heat. Consequently, the core body temperature starts to go up. You can see from the function output that a heat index of 37°C corresponds to dry-bulb temperatures around 42°C, *so long as the humidity is low*. But as humidity increases, the safety mechanism of sweating shorts out and the skin temperature rises quickly.
 
 A heat index of 65°C or thereabouts is thought to be the limit of human tolerance. After a few hours of exposure at this level the risk of death is very high.  At high humidities, this fatal threshold is reached even when the ambient dry-bulb temperature is near normal body temperature.
-
-
-
-
-
-
-
-### New terms {#sec-new-terms-09}
-
-`r xf_new_words("09")`
-
-
 

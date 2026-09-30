@@ -15,13 +15,24 @@ library(mvtnorm)
 
 # Bayesian reasoning {#sec-bayes}
 
+::: {.aside}
+`r paste(readLines("_Words/chap_12.txt"), collapse = "\n")` 
+:::
+
 We are in the midst of a real-world experiment involving millions of people in a life-or-death situation. Perhaps that is an overly dramatic description. The experiment we have in mind concerns the testing of self-driving taxis in urban areas. Companies like Waymo have deployed fleets of self-driving cars that offer a taxi service. 
 
 That such testing is allowed is itself notable. How much experience will we need with the cars to be sure that we are making a proper judgment? 
 
 ## An uncertain situation
 
-Companies currently run pilot programs deploying self-driving taxis in a handful of cities. They have already collected substantial amounts of data and reported summaries such as this [Waymo bulletin](https://waymo.com/blog/2023/12/waymo-significantly-outperforms-comparable-human-benchmarks-over-7-million). Instead of commenting on this data, let us imagine ourselves at the time when the safety experiment is just beginning. Then, we will gradually accumulate data to form and update our beliefs about fleet safety. We will keep it realistic, but because the data will be made-up, do not use this example to draw conclusions about the real world.
+
+
+Companies currently run pilot programs deploying self-driving taxis in a handful of cities. They have already collected substantial amounts of data and reported summaries such as this [Waymo bulletin](https://waymo.com/blog/2023/12/waymo-significantly-outperforms-comparable-human-benchmarks-over-7-million). 
+`r qr_margin_note(
+  "https://waymo.com/blog/2023/12/waymo-significantly-outperforms-comparable-human-benchmarks-over-7-million",
+  "Waymo bulletin"
+)`
+Instead of commenting on this data, let us imagine ourselves at the time when the safety experiment is just beginning. Then, we will gradually accumulate data to form and update our beliefs about fleet safety. We will keep it realistic, but because the data will be made-up, do not use this example to draw conclusions about the real world.
 
 "Safety" is a dimension, an aspect of the transportation system. Modeling safety starts by defining it clearly, to *operationalize* it. Our operationalization in this discussion will be the *number of miles driven* by each car from the time it enters service until the first accident. [For other purposes, a different operationalization might be appropriate, for instance the number of close calls or near-misses.]{.column-margin} We can define an "accident" as an incident that generates a claim on insurance or requires a police report.
 
@@ -49,6 +60,7 @@ Plotting the individual-car likelihood functions requires choosing appropriate r
 ```{r}
 #| label: fig-individual-cars
 #| echo: false
+#| layout-ncol: 2
 #| fig.cap: "Individual likelihood functions for several cars based on their mileage and accident status."
 #| fig.subcap:
 #| - 31,448 miles with no accident
@@ -198,7 +210,9 @@ Receipt of the SOS allows the Coast Guard to calculate a likelihood for the ship
 ```{r}
 #| label: fig-ship-posterior1
 #| echo: false
+#| warning: false
 #| layout-ncol: 2
+#| fig-cap-location: top
 #| fig-cap: "Posterior probability for the ship's location based on the SOS and direction-detecting equipment."
 #| fig-subcap: 
 #| - "Based only on the SOS content."
@@ -229,6 +243,8 @@ Anxious to find the ship's crew, one of the Coast Guard stations sends out a sea
 ```{r}
 #| label: fig-ship-posterior2
 #| echo: false
+#| warning: false
+#| layout-ncol: 2
 #| fig-cap: "Posterior probability for the ship's location after incorporating directional data."
 #| fig-subcap: 
 #| - "The likelihood for the plane to spot the life raft."
@@ -241,6 +257,7 @@ ggplot(Grid, aes(x = x1, y = x2, z = plane_prob)) +
   xlab("Longitude (deg)") + 
   ylab("Latitude (deg)") 
 
+Grid$posterior <- Grid$density * (1 - Grid$plane_prob)
 
 ggplot(Grid, aes(x = x1, y = x2, z = posterior)) +
   geom_contour_filled(alpha = 0.5) +
@@ -254,10 +271,3 @@ ggplot(Grid, aes(x = x1, y = x2, z = posterior)) +
 The plane complete's its mission, but unfortunately it does not spot the life raft. Taking this information into account, the new posterior probability for the raft's position is shown in `r xf("fig-ship-posterior2")`(b).
 
 The sensible thing at this point is to send out another plane to fly another course. Your job is to decide what the course should be to maximize the chances of spotting the raft. The current posterior provides a lot of guidance here. What would you do?
-
------
-
-### New terms {#sec-new-terms-12}
-
-`r xf_new_words("12")
-

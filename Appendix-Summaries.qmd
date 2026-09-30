@@ -207,4 +207,3 @@ A **subspace** is a lower-dimensional structure within a larger space. **Project
 
 The chapter illustrates **supervised learning** by using labeled penguin measurements to identify species and **unsupervised learning** by finding voting patterns without using party labels or bill descriptions. Reordering and projecting high-dimensional voting data reveals factions and types of bills, showing how quantitative methods can discover patterns that require other forms of reasoning to interpret.
 
-

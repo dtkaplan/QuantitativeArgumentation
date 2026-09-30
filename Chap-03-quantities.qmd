@@ -16,6 +16,10 @@ crossref:
 source("_start-up.R")
 ```
 
+::: {.aside}
+`r paste(readLines("_Words/chap_3.txt"), collapse = "\n")` 
+:::
+
 In `r xf("sec-systems")` we used the word "dimension" to stand for any of the properties or attributes of an object or system. For example, among the many dimensions of a person are age, eye color, sex, strength, health, and so on. We also discussed "operationalization," which mean the process or procedure for converting a dimension into a quantity. That is, operationalization tells how to *measure* a dimension, turning it into one or more quantities. For instance, we might operationalize "health" using measures such as blood pressure, cholesterol level, blood-sugar level, and so on. 
 
 I would be understandable to think that "quantity" is simple another word for "number." Quantitative argumentation, however, needs to take careful account of the *kind* of quantity being considered. For instance, a quantity of 5 could be 5 seconds, 5 dollars, 5 miles, or 5 gallons. The number 5 is the same in each case, but the *kind* of quantity is different. This is likely obvious to you, but there is more to be said.  
@@ -55,9 +59,25 @@ The "several kinds" of things in Thompson's list are mutually `r xf_definition("
 
 ## Base units
 
-A *unit* is a way of quantifying "how much." To say, "this video covers 30" involves a number but not a "how much." For that, we have to specify what the 30 refers to. Thirty seconds or 30 minutes are both reasonable durations for videos, but one can also find videos that cover high-speed events, like the [flare-up of a match](https://www.youtube.com/watch?v=4Lv7DsKfwAk), with much of the action occurring over 30 milliseconds. At the other extreme, this [time-lapse video of a bean sprouting](https://www.youtube.com/watch?v=w77zPAtVTuI) covers about 30 days. Milliseconds, seconds, minutes, hours, days, months, years, centuries, millennia, etc. are different standard units of time.
+`r qr_margin_note(
+  "https://www.youtube.com/watch?v=4Lv7DsKfwAk", 
+  "Video of flare-up"
+)`
+
+A *unit* is a way of quantifying "how much." To say, "this video covers 30" involves a number but not a "how much." For that, we have to specify what the 30 refers to. Thirty seconds or 30 minutes are both reasonable durations for videos,  but one can also find videos that cover high-speed events, like the [flare-up of a match](https://www.youtube.com/watch?v=4Lv7DsKfwAk), with much of the action occurring over 30 milliseconds. At the other extreme, this [time-lapse video of a bean sprouting](https://www.youtube.com/watch?v=w77zPAtVTuI) covers about 30 days. Milliseconds, seconds, minutes, hours, days, months, years, centuries, millennia, etc. are different standard units of time.
+
+`r qr_margin_note(
+  "https://www.youtube.com/watch?v=w77zPAtVTuI", 
+  "Time-lapse video of a bean sprouting"
+)`
 
 Units are part of everyday life: liters, cups, acres, degrees C, miles, cubits, meters, microns, feet, carats, drams, and so on. The quantitative thinker must have in mind, for each quantity under consideration, what the units of measure are. The particular units employed vary from country to country. Different professions use different units for the same kind of quantity. For instance, a jeweler uses a carat as a measure of mass, while a shipping company might use a ton (or, slightly different, a "tonne"). 
+
+`r qr_margin_note(
+  "https://en.wikipedia.org/wiki/International_System_of_Units#History", 
+  "Information about the International System of Units (SI)"
+)`
+
 
 *Le Système international d'unités*, usually referred to as `r xf_definition("SI")`, is the primary official definition for units. SI distinguishes between two classes of units: seven [`r xf_definition("base units")`](https://en.wikipedia.org/wiki/International_System_of_Units#History) and many, many `r xf_definition("derived units")`. Examples of the kinds of things measured in derived units: force, energy, pressure,  power, and dose of radioactivity. Each base unit (see Table 2.1) provides a "letter" in a seven-letter alphabet for describing all SI units. The different base units cannot be defined in terms of one another, but derived units can. 
 
@@ -125,13 +145,18 @@ All the base dimensions have names---e.g. time, worth, capita, length---and `r m
 
 Pure numbers are not the only kinds of dimensionless quantities. Importantly, angles are dimensionless but are measured in units such as degrees or radians. An angle of 90 degrees is the same as an angle $\pi/2$ radians. Different units, same quantity. Students may recall from trigonometric studies the definition of the unit "*radian*" as the `r mydim(length)` along the arc of a circle divided by the `r mydim(length)` of the radius, as in @fig-angle-ratio. A length divided by another length is dimensionless.
 
-:::: {.column-margin}
-::: {#fig-angle-ratio fig-cap-location="bottom"}
-![](www/angle-ratio.png)
+
+::: {#fig-angle-ratio fig-cap-location="top"}
+![](www/angle-ratio.png){width="2.5in"}
 
 An angle (denoted $\theta$ here) is the ratio of the length $s$ of the arc subtended by the angle to the radius  $r$ of the circle centered on the vertex of the angle: $\theta = s / r$. [Image source: [UTSA Libraries and Museums](https://utsa.pressbooks.pub/precalculus/chapter/__unknown__-2/)]
 :::
-::::
+
+
+`r qr_margin_note(
+ "https://utsa.pressbooks.pub/precalculus/chapter/__unknown__-2/",
+ "Image source"
+)`
 
 Steep roads often have "grade markers" indicating how steep they are. In the US, interstate highways may not be steeper than 6%. The *steepness* is operationalized as the change in elevation divided by the horizontal distance travelled. Driving the steepest mile along Lincoln Gap Road in Vermont (USA) involves a net change in elevation of about 800 feet. The road grade is therefore 800 ft/mile. We can write the ratio more explicitly in terms of the two quantities involved:
 
@@ -191,9 +216,19 @@ Recognizing that quantitative change involves *two* variables, we will highlight
 
 Often, several context-setting variables contribute at the same time to a change in the primary variable. Imagine, for instance, that the primary variable is the dollar value of sales in an ice-cream shop. Typically, sales varies from one time to another, that is, *with respect to time*. But underlying the change with respect to time are other context-setting variables: the change with respect to outdoor temperature or sunniness level. Sales may shift with respect to price; perhaps the shop raised prices. Moreover, we might gain an advantage in understanding sales patterns by treating *time* as two distinct variables: sales with respect to the *hour of the day* or with respect to the *day of the week*.
 
-A distinctive concept in quantitative reasoning is `r xf_definition("partial change")`. [Economists sometimes use the Latin phrase [*ceteris paribus*](https://en.wikipedia.org/wiki/Ceteris_paribus) to express the idea of holding all other things constant.]{.column-margin} We signalled partial change very subtly in an earlier example with the phrase "`r xf_definition("all other things being constant")`."  In a partial change, we examine the change in the primary variable with respect to one context-setting variable, while holding the other context-setting variables constant. The `r xf_definition("total change")` in the primary variable is regarded as being the sum of contributions over all the context-setting variables from the individual partial changes with respect to one context-setting variable at a time.
+A distinctive concept in quantitative reasoning is `r xf_definition("partial change")`. We signalled partial change very subtly in an earlier example with the phrase "`r xf_definition("all other things being constant")`."  In a partial change, we examine the change in the primary variable with respect to one context-setting variable, while holding the other context-setting variables constant. The `r xf_definition("total change")` in the primary variable is regarded as being the sum of contributions over all the context-setting variables from the individual partial changes with respect to one context-setting variable at a time. (Economists sometimes use the Latin phrase [*ceteris paribus*](https://en.wikipedia.org/wiki/Ceteris_paribus) to express the idea of holding all other things constant.)
 
-Reasoning with partial change is one facet of quantitative `r xf_definition("analysis")`, [In the Preface, we mentioned that the word "analysis" stems from two Greek roots which together mean "loosen up."]{.column-margin} breaking up the overall system into contributing components. But how to hold the other context-setting variables constant? Experimentalists do this by imposing constant, laboratory control conditions. There are also statistical techniques that can be applied even when a good experiment is not feasible. The reports of results from such statistical studies often contain the phrase "`r xf_definition("controlling for")` or "`r xf_definition("holding constant")`" even though even though data were collected outside a controlled laboratory environment. How to accomplish "controlling for" is a central and important issue in statistical and econometric method; important enough that the [2021 Nobel prize in economics](https://www.nobelprize.org/uploads/2021/10/advanced-economicsciencesprize2021.pdf) was awarded for work on this issue.
+`r qr_margin_note(
+  "https://en.wikipedia.org/wiki/Ceteris_paribus",
+  "*ceteris-paribus*"
+)`
+
+Reasoning with partial change is one facet of quantitative `r xf_definition("analysis")`. (The word "analysis" stems from two Greek roots which together mean "loosen up.") breaking up the overall system into contributing components. But how to hold the other context-setting variables constant? Experimentalists do this by imposing constant, laboratory control conditions. There are also statistical techniques that can be applied even when a good experiment is not feasible. The reports of results from such statistical studies often contain the phrase "`r xf_definition("controlling for")` or "`r xf_definition("holding constant")`" even though even though data were collected outside a controlled laboratory environment. How to accomplish "controlling for" is a central and important issue in statistical and econometric method; important enough that the [2021 Nobel prize in economics](https://www.nobelprize.org/uploads/2021/10/advanced-economicsciencesprize2021.pdf) was awarded for work on this issue.
+
+`r qr_margin_note(
+  "https://www.nobelprize.org/uploads/2021/10/advanced-economicsciencesprize2021.pdf",
+  "2021 Nobel prize in economics"
+)`
 
 
 ## Spaces {#sec-spaces}
@@ -212,11 +247,3 @@ Most people find it hard to intuitively grasp the meaning of spaces of dimension
 
 The take-home point is that we use the word *space* to refer to a collection of quantities. If the collection has just a single quantity, the space is the number line. A set of two quantities corresponds to the coordinate plane, and a set of three quantities to a point in regular 3-dimensional space. In this sense, a set of ten quantities corresponds to a point in 10-dimensional space, and on and on to higher dimensions.
 
------
-
-### New terms {#sec-new-terms-03}
-
-`r xf_new_words("03")`
-
-
-Exercise: surface tension and energy `_exercises/spider-forget-kayak.qmd`

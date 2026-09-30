@@ -1,0 +1,24 @@
+*Vocabulary Review*
+
+- bayesian (8)
+- data (2)
+- exponential distribution (8)
+- hypothesis (8)
+- magnitude (5)
+- models (1)
+- objective function (10)
+- per (3)
+- point (3)
+- probability distributions (8)
+- quantity (3)
+- rate (4)
+- system (6)
+- uncertainty (8)
+- value (2)
+
+*New*
+
+- likelihood
+- likelihood framework
+- null hypothesis
+- scientific method

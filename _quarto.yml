@@ -35,9 +35,9 @@ book:
         - Chap-13-dynamics.qmd
         - Chap-14-rates-of-change.qmd
         - Chap-15-accumulation.qmd
-    - part: "Capstone: Toward AI"
-      chapters:
-        - Chap-16-operations.qmd
+    # - part: "Capstone: Toward AI"
+    #  chapters:
+        # - Chap-16-operations.qmd
 
 
   appendices:
@@ -52,6 +52,7 @@ format:
   pdf:
     pdf-engine: lualatex
     documentclass: scrbook
+    classoption: twoside
     fontsize: 11pt
     mainfont: Libertinus Serif
     sansfont: Arimo
@@ -59,7 +60,7 @@ format:
     toc: true
     toc-depth: 1
     fig-cap-location: margin
-    linestretch: 1.1
+    linestretch: 1.0
     mainfontoptions:
       - Numbers=Lowercase
       - Numbers=Proportional   
@@ -73,11 +74,13 @@ format:
         \makeatother
     fig-pos: "H"
     geometry:
-      - top=20mm
-      - textwidth=5in
+      - inner=1.25in
       - marginparwidth=2in
-      - left=0.9in
+      - marginparsep=0.2in 
+      - outer=0.5in 
+      - includemp    
       - heightrounded  
+      - textwidth=4.5in
       - paperwidth=8.5in
       - paperheight=11in  
 

@@ -1,0 +1,17 @@
+*Vocabulary Review*
+
+- dimension (2)
+- models (1)
+- operationalization (2)
+- quantity (3)
+- rate (4)
+- value (2)
+
+*New*
+
+- algorithm
+- algorithms
+- arg
+- exogenous
+- functions
+- system

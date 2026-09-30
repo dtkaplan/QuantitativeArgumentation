@@ -62,7 +62,7 @@ qr_margin_note <- function(url, description) {
   paste0(
     "::: {.column-margin}\n",
     description, "\n\n",
-    "![](", png_path, "){width=1in}\n",
+    "![](", png_path, "){width=0.8in}\n",
     ":::"
   )
 }

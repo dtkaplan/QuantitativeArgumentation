@@ -15,6 +15,10 @@ crossref:
 source("_start-up.R")
 ```
 
+::: {.aside}
+`r paste(readLines("_Words/chap_14.txt"), collapse = "\n")` 
+:::
+
 `r xf("sec-rates")` introduced the distinction between a *rate* and a *rate of change*. A rate is one quantity divided by another. A rate of change is also a rate. But it is a special kind of rate. 
 
 The word "special" when talking about rates of change is relevant in two different senses. One definition is "different from usual." Indeed if a rate is the usual thing, then a rate of change is different from usual because the quantities that form the *ratio* are always *changes* in a quantity. And not just changes, but **simultaneous changes**. By photographic analogy, you can measure a rate by looking at a snapshot: read off the instantaneous values of the two quantities of interest, then divide one by the other. In contrast, measuring a *rate of change* requires a movie: a *series* of instantaneous snapshots. The minimum length of the movie is small, just two frames. You measure the two quantities in one of the frames, then in the other. Take the change in each quantity between the two frames, then form a ratio of those *changes*.
@@ -28,10 +32,16 @@ Even if you have no interest in science, business, or economics, rates of change
 
 ## Taxes on the margins {#sec-on-the-margins}
 
-Income taxes in the US are calculated according to "brackets." Each bracket specifies the tax *rate*, that is the fraction of income that is to be paid as taxes. `r xf("tbl-1913-brackets")` gives the brackets for taxes in 1913, the first year after the 16th Amendment[The Amendment says, "The Congress shall have power to lay and collect taxes on incomes, from whatever source derived, without apportionment among the several States, and without regard to any census or enumeration." Strictly speaking, even before the amendment Congress had the power to tax income. However, the Supreme Court had dictated that any such tax had to be "apportioned," that is, imposed equally based on the population of each state. This was impractical, since *per capita* income differs from state to state.]{.column-margin} to the US Constitution that empowered Congress to impose income tax. 
+`r qr_margin_note(
+  "https://bradfordtaxinstitute.com/Endnotes/IRS_Form_1040_1913.pdf",
+  "1913 US Federal tax brackets"
+)`
 
-::: {.content-hidden unless-format="html"}
-::: {#tbl-1913-brackets}
+Income taxes in the US are calculated according to "brackets." Each bracket specifies the tax *rate*, that is the fraction of income that is to be paid as taxes. `r xf("tbl-1913-brackets")` gives the brackets for taxes in 1913, the first year after the 16th Amendment to the US Constitution that empowered Congress to impose income tax. 
+
+<!-- [The Amendment says, "The Congress shall have power to lay and collect taxes on incomes, from whatever source derived, without apportionment among the several States, and without regard to any census or enumeration." Strictly speaking, even before the amendment Congress had the power to tax income. However, the Supreme Court had dictated that any such tax had to be "apportioned," that is, imposed equally based on the population of each state. This was impractical, since *per capita* income differs from state to state.]{.column-margin} -->
+
+::: {#tbl-1913-brackets tbl-cap-location="margin"}
 
 Income | Tax rate 
 -------|----------
@@ -46,46 +56,40 @@ $500,000 | 7%
 
 1913 US Federal tax brackets. Source: [The 1913 1040 form](https://bradfordtaxinstitute.com/Endnotes/IRS_Form_1040_1913.pdf)
 :::
-::::
 
-::: {.content-hidden unless-format="pdf"}
 
-[`r xf("tbl-1913-brackets")`: 1913 US Federal tax brackets. Source: The 1913 1040 form at <https://bradfordtaxinstitute.com/Endnotes/IRS_Form_1040_1913.pdf>]
 
-Income | Tax rate 
--------|----------
-$0     | 0%
-$3000  | 1%
-$20,000 | 2%
-$50,000 | 3%
-$75,000 | 4%
-$100,000 | 5%
-$250,000 | 6%
-$500,000 | 7%
 
-::::
+
+
 
 Care must be taken in interpreting `r xf("tbl-1913-brackets")`. Despite appearances, it does not say, for instance, that someone earning $3000 must pay 1% (that is, $30) in taxes. The correct interpretation is that the $3K earner pays zero tax.  [Using a standard cost-of-living conversion, $4000 in 1913 was equivalent to about $140,000 in the mid-2020s. The $10 payment in 1913 corresponds to about $44 in 2020s money.]{.column-margin} But on any incremental income amount *above* $3K, the tax rate will be 1%. 
 For instance, imagine a taxpayer who earned $4000. They will pay 0% on the first $3000 and 1% on the next $1000, so a $10 payment in total.
 
 In 1913, only about one-percent of households had an income of $3000 or greater, so taxpayers were a wealthy group of people.
 
-@fig-1913-1040 shows lines 7 and 8 from the tax form for 1913. The form is blank, but we have filled in the numbers for a person earning the very large (in 1913) income of $90,000 per year.
+`r xf("fig-1913-1040")` shows lines 7 and 8 from the tax form for 1913. The form is blank, but we have filled in the numbers for a person earning the very large (in 1913) income of $90,000 per year.
 
-::: {#fig-1913-1040}
-![1913 Form 1040 for US taxes](www/1913-brackets-filled-in.png)
+::: {#fig-1913-1040 fig-cap-location="top"}
+
+![](www/1913-brackets-filled-in.png)
+
 Part of the 1913 US income-tax form. It has been filled in as appropriate for a total income of $90,000.
 
 :::
 
-@fig-1913-1040 is pretty confusing. There are a lot of numbers filled in. Ironically, even though the income is $90,000, that number does not appear on the form!
+`r xf("fig-1913-1040")` is pretty confusing. There are a lot of numbers filled in. Ironically, even though the income is $90,000, that number does not appear on the form!
 
 The 2024 tax table simplifies the calculation by giving a table. You need only look up your income. @fig-2024-tax-table shows the appropriate entry from page 9 (of 11) of the closely-spaced pages. Less arithmetic, but still the income of $90,000 doesn't appear. 
 
 ::: {#fig-2024-tax-table}
-![](www/2024-tax-table2.png){width=2in}
+![](www/2024-tax-table2.png){width=0.1in}
 
 The format used today for a *tax table* converts directly from income to taxes owed.
+:::
+
+::: {.aside}
+![](www/2024-tax-table2.png){width=2in}
 :::
 
 A tax rate, as you know, is the fraction of income owed as tax. The tax table (@fig-2024-tax-table) does not indicate the rate, just the tax owed.
@@ -149,7 +153,6 @@ Arguments (a) and (b)---amount vs rate---are not the only way to compare the pro
 
 In order to use rates of change, we need more information than provided above. We have to imagine that each program could be launched with a lower level of funding or perhaps even a higher level. Each potential level of funding corresponds to a QALY savings. @fig-QALY-vs-cost shows two hypothetical functions: QALYs saved as a function of expenditure for the natal and cancer programs separately.
 
-::: {.column-page-inset-right}
 ```{r}
 #| label: fig-QALY-vs-cost
 #| echo: false
@@ -175,16 +178,15 @@ slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts =
   gf_lims(y = c(0, 10e2)) |>
   gf_theme(theme_minimal())
 ```
-:::
 
-At a glance, the Natal and Cancer functions sketched in @fig-QALY-vs-cost are very similar. Nevertheless, the two functions have different implications for how to allocate the funds available. An appropriate analysis using *rates of change* will let us see this.
+
+At a glance, the Natal and Cancer functions sketched in `r xf("fig-QALY-vs-cost")` are very similar. Nevertheless, the two functions have different implications for how to allocate the funds available. An appropriate analysis using *rates of change* will let us see this.
 
 
 
 
 To start, we zoom in more closely to the domain near to the proposed funding level for each initiative. @fig-zoom-in-to-stars shows the competitive situation. In both graphs, the vertical scale covers 4000 QALYs; the horizontal scale covers $100 million.
 
-::: {.column-page-inset-right}
 ```{r}
 #| label: fig-zoom-in-to-stars
 #| echo: false
@@ -207,7 +209,6 @@ slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure = 9.5:10.5), 
   gf_lims(x = 10 + c(-0.05, 0.05), y = 7.5e2 + c(-1, 1) * 2.5) |>
   gf_theme(theme_minimal())
 ```
-:::
 
 The rate of change of QALYs with respect to expenditure corresponds to the slope of the curve. @fig-QALY-vs-cost shows that the slopes for the two programs are very different at the proposed expenditure levels. @fig-zoom-in-to-stars makes it easier to calculate the slope. For the Natal program, an increase in expenditure of $50 million corresponds to an increase in QALYs of 2,400. In contrast, for the Cancer program, a $50 million increase corresponds to only about 400 QALYs. The rate of change for Natal is $\frac{2400}{50} = 48$ QALYs per $million. For Cancer, the rate of change is $\frac{400}{50} = 8$ QALYs per $million.
 
@@ -215,7 +216,6 @@ The important implication here is that a million dollars is worth more QALYs if 
 
 Suppose we moved $5 billion from Cancer to Natal. The picture will look like @fig-swap-cancer-natal. The [red]{style="color: red;"} stars mark the new spending proposal, re-allocating $5 billion from Cancer to Natal. The new proposal buys 1260 QALYs, the original proposal buys 1250. In reality we would never have such detailed information to distinguish a model output of 1260 from 1250; they are effectively the same. The implication: we are indifferent between the two proposals.
 
-::: {.column-page-inset-right}
 ```{r}
 #| label: fig-swap-cancer-natal
 #| echo: false
@@ -242,7 +242,6 @@ slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts =
   gf_lims(y = c(0, 10e2)) |>
   gf_theme(theme_minimal())
 ```
-:::
 
 
 Does indifference between the two spending proposals---$5 billion for natal and $10 billion for cancer, versus $10 billion for natal and $5 billion for cancer---mean that it doesn't really matter how we split the money between the two programs? Before rashly jumping to this conclusion, we should do a bit more analysis. 
@@ -251,7 +250,6 @@ In @fig-swap-cancer-natal we have annotated the graph with the rate of change (Q
 
 Whatever spending level we choose, there will be a QALY level marked by the star *and* a rate of change marked by the slope of the line segment. @fig-many-starts plots some of these line segments and stars at many different levels of expenditure.
 
-::: {.column-page-inset-right}
 ```{r}
 #| label: fig-many-starts
 #| echo: false
@@ -295,16 +293,11 @@ slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts=3
   gf_lims(y = c(0, 10e2)) |>
   gf_theme(theme_minimal())
 ```
-:::
 
 @fig-many-starts is too crowded to serve it's main purpose: showing the rates of change at many different values of expenditure. We need to simplify things.
 
+We can accomplish this by changing the format for representing rates of change from slope liness into a quantity that can be plotted. The units for the values will be QALYs per dollar, a different dimension than shown by the vertical axis in @fig-many-starts. So we need to make a new graphics frame to show QALYs per dollar. We do that in @fig-qalys-per-dollar.
 
-
-
-We can do this by changing the format for representing rates of change from slope liness into a quantity that can be plotted. The units for the values will be QALYs per dollar, a different dimension than shown by the vertical axis in @fig-many-starts. So we need to make a new graphics frame to show QALYs per dollar. We do that in @fig-qalys-per-dollar.
-
-::: {.column-page-inset-right}
 ```{r}
 #| label: fig-qalys-per-dollar
 #| layout-ncol: 2
@@ -328,7 +321,6 @@ slice_plot(d_cancer(expenditure) ~ expenditure, domain(expenditure=0:15), npts=3
   gf_lims(y = c(0,500))
 
 ```
-:::
 
 Keep in mind the purpose of the analysis: to find out how to allocate the total of $15 billion to Natal and Cancer to make the QALYs saved as large as possible. The information in @fig-qalys-per-dollar is not yet in the form that lets us see the answer we seek. We will have to do some work in order to get an answer that serves our purpose. 
 
@@ -462,7 +454,7 @@ h <- 0.2
 ```
 :::
 
-::: {.content-include unless-format="html"}
+::: {.content-include unless-format="pdf"}
 The following R statements calculate the rate of change of the function $f(t)$ for input $t=3$.
 
 
@@ -504,16 +496,24 @@ Now the rates of change for $h=0.001$ and $h = 0.0001$ are virtually the same. U
 
 ## Vanishingly small {#sec-infinitesimal}
 
+`r qr_margin_note(
+  "https://en.wikipedia.org/wiki/Gravitas",
+  "Gravitas"
+)`
+
 Newton and Leibniz and the people who used their techniques for the next 200 years did not have modern computers available. Verifying, by trial and error, that a proposed `h` is small enough would have been tedious work. And the phrase "small enough" doesn't carry enough [gravitas](https://en.wikipedia.org/wiki/Gravitas) to honor a technique that was becoming more and more central to mathematics. Understandably, they sought a more dignified word, a word that would draw attention away from the need to search for a "small enough" change in input. The first ever calculus textbook, from 1694, had the title, "Analyse des Infiniment Petits," that is, "Analysis into the infinitely small." In a somewhat later book, Newton wrote and explanation which is only clear if you already understand it: "Those ultimate ratios ... are not actually ratios of ultimate quantities, but limits ... which they can approach so closely that their difference is less than any given quantity". The phrase "vanishingly small" for the change in input was used by proponents of calculus, and "evanescent" in one famous early critique (philosopher George Berkeley, 1734). Instead of "infinitely small," some preferred the word "infinitesimal." An famous image for the hard-to-grasp notion of something that stays even as it shrinks toward zero was provided by Charles Lutwidge Dodgson (1832-1898) who, under the pen-name Lewis Carroll, introduced the Cheshire Cat. The cat's smile corresponds to the rate of change. You cannot have a smile without a body surrounding it, just as you cannot have a rate of change of a function with a change in the input. In *Alice in Wonderland*, the Cat's smile remains even as the body disappears.
+
+In calculus textbooks from the last 150 years, derivatives are defined as "limits" with a notation like $$\lim_{h \rightarrow 0} \frac{f(x + h) - f(h)}{h} .$$ 
+
+None of this need concern the person using calculus to create and interpret models. The practical test that `h` is small enough is readily implemented on the computer.
+
+\newpage
 
 ::: {#fig-cheshire-cat}
 ![](www/Cheshire-cat.png)
 The Cheshire Cat from *Alice in Wonderland*.
 :::
 
-In calculus textbooks from the last 150 years, derivatives are defined as "limits" with a notation like $$\lim_{h \rightarrow 0} \frac{f(x + h) - f(h)}{h} .$$ 
-
-None of this need concern the person using calculus to create and interpret models. The practical test that `h` is small enough is readily implemented on the computer.
 
 
 ## The derivative is a function
@@ -539,9 +539,6 @@ When we write $\partial_{tt} f(t)$, we are filling in the blanks in the previous
 
 The second derivative can play an important role in some common forms of [Calculus textbooks delight in having students compute high-order derivatives. This is mainly an exercise in algebra, but does have some payoffs in theoretical mathematics.] quantitative reasoning. There is rarely a reason, except in technical work, to consider the third or higher derivatives.
 
-
-
-
 There is one everyday situation where second-derivatives can be felt viscerally. Suppose we know where an object (such as a car, plane, or bike) is at any time $t$. That is, position is a function of $t$, which we could call *pos(t)*. The velocity of the object is the derivative of position. The acceleration is the second derivative of position, or, if you prefer, the first derivative of velocity. You can feel acceleration, although we typically label the feeling as "force." Newton's *Second Law of Motion* famously states that force equals mass time acceration: $F = m a$.
 
 ::: {.callout-note}
@@ -560,22 +557,4 @@ Students who take a calculus course memorize the derivatives of a handful of fam
 
 In `r xf("sec-moving-past-two-inputs")` we will see another important use for derivatives: performing mathematical tasks.
 
-------
-
-### New terms {#sec-new-terms-14}
-
-`r xf_new_words("14")`
-
--------
-
-<!--
-## Ideas still in draft form
-
-Ignore this section. 
-
-
-Then on to population and the inflow/outflow. FOCUS on the UNITS, which will be babies per year or deaths per year or net immigration per year.
-
-Momentum and force. Candidates gaining or losing momentum due to supporting or opposing forces. Candidate support over time. Rate of change is the amount of supporting or opposing force. It's really a combination of both, with the net force accounting for how the candidate is doing.
--->
 

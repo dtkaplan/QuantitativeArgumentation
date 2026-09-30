@@ -1,0 +1,23 @@
+*Vocabulary Review*
+
+- arg (6)
+- data (2)
+- dimension (2)
+- functions (6)
+- mean (8)
+- per (3)
+- point (3)
+- relative probability (8)
+- value (2)
+- worth (3)
+
+*New*
+
+- argmax
+- argmin
+- dominates
+- maximum
+- minimum
+- objective function
+- shadow price
+- trade-off

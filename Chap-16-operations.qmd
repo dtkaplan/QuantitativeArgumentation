@@ -1,27 +1,38 @@
 ---
-number-offset: 13
+number-offset: 15
 crossref:
-  fig-title: "Figure 14."
-  fig-prefix: "Fig 14."
-  tbl-title: "Table 14."
-  tbl-prefix: "Table 14."
+  fig-title: "Figure 16."
+  fig-prefix: "Fig 16."
+  tbl-title: "Table 16."
+  tbl-prefix: "Table 16."
 ---
 
-playground.tensorflow.org gives an example of training.
 
 
 # Moving Past Two Inputs {#sec-moving-past-two-inputs} 
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
 
+
+::: {.callout-caution}
+## In draft
+
+- playground.tensorflow.org gives an example of training.
+- Provide online documents with the manipulatable XQuartz examples.
+:::
+
 ```{r include=FALSE}
 #| label: ch16-r-de4e425b
 source("_start-up.R")
 library(rgl)
-knitr::knit_hooks$set(webgl = hook_webgl)
-# This is recommended by the documentation for automatic rendering:
 setupKnitr(autoprint = TRUE) 
+# knitr::knit_hooks$set(webgl = hook_webgl)
+# This is recommended by the documentation for automatic rendering:
 ```
+
+::: {.aside}
+`r paste(readLines("_Words/chap_16.txt"), collapse = "\n")` 
+:::
 
 In previous chapters, we introduced a framework for quantitative thinking, highlighting dimensionality, which relates aspects of the world through mathematical relationships, such as between location and velocity or between energy and power.
 
@@ -44,13 +55,13 @@ To start, we examine two familiar high school algebra problems. Techniques for t
 2. Solve `r xf_definition("simultaneous equations")`. There is more than one function, each sharing the same inputs. You want to find the input values that make each function reach a specified value. In textbooks, a simultaneous equation problem usually appears like this: there are always the same number of equations as input variables.
 
 $$\begin{array}{ccccc}
-5\,  x & - & 2\,  y & =& 4\\
-2\, x & + &3\,y& = & -2
+5\, x & - & 2\,  y & = & 4\\
+2\, x & + & 3\, y & = & -2\\
 \end{array}$$
 
 A third problem setting, `r xf_definition("optimization")`, is important across applications of quantitative reasoning. It is just beyond the reach of high school algebra methods. An example in the style of high-school algebra is: Given that $x,y = 100$, what values of $x$ and $y$ give the smallest value for $x + y$?^[Or, given that the area of a rectangle is 100 in^2^, what should the side lengths be so the perimeter is as short as possible.]
 
-These three problem settings are important in practice. Imagine yourself controlling a complex system: adjusting valves, pumps, and burners in a chemical plant, or managing logistics to source components for a product like a cell phone. @fig-control-panel shows a generic image of this situation.
+These three problem settings are important in practice. Imagine yourself controlling a complex system: adjusting valves, pumps, and burners in a chemical plant, or managing logistics to source components for a product like a cell phone. `r xf("fig-control-panel")` shows a generic image of this situation.
 
 ::: {#fig-control-panel}
 ![](www/control-panel.png)
@@ -74,22 +85,22 @@ Our mathematical hills will be functions. The function's output is the hill's el
 #| label: fig-hill-1
 #| echo: false
 #| fig-cap: "Elevation vs position along a road"
-raw <- doodle_fun( ~ x, seed = 8329)
+raw <- doodle_fun( ~ x, seed = 8329)                 
 f <- function(x) 30 + raw(x-2)
 slice_plot(f(distance) ~ distance, domain(distance = 0:10)) |>
   gf_labs(x = "Position on road (km)", y = "Elevation (m)") |>
   gf_theme(theme_minimal(base_size = 14))
 ```
 
-@fig-hill-1 provides an example of such a function. Where should you walk on the road to reach the highest elevation? A glance is enough to find the answer: about 5 miles.
+`r xf("fig-hill-1")` provides an example of such a function. Where should you walk on the road to reach the highest elevation? A glance is enough to find the answer: about 5 miles.
 
-@fig-hill-1(b) shows a more realistic view. You can’t see the whole function. You only know the elevation at your current spot and whatever you note in your notebook. We start the walker at position 2 on the road, where the elevation is about 12 m.
+`r xf("fig-hill-1", "b")` shows a more realistic view. You can’t see the whole function. You only know the elevation at your current spot and whatever you note in your notebook. We start the walker at position 2 on the road, where the elevation is about 12 m.
 
 ```{r}
 #| label: fig-hill-2
 #| echo: false
 #| warning: false
-#| fig-cap: "Elevation vs position along a road, but you know the value of the output only at the places where you have already been. Rate of change is the slope of the blue segment."
+#| fig-cap: "Elevation vs position along a road, displaying the value of the output only at the places where you have already been. Rate of change is the slope of the blue segment."
 
 slice_plot(f(distance) ~ distance, domain(distance = 0:10), alpha = 0) |>
   gf_labs(x = "Distance along road (km)", y = "Elevation (m)") |>
@@ -106,30 +117,40 @@ The algorithm for reaching the top can be simple: if the function's rate of chan
 
 While building an LLM is far beyond our scope—we would need significant resources for that—we can still develop intuition for strategies that help us find an optimum without graphing the function.
 
+`r qr_margin_note(
+  "https://dtkaplan.shinyapps.io/QR-A-shiny/",
+  "Interactive web app"
+)`
+
+
 ::: {.callout-note}
 ## An interactive web app.
+
 There is a collection of web apps for QR-A at [https://dtkaplan.shinyapps.io/QR-A-shiny/](https://dtkaplan.shinyapps.io/QR-A-shiny/) including one that lets you evaluate a function without graphing it. Go to the Optimization/g(x,y) menu and experiment. It's hard to find the maximum of a function with two inputs without a graph. But if you turn on the "Follow Gradient" feature, you'll always know which direction is up. Take small, successive steps along the arrow; you’ll trace an uphill path. Until you develop intuition, you may get stuck. Use the "training wheels" option for help when needed.
-:::
+
+
+[IN DRAFT: need to update link through shinyapps.io.]
+
+::: 
 
 
 This strategy of walking uphill also applies to functions with 2 or more inputs, including functions with hundreds, thousands, or millions of inputs. With two inputs, we can create a visualization that guides our intuition for dealing with functions with many inputs.
 
-Recall that for a function with two inputs, say $f(x, y)$, there are two different rate-of-change functions. Imagine standing at your position on the hill. That position is the intersection of two roads. One road runs east-west, the other runs north-south, as in @fig-hill-with-roads.
+Recall that for a function with two inputs, say $f(x, y)$, there are two different rate-of-change functions. Imagine standing at your position on the hill. That position is the intersection of two roads. One road runs east-west, the other runs north-south, as in `r xf("fig-hill-with-roads")`.
 
 
 
-::::: {.content-hidden unless-format="html"}
-:::: {.column-page-inset-right}
+::: {.content-hidden unless-format="html"}
 ```{r}
 #| label: fig-hill-with-roads
 #| echo: false
 #| warning: false
-#| fig-cap: A landscape with two roads. You are standing at the red dot.
+#| fig-cap: "A landscape with two roads. You are standing at the red dot."
 #| fig-cap-location: bottom
 #| layout-ncol: 2
 #| fig-subcap: 
-#| - Zoomed out to show a large region
-#| - Zoomed in close to the intersection of the roads
+#| - "Zoomed out to show a large region"
+#| - "Zoomed in close to the intersection of the roads"
 g <- doodle_fun( ~ x + y, seed = 8332)
 contour_plot(g(longitude, latitude) ~ longitude & latitude,
              domain(longitude = -5:5, latitude = -5:5)) |>
@@ -155,9 +176,8 @@ contour_plot(g(longitude, latitude) ~ longitude & latitude,
 # ggsave("fig-hill-with-roads-b.png") # for the pdf version
 ```
 :::
-::::
 
-::::: {.content-hidden unless-format="pdf"}
+:::: {.content-hidden unless-format="pdf"}
 ::: {#fig-hill-with-roads .column-page-inset-right offset="1" fig-cap-location="bottom" layout-ncol=2}
 ![Zoomed out to show a large region](www/fig-hill-with-roads-a.png)
 
@@ -167,13 +187,13 @@ A landscape with two roads. You are standing at the red dot.
 
 :::
 
-:::::
+::::
 
 To start, you are at elevation 11.98 m. Take a step to the east, that is, right on the gray road. For the sake of definiteness, each step will length of the green arrows. The eastward step will take you to an elevation of about 12.06 m, that is, an elevation gain of 0.08 m. In contrast, the step to the north will bring you downhill to an elevation of about 11.93, a loss of 0.05 m.
 
 
 
-From this information, you can calculate the direction of the step that will take you in the steepest uphill direction. To judge from @fig-hill-with-roads, the steepest step will be in the east-south-east direction.
+From this information, you can calculate the direction of the step that will take you in the steepest uphill direction. To judge from `r xf("fig-hill-with-roads")`, the steepest step will be in the east-south-east direction.
 
 The step to the east gives you what’s needed to calculate the rate of change of the output with respect to longitude evaluated at the red dot. The step to the north gives you the rate of change of the output with respect to latitude. Each of these is a quantity with units of meters (of elevation) per degree (of latitude) for the north step or meters (of elevation) per degree (of longitude) for the east step. Combining the two rates of change gives the direction of steepest ascent on the hill and the amount of elevation gain achieved by taking a unit-length step. This information—direction and amount—is called the `r xf_definition("gradient")`.
 
@@ -190,11 +210,11 @@ The problem setup is this:
 1. There is a function $f(x, y, \ldots)$ for which you seek to find the value for each input that will give the greatest possible output. We will denote these input values as $x^\star, y^\star, \ldots$, but we do not yet know their values.
 2. We are standing at a position $(x_0, y_0, \ldots)$. This is our starting position. It is often chosen at random, as if we drifted downward into the terrain like a leaf or raindrop.
 3. We want to find a direction that points uphill and, ideally, uphill in the steepest possible direction.
-4. Upon finding this direction, take a small step forward to a new position $(x_1, y_1, \ldots)$. The new position will be higher than the previous one, since the gradient always points uphill. Repeat (3) and (4) many times. In @fig-gradient-climb, these successive steps are marked by circles.
+4. Upon finding this direction, take a small step forward to a new position $(x_1, y_1, \ldots)$. The new position will be higher than the previous one, since the gradient always points uphill. Repeat (3) and (4) many times. In `r xf("fig-gradient-climb")`, these successive steps are marked by circles.
 
 ```{r}
 #| label: fig-gradient-climb
-#| fig-caption: "Success steps climbing up the gradient from initial position 0. Each gray arrow is the gradient vector from the current position."
+#| fig-cap: "Success steps climbing up the gradient from initial position 0. Each gray arrow is the gradient vector from the current position."
 #| echo: false
 #| warning: false
 g <- doodle_fun( ~ x + y, seed = 8332)
@@ -236,9 +256,9 @@ For the east-west direction, the rate of change is
 $$\partial_x f(x_0, y_0) = \frac{f(x_0 + h, y_0) - f(x_0, y_0)}{h} .$$ Similarly, the north-south rate of change is $$\partial_y f(x_0, y_0) = \frac{f(x_0, y_0 + h) - f(x_0, y_0)}{h} .$$
 As discussed in `r xf("sec-rates-of-change")`, we can set $h$ to be any small value. The most uphill direction at an input location $(x_0, y_0)$ turns out to be simply $$\left(\partial_x f(x_0, y_0),\  \partial_y(x_0, y_0)\right)\ .$${#eq-partial-gradient} This coordinate pair can be interpreted as a direction and length in the $(x, y)$ space. In mathematics, a coordinate pair such as (3, 4) can be interpreted either as a position in Cartesian coordinates or, equally well, as the direction and distance to that position from the point (0, 0). When we interpret a coordinate pair as a direction/distance, we call the pair a *vector*. 
 
-Vectors serve many important purposes throughout science and technology. The "gradient vector" at the input location $(x_0, y_0)$ is an ordinary vector, which we create by calculating @eq-partial-gradient for the inputs $x_0$ and $y_0$.
+Vectors serve many important purposes throughout science and technology. The "gradient vector" at the input location $(x_0, y_0)$ is an ordinary vector, which we create by calculating `r xf("eq-partial-gradient")` for the inputs $x_0$ and $y_0$.
 
-The gradient ascent algorithm works with almost any function with any number of inputs. It doesn’t matter if the function is expressed as a formula or as a real-world setting, such as a chemical plant or a logistics operation. The only information needed is local. Following the chemical plant analogy, imagine a set of dials that control the plant, as in @fig-set-of-dials.
+The gradient ascent algorithm works with almost any function with any number of inputs. It doesn’t matter if the function is expressed as a formula or as a real-world setting, such as a chemical plant or a logistics operation. The only information needed is local. Following the chemical plant analogy, imagine a set of dials that control the plant, as in `r xf("fig-set-of-dials")`.
 
 ::: {#fig-set-of-dials}
 ![](www/dials-output.png)
@@ -246,9 +266,9 @@ The gradient ascent algorithm works with almost any function with any number of 
 Control inputs and a readout of an output.
 :::
 
-Each dial's setting specifies one input. All input dials together determine a position in what we might call dial space. The space in @fig-set-of-dials is four-dimensional. For any setting of the dials—that is, any position in dial space—the function produces an output. The readout in @fig-set-of-dials displays this output value.
+Each dial's setting specifies one input. All input dials together determine a position in what we might call dial space. The space in `r xf("fig-set-of-dials")` is four-dimensional. For any setting of the dials—that is, any position in dial space—the function produces an output. The readout in `r xf("fig-set-of-dials")` displays this output value.
 
-In @fig-set-of-dials, all the dials are set to 1.
+In `r xf("fig-set-of-dials")`, all the dials are set to 1.
 
 To calculate the rate of change for a dial, record the output displayed: 43.8. Then turn the X dial a small amount, say to 3. This is a change of 2 in the dial position. Suppose, in consequence of the change, that the output now reads 42.2. Then the rate of change is $\frac{43.8 - 42.2}{+2} = 0.8$. This tells us that $\partial_X f(1, 1, 1, 1) = 0.8$.
 
@@ -261,61 +281,7 @@ $$\left(\partial_X f(1, 1, 1, 1),\  \partial_Y f(1, 1, 1, 1),\  \partial_Z  f(1,
 
 ```{r label="first-rgl-chunk", eval=knitr::is_html_output()}
 #| echo: false
-# Define simple rgl vector/plane drawing functions.
-rgl_vec <- function(vecs = rbind(0,1,-1), origins=0, 
-                    colors = rainbow(5), alpha = 1) {
-  if (origins == 0) origins <- 0 * vecs
-  nvecs <- ncol(vecs)
-  if (length(colors) != nvecs) colors <- rep_len(colors, nvecs)
-  for (k in 1:ncol(vecs)) {
-    this_one <- cbind(origins[, k], vecs[, k])
-    segments3d(t(this_one), col = colors[k], lwd=2, alpha = alpha)
-    points3d(t(this_one[,2]), col = colors[k], size=6, alpha = alpha)
-  }
-}
-rgl_frame <- function(len = 1, color = "red") {
-  points <- len * diag(3)
-  points <- cbind(points, -points)
-  points3d(t(points), col = color)
-}
-
-rgl_plane <- function(normal = rbind(0, 0, 1), offset=0, color = "green", alpha = 0.1){
-  planes3d(t(normal), alpha = alpha, col = color)
-}
-
-cross_product <- function(x, y) {
-  rbind(x[2]*y[3] - x[3]*y[2],
-        x[3]*y[1] - x[1]*y[3],
-        x[1]*y[2] - x[2]*y[1])
-}
-
-# Draw the plane spanning two vectors.
-rgl_span2 <- function(vecs, color = "green", alpha = 0.1) {
-  normalvec <- cross_product(vecs[,1], vecs[,2])
-  rgl_plane(normalvec, color = color, alpha = alpha)
-}
-
-rgl_vscene <- function(
-    vecs = cbind(
-      rbind(1,0,.5), 
-      rbind(0,.5, -.2)
-    ),
-    plane = TRUE,
-    box = TRUE,
-    axes = FALSE,
-    color = c("blue", "magenta", "brown"),
-    alpha = 1) {
-  rgl_frame(color = NA)
-  rgl_vec(vecs = vecs, 
-          color = color, alpha = alpha)
-  
-  if (box) box3d(col="black")
-  if (axes) axes3d(col = "black", labels = c("x", "y", "z"), lwd = 1, nticks=5)
-
-  if (plane && ncol(vecs) > 1) rgl_span2(vecs[, 1:2])
-  view3d(fov=0)
-  #close3d()
-}
+source("_software/rgl.R")
 ```
 
 Chapters 11 and 12 introduced vectors in two-dimensional space, where simple tasks can be performed intuitively. For example, to measure the *length* of a vector, use a ruler! To find out whether two vectors are parallel, just look! 
@@ -324,25 +290,35 @@ Now we want to extend our capabilities into higher-dimensional space. The motiva
 
 We start with three-dimensional space, where the geometry can be conveyed by moving the viewing perspective. This will let us explore how pairs of vectors can be used to specify a unique `r xf_definition("plane")`. This leads to a new operation, `r xf_definition("projection")`, which casts the shadow of a vector onto another vector or onto a plane. 
 
+:::: {.content-hidden unless-format="pdf"}
+[Several of the following diagrams represent 3-dimensional space, starting with `r xf("fig-blue-gray")` and through `r xf("fig-penguins-3d")`. In this printed edition, the diagrams are static and, flattened onto the page, do a poor job of representing three-dimensional space. You will have a better experience of the space by following the link to the online interactive diagrams that allow you to rotate the space. Doing this is extremely helpful being able to see the objects from different directions in space.]{.column-margin}
+::::
+
+
 The projection operation is key to working with data, for instance, building statistical models or identifying patterns in the data. But projection is especially powerful when working in high-dimensional spaces.
+
 
 In four- and higher-dimensional spaces, it is practically impossible to draw a meaningful graphic. But the operations we can see in three dimensions can be calculated in any dimension using arithmetic. This includes vector length, angles between vectors, and projections onto planes or higher-dimensional extensions of planes. 
 
-To build intuition, let’s return to 3-dimensional space. Consider @fig-blue-gray, which shows two vectors, one in [blue]{style="color: blue;"} and the other [gray]{style="color: gray;"}. They are drawn on a green background. At a glance, one can see that the angle between the vectors is obtuse, perhaps about 130 degrees. Also, the gray vector is shorter than the blue vector. Easy! 
+To build intuition, let’s return to 3-dimensional space. Consider `r xf("fig-blue-gray")`, which shows two vectors, one in [blue]{style="color: blue;"} and the other [gray]{style="color: gray;"}. They are drawn on a green background. At a glance, one can see that the angle between the vectors is obtuse, perhaps about 130 degrees. Also, the gray vector is shorter than the blue vector. Easy! 
+
+`r qr_margin_note(
+  "https://dtkaplan.github.io/QA-exercises/Apps/App-rotations.html",
+  "Link to interactive diagrams"
+)`
 
 In fact, each vector is 3-dimensional. And the green "background" is actually a plane that contains both the vectors. Try rotating the scene to see this more clearly.
 
 
 :::: {.content-hidden unless-format="pdf"}
-::: {#fig-blue-gray}
+[`r xf("fig-blue-gray")`: Interactive 3D view of two vectors: blue and gray. You can position the cursor over the scene and press/drag to rotate the vectors in three dimensions.](.column-margin)
 ![](www/rgl-box-1.png)
-Two vectors: blue and gray. You can position the cursor over the scene and press/drag to rotate the vectors in three dimensions. (Add a link to interactive version.)
-:::
+
 ::::
 
 :::: {.content-hidden when-format="pdf"}
 ::: {#fig-blue-gray}
-```{r dss, webgl=TRUE, echo=FALSE, eval=knitr::is_html_output()}
+```{r dss, results="hide", echo=FALSE, eval=knitr::is_html_output()}
 open3d()
 rgl_vscene(cbind(rbind(.7, .4, 0), rbind(-0.15, -0.4, 0)),
            color = c("blue", "gray"))
@@ -354,7 +330,7 @@ Two vectors: blue and gray. You can position the cursor over the scene and press
 :::
 ::::
 
-As you change the viewing perspective in @fig-blue-gray, the apparent lengths of the vectors as well as the angle between them can change. And, you'll see that the green "background" is actually a plane, with both vectors contained in the plane. 
+As you change the viewing perspective in `r xf("fig-blue-gray")`, the apparent lengths of the vectors as well as the angle between them can change. And, you'll see that the green "background" is actually a plane, with both vectors contained in the plane. 
 
 Indeed, if you change the perspective to view the plane edge-on, the blue and gray vectors will appear to lie on the same line. And depending on which angle you take (keeping the plane edge on), the two vectors will be arranged variously in opposite directions or in the same direction.
 
@@ -377,7 +353,7 @@ Sometimes it is helpful to dot a vector with itself. For instance:
 
 $$\vec{v} \odot \vec{v} = 7^2 + 4^2 + 0^2 = 65\ \ \ $$ and $$\ \ \ \vec{w} \odot \vec{w} = 1.5^2 + (-4)^2 + 0^2 = 18.25\ .$$ 
 
-This use of the dot product captures a large part of the Pythagorean formula for vector length (@eq-pythag).
+This use of the dot product captures a large part of the Pythagorean formula for vector length (`r xf("eq-pythag")`).
 
 - The **length** of $\vec{v}$ is written $\|\vec{v}\|$. There is a simple formula for the length of a vector that uses the dot product:
 
@@ -422,20 +398,23 @@ In a two-dimension space, a subspace is a line: an infinite set of points that a
 
 A one-dimensional subspace is defined by a single vector. A two-dimensional subspace is defined by two vectors.^[The vectors must not be exactly aligned. Otherwise, the subspace is one-dimensional.] Similarly, an $(n-1)$-dimensional subspace is defined by $n-1$ vectors.
 
-@fig-decomp-1 shows a two-dimensional subspace (that is, a plane) of the three-dimensional space. The two vectors drawn in the same color as the subspace have been used to define the subspace. We have colored the subspace-defining vectors to be inconspicuous, so the reader can focus attention on the subspace itself.
+`r xf("fig-decomp-1")` shows a two-dimensional subspace (that is, a plane) of the three-dimensional space. The two vectors drawn in the same color as the subspace have been used to define the subspace. We have colored the subspace-defining vectors to be inconspicuous, so the reader can focus attention on the subspace itself.
 
 
 :::: {.content-hidden unless-format="pdf"}
-::: {#fig-decomp-1}
-![](www/rgl-box-4.png)
-A two-dimensional subspace of a three-dimensional space. The black vector is not in the subspace. (Add a link to interactive version.)
-:::
+[`r xf("fig-decomp-1")`A two-dimensional subspace of a three-dimensional space. The black vector is **not** in the subspace.](.column-margin}
+
+![](www/rgl-box-4.png){width="3in"}
 ::::
 
 
+
 :::: {.content-hidden when-format="pdf"}
-::: {#fig-decomp-1}
-```{r duws, webgl=TRUE, echo=FALSE, eval=knitr::is_html_output()}
+```{r eval=knitr::is_html_output()}
+#| label: fig-decomp-1
+#| results: hide
+#| echo: false
+#| fig-cap: "A two-dimensional subspace of a three-dimensional space. The black vector is not in the subspace."
 open3d()
 M <- cbind(rbind(0.2, 0.2, 0.3), rbind(-0.15, -0.4, -0.1))
 black <- rbind(-.5, -.6, .7)
@@ -445,30 +424,31 @@ rgl_vscene(cbind(M, black),
            color = c("green","green", "black", "darkgray", "red"), alpha = 1)
 close3d()
 ```
-
-
-A two-dimensional subspace of a three-dimensional space. The black vector is not in the subspace.
-:::
 ::::
 
 
 
 You can verify that the two green vectors are in the subspace by rotating the scene. Whatever way you rotate it, you will never see the tips of the green vectors outside of the subspace. The black vector, however, does not lie in the subspace. (Of course, the green vectors must be in the subspace. We defined the subspace *using* the two green vectors.)    
 
-**Projection** of a vector onto a subspace means to find a new vector *in the subspace* that is a close as possible to the vector being projected. @fig-decomp-2 shows the projection of the black vector onto the green subspace. We have drawn in gray the "new" vector, that is, the one that lies in the subspace and is as close as possible to the black vector.
+**Projection** of a vector onto a subspace means to find a new vector *in the subspace* that is a close as possible to the vector being projected. `r xf("fig-decomp-2")` shows the projection of the black vector onto the green subspace. We have drawn in gray the "new" vector, that is, the one that lies in the subspace and is as close as possible to the black vector.
 
 
 
 :::: {.content-hidden unless-format="pdf"}
-::: {#fig-decomp-2}
-![](www/rgl-box-2.png)
-The black vector consists of a part entirely *within* the subspace and a part entirely outside the subspace. (Add a link to interactive version.)
-:::
+
+
+[`r xf("fig-decomp-2")`: The black vector consists of a part entirely *within* the subspace and a part entirely outside the subspace.  (See the online, interactive version to explore this space.)]{.column-margin}
+
+![](www/rgl-box-2.png){width="3in"}
+
 ::::
 
 :::: {.content-hidden when-format="pdf"}
-::: {#fig-decomp-2}
-```{r duws2, webgl=TRUE, echo=FALSE, eval=knitr::is_html_output()}
+```{r eval=knitr::is_html_output()}
+#| label: fig-decomp-2
+#| results: hide
+#| echo: FALSE
+#| fig-cap: "The black vector consists of a part entirely *within* the subspace and a part entirely outside the subspace."
 open3d()
 M <- cbind(rbind(0.2, 0.2, 0.3), rbind(-0.15, -0.4, -0.1))
 black <- rbind(-.5, -.6, .7)
@@ -478,9 +458,6 @@ rgl_vscene(cbind(M, black, fitted, resid),
            color = c("green","wheat", "black", "darkgray", "red"), alpha = 1)
 close3d()
 ```
-
-The black vector consists of a part entirely *within* the subspace and a part entirely outside the subspace. 
-:::
 ::::
 
 To confirm that the gray vector really is the one in the subspace that is as close as possible to the black vector, observe these facts by rotating the scene:
@@ -509,22 +486,23 @@ Consider now the problem of getting a computer to discern the different species 
 
 In this learning task, we will start by sending human experts out to collect data from penguins: the species, but also quantitative data such as the penguin's mass, beak length, and width, and so on. The data collected constitute a `r xf_definition("training data set")` that we will use to establish quantitative rules for identifying a penguin's species.
 
-@fig-penguins-3d shows training data from 344 penguins across three species: Adélie, Chinstrap, and Gentoo. Each penguin is one dot in the picture. The judgement of the human experts about the species is indicated by the *color* of the dot: Adelie is blue, Chinstrap green, and Gentoo red. Five different quantitative measurements were taken for each penguin, so the dots rightfully belong in a five-dimensional space. But we can only show three dimensions graphically, so we work with those.
+`r xf("fig-penguins-3d")` shows training data from 344 penguins across three species: Adélie, Chinstrap, and Gentoo. Each penguin is one dot in the picture. The judgement of the human experts about the species is indicated by the *color* of the dot: Adelie is blue, Chinstrap green, and Gentoo red. Five different quantitative measurements were taken for each penguin, so the dots rightfully belong in a five-dimensional space. But we can only show three dimensions graphically, so we work with those.
 
 
 :::: {.content-hidden unless-format="pdf"}
-::: {#fig-penguins-3d}
+[`r xf("fig-penguins-3d")`:Representing the penguin data as points in space.  (See the online, interactive version to explore this space.)
+]{.column-margin}
 
-![](www/rgl-box-3.png)
-Representing the penguin data as points in space.. (Add a link to interactive version.)
-:::
+![](www/rgl-box-3.png){width="3in"}
+
 ::::
 
 :::: {.content-hidden when-format="pdf"}
-::: {#fig-penguins-3d}
-```{r l3sd, webgl=TRUE, eval=knitr::is_html_output()}
+```{r eval=knitr::is_html_output()}
+#| label: fig-penguins-3d
+#| results: hide
 #| echo: false
-
+#| fig-cap: "Representing the penguin data as points in space."
 library(palmerpenguins)
     # open3d(userMatrix = VP)
     open3d()
@@ -549,17 +527,13 @@ library(palmerpenguins)
 
     close3d() # prevents from being drawn twice
 ```
-
-
-Representing the penguin data as points in space.
-:::
 ::::
 
 From the perspective shown initially, it's easy to distinguish the [Chinstrap]{style="color: green;"} penguins from the other two species. But the Adelie and Gentoo species are all mixed up; we can't divide the space into distinct regions that separate one species from another.
 
 Now rotate the scene until each of the three species occupies a distinct region. By rotating, you are determining how to combine the various measurements to obtain the cleanest results from the training data. Once that learning has been accomplished, you'll know how to classify any new penguin that comes along without a species label.
 
-Think about how you learned the pattern. You rotated the space more or less at random, keeping track of which perspective best separates the groups of different-colored dots. Such a perspective optimization can also be automated, without human involvement. In fact, that is how the subspace shown in @fig-penguins-3d was determined. The information about species corresponds to the pattern encoded by the subspace.
+Think about how you learned the pattern. You rotated the space more or less at random, keeping track of which perspective best separates the groups of different-colored dots. Such a perspective optimization can also be automated, without human involvement. In fact, that is how the subspace shown in `r xf("fig-penguins-3d")` was determined. The information about species corresponds to the pattern encoded by the subspace.
 
 This was a pretty easy learning task since it can be done in three dimensions. The next example demonstrates a more impressive feat performed in a space of more than 100 dimensions. What's more, there is no expert providing the training data; the method will figure out how to perform classification without knowing the goal!
 
@@ -633,13 +607,13 @@ In high-dimensional space, random vectors tend to have an alignment close to zer
 
 To avoid unnecessary abstraction and the mystique that can arise from leaving the familiar realm of three dimensions, we have selected an easy-to-understand setting: votes by legislators in a council. In particular, we will examine a series of 773 votes by 135 lawmakers in the Scottish Parliament in 1999-2000.^[This example was provided soon after the session of Parliament by then-undergraduate Caroline Ettinger and Professor Andrew Beveridge at Macalester College.] This might seem an obscure topic, but the advantage for us is that few readers will have direct knowledge of the parliament's political structure, for instance, the number and make-up of political parties. Similarly, the reader will not know how the 773 recorded ballots are related to one another. 
 
-This is an example of `r xf_definition("unsupervised learning")`. In *supervised* learning, as with the penguin species assignment, we have *training data* about the patterns we seek to uncover: the different colored points in @fig-penguins-3d that enable us to find an advantageous projection onto a low-dimensional subspace. In *unsupervised* we have no such knowledge. The problem is then to find a low-dimensional subspace without knowing in advance what we are looking for.
+This is an example of `r xf_definition("unsupervised learning")`. In *supervised* learning, as with the penguin species assignment, we have *training data* about the patterns we seek to uncover: the different colored points in `r xf("fig-penguins-3d")` that enable us to find an advantageous projection onto a low-dimensional subspace. In *unsupervised* we have no such knowledge. The problem is then to find a low-dimensional subspace without knowing in advance what we are looking for.
 
 To orient the reader, consider some of the data for one of the 135 members of parliament, Bruce Crawford. Mr. Crawford voted "For" 235 ballots, "Against" 264, and didn't register a vote in 274. For instance, Bill S1M-786 was entitled "Ethical Standards in Public Life." Mr. Crawford was in favor, as were 98 of his colleagues. (It is likely that most members of parliament are in favor of ethical standards in public life, but evidently, 17 members objected to something or another in the bill. There were 2 abstentions and 16 absences.)
 
 A diligent researcher can read through the minutes of Parliament, which record which party each member belongs to and the content of each bill. But, in the spirit of unsupervised learning, we will not use this information.
 
-@fig-all-votes shows the votes and absences for each of the 134 members of parliament on each of the 773 bills, giving somewhat over 100,000 data points. Each point is one member voting for or against one bill (or abstaining or being absent). The point's color shows whether the vote was for or against. 
+`r xf("fig-all-votes")` shows the votes and absences for each of the 134 members of parliament on each of the 773 bills, giving somewhat over 100,000 data points. Each point is one member voting for or against one bill (or abstaining or being absent). The point's color shows whether the vote was for or against. 
 
 ```{r}
 #| label: fig-all-votes
@@ -657,9 +631,9 @@ show_votes(VAlpha)
 :::
 ::::
 
-Our goal is to find and interpret patterns in the data. There are many ways to define "pattern." For instance, the reader will, possibly, see the overall pattern in @fig-all-votes as a *plaid*, a common fabric pattern. (Satisfyingly, plaid is culturally associated with Scotland, although that has nothing to do with the matter at hand.) Here, however, we will stick with the sorts of patterns that can be seen through the lens of quantitative reasoning, particularly the alignment of vectors and the detection of low-dimensional subspaces that provide a good approximation to the raw data.
+Our goal is to find and interpret patterns in the data. There are many ways to define "pattern." For instance, the reader will, possibly, see the overall pattern in `r xf("fig-all-votes")` as a *plaid*, a common fabric pattern. (Satisfyingly, plaid is culturally associated with Scotland, although that has nothing to do with the matter at hand.) Here, however, we will stick with the sorts of patterns that can be seen through the lens of quantitative reasoning, particularly the alignment of vectors and the detection of low-dimensional subspaces that provide a good approximation to the raw data.
 
-We start with alignment, a useful measure that can be calculated using the formula in @eq-alignment, which involves simple arithmetic. We start by measuring the alignment among the various members of parliament. For each of the 133 members of parliament, we have a vector of votes on the 773 bills. For example, Bruce Crawford's voting record is represented by the vector we have named $\vec{M}_{100}$ in @eq-bruce-crawford. We also show vectors for a randomly selected few of his colleagues: Colin Campbell ($\vec{M}_{99}$), Paul Martin $\vec{M}_{57}$, and Scott Barrie ($\vec{M}_{25}$). Each of the vectors has 773 components; we're leaving out most of them for human readability. 
+We start with alignment, a useful measure that can be calculated using the formula in `r xf("eq-alignment")`, which involves simple arithmetic. We start by measuring the alignment among the various members of parliament. For each of the 133 members of parliament, we have a vector of votes on the 773 bills. For example, Bruce Crawford's voting record is represented by the vector we have named $\vec{M}_{100}$ in `r xf("eq-bruce-crawford")`. We also show vectors for a randomly selected few of his colleagues: Colin Campbell ($\vec{M}_{99}$), Paul Martin $\vec{M}_{57}$, and Scott Barrie ($\vec{M}_{25}$). Each of the vectors has 773 components; we're leaving out most of them for human readability. 
 
 ::: {.column-page-inset-right}
 $$\vec{M}_{100} = {\small\left(\begin{array}{r}1\\-1\\-1\\1\\1\\1\\1\\-1\\\vdots\\-1\\-1\\1 \end{array}\right)}\ \ \ \ 
@@ -669,7 +643,7 @@ $$\vec{M}_{100} = {\small\left(\begin{array}{r}1\\-1\\-1\\1\\1\\1\\1\\-1\\\vdots
 $${#eq-bruce-crawford}
 :::
 
-Note that the first component of all the vectors in @eq-bruce-crawford corresponds to the vote on the same bill, S1M-1, and similarly for all the other bills up to S1M-4064.
+Note that the first component of all the vectors in `r xf("eq-bruce-crawford")` corresponds to the vote on the same bill, S1M-1, and similarly for all the other bills up to S1M-4064.
 
 Observe that $\vec{M}_{100}$ is almost entirely the opposite voting pattern of $\vec{M}_{99}$. To find the quantitative alignment, first take the dot product of the two vectors, 
 $$ (-1) \times 1 + (-1)\times 1  + 1 \times (-1) + 1 \times (-1) + \cdots = - 8$$
@@ -677,8 +651,7 @@ then divide by the square root of the lengths of the two vectors, $\sqrt{11}$ an
 
 The point here is not to emphasize this particular calculation, but to show that the alignment is a straightforward statistic to compute. And, in any event, we should take into account all 773 bills when computing the alignment between two members of parliament. `r xf("tbl-4MPs-alignment")` shows the result.
 
-:::: {.content-hidden unless-format="html"}
-::: {#tbl-4MPs-alignment}
+::: {#tbl-4MPs-alignment tbl-cap-location="top"}
 
   &nbsp;    | Scott | Paul  | Colin | Bruce
 ----------|-------|-------|-------|------
@@ -689,19 +662,6 @@ The point here is not to emphasize this particular calculation, but to show that
 
 Alignments among the voting patterns of four members of parliament.
 :::
-::::
-
-:::: {.content-hidden unless-format="pdf"}
-
-[`r xf("tbl-4MPs-alignment")`: Alignments among the voting patterns of four members of parliament.]{.column-margin}
-
-  &nbsp;    | Scott | Paul  | Colin | Bruce
-----------|-------|-------|-------|------
-**Scott** | 1     |  -0.33| 0.68  | -0.31 
-**Paul**  | -0.33 |  1    | -0.39 |  0.85
-**Colin** |  0.68 | -0.39 | 1     | -0.37
-**Bruce** | -0.31 |  0.85 | -0.37 |  1  
-::::
 
 
 Notice that (of course!) each MP is *perfectly aligned* with themself. And, the alignments are symmetrical: the alignment between Paul and Scott is the same as the alignment between Scott and Paul. Such patterns tell us nothing about voting patterns. They are merely an inevitable consequence of the symmetry in the dot-product calculation.
@@ -712,10 +672,9 @@ Re-arranging the names to place strongly aligned ones near each other and negati
 
 Scott, Colin, Bruce, Paul
 
-[`r xf("tbl-4MPs-re-ordered")` puts `r xf("tbl-4MPs-alignment")` into this order. The re-arrangement suggests that among these four MPs there are two voting blocks, [blue]{style="color:blue;"} and [green]{style="color:green;"}.
+`r xf("tbl-4MPs-re-ordered")` puts `r xf("tbl-4MPs-alignment")` into this order. The re-arrangement suggests that among these four MPs there are two voting blocks, [blue]{style="color:blue;"} and [green]{style="color:green;"}.
 
 
-:::: {.content-hidden unless-format="html"}
 ::: {#tbl-4MPs-re-ordered}
 
   &nbsp; | Scott | Colin | Bruce | Paul  
@@ -728,20 +687,7 @@ Scott, Colin, Bruce, Paul
 Re-ordering the members of parliament to put those closely aligned near each other shows two voting blocks.
 
 :::
-::::
 
-:::: {.content-hidden unless-format="pdf"}
-[`r xf("tbl-4MPs-re-ordered")`: Re-ordering the members of parliament to put those closely aligned near each other shows two voting blocks.]{.column-margin}
-
-  &nbsp; | Scott | Colin | Bruce | Paul  
-:-----|------:|------:|------:|------:
-**Scott** |  [1]{style="color: green;"}     |  [0.68]{style="color: green;"}  | [-0.31]{style="color: red;"}  | [-0.33]{style="color:red;"}
-**Colin** |  [0.68]{style="color: green;"}  |   [1]{style="color: green;"}    | [-0.37]{style="color: red;"}  | [-0.39]{style="color:red;"} 
-**Bruce** | [-0.31]{style="color: red;"}    | [-0.37]{style="color: red;"}    |   [1]{style="color: blue;"}   |  [0.85]{style="color:blue;"}
-**Paul**  | [-0.33]{style="color: red;"}    | [-0.39]{style="color: red;"}    |  [0.85]{style="color: blue;"} | [1]{style="color:blue;"}    
-
-
-::::
 
 ```{r}
 #| label: ch16-r-2a40ffb5
@@ -760,37 +706,24 @@ long_align <- function(n, m) {
 }
 ```
 
-Another way to look at the voting data is as 773 vectors, each having 134 components. That is, we make 134 measurements on each of the 773 bills. Looking at the alignments among the 773 vectors lets us organized the bills into blocks. 
+Another way to look at the voting data is as 773 vectors, each having 134 components. That is, we make 134 measurements on each of the 773 bills. Looking at the alignments among the 773 vectors lets us organized the bills into blocks (`r xf("fig-arranged-votes")`).
 
-@fig-arranged-votes shows the entire data set from @fig-all-votes with both the rows and columns re-arranged to enhance the "blockiness" of the data.
+`r xf("fig-arranged-votes")` shows the entire data set from `r xf("fig-all-votes")` with both the rows and columns re-arranged to enhance the "blockiness" of the data.
 
-::: {.content-hidden unless-format="html"}
 ```{r}
 #| label: fig-arranged-votes
 #| echo: false
-#| fig-cap: "The same data as shown in @fig-all-votes, but the rows and the columns have been reordered so that closely aligned vectors are placed nearby along the axes."
+#| fig-cap: "The same data as in [Figure 16.11](Chap-16-operations.html#fig-all-votes), but the rows and the columns have been reordered so that closely aligned vectors are placed nearby along the axes."
 show_votes(SVAlpha)
 ```
-:::
 
-
-:::: {.content-hidden unless-format="pdf"}
-::: {#fig-arranged-votes}
-![](www/fig-arranged-votes-1-flattened.png)
-The same data as shown in @fig-all-votes, but the rows and the columns have been reordered so that closely aligned vectors are placed nearby along the axes.
-:::
-::::
-
-
-
-
-The strong block structure in @fig-arranged-votes is evident. Looking across the *columns*, there are four factions. The largest, by far, includes the members numbered 60 and higher. The second largest faction consists of members numbered 1 through 36. This second faction is distinguished from the first by voting "for" bills 1-230 and against bills 580+. They also have many absences for bills 450-550. 
+The strong block structure in `r xf("fig-arranged-votes")` is evident. Looking across the *columns*, there are four factions. The largest, by far, includes the members numbered 60 and higher. The second largest faction consists of members numbered 1 through 36. This second faction is distinguished from the first by voting "for" bills 1-230 and against bills 580+. They also have many absences for bills 450-550. 
 
 Having identified two major factions, we can compare the voting patterns of members of parliament who are not in either faction. A third faction, contrasting with the first two, occupies 37-55. Meanwhile, a small fourth "faction," rows 56 to 59, is a mix of opinions and absences. 
 
-To facilitate further discussion, let's call the three substantial factions the "Top," "Middle," and "Bottom." It turns out, by referring to the known party registration of each MP, the Top faction consists of a mix of Scottish Labour and Scottish Liberal Democrats, the Bottom faction is the Scottish National Party, and the Middle faction is the Scottish Liberal Democrats. The party registration information, however, played no role in the construction of @fig-arranged-votes.
+To facilitate further discussion, let's call the three substantial factions the "Top," "Middle," and "Bottom." It turns out, by referring to the known party registration of each MP, the Top faction consists of a mix of Scottish Labour and Scottish Liberal Democrats, the Bottom faction is the Scottish National Party, and the Middle faction is the Scottish Liberal Democrats. The party registration information, however, played no role in the construction of `r xf("fig-arranged-votes")`.
 
-With these names for the horizontal bands in @fig-arranged-votes, we can discuss the vertical bands: the types of bills considered by Parliament. Bills 1 to 230 have the Top faction voting "for" and the Bottom faction voting "against." Bills 231 to 325 are opposed by both factions. Bills numbered 600+ are opposed by the Bottom faction but supported by the Top faction. Bills 326 to 450 receive support from both factions.
+With these names for the horizontal bands in `r xf("fig-arranged-votes")`, we can discuss the vertical bands: the types of bills considered by Parliament. Bills 1 to 230 have the Top faction voting "for" and the Bottom faction voting "against." Bills 231 to 325 are opposed by both factions. Bills numbered 600+ are opposed by the Bottom faction but supported by the Top faction. Bills 326 to 450 receive support from both factions.
 
 This is a lot to find out about a session of Parliament from a set of 100,000 "for" and "against" votes. It is not, of course, everything to know about the session. For instance, although we have identified four types of bills, we would need to read the actual bills or the debate record to determine which social, economic, or administrative features characterize each type. Here, modern quantitative reasoning provides a tool that can inform other types of description and argument. 
 
@@ -809,14 +742,9 @@ iii. Finding projections that collapse words and their contexts so that sets nea
 
 This chapter does not equip the reader to use such methods in practice. Realizing current AI capabilities required many billions in research on quantitative methods. Researchers also discovered new quantitative methods, unknown to previous generations. For example, the 2017 paper [Attention is all you need](https://en.wikipedia.org/wiki/Attention_Is_All_You_Need) made a major step toward effective AI.
 
+`r qr_margin_note(
+  "https://en.wikipedia.org/wiki/Attention_Is_All_You_Need",
+  "*Attention is All You Need*"
+)`
+
 Readers who are daunted by the richness of the quantitative concepts in this book should keep in mind that mastery comes only after years of study and effort. This is true across many fields, including the humanities, medicine, the social sciences, and engineering. Even experts of one decade can be challenged by innovations in the next. For instance, this author has not yet understood the "Attention" method enough to describe it or outline its key ideas.
-
-
-
-
-------
-
-### New terms {#sec-new-terms-16}
-
-`r xf_new_words("16")`
-

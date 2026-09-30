@@ -1,0 +1,34 @@
+*Vocabulary Review*
+
+- algorithm (6)
+- data (2)
+- dimension (2)
+- functions (6)
+- margin (14)
+- maximum (10)
+- mean (8)
+- models (1)
+- per (3)
+- point (3)
+- rate (4)
+- rate of change (4)
+- space (3)
+- system (6)
+- value (2)
+- with respect to (3)
+
+*New*
+
+- alignment between two vectors
+- dot product
+- gradient
+- large language models
+- learning
+- length of a vector
+- optimization
+- plane
+- projecting
+- projection
+- subspace
+- unsupervised learning
+- vector

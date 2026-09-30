@@ -1,0 +1,15 @@
+*Vocabulary Review*
+
+- arg (6)
+- data (2)
+- functions (6)
+- magnitude (5)
+- pure number (3)
+- quantity (3)
+- rate (4)
+- units (3)
+
+*New*
+
+- core modeling functions
+- input and output scaling

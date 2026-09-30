@@ -15,7 +15,11 @@ crossref:
 source("_start-up.R")
 ```
 
-Add a note about cyclical influence diagrams and how the cycle implies something changes over time.
+::: {.aside}
+`r paste(readLines("_Words/chap_3.txt"), collapse = "\n")` 
+:::
+
+IN DRAFT: Add a note about cyclical influence diagrams and how the cycle implies something changes over time.
 
 `r xf("sec-modeling-an-epidemic")` introduced a model of an epidemic: the SIR model. SIR tracks the numbers of infective and susceptible people from day to day, week to week, and month to month. Such models, and the systems the models represent, are called `r xf_definition("dynamical systems")`.
 
@@ -60,6 +64,8 @@ We will return to the accounting method and give it a dignified mathematical nam
 
 Dividing the mathematical work between the dynamical rule and the accounting method greatly simplifies the dynamical rule. The rule needs only to tell the change in the state over the briefest imaginable interval of time. This feature of dynamical rules enables the concise description of scientific theories of nature's operation. 
 
+\newpage
+
 ## Defining the state and rule {#sec-define-state-rule}
 
 It is convenient to start with a system whose dynamical rule is straightforward and where we can easily keep the overall trajectory in mind. With this in mind, imagine a pendulum, such as a tire hanging by a rope from a tall tree branch, or the swinging mechanism of a grandfather clock. 
@@ -81,17 +87,15 @@ Animated drawing of a swinging pendulum. ([Source](https://commons.wikimedia.org
 
 ::::
 
-:::: {.content-visible when-format="pdf"}
-::: {.callout-note}
-## `r xf("fig-pendulum-gif")` 
+`r qr_margin_note(
+  "https://commons.wikimedia.org/w/index.php?curid=97640047",
+  "Animated pendulum online"
+)`
 
-DRAFT: In this printed version of *Quantitative Argumentation* we cannot display the animation of the swinging pendulum that will make the dynamics more intuitive. You will have to go to a web site: [pendulum movie](https://commons.wikimedia.org/w/index.php?curid=97640047).
-:::
-::::
 
 The animation in `r xf("fig-pendulum-gif")` consists of a series of frames. @fig-pend-several-frames shows the first five frames individually, making it straightforward to measure the bob's position in each.
 
-::: {layout-nrow=2 #fig-pend-several-frames .column-page-inset-right fig-cap-location="bottom"}
+::: {layout-nrow=2 #fig-pend-several-frames .column-page-inset-right fig-cap-location="top"}
 
 ![Frame 1](www/pend-p7.png) 
 
@@ -336,12 +340,17 @@ Exponential decay is the same. Imagine an abandoned bank account with 1000 USD, 
 
 Some people point to the world's human population (@fig-world-population) as a compelling example of "skyrocketing," that is, exponential growth. However, a careful examination reveals a more nuanced story. After all, even skyrockets run out of fuel at some point.
 
-::: {#fig-world-population .column-page-inset-right fig-cap-location="bottom"}
+::: {#fig-world-population .column-page-inset-right fig-cap-location="top"}
 ![](www/world-population-10000BC.png)
 
 Source: [Our World in Data](https://ourworldindata.org/population-growth-over-time)
 
 :::
+
+`r qr_margin_note(
+  "https://ourworldindata.org/population-growth-over-time",
+  "World population data"
+)`
 
 To evaluate patterns like that shown in @fig-world-population, it pays to drop the dramatic descriptions and carefully examine what exponential growth is and the mathematical assumptions that underlie it. Knowing these assumptions lets us judge to what extent those assumptions are justifiable and when they are not. 
 
@@ -448,7 +457,7 @@ Doubling every 20 minutes means that there are three doublings in one hour. Star
 
 The pattern of a 64-fold increase every two hours will produce unbelievable growth, as indicated in @tbl-every-20-minutes.
 
-::: {#tbl-every-20-minutes}
+::: {#tbl-every-20-minutes tbl-cap-location="margin"}
 time | population | bacterial mass
 -----|--------:|-------
 Midnight | 1 | roughly 1e-12 gm or 1 picogram
@@ -478,7 +487,6 @@ The reality is that the bacterial mass reaches a steady state, so we know that t
 
 In @fig-theory-vs-practice, we compare the exponential growth dynamics (black) to a more realistic pattern that produces exponential growth when the bacterial mass is small, but brings the growth to zero at the steady state.
 
-::: {.column-page-inset-right}
 ```{r}
 #| label: fig-theory-vs-practice
 #| fig-cap: "Dynamics of bacterial growth. Black is the same(P) model, red is a more realistic model."
@@ -524,7 +532,6 @@ P1 |> gf_theme(theme_minimal(base_size = 16))
 P2 |> gf_theme(theme_minimal(base_size = 16))
 ```
 
-:::
 
 In steady growth, as t increases by one unit, the value of $P$ increases by a fixed quantity. So, in @fig-flat-dyn(c), the value of $P$ increases by the same amount when t goes from 0 to 1 as it does when t goes from 1 to 2 or from 2 to 3.
 
@@ -573,12 +580,4 @@ Taking into account all the coefficients that we argued are zero, we end up with
 $$ROC_{S}(S, I) \equiv - d\,S\,I$$ and $$ROC_{I}(S, I) \equiv -b I + d\,S\,I$$ 
 
 There are only two coefficients, not three, since the decrease in susceptibles balances any increase in infectives! 
-
------
-
-### New terms {#sec-new-terms-13}
-
-`r xf_new_words("13")
-
-
 

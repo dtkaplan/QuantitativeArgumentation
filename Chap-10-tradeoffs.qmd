@@ -13,6 +13,10 @@ source("_start-up.R")
 
 # Trade-offs {#sec-tradeoffs}
 
+::: {.aside}
+`r paste(readLines("_Words/chap_10.txt"), collapse = "\n")` 
+:::
+
 The everyday verb "trade" involves exchanging one thing for another. Buying lunch is a trade: you exchange money for food. Almost always, such an exchange involves two parties, in this case  a buyer and a seller. A `r xf_definition("trade-off")` is a kind of trade that involves only one party who has to balance competing objectives. A person who decides to buy a cheaper lunch in order to have money for a movie faces a trade-off between the quality of the food and the amount of money available for entertainment.
 
 Trade-offs often involve money, but not always. For instance, a painter bending far from a ladder to get to that last little bit of unpainted third-story window trim is trading off efficiency for safety. Another painter, who climbs down and moves the ladder closer to the window, faces the same trade-off but evaluates it differently. The second painter is prioritizing safety over efficiency. 
@@ -169,7 +173,7 @@ gf_vline(xintercept = 3, color="darkcyan", linewidth=0.5) |>
 gf_vline(xintercept = 5, color="maroon", linewidth=0.5) |>
 gf_point(0 ~ 3, color="darkcyan", size=3) |>
 gf_point(0 ~ 5, color="maroon", size=3) |>
-gf_theme(theme_minimal(base_size = 14) ) +
+gf_theme(theme_minimal(base_size = 12) ) +
     theme(
     axis.title.y = element_text(color = "darkcyan"),
     axis.text.y = element_text(color = "darkcyan"),
@@ -190,7 +194,7 @@ Let's switch to another graphical format to illustrate the trade-off. In `r xf("
 
 In `r xf("fig-both-objectives")` we re-arrange the axes. First, we delete entirely the horizontal input axis and represent the input value as the position along a curve. For clarity, `r xf("fig-two-obj-funs")` we marked with letters nine different input values. Those same letters appear in `r xf("fig-both-objectives")` as locations along the curve. But the axes for `r xf("fig-both-objectives")` are re-arranged versions of the two vertical axes from `r xf("fig-two-obj-funs")`. Each point on the curve shows the output of the Score and Savings function for one input value. For example, for the input value A, the position on the curve marked with A is based on the Score value for input A and the Savings value for input A.
 
-From `r xf("fig-both-objectives")`, what can we say about which choice is the best? 
+From `r xf("fig-both-objectives")`, what can we say about which choice is the best? It's important to keep in mind that each of the objective functions in `r xf("fig-two-obj-funs")` is for a *maximization* problem. So bigger outputs are better. From the axes, you might translate this into a simple rule: move as far as possible to the north-east. But this isn't right.
 
 ```{r}
 #| label: fig-both-objectives
@@ -222,7 +226,7 @@ gf_path(data = D, savings ~ score) |>
 ```
 
 
-It's important to keep in mind that each of the objective functions in `r xf("fig-two-obj-funs")` is for a *maximization* problem. So bigger outputs are better.
+
 
 `r xf("fig-both-objectives")` lets us compare any two input choices, say D versus E or A versus B. In order to claim that one of the labeled choices is better than the other, we need the outcome on **both** graphical axes to be better for one choice than for the other. For instance, both the Score and the Savings are larger at input B than at input A. Choice B is therefore better in all respects than choice A. In contrast, when comparing D versus E, we see that E has a larger Savings but it also has a *smaller* Score.
 
@@ -258,11 +262,4 @@ If the *only* objective was to minimize money spent, the decision would be strai
 The numbers given by Goldfarb indicate a shadow price of $3,000,000 per forty-five hundred cured patients, or roughly $667 per life saved from non-MDR tuberculosis. This is a tragically low price, which points to a harsh and grossly unfair allocation of resources in the broader Russian economy and prison system. Still, Goldfarb can do little about the broad situation, he has to work within the constraints of his limited budget. His choice, buy non-MDR lives at $667 per life versus buying MDR lives at $6,000 per life, still low, but much higher than $667 per life. 
 
 What would you do, instead?
-
------
-
-### New terms {#sec-new-terms-10}
-
-`r xf_new_words("10")`
-
 

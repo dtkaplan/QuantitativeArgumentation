@@ -1,0 +1,15 @@
+*Vocabulary Review*
+
+- argumentation (1)
+- models (1)
+
+*New*
+
+- data
+- data frame
+- dimension
+- object type
+- operationalization
+- sample
+- specimen
+- value

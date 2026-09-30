@@ -11,19 +11,27 @@ tbl-title: "Table 2."
 source("_start-up.R")
 ```
 
-IN DRAFT: Talk about acyclic graphs for systems and raise the question of cyclic graphs. 
 
 # Systems, dimensions, and data {#sec-systems}
 
-Even in informal speech, we use the word "system" a lot. In this book, we will build and use models of ... well, what? We could provide a several nouns to complete "models of ...", for instance, "things," "objects," "processes," or "phenomena." In this book, we will use the abstract word "system" as a general way to refer to what is being modeled. The reason has to do with a specific meaning for "system" that will help us understand a very useful structure for models used in argumentation.
 
-::: {.content-hidden when-format="pdf"}
-> **System**: *a framework or an organized structure with interconnected elements.* [Here is a [related dictionary definition](https://www.google.com/search?q=system+definition&rlz=1C5GCEM_enUS1006US1006&oq=system+definition&gs_lcrp=EgZjaHJvbWUyEQgAEEUYORhGGPkBGLEDGIAEMgcIARAAGIAEMgcIAhAAGIAEMgcIAxAAGIAEMgcIBBAAGIAEMgcIBRAAGIAEMgcIBhAAGIAEMgcIBxAAGIAEMgcICBAAGIAEMgcICRAAGIAE0gEIMzAyMmowajmoAgCwAgE&sourceid=chrome&ie=UTF-8).]{.column-margin}
+::: {.aside}
+`r paste(readLines("_Words/chap_2.txt"), collapse = "\n")` 
 :::
 
-::: {.content-hidden unless-format="pdf"}
-> **System**: *a framework or an organized structure with interconnected elements.* [Or, from the [Merriam-Webster](https://www.merriam-webster.com/dictionary/system) dictionary: "a regularly interacting or interdependent group of items forming a unified whole"]{.column-margin}
-:::
+IN DRAFT: Talk about acyclic graphs for systems and raise the question of cyclic graphs. 
+
+
+Even in informal speech, we use the word "system" a lot. In this book, we will build and use models of ... well, what? We could provide a several nouns to complete "models of ...", for instance, "things," "objects," "processes," or "phenomena." In this book, we will use the abstract word `r xf_definition("system")` as a general way to refer to what is being modeled. The reason has to do with a specific meaning for "system" that will help us understand a very useful structure for models used in argumentation.
+
+
+> **System**: *a framework or an organized structure with interconnected elements.* Or, from the [Merriam-Webster](https://www.merriam-webster.com/dictionary/system) dictionary: "a regularly interacting or interdependent group of items forming a unified whole."
+
+`r qr_margin_note(
+ "https://www.merriam-webster.com/dictionary/system", 
+ 'Merriam-Webster'
+ )`
+ 
 
 This chapter sets up a framework for thinking about "elements" or "items" productively, with an eye toward what goes into a model used in quantitative argumentation. To give you an idea of what's coming, consider the following thought, which at this point may seem like a mere jumble of words
 
@@ -122,11 +130,4 @@ The specimens in every data frame are often a sample from a potentially larger e
 You might have assembled your collection in the usual way, by wandering along a beach and picking up the shells that caught your eye. The abstract word for such a process is `r xf_definition("sampling")`. It is helpful to have a term for the larger entity from which each specimen was sampled. The word "population" is often used here. Even though the root of "population" is the same as for the word "people," when it comes to data frames we use "population" to refer to any source of specimens. For instance, we might have a population of stars or a population of events such as daily weather or forest fires.
 
 It’s consistent with our usage in this book to say that a population has dimensions, meaning the set of aspects or qualities of the elements in the population. Those dimensions may be related to one another, for example the relationship between age and height of young children. But there is something subtle going on. When it comes to data, any detected relationships are collective properties across all the specimens in your sample. You can only discern a relationship from data when you have multiple specimens to compare to one another.
-
-
-### New terms {#sec-new-terms-02}
- 
-
-
-[`r xf_new_words("02")`]{}
 

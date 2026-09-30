@@ -14,6 +14,10 @@ source("_start-up.R")
 library(QAfigs)
 ```
 
+::: {.aside}
+`r paste(readLines("_Words/chap_7.txt"), collapse = "\n")` 
+:::
+
 The previous chapter introduced notation for functions and their args. Functions can have any number of args. In modeling, a function representing one of the sharp-cornered boxes---a quantity *endogenous* to the model, will have one arg for each of the incoming arrows originating from other boxes. 
 
 This chapter introduces and names a small set of *one-arg* functions that are particularly useful in modeling. We call these the `r xf_definition("core modeling functions")`. In making selections for the core modeling functions, our primary goal is to provide a library of simple relationships of the sort that appear in many modeling contexts. Each core modeling function will have a name, so you can think of them as letting you refer to a relationship type by name: an aid to communication both with other people and with the computer.
@@ -751,17 +755,4 @@ scaled_plot(
 ::::
 
  
-
- 
-
- 
-
------
-
-### New terms {#sec-new-terms-07}
-
-`r xf_new_words("07")`
-
-
-
 

@@ -16,7 +16,11 @@ crossref:
 source("_start-up.R")
 ```
 
-The second word in *Quantitative Argumentation* comes from the simpler word "argument." In everyday speech, an argument is a quarrel. The root of "argument" goes back to pre-history. [As documented, for instance, in the Mirriam-Webster dictionary.]{.column-margin} In the hypothesized proto-Indo-European language, *arg* meant shiny or bright. Latin inherited this sense of shining a light; the Latin *arguere* means "to make clear," "enlighten," "prove," or "demonstrate." Entering English in the 1300s, "argument" means a reason or proof used to settle a doubt. `r xf_definition("Argumentation")` refers to the process of constructing good arguments, a central theme of this book.
+::: {.aside}
+`r paste(readLines("_Words/chap_1.txt"), collapse = "\n")` 
+:::
+
+The second word in *Quantitative Argumentation* comes from the simpler word "argument." In everyday speech, an argument is a quarrel. The root of "argument" goes back to pre-history, as documented, for instance, in the Mirriam-Webster dictionary. In the hypothesized proto-Indo-European language, *arg* meant shiny or bright. Latin inherited this sense of shining a light; the Latin *arguere* means "to make clear," "enlighten," "prove," or "demonstrate." Entering English in the 1300s, "argument" means a reason or proof used to settle a doubt. `r xf_definition("Argumentation")` refers to the process of constructing good arguments, a central theme of this book.
 
 "Quantitative" for most people means using numbers. This is a good start, but "quantity" is a richer concept than "number." *Quantitative argumentation* is using the power of quantitative reasoning to enhance our broader, native reasoning ability. Those enhancements allow us to frame compelling arguments about diverse real-world situations, arguments that can foster consensus and guide useful debate with the goal of making informed decisions and effective actions.
 
@@ -33,8 +37,6 @@ Combining the two types of reasoning gives us the benefits of both: the broad ap
 ## Reasoning from givens
 
 Consider a familiar example: a rooster's crowing awakens you. You reason that it is dawn. One *given* is an observation: you heard a  rooster sound. Another given is that you were awakened. But "dawn" is not a given. You did not directly observe dawn, it comes through reasoning from the givens. 
-
-[IN DRAFT: PERHAPS INSERT A REMINDER of the meaning of key words once in a while in the margin as they are used.]{.column-margin}
 
 Hearing a rooster sound is not the same thing as "a rooster is crowing." For instance, you might have been dreaming about the rooster noise. The observation itself is uncertain. This uncertainty propagates to the conclusion. So we don't know for sure that it is dawn.
 
@@ -129,35 +131,10 @@ Note that bookkeeping is an instance of formal reasoning. In this example, the f
 The progression of a simulated epidemic among 100,000 susceptibles in the 50 days after the initial cases appear. The black curve shows the number of susceptibles; the red curve shows the number of infectives. 
 :::
 
+`r qr_margin_note(
+  "https://dtkaplan.github.io/QA-exercises/Apps/App-113.html",
+  "Interactive SIR model"
+)`
 
-Use the interactive version of the model to explore scenarios for epidemics. `r qr_margin_note(
-  "https://still.in.draft/",
-  "Link to the online interactive model"
-)` For instance, you might be interested to know the relationship between the size of the outbreak and the number of initial cases. Similarly, you can explore whether social distancing is effective or the possible importance of isolating infectives. "Play" is a light-hearted word, but such activity is genuinely useful for drawing conclusions about the epidemic and the effectiveness of various interventions.
-
-### New terms {#sec-new-terms-01}
-
-[`r xf_new_words("01")`]{}
-
-### Drill
-
-
-
-### Exercises
-
-- Finding a chain using hashtags: `_exercises/mouse-cost-mattress.qmd`
-
-
-
-### Activity and discussion
-
-- Conclusions from the epidemic model `_exercises/daisy-do-bed.qmd`
-
-- Proofiness and causality `_exercises/horse-enjoy-pants.qmd` 
-
-- Discussion topic: Latin names for fallacies: `_exercises/birch-trim-plyer.qmd`
-
-- Enrichment topic: Cognitive biases include `_exercises/snail-stand-oven.qmd`
-
-
+Use the interactive version of the model to explore scenarios for epidemics. For instance, you might be interested to know the relationship between the size of the outbreak and the number of initial cases. Similarly, you can explore whether social distancing is effective or the possible importance of isolating infectives. "Play" is a light-hearted word, but such activity is genuinely useful for drawing conclusions about the epidemic and the effectiveness of various interventions.
 

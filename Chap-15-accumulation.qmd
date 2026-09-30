@@ -18,18 +18,22 @@ source("_start-up.R")
 source("_software/slope_rose.R")
 ```
 
-> The acquisition or gradual gathering of something. Example:"the accumulation of wealth"
+::: {.aside}
+`r paste(readLines("_Words/chap_15.txt"), collapse = "\n")` 
+:::
+
+Here are a couple of definitions of "accumulation" from the [Oxford Languages]() dictionary.
+
+
+> *The acquisition or gradual gathering of something. Example: "the accumulation of wealth"*
 >
-> A mass or quantity of something that has gradually gathered or been acquired. Example: "the accumulation of paperwork on her desk" -- definitions of "accumulation" from the [Oxford Languages]() dictionary.
+> *A mass or quantity of something that has gradually gathered or been acquired. Example: "the accumulation of paperwork on her desk"*
 
-
-
-
-Consider these scenarios:
+The previous chapter focused on turning a function into another function that gives the instantaneous rate of change. That process is called *differentiation*. This chapter is about going the other way: starting out with a function that is the derivative of something, and figuring out what that something is. Consider these scenarios:
 
 1. A beachcomber starts with an empty basket and walks north along a beach. Roughly once every five minutes, she sees a collectible shell. She picks it up, places the shell in her basket, and walks on. At the end of a long, two-hour excursion, how many shells has she accumulated?
 
-2. An intern works at a large accounting firm during rush season. He gets paid $25/hour, increasing to $37.50 if he works "overtime," that is, more than 40 hours in a week. At the end of the week, he has worked 68 hours. What are his gross accumulated earnings ["Gross earnings" means earnings before taking out taxes or other payroll expenses.]{.column-margin} for the week?
+2. An intern works at a large accounting firm during rush season. He gets paid $25/hour, increasing to $37.50 if he works "overtime," that is, more than 40 hours in a week. At the end of the week, he has worked 68 hours. What are his accumulated earnings for the week?
 
 3. An epidemic spreads through a community. On the first day, only a couple of people catch the virus. But as more people become infected, the infection rate increases, reaching 20 new cases on the 7th day. The health department keeps a daily list of new cases. Overall, how many names accumulate during the first ten days?
 
@@ -50,6 +54,8 @@ Adding these two components gives  $1000 + $1050 = $2050 in overall earnings for
 The epidemic problem is more difficult because the infection rate (new cases per day) is changing during the week under consideration. This change in rate is also seen in the wages problem, where the wage rate changed from $25 to $37.50 during the period of interest.
 
 Even though the three problems appear to differ in complexity, they can all be solved by the same mathematical method. We call this method "accumulation," but it is more widely known by the standard mathematical term "integration".
+
+\newpage
 
 ## The rate-of-change framework
 
@@ -132,7 +138,6 @@ Consider the purpose originally served by the tax-bracket table: to inform membe
 
 Quantitative reasoners who know about differentiation and derivatives have a powerful framework for simplifying the presentation of marginal tax-rate information to taxpayers. Since the *marginal* tax rate is a function, we can graph it. (@fig-tax-rate-functions(a))
 
-::: {.column-page-inset-right}
 ```{r}
 #| label: fig-tax-rate-functions
 #| echo: false
@@ -180,7 +185,6 @@ slice_plot(totalfun(C=0, income) ~ income,
   gf_theme(theme_minimal(base_size = 16))
 
 ```
-:::
 
 
 The two functions in @fig-tax-rate-functions convey the same information, but in different forms. The *marginal rate* function (@fig-tax-rate-functions(a)) literally the Congressional policy. Using it, you can look up the *marginal* tax rate at any income. For example, a blue vertical line has been drawn at an income of $200,000. The marginal tax rate at that income is exactly 5%. Even so, the tax-payer does *not* owe $200,000 $\times$ 5% = $10,000. The 5% refers to the additional tax owed on a small incremental increase in income. 
@@ -221,8 +225,6 @@ Keep in mind that differentiation contructs an new "daughter" function from a "m
 
 But @fig-segmentize(a) shows the daugher function (in [blue]{style="color: blue;"}) not in the usual way as a value, but instead as a small, sloped line segment. The reader can confirm this by matching each [blue line segment]{style="color: blue;"} to the slope of the black function directly above or below it.
 
-
-::: {.column-page-inset-right}
 ```{r}
 #| label: fig-segmentize
 #| fig-cap: "A function (black) with its rate-of-change function depicted as short inclined segments (blue)." 
@@ -258,7 +260,6 @@ slice_plot(f(x) ~ x, domain(x=-5:5), alpha = 0) |>
   gf_theme(theme_minimal())
 
 ```
-:::
 
 Anti-differentiation is the process of accumulating the sloped segments to reconstruct a function with those slopes. The accumulation itself is child's play. Start with the leftmost segment. Raise the segment next to it so that the two segments match. Continue the process by moving to the next segment, and so on.
 
@@ -281,7 +282,17 @@ Comparative survival curves for people undergoing surgery for colon cancer. [Sou
 
 :::
 
+`r qr_margin_note(
+  "https://pmc.ncbi.nlm.nih.gov/articles/PMC8677537/figure/goab048-F1/",
+  paste("Source for", xf("fig-colon-survival"))
+)` 
+
 @fig-colon-survival shows two survival "curves" constructed from patients' records in a clinical study. Each curve is a function that takes months of survival as input and returns as output the fraction of all patients who survived that long. For instance, about 60% of patients who underwent radical surgery survived for 100 months, whereas only about 15% of palliative-treatment patients survived that long.
+
+`r qr_margin_note(
+  "https://www3.mdanderson.org/app/medcalc/index.cfm?pagename=coloncancer",
+  "Colon-cancer calculator"
+)`
 
 The advantage of thinking of survival time as a function is that we can imagine what other inputs might go into the function. For instance, we might have patient age, sex, and stage of cancer at the time of diagnosis, or other information. Such functions are often constructed by researchers. An example, for colon cancer, is linked to in @fig-mdanderson-calculator.
 
@@ -289,12 +300,14 @@ The advantage of thinking of survival time as a function is that we can imagine 
 
 ![](www/MDAnderson-calculator.png)
 
-A calculator for (average) survival time with colon cancer. Click to go to the interactive version. [Source](https://www3.mdanderson.org/app/medcalc/index.cfm?pagename=coloncancer).
+A calculator for (average) survival time with colon cancer. [Link](https://www3.mdanderson.org/app/medcalc/index.cfm?pagename=coloncancer).
 :::
 
-[This illustrates an important distinction between public health and medicine. For an individual patient, a medical doctor might prefer to present the survival curve to show the range of possible outcomes. But for social policy making, we are not dealing with individuals but *groups* of people. This is the public health perspective. Average outcome gives a good indication for the group as a whole.]{.column-margin}
+
 
 Using such functions, we can compute the expected survival time for each age or cancer-stage class of patients diagnosed with colon cancer. More specifically, we can compute the average *extra* survival time for those who undergo radical surgery.
+
+[This illustrates an important distinction between public health and medicine. For an individual patient, a medical doctor might prefer to present the survival curve to show the range of possible outcomes. But for social policy making, we are not dealing with individuals but *groups* of people. This is the public health perspective. Average outcome gives a good indication for the group as a whole.]{.column-margin}
 
 For the sake of argument, we will imagine that the average *extra* survival time is a decreasing function of age. That is, younger patients are more likely to survive longer. Perhaps this is more easily seen in reverse. An elderly patient is, for various reasons, unlikely to survive the 20-year period covered by the survival curve. @fig-survival-sketch sketches out what the *extra* survival time verus age function might look like. 
 
@@ -349,15 +362,19 @@ USPop <- USPop |>
   mutate(population = population/1e6)
 ```
 
+`r qr_margin_note(
+  "https://en.wikipedia.org/wiki/Demographic_history_of_the_United_States",
+  paste("Source for", xf("fig-pop-numbers"))
+)`
+
 In the 230 years spanned by the census data, the US population has grown 100-fold, from about 4 million in 1790 to about 330,000,000 in 2020. @fig-pop-growth shows the growth. Note that there is a lot of fluctuation in the data. These are not just random. The deviations correspond to historical events. There is a relatively low growth rate from 1860 to 1870, due to the US Civil War. The Great Depression is evident in the very low growth rates from 1930 to 1940. Baby Boom: look at the growth from 1950 to 1960. The bump from 1990 to 2000? Not coincidentally, the 1990 Immigration Act substantially increased the yearly rate of immigration.
 
 
-::: {.column-page-inset-right}
 ```{r echo=FALSE, warning=FALSE} 
 #| label: fig-pop-growth 
 #| layout-ncol: 2
 #| fig-cap: "Two views of population growth in the US."
-#| fig-cap-location: bottom
+#| fig-cap-location: top
 #| fig-subcap: 
 #| - Population
 #| - Rate of change in population with respect to time
@@ -408,8 +425,6 @@ P1 |> gf_theme(theme_minimal(base_size = 16))
 P2 |> gf_theme(theme_minimal(base_size = 16))
 ```
 
-:::
-
 Both panels in @fig-pop-growth are based on the Census data. Panel (a) plots the actual population. The upward curving pattern of the data (in black) in panel (a) is reminiscent of exponential growth. We annotated the data with two curves, both with strict exponential growth at the year percentage rates indicated. In the context of actual exponential growth, the data do not convincingly show exponential growth.
 
 The rate of change in population (with respect to time) is the slope of the segments in panel (a). Panel (b) translates that slope into position along the vertical axis. The blue line in panel (b) guides the eye to see an ascending, straight-line pattern in the data, admittedly with some sharp, decade-long deviations from the line.
@@ -425,7 +440,7 @@ One is tempted to conclude from @fig-pop-growth that, if the US population follo
 #| warning: false
 #| layout-ncol: 2
 #| fig-cap: Plotting dynamics of growth
-#| fig-cap-location: bottom
+#| fig-cap-location: top
 #| fig-subcap: 
 #| - Dynamical rule
 #| - Proportional change (%) of state
@@ -476,10 +491,3 @@ According to the accumulation model, the population peaks in 2075 at 390 million
 
 Professional demographers construct much more sophisticated models using detailed data from many sources and, as needed, take into account the age structure of the population to predict future births. The demographers at the US Census Bureau predict that the population will reach a maximum of 404 million in 2060, shown by the little blue dot in @fig-population-future. That is not too different from what we got by analyzing the raw census numbers alone. Importantly, we analyzed those numbers in the context of the Euler framework (`r xf("sec-dynamics")`), formulating a model dynamical rule and using the *accounting method* (that is, *accumulation*) to translate the dynamical rule into a time series.
 
-------
-
-### New terms {#sec-new-terms-15}
-
-`r xf_new_words("15")`
-
--------

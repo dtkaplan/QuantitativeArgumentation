@@ -1,0 +1,31 @@
+*Vocabulary Review*
+
+- analysis (3)
+- data (2)
+- functions (6)
+- models (1)
+- number line (3)
+- per (3)
+- point (3)
+- quantity (3)
+- rate (4)
+- sample (2)
+- value (2)
+
+*New*
+
+- bayesian
+- exponential distribution
+- frequentism
+- hypothesis
+- mean
+- normal distribution
+- probability distributions
+- random number generation
+- range
+- relative probability
+- simulation
+- standard deviation
+- uncertainty
+- uniform distribution
+- variance

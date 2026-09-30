@@ -8,7 +8,9 @@ crossref:
 
 # Rates {#sec-rates}
 
-
+::: {.aside}
+`r paste(readLines("_Words/chap_4.txt"), collapse = "\n")` 
+:::
 
 ```{r include=FALSE}
 #| label: ch04-r-60cfd9d4
@@ -17,7 +19,7 @@ source("_start-up.R")
 
 `r xf_definition("rate", "Rates")` appear so often in quantitative reasoning that it is worth taking pains to be explicit about what they are and when they should be used. Recall that a *ratio* is simply one quantity divided by another. A rate is a kind of ratio, but in a rate the division reflects a particular intent to describe the relationship between the *dimension* underlying the quantities. 
 
-Everyday conversation is peppered with rates, but we don't always use the word "rate" when mentioning them. The situation is like the comedic character ["My faith! For more than forty years I have been speaking prose while knowing nothing of it, and I am the most obliged person in the world to you for telling me so." --- Monsieur Jourdain in *The Would-be Gentleman* by Molière, 1622-1673]{.column-margin} who is informed, to his pleasure, that he had been speaking *prose* for his entire life. Likewise, automobile fuel economy is a kind of *rate*. It relates how far a car goes to how much fuel is consumed. Electricity prices are *rates*; they relate how much electricity is used to the amount of the bill. Acceleration is a *rate*. Money inflation is a *rate*. And, naturally, so are bank or credit card interest *rates*, although with interest the word "rate" appears explicitly. Paying attention to when and whether the thing you are talking about is a rate pays dividends (also a kind of rate) to the quantitative reasoner. And always take note of the dimensions being related by a rate.
+Everyday conversation is peppered with rates, but we don't always use the word "rate" when mentioning them. The situation is like the comedic character^[Monsieur Jourdain in *The Would-be Gentleman* by Molière, 1622-1673] who is informed, to his pleasure, that he had been speaking *prose* for his entire life. Likewise, automobile fuel economy is a kind of *rate*. It relates how far a car goes to how much fuel is consumed. Electricity prices are *rates*; they relate how much electricity is used to the amount of the bill. Acceleration is a *rate*. Money inflation is a *rate*. And, naturally, so are bank or credit card interest *rates*, although with interest the word "rate" appears explicitly. Paying attention to when and whether the thing you are talking about is a rate pays dividends (also a kind of rate) to the quantitative reasoner. And always take note of the dimensions being related by a rate.
 
 To illustrate a rate that doesn't look like one, consider this everyday example. I walk for exercise, so I prompted an AI,
 
@@ -115,6 +117,13 @@ In mathematical theory, the use of percent is extraneous. Anything we write as a
 
 > *"A.I.s like gesturing at complexity ("intricate" and "tapestry" have surged since 2022), as well as precision and speed: "swift," "meticulous," "adept." But "delve" — in particular the conjugation "delves" — is an extreme case. In 2022, the word appeared in roughly one in every 10,000 abstracts collected in PubMed. By 2024, usage had shot up by 2,700 percent."* --- Sam Kriss, "Why does AI write like … that", [New York Times, Dec. 3, 2025](https://www.nytimes.com/2025/12/03/magazine/chatbot-writing-style.html)
 
+`r qr_margin_note(
+  "https://www.nytimes.com/2025/12/03/magazine/chatbot-writing-style.html",
+  "*Why does AI write like … that*"
+)`
+
+
+
 An increase from *1 in 10,000* to 2700 is staggering and suggests that things are getting out of hand. But the quoted increase by 2700 *percent* corresponds to growing from 1 in 10,000 to 28 in 10,000. This is still a very small fraction. The double-zeros at the end of 2700 cancel out the "percent": 2700% is the same as 27. "Shooting up" from 1 by 27 gives 28. 
 
 Be aware that the practice of using percent as a unit can produce large numbers, like 2700%, that may create a misleading impression. The statement in the article would have been more meaningfully phrased as, "By 2024, 28 in every 10,000 abstracts contained 'delve'."
@@ -133,13 +142,12 @@ A `r xf_definition("rate of change")` includes both the primary and the context-
 
 To illustrate, consider the temperature of a cup of coffee over time as the cup sits at room temperature. "Over time" corresponds to the quantitative-thinking concept of *function*: temperature is a function of time. @fig-stan-coffee shows some data collected by [Prof. Stan Wagon](www/Cooling_Coffee_without_Solving_Different.pdf). He poured near-boiling coffee into a cup instrumented with a recording thermometer. Following the familiar pattern, the coffee cooled.
 
-::: {.column-page-inset-right}
 ```{r}
 #| label: fig-stan-coffee
 #| echo: false
 #| layout-ncol: 2
 #| fig-cap: "Coffee temperature recorded every five minutes for four hours (240 minutes)."
-#| fig-cap-location: bottom
+#| fig-cap-location: top
 #| fig-subcap:
 #| - Change in temperature with respect to time
 #| - Rate of change of temperature with respect to time
@@ -180,7 +188,7 @@ Cool |> point_plot(temp ~ time) |>
   gf_label(midtemp ~ time2, label = ~ label, data = Marks2, color = "darkgreen",
            angle = -65)
 ```
-:::
+
 
 Blue lines mark the temperature levels recorded at 5 and 35 minutes. The *change* in temperature with respect to time is the vertical distance shown by the [magenta arrow]{style="color: magenta;"}. The change over the 30-minute time interval is 29.9$^\circ$C. The dimension of the change is simply `r mydim(temperature)`, that is, temperature, read directly from the vertical axis.
 
@@ -249,6 +257,11 @@ Some other examples of compound rates:
 [Another standard metric is the energy use per square foot per heating degree-day (HDD), where a typical range is 5.0 to 10.0 BTU/HDD/Sq.Ft.]{.column-margin} 
     
 BTU (British Thermal Unit) is a measure of energy. The amount of heating "service" required is the product of duration, coldness, and house size. The standard unit is degree-day-square-feet. So the rate of energy use is BTU per degree-day-square-feet. There are [tables showing the average annual number of heating degree-days](https://www.eia.gov/energyexplained/units-and-calculators/degree-days.php) for various locales. A web search for "annual heating degree days for Minneapolis" yielded an estimate of 6000 degree-days. For a house of 1200 square feet, this comes to a demand of 1200 square-feet $\times$ 6000 degree-days, or just over 7 million degree-day-square-feet. The typical range for energy use over a year would be 35 to 70 million BTU.
+
+`r qr_margin_note(
+  "https://www.eia.gov/energyexplained/units-and-calculators/degree-days.php",
+  "Heating degree-days"
+)`
     
 Notice that the unit "BTU/HDD/Sq.Ft." quoted by the AI is ambiguous. It should be BTU per HDD-(ft^2^). Suppose that we misinterpret the quoted range---5.0 to 10.0---as being in units of BTU/(HDD/ft^2^). For the 1200-square-foot house in the example, we would have 6000 degree-days divided by 1200 square feet, resulting in 5 degree-days per square foot. The total BTU usage for the house would be (mis-)calculated as 5.0 to 10.0 BTU per (HDD/Sq.Ft.) $\times$ 5 HDD/Sq.Ft. = 25 to 50 BTU. For comparison, bringing 1 liter of water to a boil consumes about 250 BTU. It is hard to imagine that heating a house for a year would use less energy than boiling a liter of water. Mistaking HDD $\times$ ft^2^. for HDD *per* ft^2^ will cause a lot of trouble when designing or outfitting a house! 
 
@@ -278,10 +291,4 @@ The ratio/rate (price per pound, liters per 100 km, dollars per hour) describes 
 As previously stated, we use dimensionless flavors of one to convert units between two quantities with the *same* dimension. It is reasonable to view dimensionful rates similarly: as conversion factors between different dimensions. Have gallons and want miles: multiply by the rate miles-per-gallon. Have 3/4 of a pound of cheese and want the price: multiply by the rate dollars-per-pound. 
 
 For some people, the result of multiplying two quantities sometimes seems odd. For instance, units of *passenger-miles* denote the amount of transportation service. One passenger going one mile is one passenger-mile; an airplane carrying 150 passengers for 3000 miles is providing 150 passengers $\times$ 3000 miles of transit: 450,000 passenger-miles. A water-resources engineer might measure volume in acre-feet: multiplying area in acres by the depth in feet of water.  Mechanics working on a car or a bike have to apply the right amount of torque to tighten a bolt without overstressing it. Torque is measured in foot-pounds: a foot of length times a pound of force.
-
------
-
-### New terms {#sec-new-terms-04}
-
-`r xf_new_words("04")`
 

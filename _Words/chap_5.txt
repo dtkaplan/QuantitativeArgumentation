@@ -1,0 +1,21 @@
+*Vocabulary Review*
+
+- argumentation (1)
+- capita (3)
+- data (2)
+- dimension (2)
+- per (3)
+- point (3)
+- quantity (3)
+- rate (4)
+- si (3)
+- units (3)
+- value (2)
+
+*New*
+
+- logarithm
+- magnitude
+- order of magnitude
+- scientific notation
+- sorting

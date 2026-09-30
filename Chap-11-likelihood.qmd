@@ -15,6 +15,10 @@ crossref:
 source("_start-up.R")
 ```
 
+::: {.aside}
+`r paste(readLines("_Words/chap_11.txt"), collapse = "\n")` 
+:::
+
 We build models based on our understanding of the systems being modeled. Naturally, this understanding is not perfect. Indeed, there can be honest dispute about how a system operates and what factors are most important in influencing its behavior.
 
 In many (most?) settings, it is not realistic to expect the modeler to get things right the first time, or even after several tries. Effective modelers treat their work as an application of the `r xf_definition("scientific method")`, iteratively refining their models based on insight and evidence.
@@ -24,6 +28,11 @@ Such refinement depends on the ability to compare models to one another and pick
 The method is standard in many areas of science, technology, commerce, and any field where decisions must be taken. The standard terminology, however, is not usually about comparing models. The word used most often is "hypothesis." The two words---"model" and "hypothesis"---are closely related. Every model is a formalized implementation of a hypothesis about how the system being modeled works. 
 
 There are many definitions for the word hypothesis. Often, the definitions emphasize the `r xf_definition("scientific method")`, one description of which is called the `r xf_definition("hypothetico-deductive method")`, as described [here](https://en.wikipedia.org/wiki/Hypothetico-deductive_model). In the context of the scientific method, a reasonable definition for "hypothesis" is along the lines of the following, offered by an AI prompted to define "hypothesis" specifically in the context of the scientific method:
+
+`r qr_margin_note(
+  "https://en.wikipedia.org/wiki/Hypothetico-deductive_model",
+  "Hypothetico-deductive model on Wikipedia"
+)`
 
 > *A hypothesis is a testable explanation for a phenomenon that serves as a starting point for further investigation through experimentation or observation.*
 
@@ -69,14 +78,14 @@ slice_plot(dexp(delta, rate = 0.03) ~ delta,
   position = position_nudge(x = 5)) |>
   gf_text(-0.001 ~ delta, label = ~ delta, data = Intervals) |>
   gf_labs(x = "Interval (years)", y = "Likelihood") |>
-  gf_theme(theme_minimal(base_size = 14))
+  gf_theme(theme_minimal(base_size = 12))
 ```
  
 The likelihood for each individual observation is the value of the likelihood function at that observation. For instance, the likelihood of an interval of 14 years is 0.0197. When there are multiple observations, we need to combine their likelihoods. How to accomplish this?
 
 The answer comes from the same feature of probability arithmetic that you may have encountered in games (or in math classes about games). For instance, the probability of rolling a 5 with a die is 1/6. The probability of rolling a 5 twice in a row involves combining the individual probabilities by multiplication: 1/6 $\times$ 1/6 = 1/36. 
 
-The overall likelihood of our four observations---intervals of 14, 17, 23, and 31 years---is the product of their individual likelihoods: $0.0197 \times 0.0180 \times 0.0150 \times 0.0118 = 6.325e-8$. This number is very small in magnitude. That's because there are very many other possibilities for the intervals that could have been observed, say, 12, 19, 24, 28 and such. Since there are so many similar sets of numbers, the likelihood of observing any particular one is small. As you'll see, the ultimate use of likelihoods is to compare them one to another, that is, to compare their *relative size*.
+The overall likelihood of our four observations---intervals of 14, 17, 23, and 31 years---is the product of their individual likelihoods: #$0.0197 \times 0.0180 \times 0.0150 \times 0.0118 = 6.325e-8\ .$$ This number is very small in magnitude. That's because there are very many other possibilities for the intervals that could have been observed, say, 12, 19, 24, 28 and such. Since there are so many similar sets of numbers, the likelihood of observing any particular one is small. As you'll see, the ultimate use of likelihoods is to compare them one to another, that is, to compare their *relative size*.
 
 If all we had were the four completed intervals, the overall likelihood of 6.325e-8 would be the value we assign to the specific hypothesis of an exponential distribution with a rate parameter of 0.03. We are going to put this specific hypothesis into a competition for the *best* hypothesis. As described in `r xf("sec-tradeoffs")`, to define "best," we need an *objective function* whose input will be the rate parameter and whose output will be the overall likelihood of our observed data---14, 17, 23, and 31 years---under that hypothesis.
 
@@ -103,7 +112,7 @@ iii. multiply these likelihoods to get the overall likelihood for the row.
 
 This is repeated for each hypothesized rate. For the sake of conciseness, `r xf("tbl-several-rates")` shows only five hypothesized rates. See `r xf("fig-likelihood-curve")` for a more complete picture.
 
-::: {#tbl-several-rates}
+::: {#tbl-several-rates tbl-cap-location="margin"}
 hypothesized rate | 14 | 17 | 23 | 31 | overall
 --------|----|----|----|----|-----
 0.03 per year | 0.0197 | 0.0180 | 0.0150 | 0.01180 | 6.33e-8
@@ -257,11 +266,3 @@ Chief: How much data would we need to convince the perp to accept a plea deal?
 Department Likelihood expert: For a plea deal, the required likelihood ratio would be much lower, perhaps around 100 to 1000. We're talking 50 to 75 days of evidence collecting.
 
 Chief (to Detective): I want you off the case. We've got better things to do.
-
-
------
-
-### New terms {#sec-new-terms-11}
-
-`r xf_new_words("11")`
-

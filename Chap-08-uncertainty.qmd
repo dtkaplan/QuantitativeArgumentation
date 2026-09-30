@@ -14,6 +14,10 @@ crossref:
 source("_start-up.R")
 ```
 
+::: {.aside}
+`r paste(readLines("_Words/chap_8.txt"), collapse = "\n")` 
+:::
+
 We have looked at functions so far as our model representation of the relationship between one quantity (the function output) and one or more other quantities (the function inputs). This role for functions will remain central to how we use models for quantitative reasoning. Still, there are other important uses for functions.
 
 This chapter considers a distinctly different use for functions: quantifying the `r xf_definition("uncertainty")` in the value of a single quantity. 
@@ -36,7 +40,7 @@ However, when doing calculations---such as adding up the uncertainties for each 
 The fundamental problem with the range format is this: It is not necessarily the case that uncertainty propagated through a function is correctly represented by applying the function to both the top and bottom of the range.
 
 To illustrate, consider the number of Cals burned by a person in a walk of about 3 to 4 miles. In addition to this walk length information, we know that the energy consumption per unit distance is 60 to 100 Cal/mile. As described in `r xf("sec-quantities")`, we combine quantities with different dimensions by either multiplication or division. The correct choice here is multiplication, since [Cal] = [miles] [Cal/mile]. This multiplication would directly provide the answer if there was no uncertainty attached to the distance or energy consumption per unit distance. But here, we are not just multiplying quantities but *uncertain quantities* described by ranges. Using the range notation the multiplication can be written like this: 
-$$[3 \ \text{ to }\  4]\, \text{miles} \times [60\ \text{ to }\ 100]\, \text{Cals/mile} =\ \Large{?}\ .$$ {#eq-range-walking-kinetics}
+$$[3 \ \text{ to }\  4]\, \text{miles} \times [60\ \text{ to }\ 100]\, \text{Cals/mile} =\ \LARGE{\textbf{?}}\ .$$ {#eq-range-walking-kinetics}
 
 The question mark in @eq-range-walking-kinetics is justified because there is no standard way to multiply uncertainty *ranges*. Anyone can invent a *reasonable-sounding* strategy for the calculation, for instance, multiply the lower ends of each range, and similarly for the upper end of the result:
 $$[3 \times 60\ \text{ to }\ 4 \times 100]\,\text{Cals} = [180 \ \text{ to }\  400]\, \text{Cals}\ .$$ As reasonable as this looks, there is a problem with the strategy: how can we tell whether it gives the *right* answer to the underlying question?
@@ -231,15 +235,4 @@ gf_density(~x, data = foo) |>
   gf_labs(x = "Random sample from [-3,5] * [-10,2]",
           y = "Relative probability")
 ```
-
-
-
------
-
-### New terms {#sec-new-terms-08}
-
-`r xf_new_words("08")`
-
-
-
 
