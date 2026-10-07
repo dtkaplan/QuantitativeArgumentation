@@ -27,14 +27,14 @@ That such testing is allowed is itself notable. How much experience will we need
 
 
 
-Companies currently run pilot programs deploying self-driving taxis in a handful of cities. They have already collected substantial amounts of data and reported summaries such as this [Waymo bulletin](https://waymo.com/blog/2023/12/waymo-significantly-outperforms-comparable-human-benchmarks-over-7-million). 
+Companies currently run pilot programs deploying self-driving taxis in a handful of cities. They have already collected substantial amounts of data and reported summaries such as this [Waymo bulletin](https://waymo.com/blog/2023/12/waymo-significantly-outperforms-comparable-human-benchmarks-over-7-million). Instead of commenting on this data, let us imagine ourselves at the time when the safety experiment is just beginning. Then, we will gradually accumulate data to form and update our beliefs about fleet safety. We will keep it realistic, but because the data will be made-up, do not use this example to draw conclusions about the real world.
+
 `r qr_margin_note(
   "https://waymo.com/blog/2023/12/waymo-significantly-outperforms-comparable-human-benchmarks-over-7-million",
   "Waymo bulletin"
 )`
-Instead of commenting on this data, let us imagine ourselves at the time when the safety experiment is just beginning. Then, we will gradually accumulate data to form and update our beliefs about fleet safety. We will keep it realistic, but because the data will be made-up, do not use this example to draw conclusions about the real world.
 
-"Safety" is a dimension, an aspect of the transportation system. Modeling safety starts by defining it clearly, to *operationalize* it. Our operationalization in this discussion will be the *number of miles driven* by each car from the time it enters service until the first accident. [For other purposes, a different operationalization might be appropriate, for instance the number of close calls or near-misses.]{.column-margin} We can define an "accident" as an incident that generates a claim on insurance or requires a police report.
+"Safety" is a dimension, an aspect of the transportation system. Modeling safety starts by defining it clearly, to *operationalize* it. Our operationalization in this discussion will be the *number of miles driven* by each car from the time it enters service until the first accident.  We can define an "accident" as an incident that generates a claim on insurance or requires a police report. For other purposes, a different operationalization might be appropriate, for instance the number of close calls or near-misses
 
 A car without an accident to date is not necessarily safe. Even accident-free cars provide information about fleet safety; the duration of the no-accident-yet interval carries that information. (See `r xf("fig-likelihood-curve")`.) A car that goes a large number of miles without an accident provides pro-safety evidence; A car that has an accident after a small number of miles does the opposite.
 

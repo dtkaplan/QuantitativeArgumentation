@@ -20,6 +20,9 @@ source("_start-up.R")
 # Order of magnitude {#sec-order-of-magnitude}
 
 ::: {.aside}
+```{=latex}
+\vspace*{-1.5in}
+```
 `r paste(readLines("_Words/chap_5.txt"), collapse = "\n")` 
 :::
 
@@ -152,7 +155,7 @@ Germany   | 4659929000000
 )`
 
 :::: {.content-hidden unless-format="html"}
-::: {#tbl-GDP-short-bad cap-location="margin"}
+::: {#tbl-GDP-short-bad cap-location="top"}
 Country | GDP in USD
 :--------|:----------------
 Albania   | 27177740000.00
@@ -349,6 +352,11 @@ Mathematicians developing a theoretical basis for logarithms invented a generali
 
 Much confusion and error can be avoided by sticking to base-10. We'll tend to do that in this book. However, as needed, especially in `r xf("sec-dynamics")`, we will defer to the customs of mathematically-adjacent disciplines such as physics or electrical engineering.
 :::
+
+ 
+
+ 
+
 
 ::: {.callout-caution}
 ## Units and dimensions when using logarithms

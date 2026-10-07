@@ -21,7 +21,7 @@ source("_start-up.R")
 
 In the nomenclature of this book, a `r xf_definition("system")` is a framework or an organized structure with **interconnected elements**. We have called these elements *dimensions* and *operationalize* them to translate them into quantities.
 
-This chapter introduces an important modeling representation for the connections between system elements: `r xf_definition("functions")`. [Starting in `r xf("sec-dynamics" , suppress_label = TRUE)`, we will introduce other ways to represent connections.]
+This chapter introduces an important modeling representation for the connections between system elements: `r xf_definition("functions")`. 
 
 A function is a mathematical or computing concept, a way of organizing knowledge and encapsulating a process. A good way to think about a function is as a machine for transforming inputs into an output. 
 
@@ -73,7 +73,7 @@ One widely used operationalization of comfort is the so-called "heat index," whi
 
 It helps to give a function a name so that it can be referred to and distinguished from other functions. Using mnemonic names---that is, names that remind you what the function is about---is a good practice. We will call the function `heat_index()`.
 
-The parentheses following the name are a convention to remind us that `heat_index` is a function. Otherwise, we might confuse it with a quantity. For the sake of clarity, this book will write function names followed by parentheses, e.g. `heat_index()`. In use, the parentheses provide punctuation for organizing the inputs. These will be placed inside the parentheses, separated by commas. For instance, the heat index on a day where the temperature is 30 deg C and the humidity is 80% will be calculated as: 
+The parentheses following the name are a convention to remind us that `heat_index` is a function. Otherwise, we might confuse it with a quantity. For the sake of clarity, this book will write function names followed by parentheses, e.g. `heat_index()`. In use, the parentheses provide punctuation for organizing the inputs. These will be placed inside the parentheses, separated by commas. For instance, the heat index on a day where the temperature is 30 °C and the humidity is 80% will be calculated as: 
 
 ```{r}
 heat_index(30, 0.80)
@@ -103,7 +103,7 @@ The names that go inside the `function()` parentheses are often called the *argu
 When using `heat_index()` to perform a calculation, we give the arg values inside parentheses as in `heat_index(30, 0.80)`.
 
 
-If the user wrote the inputs in the wrong order, `heat_index(0.80, 30)` it would be as if the user wanted to specify a very cold temperature (0.70 deg F) and a meaninglessly high humidity (8500%). To avoid such problems, the R language allows the user to refer to the args by their names rather than their positions:
+If the user wrote the inputs in the wrong order, `heat_index(0.80, 30)` it would be as if the user wanted to specify a very cold temperature (0.70 °F) and a meaninglessly high humidity (8500%). To avoid such problems, the R language allows the user to refer to the args by their names rather than their positions:
 
 ```{r}
 heat_index(humidity = 0.80, temperature = 30)
@@ -128,7 +128,7 @@ The sultriness function. (Source: [Assessment of sultriness](www/Foundations/apm
 
 We called @fig-sultriness-table the sultriness *function*. But the research article that introduced it did not write `sultriness(temperature, humidity)` or give an implementation as a formula. @fig-sultriness-table, which is intended for a human reader, is the only presentation that was given in the research article.
 
-It's likely that you can figure out how to find the output of `heat_index()` given the inputs. You can confirm that a temperature of 30 deg C and humidity of 80% corresponds to a heat index of 37 deg C.
+It's likely that you can figure out how to find the output of `heat_index()` given the inputs. You can confirm that a temperature of 30 °C and humidity of 80% corresponds to a heat index of 37 °C.
 
 But, imagining that you don't know how to use @fig-sultriness-table, let's write out instructions. Such instructions have a more formal name: `r xf_definition("algorithms")`. Admittedly, the name "algorithm" is offputting to many people. It comes from the name of a mathematician, Muhammad ibn Musa al-Khwarizmi (c. 780 – c. 850). He is famous for a book whose key word is "al Jabr," Arabic for "the reunion of broken parts." Our word "algebra" comes directly from "al Jabr." Al-Khwarizmi's book gives a description of the steps to follow when reuniting, say, the broken parts of what we now write as $a = x / b$ to get $x = a\,b$.
 

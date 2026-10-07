@@ -112,7 +112,7 @@ iii. multiply these likelihoods to get the overall likelihood for the row.
 
 This is repeated for each hypothesized rate. For the sake of conciseness, `r xf("tbl-several-rates")` shows only five hypothesized rates. See `r xf("fig-likelihood-curve")` for a more complete picture.
 
-::: {#tbl-several-rates tbl-cap-location="margin"}
+::: {#tbl-several-rates tbl-cap-location="top"}
 hypothesized rate | 14 | 17 | 23 | 31 | overall
 --------|----|----|----|----|-----
 0.03 per year | 0.0197 | 0.0180 | 0.0150 | 0.01180 | 6.33e-8
@@ -128,7 +128,6 @@ From the overall likelihood for each of the hypothesized rate parameters shown i
 
 If we can't argue for the 0.05 per year hypothesis over the 0.03 per year hypothesis based on the four complete observations, what possible hypotheses can we rule out. To illustrate this, we're going to extend the calculations shown in `r xf("tbl-several-rates")` to a wider range of intervals and plot the results in `r xf("fig-likelihood-curve")`.
 
-::: {.column-page-inset-right}
 ```{r}
 #| label: fig-likelihood-curve
 #| echo: false
@@ -185,7 +184,6 @@ slice_plot(for_complete(c(17, 14, 23, 31), rate) * for_incomplete(37, rate) ~ ra
     gf_hline(yintercept = c(2.12e-8)*c(1, 1/6.82), color = "gray") |>
   gf_labs(x = "Rate parameter (per year)")
 ```
-:::
 
 Panel (a) shows the likelihood function for the four complete intervals, the same calculation as in `r xf("tbl-several-rates")`.
 
@@ -206,8 +204,8 @@ The translation of a continuous quantity into a small set of verbal descriptions
 
 ::: {#tbl-likelihood-ratio-verbal}
 
-Magnitude | Likelihood ratio | Verbal interpretation
-----------|----|---------------
+Magnitude | Likelihood<br>ratio | Verbal interpretation
+------|----|----------
 0 | 1 | No evidence.
 1 | 10 | Limited evidence to support the hypothesis.
 2 | 100 | Moderate evidence to support the hypothesis.

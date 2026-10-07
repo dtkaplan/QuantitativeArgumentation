@@ -19,8 +19,6 @@ source("_start-up.R")
 `r paste(readLines("_Words/chap_3.txt"), collapse = "\n")` 
 :::
 
-IN DRAFT: Add a note about cyclical influence diagrams and how the cycle implies something changes over time.
-
 `r xf("sec-modeling-an-epidemic")` introduced a model of an epidemic: the SIR model. SIR tracks the numbers of infective and susceptible people from day to day, week to week, and month to month. Such models, and the systems the models represent, are called `r xf_definition("dynamical systems")`.
 
 In simple language, a dynamical system is one that *changes over time*. A pendulum, swinging back and forth, is a dynamical system. A skyscraper shifting in the wind is a dynamical system. A flying airplane or rocket is a dynamical system. So are a building's heating and cooling systems. Engineers and others often model these real-world dynamical systems to determine the strength, stability, and motion of the objects and, importantly, to design the control systems that govern their behavior. In a modern airplane, the pilot flies a model, and the control system brings the airplane into compliance with the model.
@@ -55,10 +53,11 @@ Accounting system
 
 There are different ways to do the accounting. The methods traditionally taught in college-level math involve algebra that many students find daunting. The method we will use is arithmetical, invented by Leonhard Euler (1707-1783), one of the greatest mathematicians of all time.
 
-The accounting method is entirely mechanical. Although it uses the dynamical rule, the method works for any dynamical rule. Computer software handles the work. 
+The accounting method is entirely mechanical. To start, the user gives an initial state for the system. This state is fed into the dynamical rule which produces the instantaneous rate of change for the state, much like a "velocity" for the state. The method multiplies the velocity by a small time increment, producing a change of state, then adds the change to the initial state. This process of 
 
+$$\text{state} \ \rightarrow\  \text{change of state}\  \rightarrow\ \text{new state}$$ 
 
-
+is repeated over and over, leading to a sequence of states: the trajectory of the system. The calculations involved are arithmetic, but tedious. Typically, software is used to do the work. 
 
 We will return to the accounting method and give it a dignified mathematical name in Chapters `r xf("sec-rates-of-change", suppress_label = TRUE)`, `r xf("sec-accumulation", suppress_label = TRUE)`, and `r xf("sec-moving-past-two-inputs", suppress_label = TRUE)`. Since it is automatic, the modeler need not be particularly concerned with how it works. Think of it as an appliance, say, a toaster.
 
@@ -73,18 +72,13 @@ It is convenient to start with a system whose dynamical rule is straightforward 
 :::: {.content-visible when-format="html"}
 @fig-pendulum-gif shows the situation:
 
-
-
 ::: {#fig-pendulum-gif}
-
 ![](www/Pendulum-no-text.gif)
 
-Animated drawing of a swinging pendulum. ([Source](https://commons.wikimedia.org/w/index.php?curid=97640047)]
+Animated drawing of a swinging pendulum. ([Source](https://commons.wikimedia.org/w/index.php?curid=97640047)])
 :::
 
 <!-- Pendulum source: By Stündle (modification Ideophagous) - based on File:Pendelschwingung.gif, CC BY-SA 4.0)-->
-
-
 ::::
 
 `r qr_margin_note(
@@ -95,13 +89,15 @@ Animated drawing of a swinging pendulum. ([Source](https://commons.wikimedia.org
 
 The animation in `r xf("fig-pendulum-gif")` consists of a series of frames. @fig-pend-several-frames shows the first five frames individually, making it straightforward to measure the bob's position in each.
 
-::: {layout-nrow=2 #fig-pend-several-frames .column-page-inset-right fig-cap-location="top"}
+::: {layout-nrow=2 #fig-pend-several-frames fig-cap-location="bottom"}
 
 ![Frame 1](www/pend-p7.png) 
 
 ![Frame 2](www/pend-p6.png) 
 
 ![Frame 3](www/pend-p7.png) 
+
+![empty](www/pend-p7.png){width=0.01in} 
 
 ![Frame 4](www/pend-p9.png)  
 
@@ -115,10 +111,9 @@ What is the instantaneous *state* of the pendulum system? Let us start the discu
 
 The position changes from frame to frame: $$7.2^\circ \rightarrow 6.3^\circ  \rightarrow  7.2^\circ  \rightarrow 8.9^\circ  \rightarrow 11.0^\circ  \rightarrow \ldots\ .$$ 
 
-In both Frames 1 and 3, the position is 7.2 degrees. Following frame 1, the position moves to 6.3 degrees. In contrast, following frame 3, the position moves to 8.9 degrees. 
+In both frames 1 and 3, the position is 7.2 degrees. Following frame 1, the position moves to 6.3 degrees, then back to 7.2 degrees for frame 3. Continuing in that direction, the position arrives at 8.9 degrees for frame 4. 
 
 Recall from @sec-euler-framework that a dynamical rule is a *function*. A function can produce only one output for each particular input. Consequently, the dynamical rule for a pendulum cannot produce two different outputs for the input state of 7.2 degrees. 
-
 
 Tempting though it might be to deal with this problem by allowing the dynamical rule to be something other than a function, there is a good reason for the (arbitrarily sounding) restriction, introduced in `r xf("sec-intro-to-functions")`, that there be a unique output for any given input.
 
@@ -136,15 +131,15 @@ Since the state has two components, the output of the dynamical rule must also h
 
 The rule for the first component is straightforward because the velocity is the rate of change of position. So the rule (in part) looks like this:
 
-$$\text{pendulum\_rule(pos, vel)} \equiv (\text{vel}, \text{???})$${#eq-pen-rule-1}
+$$\text{pendulum\_rule(pos, vel)} \equiv (\text{vel}, \Large{\textbf{???}})$${#eq-pen-rule-1}
 
+We placed ??? in the slot for the rate of change of the "vel" component of the state in @eq-pen-rule-1. The rate of change of the velocity---that is, the acceleration---is given by the physics of gravity, the extent to which gravity tugs with or against the current velocity. Still, we can model the acceleration as a function of position very simply. Recognize that at the very bottom of the pendulum's swing---position 19---gravity is exactly countered by the vertical rod, so at position 19, the acceleration is zero. That lets us specify more of the dynamical rule for the pendulum:
 
-We now need to define the rule for the ??? part of @eq-pen-rule-1. The rate of change of the velocity---that is, the acceleration---is given by the physics of gravity, the extent to which gravity tugs with or against the current velocity. At the very bottom of the pendulum's swing, at position 19, the velocity is purely horizontal. And, at this point, gravity is exactly countered by the vertical rod, so at position 19, the acceleration is zero. That lets us specify more of the dynamical rule for the pendulum:
+$$\text{pendulum\_rule}(\text{pos}=19, \text{vel}) \equiv (\text{vel}, 0)$${#eq-pen-rule-1b}
 
-$$\text{pendulum\_rule}(\text{pos}=19, \text{vel}) \equiv (\text{vel}, 0)$${#eq-pen-rule-2}
-To construct a complete dynamical rule, we still need to generalize this to apply to any position, not just 19 degrees. A straight-line function of position will be a good start. We know the output of the straight-line function will be zero when the position is 19. By the argument in @nte-find-accel-pendulum, we can estimate the acceleration at $80^\circ \text{per sec}^2$ at position 7.2. Altogether, the dynamical rule is 
+To construct a complete dynamical rule, we still need to generalize this to apply to any position, not just 19 degrees. A straight-line function of position will be a good start. We know the output of the straight-line function will be zero when the position is 19. By the argument in @nte-find-accel-pendulum, the acceleration at position 7.2 is  $80^\circ \text{per sec}^2$. The linear function that connects velocity 0 at position 19 and velocity  $80^\circ \text{per sec}^2$ at position 7.2 is $-6.78(\text{pos} - 19)$. Slotting this formula in place of the ??? in @eq-pen-rule-1b  gives the complete dynamical rule:
 
-$$\text{pendulum\_rule}(\text{pos}, \text{vel}) \equiv \left(\text{vel},\  -6.11(\text{pos} - 19)\right)$${#eq-pen-rule-2}
+$$\text{pendulum\_rule}(\text{pos}, \text{vel}) \equiv \left(\text{vel},\  -6.78(\text{pos} - 19)\right)$${#eq-pen-rule-2}
 
 Rules in this form are suitable for calculation, but to get a better understanding of how the system works, @fig-gif-state-space(a) shows the state space with the two-component output of the dynamical rule drawn as a vector. The graphic displays the dynamical rule at only about 200 points in a row-and-column grid in state space. In reality, the dynamical rule applies to *all* points in the space. We cannot show them all because the graphic would become a solid mass of black arrows.
 
@@ -161,7 +156,7 @@ Applying the accounting method turns the dynamical rule into a trajectory. @fig-
 #| fig-subcap:
 #| - Dynamical rule
 #| - Trajectory
-pend_gif<- makeODE(dp ~ v, dv ~ - 6.11 * (p - 19))
+pend_gif<- makeODE(dp ~ v, dv ~ - 6.78 * (p - 19))
 soln <- integrateODE(pend_gif, domain(t=0:2), p = 8, v=2)
 
 flow_field(pend_gif,
@@ -262,12 +257,11 @@ iv. All other things being constant, a larger number of infectives leads to a la
 
 These principles play out differently across regions of the state space, since the balance between susceptibles and infectives varies with position. Consider these (color-coded) regions in state space:
 
-[**Few susceptibles, many infectives**]{style="color: green;"} [![](www/dots/dot-green.png){width=15mm}]{.column-margin}The flow is mainly southward, a little to the west. This corresponds to a slow decline in susceptibles as they run into any of the many infectives. Net decline in effectives: more are recovering than are being created by conversion of susceptibles.
+[**Few susceptibles, many infectives**]{style="color: green;"} [![](www/dots/dot-green.png){width=15mm}]{.column-margin}The flow is mainly southward, a little to the west. This corresponds to a slow decline in susceptibles as they run into any of the many infectives. Net decline in infectives: more are recovering than are being created by conversion of susceptibles.
  
 
-[![](www/dots/dots-deeppink-all.png){width=15mm}]{.column-margin} [**No susceptibles**]{style="color: deeppink;"}
-The flow is slowly to the sourth. No new infectives, but old infectives are gradually recovering.
-
+[![](www/dots/dots-deeppink-all.png){width=15mm}                       ]{.column-margin} [**No susceptibles**]{style="color: deeppink;"}
+The flow is slowly to the south. No new infectives, but old infectives are gradually recovering.
 
 [**A few infectives and many susceptibles**]{style="color: brown;"} [![](www/dots/dot-brown.png){width=15mm}]{.column-margin} 
 The flow is slowly to the northwest. This corresponds to slow growth in infectives and a  corresponding decrease in susceptibles.
@@ -322,7 +316,50 @@ A chain of steps for the SIR model starting with $S \approx 100,000$ and a handf
 
 
 
-In @fig-chain-of-arrows-SIR, each step is a short line segment. The overall path accumulated through many steps, however, is curved. The curve is the result of re-evaluating the dynamical rule at the end of each short, simple step. Since the state moves only a small distance during one step, the output of the dynamical rule will be only slightly different when evaluated at the end of the step than it was at the start of the step. The overall trajectory, the accumulation of many small steps, approximates a gradual curve, just as we perceive smooth motion in a video, which is just one still frame after another. The time between the frames is very small, so successive frames are *almost* identical.
+In @fig-chain-of-arrows-SIR, each step is a short line segment. The overall path accumulated through many steps, however, is curved. The curve is the result of re-evaluating the dynamical rule at the end of each short, simple step. Since the state moves only a small distance during one step, the output of the dynamical rule will be only slightly different when evaluated at the end of the step than it was at the start of the step. The overall trajectory, the accumulation of many small steps, approximates a gradual curve, just as we perceive smooth motion in a video, which is just one still frame after another. The time between the frames is very small, so successive frames are *almost* identical. The slight frame-to-frame difference produces the sensation of continuous motion.
+
+Compare the trajectory in `r xf("fig-chain-of-arrows-SIR")` with the corresponding graph in `r xf("fig-SIR-interactive")`. They look completely different because the graphs are made in different spaces. In `r xf("fig-chain-of-arrows-SIR")` the axes are I vertically and S horizontally. But in `r xf("fig-SIR-interactive")` the horizontal axis is time. The levels of I and S are both plotted along the vertical axis. The time of each position in the trajectory in `r xf("fig-chain-of-arrows-SIR")` is implicit and can be calculated by counting the number of steps needed to bring the state to that position. In contrast, `r xf("fig-SIR-interactive")` shows the time is explicitly.
+
+
+## SIR dynamical rule
+
+As mentioned previously, a dynamical rule is a *function* that takes the state as input and produces the instantaneous change of state as output. In `r xf("sec-customizing-functions")`, we introduced ways to build custom functions to represent a given situation. We are going to put those techniques to work, now.
+
+The two state quantities in SIR are the number of susceptibles ($S$) and the number of infectives ($I$). Even without thinking much about the mechanism of epidemics, we can write down a skeleton form for the instantaneous rate of change. We will use the abbreviation ROC to stand for "instantaneous rate of change," and the ROC of $S$ will be named $ROC_{S}()$ and likewise for $I$.
+Both $ROC_{S}()$ and $ROC_{I}()$ will take the state $(S, I)$ as input. Each will be a linear combination of four simple functions.
+
+$$ROC_{S}(S, I) \equiv a_s + b_s \, S + c_s\, I + d_s\, S\,I$$ {#eq-roc-s} and $$ROC_{I}(S, I) \equiv a_I + b_I \, S + c_I\, I + d_I\, S\,I$${#eq-roc-i}
+
+The first thing to notice about the proposed functions in Expressions [-@eq-roc-s] and [-@eq-roc-i] is that they are *almost* the same. That might be surprising, since they describe the ROC of two different quantities, $S$ and $I$. Keep in mind that we are building a `r xf_definition("skeleton")` for the functions. We will flesh out the skeleton in different ways.
+
+The "flesh" on the skeleton is the coefficients used in the linear combination. We combine four simple functions, so each expression has four coefficients. We have (uncreatively) named these coefficients $a$, $b$, $c$, and $d$.
+
+We need a dynamical-rule function for each of the two state variables.
+For simplicity, we will use the same skeleton for each function, but endow each with its own flesh. That is, we will use different coefficient values for each dynamical rule. A simple notation helps make the skeletons' similarities clear while at the same time signalling that the values of the corresponding coefficients in each skeleton can differ. We do this by adding a subscript, I or s, to each coefficient, depending on whether it is in the dynamical rule for the infectives or for the susceptibles. For instance, $a_I$ is the coefficient on flat() for the $ROC\_I$-skeleton. Similarly, $d_S$ is the coefficient on the *interaction* between $S$ and $I$ for the $ROC\_S$-skeleton.
+
+Ultimately, we will want to give quantitative values for each of the eight coefficients $a_s, b_s, c_s, d_s, a_I, b_I, c_I, d_I$.
+
+Experienced modelers have a trick to facilitate the initial construction of a model. Rather than specifying a value for each coefficient, they state, based on their understanding of the system they are modeling, the *sign* for each coefficient: negative, positive, or zero. Going slightly further, they explore a limited set of scenarios: the state variables are either "large" or "small." (The state variables in SIR cannot be negative, since there is no such thing as a negative number of infectives or susceptibles.)
+
+Let us start with the coefficients in $ROC\_I$. 
+
+- $a_I$: Think about what this term would indicate if both $S$ and $I$ were zero, the hypothetical world with no infectives or susceptibles. It seems reasonable to suppose that new infectives (that is, the rate of change of infectives) would not come out of the air. So $a_I = 0$. [If the model is to allow influx of infectives from other places, the model would call for a positive $a_I$.]{.column-margin}
+
+- $b_I$: This is the coefficient on $S$. Imagine that $S$ is large, but $I$ is zero. What will happen to the ROC of I? Without any infectives, there is no way for a susceptible person to become sick. So $b_I$ must be zero. [If the model is to allow *spontaneous* generation of infection, $b_I$ would be positive.]{.column-margin}
+
+- $c_I$: This is the coefficient on $I$. Imagine, contrary to the discussion of $b_I$, that $I$ is large and $S$ is zero. In such a hypothetical world, there are no susceptibles who can become sick so that no new infectives will arise from the susceptibles. However, there is a mechanism for a change in $I$ even when $S$ is zero: Infectives can recover and stop being infectives. The more infectives there are, the larger the rate (say, infectives/day) at which they recover. In consequence, $c_I$ is a negative number. Without susceptibles, the number of infectives decreases over time.
+
+- $d_I$: The coefficient on the interaction term $S\ I$ for $ROC\_I()$. This is a case where standard nomenclaturee gets things right: "Interaction" is an excellent name for this term. A nice way to think about interaction is that it refers to what happens when an $S$ meets an $I$: they interact. With infectious illness, the possible outcomes of the interaction are either no change in the situation or, with some probability, the $S$ catches $I$'s infection, and the $S$ becomes infectious. So when an $S$ meets an $I$, the number of infectives increases. Thus, $d_I$ must be positive; it is creating new infectives.
+
+The analysis of $a_s$, $b_s$, $c_s$, and $d_s$ follows the same kind of logic. $a_s$ would correspond to immigration of susceptibles (if positive) or emigration (if negative). The SIR model does not consider this. SIR also does not consider births or deaths. The number of susceptibles only changes when an $S$ meets an $I$. When that happens, the number of susceptibles decreases as susceptibles are converted into infectives. So $d_s$ must be negative. What is more, since every susceptible individual who is infected becomes a new infective, it must be that $d_s = -d_I$.
+
+A nice convention when writing rate-of-change coefficients is to stipulate that all are positive. When a coefficient enters negatively into the rate-of-change function, we will use a *minus sign* instead of the $+$ used in Equations [-@eq-roc-i] and [-@eq-roc-s]
+
+Taking into account all the coefficients that we argued are zero, we end up with two formulas for the rate of change functions:
+
+$$ROC_{S}(S, I) \equiv - d\,S\,I$$ and $$ROC_{I}(S, I) \equiv -b I + d\,S\,I$$ 
+
+There are only two coefficients, not three, since the decrease in susceptibles balances any increase in infectives! 
 
 ## Exponential growth and decay
 
@@ -340,7 +377,7 @@ Exponential decay is the same. Imagine an abandoned bank account with 1000 USD, 
 
 Some people point to the world's human population (@fig-world-population) as a compelling example of "skyrocketing," that is, exponential growth. However, a careful examination reveals a more nuanced story. After all, even skyrockets run out of fuel at some point.
 
-::: {#fig-world-population .column-page-inset-right fig-cap-location="top"}
+::: {#fig-world-population fig-cap-location="top"}
 ![](www/world-population-10000BC.png)
 
 Source: [Our World in Data](https://ourworldindata.org/population-growth-over-time)
@@ -387,7 +424,7 @@ Keep in mind the substantial difference between the dynamical rule and the corre
 ```{r}
 #| label: fig-flat-dyn
 #| echo: false
-#| layout-ncol: 3
+#| layout-ncol: 2
 #| fig-cap: "Flow field when dynamical rule is flat()."
 #| fig-cap-location: top
 #| fig-subcap:
@@ -422,7 +459,7 @@ Following the strategy of gradually adding complexity to the dynamical rule, con
 ```{r}
 #| label: fig-steady-dyn
 #| echo: false
-#| layout-ncol: 3
+#| layout-ncol: 2
 #| fig-cap: "Flow field when dynamical rule is same()."
 #| fig-cap-location: top
 #| fig-subcap:
@@ -457,22 +494,22 @@ Doubling every 20 minutes means that there are three doublings in one hour. Star
 
 The pattern of a 64-fold increase every two hours will produce unbelievable growth, as indicated in @tbl-every-20-minutes.
 
-::: {#tbl-every-20-minutes tbl-cap-location="margin"}
+::: {#tbl-every-20-minutes tbl-cap-location="top"}
 time | population | bacterial mass
------|--------:|-------
+-----|-----:|-------
 Midnight | 1 | roughly 1e-12 gm or 1 picogram
 2 am | 64
 4 am | 64^2^, or 4096, that is, 4.096e3
-6 am | 64^3^, or 262,114, that is, 2.621e5
+6 am | 64^3^, or 262,144, that is, 2.621e5
 8 am | 64^4^, or 16,777,216, that is, 1.678e7
 10 am | 64^5^, or 1073741824, that is, 1.074e9
-Noon | 64^6^, or 68,719,476,736, that is 6.872e10 | roughly 0.0007 gm
+Noon | 64^6^, or 68,719,476,736, that is 6.872e10 | roughly 0.007 gm
+... | ... | ... changing units ...
+6 pm | 64^9^, or 1.801e16 | roughly 18 kg
+8 pm | 64^10^, or 1.153e18 | roughly 1100 kg
 ... | ... | ...
-6 pm | 64^9^, or 1.801e16 | roughly 0.07 gm
-8 pm | 65^10^, or 1.346e18 | roughly 5 gm
-... | ... | ...
-Next Midnight | 64^12^, or 1.801e16 | roughly 20,000 gm
-2 am |> 64^13^, or 3.022e23 | roughly 130 kg
+Next Midnight | 64^12^, or 4.722e11 | roughly 47,000 tons
+2 am |> 64^13^, or 3.022e23 | roughly 300,000 tons
 
 Bacterial growth under the hypothesis that the population doubles every 20 minutes.
 :::
@@ -535,49 +572,4 @@ P2 |> gf_theme(theme_minimal(base_size = 16))
 
 In steady growth, as t increases by one unit, the value of $P$ increases by a fixed quantity. So, in @fig-flat-dyn(c), the value of $P$ increases by the same amount when t goes from 0 to 1 as it does when t goes from 1 to 2 or from 2 to 3.
 
-
-## SIR dynamical rule
-
-As mentioned previously, a dynamical rule is a *function* that takes the state as input and produces the instantaneous change of state as output. In `r xf("sec-customizing-functions")`, we introduced ways to build custom functions to represent a given situation. We are going to put those techniques to work, now.
-
-
-
-
-Recall from `r xf("sec-customizing-functions")` that a straightforward extension of the basic set of functions involves *multiplying* two functions. Consider one such multiplication: the one that describes an interaction between the two inputs:  same(x) $\times$ same(y), or, more concisely, $x\, y$ 
-
-The two state quantities in SIR are the number of susceptibles ($S$) and the number of infectives ($I$). Even without thinking much about the mechanism of epidemics, we can write down a skeleton form for the instantaneous rate of change. We will use the abbreviation ROC to stand for "instantaneous rate of change," and the ROC of $S$ will be named $ROC_{S}()$ and likewise for $I$.
-Both $ROC_{S}()$ and $ROC_{I}()$ will take the state $(S, I)$ as input. Each will be a linear combination of four simple functions.
-
-$$ROC_{S}(S, I) \equiv a_s + b_s \, S + c_s\, I + d_s\, S\,I$$ {#eq-roc-s} and $$ROC_{I}(S, I) \equiv a_I + b_I \, S + c_I\, I + d_I\, S\,I$${#eq-roc-i}
-
-The first thing to notice about the proposed functions in Expressions [-@eq-roc-s] and [-@eq-roc-i] is that they are *almost* the same. That might be surprising, since they describe the ROC of two different quantities, $S$ and $I$. Keep in mind that we are building a `r xf_definition("skeleton")` for the functions. We will flesh out the skeleton in different ways.
-
-The "flesh" on the skeleton is the coefficients used in the linear combination. We combine four simple functions, so each expression has four coefficients. We have (uncreatively) named these coefficients $a$, $b$, $c$, and $d$.
-
-We need a dynamical-rule function for each of the two state variables.
-For simplicity, we will use the same skeleton for each function, but endow each with its own flesh. That is, we will use different coefficient values for each dynamical rule. A simple notation helps make the skeletons' similarities clear while at the same time signalling that the values of the corresponding coefficients in each skeleton can differ. We do this by adding a subscript, I or s, to each coefficient, depending on whether it is in the dynamical rule for the infectives or for the susceptibles. For instance, $a_I$ is the coefficient on flat() for the $ROC\_I$-skeleton. Similarly, $d_S$ is the coefficient on the *interaction* between $S$ and $I$ for the $ROC\_S$-skeleton.
-
-Ultimately, we will want to give quantitative values for each of the eight coefficients $a_s, b_s, c_s, d_s, a_I, b_I, c_I, d_I$.
-
-Experienced modelers have a trick to facilitate the initial construction of a model. Rather than specifying a value for each coefficient, they state, based on their understanding of the system they are modeling, the *sign* for each coefficient: negative, positive, or zero. Going slightly further, they explore a limited set of scenarios: the state variables are either "large" or "small." (The state variables in SIR cannot be negative, since there is no such thing as a negative number of infectives or susceptibles.)
-
-Let us start with the coefficients in $ROC\_I$. 
-
-- $a_I$: Think about what this term would indicate if both $S$ and $I$ were zero, the hypothetical world with no infectives or susceptibles. It seems reasonable to suppose that new infectives (that is, the rate of change of infectives) would not come out of the air. So $a_I = 0$. [If the model is to allow influx of infectives from other places, the model would call for a positive $a_I$.]{.column-margin}
-
-- $b_I$: This is the coefficient on $S$. Imagine that $S$ is large, but $I$ is zero. What will happen to the ROC of I? Without any infectives, there is no way for a susceptible person to become sick. So $b_I$ must be zero. [If the model is to allow *spontaneous* generation of infection, $b_I$ would be positive.]{.column-margin}
-
-- $c_I$: This is the coefficient on $I$. Imagine, contrary to the discussion of $b_I$, that $I$ is large and $S$ is zero. In such a hypothetical world, there are no susceptibles who can become sick so that no new infectives will arise from the susceptibles. However, there is a mechanism for a change in $I$ even when $S$ is zero: Infectives can recover and stop being infectives. The more infectives there are, the larger the rate (say, infectives/day) at which they recover. In consequence, $c_I$ is a negative number. Without susceptibles, the number of infectives decreases over time.
-
-- $d_I$: The coefficient on the interaction term $S\ I$ for $ROC\_I()$. "Interaction" is an excellent name for this term. A nice way to think about interaction is that it refers to what happens when an $S$ meets an $I$: they interact. With infectious illness, the possible outcomes of the interaction are either no change in the situation or, with some probability, the $S$ catches $I$'s infection, and the $S$ becomes infectious. So when an $S$ meets an $I$, the number of infectives increases. Thus, $d_I$ must be positive; it is creating new infectives.
-
-The analysis of $a_s$, $b_s$, $c_s$, and $d_s$ follows the same kind of logic. $a_s$ would correspond to immigration of susceptibles (if positive) or emigration (if negative). The SIR model does not consider this. SIR also does not consider births or deaths. The number of susceptibles only changes when an $S$ meets an $I$. When that happens, the number of susceptibles decreases as susceptibles are converted into infectives. So $d_s$ must be negative. What is more, since every susceptible individual who is infected becomes a new infective, it must be that $d_s = -d_I$.
-
-A nice convention when writing rate-of-change coefficients is to stipulate that all are positive. When a coefficient enters negatively into the rate-of-change function, we will use a *minus sign* instead of the $+$ used in Equations [-@eq-roc-i] and [-@eq-roc-s]
-
-Taking into account all the coefficients that we argued are zero, we end up with two formulas for the rate of change functions:
-
-$$ROC_{S}(S, I) \equiv - d\,S\,I$$ and $$ROC_{I}(S, I) \equiv -b I + d\,S\,I$$ 
-
-There are only two coefficients, not three, since the decrease in susceptibles balances any increase in infectives! 
 

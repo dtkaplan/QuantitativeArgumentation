@@ -35,9 +35,9 @@ book:
         - Chap-13-dynamics.qmd
         - Chap-14-rates-of-change.qmd
         - Chap-15-accumulation.qmd
-    # - part: "Capstone: Toward AI"
-    #  chapters:
-        # - Chap-16-operations.qmd
+    - part: "Capstone: Toward AI"
+      chapters:
+       - Chap-16-operations.qmd
 
 
   appendices:

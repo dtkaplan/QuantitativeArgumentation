@@ -12,6 +12,7 @@
 - rate of change (4)
 - state (13)
 - total change (3)
+- tradeoffs (10)
 - value (2)
 - velocity (13)
 - with respect to (3)

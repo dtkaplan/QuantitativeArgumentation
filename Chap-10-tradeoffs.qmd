@@ -53,7 +53,7 @@ The "solution" to the optimization problem is the input value that achieves this
 #| fig-cap-location: "top"
 #| fig-cap: "The argmax (blue dot) for each of two example objective functions."
 #| fig-subcap:
-#| - Objective function with one input. Argmax at temperature = 315 deg F"
+#| - Objective function with one input. Argmax at temperature = 315 °F"
 #| - Objective function with two inputs.
 raw1 <- mosaicCalc::doodle_fun( ~ x, seed = 9329)
 f1 <- function(temperature) {
@@ -61,7 +61,7 @@ f1 <- function(temperature) {
 }
 slice_plot(f1(x) ~ x, domain(x = 250:400)) |>
 gf_point(0 ~ 315, color = "blue", size = 4) |>
-gf_labs(x = "Oven temperature (deg F)", y = "Tasters' score") |>
+gf_labs(x = "Oven temperature (°F)", y = "Tasters' score") |>
 gf_lims(y = c(0,100)) |>
 gf_theme(theme_minimal(base_size = 14))
 
@@ -72,12 +72,12 @@ f2 <- function(x, y) {
 }
 contour_plot(f2(x, y) ~ x + y, domain(x = 118:128, y = 5:12.5)) |>
 gf_point(7.4 ~ 122, color = "blue", size = 4) |>
-  gf_labs(x = "Longitude (deg W)", y = "Latitude (deg N)", subtitle="Relative probability of wreck") |>
+  gf_labs(x = "Longitude (°W)", y = "Latitude (°N)", subtitle="Relative probability of wreck") |>
   gf_theme(theme_minimal(base_size = 14)) |>
 gf_refine(coord_fixed())
 ```
 
-To judge from panel (a), the tastiest baking temperature for the item is 315 deg F. As for the shipwreck, its most likely position is (122 W, 7.4 N), but the relative probability there is not much higher than at areas within about $\pm 1$ degree of longitude and latitude. In each panel, the blue dot marks the input value, not the output value.
+To judge from panel (a), the tastiest baking temperature for the item is 315 °F. As for the shipwreck, its most likely position is (122 W, 7.4 N), but the relative probability there is not much higher than at areas within about $\pm 1$ degree of longitude and latitude. In each panel, the blue dot marks the input value, not the output value.
 
 How does one find the argmax? If you have a graph, look at it, find the point in the picture that corresponds to the peak of the hill and read off the input values for that point. 
 

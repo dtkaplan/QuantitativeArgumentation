@@ -6,20 +6,20 @@ fig-prefix: "Fig 2."
 tbl-title: "Table 2."
 ---
 
+
+# Systems, dimensions, and data {#sec-systems}
+
 ```{r include=FALSE}
 #| label: ch02-r-setup
 source("_start-up.R")
 ```
 
 
-# Systems, dimensions, and data {#sec-systems}
 
 
 ::: {.aside}
 `r paste(readLines("_Words/chap_2.txt"), collapse = "\n")` 
 :::
-
-IN DRAFT: Talk about acyclic graphs for systems and raise the question of cyclic graphs. 
 
 
 Even in informal speech, we use the word "system" a lot. In this book, we will build and use models of ... well, what? We could provide a several nouns to complete "models of ...", for instance, "things," "objects," "processes," or "phenomena." In this book, we will use the abstract word `r xf_definition("system")` as a general way to refer to what is being modeled. The reason has to do with a specific meaning for "system" that will help us understand a very useful structure for models used in argumentation.
@@ -59,7 +59,7 @@ Sometimes an operationalization is technical, obscure, and to some extent arbitr
 
 In a quantitative model of a system, each dimension of the system is operationalized into a quantity that measures that characteristic. Being attentive to the details of the operationalization can be an important component of critical thinking.
 
-The `r xf_definition("value of a quantity")` is a specific numerical level along with the appropriate unit. (See `r xf("sec-quantities")`.) Typically, the value will differ across contexts, say, from hour to hour or place to place. For example, as I write this, the outdoor temperature is 52 degrees F, as operationalized by the US Weather Service from a thermometer in a ventilated, shielded box at a specific location in my city. Values can change; the temperature tomorrow will likely be different. In reading "the temperature tomorrow will be different," the underlying idea is not that the variable or operationalization will change—the Weather Service will keep doing what it has done for many years. Instead, the idea of "different" is that the value of the quantity will be different.
+The `r xf_definition("value of a quantity")` is a specific numerical level along with the appropriate unit. (See `r xf("sec-quantities")`.) Typically, the value will differ across contexts, say, from hour to hour or place to place. For example, as I write this, the outdoor temperature is 52°F, as operationalized by the US Weather Service from a thermometer in a ventilated, shielded box at a specific location in my city. Values can change; the temperature tomorrow will likely be different. In reading "the temperature tomorrow will be different," the underlying idea is not that the variable or operationalization will change—the Weather Service will keep doing what it has done for many years. Instead, the idea of "different" is that the value of the quantity will be different.
 
 ## Example: Operationalizing comfort
 

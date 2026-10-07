@@ -18,7 +18,7 @@ A **system** is a structure of interconnected elements. In this book's account o
 
 **Operationalization** is the procedure used to translate a dimension into a measurable quantity. Operationalizations do not necessarily capture all aspects of a system, they can be a compromise between the modeler's mental image of a dimension (example: "comfort") and the practicalities of measurement. Modelers should check that a dimension's operationalization adequately represents the intended aspect of the system to suit the purpose intended for the model. 
 
-A **value** is the specific numerical level of a quantity, together with its appropriate unit. A changing value does not necessarily mean that the dimension or its operationalization has changed. For instance, the temperature of a room may change from 20°C to 22°C, but the dimension (temperature) and its operationalization (measured in degrees Celsius) remain the same.
+A **value** is the specific numerical level of a quantity, together with its appropriate unit. A changing value does not necessarily mean that the dimension or its operationalization has changed. For instance, the temperature of a room may change from 20°C to 22°C, but the dimension (temperature) and its operationalization (measured in °C) remain the same.
 
 **Data** are recorded facts, findings, or measurements. A **data frame** organizes such data into rows and columns: each row represents a specimen of a common object type, each column represents a system dimension, and each cell contains a value.
 
@@ -148,7 +148,7 @@ At any point, a prior or a posterior can be multiplied by a number without chang
 
 ## Chapter 13: Dynamics 
 
-"Change" is the main theme of Chapters 13, 14, and 15. Up to now, we have emphasized "with respect to" change, for instance a system like A -> B where a change in A produces a change in B. Here, A is an *exogenous quantity* whose change is determined outside the system, while B is an *endogenous quantity* whose change is determined by the system. 
+"Change" will be the main theme of Chapters 13, 14, and 15. Up to now, we have emphasized "with respect to" change, for instance a system like A -> B where a change in A produces a change in B. Here, A is an *exogenous quantity* whose change is determined outside the system, while B is an *endogenous quantity* whose change is determined by the system. 
 
 Another important perspective on change comes from a system where the connections between elements form a loop. A simplistic example is  A -> B -> A. This is simplistic because it doesn't specify which comes first, A or B: A chicken and egg problem. 
 

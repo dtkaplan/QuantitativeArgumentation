@@ -410,6 +410,7 @@ The name `osc()` is short for oscillatory; the function output oscillates up and
 
 ::::
 
+\newpage
 
 ## Input and output scaling {#sec-input-output-transforms}
 
@@ -533,7 +534,7 @@ To avoid unnecessary abstraction, our descriptions will assume that the function
 
 :::: {layout="[1,0.1, 1]"}
 ::: {}
-osc()
+osc( )
 : A function that oscillates smoothly up and down, repeating itself over and over again. Such repeating functions are called `r xf_definition("periodic")`. For example, the outdoor temperature rises and falls each day, repeating itself roughly the same way day after day. 
 :::
 
@@ -546,6 +547,7 @@ osc()
 #| label: fig-osc-ex
 #| echo: false
 #| message: false
+#| fig-cap: "osc( )"
 scaled_plot(
   fun = osc,
   output_range = c(-1.2, 1.2),
@@ -555,7 +557,7 @@ scaled_plot(
   A = 10,
   B = 72,
   floating_axes = c(grid = TRUE)) |>
-  gf_labs(x = "Hours", y = "Temperature (deg F)") |>
+  gf_labs(x = "Hours", y = "Temperature (°F)") |>
   gf_refine(coord_cartesian(ratio = 1)) 
 ```
 :::
@@ -563,7 +565,7 @@ scaled_plot(
 
 :::: {layout="[1,0.1, 1]"}
 ::: {}
-hillside()
+hillside( )
 : The hillside function starts steadily, then gradually increases before leveling off. For example, hillside() might represent the temperature as a warm front moves past at around 10 am: a steady high temperature in the afternoon having gradually replaced the the mornings low temperature.
 :::
 
@@ -576,6 +578,7 @@ hillside()
 #| label: fig-hillside-ex
 #| echo: false  
 #| message: false
+#| fig-cap: "hillside( )"
 scaled_plot(
   fun = hillside,
   output_range = c(-1.5, 2.5),
@@ -585,7 +588,7 @@ scaled_plot(
   A = 20,
   B = 56,
   floating_axes = c(grid = TRUE)) |>
-  gf_labs(x = "Hours (after midnight)", y = "Temperature (deg F)") |>
+  gf_labs(x = "Hours (after midnight)", y = "Temperature (°F)") |>
   gf_refine(coord_cartesian(ratio = 1)) 
 ```
 :::
@@ -609,6 +612,7 @@ hill()
 #| label: fig-hill-ex
 #| echo: false
 #| message: false
+#| fig-cap: "hill( )"
 scaled_plot(
   fun = hill,
   output_range = c(-0.25,1),
@@ -618,7 +622,7 @@ scaled_plot(
   A = 15,
   B = 70,
   floating_axes = c(grid = TRUE)) |>
-  gf_labs(x = "Day in July", y = "Daily high temperature (deg F)") |>
+  gf_labs(x = "Day in July", y = "Daily high temperature (°F)") |>
   gf_refine(coord_cartesian(ratio=3)) 
 ```
 :::
@@ -626,7 +630,7 @@ scaled_plot(
 
 :::: {layout="[1,0.1, 1]"}
 ::: {}
-exp2()
+exp2( )
 : After each unit interval of time, the temperature *doubles* from what it was at the start of the interval. Think of an apocalyptic science-fiction story about climate change. The temperature is increasing over time, and as it does, various feedback mechanisms---e.g., the release of methane from melting permafrost or the increased absorption of sunlight by the ocean as an ice cap melts---strengthen.
 : Eventually, of course, something has to give. The doubling pattern cannot continue indefinitely. But the `exp2()` core modeling function doesn't add that bit to the story.
 :::
@@ -640,6 +644,7 @@ exp2()
 #| label: fig-exp2-ex
 #| echo: false
 #| message: false
+#| fig-cap: "exp2( )"
 scaled_plot(
   fun = exp2,
   output_range = c(-0.25,8.1),
@@ -649,7 +654,7 @@ scaled_plot(
   A = 1,
   B = 21.1,
   floating_axes = c(grid = TRUE)) |>
-  gf_labs(y = "Yearly Sea Surface Temp (deg C)", x = "Year") |>
+  gf_labs(y = "Yearly Sea Surface Temp (°C)", x = "Year") |>
   gf_refine(coord_cartesian(ratio = 1)) 
 ```
 :::
@@ -675,6 +680,7 @@ log2()
 #| label: fig-log2-ex
 #| echo: false
 #| message: false
+#| fig-cap: "log2( )"
 scaled_plot(
   fun = log2,
   output_range = c(-4,3.2),
@@ -684,7 +690,7 @@ scaled_plot(
   A = 4,
   B = 2045,
   floating_axes = c(grid = TRUE)) |>
-  gf_labs(x = "Sea Surface Temp (deg C)", y = "Year") |>
+  gf_labs(x = "Sea Surface Temp (°C)", y = "Year") |>
   gf_refine(coord_cartesian(ratio = 1)) 
 ```
 
@@ -696,7 +702,7 @@ scaled_plot(
 
 :::: {layout="[1,0.1, 1]"}
 ::: {}
-same()
+same( )
 : As time increases, the temperature increases likewise. Hour to hour, the temperature increases by the same amount.
 :::
 
@@ -709,6 +715,7 @@ same()
 #| label: fig-same-ex
 #| echo: false
 #| message: false
+#| fig-cap: "same( )"
 scaled_plot(
   fun = same,
   output_range = c(-0.2,8.2),
@@ -718,7 +725,7 @@ scaled_plot(
   A = 2.1,
   B = 18,
   floating_axes = c(grid = TRUE)) |>
-  gf_labs(y = "Temp (deg C)", x = "Hours after sunrise") |>
+  gf_labs(y = "Temp (°C)", x = "Hours after sunrise") |>
   gf_refine(coord_cartesian(ratio = 1)) 
 ```
 :::
@@ -739,6 +746,7 @@ flat()
 #| label: fig-flat-ex
 #| echo: false
 #| message: false
+#| fig-cap: "flat( )"
 scaled_plot(
   fun = flat,
   output_range = c(-2.2,3.2),
@@ -748,7 +756,7 @@ scaled_plot(
   A = 0.6,
   B = 18,
   floating_axes = c(grid = TRUE)) |>
-  gf_labs(y = "Temp (deg C)", x = "Hours after sunrise") |>
+  gf_labs(y = "Temp (°C)", x = "Hours after sunrise") |>
   gf_refine(coord_cartesian(ratio = 1)) 
 ```
 :::

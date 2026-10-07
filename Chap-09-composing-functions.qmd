@@ -216,7 +216,8 @@ A linear combination is an ideal format for combining input quantities with diff
 \newpage
 
 ```{r eval=FALSE}
-score_model <- function(performance, education, income, size) {
+score_model <- 
+  function(performance, education, income, size) {
     A * performance + 
     B * education + 
     C * income + 
@@ -306,6 +307,12 @@ ggsave(hi_plot, file = "www/sultriness-contour.png")
 
 Such parallel contours correspond to the function being a linear combination of the inputs. The slope means that the function increases with both dry-bulb temperature and relative humidity. That the slope is shallow means that---at least in the top portion of the graphical space---the function hardly depends on humidity.
 
+Now consider dry-bulb temperatures higher than 30°C, especially for humidities greater than, say, 50%. The contours are still parallel but they are heavily inclined from left to right and closely spaced together. 
+
+The close spacing of the contours indicates, as in the topographical map of `r xf("fig-saint-john")`, the function is very steep: a small change in either input produces a large change in the output. This relationship is what's behind the common summertime complaint: "It's not the heat, it's the humidity."
+
+The inclination of the contours tells us something else: the heat index for high ambient temperatures is closely linked to both humidity and temperature. And the curvature of the contour lines indicates an *interaction* between temperature and humidity.
+
 ::: {#fig-sultriness-contour layout-ncol=2 fig-cap-location="top"}
 
 ![As a table](www/sultriness-table.png)
@@ -314,15 +321,6 @@ Such parallel contours correspond to the function being a linear combination of 
 
 Two graphical presentations of the heat index function. Panel (b) has been drawn with an upside-down vertical axis, the better to correspond the tabular convention of increasing values from top to bottom.
 :::
-
-
-
-
-Now consider dry-bulb temperatures higher than 30°C, especially for humidities greater than, say, 50%. The contours are still parallel but they are heavily inclined from left to right and closely spaced together. 
-
-The close spacing of the contours indicates, as in the topographical map of `r xf("fig-saint-john")`, the function is very steep: a small change in either input produces a large change in the output. This relationship is what's behind the common summertime complaint: "It's not the heat, it's the humidity."
-
-The inclination of the contours tells us something else: the heat index for high ambient temperatures is closely linked to both humidity and temperature. And the curvature of the contour lines indicates an *interaction* between temperature and humidity.
 
 The explanation for the big change in pattern from top to bottom on the plot is physiological, not meteorological. Keep in mind that human core body temperature is 37°C. Metabolism generates heat and the core temperature would go up above 37°C if it were not for the body's cooling mechanisms. When a lot of heat is being generated, as in exercise, one of these cooling mechanisms becomes evident: sweating. Sweating is most effective at low humidities. At high humidities, the evaporation of sweat is less efficient, leading to a rapid increase in perceived heat, which is captured by the steep contours in the heat index plot.
 

@@ -41,7 +41,7 @@ Income taxes in the US are calculated according to "brackets." Each bracket spec
 
 <!-- [The Amendment says, "The Congress shall have power to lay and collect taxes on incomes, from whatever source derived, without apportionment among the several States, and without regard to any census or enumeration." Strictly speaking, even before the amendment Congress had the power to tax income. However, the Supreme Court had dictated that any such tax had to be "apportioned," that is, imposed equally based on the population of each state. This was impractical, since *per capita* income differs from state to state.]{.column-margin} -->
 
-::: {#tbl-1913-brackets tbl-cap-location="margin"}
+::: {#tbl-1913-brackets tbl-cap-location="top"}
 
 Income | Tax rate 
 -------|----------
@@ -80,10 +80,9 @@ Part of the 1913 US income-tax form. It has been filled in as appropriate for a 
 
 `r xf("fig-1913-1040")` is pretty confusing. There are a lot of numbers filled in. Ironically, even though the income is $90,000, that number does not appear on the form!
 
-The 2024 tax table simplifies the calculation by giving a table. You need only look up your income. @fig-2024-tax-table shows the appropriate entry from page 9 (of 11) of the closely-spaced pages. Less arithmetic, but still the income of $90,000 doesn't appear. 
 
 ::: {#fig-2024-tax-table}
-![](www/2024-tax-table2.png){width=0.1in}
+<!-- empty figure block. The actual image is included in the aside below. -->
 
 The format used today for a *tax table* converts directly from income to taxes owed.
 :::
@@ -91,6 +90,9 @@ The format used today for a *tax table* converts directly from income to taxes o
 ::: {.aside}
 ![](www/2024-tax-table2.png){width=2in}
 :::
+
+The 2024 tax table simplifies the calculation by giving a table. You need only look up your income. @fig-2024-tax-table shows the appropriate entry from page 9 (of 11) of the closely-spaced pages. Less arithmetic, but still the income of $90,000 doesn't appear. 
+
 
 A tax rate, as you know, is the fraction of income owed as tax. The tax table (@fig-2024-tax-table) does not indicate the rate, just the tax owed.
 
@@ -121,7 +123,7 @@ In exploring systems whose state changes in time in `r xf("sec-dynamics")`, we c
 
 *Marginal rate* conveys the same sense as instantaneous, both are concerned with examining a tiny change on the edge of where you are. Of course, "instant" applies to time, while "marginal" applies to other kinds of quantities, for example income or expenditure or tax rate.
 
-Economists often speak of `r xf_definition("diminishing marginal returns")`. Consider, for instance, the situation of buying a car. They buyer is spending money and expects to get benefits in return: convenience and transportation services. For this, it suffices to buy the base model of the car. Many people go further, adding a marginal expense to buy an "options package," with, say, heated seats and cruise control. In response to this marginal expense, the buyer anticipates getting more benefits, that is, marginal benefits. But these marginal benefits are typically small in comparison to the benefits provided by the base model of the car. When the ratio of the marginal benefits to the marginal expense is smaller than the benefit/cost ratio of the base model, one says that buying car options has *diminishing marginal returns*.
+Economists often speak of `r xf_definition("diminishing marginal returns")`. Consider, for instance, the situation of buying a car. They buyer is spending money and expects to get benefits in return: convenience and transportation services. For this, it suffices to buy the base model of the car. Many people go further, adding a marginal expense to buy an "options package," with, say, heated seats and cruise control. In response to this marginal expense, the buyer anticipates getting a somewhat better car, that is, marginal benefits. But these marginal benefits are typically small in comparison to the benefits provided by the base model of the car. After all, by far the most important benefit of the car is providing transportaion services. When the ratio of the marginal benefits to the marginal expense is smaller than the benefit/cost ratio of the base model, one says that buying car options has *diminishing marginal returns*.
 
 
 
@@ -138,7 +140,13 @@ Many important matters in public and private decision making involve setting pri
 
 Different people can have different, reasonable views. Families of cancer victims will understandably place emphasis on the cancer initiative. People whose interests and lives center on young children might lean toward the natal initiative. Still others will advocate a compromise: split the $10-billion between both initiatives. And, inevitably, there will be another group who ask, "Why limit the budget to $10-billion? Fund both!"
 
-There is likely no single decision that everyone will approve of. Yet a public decision-making process ideally ought to involve an open discussion that presents many points of view to all people concerned. Quantitative reasoning can play a valuable role by introducing *facts* for consideration to complement the ethical, political, and intuitive values that shape the decision. Perhaps it is obvious that a meaningful operationalization of the positive impact of each initiative would be the *number of lives saved*. A more nuanced operationalization is *quality adjusted life years* (QALYs). We will measure benefits in QALYs, but the same quantitative principles apply to other measures of benefit. And, since the reader is probably unfamiliar with QALYs, please accept for the purposes of discussion that QALYs are a better match to many people's intuitive values than "lives saved." Here are the (made-up) facts:
+The funding dilemma is an example of a *trade-off*. (`r xf("sec-tradeoffs")`) The new thing in this situation is that both objective functions---lives saved by spending on "natal" versus lives saved by "cancer" spending---are both quantified with the same dimension. [But see the discussion of QALYs below.]{.column-margin} 
+
+The bald debate between advocates of spending on "natal" versus "cancer" does not point to a resolution. But since the objectives are measured in the same dimension, we do not need to think carefully about the "shadow costs" introduced in `r xf("sec-tradeoffs")`. Instead, it's likely that the dualing advocates have a common goal: maximize the efficiency of the spending. 
+
+Consider briefly what should be the operationalization of the goals of the optimization problem. Perhaps it is obvious that a meaningful operationalization of the positive impact of each initiative would be the *number of lives saved*. Laudable though this be, this operationalization does not capture some important considerations. For instance, does deferring death for one day or one month count equally to deferring death for one year? "Number of lives saved" has dimension [1]. But [T] is also important.
+
+A more nuanced operationalization is *quality adjusted life years* (QALYs). The "years" gives QALYs dimension [T].We will measure benefits in QALYs, but the same quantitative principles apply to other measures of benefit. And, since the reader is probably unfamiliar with QALYs, please accept for the purposes of discussion that QALYs are a better match to many people's intuitive values than "lives saved." Here are the (made-up) facts:
 
 > The Natal program will save 500,000 QALYs each year. The Cancer program will save 750,000 QALYs yearly.
 
@@ -181,9 +189,6 @@ slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts =
 
 
 At a glance, the Natal and Cancer functions sketched in `r xf("fig-QALY-vs-cost")` are very similar. Nevertheless, the two functions have different implications for how to allocate the funds available. An appropriate analysis using *rates of change* will let us see this.
-
-
-
 
 To start, we zoom in more closely to the domain near to the proposed funding level for each initiative. @fig-zoom-in-to-stars shows the competitive situation. In both graphs, the vertical scale covers 4000 QALYs; the horizontal scale covers $100 million.
 
@@ -246,7 +251,7 @@ slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts =
 
 Does indifference between the two spending proposals---$5 billion for natal and $10 billion for cancer, versus $10 billion for natal and $5 billion for cancer---mean that it doesn't really matter how we split the money between the two programs? Before rashly jumping to this conclusion, we should do a bit more analysis. 
 
-In @fig-swap-cancer-natal we have annotated the graph with the rate of change (QALYs per dollar) at the [red]{style="color: red;"} proposal. This rate of change is, of course, the slope of the function at the selected expenditure level. We would need to do a little calculation to find the numerical value for the rate of change, but we can visualize it by drawing a line segment that has the same slope as the function at the selected expenditure level. The slope is steeper for Cancer than Natal, suggesting that we ought to shift money back to Cancer from Natal. This may seem futile, switching money back and forth, but that's because we are shifting a lot of money: $5 billion. Suppose we shift less.
+In @fig-swap-cancer-natal we have annotated the graph with the rate of change (QALYs per million dollars) at the [red]{style="color: red;"} proposal. This rate of change is, of course, the slope of the function at the selected expenditure level. We would need to do a little calculation to find the numerical value for the rate of change, but we can visualize it by drawing a line segment that has the same slope as the function at the selected expenditure level. The slope is steeper for Cancer than Natal, suggesting that we ought to shift money back to Cancer from Natal. This may seem futile, switching money back and forth, but that's because we are shifting a lot of money: $5 billion. Suppose we shift less.
 
 Whatever spending level we choose, there will be a QALY level marked by the star *and* a rate of change marked by the slope of the line segment. @fig-many-starts plots some of these line segments and stars at many different levels of expenditure.
 
@@ -294,29 +299,29 @@ slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts=3
   gf_theme(theme_minimal())
 ```
 
-@fig-many-starts is too crowded to serve it's main purpose: showing the rates of change at many different values of expenditure. We need to simplify things.
+@fig-many-starts is too crowded to serve its main purpose: showing the rates of change at many different values of expenditure. We need to simplify things.
 
-We can accomplish this by changing the format for representing rates of change from slope liness into a quantity that can be plotted. The units for the values will be QALYs per dollar, a different dimension than shown by the vertical axis in @fig-many-starts. So we need to make a new graphics frame to show QALYs per dollar. We do that in @fig-qalys-per-dollar.
+We can accomplish this by changing the format for representing rates of change from slope liness into a quantity that can be plotted. The units for the values will be QALYs per million dollars, a different dimension than shown by the vertical axis in @fig-many-starts. So we need to make a new graphics frame to show QALYs per million dollars. We do that in @fig-qalys-per-dollar.
 
 ```{r}
 #| label: fig-qalys-per-dollar
 #| layout-ncol: 2
 #| echo: false
 #| warning: false
-#| fig-cap: "The rate of change, QALYs per dollar, as a function of expenditure level."
+#| fig-cap: "The rate of change, QALYs per million dollars, as a function of expenditure level."
 #| fig-cap-location: top
 #| fig-subcap:
 #| - "Natal"
 #| - "Cancer"
 
 slice_plot(d_natal(expenditure) ~ expenditure, domain(expenditure=0:15), npts=300) |>
-  gf_labs(y = "Rate of change (QALYs per dollar)", x = "Expenditure ($billions)") |>
+  gf_labs(y = "Rate of change (QALYs per million dollars)", x = "Expenditure ($billions)") |>
   gf_hline(yintercept = 75, color = "tomato") |>
   gf_lims(y = c(0,500))
 
 
 slice_plot(d_cancer(expenditure) ~ expenditure, domain(expenditure=0:15), npts=300) |>
-  gf_labs(y = "Rate of change (QALYs per dollar)", x = "Expenditure ($billions)") |>
+  gf_labs(y = "Rate of change (QALYs per million dollars)", x = "Expenditure ($billions)") |>
   gf_hline(yintercept = 75, color = "tomato") |>
   gf_lims(y = c(0,500))
 
@@ -324,15 +329,15 @@ slice_plot(d_cancer(expenditure) ~ expenditure, domain(expenditure=0:15), npts=3
 
 Keep in mind the purpose of the analysis: to find out how to allocate the total of $15 billion to Natal and Cancer to make the QALYs saved as large as possible. The information in @fig-qalys-per-dollar is not yet in the form that lets us see the answer we seek. We will have to do some work in order to get an answer that serves our purpose. 
 
-Whenever our expenditure policy corresponds to different rates of change (QALYs per dollar) for the two policies, we would want to shift money from the program with the lower rate of change to the program with the higher rate of change. It is only at expenditure points where the two rates of change are exactly the same will the expenditures be in proper balance.
+Whenever our expenditure policy corresponds to different rates of change (QALYs per million dollars) for the two policies, we would want to shift money from the program with the lower rate of change to the program with the higher rate of change. When such shifting brings the expenditures to levels where the two rate of changes are equal, no further shifting is called for: the earlier imbalance has been corrected.
 
-To illustrate, we have annotated the graphs with two red lines, both drawn at the level of 75 QALYs per dollar. For Natal, this rate of change occurs at an expenditure level of about $2 billion. For Cancer, 75 QALYs per dollar occurs at an expenditure level of about $5.5 billion. Those two values of expenditure are in balance in a very important sense: at those values, there is no reason to swap funds between Natal and Cancer.
+To illustrate, we have annotated the graphs with two red lines, both drawn at the level of 75 QALYs per million dollars. For Natal, this rate of change occurs at an expenditure level of about $2 billion. For Cancer, 75 QALYs per million dollars occurs at an expenditure level of about $5.5 billion. Those two values of expenditure are in balance in a very important sense: at those values, there is no reason to swap funds between Natal and Cancer.
 
 ```{r}
 #| label: ch14-r-b333a6fd
 #| echo: false
 #| eval: false
-#| fig-cap: Functions to calculate expenditures at any given level of QALYs per dollar
+#| fig-cap: Functions to calculate expenditures at any given level of   QALYs per million dollars
 dollars_cancer <- function(QALY) { 
   f <- makeFun(d_cancer(x) - y ~ x, y = QALY)
   Zeros(f(x) ~ x, domain(x = 0:15))$x
@@ -347,12 +352,11 @@ q = 40; dollars_cancer(q) + dollars_natal(q)
 
 Even so, at the $2 billion (Natal) and $6 billion (Cancer) levels we are spending only (!) eight billion dollars. But there is $15 billion available. To find out where the spending is in balance at a total level of $15 billion, we need to do a little work. This is purely mathematical work, so ideally suited to delegate to a computer. But let's follow the process.
 
-At 75 QALYs per dollar, we spent only $8 billion. If we spend more, we will be at an operating point with fewer QALYs per dollar. That sounds bad, but remember that the QALYs per dollar is a *rate of change*. So long as the rate of change is *positive*, spending more produces more QALYs overall.
+At 75 QALYs per million dollars, we spent only $8 billion. If we spend more, we will be at an operating point with fewer QALYs per million dollars. That sounds bad, but remember that the QALYs per million dollars is a *rate of change*. So long as the rate of change is *positive*, spending more produces more QALYs overall.
 
 In `r xf("sec-dynamics")` explored systems whose state changes in time. There we spoke of the *dynamical function*, that is, the function that gives the *instantaneous* rate of change (with respect to time) of the state quantities. 
-Economists have a name for the "instantaneous" rate of change of a function. 
 
-Suppose we were to increase spending to bring the system into balance at a level of 50 QALYs per dollar. This happens at an expenditure level of $6 billion (Natal) and $7 billion (Cancer), so $13 billion in total. Still too little spending, but closer to the target of $15 billion. Evidently, there is more mathematical work to do: keep trying different levels of QALYs per dollar until we hit upon one that brings us to a total expenditure of $15 billion. Doing so produces the information we need: At a marginal benefit of about 40 QALYs per dollar, total expenditures are $15 billion, split $7.8 billion for Natal and $7.2 billion for Cancer. Outcome from the spending: 1,313,000 QALYs.
+Suppose we were to increase spending to bring the system into balance at a level of 50 QALYs per million dollars. This happens at an expenditure level of $6 billion (Natal) and $7 billion (Cancer), so $13 billion in total. Still too little spending, but closer to the target of $15 billion. Evidently, there is more mathematical work to do: keep trying different levels of QALYs per million dollars until we hit upon one that brings us to a total expenditure of $15 billion. Doing so produces the information we need: At a marginal benefit of about 40 QALYs per million dollars, total expenditures are $15 billion, split $7.8 billion for Natal and $7.2 billion for Cancer. Outcome from the spending: 1,313,000 QALYs.
 
 Undeniably, reaching the result involves an intricate argument in which a neophyte is likely to get frustrated and make errors. First, we imagined there to be a production function that relates expenditures to QALYs saved, not just the two pairs given originally as facts.
 
@@ -363,12 +367,9 @@ Next, we introduced a new perspective: A spending level is in balance only when 
 
 We then looked at the two production functions, calculating their rates of change at many expenditure input values. Finally, we found expenditure levels totaling $15 billion split between Natal and Cancer in a way that produced an equal marginal benefit for each.
 
-You may not be convinced that all this complexity of analysis with worth the gain. But let's look at the numbers. Without spending a single dollar above the $15 billion total expenditure, we have re-allocated spending in a way that increased output from 1,250,000 QALYs to 1,313,000 QALYs. That an increase of 63,000 QALYs with no extra costs. 63,000 QALYs corresponds to saving the lives of 1000 18-year olds, giving each of them 63 extra years of life. 
+Without spending a single dollar above the $15 billion total expenditure, we have re-allocated spending in a way that increased output from 1,250,000 QALYs to 1,313,000 QALYs. [Of course, the QALYs don't have to go to 18-year olds. 63,000 QALYs might also correspond to saving the lives of 10,000 75-year olds, or 100,000 80-year olds]{.column-margin}That is an increase of 63,000 QALYs with no extra costs. 63,000 QALYs corresponds to saving the lives of 1000 18-year olds, giving each of them 63 extra years of full-quality life. That seems worthwhile d.
 
 Everyone understands why prospective medical professionals---doctors and nurses---go through difficult years of schooling. It helps them to save lives and increase the quality of life. It is the same thing for quantitative reasoning: a few years of difficult schooling to master an approach to analysis that can save lives and increase the quality of those lives.
-
-
-
 
 It is understandable if the reader is not completely convinced that the analysis described above is correct. Partly, that's because many of the concepts are new. And there are some difficult to believe aspects of the argument. For instance, In determining the best allocation of expenditures, we looked only at marginal benefits, not the total change in QALYs. In `r xf("sec-accumulation")` we will see why the marginal-benefit function has latent in it the critical information about the total change. And in `r xf("sec-moving-past-two-inputs")` we will introduce a few mathematical operations, each of which is pretty simple, that can be used to build processes such as the one by which we figured out the optimal allocation of spending. 
 
@@ -422,95 +423,35 @@ P2 |>
 `r xf("sec-rates-of-change-brief")` introduced the "rate of change" as the ratio of two changes. @fig-f-of-t shows a function evaluated at two nearby input values. From this, we can calculate the rate of change of the output value with respect to the input value, that is, the change in output divided by the change of input. In @fig-f-of-t, read the change of input off the horizontal axis: 3.2 - 3 = 0.2. Read the change of output off the vertical axis: $f(3.2) - f(3) = 5.64 - 4.25 = 1.39$. The rate of change is the ratio of the two changes 1.39 / 0.2 = 6.96.
 
 
-## How long is an instant?
+## Instant? Instantaneous? Tiny input change?
 
-In the previous example, we used input values of 3 and 3.2 as two inputs and calculated the rate of change as the corresponding difference in output---$f(3.2) - f(3.0)$===divided by the difference in input. In the language of *marginal change*, these inputs corresponding to looking at an increment of 0.2 from the "edge" 3.0. In the language of *instantaneous change*, we are looking at the increment 0.2 as the duration of an instant.
+In the previous example, we used input values of 3 and 3.2 as two inputs and calculated the rate of change as the corresponding difference in output---$f(3.2) - f(3.0)$---divided by the difference in input. In the language of *marginal change*, these inputs corresponding to looking at an increment of 0.2 from the "edge" 3.0. 
 
-Is it legitimate to take the interval from 3.0 to 3.2 as an instant? Taking the word "instantaneous" at face value, an increment of 0.2 seems too long. Why not 0.1 or 0.05 or even smaller? Indeed, it is reasonable to insist that an instant have zero duration.
+The word "instant" and the phrase *instantaneous change* implicitly refer to *time*. This nomenclature reflects the history of development of these concepts, where the applications were to motion of objects over time. But application areas are much broader now, for instance, in the QALY/expenditure example the input is *spending level*. An "instant of spending" doesn't make literal sense; the real meaning is the "current spending level." A so-called "instantaneous" change of spending isn't meant to refer to time but to a change in spending that is tiny. How tiny? For spending at the level of a billion dollars, a change of 1 cent is certainly tiny. So is one dollar or even a thousand or a million dollars.
 
-A duration of zero throws a wrench into the mechanism for calculating rates of change. The change in output would be $f(3) - f(3) = 0$ and the rate of change over the instant would be $$\frac{f(3) - f(3)}{3-3} = \frac{0}{0} =\ ???$$ 
+Is it fair to take a change of spending of one-million dollars as tiny, that is, "instantaneous"? As long as we are looking for *tiny*, why not set the change of spending to zero, as small as it can get. 
+
+A input change of zero throws a wrench into the mechanism for calculating rates of change. Looking to the example of `r xf("fig-f-of-t")`, in response to zero change in input the change in output would be $f(3) - f(3) = 0$. The rate of change over the instant would be $$\frac{f(3) - f(3)}{3-3} = \frac{0}{0} =\ ???$$ 
 
 The straightforward resolution to this problem is not to throw the wrench in the first place. Instead of exactly zero duration, use a small but non-zero duration. 
 
-One perspective on small reflects our interest in looking at the rate of change as it varies for different inputs. Consider @fig-many-starts: the slope of the function varies as the input changes. In the Natal vs Cancer allocation problem, @fig-qalys-per-dollar, the changing slope enabled us to find inputs that balanced the marginal benefits of spending between Natal and Cancer. If we are going to compare the slope of QALYs per dollar at two different spending points, say 3.1 million USD and 3.2 million USD, "small" means "smaller than 0.1 million USD." 
+One perspective on small reflects our interest in looking at the rate of change as it varies for different inputs. Consider @fig-many-starts: the slope of the function varies as the input changes. In the Natal vs Cancer allocation problem, @fig-qalys-per-dollar, the changing slope enabled us to find inputs that balanced the marginal benefits of spending between Natal and Cancer. If we are going to compare the slope of QALYs per million dollars at two different spending points, say 3.1 million USD and 3.2 million USD, "small" means "smaller than 0.1 million USD." 
 
 A second perspective is that our choice of "small," so long as it is small enough, should not affect the result of the calculation. Or, more precisely, a change of input is "small" when making it even smaller would give the same result. If there were many people calculating a rate of change, using their own choices for "small," we would like them nevertheless to get the same answer!
-
-We can experiment with this idea using the using the computer. Since we are going to be trying out different proposals for small, it helps to give a name to the increment in input being used. We will call it `h`. In the following chunk, we have set `h <- 0.2`, matching the situation shown in @fig-f-of-t. We will calculate the rate of change in two different ways: one using the value of `h`, the other using an smaller value, say, `h/10`. In both cases, we calculate the change in the output divided by the change in the input.
-
-::: {.content-include unless-format="html"}
-```{webr}
-#| context: setup
-#| autorun: true
-#| echo: false
-raw <- mosaicCalc::doodle_fun(~ t, seed = 937)
-f <- makeFun((raw((t-2.5)*2 ) + 10)/2 ~ t)
-```
-
-```{webr}
-h <- 0.2
-(f(3 + h) - f(3)) / (h)  # "small"
-(f(3 + h/10) - f(3)) / (h/10) # smaller
-```
-:::
-
-::: {.content-include unless-format="pdf"}
-The following R statements calculate the rate of change of the function $f(t)$ for input $t=3$.
-
-
-```{r}
-#| label: ch14-r-1dcb1f93
-#| echo: false
-raw <- mosaicCalc::doodle_fun(~ t, seed = 937)
-f <- makeFun((raw((t-2.5)*2 ) + 10)/2 ~ t)
-```
-
-```{r}
-#| label: ch14-r-ca3bba41
-h <- 0.2
-(f(3 + h) - f(3)) / (h)  # "small"
-(f(3 + h/10) - f(3)) / (h/10) # smaller
-```
-:::
-
-When `h <- 0.2`, the "small" calculation and the "smaller" calculation give discernibly different results. This means that 0.2 is *not* a small value for `h`, or at least is not small enough to meet the second criterion.
-
-::: {.content-include unless-format="html"}
-We can search for "small enough" `h`. Run the above chunk with a smaller starting `h`, say `h <- 0.01`. If that's not small enough, try even smaller: `h <- 0.001`. Continue, as needed, until the "small" and "smaller" rates of change are not discernibly different.
-:::
-
-::: {.content-include unless-format="pdf"}
-We can search for "small enough" `h`. Let's try $h = 0.001$.
-
-```{r}
-#| label: ch14-r-a0703d37
-# Try a smaller h
-h <- 0.001
-(f(3 + h) - f(3)) / (h)  # even smaller
-(f(3 + h/10) - f(3)) / (h/10) # smaller still
-```
-
-Now the rates of change for $h=0.001$ and $h = 0.0001$ are virtually the same. Using even smaller values for $h$ would give even closer results.  
-:::
 
 
 ## Vanishingly small {#sec-infinitesimal}
 
-`r qr_margin_note(
-  "https://en.wikipedia.org/wiki/Gravitas",
-  "Gravitas"
-)`
+Newton and Leibniz and the people who used their techniques for the next 200 years did not have modern computers available. Verifying, by trial and error, that a proposed `h` is small enough would have been tedious work. And the phrase "small enough" doesn't carry enough [gravitas](https://en.wikipedia.org/wiki/Gravitas) to honor a technique that was becoming more and more central to mathematics. Understandably, they sought a more dignified word, a word that would draw attention away from the need to search for a "small enough" change in input. The first ever calculus textbook, from 1694, had the title, "Analyse des Infiniment Petits," that is, "Analysis into the infinitely small." In a somewhat later book, Newton wrote and explanation which is only clear if you already understand it: "Those ultimate ratios ... are not actually ratios of ultimate quantities, but limits ... which they can approach so closely that their difference is less than any given quantity". The phrase "vanishingly small" for the change in input was used by proponents of calculus, and "evanescent" in one famous early critique (philosopher George Berkeley, 1734). Instead of "infinitely small," some preferred the word "infinitesimal." A famous image for the hard-to-grasp notion of something that stays even as it shrinks toward zero was provided by Charles Lutwidge Dodgson (1832-1898) who, under the pen-name Lewis Carroll, introduced the Cheshire Cat. The cat's smile corresponds to the rate of change. You cannot have a smile without a body surrounding it, just as you cannot have a rate of change of a function with a change in the input. In *Alice in Wonderland*, the Cat's smile remains even as the body disappears.
 
-Newton and Leibniz and the people who used their techniques for the next 200 years did not have modern computers available. Verifying, by trial and error, that a proposed `h` is small enough would have been tedious work. And the phrase "small enough" doesn't carry enough [gravitas](https://en.wikipedia.org/wiki/Gravitas) to honor a technique that was becoming more and more central to mathematics. Understandably, they sought a more dignified word, a word that would draw attention away from the need to search for a "small enough" change in input. The first ever calculus textbook, from 1694, had the title, "Analyse des Infiniment Petits," that is, "Analysis into the infinitely small." In a somewhat later book, Newton wrote and explanation which is only clear if you already understand it: "Those ultimate ratios ... are not actually ratios of ultimate quantities, but limits ... which they can approach so closely that their difference is less than any given quantity". The phrase "vanishingly small" for the change in input was used by proponents of calculus, and "evanescent" in one famous early critique (philosopher George Berkeley, 1734). Instead of "infinitely small," some preferred the word "infinitesimal." An famous image for the hard-to-grasp notion of something that stays even as it shrinks toward zero was provided by Charles Lutwidge Dodgson (1832-1898) who, under the pen-name Lewis Carroll, introduced the Cheshire Cat. The cat's smile corresponds to the rate of change. You cannot have a smile without a body surrounding it, just as you cannot have a rate of change of a function with a change in the input. In *Alice in Wonderland*, the Cat's smile remains even as the body disappears.
+In calculus textbooks from the last 150 years, derivatives are defined as "limits" with a notation like $$\lim_{h \rightarrow 0} \frac{f(x + h) - f(x)}{h} .$$ 
 
-In calculus textbooks from the last 150 years, derivatives are defined as "limits" with a notation like $$\lim_{h \rightarrow 0} \frac{f(x + h) - f(h)}{h} .$$ 
+None of this need concern the person using calculus to create and interpret models. The practical test that `h` is small enough is readily implemented on the computer without any need for philosophical reflection.
 
-None of this need concern the person using calculus to create and interpret models. The practical test that `h` is small enough is readily implemented on the computer.
-
-\newpage
 
 ::: {#fig-cheshire-cat}
 ![](www/Cheshire-cat.png)
+
 The Cheshire Cat from *Alice in Wonderland*.
 :::
 
@@ -522,24 +463,30 @@ In @sec-deriv-at-3 we calculated the rate of change of the function graphed in @
 
 When we can describe the algorithm for a calculation at any in a set of input values, we have a function. In other words, the derivative of a function is also a function. The new function takes the same inputs as the original. An analogy is the relationship between mother and child. Both are people. And children can become mothers with their own children, that is, grandchildren of the original mother. 
 
-Here is the analogy made explicit. $f(t)$ is the mother function. The child function is a new function called the derivative of $f(t)$ with respect to $t$. To make the notation more concise, we'll give a name to the derivative that reminds us of who the mother is. For a mother function $f(t)$, we will write the derivative function as $\partial_t f(t)$. The new notation, $\partial_t$ can be pronounced "the derivative of _____ with respect to $t$." When we write $\partial_t f(t)$, we are filling in the blank with the name of the mother function.
+To keep track of this generational ladder of functions, it helps to have a notation that shows the family relationship explicitly, such as a surname. We will use a function name as the surname, e.g., $f()$ or $osc()$ or rainfall(). To indicate a derivative of the named function, we will use the symbol $\partial$, which is usually pronounced "d." We need something more: an indication of which is the with-respect-to input. When a function has a single input, naming the with-respect-to input is not strictly necessary. Still, it can be a good habit for clarity. 
 
-::: {.column-page-inset-right}
-Family member | Math name | Formula
--------|------|-------------
-Mother        | function  | $f(t)$
-  |  |
-Child         | derivative | $\partial f_t(t) \equiv \frac{f(t+h) - f(t)}{h}$
-  |  |
-Grandchild    | second derivative | $\partial f_{tt}(t) \equiv \frac{\partial f_t(t + h) - \partial f_t(t)}{h^2}$
+Consider a function with two inputs, however, such as $f(x, t)$. $f()$ is the surname. The derivative *with respect to* $x$ is written, $\partial_x f(x, t)$. Similarly, the derivative with respect to $t$ is written $\partial_t f(x, t)$. Both $\partial_x f(x,t)$ and $\partial_t f(x,t)$ are descendents of the same parent function $f(x,t)$. But the two different derivatives are related in a manner analogous to half-siblings, sharing one mother but different fathers. Such children can have very different personalities, but are still closely related. 
+
+Remember that the derivative of a function is itself a function, so think about $\partial_x f()$ and $\partial_t f()$ as being names. This notation for names reminds us where the function came from, or, to use an older English grammar, *whence they were derived*. 
+
+$\partial_x f(x,t)$ and $\partial_t f(x,t)$, being functions themselves, they also can be differentiated with respect to either of their inputs. It would be long-winded to write $\partial_x \partial_x f()$ as the name of the function which is derived with respect to $x$ from $\partial_x f()$. For concision, we write instead $\partial_{xx} f()$. Generically, such derivatives are called `r xf_definition("second derivatives")`. $\partial_x f()$ is the "first derivative of $f()$ with respect to $x$," analogous to the child of $f()$, that is, the first generation of descendents. $\partial_{xx} f()$ is the grandchild of $f()$: the second generation of descendents. $\partial_{xx} f()$ has siblings and cousins such as $\partial_{tt} f()$ and $\partial_{xt} f()$.
+
+There is one everyday situation where second-derivatives can be felt viscerally. Suppose we know where an object (such as a car, plane, or bike) is at any time $t$. That is, position is a function of $t$, which we could call *pos(t)*. The velocity of the object is the derivative of position. The acceleration is the second derivative of position, or, if you prefer, the first derivative of velocity. You can feel acceleration, although we typically label the feeling as "force." Newton's *Second Law of Motion* famously states that force equals mass $\times$ acceleration: $F = m a$.
+
+The second derivative can play an important role in many fields outside of physics or mathematics. There is rarely a reason, except in technical work, to consider the third or higher derivatives.
+
+
+::: {.callout-note}
+## Notations for derivatives
+
+The reader who has studied calculus will be familiar with other notations for derivatives. Naturally, the ones that appeared early in the history of calculus became standards, such as Leibniz's notation $\frac{dy}{dx}$ and Newton's dot notation $\dot{y}$, invented in the late 1600s. Unfortunately, these commonly used notations pre-date the modern concept of a function and nothing in the notation hints that the objects are *functions* rather than *quantities*. (The use of $y$, unadorned with the parentheses that are every function's birthright, stems from an algebraic convention learned by beginning students, such as $y = m x + b$, where we would write $y(x) \equiv m x + b$.)
+
+Another standard calculus notation does use a function's name, as in $f'$ for the first derivative of $f()$ with respect to its single input. Second derivatives are denoted $f''$
+
+For functions with a single input, all of the various notations---$\frac{df}{dx}$, $f'$, and $\dot{f}$---have the same meaning as $\partial_x f()$.
 :::
 
-Continuing with the generational analogy ... although $\partial_t f(t)$ is the child of $f(t)$, such children can also have their own children. The notation we use for this is $\partial_{tt}$, which can be pronounced the "child of the child of _______ ," or more simply, the "grandchild of ______ ."
-When we write $\partial_{tt} f(t)$, we are filling in the blanks in the previous sentence. As you might expect, words like "child" and "grandchild" are not used when talking about derivatives. Instead, we say $\partial_t f(t)$ is the `r xf_definition("first derivative")` of $f(t)$, and $\partial_{tt} f(t)$ is the `r xf_definition("second derivative")`. And just as human families span many generations, there are also "third" and "fourth" and higher derivatives: great-grandchild and great-great grandchild and so in into progeny.
 
-The second derivative can play an important role in some common forms of [Calculus textbooks delight in having students compute high-order derivatives. This is mainly an exercise in algebra, but does have some payoffs in theoretical mathematics.] quantitative reasoning. There is rarely a reason, except in technical work, to consider the third or higher derivatives.
-
-There is one everyday situation where second-derivatives can be felt viscerally. Suppose we know where an object (such as a car, plane, or bike) is at any time $t$. That is, position is a function of $t$, which we could call *pos(t)*. The velocity of the object is the derivative of position. The acceleration is the second derivative of position, or, if you prefer, the first derivative of velocity. You can feel acceleration, although we typically label the feeling as "force." Newton's *Second Law of Motion* famously states that force equals mass time acceration: $F = m a$.
 
 ::: {.callout-note}
 ## The "Two Cultures"

@@ -1,0 +1,7 @@
+# Commands for building the book
+
+- `quarto render --to pdf --no-clean`
+
+- `xref_html_files(TRUE)` builds the cross-reference XREFS.rda file by reading the HTML files. 
+
+- Open the chat dialog in VS Code: cmd + ctrl + I

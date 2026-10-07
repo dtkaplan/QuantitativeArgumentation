@@ -55,7 +55,7 @@ The primary use of quantities is to state or record *how much* there is of somet
 > vii. Temperature, or intensity of heat
 > viii. Money, or value
 
-The "several kinds" of things in Thompson's list are mutually `r xf_definition("incommensurate")`: They cannot be arithmetically compared to one another or added to (or subtracted from) one another. Is a mile larger than a cubic centimeter? Invalid comparison. Is 212 degrees Fahrenheit bigger than 45 degrees of latitude? Don't go there, even though both units are named "degrees." How much is 12 seconds plus 4 dollars? No.
+The "several kinds" of things in Thompson's list are mutually `r xf_definition("incommensurate")`: They cannot be arithmetically compared to one another or added to (or subtracted from) one another. Is a mile larger than a cubic centimeter? Invalid comparison. Is 212°F bigger than 45 degrees of latitude? Don't go there, even though both units are named "degrees." How much is 12 seconds plus 4 dollars? No.
 
 ## Base units
 
@@ -170,7 +170,7 @@ In the boxed quantity in @eq-lincoln-gap, we have converted 1 mile to its equiva
 
 ## Unit conversion
 
-To facilitate addition, subtraction, and comparison of quantities, we often need to convert them to a common unit, as in @eq-lincoln-gap. For conversion, the units must be commensurate. Except for temperatures, [The units for representing [temperature] are commensurate: degrees C, degrees F, degrees K. However, conversion among them involves not just multiplication but also addition or subtraction. The reason has to do with the meaning of zero.  While 0 s means no time at all and 0 m means no length at all, the commonly used temperature units differ on what zero means. In degrees C, zero is the freezing point of water. In degrees F, zero marks a temperature well below freezing. In degrees K, zero means no thermal energy, corresponding to -273.15$^\circ$C.]{.column-margin} we convert between commensurate units by multiplication with a `r xf_definition("conversion factor")`.
+To facilitate addition, subtraction, and comparison of quantities, we often need to convert them to a common unit, as in @eq-lincoln-gap. For conversion, the units must be commensurate. Except for temperatures, [The units for representing [temperature] are commensurate: °C, °F, °K. However, conversion among them involves not just multiplication but also addition or subtraction. The reason has to do with the meaning of zero.  While 0 s means no time at all and 0 m means no length at all, the commonly used temperature units differ on what zero means. In degrees C, zero is the freezing point of water. In degrees F, zero marks a temperature well below freezing. In °K, zero means no thermal energy, corresponding to -273.15°C.]{.column-margin} we convert between commensurate units by multiplication with a `r xf_definition("conversion factor")`.
 
 
 

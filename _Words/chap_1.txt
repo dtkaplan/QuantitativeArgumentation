@@ -6,5 +6,5 @@
 - heuristic reasoning
 - models
 - quantitative models
-- sir
+- SIR model
 - word or phrase

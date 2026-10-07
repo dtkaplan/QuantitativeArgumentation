@@ -433,7 +433,6 @@ One is tempted to conclude from @fig-pop-growth that, if the US population follo
 
 `r xf("sec-dynamics")` has some lessons to teach about growth, particularly exponential growth. Remember that the Euler framework for dynamics does not start with a time series, such as those in @fig-pop-growth. Instead, the Euler framework starts with a *dynamical rule*, the function that takes the *state* of the system (population, here) and turns it into a rate of change with respect to time. The plots in @fig-pop-growth have *time* on the horizontal axis, not population. @fig-pop-dynamics(a) presents the data in dynamical rule format: change in state (with respect to time) versus state.
 
-::: {.column-page-right=inset}
 ```{r}
 #| label: fig-pop-dynamics
 #| echo: false
@@ -444,10 +443,10 @@ One is tempted to conclude from @fig-pop-growth that, if the US population follo
 #| fig-subcap: 
 #| - Dynamical rule
 #| - Proportional change (%) of state
-P3 |> gf_theme(theme_minimal(base_size = 16))
-P4 |> gf_theme(theme_minimal(base_size = 16))
+P3 |> gf_theme(theme_minimal(base_size = 14))
+P4 |> gf_theme(theme_minimal(base_size = 14))
 ```
-:::
+
 
 
 @fig-pop-dynamics(a) plots the yearly rate of change (with respect to time) versus the population. The format is exactly that of a dynamical rule in the Euler framework. True exponential growth corresponds to a same() dynamical rule. (See `r xf("fig-steady-dyn")`.) The particular dynamical rule shown corresponds to 1.94%. That is, the blue line shows the dynamical rule that is 

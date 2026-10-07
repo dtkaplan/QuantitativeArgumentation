@@ -211,6 +211,7 @@ Consider this example from an AI search on "running energy per mile":
 The English grammar of *per*-*per*s creates an ambiguity. Two different mathematical interpretations are possible for the English phrase "per mile per pound." The parentheses of mathematical notation make this clearer. For instance, here are the two interpretations using mathematical parentheses to indicate the order of operations:
 
 1. (Calories burned per mile) per pound, or
+
 2. Calories burned per (mile per pound), 
 
 Alternatively, using the over-under notation of ratios: 
@@ -228,8 +229,9 @@ Compound rate (1) works out to be 300 Calories / (3 mile $\times$ 150 pounds), t
 
 It is not possible to tell just from the English phrase "Calories per pound per mile" which compound rate is intended. Instead, we need to look for clues.  The AI text gives a clue about the use of the quantity 0.71. It says, "for example, a 200-pound person burns around 142 calories per mile." Quantity (1) divides the calories-per-mile by pounds, whereas quantity (2) multiplies the calories-per-mile by pounds.  We can try both:
 
-1. $\Large 0.71\, \frac{\text{Cal}}{\text{mile-pounds}} \times 200\, \text{pounds}$ gives 141 Cal per mile.
-2. $\Large 0.71\, \frac{\text{Cal}}{\text{mile-per-pounds}} \times 200\, \text{pounds}$ gives 141 Cal pounds^2^ per mile.
+1. ${\Large 0.71\, \frac{\text{Cal}}{\text{mile-pounds}}} \times 200\, \text{pounds}$ gives 141 Cal per mile.
+
+2. ${\Large 0.71\, \frac{\text{Cal}}{\text{mile-per-pounds}}} \times 200\, \text{pounds}$ gives 141 Cal pounds^2^ per mile.
 
 Only format (1) gives the result cited in the AI example.
 
