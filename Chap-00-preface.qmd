@@ -3,6 +3,32 @@
 source("_start-up.R")
 ```
 
+## Notes to Pre-publication Reviewers
+
+In 2023, I was challenged to develop two new core quantitative courses. This was part of a broader project to rethink the liberal arts curriculum from the ground up, and "core" meant something more stringent than usual. The courses would serve a requirement for *all* entering students to take exactly *those* courses. The courses filled a slot that, at almost all universities and colleges, is occupied by introductory statistics and pre-calculus/intro-calculus. 
+
+Students come from high school with widely varying expectations about where they will be placed in the mathematics curriculum, anywhere from Calc III to no place at all. This pair of courses was to be the common placement for *all* students, regardless of background. 
+
+The courses were to be closely aligned with a mission to foster critical thinking generally, as well as leadership in both the public and entrepreneurial realms. They were not to be a mere sample of college-level topics but a coherent introduction to methods genuinely useful in policy debates, commerce, and science.
+
+`r qr_margin_note(
+  "https://dtkaplan.github.io/INF-1220-QR2/static-documents/Block-by-block.html",
+  "Outline of follow-up data science course"
+)`
+
+This book is the text for one of the two courses. The [paired course](https://dtkaplan.github.io/INF-1220-QR2/static-documents/Block-by-block.html) covers data science and statistics, including methods common to contemporary science as well as causal inference and the Bayesian framework. 
+
+A free, online version of the book will be published alongside this print edition. Exercises, discussion materials, and supplementary resources will also be available online.
+
+
+<!-- I was recruited based on my 25-year background of developing and teaching innovative quantitative courses in applied calculus, data science, computing, and allied topics such as epidemiology and machine learning. Just prior to starting the liberal-arts commission, I had served a three-year appointment as a distinguished visiting professor at the US Air Force Academy, charged with facilitating mainstream mathematics faculty to replace the traditional required calculus sequence with a more modern and applied approach that would be attractive and meaningful to students and support the extensive science, technology, and engineering requirements of the Academy. -->
+
+
+
+
+
+## Preface (for the to-be released version)
+
 You, the reader, likely fall into one of three groups: students in college, students bound for college, or college instructors. A goal often claimed by colleges is that, among other things, they foster the development of *critical thinking* skills. While often used merely as a marketing slogan or mission statement, many college faculty press for the explicit teaching of critical thinking to be taught explicitly. This book is allied is allied with that goal.
 
 This book has a particular emphasis on critical thinking with quantitative information. But there are broad themes in the explicit critical thinking movement that are worth keeping in mind when considering how to teach critical thinking. Among these are 1) finding, evaluating, and using information effectively, 2) translating data and knowledge into formats that highlight key relationships, 3) building sound arguments based on evidence and knowledge, and 4) being aware of your own thinking patterns, including the development of new patterns and finding the appropriate level of skepticism and to your own and other's conclusions.
