@@ -61,6 +61,10 @@ format:
     toc-depth: 1
     fig-cap-location: margin
     linestretch: 1.0
+    colorlinks: true
+    linkcolor: blue
+    urlcolor: blue
+    citecolor: blue
     mainfontoptions:
       - Numbers=Lowercase
       - Numbers=Proportional   

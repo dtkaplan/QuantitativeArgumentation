@@ -1,0 +1,52 @@
+name, email, institution, date
+Andrew Johns, ajohns24@macalester.edu, Macalester College, 10/8/2026
+Shilad Sen, ssen@macalester.edu, Macalester College, 10/8/2026
+Lori Ziegelmeier, lziegel1@macalester.edu, Macalester College, 10/8/2026
+Lauren Milne, lmilne@macalester.edu, Macalester College, 10/8/2026
+Jason McDonald, jmcdona2@macalester.edu, Macalester College, 10/8/2026
+Susan Zarambo, szarambo@macalester.edu, Macalester College, 10/8/2026
+Amin Alhashim, aalhashi@macalester.edu, Macalester College, 10/8/2026
+Suhas Arehalli, sarehall@macalester.edu, Macalester College, 10/8/2026
+Curtis Balz, cbalz@macalester.edu, Macalester College, 10/8/2026
+Andrew Beveridge, abeverid@macalester.edu, Macalester College, 10/8/2026
+Paul Cantrell, pcantrel@macalester.edu, Macalester College, 10/8/2026
+Yariana Diaz, ydiaz@macalester.edu, Macalester College, 10/8/2026
+Lian Duan, lduan@macalester.edu, Macalester College, 10/8/2026
+David Ehren, ehren@macalester.edu, Macalester College, 10/8/2026
+Elizabeth Ernst, eernst@macalester.edu, Macalester College, 10/8/2026
+Taryn Flock, tflock@macalester.edu, Macalester College, 10/8/2026
+Susan Fox, fox@macalester.edu, Macalester College, 10/8/2026
+Kelsey Grinde, kgrinde@macalester.edu, Macalester College, 10/8/2026
+William Grodzicki, wgrodzic@macalester.edu, Macalester College, 10/8/2026
+Tom Halverson, halverson@macalester.edu, Macalester College, 10/8/2026
+Brianna Heggeseth, bheggese@macalester.edu, Macalester College, 10/8/2026
+Alex Hanhart, ahanhart@macalester.edu, Macalester College, 10/8/2026
+Kristin Heysse, kheysse@macalester.edu, Macalester College, 10/8/2026
+Bret Jackson, bjackson@macalester.edu, Macalester College, 10/8/2026
+Abby Loe, aloe@macalester.edu, Macalester College, 10/8/2026
+Abby Marsh, amarsh1@macalester.edu, Macalester College, 10/8/2026
+William Mitchell, wmitchel@macalester.edu, Macalester College, 10/8/2026
+Leslie Myint, lmyint@macalester.edu, Macalester College, 10/8/2026
+Taylor Okonek, tokonek@macalester.edu, Macalester College, 10/8/2026
+Daniel O’Loughlin, doloughl@macalester.edu, Macalester College, 10/8/2026
+Getiria Onsongo, gonsongo@macalester.edu, Macalester College, 10/8/2026
+Joslenne Peña, jpena@macalester.edu, Macalester College, 10/8/2026
+Vittorio Addona, addona@macalester.edu, Macalester College, 10/8/2026
+David Bressoud, bressoud@macalester.edu, Macalester College, 10/8/2026
+Joan Hutchinson, hutchinson@macalester.edu, Macalester College, 10/8/2026
+Daniel Kaplan, kaplan@macalester.edu, Macalester College, 10/8/2026
+Richard K. Molnar, molnar@macalester.edu, Macalester College, 10/8/2026
+Karen Saxe, kxs@ams.org, AMA, 10/8/2026 
+Michael Schneider, schneider@macalester.edu, Macalester College, 10/8/2026
+Elizabeth Shoop, shoop@macalester.edu, Macalester College, 10/8/2026
+Wayne Roberts, robertsw@macalester.edu, Macalester College, 10/8/2026
+Stan Wagon, wagon@macalester.edu , Macalester College, 10/8/2026
+Adrienne Christiansen, christiansen@macalester.edu,  Macalester College, 10/8/2026
+Jack Rossmann, rossmann@macalester.edu,  Macalester College, 10/8/2026
+Gitta Hammarberg, hammarberg@macalester.edu,  Macalester College, 10/8/2026
+James von Geldern, vongeldern@macalester.edu,  Macalester College, 10/8/2026
+Diane Michelfelder, michelfelder@macalester.edu,  Macalester College, 10/8/2026
+Aanonsen, aanonsen@macalester.edu,  Macalester College, 10/8/2026
+Mark Davis, davis@macalester.edu,  Macalester College, 10/8/2026
+Julie Dolan, dolan@macalester.edu,  Macalester College, 10/8/2026
+Joan Ostrove, ostrove@macalester.edu,  Macalester College, 10/8/2026 
