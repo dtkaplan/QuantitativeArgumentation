@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Rates – Quantitative Argumentation</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Chap-05-magnitudes.html" rel="next">
+<link href="./Chap-03-quantities.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-01-models.html">Foundations</a></li><li class="breadcrumb-item"><a href="./Chap-04-rates.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative Argumentation</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-01-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argument and reasoning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-02-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems, dimensions, and data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-03-quantities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-04-rates.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-05-magnitudes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Order of magnitude</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-06-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-07-core-modeling-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-09-composing-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Composing functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Decision, evidence, and belief</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-10-tradeoffs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trade-offs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-11-likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-12-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modeling change</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-13-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dynamics: Modeling change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-14-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-15-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capstone: Toward AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-16-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix-Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Chapter Summaries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-01-models.html">Foundations</a></li><li class="breadcrumb-item"><a href="./Chap-04-rates.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-rates" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><em>Vocabulary Review</em></p>
+<ul>
+<li>conversion factor (3)</li>
+<li>data (2)</li>
+<li>dimension (2)</li>
+<li>dimensionless (3)</li>
+<li>flavors of one (3)</li>
+<li>per (3)</li>
+<li>pure number (3)</li>
+<li>quantity (3)</li>
+<li>units (3)</li>
+<li>value (2)</li>
+<li>with respect to (3)</li>
+<li>worth (3)</li>
+</ul>
+<p><em>New</em></p>
+<ul>
+<li>compound rates</li>
+<li>rate</li>
+<li>rate of change</li>
+</ul>
+</div></div><p>☞&nbsp;<strong>Rates</strong><span id="finger-rate-definition" data-label="rate">&nbsp;☜</span> appear so often in quantitative reasoning that it is worth taking pains to be explicit about what they are and when they should be used. Recall that a <em>ratio</em> is simply one quantity divided by another. A rate is a kind of ratio, but in a rate the division reflects a particular intent to describe the relationship between the <em>dimension</em> underlying the quantities.</p>
+<p>Everyday conversation is peppered with rates, but we don’t always use the word “rate” when mentioning them. The situation is like the comedic character<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> who is informed, to his pleasure, that he had been speaking <em>prose</em> for his entire life. Likewise, automobile fuel economy is a kind of <em>rate</em>. It relates how far a car goes to how much fuel is consumed. Electricity prices are <em>rates</em>; they relate how much electricity is used to the amount of the bill. Acceleration is a <em>rate</em>. Money inflation is a <em>rate</em>. And, naturally, so are bank or credit card interest <em>rates</em>, although with interest the word “rate” appears explicitly. Paying attention to when and whether the thing you are talking about is a rate pays dividends (also a kind of rate) to the quantitative reasoner. And always take note of the dimensions being related by a rate.</p>
+<p>To illustrate a rate that doesn’t look like one, consider this everyday example. I walk for exercise, so I prompted an AI,</p>
+<p><strong>Prompt</strong>: Walking consumes calories, but how much?</p>
+<p><strong>AI Response</strong>: Walking a mile burns approximately 60-to-100 calories, but this varies based on individual weight, pace, terrain, and fitness level. The word “calorie” is common in everyday speech, so it’s understandable that the AI is using it. However, the quantitative unit is a “cal.” One-thousand cal is, in metric convention, a kcal, but it is often written “Cal,” with a capital C. Dietary information is usually presented in this large unit. A cal or Cal is commensurate with the metric unit Joule (J). We will use “Cal” in this dialog.</p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">Just FYI … The <em>dimension</em> of cal, Cal, and J is [energy]. [Energy] in terms of base dimensions is written M L<sup>2</sup> T<sup>-2</sup></span></div></div>
+<p>The AI agent might have responded, “How should I know? You didn’t tell me how many miles you walk.” But the actual response was clever, as if the AI were thinking, “He didn’t tell me his walking distance. What kind of answer can I give that will be meaningful even without the distance information?” That is where <em>rates</em> come into the matter.</p>
+<div class="page-columns page-full"><p>The AI response contains two quantities: 1 mile and 60-to-100 Cals. As you may know, 60-to-100 is a way of describing <em>uncertainty</em>,  which won’t be covered until <a href="Chap-08-uncertainty.html#sec-uncertainty">Chapter 8</a>, so for the present we simplify to “80 Cals.” Do these two quantities—1 mile and 80 Cals—specify a rate? Not until we go through the trouble of dividing one by the other, for instance 80 Cals per mile.</p><div class="no-row-height column-margin column-container"><span class="">The uncertainty stems from not knowing my individual weight, pace, terrain, and fitness, all of which the AI mentions as playing a role.</span></div></div>
+<div class="page-columns page-full"><p>By giving a rate, the AI is providing a DIY answer. My role, as the you-it-yourselfer, is to calculate the calories burned in my daily walk by <em>multiplying</em> the rate by my walking distance: </p><div class="no-row-height column-margin column-container"><span class="">The word <strong>per</strong> in the expressions “80 Cals per mile” and “0.0125 miles per Cal” plays the same role as the <span class="math inline">\(\div\)</span> symbol: to signify division. We could equally well write <span class="math inline">\(80\ \frac{\text{Cals}}{\text{mile}}\)</span> or even 80 Cals mile<sup>-1</sup>.</span></div></div>
+<p><span class="math display">\[80\ \frac{\text{Cals}}{\text{mile}} \times 4\ \text{miles} = 320\ \text{Cals}\]</span></p>
+<p>The rate is about <em>my</em> energy consumption, it is about the act of <em>walking</em>. A similar rate likely applies to your own walk, to your friend’s walk, and even a complete stranger’s walk.</p>
+<p>When we talk about rates in this book we will tend to be explicit. We will (in this chapter) use the words “rate” and “per” to signal that the quantity we mean is a rate. For instance, at the risk of being long winded, we will say, “My car’s fuel economy rate is 36 miles per gallon.” [Returning to the point about a rate being a ratio of <em>two</em> quantities, we might even have said, “36 miles per 1 gallon.” But this is not common practice.]</p>
+<p>The two quantities in the AI response were 1 mile and 80 Cals. We formed these into a rate by dividing 80 Cals by 1 mile giving 80 Cals per mile. But we could equally well have done the dividing the other way round: divide 1 mile by 80 Cals giving a different rate: 0.0125 miles per Cal. These two rates are different, but they both describe the relationship between walking and energy consumption. But even though the rates <em>80 Cal per mile</em> and <em>0.0125 mile per Cal</em> describe the same situation, they are not just different formats; they are entirely different quantities. First, the <em>dimension</em> differs: Cal-per-mile (L M T<sup>-2</sup> ) versus mile-per-Cal (L<sup>-1</sup> M<sup>-1</sup> T<sup>2</sup> ).</p>
+<p>Which of the two rates to prefer? The answer depends on the context. Here is one possible context:</p>
+<p><em>Suppose you have just come home from a 3-mile walk and want to quench your thirst with a can of soda. In walking 3 miles, you (or, more precisely, the model person described by 80 Cal/mile) used up 240 Cal, that is</em> <span class="math display">\[80\  \frac{\text{Cal}}{\text{mile}} \times 3\ \text{miles} = 240 \ \text{Cal}\]</span>.</p>
+<p>Now consider this different context:</p>
+<p><em>Last night your friend ate a lot of pasta—3000 Cal’s worth—loading up for her participation in a walking marathon. How far will this get her towards the total distance of 26.219 miles? You want to know how many calories the runners will use up. This calculation involves the other rate: <span class="math display">\[0.0125\  \frac{\text{mile}}{\text{Cal}} \times 3000\ \text{Cal} = 37.5\ \text{miles}, \]</span> More than enough!</em></p>
+<p>You can also frame the relationship another way; how many Cals will propel you the whole distance, 26.219 miles. The end result is to be in Cals, so we need a rate that will transform 26.219 miles into Cals. Here we use the form of the rate with Cals on top and miles on the bottom: 80 Cals per mile. Multiplying the distance times the appropriate rate gives: <span class="math display">\[26.219\ \text{miles} \times  80\  \frac{\text{Cals}}{\text{mile}}  = 2097.5\ \text{Cals} .\]</span></p>
+<section id="everyday-rates" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="everyday-rates"><span class="header-section-number">4.1</span> Everyday rates</h2>
+<p>Some examples of rates encountered in everyday life:</p>
+<ul>
+<li><p>comparison shopping: dollars per oz.</p></li>
+<li><p>dollars per square foot</p></li>
+<li><p>earnings payment <em>per</em> money in an investment account</p></li>
+<li><p>flow versus rate of flow: water volume per minute used by a shower</p></li>
+<li><p>economic product per person</p></li>
+<li><p>miles per gallon (Compound: ton miles per gallon(truck) or passenger miles per gallon (car or plane).</p></li>
+</ul>
+</section>
+<section id="sec-flavors-of-one" class="level2 page-columns page-full" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="sec-flavors-of-one"><span class="header-section-number">4.2</span> Conversion: Flavors of 1</h2>
+<div class="page-columns page-full"><p>In <a href="Chap-03-quantities.html#sec-quantities">Chapter 3</a> we referred to “dimensionless quantities.” For instance, 60 is pure number; pure numbers lack units and are therefore always dimensionless. However, even dimensionless numbers can have <em>units</em>. For example, an angle is dimensionless: it is a ratio of two lengths. </p><div class="no-row-height column-margin column-container"><span class="">See <a href="Chap-03-quantities.html#fig-angle-ratio">Figure 3.1</a>. The dimension of the angle ratio is [length]&nbsp;/&nbsp;[length], that is, L&nbsp;/&nbsp;L or [1].</span></div></div>
+<div class="page-columns page-full"><p>Dimensionless quantities (that is, quantities with dimension [1]) play an important role in converting from one unit to another. In general, to accomplish the conversion from one unit (say, miles) to another of the same dimension (say, km), multiply the first quantity by a ☞&nbsp;<strong>conversion factor</strong><span id="finger-conversion-factor-definition" data-label="conversion factor">&nbsp;☜</span> that is dimensionless.  As introduced in <a href="Chap-03-quantities.html#sec-quantities">Chapter 3</a>, we call such conversion factors ☞&nbsp;<strong>flavors of one</strong><span id="finger-flavors-of-one-definition" data-label="flavors of one">&nbsp;☜</span>.</p><div class="no-row-height column-margin column-container"><span class="">Temperature is an exception.</span></div></div>
+<p>A flavor of one is a ratio formed by dividing a quantity by an <em>exactly equal</em> quantity. For example, 1 km is the same length as 0.621371 miles. The conversion factor that converts miles to km will be a ratio with km on top and miles on the bottom. Constructing this ratio from the two equal amounts gives:</p>
+<p><span class="math display">\[\frac{1\ \text{km}}{0.621371\ \text{mi}} = \frac{1}{0.621371}\  \frac{\text{km}}{\text{mi}} = 1.609334\ \frac{\text{km}}{\text{mi}}\]</span></p>
+<p>The conversion factor 1.609334 km/mi is a flavor of one; it is the ratio of two equal quantities.</p>
+<p>A different, but closely related flavor of one converts km to miles: 0.621371 mi/km. In both cases, the <strong>dimension</strong> of the flavors of one are L / L = [1]. That is, “dimensionless.”</p>
+<p>Every conversion factor is a quantity, having both a pure number and units. Looking at the pure number in isolation won’t tell you which way the conversion goes. For that, you need the units. If the units are mi/km, the conversion goes from km to miles. If the units are km/mi, the conversion goes from miles to km. In general, the units of the conversion factor that translates <em>from</em> into <em>to</em> has units <em>to</em>/<em>from</em>.</p>
+<p><a href="#fig-google-km-to-miles" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-google-km-to-miles</span></a> shows the result of a Google search on “kilometer to miles.” The boxes labeled “kilometer” and “mile” indicate the units of the two main quantities provided. However, the value in the formula, 1.609, omits the units, which should be listed explicitly as mi/km. <em>Multiplying</em> the km value by 1.609 mi/km turns km into miles.</p>
+<div id="fig-google-km-to-miles" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-google-km-to-miles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="www/km-to-miles.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-google-km-to-miles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: The Google app for converting a kilometer into the equivalent distance in miles. The “formula” is correct, but it may be confusing because the units are missing from the quantity written as “1.609.”
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="percent" class="level2 page-columns page-full" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="percent"><span class="header-section-number">4.3</span> Percent</h2>
+<div class="page-columns page-full"><p><a href="Chap-03-quantities.html#sec-standard-dimensions">Section 3.4</a> introduced the notion that “percent” is a <em>unit</em> sometimes used to report dimensionless quantities. (See <a href="Chap-04-rates.html#percent">Section 4.3</a>.) For instance, 13 percent—often written 13%—is the same dimensionless quantity as 0.13. The word “percent” is short for the Latin phrase “per centum.” The word <em>centum</em> means 100. Since <em>per</em> means “divided by,” <em>per centum</em>” means “divided by 100.”</p><div class="no-row-height column-margin column-container"><span class="">“C-note” is old American slang for a $100 bill, perhaps short for “<em>centum</em>-note. The Latin numeral C also means 100.</span></div></div>
+<p>Most adults interpret “%” as meaning “a fraction <em>of</em>.” The <em>whole</em> of something is 100% (which is, of course, just 1.00). A store discount of 20% means “we take 20% off <em>of</em> the price.” Subtracting 20% from the whole means the new price is <span class="math display">\[100\% - 20\% = 1 - 0.2 = 0.8 = 80\%\]</span> <em>of</em> the original (non-discounted) price. A credit card interest rate of 28% per year means that after a year, if there are no new charges or payments, 28% <em>of</em> the original debt will be <em>added</em> to the original debt. In other words, the end-of-year debt will be <span class="math inline">\(100\% + 28\% = 1 + 0.28 = 1.28 = 128\%\)</span> <em>of</em> the start-of-year debt.</p>
+<p>In the above paragraph, the word “<em>of</em>” has been <em>italicized</em>. “80% <em>of</em> …” is perfectly idiomatic English. It means “0.80 multiplied by ….” The quantitative thinker has to pay careful attention to this use of idiom and translate it properly into the appropriate mathematical operation.</p>
+<p>When it comes to <em>division</em>, standard English uses the keyword “<em>per</em>” to signal which quantity is being divided by which. Unfortunately, “<em>of</em>” is not a reliable signal for multiplication; “of” is used in so many other ways in English. By analogy to “<em>per</em>,” we quantitative thinkers might push for general acceptance of a Latin word that provides a clearer signal. Appropriate choices are “<em>ex</em>,” “<em>de</em>,” and “<em>e</em>,” all of which carry the meaning “out of.” With such a convention, we would say “20% <em>ex</em> price” instead of “20% of the price.”</p>
+<p>In mathematical theory, the use of percent is extraneous. Anything we write as a percent, we can write in decimal notation. In practice, people have a marked preference for quantities expressed with one or two digits, that is, in the range 0 to <span class="math inline">\(\pm\)</span> 100. This preference is why it would be absurd to report weather temperatures in the SI base unit kelvin. “Today’s high temperature will be 303<span class="math inline">\(^\circ\)</span>K,” violates the 2-digit preference, whereas the equivalent “30<span class="math inline">\(^\circ\)</span>C” or “86<span class="math inline">\(^\circ\)</span>F” remain within the preferred range.</p>
+<p><span class="smallcaps">Be on the lookout for purely <em>rhetorical</em> uses</span> of units in percent. “Rhetoric” refers to techniques for speaking persuasively or compellingly. Everyone supports genuinely compelling quantitative arguments, but sometimes quantities are presented in ways that create a misleading impression. Here is an example from the <em>New York Times</em> in an article about the distinctive rhetorical style found in AI compositions:</p>
+<blockquote class="blockquote">
+<p><em>“A.I.s like gesturing at complexity (”intricate” and “tapestry” have surged since 2022), as well as precision and speed: “swift,” “meticulous,” “adept.” But “delve” — in particular the conjugation “delves” — is an extreme case. In 2022, the word appeared in roughly one in every 10,000 abstracts collected in PubMed. By 2024, usage had shot up by 2,700 percent.”</em> — Sam Kriss, “Why does AI write like … that”, <a href="https://www.nytimes.com/2025/12/03/magazine/chatbot-writing-style.html">New York Times, Dec.&nbsp;3, 2025</a></p>
+</blockquote>
+<p>An increase from <em>1 in 10,000</em> to 2700 is staggering and suggests that things are getting out of hand. But the quoted increase by 2700 <em>percent</em> corresponds to growing from 1 in 10,000 to 28 in 10,000. This is still a very small fraction. The double-zeros at the end of 2700 cancel out the “percent”: 2700% is the same as 27. “Shooting up” from 1 by 27 gives 28.</p>
+<p>Be aware that the practice of using percent as a unit can produce large numbers, like 2700%, that may create a misleading impression. The statement in the article would have been more meaningfully phrased as, “By 2024, 28 in every 10,000 abstracts contained ‘delve’.”</p>
+</section>
+<section id="sec-rates-of-change-brief" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="sec-rates-of-change-brief"><span class="header-section-number">4.4</span> Rates of change</h2>
+<p>Earlier, in <a href="Chap-03-quantities.html#sec-change-as-a-quantity">Section 3.6</a>, we introduced <em>change</em> in a quantity as a simple difference in the value of the quantity. When modeling <em>systems</em>, we focus on the connections between the quantities involved. So why did the value of the quantity change? Typically, it is because something else changed in the system. We use the phrase “<em>with respect to …</em>” to identify what may have changed. For instance, we can look at the change in temperature over an hour; the varying condition is then <em>time</em> and the change is described as being <em>with respect to time</em>. Sticking with the temperature example, we all know that temperature changes with respect to elevation (as we, say, climb a mountain), with respect to the amount of sunlight, or with respect to position.</p>
+<p>The simple idea of <em>change</em> (<a href="Chap-03-quantities.html#sec-change-as-a-quantity">Section 3.6</a>) involves looking at the shifting value of one primary quantity. <em>Rate of change</em>, however, involves <em>two</em> quantities, a primary and a context-setting, “with respect to” quantity.</p>
+<p>A ☞&nbsp;<strong>rate of change</strong><span id="finger-rate-of-change-definition" data-label="rate of change">&nbsp;☜</span> includes both the primary and the context-setting quantity in the calculation. To form a rate of change, divide the quantitative difference in the primary quantity by the corresponding difference in the context-setting quantity.</p>
+<p>“Primary” and “context-setting” can be thought of in terms of <em>functions</em>. (See <a href="Chap-06-functions.html#sec-intro-to-functions">Chapter 6</a>.) The context-setting quantity is the input, while the “primary” quantity is the output.</p>
+<p>To illustrate, consider the temperature of a cup of coffee over time as the cup sits at room temperature. “Over time” corresponds to the quantitative-thinking concept of <em>function</em>: temperature is a function of time. <a href="#fig-stan-coffee" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-stan-coffee</span></a> shows some data collected by <a href="www/Cooling_Coffee_without_Solving_Different.pdf">Prof.&nbsp;Stan Wagon</a>. He poured near-boiling coffee into a cup instrumented with a recording thermometer. Following the familiar pattern, the coffee cooled.</p>
+<div id="fig-stan-coffee" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-stan-coffee-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Coffee temperature recorded every five minutes for four hours (240 minutes).
+</figcaption>
+<div aria-describedby="fig-stan-coffee-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-stan-coffee" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-stan-coffee-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-stan-coffee-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-04-rates_files/figure-html/fig-stan-coffee-1.png" class="img-fluid figure-img" data-ref-parent="fig-stan-coffee" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-stan-coffee-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Change in temperature with respect to time
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-stan-coffee" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-stan-coffee-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-stan-coffee-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-04-rates_files/figure-html/fig-stan-coffee-2.png" class="img-fluid figure-img" data-ref-parent="fig-stan-coffee" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-stan-coffee-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Rate of change of temperature with respect to time
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>Blue lines mark the temperature levels recorded at 5 and 35 minutes. The <em>change</em> in temperature with respect to time is the vertical distance shown by the <span style="color: magenta;">magenta arrow</span>. The change over the 30-minute time interval is 29.9<span class="math inline">\(^\circ\)</span>C. The dimension of the change is simply <span class="math inline">\(\Theta\)</span>, that is, temperature, read directly from the vertical axis.</p>
+<p>The <em>rate of change</em> over the 30-minute time interval is - 29.9<span class="math inline">\(^\circ\)</span>C / 30 min = - 0.997<span class="math inline">\(^\circ\)</span>C/min. Notice that the dimension of the rate of change is <span class="math inline">\(\Theta\)</span>T<sup>-1</sup>, that is, temperature <em>divided by time</em>.</p>
+<p>Note that we could have calculated the rate of change for any interval, not just the 30-minute interval between times marked by the blue lines. Thus, the rate of change can itself change. The idea of changing rates of change takes some getting used to. But it forms a cornerstone of quantitative argumentation. We come back to it in <a href="Chap-13-dynamics.html#sec-dynamics">Chapter 13</a>.</p>
+</section>
+<section id="compound-rates" class="level2 page-columns page-full" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="compound-rates"><span class="header-section-number">4.5</span> Compound rates</h2>
+<p>As stated previously, a rate is a quantity. Calling the quantity a “rate” is merely a way of pointing out how the quantity was formed by the division of one quantity by another. Other than this history of the process of formation, a rate is no different than any other kind of quantity: a pure number plus a unit plus (optionally) a descriptive word.</p>
+<p>Rates are often composed by arithmetic on other rates. We call these ☞&nbsp;<strong>compound rates</strong><span id="finger-compound-rates-definition" data-label="compound rates">&nbsp;☜</span>, but this is merely to call attention to the formation of the rate. Like all rates, a compound rate is simply a quantity. Even so, in interpreting a quantity, it is helpful to keep in mind where it comes from. The words “rate” and “compound rate” are helpful in this.</p>
+<p>Consider this example from an AI search on “running energy per mile”:</p>
+<p><em>Running energy per mile, or calories burned per mile, averages around 100 for a 150-pound person but varies significantly based on individual factors like body weight, fitness level, age, sex, and muscle mass. A commonly cited rule of thumb is to estimate about 100 calories burned per mile; a more accurate estimation involves multiplying body weight (in pounds) by 0.71 to get a general figure, for example, a 200-pound person burns around 142 calories per mile.</em> — AI generated</p>
+<div class="page-columns page-full"><p>“Running energy per mile” is a rate.  The AI response goes on to discuss the role of body weight in the number of calories burned. Part of this involves a <em>compound rate</em> 0.71 Calories <em>per</em> mile <em>per</em> pound of body weight. Note the two uses of “per” in the phrase. The two occurrences of <em>per</em> signal that this is a compound rate.</p><div class="no-row-height column-margin column-container"><span class="">You can also think of it as a rate of change, since “Calories burned” is a change in the runner’s stock of energy and the mile is really a change in the distance run.</span></div></div>
+<p>The English grammar of <em>per</em>-<em>per</em>s creates an ambiguity. Two different mathematical interpretations are possible for the English phrase “per mile per pound.” The parentheses of mathematical notation make this clearer. For instance, here are the two interpretations using mathematical parentheses to indicate the order of operations:</p>
+<ol type="1">
+<li><p>(Calories burned per mile) per pound, or</p></li>
+<li><p>Calories burned per (mile per pound),</p></li>
+</ol>
+<p>Alternatively, using the over-under notation of ratios:</p>
+<ol type="1">
+<li><span class="math inline">\(\Large\frac{\text{Calories burned / mile}}{\text{pound}}\)</span>, which is <span class="math inline">\(\Large\frac{\text{Calories burned}}{\text{mile} \times \text{pounds}}\)</span>.</li>
+<li><span class="math inline">\(\Large\frac{\text{Calories burned}}{\text{miles/pound}}\)</span> which resolves to <span class="math inline">\(\Large\frac{\text{Calories} \times \text{pound}}{\text{mile}}\)</span>.</li>
+</ol>
+<p>Compound rates (1) and (2) are different quantities. To see this, imagine a 150-pound person running 3 miles, burning 300 Calories in the process. Note that there are three quantities involved:</p>
+<ol type="i">
+<li>300 Calories burned</li>
+<li>150 pounds of weight</li>
+<li>3-mile length run</li>
+</ol>
+<p>Compound rate (1) works out to be 300 Calories / (3 mile <span class="math inline">\(\times\)</span> 150 pounds), that is, 0.667 Calories per (pound-miles). In contrast, compound rate (2) is (300 Calories <span class="math inline">\(\times\)</span> 150 pounds) / 3 miles, or 15,000 Calorie-miles per pound. (1) and (2) are different numbers, different units, and different dimensions.</p>
+<p>It is not possible to tell just from the English phrase “Calories per pound per mile” which compound rate is intended. Instead, we need to look for clues. The AI text gives a clue about the use of the quantity 0.71. It says, “for example, a 200-pound person burns around 142 calories per mile.” Quantity (1) divides the calories-per-mile by pounds, whereas quantity (2) multiplies the calories-per-mile by pounds. We can try both:</p>
+<ol type="1">
+<li><p><span class="math inline">\({\Large 0.71\, \frac{\text{Cal}}{\text{mile-pounds}}} \times 200\, \text{pounds}\)</span> gives 141 Cal per mile.</p></li>
+<li><p><span class="math inline">\({\Large 0.71\, \frac{\text{Cal}}{\text{mile-per-pounds}}} \times 200\, \text{pounds}\)</span> gives 141 Cal pounds<sup>2</sup> per mile.</p></li>
+</ol>
+<p>Only format (1) gives the result cited in the AI example.</p>
+<p>There is a more fundamental way to see why interpretation (1) is the right one. The person is using 0.71 Cals to carry out a task. Which task? To move one pound for one mile. The unit “pound-mile” measures the amount of the task; a 150-pound person needs to perform 150 pound-miles to get themselves a distance of one mile.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div id="fig-curved-road" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap-location="bottom">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-curved-road-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="www/curved-road.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curved-road-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Curves and hills shorten sight lines.
+</figcaption>
+</figure>
+</div>
+</div></div><p>Consider this example involving an eco-science task: measuring the number of animals crossing different roads. The technique: position the observer along the road who will spend a couple of hours with binoculars, counting the crosses they see. Making a fair comparison between roads requires adjusting for the time duration of observation. Less obvious, the raw count also needs to be adjusted for the length of roadway visible in binocular range. (On a curved or hilly road, for instance, sightlines might be limited to, say, 100 yards, while on a straight road, a half-mile of road is visible.) The amount of monitoring done by the observer units of mile-hours, that is, miles of road visible <em>times</em> hours spent monitoring. The format for the compound rate that fairly compares roads is animal crossings per mile-hour.</p>
+<p>Some other examples of compound rates:</p>
+<ul>
+<li>Shipping costs. Dollars per the amount of shipping. There are two components to “Shipping”: the weight of the goods and the distance covered. The total amount of shipping is the weight times the distance. For railways, this is sometimes presented as “ton-miles.”</li>
+<li>Medicine dosing. Nurses using an intravenous (IV) drip to administer medicine are given the dose as a compound rate: milligrams of medicine per kilogram-hour. The nurse mixing the medicine in the IV bottle needs to know how many hours the bottle will last. The bigger the bottle, or the bigger the patient, the more milligrams needed.</li>
+<li>Rent. Rents for commercial space are often specified in dollars per square-foot-months, that is, monthly rent per unit area. Multiply monthly rent per unit area by the number of square feet to get the rent payment needed each month.</li>
+<li>Work effort is sometimes tallied using units such as person-hours or person-months.</li>
+<li>Energy use. The amount of energy needed to heat a house depends on the size of the house, the length of the heating season, and the temperature. An AI search on “amount of natural gas to heat a house” produced this response:</li>
+</ul>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">Another standard metric is the energy use per square foot per heating degree-day (HDD), where a typical range is 5.0 to 10.0 BTU/HDD/Sq.Ft.</span></div></div>
+<p>BTU (British Thermal Unit) is a measure of energy. The amount of heating “service” required is the product of duration, coldness, and house size. The standard unit is degree-day-square-feet. So the rate of energy use is BTU per degree-day-square-feet. There are <a href="https://www.eia.gov/energyexplained/units-and-calculators/degree-days.php">tables showing the average annual number of heating degree-days</a> for various locales. A web search for “annual heating degree days for Minneapolis” yielded an estimate of 6000 degree-days. For a house of 1200 square feet, this comes to a demand of 1200 square-feet <span class="math inline">\(\times\)</span> 6000 degree-days, or just over 7 million degree-day-square-feet. The typical range for energy use over a year would be 35 to 70 million BTU.</p>
+<p>Notice that the unit “BTU/HDD/Sq.Ft.” quoted by the AI is ambiguous. It should be BTU per HDD-(ft<sup>2</sup>). Suppose that we misinterpret the quoted range—5.0 to 10.0—as being in units of BTU/(HDD/ft<sup>2</sup>). For the 1200-square-foot house in the example, we would have 6000 degree-days divided by 1200 square feet, resulting in 5 degree-days per square foot. The total BTU usage for the house would be (mis-)calculated as 5.0 to 10.0 BTU per (HDD/Sq.Ft.) <span class="math inline">\(\times\)</span> 5 HDD/Sq.Ft. = 25 to 50 BTU. For comparison, bringing 1 liter of water to a boil consumes about 250 BTU. It is hard to imagine that heating a house for a year would use less energy than boiling a liter of water. Mistaking HDD <span class="math inline">\(\times\)</span> ft<sup>2</sup>. for HDD <em>per</em> ft<sup>2</sup> will cause a lot of trouble when designing or outfitting a house!</p>
+</section>
+<section id="multiplying-quantities" class="level2 page-columns page-full" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="multiplying-quantities"><span class="header-section-number">4.6</span> Multiplying quantities</h2>
+<div class="page-columns page-full"><p>This morning, the author went for his habitual walk, which he estimates consumed 300 Cal. For diet planning or indicating general health, 300 Cal can be a good summary of the exercise. But the estimate combines two different factors: the energetics of walking and the distance walked. We use a rate, Cals per mile, to describe the energetics of walking. For walking, the rate is approximately 80 Cal/mile. Just about anyone on just about any walk can use the rate to find the total calories consumed; multiply the walk’s length by the energetic rate. A two-mile walk consumes 80 Cal mile<sup>-1</sup> <span class="math inline">\(\times\)</span> 2 mile = 160 Cal. </p><div class="no-row-height column-margin column-container"><span class="">This is roughly the caloric content of one can of (non-diet) soda.</span></div></div>
+<p>Using the rate, we can compare the energetics of walking and running, again using a Cal/mile rate.</p>
+<blockquote class="blockquote">
+<p><em>Take a moment to guess whether running or walking consumes more calories.</em></p>
+</blockquote>
+<p>Many people guess that running consumes more energy. For instance, the author used to go for a 3-mile run each morning, and people assume that the author’s 4-mile walk is less exercise than the 3-mile run. There is no reason to assume; an internet search shows that running consumes about 100 Cal/mile. Surprisingly, that is similar to the energy rate for walking.</p>
+<p>The author’s 4-mile walk uses about 300 Calories, roughly the same amount of energy as the 3-mile run: 100&nbsp;Cal&nbsp;mile<sup>-1</sup>&nbsp;<span class="math inline">\(\times\)</span>&nbsp;3&nbsp;mile&nbsp;=&nbsp;300&nbsp;Cal. Once again, knowing the energy <em>rate</em> enables us to calculate a <em>total energy</em>: multiply the rate by the distance.</p>
+<p>The pattern that “rate <span class="math inline">\(\times\)</span> quantity gives total” is encountered every day. Some examples:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Context</th>
+<th>Rate</th>
+<th>Multiplier</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Buying groceries</td>
+<td>12 dollars per pound</td>
+<td>0.75 pounds</td>
+<td>9 dollars</td>
+</tr>
+<tr class="even">
+<td>American driving</td>
+<td>35 miles per gallon</td>
+<td>10 gallons</td>
+<td>350 miles</td>
+</tr>
+<tr class="odd">
+<td>European driving</td>
+<td>5 liters per 100 km</td>
+<td>500 km</td>
+<td>25 liters</td>
+</tr>
+<tr class="even">
+<td>Wages</td>
+<td>17 dollars / hour</td>
+<td>40 hours</td>
+<td>680 dollars</td>
+</tr>
+</tbody>
+</table>
+<p>The ratio/rate (price per pound, liters per 100 km, dollars per hour) describes the context. Multiplying the rate by an amount—in terms of the denominator of the ratio—gives a total in terms of the numerator of the ratio.</p>
+<p>As previously stated, we use dimensionless flavors of one to convert units between two quantities with the <em>same</em> dimension. It is reasonable to view dimensionful rates similarly: as conversion factors between different dimensions. Have gallons and want miles: multiply by the rate miles-per-gallon. Have 3/4 of a pound of cheese and want the price: multiply by the rate dollars-per-pound.</p>
+<p>For some people, the result of multiplying two quantities sometimes seems odd. For instance, units of <em>passenger-miles</em> denote the amount of transportation service. One passenger going one mile is one passenger-mile; an airplane carrying 150 passengers for 3000 miles is providing 150 passengers <span class="math inline">\(\times\)</span> 3000 miles of transit: 450,000 passenger-miles. A water-resources engineer might measure volume in acre-feet: multiplying area in acres by the depth in feet of water. Mechanics working on a car or a bike have to apply the right amount of torque to tighten a bolt without overstressing it. Torque is measured in foot-pounds: a foot of length times a pound of force.</p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Monsieur Jourdain in <em>The Would-be Gentleman</em> by Molière, 1622-1673<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Chap-03-quantities.html" class="pagination-link" aria-label="Quantities">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Chap-05-magnitudes.html" class="pagination-link" aria-label="Order of magnitude">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Order of magnitude</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

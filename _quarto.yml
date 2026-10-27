@@ -6,6 +6,7 @@ book:
   title: "Quantitative Argumentation"
   subtitle: "Making Sense with Numbers"
   author: "Daniel T. Kaplan"
+  date: "2027"
   chapters:
     - index.qmd   
 
@@ -75,6 +76,30 @@ format:
         \usepackage[export]{adjustbox}
         \makeatletter
         \renewcommand{\part}[1]{\addcontentsline{toc}{part}{#1}}
+        \renewcommand{\maketitle}{%
+        \begin{titlepage}
+          \newgeometry{left=18mm,right=18mm,top=18mm,bottom=18mm}
+          \thispagestyle{empty}
+          \centering
+          \vspace*{\fill}
+      
+          {\Large\scshape Texts for Curriculum Renewal\par}
+          \vspace{20mm}
+      
+          {\Huge\bfseries \@title\par}
+          \vspace{8mm}
+          {\LARGE\bfseries\itshape \@subtitle\par}
+      
+          \vspace{20mm}
+          {\Large\scshape \@author\par}
+      
+          \vspace*{\fill}
+          {\large Project MOSAIC Books\par}
+          {\large © 2027\par}
+          \vspace{10mm}
+          \end{titlepage}
+          \restoregeometry
+        }
         \makeatother
     fig-pos: "H"
     geometry:
@@ -89,6 +114,7 @@ format:
       - paperheight=11in  
 
 crossref:
+  chapters: true
   eq-title: "Math expression"
   eq-prefix: "Math expression"
   thm-title: "Enrichment"

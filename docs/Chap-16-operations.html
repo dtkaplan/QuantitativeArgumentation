@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>16&nbsp; Moving Past Two Inputs – Quantitative Argumentation</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Appendix-Summaries.html" rel="next">
+<link href="./Chap-15-accumulation.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/rglWebGL-binding-1.3.34/rglWebGL.js"></script>
+<link href="site_libs/rglwidgetClass-1.3.34/rgl.css" rel="stylesheet">
+<script src="site_libs/rglwidgetClass-1.3.34/rglClass.min.js"></script>
+<script src="site_libs/CanvasMatrix4-1.3.34/CanvasMatrix.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-16-operations.html">Capstone: Toward AI</a></li><li class="breadcrumb-item"><a href="./Chap-16-operations.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative Argumentation</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-01-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argument and reasoning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-02-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems, dimensions, and data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-03-quantities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-04-rates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-05-magnitudes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Order of magnitude</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-06-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-07-core-modeling-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-09-composing-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Composing functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Decision, evidence, and belief</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-10-tradeoffs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trade-offs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-11-likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-12-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modeling change</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-13-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dynamics: Modeling change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-14-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-15-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capstone: Toward AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-16-operations.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix-Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Chapter Summaries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-16-operations.html">Capstone: Toward AI</a></li><li class="breadcrumb-item"><a href="./Chap-16-operations.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-moving-past-two-inputs" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><em>Vocabulary Review</em></p>
+<ul>
+<li>algorithm (6)</li>
+<li>data (2)</li>
+<li>dimension (2)</li>
+<li>functions (6)</li>
+<li>margin (14)</li>
+<li>maximum (10)</li>
+<li>mean (8)</li>
+<li>models (1)</li>
+<li>per (3)</li>
+<li>point (3)</li>
+<li>rate (4)</li>
+<li>rate of change (4)</li>
+<li>space (3)</li>
+<li>system (6)</li>
+<li>value (2)</li>
+<li>with respect to (3)</li>
+</ul>
+<p><em>New</em></p>
+<ul>
+<li>alignment between two vectors</li>
+<li>dot product</li>
+<li>gradient</li>
+<li>large language models</li>
+<li>learning</li>
+<li>length of a vector</li>
+<li>optimization</li>
+<li>plane</li>
+<li>projecting</li>
+<li>projection</li>
+<li>subspace</li>
+<li>unsupervised learning</li>
+<li>vector</li>
+</ul>
+</div></div><p>Previous chapters introduced a framework for quantitative thinking, highlighting dimensionality, which relates aspects of the world through mathematical relationships, such as between location and velocity or between energy and power.</p>
+<ul>
+<li>Functions and their input spaces describe how different aspects of the world are related. They also provide a way to express uncertainty and likelihood, and to extract information from data in a Bayesian style.</li>
+<li>magnitudes as a device for relating the very large to the very small;</li>
+<li>Rates of change and accumulation are versatile tools. They represent dynamics, guide decisions, and capture common relationships among aspects of the world.</li>
+</ul>
+<p>This framework developed over centuries, spurred by ingenuity, insight, and technological advances like computing.</p>
+<p>In this final chapter, we bring together these components to show how the framework enables new forms of quantitative reasoning. These new approaches take on many forms; for example, the emergence of Large Language Models that attempt to capture meaning in text.</p>
+<section id="revising-high-school-algebra" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="revising-high-school-algebra"><span class="header-section-number">16.1</span> Revising high-school algebra</h2>
+<p>To start, we examine two familiar high school algebra problems. Techniques for these were developed when paper and pencil were students’ only tools. Unsurprisingly, such methods are ineffective with several variables—and even less so with large quantities.</p>
+<ol type="1">
+<li><p>Find “solutions”, “x-intercepts,” and “roots.” These words signal the same kind of problem: finding function inputs that result in a specified output. Here, a “solution” is a value of x that makes the equation true, an “x-intercept” is a point where the graph crosses the x-axis, and a “root” is another term for a solution. For example, you might be asked to find the roots of a polynomial such as <span class="math inline">\(x^2 - 2 x - 3\)</span>. This is the same as “solving” <span class="math inline">\(x^2 - 2x - 3 = 0\)</span>.</p></li>
+<li><p>Solve ☞&nbsp;<strong>simultaneous equations</strong><span id="finger-simultaneous-equations-definition" data-label="simultaneous equations">&nbsp;☜</span>. There is more than one function, each sharing the same inputs. You want to find the input values that make each function reach a specified value. In textbooks, a simultaneous equation problem usually appears like this: there are always the same number of equations as input variables.</p></li>
+</ol>
+<p><span class="math display">\[\begin{array}{ccccc}
+5\, x &amp; - &amp; 2\,  y &amp; = &amp; 4\\
+2\, x &amp; + &amp; 3\, y &amp; = &amp; -2\\
+\end{array}\]</span></p>
+<p>A third problem setting, ☞&nbsp;<strong>optimization</strong><span id="finger-optimization-definition" data-label="optimization">&nbsp;☜</span>, is important across applications of quantitative reasoning. It is just beyond the reach of high school algebra methods. An example in the style of high-school algebra is: Given that <span class="math inline">\(x,y = 100\)</span>, what values of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> give the smallest value for <span class="math inline">\(x + y\)</span>?<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>These three problem settings are important in practice. Imagine yourself controlling a complex system: adjusting valves, pumps, and burners in a chemical plant, or managing logistics to source components for a product like a cell phone. <a href="Chap-16-operations.html#fig-control-panel">Figure 16.1</a> shows a generic image of this situation.</p>
+<div id="fig-control-panel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-control-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="www/control-panel.png" class="img-fluid figure-img" style="width:3in">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-control-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.1: A control panel for managing a complex system.
+</figcaption>
+</figure>
+</div>
+<p>Perhaps your task for the day is to adjust the controls so the tank’s temperature and pressure stay at the right levels. You need to adjust dials, flip switches, and so on. Or, in a bigger task, you might have to maximize plant productivity while staying within limits on quality and safety.</p>
+<p>These tasks fit into a framework for finding solutions or optimizing. You don’t have the system’s “equations,” but you have some basic knowledge, outputs from various gauges, and switches and dials to set inputs. Quantitative tools here differ from the symbol manipulation found in high school problems. Let’s examine these tools and how they relate to topics from previous chapters.</p>
+</section>
+<section id="walking-uphill" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="walking-uphill"><span class="header-section-number">16.2</span> Walking uphill</h2>
+<p>Every child knows how to get to the top of a hill: walk uphill! In this section, we look at the basic mathematics of walking uphill. We then extend it to the realistic case where the entire scene is hidden by impenetrable fog.</p>
+<p>We want to solve quantitative problems by walking uphill (or downhill) to find solutions and optimize. For illustration, we create mathematical hills and explore ways to move in the right direction.</p>
+<p>Our mathematical hills will be functions. The function’s output is the hill’s elevation. The inputs are the location where you are standing, and the latitude and longitude. For simplicity, we start with functions with a single input, as if you were obliged to walk along a road to get to the top of the hill. The function’s input is the position along the road.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-hill-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hill-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-16-operations_files/figure-html/fig-hill-1-1.png" class="img-fluid figure-img" width="480">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hill-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.2: Elevation vs position along a road
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="Chap-16-operations.html#fig-hill-1">Figure 16.2</a> provides an example of such a function. Where should you walk on the road to reach the highest elevation? A glance is enough to find the answer: about 5 miles.</p>
+<p><a href="Chap-16-operations.html#fig-hill-1">Figure 16.2</a>(b) shows a more realistic view. You can’t see the whole function. You only know the elevation at your current spot and whatever you note in your notebook. We start the walker at position 2 on the road, where the elevation is about 12 m.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-hill-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hill-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-16-operations_files/figure-html/fig-hill-2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hill-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.3: Elevation vs position along a road, displaying the value of the output only at the places where you have already been. Rate of change is the slope of the blue segment.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The key tool for navigating the foggy road is the rate-of-change function: the derivative. You can find its value at your position by taking a small step right, then measuring the elevation again. If the new elevation is higher, the rate of change is positive.</p>
+<p>The algorithm for reaching the top can be simple: if the function’s rate of change is positive, step to the right. Otherwise, go left. Keep on stepping in this fashion.</p>
+<p><span class="smallcaps">The interesting problems are those with many inputs</span> and expensive evaluations. For example, setting inputs might require shutting down an entire chemical plant. Another example comes from AI: optimizing a large-language model (LLM) like GPT-5 involves about 500 billion inputs. In both cases, finding a good maximum output yields the desired intelligence or outcome.</p>
+<p>While building an LLM is far beyond our scope—we would need significant resources for that—we can still develop intuition for strategies that help us find an optimum without graphing the function.</p>
+<div style="page-break-after: always;"></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>An interactive web app.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is a collection of interactive web apps for QR-A at <a href="https://dtkaplan.shinyapps.io/QR-A-shiny/">https://dtkaplan.shinyapps.io/QR-A-shiny/</a> including one that lets you evaluate a function without graphing it. Go to the Optimization/g(x,y) menu and experiment. It’s hard to find the maximum of a function with two inputs without a graph. But if you turn on the “Follow Gradient” feature, you’ll always know which direction is up. Take small, successive steps along the arrow; you’ll trace an uphill path. Until you develop intuition, you may get stuck. Use the “training wheels” option for help when needed.</p>
+</div>
+</div>
+<p>This strategy of walking uphill also applies to functions with 2 or more inputs, including functions with hundreds, thousands, or millions of inputs. With two inputs, we can create a visualization that guides our intuition for dealing with functions with many inputs.</p>
+<p>Recall that for a function with two inputs, say <span class="math inline">\(f(x, y)\)</span>, there are two different rate-of-change functions. Imagine standing at your position on the hill. That position is the intersection of two roads. One road runs east-west, the other runs north-south, as in <a href="Chap-16-operations.html#fig-hill-with-roads">Figure 16.4</a>.</p>
+<div id="fig-hill-with-roads" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hill-with-roads-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-hill-with-roads" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-hill-with-roads-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-hill-with-roads-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-16-operations_files/figure-html/fig-hill-with-roads-1.png" class="img-fluid figure-img" data-ref-parent="fig-hill-with-roads" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hill-with-roads-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Zoomed out to show a large region
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-hill-with-roads" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-hill-with-roads-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-hill-with-roads-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-16-operations_files/figure-html/fig-hill-with-roads-2.png" class="img-fluid figure-img" data-ref-parent="fig-hill-with-roads" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hill-with-roads-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Zoomed in close to the intersection of the roads
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hill-with-roads-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.4: A landscape with two roads. You are standing at the red dot.
+</figcaption>
+</figure>
+</div>
+<p>To start, you are at elevation 11.98 m. Take a step to the east, that is, right on the gray road. For the sake of definiteness, each step will length of the green arrows. The eastward step will take you to an elevation of about 12.06 m, that is, an elevation gain of 0.08 m. In contrast, the step to the north will bring you downhill to an elevation of about 11.93, a loss of 0.05 m.</p>
+<p>From this information, you can calculate the direction of the step that will take you in the steepest uphill direction. To judge from <a href="Chap-16-operations.html#fig-hill-with-roads">Figure 16.4</a>, the steepest step will be in the east-south-east direction.</p>
+<p>The step to the east gives you what’s needed to calculate the rate of change of the output with respect to longitude evaluated at the red dot. The step to the north gives you the rate of change of the output with respect to latitude. Each of these is a quantity with units of meters (of elevation) per degree (of latitude) for the north step or meters (of elevation) per degree (of longitude) for the east step. Combining the two rates of change gives the direction of steepest ascent on the hill and the amount of elevation gain achieved by taking a unit-length step. This information—direction and amount—is called the ☞&nbsp;<strong>gradient</strong><span id="finger-gradient-definition" data-label="gradient">&nbsp;☜</span>.</p>
+<p>The word “gradient” comes from a Latin root gradi, meaning “to step” or “to advance.” The gradient is a ☞&nbsp;<strong>vector</strong><span id="finger-vector-definition" data-label="vector">&nbsp;☜</span>. The word “vector” stems from the Latin vehere, which means “to carry.” The gradient vector carries you uphill. The algorithm for optimizing by following the gradient vector dates back to 1847.</p>
+</section>
+<section id="another-description-of-the-gradient" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="another-description-of-the-gradient"><span class="header-section-number">16.3</span> Another description of the gradient</h2>
+<p>The rate-of-change functions give important information about the way uphill. We use the plural “functions” because each direction has its own rate of change function. The goal for the mathematical hill climber is to find the direction with the greatest rate of change.</p>
+<p>The problem setup is this:</p>
+<ol type="1">
+<li>There is a function <span class="math inline">\(f(x, y, \ldots)\)</span> for which you seek to find the value for each input that will give the greatest possible output. We will denote these input values as <span class="math inline">\(x^\star, y^\star, \ldots\)</span>, but we do not yet know their values.</li>
+<li>We are standing at a position <span class="math inline">\((x_0, y_0, \ldots)\)</span>. This is our starting position. It is often chosen at random, as if we drifted downward into the terrain like a leaf or raindrop.</li>
+<li>We want to find a direction that points uphill and, ideally, uphill in the steepest possible direction.</li>
+<li>Upon finding this direction, take a small step forward to a new position <span class="math inline">\((x_1, y_1, \ldots)\)</span>. The new position will be higher than the previous one, since the gradient always points uphill. Repeat (3) and (4) many times. In <a href="Chap-16-operations.html#fig-gradient-climb">Figure 16.5</a>, these successive steps are marked by circles.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-gradient-climb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gradient-climb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-16-operations_files/figure-html/fig-gradient-climb-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gradient-climb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.5: Success steps climbing up the gradient from initial position 0. Each gray arrow is the gradient vector from the current position.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The walk started at a random position, marked by a circle with the number 0. From position 0, we find the uphill direction. This is the gray arrow from 0. We go a small distance that way and reach position 1. Find the uphill direction again and walk a small distance to point . Continue the process. As we approach the maximum, the steps become shorter. We can stop whenever the steps are too small to matter.</p>
+<p>To implement this simple algorithm, we need to find the (steepest) uphill direction. We can do this with purely local information about the rate of change around our current position. For a function with two inputs, there are two rates of change: one with an east-west orientation, the other oriented north to south. These rates of change are easy to calculate:</p>
+<p>For the east-west direction, the rate of change is <span class="math display">\[\partial_x f(x_0, y_0) = \frac{f(x_0 + h, y_0) - f(x_0, y_0)}{h} .\]</span> Similarly, the north-south rate of change is <span class="math display">\[\partial_y f(x_0, y_0) = \frac{f(x_0, y_0 + h) - f(x_0, y_0)}{h} .\]</span> As discussed in <a href="Chap-14-rates-of-change.html#sec-rates-of-change">Chapter 14</a>, we can set <span class="math inline">\(h\)</span> to be any small value. The most uphill direction at an input location <span class="math inline">\((x_0, y_0)\)</span> turns out to be simply <span id="eq-partial-gradient"><span class="math display">\[\left(\partial_x f(x_0, y_0),\  \partial_y(x_0, y_0)\right)\ . \tag{16.1}\]</span></span> This coordinate pair can be interpreted as a direction and length in the <span class="math inline">\((x, y)\)</span> space. In mathematics, a coordinate pair such as (3, 4) can be interpreted either as a position in Cartesian coordinates or, equally well, as the direction and distance to that position from the point (0, 0). When we interpret a coordinate pair as a direction/distance, we call the pair a <em>vector</em>.</p>
+<p>Vectors serve many important purposes throughout science and technology. The “gradient vector” at the input location <span class="math inline">\((x_0, y_0)\)</span> is an ordinary vector, which we create by calculating <a href="Chap-16-operations.html#eq-partial-gradient">Math Expr 16.1</a> for the inputs <span class="math inline">\(x_0\)</span> and <span class="math inline">\(y_0\)</span>.</p>
+<p>The gradient ascent algorithm works with almost any function with any number of inputs. It doesn’t matter if the function is expressed as a formula or as a real-world setting, such as a chemical plant or a logistics operation. The only information needed is local. Following the chemical plant analogy, imagine a set of dials that control the plant, as in <a href="Chap-16-operations.html#fig-set-of-dials">Figure 16.6</a>.</p>
+<div id="fig-set-of-dials" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-set-of-dials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="www/dials-output.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-set-of-dials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.6: Control inputs and a readout of an output.
+</figcaption>
+</figure>
+</div>
+<p>Each dial’s setting specifies one input. All input dials together determine a position in what we might call dial space. The space in <a href="Chap-16-operations.html#fig-set-of-dials">Figure 16.6</a> is four-dimensional. For any setting of the dials—that is, any position in dial space—the function produces an output. The readout in <a href="Chap-16-operations.html#fig-set-of-dials">Figure 16.6</a> displays this output value.</p>
+<p>In <a href="Chap-16-operations.html#fig-set-of-dials">Figure 16.6</a>, all the dials are set to 1.</p>
+<p>To calculate the rate of change for a dial, record the output displayed: 43.8. Then turn the X dial a small amount, say to 3. This is a change of 2 in the dial position. Suppose, in consequence of the change, that the output now reads 42.2. Then the rate of change is <span class="math inline">\(\frac{43.8 - 42.2}{+2} = 0.8\)</span>. This tells us that <span class="math inline">\(\partial_X f(1, 1, 1, 1) = 0.8\)</span>.</p>
+<p>Turn the X dial back to its original position. Then repeat the procedure with the Y dial. Suppose the rate of change with respect to Y is <span class="math inline">\(\partial_Y f(1, 1, 1, 1) = 1.3\)</span>. Turn Y back to its original position, then again repeat the procedure with Z, and once again with W. Suppose that the manipulation of Z gives <span class="math inline">\(\partial_Z f(1, 1, 1, 1) = -0.9\)</span> and W gives <span class="math inline">\(\partial_Z f(1, 1, 1, 1)= 2.2\)</span>. You now assemble the gradient vector: <span class="math display">\[\left(\partial_X f(1, 1, 1, 1),\  \partial_Y f(1, 1, 1, 1),\  \partial_Z  f(1, 1, 1, 1),\  \partial_W f(1, 1, 1, 1)\right) = (0.8, 1.3, -0.9, 2.2)\ .\]</span> This four-component vector is a direction in the four-dimensional dial space. Take a small step in dial space by turning the dials by 0.08 for X, 0.13 for Y, -0.08 for Z, and 0.22 for W. At the new setting, the output will be higher.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</section>
+<section id="example-training-a-neural-network" class="level2 page-columns page-full" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="example-training-a-neural-network"><span class="header-section-number">16.4</span> Example: Training a neural network</h2>
+<p>One very widely used function type used in AI and other areas of technology is the “neural network.” A neural network is a function that maps input data to output predictions. It consists of layers of interconnected nodes, or “neurons,” each performing a seemingly simple computation to produce an output that is a single numerical value.</p>
+<p><a href="Chap-16-operations.html#fig-nn-playground">Figure 16.7</a> shows a relatively simple neural network provided for demonstration purposes by the organization &lt;tensorflow.org&gt;. Since the network is small, &lt;tensorflow.org&gt; can provide an excellent graphical depiction. (The neural networks used in AI are vastly more complex and not well understood even by the people who build them.)</p>
+<div id="fig-nn-playground" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nn-playground-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="www/NN-playground.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nn-playground-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.7: A snapshot from a demonstrator web app showing training for a simple neural network model. You can interact with the demonstrator at <a href="https://playground.tensorflow.org/" class="uri">https://playground.tensorflow.org/</a>
+</figcaption>
+</figure>
+</div>
+<p>The <em>interactive</em> form of the demonstration displays the process of building a network to serve a particular purpose. To start, let’s work through the structure from left to right in <a href="Chap-16-operations.html#fig-nn-playground">Figure 16.7</a>.</p>
+<p>The area labeled “Data” on the left represents a data frame. Each row of the data frame records the x-y position of a point, together with a column holding the group to which the point belongs, like this:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>X</th>
+<th>Y</th>
+<th>Group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.43</td>
+<td>-0.21</td>
+<td>orange</td>
+</tr>
+<tr class="even">
+<td>0.12</td>
+<td>0.34</td>
+<td>blue</td>
+</tr>
+<tr class="odd">
+<td>-0.56</td>
+<td>0.78</td>
+<td>blue</td>
+</tr>
+</tbody>
+</table>
+<p>The rows are displayed graphically on the right-side of the panel; each row is one dot.</p>
+<p>Next to the “Data” area is a stack of seven small squares labeled “Features.” Each of those squares stands for a function that takes x-y coordinates as input and produces as output a value between -1 and 1. For instance, the topmost “feature” outputs a value close to 1 for points in the right half of the plane and a value close to -1 for points in the left half. The other features perform similar transformations, capturing different aspects of the input space.</p>
+<p>The result of applying those seven functions to the input data is seven new columns for the data frame, each of which holds the output from the corresponding function. For simplicity, we will show just the top two functions, <code>f1()</code> and <code>f2()</code>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>X</th>
+<th>Y</th>
+<th>Group</th>
+<th>f1</th>
+<th>f2</th>
+<th><span class="math inline">\(\cdots\)</span> to f7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.43</td>
+<td>-0.21</td>
+<td>orange</td>
+<td>0.92</td>
+<td>-0.64</td>
+<td><span class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr class="even">
+<td>0.12</td>
+<td>0.34</td>
+<td>blue</td>
+<td>0.31</td>
+<td>0.75</td>
+<td><span class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr class="odd">
+<td>-0.56</td>
+<td>0.78</td>
+<td>blue</td>
+<td>-0.87</td>
+<td>0.84</td>
+<td><span class="math inline">\(\cdots\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>To the right of the “features” is a stack of four functions. Each function takes as input a linear combination of the f1(), f2(), …, f7() output values. The output of each of those four functions transforms the input so that the output ranges from -1 to 1.</p>
+<p>As always, a linear combination is a sum of the form <span class="math display">\[a_1 f_1 + a_2 f_2 + \cdots + a_7 f_7\]</span>, where <span class="math inline">\(a_1, a_2, \ldots, a_7\)</span> are coefficients that determine the contribution of each feature. In <a href="Chap-16-operations.html#fig-nn-playground">Figure 16.7</a> the coefficients are displayed as dashed curves. The color of each curve indicates whether the coefficient is positive (blue) or negative (orange). The width of each curve is proportional to the size of the corresponding coefficient.</p>
+<p>Ultimately, the input to the four functions is the x-y coordinate of the corresponding row of the data frame. The output—as a function of x-y position—is shown by the color in the small square representing each of the four functions. You can see that the four functions are more complicated than the original feature functions. Next in the display is a stack of two neurons. These take as input a linear combination of the outputs from the four neurons to the left. Again, the coefficients for this linear combination are displayed by the color and thickness of the dashed curves leading into the two neurons.</p>
+<p>Finally, the outputs of the two neurons are combined linearly to produce the overall function shown in the larger square to the right of the two neurons. Since there are only two neurons being combined, its easy to read the coefficients in the final linear combination from the graph. The top neuron has a small, slightly negative coefficient. The bottom neuron has a stronger negative coefficient.</p>
+<p>Focus now on the large square display on the right side of the graphic. As mentioned before, the individual rows of the data frame are represented by dots. The end-function implemented by the seven features and the six neurons is shown by the background color in the square. That end-function is intended to be a classifier for new data, that is, to take any x-y coordinate as input and provide as output the predicted class (i.e., orange or blue) for that coordinate.</p>
+<p>As you can see, the neural network has learned enough about the pattern in the data to provide a reasonable classification for any new x-y coordinate. The orange dots lie in the orange area of the end-function: likewise, for the blue dots.</p>
+<p>None of the original features resemble the pattern of the data points. Yet the coefficients of the various linear combinations turn these features into an end-function that captures the data pattern. How did that happen?</p>
+<p>In abstract, we can say that the neural network was <em>trained</em> on the data from the data frame. Here, the goal of training is to establish the value for each of the coefficients in the network.</p>
+<p>We can count the coefficients that have to be determined during training. Each of the seven features provides an input to each of the 4 neurons in the first hidden layer, resulting in <span class="math inline">\(7 \times 4 = 28\)</span> coefficients. Each of the 4 neurons in the first hidden layer provides an input to each of the 2 neurons in the second hidden layer, resulting in <span class="math inline">\(4 \times 2 = 8\)</span> coefficients. Finally, each of the 2 neurons in the second hidden layer provides an input to the single output neuron, resulting in <span class="math inline">\(2 \times 1 = 2\)</span> coefficients. In total, there are <span class="math inline">\(28 + 8 + 2 = 38\)</span> coefficients that need to be determined during training.</p>
+<p>Here’s how the training works. To start, the coefficients are set to 38 random values. Naturally, the resulting function is unlikely to capture the pattern in the data. The training process looks at the function output for each of the dots in turn. Suppose the output from the initial end-function for row 1 of the data frame is 0.37 which can be translated to words: slightly blue. Since row one is actually in the orange class, the function provides an incorrect prediction. The goal of training is to adjust the coefficients so that the end-function gives a more appropriate output for row 1 (and all the other rows in the training data).</p>
+<p>The end-function, as we’ve said, has 38 coefficients. The output of the end-function depends on each of these coefficients. We can differentiate the end-function with respect to each coefficient, producing a gradient vector in the 38-dimensional space of the coefficients. If we changed the coefficients slightly in the direction of this gradient, the output of the end-function would increase slightly. That would make the end-function output worse with respect to the data in row 1 of the data frame. To make the end-function output better, we simply need to change the coefficients slightly in the opposite direction of the gradient.</p>
+<p>This change in the 38 coefficients might make the output of the end-function better or worse with respect to the other rows of data. The training process repeats this adjustment for each row in the data frame, each repetition making the end-function output slightly better with respect to that row.</p>
+<p>The observed behavior of this iterative adjustment process is, very gradually, to improve the overall performance of the end-function with respect to all the rows in the data frame.</p>
+<div class="page-columns page-full"><p>Consider now the upper right corner of the display, shown here.  This shows the progress of the training over time, as each successive move is taken along or opposite to the gradient. At each step, the “training loss,” that is, the total error of the end-function is calculated. Over thousands of adjustment steps, the training loss fluctuates up and down but overall, decreases. When further adjustment steps don’t reduce the training loss, the training algorithm stops, giving us the best set of 38 coefficients that was found.</p><div class="no-row-height column-margin column-container"><span class=""><img src="www/NN-training.png" class="img-fluid"></span></div></div>
+<p>The interactive, online version of the demonstrator shows the training process over time. As training proceeds, you can observe at each step the current end-function and how it changes in response to the adjustments of the coefficients. The behavior is very complex, yet it amounts to many, many steps along the gradient vector.</p>
+</section>
+<section id="space-exploration" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="space-exploration"><span class="header-section-number">16.5</span> Space exploration</h2>
+<p>Chapters 11 and 12 introduced vectors in two-dimensional space, where simple tasks can be performed intuitively. For example, to measure the <em>length</em> of a vector, use a ruler! To find out whether two vectors are parallel, just look!</p>
+<p>Now we want to extend our capabilities into higher-dimensional space. The motivation for this is, for example, making sense of complex data or constructing a model of language.</p>
+<p>We start with three-dimensional space, where the geometry can be conveyed by moving the viewing perspective. This will let us explore how pairs of vectors can be used to specify a unique ☞&nbsp;<strong>plane</strong><span id="finger-plane-definition" data-label="plane">&nbsp;☜</span>. This leads to a new operation, ☞&nbsp;<strong>projection</strong><span id="finger-projection-definition" data-label="projection">&nbsp;☜</span>, which casts the shadow of a vector onto another vector or onto a plane.</p>
+<p>The projection operation is key to working with data, for instance, building statistical models or identifying patterns in the data. But projection is especially powerful when working in high-dimensional spaces.</p>
+<p>In four- and higher-dimensional spaces, it is practically impossible to draw a meaningful graphic. But the operations we can see in three dimensions can be calculated in any dimension using arithmetic. This includes vector length, angles between vectors, and projections onto planes or higher-dimensional extensions of planes.</p>
+<p>To build intuition, let’s return to 3-dimensional space. Consider <a href="Chap-16-operations.html#fig-blue-gray">Figure 16.8</a>, which shows two vectors, one in <span style="color: blue;">blue</span> and the other <span style="color: gray;">gray</span>. They are drawn on a green background. At a glance, one can see that the angle between the vectors is obtuse, perhaps about 130 degrees. Also, the gray vector is shorter than the blue vector. Easy!</p>
+<p>In fact, each vector is 3-dimensional. And the green “background” is actually a plane that contains both the vectors. Try rotating the scene to see this more clearly.</p>
+<div id="fig-blue-gray" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-blue-gray-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display no-overflow-x">
+<div id="rgl40375" style="width:100%;height:464px;" class="rglWebGL html-widget" role="img" aria-labelledby="rgl40375-aria"></div>
+<script type="application/json" data-for="rgl40375">{"x":{"material":{"color":"#000000","alpha":1,"lit":true,"ambient":"#000000","specular":"#FFFFFF","emission":"#000000","shininess":50,"smooth":true,"front":"filled","back":"filled","size":3,"lwd":1,"fog":true,"point_antialias":false,"line_antialias":false,"texture":null,"textype":"rgb","texmode":"modulate","texmipmap":false,"texminfilter":"linear","texmagfilter":"linear","texenvmap":false,"depth_mask":true,"depth_test":"less","isTransparent":false,"polygon_offset":[0,0],"margin":"","floating":false,"tag":"","blend":["src_alpha","one_minus_src_alpha"]},"rootSubscene":48,"objects":{"55":{"id":55,"type":"points","material":{"lit":false},"vertices":"0","colors":"1","centers":"2","ignoreExtent":false,"flags":34816},"56":{"id":56,"type":"lines","material":{"lit":false,"lwd":2},"vertices":"3","colors":"4","centers":"5","ignoreExtent":false,"flags":41024},"57":{"id":57,"type":"points","material":{"lit":false,"size":6},"vertices":"6","colors":"7","centers":"8","ignoreExtent":false,"flags":34816},"58":{"id":58,"type":"lines","material":{"lit":false,"lwd":2},"vertices":"9","colors":"10","centers":"11","ignoreExtent":false,"flags":41024},"59":{"id":59,"type":"points","material":{"lit":false,"size":6},"vertices":"12","colors":"13","centers":"14","ignoreExtent":false,"flags":34816},"60":{"id":60,"type":"lines","material":{"lit":false},"vertices":"15","colors":"16","centers":"17","ignoreExtent":true,"flags":32832},"61":{"id":61,"type":"planes","material":{"alpha":0.09803921729326248,"isTransparent":true},"vertices":"18","colors":"20","offsets":[[0]],"centers":"21","normals":"19","ignoreExtent":true,"flags":32803},"52":{"id":52,"type":"light","vertices":[[0,0,1]],"colors":[[1,1,1,1],[1,1,1,1],[1,1,1,1]],"viewpoint":true,"finite":false},"54":{"id":54,"type":"background","material":{"lit":false,"back":"lines"},"colors":"22","centers":"23","sphere":false,"fogtype":"none","fogscale":1,"flags":32768},"48":{"id":48,"type":"subscene","par3d":{"antialias":4,"FOV":0,"ignoreExtent":false,"listeners":48,"mouseMode":{"none":"none","left":"trackball","right":"zoom","middle":"fov","wheel":"pull"},"observer":[0,0,3.464101552963257],"modelMatrix":[[1,0,0,0],[0,0.9659258127212524,-0.258819043636322,0],[0,0.258819043636322,0.9659258127212524,-3.464101552963257],[0,0,0,1]],"projMatrix":[[0.5773502588272095,0,0,0],[0,0.5773502588272095,0,0],[0,0,-0.5773503184318542,-2.000000238418579],[0,0,0,1]],"skipRedraw":false,"userMatrix":[[1,0,0,0],[0,0.9659258127212524,-0.258819043636322,0],[0,0.258819043636322,0.9659258127212524,0],[0,0,0,1]],"userProjection":[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],"scale":[1,1,1],"viewport":{"x":0,"y":0,"width":1,"height":1},"zoom":1,"bbox":[-1,1,-1,1,-1,1],"windowRect":[20,64,276,320],"family":"sans","font":1,"cex":1,"useFreeType":true,"fontname":"/Users/kaplan/Library/R/arm64/4.4/library/rgl/fonts/FreeSans.ttf","maxClipPlanes":6,"glVersion":2.1,"activeSubscene":0},"embeddings":{"viewport":"replace","projection":"replace","model":"replace","mouse":"replace"},"objects":[54,55,56,57,58,59,60,61,52],"subscenes":[],"flags":43363}},"crosstalk":{"key":[],"group":[],"id":[],"options":[]},"width":672,"height":480,"buffer":{"accessors":[{"bufferView":0,"componentType":5120,"count":6,"type":"VEC3"},{"bufferView":1,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":2,"componentType":5120,"count":6,"type":"VEC3"},{"bufferView":3,"componentType":5126,"count":2,"type":"VEC3"},{"bufferView":4,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":5,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":6,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":7,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":8,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":9,"componentType":5126,"count":2,"type":"VEC3"},{"bufferView":10,"componentType":5126,"count":1,"type":"VEC4"},{"bufferView":11,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":12,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":13,"componentType":5126,"count":1,"type":"VEC4"},{"bufferView":14,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":15,"componentType":5126,"count":24,"type":"VEC3"},{"bufferView":16,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":17,"componentType":5126,"count":12,"type":"VEC3"},{"bufferView":18,"componentType":5120,"count":3,"type":"VEC3"},{"bufferView":19,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":20,"componentType":5126,"count":1,"type":"VEC4"},{"bufferView":21,"componentType":5126,"count":4,"type":"VEC3"},{"bufferView":22,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":23,"componentType":5121,"count":1,"type":"VEC3"}],"bufferViews":[{"buffer":0,"byteLength":18,"byteOffset":0},{"buffer":0,"byteLength":4,"byteOffset":18},{"buffer":0,"byteLength":18,"byteOffset":22},{"buffer":0,"byteLength":24,"byteOffset":40},{"buffer":0,"byteLength":4,"byteOffset":64},{"buffer":0,"byteLength":12,"byteOffset":68},{"buffer":0,"byteLength":12,"byteOffset":80},{"buffer":0,"byteLength":4,"byteOffset":92},{"buffer":0,"byteLength":12,"byteOffset":96},{"buffer":0,"byteLength":24,"byteOffset":108},{"buffer":0,"byteLength":16,"byteOffset":132},{"buffer":0,"byteLength":12,"byteOffset":148},{"buffer":0,"byteLength":12,"byteOffset":160},{"buffer":0,"byteLength":16,"byteOffset":172},{"buffer":0,"byteLength":12,"byteOffset":188},{"buffer":0,"byteLength":288,"byteOffset":200},{"buffer":0,"byteLength":4,"byteOffset":488},{"buffer":0,"byteLength":144,"byteOffset":492},{"buffer":0,"byteLength":9,"byteOffset":636},{"buffer":0,"byteLength":12,"byteOffset":648},{"buffer":0,"byteLength":16,"byteOffset":660},{"buffer":0,"byteLength":48,"byteOffset":676},{"buffer":0,"byteLength":4,"byteOffset":724},{"buffer":0,"byteLength":3,"byteOffset":728}],"buffers":[{"byteLength":731,"bytes":"AQAAAAEAAAAB/wAAAP8AAAD/AQEBAQEAAAABAAAAAf8AAAD/AAAA/wAAAAAAAAAAAAAAADMz\nMz/NzMw+AAAAAAAAAQEzM7M+zcxMPgAAAAAzMzM/zczMPgAAAAAAAAEBMzMzP83MzD4AAAAA\nAAAAgAAAAIAAAAAAmpkZvs3MzL4AAAAAv74+P7++Pj+/vj4/AACAP5qZmb3NzEy+AAAAAJqZ\nGb7NzMy+AAAAAL++Pj+/vj4/v74+PwAAgD+amRm+zczMvgAAAAAK14O/CteDvwrXg78K14O/\nCteDPwrXg78K14O/CteDvwrXgz8K14O/CteDPwrXgz8K14O/CteDvwrXg78K14O/CteDvwrX\ngz8K14O/CteDPwrXg78K14O/CteDPwrXgz8K14O/CteDvwrXg78K14M/CteDvwrXg78K14O/\nCteDvwrXgz8K14M/CteDvwrXgz8K14O/CteDPwrXg78K14M/CteDPwrXg78K14O/CteDPwrX\ngz8K14M/CteDPwrXgz8K14M/CteDvwrXg78K14M/CteDPwrXg78K14M/CteDvwrXgz8K14M/\nCteDPwrXgz8K14M/CteDvwrXg78K14M/CteDvwrXgz8K14M/CteDPwrXg78K14M/CteDPwrX\ngz8AAAABCteDvwAAAAAK14O/CteDvwAAAAAK14M/CteDvwrXg78AAAAACteDvwrXgz8AAAAA\nAAAAAArXg78K14O/AAAAAArXg78K14M/AAAAAArXgz8K14O/AAAAAArXgz8K14M/CteDPwAA\nAAAK14O/CteDPwAAAAAK14M/CteDPwrXg78AAAAACteDPwrXgz8AAAAA//8A/wEAAQEAAAAA\nAAAAAAAAAICuR2G+AAAAAAAAgD8AAAAAycjIPauqqr6rqqo+AAAAAKuqqj6rqqq+AAAAAAAA\nwH8AAMB/AADAfwAAwH8AAMB/AADAfwEBAQEAAAA="}]},"context":{"shiny":false,"rmarkdown":null},"vertexShader":"#line 2 1\n// File 1 is the vertex shader\n#ifdef GL_ES\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n#endif\n\nattribute vec3 aPos;\nattribute vec4 aCol;\nuniform mat4 mvMatrix;\nuniform mat4 prMatrix;\nvarying vec4 vCol;\nvarying vec4 vPosition;\n\n#ifdef NEEDS_VNORMAL\nattribute vec3 aNorm;\nuniform mat4 normMatrix;\nvarying vec4 vNormal;\n#endif\n\n#if defined(HAS_TEXTURE) || defined (IS_TEXT)\nattribute vec2 aTexcoord;\nvarying vec2 vTexcoord;\n#endif\n\n#ifdef FIXED_SIZE\nuniform vec3 textScale;\n#endif\n\n#ifdef FIXED_QUADS\nattribute vec3 aOfs;\n#endif\n\n#ifdef IS_TWOSIDED\n#ifdef HAS_NORMALS\nvarying float normz;\nuniform mat4 invPrMatrix;\n#else\nattribute vec3 aPos1;\nattribute vec3 aPos2;\nvarying float normz;\n#endif\n#endif // IS_TWOSIDED\n\n#ifdef FAT_LINES\nattribute vec3 aNext;\nattribute vec2 aPoint;\nvarying vec2 vPoint;\nvarying float vLength;\nuniform float uAspect;\nuniform float uLwd;\n#endif\n\n#ifdef USE_ENVMAP\nvarying vec3 vReflection;\n#endif\n\nvoid main(void) {\n  \n#ifndef IS_BRUSH\n#if defined(NCLIPPLANES) || !defined(FIXED_QUADS) || defined(HAS_FOG) || defined(USE_ENVMAP)\n  vPosition = mvMatrix * vec4(aPos, 1.);\n#endif\n  \n#ifndef FIXED_QUADS\n  gl_Position = prMatrix * vPosition;\n#endif\n#endif // !IS_BRUSH\n  \n#ifdef IS_POINTS\n  gl_PointSize = POINTSIZE;\n#endif\n  \n  vCol = aCol;\n  \n// USE_ENVMAP implies NEEDS_VNORMAL\n\n#ifdef NEEDS_VNORMAL\n  vNormal = normMatrix * vec4(-aNorm, dot(aNorm, aPos));\n#endif\n\n#ifdef USE_ENVMAP\n  vReflection = normalize(reflect(vPosition.xyz/vPosition.w, \n                        normalize(vNormal.xyz/vNormal.w)));\n#endif\n  \n#ifdef IS_TWOSIDED\n#ifdef HAS_NORMALS\n  /* normz should be calculated *after* projection */\n  normz = (invPrMatrix*vNormal).z;\n#else\n  vec4 pos1 = prMatrix*(mvMatrix*vec4(aPos1, 1.));\n  pos1 = pos1/pos1.w - gl_Position/gl_Position.w;\n  vec4 pos2 = prMatrix*(mvMatrix*vec4(aPos2, 1.));\n  pos2 = pos2/pos2.w - gl_Position/gl_Position.w;\n  normz = pos1.x*pos2.y - pos1.y*pos2.x;\n#endif\n#endif // IS_TWOSIDED\n  \n#ifdef NEEDS_VNORMAL\n  vNormal = vec4(normalize(vNormal.xyz), 1);\n#endif\n  \n#if defined(HAS_TEXTURE) || defined(IS_TEXT)\n  vTexcoord = aTexcoord;\n#endif\n  \n#if defined(FIXED_SIZE) && !defined(ROTATING)\n  vec4 pos = prMatrix * mvMatrix * vec4(aPos, 1.);\n  pos = pos/pos.w;\n  gl_Position = pos + vec4(aOfs*textScale, 0.);\n#endif\n  \n#if defined(IS_SPRITES) && !defined(FIXED_SIZE)\n  vec4 pos = mvMatrix * vec4(aPos, 1.);\n  pos = pos/pos.w + vec4(aOfs,  0.);\n  gl_Position = prMatrix*pos;\n#endif\n  \n#ifdef FAT_LINES\n  /* This code was inspired by Matt Deslauriers' code in \n   https://mattdesl.svbtle.com/drawing-lines-is-hard */\n  vec2 aspectVec = vec2(uAspect, 1.0);\n  mat4 projViewModel = prMatrix * mvMatrix;\n  vec4 currentProjected = projViewModel * vec4(aPos, 1.0);\n  currentProjected = currentProjected/currentProjected.w;\n  vec4 nextProjected = projViewModel * vec4(aNext, 1.0);\n  vec2 currentScreen = currentProjected.xy * aspectVec;\n  vec2 nextScreen = (nextProjected.xy / nextProjected.w) * aspectVec;\n  float len = uLwd;\n  vec2 dir = vec2(1.0, 0.0);\n  vPoint = aPoint;\n  vLength = length(nextScreen - currentScreen)/2.0;\n  vLength = vLength/(vLength + len);\n  if (vLength > 0.0) {\n    dir = normalize(nextScreen - currentScreen);\n  }\n  vec2 normal = vec2(-dir.y, dir.x);\n  dir.x /= uAspect;\n  normal.x /= uAspect;\n  vec4 offset = vec4(len*(normal*aPoint.x*aPoint.y - dir), 0.0, 0.0);\n  gl_Position = currentProjected + offset;\n#endif\n  \n#ifdef IS_BRUSH\n  gl_Position = vec4(aPos, 1.);\n#endif\n}","fragmentShader":"#line 2 2\n// File 2 is the fragment shader\n#ifdef GL_ES\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n#endif\nvarying vec4 vCol; // carries alpha\nvarying vec4 vPosition;\n#if defined(HAS_TEXTURE) || defined (IS_TEXT)\nvarying vec2 vTexcoord;\nuniform sampler2D uSampler;\n#endif\n\n#ifdef HAS_FOG\nuniform int uFogMode;\nuniform vec3 uFogColor;\nuniform vec4 uFogParms;\n#endif\n\n#if defined(IS_LIT) && !defined(FIXED_QUADS)\nvarying vec4 vNormal;\n#endif\n\n#if NCLIPPLANES > 0\nuniform vec4 vClipplane[NCLIPPLANES];\n#endif\n\n#if NLIGHTS > 0\nuniform mat4 mvMatrix;\n#endif\n\n#ifdef IS_LIT\nuniform vec3 emission;\nuniform float shininess;\n#if NLIGHTS > 0\nuniform vec3 ambient[NLIGHTS];\nuniform vec3 specular[NLIGHTS]; // light*material\nuniform vec3 diffuse[NLIGHTS];\nuniform vec3 lightDir[NLIGHTS];\nuniform bool viewpoint[NLIGHTS];\nuniform bool finite[NLIGHTS];\n#endif\n#endif // IS_LIT\n\n#ifdef IS_TWOSIDED\nuniform bool front;\nvarying float normz;\n#endif\n\n#ifdef FAT_LINES\nvarying vec2 vPoint;\nvarying float vLength;\n#endif\n\n#ifdef USE_ENVMAP\nvarying vec3 vReflection;\n#endif\n\nvoid main(void) {\n  vec4 fragColor;\n#ifdef FAT_LINES\n  vec2 point = vPoint;\n  bool neg = point.y < 0.0;\n  point.y = neg ? (point.y + vLength)/(1.0 - vLength) :\n                 -(point.y - vLength)/(1.0 - vLength);\n#if defined(IS_TRANSPARENT) && defined(IS_LINESTRIP)\n  if (neg && length(point) <= 1.0) discard;\n#endif\n  point.y = min(point.y, 0.0);\n  if (length(point) > 1.0) discard;\n#endif // FAT_LINES\n  \n#ifdef ROUND_POINTS\n  vec2 coord = gl_PointCoord - vec2(0.5);\n  if (length(coord) > 0.5) discard;\n#endif\n  \n#if NCLIPPLANES > 0\n  for (int i = 0; i < NCLIPPLANES; i++)\n    if (dot(vPosition, vClipplane[i]) < 0.0) discard;\n#endif\n    \n#ifdef FIXED_QUADS\n    vec3 n = vec3(0., 0., 1.);\n#elif defined(IS_LIT)\n    vec3 n = normalize(vNormal.xyz);\n#endif\n    \n#ifdef IS_TWOSIDED\n    if ((normz <= 0.) != front) discard;\n#endif\n\n#ifdef IS_LIT\n    vec3 eye = normalize(-vPosition.xyz/vPosition.w);\n    vec3 lightdir;\n    vec4 colDiff;\n    vec3 halfVec;\n    vec4 lighteffect = vec4(emission, 0.);\n    vec3 col;\n    float nDotL;\n#ifdef FIXED_QUADS\n    n = -faceforward(n, n, eye);\n#endif\n    \n#if NLIGHTS > 0\n    // Simulate two-sided lighting\n    if (n.z < 0.0)\n      n = -n;\n    for (int i=0;i<NLIGHTS;i++) {\n      colDiff = vec4(vCol.rgb * diffuse[i], vCol.a);\n      lightdir = lightDir[i];\n      if (!viewpoint[i]) {\n        if (finite[i]) {\n          lightdir = (mvMatrix * vec4(lightdir, 1.)).xyz;\n        } else {\n          lightdir = (mvMatrix * vec4(lightdir, 0.)).xyz;\n        }\n      }\n      if (!finite[i]) {\n        halfVec = normalize(lightdir + eye);\n      } else {\n        lightdir = normalize(lightdir - vPosition.xyz/vPosition.w);\n        halfVec = normalize(lightdir + eye);\n      }\n      col = ambient[i];\n      nDotL = dot(n, lightdir);\n      col = col + max(nDotL, 0.) * colDiff.rgb;\n      col = col + pow(max(dot(halfVec, n), 0.), shininess) * specular[i];\n      lighteffect = lighteffect + vec4(col, colDiff.a);\n    }\n#else\n    lighteffect.a = 1.;\n#endif\n    \n#else // not IS_LIT\n    vec4 colDiff = vCol;\n    vec4 lighteffect = colDiff;\n#endif\n    \n#ifdef IS_TEXT\n    vec4 textureColor = lighteffect*texture2D(uSampler, vTexcoord);\n#endif\n    \n#ifdef HAS_TEXTURE\n\n// These calculations use the definitions from \n// https://docs.gl/gl3/glTexEnv\n\n#ifdef USE_ENVMAP\n    float m = 2.0 * sqrt(dot(vReflection, vReflection) + 2.0*vReflection.z + 1.0);\n    vec4 textureColor = texture2D(uSampler, vReflection.xy / m + vec2(0.5, 0.5));\n#else\n    vec4 textureColor = texture2D(uSampler, vTexcoord);\n#endif\n\n#ifdef TEXTURE_rgb\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(textureColor.rgb, lighteffect.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = lighteffect*vec4(textureColor.rgb, 1.);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - textureColor.rgb) * lighteffect.rgb, lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(lighteffect.rgb + textureColor.rgb, lighteffect.a);\n#endif\n\n#endif //TEXTURE_rgb\n        \n#ifdef TEXTURE_rgba\n\n#ifdef TEXMODE_replace\n// already done\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = lighteffect*textureColor;\n#endif\n\n#ifdef TEXMODE_decal\n    textureColor = vec4((1. - textureColor.a)*lighteffect.rgb) +\n                     textureColor.a*textureColor.rgb, \n                     lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - textureColor.rgb) * lighteffect.rgb,\n                    lighteffect.a*textureColor.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(lighteffect.rgb + textureColor.rgb,\n                    lighteffect.a*textureColor.a);\n#endif\n    \n#endif //TEXTURE_rgba\n    \n#ifdef TEXTURE_alpha\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(lighteffect.rgb, luminance);\n#endif \n\n#if defined(TEXMODE_modulate) || defined(TEXMODE_blend) || defined(TEXMODE_add)\n    textureColor = vec4(lighteffect.rgb, lighteffect.a*luminance);\n#endif\n \n#endif // TEXTURE_alpha\n    \n// The TEXTURE_luminance values are not from that reference    \n#ifdef TEXTURE_luminance\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(luminance, luminance, luminance, lighteffect.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = vec4(luminance*lighteffect.rgb, lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - luminance)*lighteffect.rgb,\n                        lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(luminance + lighteffect.rgb, lighteffect.a);\n#endif\n\n#endif // TEXTURE_luminance\n \n    \n#ifdef TEXTURE_luminance_alpha\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(luminance, luminance, luminance, textureColor.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = vec4(luminance*lighteffect.rgb, \n                        textureColor.a*lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - luminance)*lighteffect.rgb,\n                        textureColor.a*lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(luminance + lighteffect.rgb, \n                        textureColor.a*lighteffect.a);\n\n#endif\n\n#endif // TEXTURE_luminance_alpha\n    \n    fragColor = textureColor;\n\n#elif defined(IS_TEXT)\n    if (textureColor.a < 0.1)\n      discard;\n    else\n      fragColor = textureColor;\n#else\n    fragColor = lighteffect;\n#endif // HAS_TEXTURE\n    \n#ifdef HAS_FOG\n    // uFogParms elements: x = near, y = far, z = fogscale, w = (1-sin(FOV/2))/(1+sin(FOV/2))\n    // In Exp and Exp2: use density = density/far\n    // fogF will be the proportion of fog\n    // Initialize it to the linear value\n    float fogF;\n    if (uFogMode > 0) {\n      fogF = (uFogParms.y - vPosition.z/vPosition.w)/(uFogParms.y - uFogParms.x);\n      if (uFogMode > 1)\n        fogF = mix(uFogParms.w, 1.0, fogF);\n      fogF = fogF*uFogParms.z;\n      if (uFogMode == 2)\n        fogF = 1.0 - exp(-fogF);\n      // Docs are wrong: use (density*c)^2, not density*c^2\n      // https://gitlab.freedesktop.org/mesa/mesa/-/blob/master/src/mesa/swrast/s_fog.c#L58\n      else if (uFogMode == 3)\n        fogF = 1.0 - exp(-fogF*fogF);\n      fogF = clamp(fogF, 0.0, 1.0);\n      gl_FragColor = vec4(mix(fragColor.rgb, uFogColor, fogF), fragColor.a);\n    } else gl_FragColor = fragColor;\n#else\n    gl_FragColor = fragColor;\n#endif // HAS_FOG\n    \n}","players":[],"webGLoptions":{"preserveDrawingBuffer":true},"fastTransparency":true},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blue-gray-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.8: Two vectors: blue and gray. You can position the cursor over the scene and press/drag to rotate the vectors in three dimensions.
+</figcaption>
+</figure>
+</div>
+<p>As you change the viewing perspective in <a href="Chap-16-operations.html#fig-blue-gray">Figure 16.8</a>, the apparent lengths of the vectors as well as the angle between them can change. And, you’ll see that the green “background” is actually a plane, with both vectors contained in the plane.</p>
+<p>Indeed, if you change the perspective to view the plane edge-on, the blue and gray vectors will appear to lie on the same line. And depending on which angle you take (keeping the plane edge on), the two vectors will be arranged variously in opposite directions or in the same direction.</p>
+<p>To measure the proper <em>length</em> of a vector, you need to lay down a ruler on top of the vector, parallel to it. Similarly, the measure the proper <em>angle</em> between the two vectors, you need to lay a protractor in the green plane that contains both vectors.</p>
+<p>We can represent the situation <em>arithmetically</em>. Since the vectors live in three-dimensional space, the tip of each vector can be written in (x,y,z) coordinates. (For simplicity, the base of each vector will always be at the origin, that is, (0,0,0).) We could have put tick marks along the x-, y-, and z-axes to let you measure the coordinates of each vector, but for convenience, here they are.</p>
+<p><span class="math display">\[ \color{blue}{\vec{v} \equiv \left(\begin{array}{c}7\\4\\0\end{array}\right)}\ \ \ \text{and}\ \ \ \color{magenta}{\vec{w}\equiv\left(\begin{array}{c}1.5\\-4\\0\end{array}\right)}\]</span> Note that, for future reference, we have given names, <span class="math inline">\(\vec{v}\)</span> and <span class="math inline">\(\vec{w}\)</span> to the two vectors.</p>
+<p>With the arithmetic representation, we don’t need a ruler to measure the ☞&nbsp;<strong>length of a vector</strong><span id="finger-length-of-a-vector-definition" data-label="length of a vector">&nbsp;☜</span>; the Pythagorean formula does the job.</p>
+<p><span id="eq-pythag"><span class="math display">\[\color{blue}{\sqrt{7^2 + 4^2 + 0^2} = 8.06}\ \  \text{and}\ \ \  \color{magenta}{\sqrt{1.5^2 + 4^2 + 0^2} = 4.27}\ . \tag{16.2}\]</span></span></p>
+<p>We won’t do very much arithmetic here. But for what we will do, it will help to have a much more concise notation. Here are two parts of that notation:</p>
+<ul>
+<li>A function, called the ☞&nbsp;<strong>dot product</strong><span id="finger-dot-product-definition" data-label="dot product">&nbsp;☜</span> which involves simple multiplication and addition. Here’s an example, the dot product between <span class="math inline">\(\vec{v}\)</span> and <span class="math inline">\(\vec{w}\)</span>: <span class="math display">\[\vec{v} \odot \vec{w} = 1.5 \times 7\ + \ -4 \times 4\ +\ 0 \times 0 = -5.5 .\]</span> The dot product takes two vectors as input and produces an ordinary number as output.</li>
+</ul>
+<p>Sometimes it is helpful to dot a vector with itself. For instance:</p>
+<p><span class="math display">\[\vec{v} \odot \vec{v} = 7^2 + 4^2 + 0^2 = 65\ \ \ \]</span> and <span class="math display">\[\ \ \ \vec{w} \odot \vec{w} = 1.5^2 + (-4)^2 + 0^2 = 18.25\ .\]</span></p>
+<p>This use of the dot product captures a large part of the Pythagorean formula for vector length (<a href="Chap-16-operations.html#eq-pythag">Math Expr 16.2</a>).</p>
+<ul>
+<li>The <strong>length</strong> of <span class="math inline">\(\vec{v}\)</span> is written <span class="math inline">\(\|\vec{v}\|\)</span>. There is a simple formula for the length of a vector that uses the dot product:</li>
+</ul>
+<p><span class="math display">\[\|\vec{v}\| = \sqrt{\ \strut\vec{v} \odot \vec{v}\ }\ \ \  \text{and}\ \ \  \|\vec{w}\| = \sqrt{\ \strut\vec{w} \odot \vec{w}\ }\ .\]</span> This dot-produce notation pays off with slightly more elaborate calculations. For instance,</p>
+<ul>
+<li>The ☞&nbsp;<strong>alignment between two vectors</strong><span id="finger-alignment-between-two-vectors-definition" data-label="alignment between two vectors">&nbsp;☜</span> is calculated like this: <span id="eq-alignment"><span class="math display">\[\text{alignment}(\vec{v}, \vec{w}) \equiv \frac{\ \ \ \ \vec{v} \odot \vec{w}}{\sqrt{\strut\ \|\vec{v}\|\ \|\vec{w}\|\ }} \tag{16.3}\]</span></span></li>
+</ul>
+</section>
+<section id="spaces-with-dimension-greater-than-3" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="spaces-with-dimension-greater-than-3"><span class="header-section-number">16.6</span> Spaces with dimension greater than 3</h2>
+<p>Understandably, people have difficulty visualizing scenes in 4- or higher dimensions, or even imagining that such scenes might exist. Our cognitive abilities are tuned to perception in the familiar 3-D space of everyday life.</p>
+<p>With the arithmetic representation of vectors, however, it’s easy to see how to construct vectors in 4-space, 5-space, or any-dimensional space. A vector in such a space is merely a column of numbers. Here are a few examples.</p>
+<p><span class="math display">\[\color{magenta}{\vec{a} \equiv \left(\begin{array}{r}1.5\\3.0\end{array}\right)}\ \ \ \ \ \color{green}{\vec{b}\equiv\left(\begin{array}{r}4.2\\-7.1\\2.3\end{array}\right)} \ \ \ \ \ \color{blue}{\vec{c}\equiv\left(\begin{array}{r}0.3\\4.1\\1.9\\-3.2\end{array}\right)}\]</span> <span class="math display">\[ \ \ \ \ \ \color{purple}{\vec{d}\equiv\left(\begin{array}{r}1.0\\ -7.0\\  2.9\\  1.2\\ -4.1\end{array}\right)} \ \ \ \ \ \color{green}{\vec{g}\equiv\left(\begin{array}{r}-0.1\\ -8.8\\ -4.6\\  6.5\\  5.2\\ -4.2\end{array}\right)} \ \ \ \ \      \]</span></p>
+<p>The count of components in each vector tells the dimension of the space where the vector exists or “lives in.”</p>
+<p>The reader may object. “Of course, you can make a column of numbers with as many components as you like. What does that have to do with ‘space?’”</p>
+<p>What makes these simple columns of numbers into an “object in space” is the calculations we can do with them, for instance, the “length” of a vector or the alignment between two vectors. Both of these calculations are rooted in the dot product, whose formula is a simple extension of that already shown. For instance, here’s a dot product in 5-dimensional space:</p>
+<p><span class="math display">\[\color{olive}{\left(\begin{array}{r}1.0\\ -7.0\\  2.9\\  1.2\\ -4.1\end{array}\right)} \odot \color{black}{\left(\begin{array}{r}2.6\\8.3\\6.4\\1.6\\2.7\end{array}\right)}= \text{&nbsp;}1.0 \times 2.6 \ -\ 7.0 \times 8.3\ +\ 2.9 \times 6.4 \ +\ 1.2 \times 1.6 \ -\ 4.1\times 2.7 = -46.09\]</span></p>
+</section>
+<section id="sec-alignment" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="sec-alignment"><span class="header-section-number">16.7</span> Alignment, projection, and decomposition</h2>
+<p>Three important spatial operations in modern technology are</p>
+<ol type="i">
+<li><p>Finding the <strong>alignment</strong> between two vectors.</p></li>
+<li><p>Defining a ☞&nbsp;<strong>subspace</strong><span id="finger-subspace-definition" data-label="subspace">&nbsp;☜</span> of a larger space. As you will see, subspaces are a way of encoding information about patterns.</p></li>
+<li><p>☞&nbsp;<strong>Projecting</strong><span id="finger-projecting-definition" data-label="Projecting">&nbsp;☜</span> a vector in the larger space down into a subspace. Since subspaces encode patterns, projection determines to what extent a vector displays those patterns.</p></li>
+</ol>
+<p>The alignment quantifies how <em>similar</em> the two vectors are, that is, whether they have information in common. An alignment of 1 indicates that the vectors share all information. An alignment of zero means that they have no information in common. (An alignment of -1 means that the vectors share information completely, but that one vector has been reversed in direction.) The reader who has studied statistics may recall the “correlation coefficient.” This is essentially the same as the alignment.</p>
+<p>In a two-dimension space, a subspace is a line: an infinite set of points that all lie within the bigger space. The line is a <em>one-dimensional subspace</em>. In three-dimensional space, there are two different kinds of subspaces: a line (1-dimensional) and a plane (2-dimensional). In higher-dimensional spaces, say one with <span class="math inline">\(n\)</span> dimensions, there can be 3-, 4-, and up to <span class="math inline">\((n-1)\)</span>-dimensional subspaces.</p>
+<p>A one-dimensional subspace is defined by a single vector. A two-dimensional subspace is defined by two vectors.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Similarly, an <span class="math inline">\((n-1)\)</span>-dimensional subspace is defined by <span class="math inline">\(n-1\)</span> vectors.</p>
+<p><a href="Chap-16-operations.html#fig-decomp-1">Figure 16.9</a> shows a two-dimensional subspace (that is, a plane) of the three-dimensional space. The two vectors drawn in the same color as the subspace have been used to define the subspace. We have colored the subspace-defining vectors to be inconspicuous, so the reader can focus attention on the subspace itself.</p>
+<div class="cell">
+<div id="fig-decomp-1" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored no-overflow-x">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-decomp-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="rgl88079" style="width:100%;height:464px;" class="rglWebGL html-widget" role="img" aria-labelledby="rgl88079-aria"></div>
+<script type="application/json" data-for="rgl88079">{"x":{"material":{"color":"#000000","alpha":1,"lit":true,"ambient":"#000000","specular":"#FFFFFF","emission":"#000000","shininess":50,"smooth":true,"front":"filled","back":"filled","size":3,"lwd":1,"fog":true,"point_antialias":false,"line_antialias":false,"texture":null,"textype":"rgb","texmode":"modulate","texmipmap":false,"texminfilter":"linear","texmagfilter":"linear","texenvmap":false,"depth_mask":true,"depth_test":"less","isTransparent":false,"polygon_offset":[0,0],"margin":"","floating":false,"tag":"","blend":["src_alpha","one_minus_src_alpha"]},"rootSubscene":71,"objects":{"78":{"id":78,"type":"points","material":{"lit":false},"vertices":"0","colors":"1","centers":"2","ignoreExtent":false,"flags":34816},"79":{"id":79,"type":"lines","material":{"lit":false,"lwd":2},"vertices":"3","colors":"4","centers":"5","ignoreExtent":false,"flags":41024},"80":{"id":80,"type":"points","material":{"lit":false,"size":6},"vertices":"6","colors":"7","centers":"8","ignoreExtent":false,"flags":34816},"81":{"id":81,"type":"lines","material":{"lit":false,"lwd":2},"vertices":"9","colors":"10","centers":"11","ignoreExtent":false,"flags":41024},"82":{"id":82,"type":"points","material":{"lit":false,"size":6},"vertices":"12","colors":"13","centers":"14","ignoreExtent":false,"flags":34816},"83":{"id":83,"type":"lines","material":{"lit":false,"lwd":2},"vertices":"15","colors":"16","centers":"17","ignoreExtent":false,"flags":41024},"84":{"id":84,"type":"points","material":{"lit":false,"size":6},"vertices":"18","colors":"19","centers":"20","ignoreExtent":false,"flags":34816},"85":{"id":85,"type":"lines","material":{"lit":false},"vertices":"21","colors":"22","centers":"23","ignoreExtent":true,"flags":32832},"86":{"id":86,"type":"planes","material":{"alpha":0.09803921729326248,"isTransparent":true},"vertices":"24","colors":"26","offsets":[[0]],"centers":"27","normals":"25","ignoreExtent":true,"flags":32803},"75":{"id":75,"type":"light","vertices":[[0,0,1]],"colors":[[1,1,1,1],[1,1,1,1],[1,1,1,1]],"viewpoint":true,"finite":false},"77":{"id":77,"type":"background","material":{"lit":false,"back":"lines"},"colors":"28","centers":"29","sphere":false,"fogtype":"none","fogscale":1,"flags":32768},"71":{"id":71,"type":"subscene","par3d":{"antialias":4,"FOV":0,"ignoreExtent":false,"listeners":71,"mouseMode":{"none":"none","left":"trackball","right":"zoom","middle":"fov","wheel":"pull"},"observer":[0,0,3.464101552963257],"modelMatrix":[[1,0,0,0],[0,0.9659258127212524,-0.258819043636322,0],[0,0.258819043636322,0.9659258127212524,-3.464101552963257],[0,0,0,1]],"projMatrix":[[0.5773502588272095,0,0,0],[0,0.5773502588272095,0,0],[0,0,-0.5773503184318542,-2.000000238418579],[0,0,0,1]],"skipRedraw":false,"userMatrix":[[1,0,0,0],[0,0.9659258127212524,-0.258819043636322,0],[0,0.258819043636322,0.9659258127212524,0],[0,0,0,1]],"userProjection":[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],"scale":[1,1,1],"viewport":{"x":0,"y":0,"width":1,"height":1},"zoom":1,"bbox":[-1,1,-1,1,-1,1],"windowRect":[20,64,276,320],"family":"sans","font":1,"cex":1,"useFreeType":true,"fontname":"/Users/kaplan/Library/R/arm64/4.4/library/rgl/fonts/FreeSans.ttf","maxClipPlanes":6,"glVersion":2.1,"activeSubscene":0},"embeddings":{"viewport":"replace","projection":"replace","model":"replace","mouse":"replace"},"objects":[77,78,79,80,81,82,83,84,85,86,75],"subscenes":[],"flags":43363}},"crosstalk":{"key":[],"group":[],"id":[],"options":[]},"width":672,"height":480,"buffer":{"accessors":[{"bufferView":0,"componentType":5120,"count":6,"type":"VEC3"},{"bufferView":1,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":2,"componentType":5120,"count":6,"type":"VEC3"},{"bufferView":3,"componentType":5126,"count":2,"type":"VEC3"},{"bufferView":4,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":5,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":6,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":7,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":8,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":9,"componentType":5126,"count":2,"type":"VEC3"},{"bufferView":10,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":11,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":12,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":13,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":14,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":15,"componentType":5126,"count":2,"type":"VEC3"},{"bufferView":16,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":17,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":18,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":19,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":20,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":21,"componentType":5126,"count":24,"type":"VEC3"},{"bufferView":22,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":23,"componentType":5126,"count":12,"type":"VEC3"},{"bufferView":24,"componentType":5126,"count":3,"type":"VEC3"},{"bufferView":25,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":26,"componentType":5126,"count":1,"type":"VEC4"},{"bufferView":27,"componentType":5126,"count":4,"type":"VEC3"},{"bufferView":28,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":29,"componentType":5121,"count":1,"type":"VEC3"}],"bufferViews":[{"buffer":0,"byteLength":18,"byteOffset":0},{"buffer":0,"byteLength":4,"byteOffset":18},{"buffer":0,"byteLength":18,"byteOffset":22},{"buffer":0,"byteLength":24,"byteOffset":40},{"buffer":0,"byteLength":4,"byteOffset":64},{"buffer":0,"byteLength":12,"byteOffset":68},{"buffer":0,"byteLength":12,"byteOffset":80},{"buffer":0,"byteLength":4,"byteOffset":92},{"buffer":0,"byteLength":12,"byteOffset":96},{"buffer":0,"byteLength":24,"byteOffset":108},{"buffer":0,"byteLength":4,"byteOffset":132},{"buffer":0,"byteLength":12,"byteOffset":136},{"buffer":0,"byteLength":12,"byteOffset":148},{"buffer":0,"byteLength":4,"byteOffset":160},{"buffer":0,"byteLength":12,"byteOffset":164},{"buffer":0,"byteLength":24,"byteOffset":176},{"buffer":0,"byteLength":4,"byteOffset":200},{"buffer":0,"byteLength":12,"byteOffset":204},{"buffer":0,"byteLength":12,"byteOffset":216},{"buffer":0,"byteLength":4,"byteOffset":228},{"buffer":0,"byteLength":12,"byteOffset":232},{"buffer":0,"byteLength":288,"byteOffset":244},{"buffer":0,"byteLength":4,"byteOffset":532},{"buffer":0,"byteLength":144,"byteOffset":536},{"buffer":0,"byteLength":36,"byteOffset":680},{"buffer":0,"byteLength":12,"byteOffset":716},{"buffer":0,"byteLength":16,"byteOffset":728},{"buffer":0,"byteLength":48,"byteOffset":744},{"buffer":0,"byteLength":4,"byteOffset":792},{"buffer":0,"byteLength":3,"byteOffset":796}],"buffers":[{"byteLength":799,"bytes":"AQAAAAEAAAAB/wAAAP8AAAD/AQEBAQEAAAABAAAAAf8AAAD/AAAA/wAAAAAAAAAAAAAAAM3M\nTD7NzEw+mpmZPgABAAHNzMw9zczMPZqZGT7NzEw+zcxMPpqZmT4AAQABzcxMPs3MTD6amZk+\nAAAAgAAAAIAAAACAmpkZvs3MzL7NzMy9AAEAAZqZmb3NzEy+zcxMvZqZGb7NzMy+zczMvQAB\nAAGamRm+zczMvs3MzL0AAACAAAAAgAAAAAAAAAC/mpkZvzMzMz8AAAABAACAvpqZmb4zM7M+\nAAAAv5qZGb8zMzM/AAAAAQAAAL+amRm/MzMzPwrXg78K14O/CteDvwrXg78K14M/CteDvwrX\ng78K14O/CteDPwrXg78K14M/CteDPwrXg78K14O/CteDvwrXg78K14O/CteDPwrXg78K14M/\nCteDvwrXg78K14M/CteDPwrXg78K14O/CteDvwrXgz8K14O/CteDvwrXg78K14O/CteDPwrX\ngz8K14O/CteDPwrXg78K14M/CteDvwrXgz8K14M/CteDvwrXg78K14M/CteDPwrXgz8K14M/\nCteDPwrXgz8K14O/CteDvwrXgz8K14M/CteDvwrXgz8K14O/CteDPwrXgz8K14M/CteDPwrX\ngz8K14O/CteDvwrXgz8K14O/CteDPwrXgz8K14M/CteDvwrXgz8K14M/CteDPwAAAAEK14O/\nAAAAAArXg78K14O/AAAAAArXgz8K14O/CteDvwAAAAAK14O/CteDPwAAAAAAAAAACteDvwrX\ng78AAAAACteDvwrXgz8AAAAACteDPwrXg78AAAAACteDPwrXgz8K14M/AAAAAArXg78K14M/\nAAAAAArXgz8K14M/CteDvwAAAAAK14M/CteDPwAAAAAAAEC/AACAvwAAgL8AAEA/AACAPwAA\ngD8AAIA+AACAvwAAgD/NzMw9zczMvM3MTL0AAAAAAACAPwAAAADJyMg9q6qqPauqqr6rqqo+\nq6qqvauqqj6rqqq+AADAfwAAwH8AAMB/AADAfwAAwH8AAMB/AQEBAQAAAA=="}]},"context":{"shiny":false,"rmarkdown":null},"vertexShader":"#line 2 1\n// File 1 is the vertex shader\n#ifdef GL_ES\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n#endif\n\nattribute vec3 aPos;\nattribute vec4 aCol;\nuniform mat4 mvMatrix;\nuniform mat4 prMatrix;\nvarying vec4 vCol;\nvarying vec4 vPosition;\n\n#ifdef NEEDS_VNORMAL\nattribute vec3 aNorm;\nuniform mat4 normMatrix;\nvarying vec4 vNormal;\n#endif\n\n#if defined(HAS_TEXTURE) || defined (IS_TEXT)\nattribute vec2 aTexcoord;\nvarying vec2 vTexcoord;\n#endif\n\n#ifdef FIXED_SIZE\nuniform vec3 textScale;\n#endif\n\n#ifdef FIXED_QUADS\nattribute vec3 aOfs;\n#endif\n\n#ifdef IS_TWOSIDED\n#ifdef HAS_NORMALS\nvarying float normz;\nuniform mat4 invPrMatrix;\n#else\nattribute vec3 aPos1;\nattribute vec3 aPos2;\nvarying float normz;\n#endif\n#endif // IS_TWOSIDED\n\n#ifdef FAT_LINES\nattribute vec3 aNext;\nattribute vec2 aPoint;\nvarying vec2 vPoint;\nvarying float vLength;\nuniform float uAspect;\nuniform float uLwd;\n#endif\n\n#ifdef USE_ENVMAP\nvarying vec3 vReflection;\n#endif\n\nvoid main(void) {\n  \n#ifndef IS_BRUSH\n#if defined(NCLIPPLANES) || !defined(FIXED_QUADS) || defined(HAS_FOG) || defined(USE_ENVMAP)\n  vPosition = mvMatrix * vec4(aPos, 1.);\n#endif\n  \n#ifndef FIXED_QUADS\n  gl_Position = prMatrix * vPosition;\n#endif\n#endif // !IS_BRUSH\n  \n#ifdef IS_POINTS\n  gl_PointSize = POINTSIZE;\n#endif\n  \n  vCol = aCol;\n  \n// USE_ENVMAP implies NEEDS_VNORMAL\n\n#ifdef NEEDS_VNORMAL\n  vNormal = normMatrix * vec4(-aNorm, dot(aNorm, aPos));\n#endif\n\n#ifdef USE_ENVMAP\n  vReflection = normalize(reflect(vPosition.xyz/vPosition.w, \n                        normalize(vNormal.xyz/vNormal.w)));\n#endif\n  \n#ifdef IS_TWOSIDED\n#ifdef HAS_NORMALS\n  /* normz should be calculated *after* projection */\n  normz = (invPrMatrix*vNormal).z;\n#else\n  vec4 pos1 = prMatrix*(mvMatrix*vec4(aPos1, 1.));\n  pos1 = pos1/pos1.w - gl_Position/gl_Position.w;\n  vec4 pos2 = prMatrix*(mvMatrix*vec4(aPos2, 1.));\n  pos2 = pos2/pos2.w - gl_Position/gl_Position.w;\n  normz = pos1.x*pos2.y - pos1.y*pos2.x;\n#endif\n#endif // IS_TWOSIDED\n  \n#ifdef NEEDS_VNORMAL\n  vNormal = vec4(normalize(vNormal.xyz), 1);\n#endif\n  \n#if defined(HAS_TEXTURE) || defined(IS_TEXT)\n  vTexcoord = aTexcoord;\n#endif\n  \n#if defined(FIXED_SIZE) && !defined(ROTATING)\n  vec4 pos = prMatrix * mvMatrix * vec4(aPos, 1.);\n  pos = pos/pos.w;\n  gl_Position = pos + vec4(aOfs*textScale, 0.);\n#endif\n  \n#if defined(IS_SPRITES) && !defined(FIXED_SIZE)\n  vec4 pos = mvMatrix * vec4(aPos, 1.);\n  pos = pos/pos.w + vec4(aOfs,  0.);\n  gl_Position = prMatrix*pos;\n#endif\n  \n#ifdef FAT_LINES\n  /* This code was inspired by Matt Deslauriers' code in \n   https://mattdesl.svbtle.com/drawing-lines-is-hard */\n  vec2 aspectVec = vec2(uAspect, 1.0);\n  mat4 projViewModel = prMatrix * mvMatrix;\n  vec4 currentProjected = projViewModel * vec4(aPos, 1.0);\n  currentProjected = currentProjected/currentProjected.w;\n  vec4 nextProjected = projViewModel * vec4(aNext, 1.0);\n  vec2 currentScreen = currentProjected.xy * aspectVec;\n  vec2 nextScreen = (nextProjected.xy / nextProjected.w) * aspectVec;\n  float len = uLwd;\n  vec2 dir = vec2(1.0, 0.0);\n  vPoint = aPoint;\n  vLength = length(nextScreen - currentScreen)/2.0;\n  vLength = vLength/(vLength + len);\n  if (vLength > 0.0) {\n    dir = normalize(nextScreen - currentScreen);\n  }\n  vec2 normal = vec2(-dir.y, dir.x);\n  dir.x /= uAspect;\n  normal.x /= uAspect;\n  vec4 offset = vec4(len*(normal*aPoint.x*aPoint.y - dir), 0.0, 0.0);\n  gl_Position = currentProjected + offset;\n#endif\n  \n#ifdef IS_BRUSH\n  gl_Position = vec4(aPos, 1.);\n#endif\n}","fragmentShader":"#line 2 2\n// File 2 is the fragment shader\n#ifdef GL_ES\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n#endif\nvarying vec4 vCol; // carries alpha\nvarying vec4 vPosition;\n#if defined(HAS_TEXTURE) || defined (IS_TEXT)\nvarying vec2 vTexcoord;\nuniform sampler2D uSampler;\n#endif\n\n#ifdef HAS_FOG\nuniform int uFogMode;\nuniform vec3 uFogColor;\nuniform vec4 uFogParms;\n#endif\n\n#if defined(IS_LIT) && !defined(FIXED_QUADS)\nvarying vec4 vNormal;\n#endif\n\n#if NCLIPPLANES > 0\nuniform vec4 vClipplane[NCLIPPLANES];\n#endif\n\n#if NLIGHTS > 0\nuniform mat4 mvMatrix;\n#endif\n\n#ifdef IS_LIT\nuniform vec3 emission;\nuniform float shininess;\n#if NLIGHTS > 0\nuniform vec3 ambient[NLIGHTS];\nuniform vec3 specular[NLIGHTS]; // light*material\nuniform vec3 diffuse[NLIGHTS];\nuniform vec3 lightDir[NLIGHTS];\nuniform bool viewpoint[NLIGHTS];\nuniform bool finite[NLIGHTS];\n#endif\n#endif // IS_LIT\n\n#ifdef IS_TWOSIDED\nuniform bool front;\nvarying float normz;\n#endif\n\n#ifdef FAT_LINES\nvarying vec2 vPoint;\nvarying float vLength;\n#endif\n\n#ifdef USE_ENVMAP\nvarying vec3 vReflection;\n#endif\n\nvoid main(void) {\n  vec4 fragColor;\n#ifdef FAT_LINES\n  vec2 point = vPoint;\n  bool neg = point.y < 0.0;\n  point.y = neg ? (point.y + vLength)/(1.0 - vLength) :\n                 -(point.y - vLength)/(1.0 - vLength);\n#if defined(IS_TRANSPARENT) && defined(IS_LINESTRIP)\n  if (neg && length(point) <= 1.0) discard;\n#endif\n  point.y = min(point.y, 0.0);\n  if (length(point) > 1.0) discard;\n#endif // FAT_LINES\n  \n#ifdef ROUND_POINTS\n  vec2 coord = gl_PointCoord - vec2(0.5);\n  if (length(coord) > 0.5) discard;\n#endif\n  \n#if NCLIPPLANES > 0\n  for (int i = 0; i < NCLIPPLANES; i++)\n    if (dot(vPosition, vClipplane[i]) < 0.0) discard;\n#endif\n    \n#ifdef FIXED_QUADS\n    vec3 n = vec3(0., 0., 1.);\n#elif defined(IS_LIT)\n    vec3 n = normalize(vNormal.xyz);\n#endif\n    \n#ifdef IS_TWOSIDED\n    if ((normz <= 0.) != front) discard;\n#endif\n\n#ifdef IS_LIT\n    vec3 eye = normalize(-vPosition.xyz/vPosition.w);\n    vec3 lightdir;\n    vec4 colDiff;\n    vec3 halfVec;\n    vec4 lighteffect = vec4(emission, 0.);\n    vec3 col;\n    float nDotL;\n#ifdef FIXED_QUADS\n    n = -faceforward(n, n, eye);\n#endif\n    \n#if NLIGHTS > 0\n    // Simulate two-sided lighting\n    if (n.z < 0.0)\n      n = -n;\n    for (int i=0;i<NLIGHTS;i++) {\n      colDiff = vec4(vCol.rgb * diffuse[i], vCol.a);\n      lightdir = lightDir[i];\n      if (!viewpoint[i]) {\n        if (finite[i]) {\n          lightdir = (mvMatrix * vec4(lightdir, 1.)).xyz;\n        } else {\n          lightdir = (mvMatrix * vec4(lightdir, 0.)).xyz;\n        }\n      }\n      if (!finite[i]) {\n        halfVec = normalize(lightdir + eye);\n      } else {\n        lightdir = normalize(lightdir - vPosition.xyz/vPosition.w);\n        halfVec = normalize(lightdir + eye);\n      }\n      col = ambient[i];\n      nDotL = dot(n, lightdir);\n      col = col + max(nDotL, 0.) * colDiff.rgb;\n      col = col + pow(max(dot(halfVec, n), 0.), shininess) * specular[i];\n      lighteffect = lighteffect + vec4(col, colDiff.a);\n    }\n#else\n    lighteffect.a = 1.;\n#endif\n    \n#else // not IS_LIT\n    vec4 colDiff = vCol;\n    vec4 lighteffect = colDiff;\n#endif\n    \n#ifdef IS_TEXT\n    vec4 textureColor = lighteffect*texture2D(uSampler, vTexcoord);\n#endif\n    \n#ifdef HAS_TEXTURE\n\n// These calculations use the definitions from \n// https://docs.gl/gl3/glTexEnv\n\n#ifdef USE_ENVMAP\n    float m = 2.0 * sqrt(dot(vReflection, vReflection) + 2.0*vReflection.z + 1.0);\n    vec4 textureColor = texture2D(uSampler, vReflection.xy / m + vec2(0.5, 0.5));\n#else\n    vec4 textureColor = texture2D(uSampler, vTexcoord);\n#endif\n\n#ifdef TEXTURE_rgb\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(textureColor.rgb, lighteffect.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = lighteffect*vec4(textureColor.rgb, 1.);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - textureColor.rgb) * lighteffect.rgb, lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(lighteffect.rgb + textureColor.rgb, lighteffect.a);\n#endif\n\n#endif //TEXTURE_rgb\n        \n#ifdef TEXTURE_rgba\n\n#ifdef TEXMODE_replace\n// already done\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = lighteffect*textureColor;\n#endif\n\n#ifdef TEXMODE_decal\n    textureColor = vec4((1. - textureColor.a)*lighteffect.rgb) +\n                     textureColor.a*textureColor.rgb, \n                     lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - textureColor.rgb) * lighteffect.rgb,\n                    lighteffect.a*textureColor.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(lighteffect.rgb + textureColor.rgb,\n                    lighteffect.a*textureColor.a);\n#endif\n    \n#endif //TEXTURE_rgba\n    \n#ifdef TEXTURE_alpha\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(lighteffect.rgb, luminance);\n#endif \n\n#if defined(TEXMODE_modulate) || defined(TEXMODE_blend) || defined(TEXMODE_add)\n    textureColor = vec4(lighteffect.rgb, lighteffect.a*luminance);\n#endif\n \n#endif // TEXTURE_alpha\n    \n// The TEXTURE_luminance values are not from that reference    \n#ifdef TEXTURE_luminance\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(luminance, luminance, luminance, lighteffect.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = vec4(luminance*lighteffect.rgb, lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - luminance)*lighteffect.rgb,\n                        lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(luminance + lighteffect.rgb, lighteffect.a);\n#endif\n\n#endif // TEXTURE_luminance\n \n    \n#ifdef TEXTURE_luminance_alpha\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(luminance, luminance, luminance, textureColor.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = vec4(luminance*lighteffect.rgb, \n                        textureColor.a*lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - luminance)*lighteffect.rgb,\n                        textureColor.a*lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(luminance + lighteffect.rgb, \n                        textureColor.a*lighteffect.a);\n\n#endif\n\n#endif // TEXTURE_luminance_alpha\n    \n    fragColor = textureColor;\n\n#elif defined(IS_TEXT)\n    if (textureColor.a < 0.1)\n      discard;\n    else\n      fragColor = textureColor;\n#else\n    fragColor = lighteffect;\n#endif // HAS_TEXTURE\n    \n#ifdef HAS_FOG\n    // uFogParms elements: x = near, y = far, z = fogscale, w = (1-sin(FOV/2))/(1+sin(FOV/2))\n    // In Exp and Exp2: use density = density/far\n    // fogF will be the proportion of fog\n    // Initialize it to the linear value\n    float fogF;\n    if (uFogMode > 0) {\n      fogF = (uFogParms.y - vPosition.z/vPosition.w)/(uFogParms.y - uFogParms.x);\n      if (uFogMode > 1)\n        fogF = mix(uFogParms.w, 1.0, fogF);\n      fogF = fogF*uFogParms.z;\n      if (uFogMode == 2)\n        fogF = 1.0 - exp(-fogF);\n      // Docs are wrong: use (density*c)^2, not density*c^2\n      // https://gitlab.freedesktop.org/mesa/mesa/-/blob/master/src/mesa/swrast/s_fog.c#L58\n      else if (uFogMode == 3)\n        fogF = 1.0 - exp(-fogF*fogF);\n      fogF = clamp(fogF, 0.0, 1.0);\n      gl_FragColor = vec4(mix(fragColor.rgb, uFogColor, fogF), fragColor.a);\n    } else gl_FragColor = fragColor;\n#else\n    gl_FragColor = fragColor;\n#endif // HAS_FOG\n    \n}","players":[],"webGLoptions":{"preserveDrawingBuffer":true},"fastTransparency":true},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decomp-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.9: A two-dimensional subspace of a three-dimensional space. The black vector is not in the subspace.
+</figcaption>
+</figure>
+</div>
+</div>
+<p>You can verify that the two green vectors are in the subspace by rotating the scene. Whatever way you rotate it, you will never see the tips of the green vectors outside of the subspace. The black vector, however, does not lie in the subspace. (Of course, the green vectors must be in the subspace. We defined the subspace <em>using</em> the two green vectors.)</p>
+<p><strong>Projection</strong> of a vector onto a subspace means to find a new vector <em>in the subspace</em> that is a close as possible to the vector being projected. <a href="Chap-16-operations.html#fig-decomp-2">Figure 16.10</a> shows the projection of the black vector onto the green subspace. We have drawn in gray the “new” vector, that is, the one that lies in the subspace and is as close as possible to the black vector.</p>
+<div class="cell">
+<div id="fig-decomp-2" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored no-overflow-x">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-decomp-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="rgl52596" style="width:100%;height:464px;" class="rglWebGL html-widget" role="img" aria-labelledby="rgl52596-aria"></div>
+<script type="application/json" data-for="rgl52596">{"x":{"material":{"color":"#000000","alpha":1,"lit":true,"ambient":"#000000","specular":"#FFFFFF","emission":"#000000","shininess":50,"smooth":true,"front":"filled","back":"filled","size":3,"lwd":1,"fog":true,"point_antialias":false,"line_antialias":false,"texture":null,"textype":"rgb","texmode":"modulate","texmipmap":false,"texminfilter":"linear","texmagfilter":"linear","texenvmap":false,"depth_mask":true,"depth_test":"less","isTransparent":false,"polygon_offset":[0,0],"margin":"","floating":false,"tag":"","blend":["src_alpha","one_minus_src_alpha"]},"rootSubscene":96,"objects":{"103":{"id":103,"type":"points","material":{"lit":false},"vertices":"0","colors":"1","centers":"2","ignoreExtent":false,"flags":34816},"104":{"id":104,"type":"lines","material":{"lit":false,"lwd":2},"vertices":"3","colors":"4","centers":"5","ignoreExtent":false,"flags":41024},"105":{"id":105,"type":"points","material":{"lit":false,"size":6},"vertices":"6","colors":"7","centers":"8","ignoreExtent":false,"flags":34816},"106":{"id":106,"type":"lines","material":{"lit":false,"lwd":2},"vertices":"9","colors":"10","centers":"11","ignoreExtent":false,"flags":41024},"107":{"id":107,"type":"points","material":{"lit":false,"size":6},"vertices":"12","colors":"13","centers":"14","ignoreExtent":false,"flags":34816},"108":{"id":108,"type":"lines","material":{"lit":false,"lwd":2},"vertices":"15","colors":"16","centers":"17","ignoreExtent":false,"flags":41024},"109":{"id":109,"type":"points","material":{"lit":false,"size":6},"vertices":"18","colors":"19","centers":"20","ignoreExtent":false,"flags":34816},"110":{"id":110,"type":"lines","material":{"lit":false,"lwd":2},"vertices":"21","colors":"22","centers":"23","ignoreExtent":false,"flags":41024},"111":{"id":111,"type":"points","material":{"lit":false,"size":6},"vertices":"24","colors":"25","centers":"26","ignoreExtent":false,"flags":34816},"112":{"id":112,"type":"lines","material":{"lit":false,"lwd":2},"vertices":"27","colors":"28","centers":"29","ignoreExtent":false,"flags":41024},"113":{"id":113,"type":"points","material":{"lit":false,"size":6},"vertices":"30","colors":"31","centers":"32","ignoreExtent":false,"flags":34816},"114":{"id":114,"type":"lines","material":{"lit":false},"vertices":"33","colors":"34","centers":"35","ignoreExtent":true,"flags":32832},"115":{"id":115,"type":"planes","material":{"alpha":0.09803921729326248,"isTransparent":true},"vertices":"36","colors":"38","offsets":[[0]],"centers":"39","normals":"37","ignoreExtent":true,"flags":32803},"100":{"id":100,"type":"light","vertices":[[0,0,1]],"colors":[[1,1,1,1],[1,1,1,1],[1,1,1,1]],"viewpoint":true,"finite":false},"102":{"id":102,"type":"background","material":{"lit":false,"back":"lines"},"colors":"40","centers":"41","sphere":false,"fogtype":"none","fogscale":1,"flags":32768},"96":{"id":96,"type":"subscene","par3d":{"antialias":4,"FOV":0,"ignoreExtent":false,"listeners":96,"mouseMode":{"none":"none","left":"trackball","right":"zoom","middle":"fov","wheel":"pull"},"observer":[0,0,3.464101552963257],"modelMatrix":[[1,0,0,0],[0,0.9659258127212524,-0.258819043636322,0],[0,0.258819043636322,0.9659258127212524,-3.464101552963257],[0,0,0,1]],"projMatrix":[[0.5773502588272095,0,0,0],[0,0.5773502588272095,0,0],[0,0,-0.5773503184318542,-2.000000238418579],[0,0,0,1]],"skipRedraw":false,"userMatrix":[[1,0,0,0],[0,0.9659258127212524,-0.258819043636322,0],[0,0.258819043636322,0.9659258127212524,0],[0,0,0,1]],"userProjection":[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],"scale":[1,1,1],"viewport":{"x":0,"y":0,"width":1,"height":1},"zoom":1,"bbox":[-1,1,-1,1,-1,1],"windowRect":[20,64,276,320],"family":"sans","font":1,"cex":1,"useFreeType":true,"fontname":"/Users/kaplan/Library/R/arm64/4.4/library/rgl/fonts/FreeSans.ttf","maxClipPlanes":6,"glVersion":2.1,"activeSubscene":0},"embeddings":{"viewport":"replace","projection":"replace","model":"replace","mouse":"replace"},"objects":[102,103,104,105,106,107,108,109,110,111,112,113,114,115,100],"subscenes":[],"flags":43363}},"crosstalk":{"key":[],"group":[],"id":[],"options":[]},"width":672,"height":480,"buffer":{"accessors":[{"bufferView":0,"componentType":5120,"count":6,"type":"VEC3"},{"bufferView":1,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":2,"componentType":5120,"count":6,"type":"VEC3"},{"bufferView":3,"componentType":5126,"count":2,"type":"VEC3"},{"bufferView":4,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":5,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":6,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":7,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":8,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":9,"componentType":5126,"count":2,"type":"VEC3"},{"bufferView":10,"componentType":5126,"count":1,"type":"VEC4"},{"bufferView":11,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":12,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":13,"componentType":5126,"count":1,"type":"VEC4"},{"bufferView":14,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":15,"componentType":5126,"count":2,"type":"VEC3"},{"bufferView":16,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":17,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":18,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":19,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":20,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":21,"componentType":5126,"count":2,"type":"VEC3"},{"bufferView":22,"componentType":5126,"count":1,"type":"VEC4"},{"bufferView":23,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":24,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":25,"componentType":5126,"count":1,"type":"VEC4"},{"bufferView":26,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":27,"componentType":5126,"count":2,"type":"VEC3"},{"bufferView":28,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":29,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":30,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":31,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":32,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":33,"componentType":5126,"count":24,"type":"VEC3"},{"bufferView":34,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":35,"componentType":5126,"count":12,"type":"VEC3"},{"bufferView":36,"componentType":5126,"count":3,"type":"VEC3"},{"bufferView":37,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":38,"componentType":5126,"count":1,"type":"VEC4"},{"bufferView":39,"componentType":5126,"count":4,"type":"VEC3"},{"bufferView":40,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":41,"componentType":5121,"count":1,"type":"VEC3"}],"bufferViews":[{"buffer":0,"byteLength":18,"byteOffset":0},{"buffer":0,"byteLength":4,"byteOffset":18},{"buffer":0,"byteLength":18,"byteOffset":22},{"buffer":0,"byteLength":24,"byteOffset":40},{"buffer":0,"byteLength":4,"byteOffset":64},{"buffer":0,"byteLength":12,"byteOffset":68},{"buffer":0,"byteLength":12,"byteOffset":80},{"buffer":0,"byteLength":4,"byteOffset":92},{"buffer":0,"byteLength":12,"byteOffset":96},{"buffer":0,"byteLength":24,"byteOffset":108},{"buffer":0,"byteLength":16,"byteOffset":132},{"buffer":0,"byteLength":12,"byteOffset":148},{"buffer":0,"byteLength":12,"byteOffset":160},{"buffer":0,"byteLength":16,"byteOffset":172},{"buffer":0,"byteLength":12,"byteOffset":188},{"buffer":0,"byteLength":24,"byteOffset":200},{"buffer":0,"byteLength":4,"byteOffset":224},{"buffer":0,"byteLength":12,"byteOffset":228},{"buffer":0,"byteLength":12,"byteOffset":240},{"buffer":0,"byteLength":4,"byteOffset":252},{"buffer":0,"byteLength":12,"byteOffset":256},{"buffer":0,"byteLength":24,"byteOffset":268},{"buffer":0,"byteLength":16,"byteOffset":292},{"buffer":0,"byteLength":12,"byteOffset":308},{"buffer":0,"byteLength":12,"byteOffset":320},{"buffer":0,"byteLength":16,"byteOffset":332},{"buffer":0,"byteLength":12,"byteOffset":348},{"buffer":0,"byteLength":24,"byteOffset":360},{"buffer":0,"byteLength":4,"byteOffset":384},{"buffer":0,"byteLength":12,"byteOffset":388},{"buffer":0,"byteLength":12,"byteOffset":400},{"buffer":0,"byteLength":4,"byteOffset":412},{"buffer":0,"byteLength":12,"byteOffset":416},{"buffer":0,"byteLength":288,"byteOffset":428},{"buffer":0,"byteLength":4,"byteOffset":716},{"buffer":0,"byteLength":144,"byteOffset":720},{"buffer":0,"byteLength":36,"byteOffset":864},{"buffer":0,"byteLength":12,"byteOffset":900},{"buffer":0,"byteLength":16,"byteOffset":912},{"buffer":0,"byteLength":48,"byteOffset":928},{"buffer":0,"byteLength":4,"byteOffset":976},{"buffer":0,"byteLength":3,"byteOffset":980}],"buffers":[{"byteLength":983,"bytes":"AQAAAAEAAAAB/wAAAP8AAAD/AQEBAQEAAAABAAAAAf8AAAD/AAAA/wAAAAAAAAAAAAAAAM3M\nTD7NzEw+mpmZPgABAAHNzMw9zczMPZqZGT7NzEw+zcxMPpqZmT4AAQABzcxMPs3MTD6amZk+\nAAAAgAAAAIAAAACAmpkZvs3MzL7NzMy99vV1P9/eXj+0szM/AACAP5qZmb3NzEy+zcxMvZqZ\nGb7NzMy+zczMvfb1dT/f3l4/tLMzPwAAgD+amRm+zczMvs3MzL0AAACAAAAAgAAAAAAAAAC/\nmpkZvzMzMz8AAAABAACAvpqZmb4zM7M+AAAAv5qZGb8zMzM/AAAAAQAAAL+amRm/MzMzPwAA\nAAAAAACAAAAAAImICD28uzu/3t3dPqqpKT+qqSk/qqkpPwAAgD+JiIg8vLu7vt7dXT6JiAg9\nvLs7v97d3T6qqSk/qqkpP6qpKT8AAIA/iYgIPby7O7/e3d0+AAAAgAAAAAAAAAAAiYgIv4mI\nCD6JiIg+AQAAAYmIiL6JiIg9iYgIPomICL+JiAg+iYiIPgEAAAGJiAi/iYgIPomIiD4K14O/\nCteDvwrXg78K14O/CteDPwrXg78K14O/CteDvwrXgz8K14O/CteDPwrXgz8K14O/CteDvwrX\ng78K14O/CteDvwrXgz8K14O/CteDPwrXg78K14O/CteDPwrXgz8K14O/CteDvwrXg78K14M/\nCteDvwrXg78K14O/CteDvwrXgz8K14M/CteDvwrXgz8K14O/CteDPwrXg78K14M/CteDPwrX\ng78K14O/CteDPwrXgz8K14M/CteDPwrXgz8K14M/CteDvwrXg78K14M/CteDPwrXg78K14M/\nCteDvwrXgz8K14M/CteDPwrXgz8K14M/CteDvwrXg78K14M/CteDvwrXgz8K14M/CteDPwrX\ng78K14M/CteDPwrXgz8AAAABCteDvwAAAAAK14O/CteDvwAAAAAK14M/CteDvwrXg78AAAAA\nCteDvwrXgz8AAAAAAAAAAArXg78K14O/AAAAAArXg78K14M/AAAAAArXgz8K14O/AAAAAArX\ngz8K14M/CteDPwAAAAAK14O/CteDPwAAAAAK14M/CteDPwrXg78AAAAACteDPwrXgz8AAAAA\nAABAvwAAgL8AAIC/AABAPwAAgD8AAIA/AACAPgAAgL8AAIA/zczMPc3MzLzNzEy9AAAAAAAA\ngD8AAAAAycjIPauqqj2rqqq+q6qqPquqqr2rqqo+q6qqvgAAwH8AAMB/AADAfwAAwH8AAMB/\nAADAfwEBAQEAAAA="}]},"context":{"shiny":false,"rmarkdown":null},"vertexShader":"#line 2 1\n// File 1 is the vertex shader\n#ifdef GL_ES\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n#endif\n\nattribute vec3 aPos;\nattribute vec4 aCol;\nuniform mat4 mvMatrix;\nuniform mat4 prMatrix;\nvarying vec4 vCol;\nvarying vec4 vPosition;\n\n#ifdef NEEDS_VNORMAL\nattribute vec3 aNorm;\nuniform mat4 normMatrix;\nvarying vec4 vNormal;\n#endif\n\n#if defined(HAS_TEXTURE) || defined (IS_TEXT)\nattribute vec2 aTexcoord;\nvarying vec2 vTexcoord;\n#endif\n\n#ifdef FIXED_SIZE\nuniform vec3 textScale;\n#endif\n\n#ifdef FIXED_QUADS\nattribute vec3 aOfs;\n#endif\n\n#ifdef IS_TWOSIDED\n#ifdef HAS_NORMALS\nvarying float normz;\nuniform mat4 invPrMatrix;\n#else\nattribute vec3 aPos1;\nattribute vec3 aPos2;\nvarying float normz;\n#endif\n#endif // IS_TWOSIDED\n\n#ifdef FAT_LINES\nattribute vec3 aNext;\nattribute vec2 aPoint;\nvarying vec2 vPoint;\nvarying float vLength;\nuniform float uAspect;\nuniform float uLwd;\n#endif\n\n#ifdef USE_ENVMAP\nvarying vec3 vReflection;\n#endif\n\nvoid main(void) {\n  \n#ifndef IS_BRUSH\n#if defined(NCLIPPLANES) || !defined(FIXED_QUADS) || defined(HAS_FOG) || defined(USE_ENVMAP)\n  vPosition = mvMatrix * vec4(aPos, 1.);\n#endif\n  \n#ifndef FIXED_QUADS\n  gl_Position = prMatrix * vPosition;\n#endif\n#endif // !IS_BRUSH\n  \n#ifdef IS_POINTS\n  gl_PointSize = POINTSIZE;\n#endif\n  \n  vCol = aCol;\n  \n// USE_ENVMAP implies NEEDS_VNORMAL\n\n#ifdef NEEDS_VNORMAL\n  vNormal = normMatrix * vec4(-aNorm, dot(aNorm, aPos));\n#endif\n\n#ifdef USE_ENVMAP\n  vReflection = normalize(reflect(vPosition.xyz/vPosition.w, \n                        normalize(vNormal.xyz/vNormal.w)));\n#endif\n  \n#ifdef IS_TWOSIDED\n#ifdef HAS_NORMALS\n  /* normz should be calculated *after* projection */\n  normz = (invPrMatrix*vNormal).z;\n#else\n  vec4 pos1 = prMatrix*(mvMatrix*vec4(aPos1, 1.));\n  pos1 = pos1/pos1.w - gl_Position/gl_Position.w;\n  vec4 pos2 = prMatrix*(mvMatrix*vec4(aPos2, 1.));\n  pos2 = pos2/pos2.w - gl_Position/gl_Position.w;\n  normz = pos1.x*pos2.y - pos1.y*pos2.x;\n#endif\n#endif // IS_TWOSIDED\n  \n#ifdef NEEDS_VNORMAL\n  vNormal = vec4(normalize(vNormal.xyz), 1);\n#endif\n  \n#if defined(HAS_TEXTURE) || defined(IS_TEXT)\n  vTexcoord = aTexcoord;\n#endif\n  \n#if defined(FIXED_SIZE) && !defined(ROTATING)\n  vec4 pos = prMatrix * mvMatrix * vec4(aPos, 1.);\n  pos = pos/pos.w;\n  gl_Position = pos + vec4(aOfs*textScale, 0.);\n#endif\n  \n#if defined(IS_SPRITES) && !defined(FIXED_SIZE)\n  vec4 pos = mvMatrix * vec4(aPos, 1.);\n  pos = pos/pos.w + vec4(aOfs,  0.);\n  gl_Position = prMatrix*pos;\n#endif\n  \n#ifdef FAT_LINES\n  /* This code was inspired by Matt Deslauriers' code in \n   https://mattdesl.svbtle.com/drawing-lines-is-hard */\n  vec2 aspectVec = vec2(uAspect, 1.0);\n  mat4 projViewModel = prMatrix * mvMatrix;\n  vec4 currentProjected = projViewModel * vec4(aPos, 1.0);\n  currentProjected = currentProjected/currentProjected.w;\n  vec4 nextProjected = projViewModel * vec4(aNext, 1.0);\n  vec2 currentScreen = currentProjected.xy * aspectVec;\n  vec2 nextScreen = (nextProjected.xy / nextProjected.w) * aspectVec;\n  float len = uLwd;\n  vec2 dir = vec2(1.0, 0.0);\n  vPoint = aPoint;\n  vLength = length(nextScreen - currentScreen)/2.0;\n  vLength = vLength/(vLength + len);\n  if (vLength > 0.0) {\n    dir = normalize(nextScreen - currentScreen);\n  }\n  vec2 normal = vec2(-dir.y, dir.x);\n  dir.x /= uAspect;\n  normal.x /= uAspect;\n  vec4 offset = vec4(len*(normal*aPoint.x*aPoint.y - dir), 0.0, 0.0);\n  gl_Position = currentProjected + offset;\n#endif\n  \n#ifdef IS_BRUSH\n  gl_Position = vec4(aPos, 1.);\n#endif\n}","fragmentShader":"#line 2 2\n// File 2 is the fragment shader\n#ifdef GL_ES\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n#endif\nvarying vec4 vCol; // carries alpha\nvarying vec4 vPosition;\n#if defined(HAS_TEXTURE) || defined (IS_TEXT)\nvarying vec2 vTexcoord;\nuniform sampler2D uSampler;\n#endif\n\n#ifdef HAS_FOG\nuniform int uFogMode;\nuniform vec3 uFogColor;\nuniform vec4 uFogParms;\n#endif\n\n#if defined(IS_LIT) && !defined(FIXED_QUADS)\nvarying vec4 vNormal;\n#endif\n\n#if NCLIPPLANES > 0\nuniform vec4 vClipplane[NCLIPPLANES];\n#endif\n\n#if NLIGHTS > 0\nuniform mat4 mvMatrix;\n#endif\n\n#ifdef IS_LIT\nuniform vec3 emission;\nuniform float shininess;\n#if NLIGHTS > 0\nuniform vec3 ambient[NLIGHTS];\nuniform vec3 specular[NLIGHTS]; // light*material\nuniform vec3 diffuse[NLIGHTS];\nuniform vec3 lightDir[NLIGHTS];\nuniform bool viewpoint[NLIGHTS];\nuniform bool finite[NLIGHTS];\n#endif\n#endif // IS_LIT\n\n#ifdef IS_TWOSIDED\nuniform bool front;\nvarying float normz;\n#endif\n\n#ifdef FAT_LINES\nvarying vec2 vPoint;\nvarying float vLength;\n#endif\n\n#ifdef USE_ENVMAP\nvarying vec3 vReflection;\n#endif\n\nvoid main(void) {\n  vec4 fragColor;\n#ifdef FAT_LINES\n  vec2 point = vPoint;\n  bool neg = point.y < 0.0;\n  point.y = neg ? (point.y + vLength)/(1.0 - vLength) :\n                 -(point.y - vLength)/(1.0 - vLength);\n#if defined(IS_TRANSPARENT) && defined(IS_LINESTRIP)\n  if (neg && length(point) <= 1.0) discard;\n#endif\n  point.y = min(point.y, 0.0);\n  if (length(point) > 1.0) discard;\n#endif // FAT_LINES\n  \n#ifdef ROUND_POINTS\n  vec2 coord = gl_PointCoord - vec2(0.5);\n  if (length(coord) > 0.5) discard;\n#endif\n  \n#if NCLIPPLANES > 0\n  for (int i = 0; i < NCLIPPLANES; i++)\n    if (dot(vPosition, vClipplane[i]) < 0.0) discard;\n#endif\n    \n#ifdef FIXED_QUADS\n    vec3 n = vec3(0., 0., 1.);\n#elif defined(IS_LIT)\n    vec3 n = normalize(vNormal.xyz);\n#endif\n    \n#ifdef IS_TWOSIDED\n    if ((normz <= 0.) != front) discard;\n#endif\n\n#ifdef IS_LIT\n    vec3 eye = normalize(-vPosition.xyz/vPosition.w);\n    vec3 lightdir;\n    vec4 colDiff;\n    vec3 halfVec;\n    vec4 lighteffect = vec4(emission, 0.);\n    vec3 col;\n    float nDotL;\n#ifdef FIXED_QUADS\n    n = -faceforward(n, n, eye);\n#endif\n    \n#if NLIGHTS > 0\n    // Simulate two-sided lighting\n    if (n.z < 0.0)\n      n = -n;\n    for (int i=0;i<NLIGHTS;i++) {\n      colDiff = vec4(vCol.rgb * diffuse[i], vCol.a);\n      lightdir = lightDir[i];\n      if (!viewpoint[i]) {\n        if (finite[i]) {\n          lightdir = (mvMatrix * vec4(lightdir, 1.)).xyz;\n        } else {\n          lightdir = (mvMatrix * vec4(lightdir, 0.)).xyz;\n        }\n      }\n      if (!finite[i]) {\n        halfVec = normalize(lightdir + eye);\n      } else {\n        lightdir = normalize(lightdir - vPosition.xyz/vPosition.w);\n        halfVec = normalize(lightdir + eye);\n      }\n      col = ambient[i];\n      nDotL = dot(n, lightdir);\n      col = col + max(nDotL, 0.) * colDiff.rgb;\n      col = col + pow(max(dot(halfVec, n), 0.), shininess) * specular[i];\n      lighteffect = lighteffect + vec4(col, colDiff.a);\n    }\n#else\n    lighteffect.a = 1.;\n#endif\n    \n#else // not IS_LIT\n    vec4 colDiff = vCol;\n    vec4 lighteffect = colDiff;\n#endif\n    \n#ifdef IS_TEXT\n    vec4 textureColor = lighteffect*texture2D(uSampler, vTexcoord);\n#endif\n    \n#ifdef HAS_TEXTURE\n\n// These calculations use the definitions from \n// https://docs.gl/gl3/glTexEnv\n\n#ifdef USE_ENVMAP\n    float m = 2.0 * sqrt(dot(vReflection, vReflection) + 2.0*vReflection.z + 1.0);\n    vec4 textureColor = texture2D(uSampler, vReflection.xy / m + vec2(0.5, 0.5));\n#else\n    vec4 textureColor = texture2D(uSampler, vTexcoord);\n#endif\n\n#ifdef TEXTURE_rgb\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(textureColor.rgb, lighteffect.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = lighteffect*vec4(textureColor.rgb, 1.);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - textureColor.rgb) * lighteffect.rgb, lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(lighteffect.rgb + textureColor.rgb, lighteffect.a);\n#endif\n\n#endif //TEXTURE_rgb\n        \n#ifdef TEXTURE_rgba\n\n#ifdef TEXMODE_replace\n// already done\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = lighteffect*textureColor;\n#endif\n\n#ifdef TEXMODE_decal\n    textureColor = vec4((1. - textureColor.a)*lighteffect.rgb) +\n                     textureColor.a*textureColor.rgb, \n                     lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - textureColor.rgb) * lighteffect.rgb,\n                    lighteffect.a*textureColor.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(lighteffect.rgb + textureColor.rgb,\n                    lighteffect.a*textureColor.a);\n#endif\n    \n#endif //TEXTURE_rgba\n    \n#ifdef TEXTURE_alpha\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(lighteffect.rgb, luminance);\n#endif \n\n#if defined(TEXMODE_modulate) || defined(TEXMODE_blend) || defined(TEXMODE_add)\n    textureColor = vec4(lighteffect.rgb, lighteffect.a*luminance);\n#endif\n \n#endif // TEXTURE_alpha\n    \n// The TEXTURE_luminance values are not from that reference    \n#ifdef TEXTURE_luminance\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(luminance, luminance, luminance, lighteffect.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = vec4(luminance*lighteffect.rgb, lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - luminance)*lighteffect.rgb,\n                        lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(luminance + lighteffect.rgb, lighteffect.a);\n#endif\n\n#endif // TEXTURE_luminance\n \n    \n#ifdef TEXTURE_luminance_alpha\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(luminance, luminance, luminance, textureColor.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = vec4(luminance*lighteffect.rgb, \n                        textureColor.a*lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - luminance)*lighteffect.rgb,\n                        textureColor.a*lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(luminance + lighteffect.rgb, \n                        textureColor.a*lighteffect.a);\n\n#endif\n\n#endif // TEXTURE_luminance_alpha\n    \n    fragColor = textureColor;\n\n#elif defined(IS_TEXT)\n    if (textureColor.a < 0.1)\n      discard;\n    else\n      fragColor = textureColor;\n#else\n    fragColor = lighteffect;\n#endif // HAS_TEXTURE\n    \n#ifdef HAS_FOG\n    // uFogParms elements: x = near, y = far, z = fogscale, w = (1-sin(FOV/2))/(1+sin(FOV/2))\n    // In Exp and Exp2: use density = density/far\n    // fogF will be the proportion of fog\n    // Initialize it to the linear value\n    float fogF;\n    if (uFogMode > 0) {\n      fogF = (uFogParms.y - vPosition.z/vPosition.w)/(uFogParms.y - uFogParms.x);\n      if (uFogMode > 1)\n        fogF = mix(uFogParms.w, 1.0, fogF);\n      fogF = fogF*uFogParms.z;\n      if (uFogMode == 2)\n        fogF = 1.0 - exp(-fogF);\n      // Docs are wrong: use (density*c)^2, not density*c^2\n      // https://gitlab.freedesktop.org/mesa/mesa/-/blob/master/src/mesa/swrast/s_fog.c#L58\n      else if (uFogMode == 3)\n        fogF = 1.0 - exp(-fogF*fogF);\n      fogF = clamp(fogF, 0.0, 1.0);\n      gl_FragColor = vec4(mix(fragColor.rgb, uFogColor, fogF), fragColor.a);\n    } else gl_FragColor = fragColor;\n#else\n    gl_FragColor = fragColor;\n#endif // HAS_FOG\n    \n}","players":[],"webGLoptions":{"preserveDrawingBuffer":true},"fastTransparency":true},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decomp-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.10: The black vector consists of a part entirely <em>within</em> the subspace and a part entirely outside the subspace.
+</figcaption>
+</figure>
+</div>
+</div>
+<p>To confirm that the gray vector really is the one in the subspace that is as close as possible to the black vector, observe these facts by rotating the scene:</p>
+<ol type="a">
+<li><p>The <span style="color: darkgray;">gray</span> vector is in the green subspace. No matter how you rotate the scene, the gray vector never emerges from the subspace.</p></li>
+<li><p>The tip of the black vector is directly above the tip of the gray vector. Admittedly, it can be hard to be sure of this just by observing the co-movement of the black and gray vectors.</p></li>
+</ol>
+<p>To allow greater precision of observation, we have added a <span style="color: red;">red</span> that is perpendicular to the green subspace. You will want to confirm that this statement is accurate. Do so by rotating the space until you are looking at the subspace edge on. Whichever such perspective you take, the red vector will be perpendicular to the vestigial line of the subspace.</p>
+<p>Now rotate the space so you are looking straight down the red vector. When you have this right, the red vector will look like a single dot. You will also see that the tip of the gray vector is exactly covered by the tip of the black vector.</p>
+<p>Go back to looking at the subspace edge on. You should be able to see the black, red, and gray vectors. Notice that if the red vector were moved so that its base is at the tip of the gray vector, it would reach directly to the tip of the black vector. That is,</p>
+<p><span class="math display">\[{\color{darkgray}{\text{gray}}} + {\color{red}{\text{red}}} = \text{black}\ .\]</span></p>
+<p>Writing a vector as a sum of two other vectors is a form of decomposition. This decomposition of the black vector involves a part <em>directly in</em> the subspace (<span style="color: darkgray;">gray</span>) and a part entirely outside the subspace (<span style="color: red">red</span>).</p>
+<p>In three-dimensional space, this is just fun and games. But in higher-dimensional space, where we need to perform the projection using arithmetic, it is the core technique of statistical modeling, a method that underlies many published scientific findings and that gives a more nuanced view of relationships than the simple rates described in <a href="Chap-04-rates.html#sec-rates">Chapter 4</a>.</p>
+</section>
+<section id="example-learning-to-identify-different-species" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="example-learning-to-identify-different-species"><span class="header-section-number">16.8</span> Example: Learning to identify different species</h2>
+<p>We are going to take on a ☞&nbsp;<strong>learning</strong><span id="finger-learning-definition" data-label="learning">&nbsp;☜</span> task: figuring out how to classify the species of a penguin. For people, such learning comes from experience. Spend enough time with penguins, and you’ll figure out how to discern one type of penguin from another.</p>
+<p>Consider now the problem of getting a computer to discern the different species from one another using physical measurements. Our motivation here is to demonstrate a process of <em>learning</em>. I don’t know that there is a practical, ecological motivation behind this problem.</p>
+<p>In this learning task, we will start by sending human experts out to collect data from penguins: the species, but also quantitative data such as the penguin’s mass, beak length, and width, and so on. The data collected constitute a ☞&nbsp;<strong>training data set</strong><span id="finger-training-data-set-definition" data-label="training data set">&nbsp;☜</span> that we will use to establish quantitative rules for identifying a penguin’s species.</p>
+<p><a href="Chap-16-operations.html#fig-penguins-3d">Figure 16.11</a> shows training data from 344 penguins across three species: Adélie, Chinstrap, and Gentoo. Each penguin is one dot in the picture. The judgement of the human experts about the species is indicated by the <em>color</em> of the dot: Adelie is blue, Chinstrap green, and Gentoo red. Five different quantitative measurements were taken for each penguin, so the dots rightfully belong in a five-dimensional space. But we can only show three dimensions graphically, so we work with those.</p>
+<div class="cell">
+<div id="fig-penguins-3d" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored no-overflow-x">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-penguins-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="rgl78535" style="width:100%;height:464px;" class="rglWebGL html-widget" role="img" aria-labelledby="rgl78535-aria"></div>
+<script type="application/json" data-for="rgl78535">{"x":{"material":{"color":"#000000","alpha":1,"lit":true,"ambient":"#000000","specular":"#FFFFFF","emission":"#000000","shininess":50,"smooth":true,"front":"filled","back":"filled","size":3,"lwd":1,"fog":true,"point_antialias":false,"line_antialias":false,"texture":null,"textype":"rgb","texmode":"modulate","texmipmap":false,"texminfilter":"linear","texmagfilter":"linear","texenvmap":false,"depth_mask":true,"depth_test":"less","isTransparent":false,"polygon_offset":[0,0],"margin":"","floating":false,"tag":"","blend":["src_alpha","one_minus_src_alpha"]},"rootSubscene":125,"objects":{"132":{"id":132,"type":"points","material":{"lit":false},"vertices":"0","colors":"1","centers":"2","ignoreExtent":false,"flags":34816},"133":{"id":133,"type":"planes","material":{"alpha":0.2470588237047195,"isTransparent":true},"vertices":"3","colors":"5","offsets":[[-1.089630700765339e-15]],"centers":"6","normals":"4","ignoreExtent":true,"flags":32803},"129":{"id":129,"type":"light","vertices":[[0,0,1]],"colors":[[1,1,1,1],[1,1,1,1],[1,1,1,1]],"viewpoint":true,"finite":false},"131":{"id":131,"type":"background","material":{"lit":false,"back":"lines"},"colors":"7","centers":"8","sphere":false,"fogtype":"none","fogscale":1,"flags":32768},"125":{"id":125,"type":"subscene","par3d":{"antialias":4,"FOV":0,"ignoreExtent":false,"listeners":125,"mouseMode":{"none":"none","left":"trackball","right":"zoom","middle":"fov","wheel":"pull"},"observer":[0,0,7.945286750793457],"modelMatrix":[[0.7660444378852844,0,-0.6427875757217407,-0.243799090385437],[-0.4217065870761871,0.7547096014022827,-0.5025703907012939,-0.1108475103974342],[0.4851179420948029,0.6560590267181396,0.5781410932540894,-8.384638786315918],[0,0,0,1]],"projMatrix":[[0.5034431219100952,0,0,0],[0,0.5034431219100952,0,0],[0,0,-0.2517215609550476,-1.99999988079071],[0,0,0,1]],"skipRedraw":false,"userMatrix":[[0.7660444378852844,0,-0.6427875757217407,0],[-0.4217065870761871,0.7547096014022827,-0.5025703907012939,0],[0.4851179420948029,0.6560590267181396,0.5781410932540894,0],[0,0,0,1]],"userProjection":[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],"scale":[1,1,1],"viewport":{"x":0,"y":0,"width":1,"height":1},"zoom":0.5,"bbox":[-2.165353775024414,2.871660470962524,-1.872617840766907,2.616414785385132,-2.056307315826416,2.139482736587524],"windowRect":[20,64,276,320],"family":"sans","font":1,"cex":1,"useFreeType":true,"fontname":"/Users/kaplan/Library/R/arm64/4.4/library/rgl/fonts/FreeSans.ttf","maxClipPlanes":6,"glVersion":2.1,"activeSubscene":0},"embeddings":{"viewport":"replace","projection":"replace","model":"replace","mouse":"replace"},"objects":[131,132,133,129],"subscenes":[],"flags":35107}},"crosstalk":{"key":[],"group":[],"id":[],"options":[]},"width":672,"height":480,"buffer":{"accessors":[{"bufferView":0,"componentType":5126,"count":344,"type":"VEC3"},{"bufferView":1,"componentType":5121,"count":344,"type":"VEC4","normalized":true},{"bufferView":2,"componentType":5126,"count":344,"type":"VEC3"},{"bufferView":3,"componentType":5126,"count":3,"type":"VEC3"},{"bufferView":4,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":5,"componentType":5126,"count":1,"type":"VEC4"},{"bufferView":6,"componentType":5126,"count":4,"type":"VEC3"},{"bufferView":7,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":8,"componentType":5121,"count":1,"type":"VEC3"}],"bufferViews":[{"buffer":0,"byteLength":4128,"byteOffset":0},{"buffer":0,"byteLength":1376,"byteOffset":4128},{"buffer":0,"byteLength":4128,"byteOffset":5504},{"buffer":0,"byteLength":36,"byteOffset":9632},{"buffer":0,"byteLength":12,"byteOffset":9668},{"buffer":0,"byteLength":16,"byteOffset":9680},{"buffer":0,"byteLength":48,"byteOffset":9696},{"buffer":0,"byteLength":4,"byteOffset":9744},{"buffer":0,"byteLength":3,"byteOffset":9748}],"buffers":[{"byteLength":9751,"bytes":"sxliv4Y1EL9jSLW/KlhPv4I/AL/kxIe/FtUpv9nol7/JYNe+AADAfwAAwH8AAMB/d1Gpv6D5\nb7+XGRC/77hYv48hML9jt0a/eHprv5EcOL9jSLW/UWldv8sRFz/JYNe+d0bmv57+Z7+XGRC/\nGT20vl9qdj1jt0a/WoePv9ftj7/kxIe/WoePv4orIL+vYr6/A1IEv9vjn78WLqy/oIt5v4I/\nAL/JgjS/gY3av8wifT5lSlS+qKmrv4orIL8w35C/Pdt0v6D5b7/JYNe+QVmFvnhpvj5ljo6+\n4z3fv1bwi799+Zm/q+HCPnheD7v8yfu+WoePv6Xvf797APW/i9+Rv5MXQL+vYr6/ARO8v4I/\nAL/861i/lSaGv+m6oL4w35C/2ypwv4I/AL+vYr6/KCTKv4I/AL8uVX2/78Mbv5gNUL/JE6O/\nUXQgv9vjn78uVX2/KC+Nv93ep7+KmgPAUXQgv+m6oL6vYr6/KlhPv9nol79Il9C/gZidv/Km\nwL5Il9C/KlhPv9ftj7+VIGu/x7INv/KmwL59+Zm/C1qwv1bwi7/JYNe+UWldvxcrhL2X97K+\n2ypwv+m6oL5jt0a/j3uhvpgNUL+vYr6/vDeUv9ftj79jSLW/AkdBv8kWDz99+Zm/2gGuv93e\np78WLqy/KmMSv/KmwL7JYNe+0Lq5v+DZr7/kxIe/bpgFPcwifT6X97K+40iiv+TPv78w35C/\nx6dKv4lB/j5jt0a/A1IEv6P0d78WLqy/7Y+Wv2XNw7/8fMe/0Lq5v6D5b79jt0a/yhqYvhcr\nhL3JgjS/x6dKv5wDYL/kxIe/2zUzv1Pl+j2VIGu/vCzRv6D5b79jt0a/GT20vq/FQb42S4W9\nsuXcv+jFz78uVX2/toHsvoorIL/JgjS/Fspmv5gNUL/kxIe/78Mbv4I/AL+XGRC/2gGuv+vA\n179jSLW/vDeUv4Y1EL/8yfu+Y8PAv93ep78w35C/e+L1vswifT7JYNe+vDeUv5MXQL8w35C/\nA1IEv6/FQb4wTiK/C1qwv+vA1799+Zm/LcDZvum6oL4wTiK/xnPFv9Xyh7/JYNe+A1IEv53t\nAb6VIGu/ARO8v+LUt79jt0a/o/7Gvm99nj5lSlS+nlf0v5MXQL9jt0a/ZfdFv/KmwL5jt0a/\nx6dKv5gNUL+X97K+ISCwPhcrhL1ljo6+xnPFv4orIL9jt0a/5G1Svl9qdj3JYNe+x7INv4or\nIL/JgjS/gZidv/KmwL59+Zm/bQq1v5gNUL8uVX2/VNyqvuDOgL7JYNe+gY3av9vjn7/861i/\nWqw/vs0MHz+X97K+d1Gpv4I/AL8uVX2/i9TOv3heD7uXGRC/UECbv9Xyh7/JgjS/e+L1vpgN\nUL/8yfu+PLKyv4I/AL9jt0a/FaGkv5wDYL/861i/ZM6Dv+m6oL7861i/eHprv5MXQL9jt0a/\nY8PAv5gNUL9d/p09A1IEv1Pl+j0uu5Q+qJ7ov6Xvf78w35C/x6dKv299nj7kxIe/bQq1v9ft\nj78uVX2/KmMSv1Pl+j1j+wA/xn6Iv4orIL9jt0a/FtUpv7tKPT6X97K+Y7j9v+jFz79Il9C/\nvWcHvp3tAb4wTiK/vCzRv4gwGL8wTiK/ZQIJv9AHJz+T0Rc+i9+Rv2HXs7/JE6O/WoePv19q\ndj1jt0a/KC+Nv2fIy7+XGRC/ZfdFv5gNUL99+Zm/oIt5v4Y1EL8AeAu+lSaGv/KmwL5jt0a/\nxn6Iv1zho79jSLW/vWcHvtT9Nj9ljo6+xn6Iv/+I8L5lSlS+l16dPolB/j7JgjS/ZfdFv9vj\nn7+XGRC/j3uhvkENuz1ljo6+x6dKv/KmwL7JgjS/bi9lvqbZIb6X97K+oIt5v+jFz7+VIGu/\nUECbv4Q6CL8AeAu+Y8PAv9Xyh7/861i/A1IEv1bwi7/861i/bQq1v93ep78uVX2/i9+Rv5wD\nYL9lSlS+eYUuv6D5b7/iy+K/toHsvvac0L5d/p09WXzMv+LUt7/kxIe/78Mbv+DOgL4AeAu+\n2ypwv1jrk7/JgjS/8iDjvlPl+j3JYNe+Fspmv+LUt7/JgjS/bpgFPeDOgL6VZCU/Ajx+v1bw\ni79jt0a/RikavpwDYL9ljo6+Rvmmv5wDYL+XGRC/7Y+Wv3Nzrj4AeAu+xn6Iv6P0d78uVX2/\nA1IEv/KmwL5jt0a/lRvDv1zho7/JgjS/eYUuv+TEkL42S4W940iiv6Xvf78w35C/ZfdFv19q\ndj2XGRC/eYUuv6Xvf7+XGRC/78Mbv57+Z78uVX2/KJUKwOLUt7+VIGu/jBMXv4gwGL9jt0a/\nUECbv+TPv78wTiK/Fspmv48hML8w35C/UWldv19qdj1jt0a/qKmrv57+Z799+Zm/0Lq5v6D5\nb7/JYNe+WoePv4Y1EL+XGRC/0Lq5v4orIL8uVX2/8iDjvuDOgL41mcU7cELMPnhpvj4umTc/\nHICOP5Mi7z8jYARANwtgP299nj6VZCU/HICOP5Mi7z+vhJs//XYsP4ZAvz/KNYA/g8XxPoFV\n3j6VZCU/DZ2KPtb4Pj8umTc/h0MCP31Unz/8nqQ/ZkzpvcwifT78LxM/6fMGP3tZlz/KNYA/\nx7INv8kWDz/6Nm4/XxxuP4wx1z8WUIk/0v2TPskWDz/6Nm4/EPpRP82JA0BhAlw/ISCwPnhe\nD7uVZCU/hi18P82JA0BjapI/GT20vhcrhL2VZCU/JH13P1dzJ0CV07Y/NaPVPtb4Pj/8LxM/\nNwtgP4NFtz/i7b8/fjCTP5Mi7z+vhJs/ffVcPujQfj/KNYA/g8XxPswifT5hAlw/+QPfPnZj\nhz/KNYA/Wqw/vujQfj/KNYA/cELMPnhejz/KNYA/hdjYPZ3tAb4WUIk/wdc1P5An5z/KNYA/\nS5lIP4lB/j6VZCU/HICOP4wx1z9Iua0/1WUeP39Ppz/i7b8/5G1Svs0MHz/8LxM/ffVcPnZj\nhz+Tjd0+Sck3QNF/E0AjYARAwcxyP3tZlz9Iua0/EPpRP4ZAvz9Iua0/9/B3vuPabj9hAlw/\nclWzPX9Ppz/8nqQ/HElqPLtKPT5j+wA/NwtgP4NFtz9j+wA/bi9lvum6oL5j+wA/Vx+FP5Mi\n7z/HPNs/STyBPlPl+j2VZCU/Vx+FP9ICLz8WUIk/EjmaP4wx1z/i7b8/VoZxvd/kXj9japI/\n0v2TPnheD7uVZCU/EjmaP4ZAvz/HPNs/anI3Pnhejz9hAlw/B7dvPoFKrz/KNYA/SCb7Ptvu\nTj+VZCU/c6pWP4FKrz9Iua0/ffVcPswifT6VZCU/TdiQP+jQfj/HPNs/g8XxPt/kXj9japI/\n9DNKPnZjhz9Iua0/D/S2vFPl+j1j+wA/0v2TPujQfj9Iua0/vWcHvm99nj5j+wA/4eCXP4wx\n1z97ItI/STyBPnheD7tj+wA/NaPVPoFKrz+V07Y/XL+mPswifT76Nm4/YFDzP5An5z9J7QhA\nISCwPs0MHz/8nqQ/uc+JP5Mi7z8jYARANaPVPskWDz/6Nm4/JseCP5cY/z/6pf8/Pkaevc0M\nHz9Iua0/dOmeP4wx1z8uCMk/XycxP9ICLz8WUIk/vmToPujQfj+V07Y/S5lIP3hejz+V07Y/\ng8XxPn1Unz9japI/vmToPs0MHz8WUIk/1VpbP5cY/z8jYARAmsYnP4lB/j78LxM/OUqoP1CC\nD0BIua0/B7dvPtICLz/KNYA/B7dvPs+EC0AuCMk/wcxyP8cbBz/HzUk/6hzJP4g7xz+V07Y/\nOBYjP9AHJz/HzUk/HICOP4NFtz97ItI/anI3PtICLz/HzUk/pUGhP44s3z+ti/Y/UsnDvYlB\n/j6vhJs/nPqsP4FKrz+vhJs/msYnP93pVj/HzUk/Jby/P4wx1z8jYARAmsYnP+Pabj+vhJs/\nVxTCP4ZAvz+ti/Y/0v2TPtICLz/HzUk/JseCP5An5z97ItI/hdjYPdvuTj/6Nm4/pUGhP31U\nnz8UV+Q/9G6AP+HfZj8WUIk/S6QLP93pVj/i7b8/EPpRP8cbBz+T0Rc+OUqoP39Ppz/HPNs/\nc6pWP9vuTj/8nqQ/umkMQI4s3z+ti/Y/c7UZP+bVdj/KNYA/wcxyP4o2zz+ti/Y/1WUeP9AH\nJz8WUIk/6fMGP4o2zz/KNYA/aF/Qvs0MHz+VZCU/pTbeP4o2zz/8nqQ/ZkzpvYVL7j5j+wA/\n6ehDP4o2zz/8LxM/EjmaP+jQfj8WUIk/uc+JP8+EC0D6pf8/PkaevckWDz9hAlw//qqxP4o2\nzz8jYARANaPVPsQ2XT5japI/9QgDQM2JA0AjYARAhdjYPd3pVj9japI/mrtkP1CCD0Di7b8/\nc7UZP+HfZj/6Nm4/AADAfwAAwH8AAMB/6fMGP9vuTj/KNYA/4eCXP5Ud9z/i7b8/B7dvPn1U\nnz/HzUk/6ieMP4ZAvz9hAlw/g8XxPpwDYL8wTiK/HICOP/KmwL6X97K+nPqsP48hML+XGRC/\nDZ2KPpoIWL+VIGu/Tc3NP4gwGL9ljo6+B7dvPum6oL5lSlS+cELMPtnol79Il9C/nPqsP4Y1\nEL9ljo6+q+HCPhcrhL3JYNe+nPqsP4orIL9lSlS+SCb7PoI/AL+XGRC/YFu2P4Q6CL/8yfu+\nrlQQP4orIL8w35C/9GO9P6/FQb41mcU75oC5PpUSSL9jt0a/EjmaP6/FQb41mcU7r4iVP9ft\nj79ljo6+vwclQIorIL9jSLW/vmToPqD5b79jt0a/JH13P8wifT7JYNe+BbqOvpMXQL9jSLW/\nc6pWP6Xvf7/JgjS/vWcHvujFz78uVX2/Q5GcP4I/AL+XGRC/h0MCP9ftj7/JYNe+9GO9Pxcr\nhL1ljo6+EjmaP6Xvf782S4W9JseCP4I/AL82S4W9vmToPoorIL/JgjS/fiXQP4FV3j4uu5Q+\nx7INv9vjn78uVX2/L/jwP1Pl+j01mcU7QVmFvtXyh78uVX2/CPKlP53tAb6T0Rc+iHeHP5MX\nQL/JYNe+msYnP/KmwL4AeAu+/XYsP/qS4L7JYNe+9GO9P9b4Pj+VZCU/S6QLP/Gx778wTiK/\n1o7gP3hpvj4uu5Q+XxxuP+m6oL6VZCU/NaPVPo8hML8uVX2/15mjP5gNUL+X97K+0v2TPpwD\nYL+X97K+15mjP40mKL+X97K+pUGhP299nj41mcU7TdiQP6Xvf79jt0a/XxxuP1Pl+j3HzUk/\n/qqxP9nol78uVX2/uc+JP40mKL9lSlS+6ehDP1bwi78AeAu+zVKvP+m6oL41mcU7XL+mPpMX\nQL+XGRC/dOmeP6/FQb6T0Rc+QVmFvtXyh78uVX2/VxTCP6D5b79ljo6+B7dvPtnol7/JgjS/\nhi18P6/FQb6T0Rc+fjCTP4I/AL9d/p09l16dPpoIWL/8yfu+wwu7P+m6oL5hJLk+6fMGP48h\nML/861i/XL+mPo8hML/JYNe+oT0LQODOgL6Tjd0+PkaevaXvf79d/p09Vx+FP4Q6CL+XGRC/\npUGhP53tAb6VZCU/fjCTP4Q6CL9lSlS+AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA\n//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//\nAAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA\n//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//\nAAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA\n//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//\nAAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA\n//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//\nAAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA\n//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//\nAAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA\n//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA////AAD//wAA//8AAP//AAD/\n/wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8A\nAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD/\n/wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8A\nAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD/\n/wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8A\nAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD/\n/wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8A\nAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD/\n/wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD/AP8A/wD/\nAP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/\nAP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/\nAP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/\nAP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/\nAP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP+zGWK/\nhjUQv2NItb8qWE+/gj8Av+TEh78W1Sm/2eiXv8lg174AAMB/AADAfwAAwH93Uam/oPlvv5cZ\nEL/vuFi/jyEwv2O3Rr94emu/kRw4v2NItb9RaV2/yxEXP8lg1753Rua/nv5nv5cZEL8ZPbS+\nX2p2PWO3Rr9ah4+/1+2Pv+TEh79ah4+/iisgv69ivr8DUgS/2+OfvxYurL+gi3m/gj8Av8mC\nNL+Bjdq/zCJ9PmVKVL6oqau/iisgvzDfkL8923S/oPlvv8lg175BWYW+eGm+PmWOjr7jPd+/\nVvCLv335mb+r4cI+eF4Pu/zJ+75ah4+/pe9/v3sA9b+L35G/kxdAv69ivr8BE7y/gj8Av/zr\nWL+VJoa/6bqgvjDfkL/bKnC/gj8Av69ivr8oJMq/gj8Avy5Vfb/vwxu/mA1Qv8kTo79RdCC/\n2+Ofvy5Vfb8oL42/3d6nv4qaA8BRdCC/6bqgvq9ivr8qWE+/2eiXv0iX0L+BmJ2/8qbAvkiX\n0L8qWE+/1+2Pv5Uga7/Hsg2/8qbAvn35mb8LWrC/VvCLv8lg175RaV2/FyuEvZf3sr7bKnC/\n6bqgvmO3Rr+Pe6G+mA1Qv69ivr+8N5S/1+2Pv2NItb8CR0G/yRYPP335mb/aAa6/3d6nvxYu\nrL8qYxK/8qbAvslg177Qurm/4Nmvv+TEh79umAU9zCJ9Ppf3sr7jSKK/5M+/vzDfkL/Hp0q/\niUH+PmO3Rr8DUgS/o/R3vxYurL/tj5a/Zc3Dv/x8x7/Qurm/oPlvv2O3Rr/KGpi+FyuEvcmC\nNL/Hp0q/nANgv+TEh7/bNTO/U+X6PZUga7+8LNG/oPlvv2O3Rr8ZPbS+r8VBvjZLhb2y5dy/\n6MXPvy5Vfb+2gey+iisgv8mCNL8Wyma/mA1Qv+TEh7/vwxu/gj8Av5cZEL/aAa6/68DXv2NI\ntb+8N5S/hjUQv/zJ+75jw8C/3d6nvzDfkL974vW+zCJ9Pslg1768N5S/kxdAvzDfkL8DUgS/\nr8VBvjBOIr8LWrC/68DXv335mb8twNm+6bqgvjBOIr/Gc8W/1fKHv8lg174DUgS/ne0BvpUg\na78BE7y/4tS3v2O3Rr+j/sa+b32ePmVKVL6eV/S/kxdAv2O3Rr9l90W/8qbAvmO3Rr/Hp0q/\nmA1Qv5f3sr4hILA+FyuEvWWOjr7Gc8W/iisgv2O3Rr/kbVK+X2p2Pclg177Hsg2/iisgv8mC\nNL+BmJ2/8qbAvn35mb9tCrW/mA1Qvy5Vfb9U3Kq+4M6Avslg176Bjdq/2+Ofv/zrWL9arD++\nzQwfP5f3sr53Uam/gj8Avy5Vfb+L1M6/eF4Pu5cZEL9QQJu/1fKHv8mCNL974vW+mA1Qv/zJ\n+748srK/gj8Av2O3Rr8VoaS/nANgv/zrWL9kzoO/6bqgvvzrWL94emu/kxdAv2O3Rr9jw8C/\nmA1Qv13+nT0DUgS/U+X6PS67lD6onui/pe9/vzDfkL/Hp0q/b32ePuTEh79tCrW/1+2Pvy5V\nfb8qYxK/U+X6PWP7AD/Gfoi/iisgv2O3Rr8W1Sm/u0o9Ppf3sr5juP2/6MXPv0iX0L+9Zwe+\nne0BvjBOIr+8LNG/iDAYvzBOIr9lAgm/0AcnP5PRFz6L35G/Ydezv8kTo79ah4+/X2p2PWO3\nRr8oL42/Z8jLv5cZEL9l90W/mA1Qv335mb+gi3m/hjUQvwB4C76VJoa/8qbAvmO3Rr/Gfoi/\nXOGjv2NItb+9Zwe+1P02P2WOjr7Gfoi//4jwvmVKVL6XXp0+iUH+PsmCNL9l90W/2+Ofv5cZ\nEL+Pe6G+QQ27PWWOjr7Hp0q/8qbAvsmCNL9uL2W+ptkhvpf3sr6gi3m/6MXPv5Uga79QQJu/\nhDoIvwB4C75jw8C/1fKHv/zrWL8DUgS/VvCLv/zrWL9tCrW/3d6nvy5Vfb+L35G/nANgv2VK\nVL55hS6/oPlvv+LL4r+2gey+9pzQvl3+nT1ZfMy/4tS3v+TEh7/vwxu/4M6AvgB4C77bKnC/\nWOuTv8mCNL/yIOO+U+X6Pclg174Wyma/4tS3v8mCNL9umAU94M6AvpVkJT8CPH6/VvCLv2O3\nRr9GKRq+nANgv2WOjr5G+aa/nANgv5cZEL/tj5a/c3OuPgB4C77Gfoi/o/R3vy5Vfb8DUgS/\n8qbAvmO3Rr+VG8O/XOGjv8mCNL95hS6/5MSQvjZLhb3jSKK/pe9/vzDfkL9l90W/X2p2PZcZ\nEL95hS6/pe9/v5cZEL/vwxu/nv5nvy5Vfb8olQrA4tS3v5Uga7+MExe/iDAYv2O3Rr9QQJu/\n5M+/vzBOIr8Wyma/jyEwvzDfkL9RaV2/X2p2PWO3Rr+oqau/nv5nv335mb/Qurm/oPlvv8lg\n175ah4+/hjUQv5cZEL/Qurm/iisgvy5Vfb/yIOO+4M6AvjWZxTtwQsw+eGm+Pi6ZNz8cgI4/\nkyLvPyNgBEA3C2A/b32ePpVkJT8cgI4/kyLvP6+Emz/9diw/hkC/P8o1gD+DxfE+gVXePpVk\nJT8NnYo+1vg+Py6ZNz+HQwI/fVSfP/yepD9mTOm9zCJ9PvwvEz/p8wY/e1mXP8o1gD/Hsg2/\nyRYPP/o2bj9fHG4/jDHXPxZQiT/S/ZM+yRYPP/o2bj8Q+lE/zYkDQGECXD8hILA+eF4Pu5Vk\nJT+GLXw/zYkDQGNqkj8ZPbS+FyuEvZVkJT8kfXc/V3MnQJXTtj81o9U+1vg+P/wvEz83C2A/\ng0W3P+Ltvz9+MJM/kyLvP6+Emz999Vw+6NB+P8o1gD+DxfE+zCJ9PmECXD/5A98+dmOHP8o1\ngD9arD++6NB+P8o1gD9wQsw+eF6PP8o1gD+F2Ng9ne0BvhZQiT/B1zU/kCfnP8o1gD9LmUg/\niUH+PpVkJT8cgI4/jDHXP0i5rT/VZR4/f0+nP+Ltvz/kbVK+zQwfP/wvEz999Vw+dmOHP5ON\n3T5JyTdA0X8TQCNgBEDBzHI/e1mXP0i5rT8Q+lE/hkC/P0i5rT/38He+49puP2ECXD9yVbM9\nf0+nP/yepD8cSWo8u0o9PmP7AD83C2A/g0W3P2P7AD9uL2W+6bqgvmP7AD9XH4U/kyLvP8c8\n2z9JPIE+U+X6PZVkJT9XH4U/0gIvPxZQiT8SOZo/jDHXP+Ltvz9WhnG93+ReP2Nqkj/S/ZM+\neF4Pu5VkJT8SOZo/hkC/P8c82z9qcjc+eF6PP2ECXD8Ht28+gUqvP8o1gD9IJvs+2+5OP5Vk\nJT9zqlY/gUqvP0i5rT999Vw+zCJ9PpVkJT9N2JA/6NB+P8c82z+DxfE+3+ReP2Nqkj/0M0o+\ndmOHP0i5rT8P9La8U+X6PWP7AD/S/ZM+6NB+P0i5rT+9Zwe+b32ePmP7AD/h4Jc/jDHXP3si\n0j9JPIE+eF4Pu2P7AD81o9U+gUqvP5XTtj9cv6Y+zCJ9Pvo2bj9gUPM/kCfnP0ntCEAhILA+\nzQwfP/yepD+5z4k/kyLvPyNgBEA1o9U+yRYPP/o2bj8mx4I/lxj/P/ql/z8+Rp69zQwfP0i5\nrT906Z4/jDHXPy4IyT9fJzE/0gIvPxZQiT++ZOg+6NB+P5XTtj9LmUg/eF6PP5XTtj+DxfE+\nfVSfP2Nqkj++ZOg+zQwfPxZQiT/VWls/lxj/PyNgBECaxic/iUH+PvwvEz85Sqg/UIIPQEi5\nrT8Ht28+0gIvP8o1gD8Ht28+z4QLQC4IyT/BzHI/xxsHP8fNST/qHMk/iDvHP5XTtj84FiM/\n0AcnP8fNST8cgI4/g0W3P3si0j9qcjc+0gIvP8fNST+lQaE/jizfP62L9j9SycO9iUH+Pq+E\nmz+c+qw/gUqvP6+Emz+axic/3elWP8fNST8lvL8/jDHXPyNgBECaxic/49puP6+Emz9XFMI/\nhkC/P62L9j/S/ZM+0gIvP8fNST8mx4I/kCfnP3si0j+F2Ng92+5OP/o2bj+lQaE/fVSfPxRX\n5D/0boA/4d9mPxZQiT9LpAs/3elWP+Ltvz8Q+lE/xxsHP5PRFz45Sqg/f0+nP8c82z9zqlY/\n2+5OP/yepD+6aQxAjizfP62L9j9ztRk/5tV2P8o1gD/BzHI/ijbPP62L9j/VZR4/0AcnPxZQ\niT/p8wY/ijbPP8o1gD9oX9C+zQwfP5VkJT+lNt4/ijbPP/yepD9mTOm9hUvuPmP7AD/p6EM/\nijbPP/wvEz8SOZo/6NB+PxZQiT+5z4k/z4QLQPql/z8+Rp69yRYPP2ECXD/+qrE/ijbPPyNg\nBEA1o9U+xDZdPmNqkj/1CANAzYkDQCNgBECF2Ng93elWP2Nqkj+au2Q/UIIPQOLtvz9ztRk/\n4d9mP/o2bj8AAMB/AADAfwAAwH/p8wY/2+5OP8o1gD/h4Jc/lR33P+Ltvz8Ht28+fVSfP8fN\nST/qJ4w/hkC/P2ECXD+DxfE+nANgvzBOIr8cgI4/8qbAvpf3sr6c+qw/jyEwv5cZEL8NnYo+\nmghYv5Uga79Nzc0/iDAYv2WOjr4Ht28+6bqgvmVKVL5wQsw+2eiXv0iX0L+c+qw/hjUQv2WO\njr6r4cI+FyuEvclg176c+qw/iisgv2VKVL5IJvs+gj8Av5cZEL9gW7Y/hDoIv/zJ+76uVBA/\niisgvzDfkL/0Y70/r8VBvjWZxTvmgLk+lRJIv2O3Rr8SOZo/r8VBvjWZxTuviJU/1+2Pv2WO\njr6/ByVAiisgv2NItb++ZOg+oPlvv2O3Rr8kfXc/zCJ9Pslg174Fuo6+kxdAv2NItb9zqlY/\npe9/v8mCNL+9Zwe+6MXPvy5Vfb9DkZw/gj8Av5cZEL+HQwI/1+2Pv8lg1770Y70/FyuEvWWO\njr4SOZo/pe9/vzZLhb0mx4I/gj8AvzZLhb2+ZOg+iisgv8mCNL9+JdA/gVXePi67lD7Hsg2/\n2+Ofvy5Vfb8v+PA/U+X6PTWZxTtBWYW+1fKHvy5Vfb8I8qU/ne0BvpPRFz6Id4c/kxdAv8lg\n176axic/8qbAvgB4C779diw/+pLgvslg1770Y70/1vg+P5VkJT9LpAs/8bHvvzBOIr/WjuA/\neGm+Pi67lD5fHG4/6bqgvpVkJT81o9U+jyEwvy5Vfb/XmaM/mA1Qv5f3sr7S/ZM+nANgv5f3\nsr7XmaM/jSYov5f3sr6lQaE/b32ePjWZxTtN2JA/pe9/v2O3Rr9fHG4/U+X6PcfNST/+qrE/\n2eiXvy5Vfb+5z4k/jSYov2VKVL7p6EM/VvCLvwB4C77NUq8/6bqgvjWZxTtcv6Y+kxdAv5cZ\nEL906Z4/r8VBvpPRFz5BWYW+1fKHvy5Vfb9XFMI/oPlvv2WOjr4Ht28+2eiXv8mCNL+GLXw/\nr8VBvpPRFz5+MJM/gj8Av13+nT2XXp0+mghYv/zJ+77DC7s/6bqgvmEkuT7p8wY/jyEwv/zr\nWL9cv6Y+jyEwv8lg176hPQtA4M6AvpON3T4+Rp69pe9/v13+nT1XH4U/hDoIv5cZEL+lQaE/\nne0BvpVkJT9+MJM/hDoIv2VKVL4olQrA8bHvvxGC7b8olQrAV3MnQO0pvj82mmY/V3MnQEnt\nCEDmW1o+b4o+PwAAgL8AAAAAAAAAAAAAAAD9/Hw+11eSv3pejz+fARc/lCMJP+6Nbj+4zE4/\n8qiYP36CEL+jzim+AADAfwAAwH8AAMB/AQEBAQAAAA=="}]},"context":{"shiny":false,"rmarkdown":null},"vertexShader":"#line 2 1\n// File 1 is the vertex shader\n#ifdef GL_ES\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n#endif\n\nattribute vec3 aPos;\nattribute vec4 aCol;\nuniform mat4 mvMatrix;\nuniform mat4 prMatrix;\nvarying vec4 vCol;\nvarying vec4 vPosition;\n\n#ifdef NEEDS_VNORMAL\nattribute vec3 aNorm;\nuniform mat4 normMatrix;\nvarying vec4 vNormal;\n#endif\n\n#if defined(HAS_TEXTURE) || defined (IS_TEXT)\nattribute vec2 aTexcoord;\nvarying vec2 vTexcoord;\n#endif\n\n#ifdef FIXED_SIZE\nuniform vec3 textScale;\n#endif\n\n#ifdef FIXED_QUADS\nattribute vec3 aOfs;\n#endif\n\n#ifdef IS_TWOSIDED\n#ifdef HAS_NORMALS\nvarying float normz;\nuniform mat4 invPrMatrix;\n#else\nattribute vec3 aPos1;\nattribute vec3 aPos2;\nvarying float normz;\n#endif\n#endif // IS_TWOSIDED\n\n#ifdef FAT_LINES\nattribute vec3 aNext;\nattribute vec2 aPoint;\nvarying vec2 vPoint;\nvarying float vLength;\nuniform float uAspect;\nuniform float uLwd;\n#endif\n\n#ifdef USE_ENVMAP\nvarying vec3 vReflection;\n#endif\n\nvoid main(void) {\n  \n#ifndef IS_BRUSH\n#if defined(NCLIPPLANES) || !defined(FIXED_QUADS) || defined(HAS_FOG) || defined(USE_ENVMAP)\n  vPosition = mvMatrix * vec4(aPos, 1.);\n#endif\n  \n#ifndef FIXED_QUADS\n  gl_Position = prMatrix * vPosition;\n#endif\n#endif // !IS_BRUSH\n  \n#ifdef IS_POINTS\n  gl_PointSize = POINTSIZE;\n#endif\n  \n  vCol = aCol;\n  \n// USE_ENVMAP implies NEEDS_VNORMAL\n\n#ifdef NEEDS_VNORMAL\n  vNormal = normMatrix * vec4(-aNorm, dot(aNorm, aPos));\n#endif\n\n#ifdef USE_ENVMAP\n  vReflection = normalize(reflect(vPosition.xyz/vPosition.w, \n                        normalize(vNormal.xyz/vNormal.w)));\n#endif\n  \n#ifdef IS_TWOSIDED\n#ifdef HAS_NORMALS\n  /* normz should be calculated *after* projection */\n  normz = (invPrMatrix*vNormal).z;\n#else\n  vec4 pos1 = prMatrix*(mvMatrix*vec4(aPos1, 1.));\n  pos1 = pos1/pos1.w - gl_Position/gl_Position.w;\n  vec4 pos2 = prMatrix*(mvMatrix*vec4(aPos2, 1.));\n  pos2 = pos2/pos2.w - gl_Position/gl_Position.w;\n  normz = pos1.x*pos2.y - pos1.y*pos2.x;\n#endif\n#endif // IS_TWOSIDED\n  \n#ifdef NEEDS_VNORMAL\n  vNormal = vec4(normalize(vNormal.xyz), 1);\n#endif\n  \n#if defined(HAS_TEXTURE) || defined(IS_TEXT)\n  vTexcoord = aTexcoord;\n#endif\n  \n#if defined(FIXED_SIZE) && !defined(ROTATING)\n  vec4 pos = prMatrix * mvMatrix * vec4(aPos, 1.);\n  pos = pos/pos.w;\n  gl_Position = pos + vec4(aOfs*textScale, 0.);\n#endif\n  \n#if defined(IS_SPRITES) && !defined(FIXED_SIZE)\n  vec4 pos = mvMatrix * vec4(aPos, 1.);\n  pos = pos/pos.w + vec4(aOfs,  0.);\n  gl_Position = prMatrix*pos;\n#endif\n  \n#ifdef FAT_LINES\n  /* This code was inspired by Matt Deslauriers' code in \n   https://mattdesl.svbtle.com/drawing-lines-is-hard */\n  vec2 aspectVec = vec2(uAspect, 1.0);\n  mat4 projViewModel = prMatrix * mvMatrix;\n  vec4 currentProjected = projViewModel * vec4(aPos, 1.0);\n  currentProjected = currentProjected/currentProjected.w;\n  vec4 nextProjected = projViewModel * vec4(aNext, 1.0);\n  vec2 currentScreen = currentProjected.xy * aspectVec;\n  vec2 nextScreen = (nextProjected.xy / nextProjected.w) * aspectVec;\n  float len = uLwd;\n  vec2 dir = vec2(1.0, 0.0);\n  vPoint = aPoint;\n  vLength = length(nextScreen - currentScreen)/2.0;\n  vLength = vLength/(vLength + len);\n  if (vLength > 0.0) {\n    dir = normalize(nextScreen - currentScreen);\n  }\n  vec2 normal = vec2(-dir.y, dir.x);\n  dir.x /= uAspect;\n  normal.x /= uAspect;\n  vec4 offset = vec4(len*(normal*aPoint.x*aPoint.y - dir), 0.0, 0.0);\n  gl_Position = currentProjected + offset;\n#endif\n  \n#ifdef IS_BRUSH\n  gl_Position = vec4(aPos, 1.);\n#endif\n}","fragmentShader":"#line 2 2\n// File 2 is the fragment shader\n#ifdef GL_ES\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n#endif\nvarying vec4 vCol; // carries alpha\nvarying vec4 vPosition;\n#if defined(HAS_TEXTURE) || defined (IS_TEXT)\nvarying vec2 vTexcoord;\nuniform sampler2D uSampler;\n#endif\n\n#ifdef HAS_FOG\nuniform int uFogMode;\nuniform vec3 uFogColor;\nuniform vec4 uFogParms;\n#endif\n\n#if defined(IS_LIT) && !defined(FIXED_QUADS)\nvarying vec4 vNormal;\n#endif\n\n#if NCLIPPLANES > 0\nuniform vec4 vClipplane[NCLIPPLANES];\n#endif\n\n#if NLIGHTS > 0\nuniform mat4 mvMatrix;\n#endif\n\n#ifdef IS_LIT\nuniform vec3 emission;\nuniform float shininess;\n#if NLIGHTS > 0\nuniform vec3 ambient[NLIGHTS];\nuniform vec3 specular[NLIGHTS]; // light*material\nuniform vec3 diffuse[NLIGHTS];\nuniform vec3 lightDir[NLIGHTS];\nuniform bool viewpoint[NLIGHTS];\nuniform bool finite[NLIGHTS];\n#endif\n#endif // IS_LIT\n\n#ifdef IS_TWOSIDED\nuniform bool front;\nvarying float normz;\n#endif\n\n#ifdef FAT_LINES\nvarying vec2 vPoint;\nvarying float vLength;\n#endif\n\n#ifdef USE_ENVMAP\nvarying vec3 vReflection;\n#endif\n\nvoid main(void) {\n  vec4 fragColor;\n#ifdef FAT_LINES\n  vec2 point = vPoint;\n  bool neg = point.y < 0.0;\n  point.y = neg ? (point.y + vLength)/(1.0 - vLength) :\n                 -(point.y - vLength)/(1.0 - vLength);\n#if defined(IS_TRANSPARENT) && defined(IS_LINESTRIP)\n  if (neg && length(point) <= 1.0) discard;\n#endif\n  point.y = min(point.y, 0.0);\n  if (length(point) > 1.0) discard;\n#endif // FAT_LINES\n  \n#ifdef ROUND_POINTS\n  vec2 coord = gl_PointCoord - vec2(0.5);\n  if (length(coord) > 0.5) discard;\n#endif\n  \n#if NCLIPPLANES > 0\n  for (int i = 0; i < NCLIPPLANES; i++)\n    if (dot(vPosition, vClipplane[i]) < 0.0) discard;\n#endif\n    \n#ifdef FIXED_QUADS\n    vec3 n = vec3(0., 0., 1.);\n#elif defined(IS_LIT)\n    vec3 n = normalize(vNormal.xyz);\n#endif\n    \n#ifdef IS_TWOSIDED\n    if ((normz <= 0.) != front) discard;\n#endif\n\n#ifdef IS_LIT\n    vec3 eye = normalize(-vPosition.xyz/vPosition.w);\n    vec3 lightdir;\n    vec4 colDiff;\n    vec3 halfVec;\n    vec4 lighteffect = vec4(emission, 0.);\n    vec3 col;\n    float nDotL;\n#ifdef FIXED_QUADS\n    n = -faceforward(n, n, eye);\n#endif\n    \n#if NLIGHTS > 0\n    // Simulate two-sided lighting\n    if (n.z < 0.0)\n      n = -n;\n    for (int i=0;i<NLIGHTS;i++) {\n      colDiff = vec4(vCol.rgb * diffuse[i], vCol.a);\n      lightdir = lightDir[i];\n      if (!viewpoint[i]) {\n        if (finite[i]) {\n          lightdir = (mvMatrix * vec4(lightdir, 1.)).xyz;\n        } else {\n          lightdir = (mvMatrix * vec4(lightdir, 0.)).xyz;\n        }\n      }\n      if (!finite[i]) {\n        halfVec = normalize(lightdir + eye);\n      } else {\n        lightdir = normalize(lightdir - vPosition.xyz/vPosition.w);\n        halfVec = normalize(lightdir + eye);\n      }\n      col = ambient[i];\n      nDotL = dot(n, lightdir);\n      col = col + max(nDotL, 0.) * colDiff.rgb;\n      col = col + pow(max(dot(halfVec, n), 0.), shininess) * specular[i];\n      lighteffect = lighteffect + vec4(col, colDiff.a);\n    }\n#else\n    lighteffect.a = 1.;\n#endif\n    \n#else // not IS_LIT\n    vec4 colDiff = vCol;\n    vec4 lighteffect = colDiff;\n#endif\n    \n#ifdef IS_TEXT\n    vec4 textureColor = lighteffect*texture2D(uSampler, vTexcoord);\n#endif\n    \n#ifdef HAS_TEXTURE\n\n// These calculations use the definitions from \n// https://docs.gl/gl3/glTexEnv\n\n#ifdef USE_ENVMAP\n    float m = 2.0 * sqrt(dot(vReflection, vReflection) + 2.0*vReflection.z + 1.0);\n    vec4 textureColor = texture2D(uSampler, vReflection.xy / m + vec2(0.5, 0.5));\n#else\n    vec4 textureColor = texture2D(uSampler, vTexcoord);\n#endif\n\n#ifdef TEXTURE_rgb\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(textureColor.rgb, lighteffect.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = lighteffect*vec4(textureColor.rgb, 1.);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - textureColor.rgb) * lighteffect.rgb, lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(lighteffect.rgb + textureColor.rgb, lighteffect.a);\n#endif\n\n#endif //TEXTURE_rgb\n        \n#ifdef TEXTURE_rgba\n\n#ifdef TEXMODE_replace\n// already done\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = lighteffect*textureColor;\n#endif\n\n#ifdef TEXMODE_decal\n    textureColor = vec4((1. - textureColor.a)*lighteffect.rgb) +\n                     textureColor.a*textureColor.rgb, \n                     lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - textureColor.rgb) * lighteffect.rgb,\n                    lighteffect.a*textureColor.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(lighteffect.rgb + textureColor.rgb,\n                    lighteffect.a*textureColor.a);\n#endif\n    \n#endif //TEXTURE_rgba\n    \n#ifdef TEXTURE_alpha\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(lighteffect.rgb, luminance);\n#endif \n\n#if defined(TEXMODE_modulate) || defined(TEXMODE_blend) || defined(TEXMODE_add)\n    textureColor = vec4(lighteffect.rgb, lighteffect.a*luminance);\n#endif\n \n#endif // TEXTURE_alpha\n    \n// The TEXTURE_luminance values are not from that reference    \n#ifdef TEXTURE_luminance\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(luminance, luminance, luminance, lighteffect.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = vec4(luminance*lighteffect.rgb, lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - luminance)*lighteffect.rgb,\n                        lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(luminance + lighteffect.rgb, lighteffect.a);\n#endif\n\n#endif // TEXTURE_luminance\n \n    \n#ifdef TEXTURE_luminance_alpha\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(luminance, luminance, luminance, textureColor.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = vec4(luminance*lighteffect.rgb, \n                        textureColor.a*lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - luminance)*lighteffect.rgb,\n                        textureColor.a*lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(luminance + lighteffect.rgb, \n                        textureColor.a*lighteffect.a);\n\n#endif\n\n#endif // TEXTURE_luminance_alpha\n    \n    fragColor = textureColor;\n\n#elif defined(IS_TEXT)\n    if (textureColor.a < 0.1)\n      discard;\n    else\n      fragColor = textureColor;\n#else\n    fragColor = lighteffect;\n#endif // HAS_TEXTURE\n    \n#ifdef HAS_FOG\n    // uFogParms elements: x = near, y = far, z = fogscale, w = (1-sin(FOV/2))/(1+sin(FOV/2))\n    // In Exp and Exp2: use density = density/far\n    // fogF will be the proportion of fog\n    // Initialize it to the linear value\n    float fogF;\n    if (uFogMode > 0) {\n      fogF = (uFogParms.y - vPosition.z/vPosition.w)/(uFogParms.y - uFogParms.x);\n      if (uFogMode > 1)\n        fogF = mix(uFogParms.w, 1.0, fogF);\n      fogF = fogF*uFogParms.z;\n      if (uFogMode == 2)\n        fogF = 1.0 - exp(-fogF);\n      // Docs are wrong: use (density*c)^2, not density*c^2\n      // https://gitlab.freedesktop.org/mesa/mesa/-/blob/master/src/mesa/swrast/s_fog.c#L58\n      else if (uFogMode == 3)\n        fogF = 1.0 - exp(-fogF*fogF);\n      fogF = clamp(fogF, 0.0, 1.0);\n      gl_FragColor = vec4(mix(fragColor.rgb, uFogColor, fogF), fragColor.a);\n    } else gl_FragColor = fragColor;\n#else\n    gl_FragColor = fragColor;\n#endif // HAS_FOG\n    \n}","players":[],"webGLoptions":{"preserveDrawingBuffer":true},"fastTransparency":true},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.11: Representing the penguin data as points in space.
+</figcaption>
+</figure>
+</div>
+</div>
+<p>From the perspective shown initially, it’s easy to distinguish the <span style="color: green;">Chinstrap</span> penguins from the other two species. But the Adelie and Gentoo species are all mixed up; we can’t divide the space into distinct regions that separate one species from another.</p>
+<p>Now rotate the scene until each of the three species occupies a distinct region. By rotating, you are determining how to combine the various measurements to obtain the cleanest results from the training data. Once that learning has been accomplished, you’ll know how to classify any new penguin that comes along without a species label.</p>
+<p>Think about how you learned the pattern. You rotated the space more or less at random, keeping track of which perspective best separates the groups of different-colored dots. Such a perspective optimization can also be automated, without human involvement. In fact, that is how the subspace shown in <a href="Chap-16-operations.html#fig-penguins-3d">Figure 16.11</a> was determined. The information about species corresponds to the pattern encoded by the subspace.</p>
+<p>This was a pretty easy learning task since it can be done in three dimensions. The next example demonstrates a more impressive feat performed in a space of more than 100 dimensions. What’s more, there is no expert providing the training data; the method will figure out how to perform classification without knowing the goal!</p>
+</section>
+<section id="example-voting-patterns" class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="example-voting-patterns"><span class="header-section-number">16.9</span> Example: Voting patterns</h2>
+<p>In high-dimensional space, random vectors tend to have an alignment close to zero. This is an important clue to help us spot patterns in data. As described previously, patterns are encoded by a choice of subspace. To search for patterns, we look for subspaces where projecting onto the space tends to produce vectors that are more closely aligned.</p>
+<p>To avoid unnecessary abstraction and the mystique that can arise from leaving the familiar realm of three dimensions, we have selected an easy-to-understand setting: votes by legislators in a council. In particular, we will examine a series of 773 votes by 135 lawmakers in the Scottish Parliament in 1999-2000.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> This might seem an obscure topic, but the advantage for us is that few readers will have direct knowledge of the parliament’s political structure, for instance, the number and make-up of political parties. Similarly, the reader will not know how the 773 recorded ballots are related to one another.</p>
+<p>This is an example of ☞&nbsp;<strong>unsupervised learning</strong><span id="finger-unsupervised-learning-definition" data-label="unsupervised learning">&nbsp;☜</span>. In <em>supervised</em> learning, as with the penguin species assignment, we have <em>training data</em> about the patterns we seek to uncover: the different colored points in <a href="Chap-16-operations.html#fig-penguins-3d">Figure 16.11</a> that enable us to find an advantageous projection onto a low-dimensional subspace. In <em>unsupervised</em> we have no such knowledge. The problem is then to find a low-dimensional subspace without knowing in advance what we are looking for.</p>
+<p>To orient the reader, consider some of the data for one of the 135 members of parliament, Bruce Crawford. Mr.&nbsp;Crawford voted “For” 235 ballots, “Against” 264, and didn’t register a vote in 274. For instance, Bill S1M-786 was entitled “Ethical Standards in Public Life.” Mr.&nbsp;Crawford was in favor, as were 98 of his colleagues. (It is likely that most members of parliament are in favor of ethical standards in public life, but evidently, 17 members objected to something or another in the bill. There were 2 abstentions and 16 absences.)</p>
+<p>A diligent researcher can read through the minutes of Parliament, which record which party each member belongs to and the content of each bill. But, in the spirit of unsupervised learning, we will not use this information.</p>
+<p><a href="Chap-16-operations.html#fig-all-votes">Figure 16.12</a> shows the votes and absences for each of the 134 members of parliament on each of the 773 bills, giving somewhat over 100,000 data points. Each point is one member voting for or against one bill (or abstaining or being absent). The point’s color shows whether the vote was for or against.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-all-votes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-all-votes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-16-operations_files/figure-html/fig-all-votes-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-all-votes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.12: Votes by 134 members of the Scottish Parliament on 773 bills considered in the 1999-2000 session. The “Ethical Standards” bill is column 183. Mr.&nbsp;Crawford is row 100.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!--
+::: {#fig-all-votes}
+![](www/fig-all-votes-1-flattened.png)
+
+Votes by 134 members of the Scottish Parliament on 773 bills considered in the 1999-2000 session. The \"Ethical Standards\" bill is column 183. Mr. Crawford is row 100."
+show_votes(VAlpha)
+:::
+-->
+<p>Our goal is to find and interpret patterns in the data. There are many ways to define “pattern.” For instance, the reader will, possibly, see the overall pattern in <a href="Chap-16-operations.html#fig-all-votes">Figure 16.12</a> as a <em>plaid</em>, a common fabric pattern. (Satisfyingly, plaid is culturally associated with Scotland, although that has nothing to do with the matter at hand.) Here, however, we will stick with the sorts of patterns that can be seen through the lens of quantitative reasoning, particularly the alignment of vectors and the detection of low-dimensional subspaces that provide a good approximation to the raw data.</p>
+<p>We start with alignment, a useful measure that can be calculated using the formula in <a href="Chap-16-operations.html#eq-alignment">Math Expr 16.3</a>, which involves simple arithmetic. We start by measuring the alignment among the various members of parliament. For each of the 133 members of parliament, we have a vector of votes on the 773 bills. For example, Bruce Crawford’s voting record is represented by the vector we have named <span class="math inline">\(\vec{M}_{100}\)</span> in <a href="Chap-16-operations.html#eq-bruce-crawford">Math Expr 16.4</a>. We also show vectors for a randomly selected few of his colleagues: Colin Campbell (<span class="math inline">\(\vec{M}_{99}\)</span>), Paul Martin <span class="math inline">\(\vec{M}_{57}\)</span>, and Scott Barrie (<span class="math inline">\(\vec{M}_{25}\)</span>). Each of the vectors has 773 components; we’re leaving out most of them for human readability.</p>
+<p><span id="eq-bruce-crawford"><span class="math display">\[\vec{M}_{100} = {\small\left(\begin{array}{r}1\\-1\\-1\\1\\1\\1\\1\\-1\\\vdots\\-1\\-1\\1 \end{array}\right)}\ \ \ \
+\vec{M}_{99} = \small{\left(\begin{array}{r}-1\\1\\1\\-1\\-1\\-1\\-1\\1\\\vdots\\1\\1\\0 \end{array}\right)}\ \ \ \
+\vec{M}_{57} = \small{\left(\begin{array}{r}1\\-1\\-1\\-1\\1\\1\\1\\-1\\\vdots\\0\\0\\0 \end{array}\right)}
+\vec{M}_{25} = \small{\left(\begin{array}{r}0\\0\\0\\0\\0\\-1\\1\\1\\\vdots\\0\\1\\0 \end{array}\right)}\ \ \ \
+\tag{16.4}\]</span></span></p>
+<p>Note that the first component of all the vectors in <a href="Chap-16-operations.html#eq-bruce-crawford">Math Expr 16.4</a> corresponds to the vote on the same bill, S1M-1, and similarly for all the other bills up to S1M-4064.</p>
+<p>Observe that <span class="math inline">\(\vec{M}_{100}\)</span> is almost entirely the opposite voting pattern of <span class="math inline">\(\vec{M}_{99}\)</span>. To find the quantitative alignment, first take the dot product of the two vectors, <span class="math display">\[ (-1) \times 1 + (-1)\times 1  + 1 \times (-1) + 1 \times (-1) + \cdots = - 8\]</span> then divide by the square root of the lengths of the two vectors, <span class="math inline">\(\sqrt{11}\)</span> and <span class="math inline">\(\sqrt{10}\)</span> respectively. This arithmetic operation gives an alignment of -76%.</p>
+<p>The point here is not to emphasize this particular calculation, but to show that the alignment is a straightforward statistic to compute. And, in any event, we should take into account all 773 bills when computing the alignment between two members of parliament. <a href="Chap-16-operations.html#tbl-4mps-alignment">Table 16.1</a> shows the result.</p>
+<div id="tbl-4MPs-alignment" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4MPs-alignment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;16.1: Alignments among the voting patterns of four members of parliament.
+</figcaption>
+<div aria-describedby="tbl-4MPs-alignment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>&nbsp;</th>
+<th>Scott</th>
+<th>Paul</th>
+<th>Colin</th>
+<th>Bruce</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Scott</strong></td>
+<td>1</td>
+<td>-0.33</td>
+<td>0.68</td>
+<td>-0.31</td>
+</tr>
+<tr class="even">
+<td><strong>Paul</strong></td>
+<td>-0.33</td>
+<td>1</td>
+<td>-0.39</td>
+<td>0.85</td>
+</tr>
+<tr class="odd">
+<td><strong>Colin</strong></td>
+<td>0.68</td>
+<td>-0.39</td>
+<td>1</td>
+<td>-0.37</td>
+</tr>
+<tr class="even">
+<td><strong>Bruce</strong></td>
+<td>-0.31</td>
+<td>0.85</td>
+<td>-0.37</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Notice that (of course!) each MP is <em>perfectly aligned</em> with themself. And, the alignments are symmetrical: the alignment between Paul and Scott is the same as the alignment between Scott and Paul. Such patterns tell us nothing about voting patterns. They are merely an inevitable consequence of the symmetry in the dot-product calculation.</p>
+<p>The alignment array, however, shows some patterns. Notice that Scott and Colin are strongly aligned. Paul and Bruce are even more so. But Scott and Paul are somewhat negatively aligned, as are Colin and Bruce.</p>
+<p>Re-arranging the names to place strongly aligned ones near each other and negatively aligned ones far away gives the following order:</p>
+<p><strong>Scott</strong>, <strong>Colin</strong>, <strong>Bruce</strong>, <strong>Paul</strong></p>
+<p><a href="Chap-16-operations.html#tbl-4mps-re-ordered">Table 16.2</a> puts <a href="Chap-16-operations.html#tbl-4mps-alignment">Table 16.1</a> into this order. The re-arrangement suggests that among these four MPs there are two voting blocks, <span style="color:blue;">blue</span> and <span style="color:green;">green</span>.</p>
+<div id="tbl-4MPs-re-ordered" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4MPs-re-ordered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;16.2: Re-ordering the members of parliament to put those closely aligned near each other shows two voting blocks.
+</figcaption>
+<div aria-describedby="tbl-4MPs-re-ordered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">&nbsp;</th>
+<th style="text-align: right;">Scott</th>
+<th style="text-align: right;">Colin</th>
+<th style="text-align: right;">Bruce</th>
+<th style="text-align: right;">Paul</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Scott</strong></td>
+<td style="text-align: right;"><span style="color: green;">1</span></td>
+<td style="text-align: right;"><span style="color: green;">0.68</span></td>
+<td style="text-align: right;"><span style="color: red;">-0.31</span></td>
+<td style="text-align: right;"><span style="color:red;">-0.33</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Colin</strong></td>
+<td style="text-align: right;"><span style="color: green;">0.68</span></td>
+<td style="text-align: right;"><span style="color: green;">1</span></td>
+<td style="text-align: right;"><span style="color: red;">-0.37</span></td>
+<td style="text-align: right;"><span style="color:red;">-0.39</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Bruce</strong></td>
+<td style="text-align: right;"><span style="color: red;">-0.31</span></td>
+<td style="text-align: right;"><span style="color: red;">-0.37</span></td>
+<td style="text-align: right;"><span style="color: blue;">1</span></td>
+<td style="text-align: right;"><span style="color:blue;">0.85</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Paul</strong></td>
+<td style="text-align: right;"><span style="color: red;">-0.33</span></td>
+<td style="text-align: right;"><span style="color: red;">-0.39</span></td>
+<td style="text-align: right;"><span style="color: blue;">0.85</span></td>
+<td style="text-align: right;"><span style="color:blue;">1</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Another way to look at the voting data is as 773 vectors, each having 134 components. That is, we make 134 measurements on each of the 773 bills. Looking at the alignments among the 773 vectors lets us organized the bills into blocks (<a href="Chap-16-operations.html#fig-arranged-votes">Figure 16.13</a>).</p>
+<p><a href="Chap-16-operations.html#fig-arranged-votes">Figure 16.13</a> shows the entire data set from <a href="Chap-16-operations.html#fig-all-votes">Figure 16.12</a> with both the rows and columns re-arranged to enhance the “blockiness” of the data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-arranged-votes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-arranged-votes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-16-operations_files/figure-html/fig-arranged-votes-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-arranged-votes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.13: The same data as in <a href="Chap-16-operations.html#fig-all-votes">Figure 16.11</a>, but the rows and the columns have been reordered so that closely aligned vectors are placed nearby along the axes.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The strong block structure in <a href="Chap-16-operations.html#fig-arranged-votes">Figure 16.13</a> is evident. Looking across the <em>columns</em>, there are four factions. The largest, by far, includes the members numbered 60 and higher. The second largest faction consists of members numbered 1 through 36. This second faction is distinguished from the first by voting “for” bills 1-230 and against bills 580+. They also have many absences for bills 450-550.</p>
+<p>Having identified two major factions, we can compare the voting patterns of members of parliament who are not in either faction. A third faction, contrasting with the first two, occupies 37-55. Meanwhile, a small fourth “faction,” rows 56 to 59, is a mix of opinions and absences.</p>
+<p>To facilitate further discussion, let’s call the three substantial factions the “Top,” “Middle,” and “Bottom.” It turns out, by referring to the known party registration of each MP, the Top faction consists of a mix of Scottish Labour and Scottish Liberal Democrats, the Bottom faction is the Scottish National Party, and the Middle faction is the Scottish Liberal Democrats. The party registration information, however, played no role in the construction of <a href="Chap-16-operations.html#fig-arranged-votes">Figure 16.13</a>.</p>
+<p>With these names for the horizontal bands in <a href="Chap-16-operations.html#fig-arranged-votes">Figure 16.13</a>, we can discuss the vertical bands: the types of bills considered by Parliament. Bills 1 to 230 have the Top faction voting “for” and the Bottom faction voting “against.” Bills 231 to 325 are opposed by both factions. Bills numbered 600+ are opposed by the Bottom faction but supported by the Top faction. Bills 326 to 450 receive support from both factions.</p>
+<p>This is a lot to find out about a session of Parliament from a set of 100,000 “for” and “against” votes. It is not, of course, everything to know about the session. For instance, although we have identified four types of bills, we would need to read the actual bills or the debate record to determine which social, economic, or administrative features characterize each type. Here, modern quantitative reasoning provides a tool that can inform other types of description and argument.</p>
+</section>
+<section id="toward-ai" class="level2" data-number="16.10">
+<h2 data-number="16.10" class="anchored" data-anchor-id="toward-ai"><span class="header-section-number">16.10</span> Toward AI</h2>
+<p>Starting about 2015, the quantitative methods described in this chapter were combined to create the ☞&nbsp;<strong>Large Language Models</strong><span id="finger-large-language-models-definition" data-label="Large Language Models">&nbsp;☜</span>, which helped launch the AI revolution. These approaches include:</p>
+<ol type="i">
+<li><p>Gradient ascent for setting optimal parameters.</p></li>
+<li><p>Representing words and word contexts as vectors in high-dimensional spaces.</p></li>
+<li><p>Finding projections that collapse words and their contexts so that sets nearby geometrically are also similar semantically.</p></li>
+</ol>
+<p>This chapter does not equip the reader to use such methods in practice. Realizing current AI capabilities required many billions in research on quantitative methods. Researchers also discovered new quantitative methods, unknown to previous generations. For example, the 2017 paper <a href="https://en.wikipedia.org/wiki/Attention_Is_All_You_Need">Attention is all you need</a> made a major step toward effective AI.</p>
+<p>Readers who are daunted by the richness of the quantitative concepts in this book should keep in mind that mastery comes only after years of study and effort. This is true across many fields, including the humanities, medicine, the social sciences, and engineering. Even experts of one decade can be challenged by innovations in the next. For instance, this author has not yet understood the “Attention” method enough to describe it or outline its key ideas.</p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Or, given that the area of a rectangle is 100 in<sup>2</sup>, what should the side lengths be so the perimeter is as short as possible.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>We can actually estimate how much higher the output will be. Taking the step (0.08, 0.13, -0.08, 0.22), the output will increase by about 0.8<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The vectors must not be exactly aligned. Otherwise, the subspace is one-dimensional.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>This example was provided soon after the session of Parliament by then-undergraduate Caroline Ettinger and Professor Andrew Beveridge at Macalester College.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Chap-15-accumulation.html" class="pagination-link" aria-label="Accumulation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Appendix-Summaries.html" class="pagination-link" aria-label="Chapter Summaries">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Chapter Summaries</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,12 +1,3 @@
----
-number-offset: 14
-crossref:
-  fig-title: "Figure 15."
-  fig-prefix: "Fig 15."
-  tbl-title: "Table 15."
-  tbl-prefix: "Table 15."
----
-
 # Accumulation {#sec-accumulation}
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
@@ -90,35 +81,35 @@ F1 <- antiD(f1(t) ~ t)
 F2 <- antiD(f2(t) ~ t)
 F3 <- antiD(f3(t) ~ t)
 
-slice_plot(f1(t) ~ t, domain(t = -0.5:2.5), npts=1000) |>
+slice_plot(f1(t) ~ t, domain(t = -0.5:2.5), npts=1000, color = .slice_color.) |>
   gf_labs(x = "Hours into walk", y = "Shells collection rate (shells per minute)") |> 
-  gf_theme(theme_minimal()) |>
+  
   gf_lims(y = c(0, 12))
 
-slice_plot(F1(t) ~ t, domain(t = -0.5:2.5), npts=1000) |>
+slice_plot(F1(t) ~ t, domain(t = -0.5:2.5), npts=1000, color = .slice_color.) |>
   gf_labs(x = "Hours into walk", y = "Shells") |> 
-  gf_theme(theme_minimal()) |>
+  
   gf_lims(y = c(0, NA))
 
-slice_plot(f2(h) ~ h, domain(h = -10:110), npts=1000) |>
+slice_plot(f2(h) ~ h, domain(h = -10:110), npts=1000, color = .slice_color.) |>
   gf_vline(xintercept = c(40), color = "white", linewidth = 1.5) |>
   gf_labs(x = "Hours worked", y = "Wage rate ($/hr)") |>
-  gf_theme(theme_minimal()) |>
+  
   gf_lims(y = c(0,40))
 
-slice_plot(F2(h) ~ h, domain(h = -10:110), npts=1000) |>
+slice_plot(F2(h) ~ h, domain(h = -10:110), npts=1000, color = .slice_color.) |>
   gf_labs(x = "Hours worked", y = "Wages ($)") |>
-  gf_theme(theme_minimal()) |>
+  
   gf_lims(y = c(0,NA))
 
-slice_plot(f3(d) ~ d, domain(d = 0:7)) |>
+slice_plot(f3(d) ~ d, domain(d = 0:7), color = .slice_color.) |>
   gf_labs(x = "Days into epidemic", y = "New cases per day") |>
-  gf_theme(theme_minimal()) |>
+  
   gf_lims(y = c(0,25))
 
-slice_plot(F3(d) ~ d, domain(d = 0:7)) |>
+slice_plot(F3(d) ~ d, domain(d = 0:7), color = .slice_color.) |>
   gf_labs(x = "Days into epidemic", y = "Total cases to date") |>
-  gf_theme(theme_minimal()) |>
+  
   gf_lims(y = c(0,NA))
 ```
 
@@ -172,17 +163,17 @@ margfun <-
                                               ifelse(income < 500000, 0.06, 0.07)))))))
   }
                                                 
-slice_plot(margfun(income) ~ income, domain(income = 0:1e6), npts=1000) |>
+slice_plot(margfun(income) ~ income, domain(income = 0:1e6), 
+           npts=1000, color = .slice_color.) |>
   gf_labs(x = "Income ($)", y = "Marginal Rate") |>
-  gf_vline(xintercept = 200000, color = "blue") |>
-  gf_theme(theme_minimal(base_size = 16))
+  gf_vline(xintercept = 200000, color = "blue") 
 
 totalfun <- antiD(margfun(income) ~ income)
 slice_plot(totalfun(C=0, income) ~ income, 
-           domain(income = 0:1e6), npts=1000) |>
+           domain(income = 0:1e6), npts=1000,
+           color = .slice_color.) |>
   gf_labs(x = "Income ($)", y = "Total Tax Owed ($)") |>
-  gf_vline(xintercept = 200000, color = "blue") |>
-  gf_theme(theme_minimal(base_size = 16))
+  gf_vline(xintercept = 200000, color = "blue")
 
 ```
 
@@ -231,7 +222,7 @@ But @fig-segmentize(a) shows the daugher function (in [blue]{style="color: blue;
 #| fig-cap-location: bottom
 #| fig-subcap: 
 #| - "Differentiation gives the slope for any input."
-#| - "Anti-differentiation accumulates the slopes to reconstruct the function (gray)."
+#| - "Anti-differentiation accumulates the slopes to reconstruct the function (green)."
 #| echo: false
 #| warning: false
 #| layout-ncol: 2
@@ -239,7 +230,7 @@ f <- doodle_fun(~ x, seed = 133)
 Pts <- Znotes::segmentize(f(x) ~ x, h=0.25, domain(x=-5:5), npts=1) |>
   dplyr::mutate(top = cumsum(ymax - ymin), bottom=top - (ymax-ymin))
 
-slice_plot(f(x) ~ x, domain(x=-5:5), color = "black") |>
+slice_plot(f(x) ~ x, domain(x=-5:5), color = .slice_color.) |>
   gf_segment(ymin + ymax ~ xmin + xmax, data = Pts, color="blue", size=1.5) |>
   # gf_segment(bottom + top ~ xmin + xmax, data = Pts) |>
   gf_lims(y=c(-4,10)) |>
@@ -249,7 +240,7 @@ slice_plot(f(x) ~ x, domain(x=-5:5), color = "black") |>
   slope_rose(nice_slopes = c(-2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5), y = 2.5, x = 0) |> 
   gf_theme(theme_minimal())
 
-slice_plot(f(x) ~ x, domain(x=-5:5), alpha = 0) |>
+slice_plot(f(x) ~ x, domain(x=-5:5), alpha = 0, color = .slice_color.) |>
   gf_segment(bottom + top ~ xmin + xmax, data = Pts, color = "green", size = 1.5) |>
   gf_segment(ymin + ymax ~ xmin + xmax, data = Pts, color="blue", size=1.5) |>
   gf_lims(y=c(-4,10)) |>
@@ -318,7 +309,7 @@ For the sake of argument, we will imagine that the average *extra* survival time
 survive <- function(age) {
   10 * hillside(-(age-60)/12)
 }
-slice_plot(survive(age) ~ age, domain(age = 30:80)) |>
+slice_plot(survive(age) ~ age, domain(age = 30:80), color = .slice_color.) |>
   gf_labs(y = "Years of survival", x = "Age at diagnosis") |>
   gf_lims(y = c(0,10)) |>
   gf_theme(theme_minimal(base_size = 16))
@@ -336,35 +327,34 @@ The point for us is that figuring out relationships like that in `r xf("fig-QALY
 3. Realizing that the function in (1) is much easier to justify, a good format for representing the relationship between years saved and cost, so putting our effort into modeling (1) and then using the automatic process of anti-differentiation to produce the function in (2).
 
 
-## Example: Predicting peak population
+## Example: Predicting peak population {#sec-peak-population}
 
-Sometimes, clear patterns in the rate-of-change function can be easily modeled, but then need to be translated via antidifferentiation to display the information of interest. An instance of this is seen in the population of the US, as it has grown over the centuries.
+Sometimes, clear patterns in the rate-of-change function can be easily modeled, but then need to be translated via anti-differentiation to display the information of interest. An instance of this is seen in the population of the US, as it has grown over the centuries.
 
 Every 10 years, starting in 1790, the US Census Bureau carries out a constitutionally mandated census: a count of the current population. The overall count as a function of year is shown in @fig-pop-growth. 
 
 ```{r}
-#| label: fig-pop-numbers
+#| label: get-us-pop
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Population of the US according to the Census. [[Source](https://en.wikipedia.org/wiki/Demographic_history_of_the_United_States)]"
-#| fig-cap-location: bottom
 USPop <- readr::read_csv("www/census-totals.csv")
 Tmp <- USPop |> 
   mutate(population=prettyNum(population, big.mark=",")) |>
   select(-growth_rate)
-Table <- if (knitr::is_html_output()) {
-  DT::datatable(Tmp) 
-} else {
-  knitr::kable(Tmp)
-}
 USPop <- USPop |> 
   mutate(population = population/1e6)
+Table <- if (knitr::is_html_output()) {
+  DT::datatable(Tmp) |>
+    DT::formatStyle("population", textAlign = "right")
+} else {
+  knitr::kable(Tmp, align = c("r", "r"))
+}
 ```
 
 `r qr_margin_note(
   "https://en.wikipedia.org/wiki/Demographic_history_of_the_United_States",
-  paste("Source for", xf("fig-pop-numbers"))
+  paste("Data source for", xf("fig-pop-growth"))
 )`
 
 In the 230 years spanned by the census data, the US population has grown 100-fold, from about 4 million in 1790 to about 330,000,000 in 2020. @fig-pop-growth shows the growth. Note that there is a lot of fluctuation in the data. These are not just random. The deviations correspond to historical events. There is a relatively low growth rate from 1860 to 1870, due to the US Civil War. The Great Depression is evident in the very low growth rates from 1930 to 1940. Baby Boom: look at the growth from 1950 to 1960. The bump from 1990 to 2000? Not coincidentally, the 1990 Immigration Act substantially increased the yearly rate of immigration.
@@ -421,8 +411,8 @@ P4 <- gf_point(yearly_growth_rate ~ year, data = USPop) |>
   gf_lm(yearly_growth_rate ~ year, color = "blue") |>
   gf_labs(y="10-year population growth (millions)", x = "Year") |>
   gf_lims(x = c(1790, 2100), y=c(0,3.5))
-P1 |> gf_theme(theme_minimal(base_size = 16))
-P2 |> gf_theme(theme_minimal(base_size = 16))
+P1 
+P2 
 ```
 
 Both panels in @fig-pop-growth are based on the Census data. Panel (a) plots the actual population. The upward curving pattern of the data (in black) in panel (a) is reminiscent of exponential growth. We annotated the data with two curves, both with strict exponential growth at the year percentage rates indicated. In the context of actual exponential growth, the data do not convincingly show exponential growth.
@@ -443,8 +433,8 @@ One is tempted to conclude from @fig-pop-growth that, if the US population follo
 #| fig-subcap: 
 #| - Dynamical rule
 #| - Proportional change (%) of state
-P3 |> gf_theme(theme_minimal(base_size = 14))
-P4 |> gf_theme(theme_minimal(base_size = 14))
+P3 
+P4 
 ```
 
 
@@ -481,8 +471,7 @@ gf_point(population ~ year, data = USPop) |>
   gf_labs(y="Population (millions)") |>
   gf_lims(x = c(1790, 2130), y=c(0,450)) |>
   gf_line(pop ~ year, data = accum, color="magenta") |>
-  gf_point(404.4 ~ 2060, color="dodgerblue", size=1) |>
-  gf_theme(theme_minimal(base_size = 16))
+  gf_point(404.4 ~ 2060, color="dodgerblue", size=1) 
 ```
 
 

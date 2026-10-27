@@ -13,3 +13,4 @@
 - sample
 - specimen
 - value
+- variable

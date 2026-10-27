@@ -1,14 +1,3 @@
----
-number-offset: 4
-crossref:
-  fig-title: "Figure 5."
-  fig-prefix: "Fig 5."
-  tbl-title: "Table 5."
-  tbl-prefix: "Table 5."
----
-
-
-
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
 
@@ -26,8 +15,7 @@ source("_start-up.R")
 `r paste(readLines("_Words/chap_5.txt"), collapse = "\n")` 
 :::
 
-@fig-gdp-mortality potentially addresses a critical worldwide issue: high child mortality. "Child Mortality" is operationalized as the rate of death of children under five years in age. It ranges widely from country to country, from around 30 deaths per 1000 children down to almost zero. It is hard to tell from the graph, but it looks like the bottom end of the range is very low: about one death per 1000. Everyone would like to reduce mortality to the lowest possible level. Experience shows that vast reductions from 30 deaths per 1000 are possible, but what is a practical goal?
-
+In his 2018 book *Factfulness*, physician and global health expert Hans Rosling skews a common misconception that the countries of the world are mainly split between rich, healthy countries and poor countries with ill living conditions. `r xf("fig-gdp-mortality")` displays data comparing child mortality across countries over a wide range of GDP levels both in 1960 and 2020. ["Child Mortality" is operationalized as the rate of death of children under five years in age. It ranges widely from country to country, from around 30 deaths per 1000 children down to almost zero.]{.column-margin}
 
 ```{r}
 #| label: ch05-r-649faba4
@@ -76,13 +64,17 @@ P2 <- goo |>
   gf_line_interactive(log10(`Child mortality rate`) ~ log10(`GDP per capita`),
           group = ~ Entity, color = "black", data = Cuba, inherit=FALSE)
 
-P3 <- P1 |> gf_refine(scale_x_log10(), scale_y_log10())
+P3 <- P1 |> 
+  gf_refine(
+    scale_x_log10(breaks=c(1000, 10000, 100000), 
+                  labels = c("1000", "10,000", "100,000")),
+  scale_y_log10())
 ```
 
 
 ```{r}
 #| label: fig-gdp-mortality
-#| fig-cap: "Child mortality (deaths per 1000) versus GDP for 1960 and 2020 for 125 different countries. Source: Bolt and van Zanden – Maddison Project Database 2023 – with minor processing by [Our World in Data](https://ourworldindata.org/). For a handful of countries, black lines link the 1960 and 2020 data."
+#| fig-cap: "Child mortality (deaths per 1000) versus GDP for 1960 and 2020 for 125 different countries. Source: Bolt and van Zanden – Maddison Project Database 2023 – with minor processing by [Our World in Data](https://ourworldindata.org/)."
 #| fig-cap-location: bottom
 #| echo: false
 #| message: false
@@ -101,7 +93,14 @@ P0 |> gf_girafe()
 `r xf("fig-gdp-mortality")` is interactive; hovering the cursor over a dot causes the country name to appear, along with the precise numerical value for mortality and GDP.
 :::
 
-Looking at the first few rows of the data behind @fig-gdp-mortality reveals its structure:
+Are the data, as depicted in `r xf("fig-gdp-mortality")`, consistent with the rich vs poor split between countries? Or is there a smooth spectrum from low to high GDP and corresponding child mortality rates?
+
+There is a tall vertical column of poor countries with high mortality rates and a long horizontal row  of rich countries with low mortality. At the intersection between the row of points and the column of points is a knot of countries with GDP much lower than the rich countries and child mortality lower than the poorest countries. Some economists justify the use of GDP as a measure of well-being by pointing to the horizontal row of countries to claim there is a strong relationship between health and wealth
+
+Looking at the first few rows of the data behind @fig-gdp-mortality shows the structure of the data:
+
+:::: {.content-hidden unless-format="pdf"}
+[Table 5.1: The first six rows (out of 250) of the GDP and child mortality data.]{.column-margin}
 
 ```{r echo=FALSE}
 goo |> head() |> 
@@ -111,21 +110,32 @@ goo |> head() |>
      `GDP per capita` = round(`GDP per capita`)) |> 
      knitr::kable()
 ```
+::::
 
-Each specimen---that is, each row---is a country in a given year (1960 or 2020). The raw table, especially in its complete 250 rows, is hard to make sense of. @fig-gdp-mortality makes it easier to see patterns.
+:::: {.content-hidden unless-format="html"}
+```{r echo=FALSE}
+#| label: tbl-GDP-six-rows
+#| tbl-cap: "The first six rows (out of 250) of the GDP and child mortality data."
+goo |> head() |> 
+  select(-year) |> 
+  mutate(
+    `Child mortality rate` = round(`Child mortality rate`, 2),
+     `GDP per capita` = round(`GDP per capita`)) |> 
+     knitr::kable()
+```
+::::
+
+
+Each specimen---that is, each row---is a country in a given year (1960 or 2020). 
 
 `r qr_margin_note(
   "https://ourworldindata.org",
   "*Our World in Data*"
 )`
 
+The three countries shown in the excerpt each seem to contradict the idea of a dominant correlation between health and wealth. The proportional improvement between mortality rates from 1960 to 2020 is much greater than the proportional increase in GDP. `r xf("fig-gdp-mortality")` does not make such a pattern immediately evident. Perhaps the three countries in `r xf("tbl-GDP-six-rows")` are exceptional cases? Or, might the graphical format be hiding the pattern? Is there another way of looking at the data that might better reveal a pattern?
 
-The strategy that underlies such graphics, indeed much of the power of data graphics, comes from `r xf_definition("sorting")` the data values according to *a selected* quantity. Sorting helps the eye identify points that are close together in one quantity, then check whether they are close or spread out along the other quantity. Similarly, sorting facilitates checking whether points that are widely separated in one quantity are also widely separated in the other quantity. Sorting helps us identify points that fall in the same region of the coordinate plane: they are close together in the two-dimensional graphics frame.
-
-The graphical format, first of all, highlights three exceptional countries in 1960 with high mortality *and* high GDP in 1960. As it happens, all three of these countries are oil-rich. The graphical format also gives the striking impression that mortality overall went down substantially between 1960 and 2020, and that the wealthier 2020 countries had practically zero mortality.
-
-We will return to this matter in @fig-gdp-mortality-mag once we have introduced an important tool in quantitative argumentation: the comparison of *magnitudes*. The key is to focus on a number by looking at the position of the first non-zero digit relative to the decimal point. 
-
+We will return to this matter in `r xf("fig-gdp-mortality-mag")` once we haveintroduced an important tool in quantitative argumentation: the comparison of *magnitudes*.
 
 ## Counting digits
 
@@ -137,7 +147,7 @@ When quantities are a mixture of the very large and the very small, comparisons 
 
 
 ::: {.content-hidden unless-format="pdf"}
-[Table 4.1: The 2024 gross domestic product of a handful of countries. The digits are correct, but the size of the numbers is hard to make out because the table ignores sensible formatting conventions. [Source: [World Bank](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=CN&name_desc=false)]]{.column-margin}
+[Table 5.2: The 2024 gross domestic product of a handful of countries. The digits are correct, but the size of the numbers is hard to make out because the table ignores sensible formatting conventions. [Source: [World Bank](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=CN&name_desc=false)]]{.column-margin}
 
 Country | GDP in USD
 :--------|:----------------
@@ -175,7 +185,7 @@ Now consider the GDP numbers, written in a different format. `r xf("tbl-GDP-shor
 
 
 :::: {.content-hidden unless-format="pdf"}
-[Table 4.2: A better presentation of the GDP data from `r xf("tbl-GDP-short-bad")`. Commas improve readability by separating thousands. The `monospace` font makes it easier to align the digits]{.column-margin}
+[Table 5.3: A better presentation of the GDP data from `r xf("tbl-GDP-short-bad")`. Commas improve readability by separating thousands. The `monospace` font makes it easier to align the digits]{.column-margin}
 
 Country   | GDP in USD
 :---------|----------------:
@@ -308,7 +318,7 @@ We return now to the patterns in child mortality across the decades and across t
 ```{r}
 #| label: fig-gdp-mortality-mag
 #| message: false
-#| fig-cap: "The same data as in @fig-gdp-mortality, but placed on axes showing the *magnitude* of the number."
+#| fig-cap: "The same data as in @fig-gdp-mortality, but placed on axes based on the *magnitude* of the number. For a handful of countries, black lines link the 1960 and 2020 data."
 #| echo: false
 P3 |> gf_girafe()
 ```
@@ -319,6 +329,10 @@ For instance, there are points from 1960 that are more or less directly above ma
   "https://en.wikipedia.org/wiki/Oral_rehydration_therapy",
   "Oral rehydration therapy"
 )`
+
+The method used to produce @fig-gdp-mortality-mag, the more intelligible version of the mortality-versus-GDP graph, is to set the axes' scales to reflect the *magnitude* of the quantity. For ease of interpretation it is common to label the axes in a magnitude plot with corresponding numerical values rather than magnitudes. That is, the horizontal-axis labels are 1000, 10,000, and 100,000 rather than the corresponding magnitudes 3, 4, and 5. However, the magnitude value determines the spacing along the axis. Similarly, the vertical-axis labels are 0.3, 1, 3, 10, and 30. We already know that the magnitude of 1 is 0 and that the magnitude of 10 is 1. But what are the magnitudes of 0.3, 3, and 30?
+
+
 
 ## Logarithms: Just the magnitude, please {#sec-mag-single-num}
 
@@ -343,19 +357,6 @@ Scientific notation | Logarithm
 
 :::
 
-::: {.callout-note}
-## A mathematician's generalization
-
-In algebra courses, logarithms are usually introduced in an abstract way. Usually, no mention is made of the revolution in arithmetic created by the publication of the first "table of logarithms" in 1617. Such printed tables were an essential volume of every quantitatively oriented professional, a pattern that persisted through the 1980s when electronic computers first became widely available. 
-
-Mathematicians developing a theoretical basis for logarithms invented a generalization that contains infinitely many types of logarithms, indexed by a number called the "base." The traditional logarithm, the one corresponding to scientific notation, is called "base-10." In the extended theory, any number can serve as a base and each base gives its own value for the resulting logarithm. 
-
-Much confusion and error can be avoided by sticking to base-10. We'll tend to do that in this book. However, as needed, especially in `r xf("sec-dynamics")`, we will defer to the customs of mathematically-adjacent disciplines such as physics or electrical engineering.
-:::
-
- 
-
- 
 
 
 ::: {.callout-caution}
@@ -368,10 +369,6 @@ Comparing a quantity to another naturally requires that they two quantities have
 Occasionally you may encounter a phrase like "log dollars." This is not a genuine unit but a reminder that the values presented are magnitudes and that the original unit of measurement was dollars.
 :::
 
-
-## Magnitude graphics {#sec-magnitude-graphics}
-
-The method used to produce @fig-gdp-mortality-mag, the more intelligible version of the mortality-versus-GDP graph, is to set the axes' scales to reflect the *magnitude* of the quantity. For ease of interpretation it is common to label the axes in a magnitude plot with corresponding numerical values rather than magnitudes.
 
 ## Order of magnitude phenomena
 

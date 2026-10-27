@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Core modeling functions – Quantitative Argumentation</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Chap-08-uncertainty.html" rel="next">
+<link href="./Chap-06-functions.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-06-functions.html">Using functions</a></li><li class="breadcrumb-item"><a href="./Chap-07-core-modeling-functions.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative Argumentation</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-01-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argument and reasoning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-02-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems, dimensions, and data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-03-quantities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-04-rates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-05-magnitudes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Order of magnitude</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-06-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-07-core-modeling-functions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-09-composing-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Composing functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Decision, evidence, and belief</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-10-tradeoffs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trade-offs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-11-likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-12-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modeling change</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-13-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dynamics: Modeling change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-14-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-15-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capstone: Toward AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-16-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix-Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Chapter Summaries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-06-functions.html">Using functions</a></li><li class="breadcrumb-item"><a href="./Chap-07-core-modeling-functions.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-core-functions" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><em>Vocabulary Review</em></p>
+<ul>
+<li>arg (6)</li>
+<li>data (2)</li>
+<li>functions (6)</li>
+<li>magnitude (5)</li>
+<li>pure number (3)</li>
+<li>quantity (3)</li>
+<li>rate (4)</li>
+<li>units (3)</li>
+</ul>
+<p><em>New</em></p>
+<ul>
+<li>core modeling functions</li>
+<li>input and output scaling</li>
+</ul>
+</div></div><p>The previous chapter introduced notation for functions and their args. Functions can have any number of args. In modeling, a function representing one of the sharp-cornered boxes—a quantity <em>endogenous</em> to the model, will have one arg for each of the incoming arrows originating from other boxes.</p>
+<p>This chapter introduces and names a small set of <em>one-arg</em> functions that are particularly useful in modeling. We call these the ☞&nbsp;<strong>core modeling functions</strong><span id="finger-core-modeling-functions-definition" data-label="core modeling functions">&nbsp;☜</span>. In making selections for the core modeling functions, our primary goal is to provide a library of simple relationships of the sort that appear in many modeling contexts. Each core modeling function will have a name, so you can think of them as letting you refer to a relationship type by name: an aid to communication both with other people and with the computer.</p>
+<section id="sec-core-library" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="sec-core-library"><span class="header-section-number">7.1</span> Shapes of the core modeling functions</h2>
+<p>We display the shapes of the core modeling function in a conventional way: <strong>graphing</strong> the function on square-gridded graph paper. The core modeling functions have been specifically defined to take a pure number as input and to produce a pure number as output. To remind the reader of this, the graphs of the core modeling functions are placed on a small grid of unmarked graph paper with a major horizontal and a major vertical axis.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-just-the-grid" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-just-the-grid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-just-the-grid-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-just-the-grid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: Graph paper onto which the core modeling functions will be displayed. The two double-headed axes intersect at (input = 0, output = 0). You can read off any coordinate by counting the vertical and horizontal grid lines that separate it from (0,0). For instance, a small dot has been placed at coordinate (input = 3, output = 2).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The coordinates of the graph paper are used to determine the input-to-output values of the function. The grid lines in the display are not just decoration: they show how a numeric input gets translated to a numeric output.</p>
+<p>In the displays of the core modeling functions, you can infer the numerical values of input and output by counting the vertical and horizontal grid lines respectively. The vertical axis marks zero on the horizontal scale. The successive vertical lines correspond to values separated by 1. The horizontal grid lines are interpreted in the same way.</p>
+<p>Why not label the graph paper with the numerical values? It would be simple enough to do, but for the reasons described in <a href="#sec-input-output-transforms" class="quarto-xref"><span class="quarto-unresolved-ref">sec-input-output-transforms</span></a> it would make the graphics too busy.</p>
+<p>We will work with eight core modeling functions. Often, one or another of these eight will suffice for modeling the relationship between two quantities.</p>
+<p><span class="smallcaps">The eight core modeling functions.</span></p>
+<p>We have constructed the core modeling collection from the collective experience of modelers over many generations. We have intentionally violated convention by giving even famous functions new names that are more descriptive than the traditional names.</p>
+<p>Often, the name of a core function is a reminder of the shape. For instance, <code>hill()</code> has a graph that looks like a hill (in cross-section), while <code>hillside()</code> is just one side of the hill. <code>Osc()</code> is oscillatory, that is, goes up and down repeatedly, like a long chain of hills. On the other hand, sometimes, the names—<code>recip()</code>, <code>exp2()</code>, and <code>log2()</code>—honor traditional nomenclature.</p>
+<div class="quarto-layout-panel" data-layout="[[0.5, 1, 0.15, 1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 18.9%;justify-content: flex-start;">
+<p><strong><code>same()</code></strong></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: center;">
+<p><img src="Chap-07-core-modeling-functions_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 5.7%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: flex-start;">
+<p>The name <code>same()</code> reflects that the <em>output</em> is the same as the <em>input</em>. On a graph this corresponds to a diagonal line.</p>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[[0.5, 1, 0.15, 1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 18.9%;justify-content: flex-start;">
+<p><strong><code>flat()</code></strong></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: center;">
+<p><img src="Chap-07-core-modeling-functions_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 5.7%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: flex-start;">
+<p>The output of <code>flat()</code> is always 1, regardless of the input.</p>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[[0.5, 1, 0.15, 1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 18.9%;justify-content: flex-start;">
+<p><strong><code>hill()</code></strong></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: center;">
+<p><img src="Chap-07-core-modeling-functions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 5.7%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: flex-start;">
+<p>The function output rises gradually from zero output, then falls, returning gradually to zero output.</p>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[[0.5, 1, 0.15, 1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 18.9%;justify-content: flex-start;">
+<p><strong><code>hillside()</code></strong></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: center;">
+<p><img src="Chap-07-core-modeling-functions_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 5.7%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: flex-start;">
+<p>The function output rises gradually from zero, leveling off at an output of 1.</p>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[[0.5, 1, 0.15, 1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 18.9%;justify-content: flex-start;">
+<p><strong><code>exp2()</code></strong></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: center;">
+<p><img src="Chap-07-core-modeling-functions_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 5.7%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: flex-start;">
+<p>The function starts out almost flat then rises at an every-increasing rate. This pattern is called <strong>exponential growth</strong>. Another way to see this, exponential growth corresponds to steady, uniform growth in magnitude. (See <a href="Chap-05-magnitudes.html#sec-order-of-magnitude">Chapter 5</a>) <code>exp10()</code> produces magnitude in the familiar steps by a factor of 10.</p>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[[0.5, 1, 0.15, 1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 18.9%;justify-content: flex-start;">
+<p><strong><code>log2()</code></strong></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: center;">
+<p><img src="Chap-07-core-modeling-functions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 5.7%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: flex-start;">
+<p>For each doubling of the input value, the function output goes up by 1 unit. Only positive inputs are allowed. Another way to see this: the logarithm reads off the magnitude of a number. <code>log10()</code> gives the scientific-notation format of magnitude.</p>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[[0.5, 1, 0.15, 1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 18.9%;justify-content: flex-start;">
+<p><strong><code>recip()</code></strong></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: center;">
+<p><img src="Chap-07-core-modeling-functions_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 5.7%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: flex-start;">
+<p>The reciprocal function. The output is one over the input. For instance, if the input is 2, the output is 1/2. Negative inputs produce negative outputs.</p>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[[0.5, 1, 0.15, 1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 18.9%;justify-content: flex-start;">
+<p><strong><code>osc()</code></strong></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: center;">
+<p><img src="Chap-07-core-modeling-functions_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 5.7%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: flex-start;">
+<p>The name <code>osc()</code> is short for oscillatory; the function output oscillates up and down as the input increases. A complete cycle is accomplished in one unit of the input. Another way to say this: The period of <code>osc()</code> is 1.</p>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="sec-input-output-transforms" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="sec-input-output-transforms"><span class="header-section-number">7.2</span> Input and output scaling</h2>
+<p>The core modeling functions have been defined always to take a pure number as input and produce a pure-number output. In modeling, however, typically the inputs to a function are <em>quantities</em> and so is the output. There is a simple strategy for using the core modeling functions to represent quantity-to-quantity relationships. We call this ☞&nbsp;<strong>input and output scaling</strong><span id="finger-input-and-output-scaling-definition" data-label="input and output scaling">&nbsp;☜</span>.</p>
+<div id="fig-scaling-2-panels" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scaling-2-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-scaling-2-panels" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-scaling-2-panels-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-scaling-2-panels-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-scaling-2-panels-1.png" class="img-fluid figure-img" data-ref-parent="fig-scaling-2-panels" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-scaling-2-panels-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) No scaling
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-scaling-2-panels" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-scaling-2-panels-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-scaling-2-panels-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-scaling-2-panels-2.png" class="img-fluid figure-img" data-ref-parent="fig-scaling-2-panels" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-scaling-2-panels-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) With scaling
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scaling-2-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.2: Input and output scaling applied to the core function hillside().
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-scaling-2-panels" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-scaling-2-panels</span></a> shows the essence of the scaling technique. We apply a new set of tick marks is applied to the modeling function. These are shown in blue in the figure.</p>
+<p>In providing a quantity as input to the function, use the blue labels on the horizontal axis. In reading off the output, use the blue labels on the vertical axis. For the scaled function depicted in <a href="#fig-scaling-2-panels" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-scaling-2-panels</span></a>, the input 150 (with units as appropriate) corresponds to the output 5 (again, with whatever are units of the output quantity).</p>
+<p>In brief, the core modeling function takes pure-number input and output which you can read from the black grid lines. The input-and-output scaled function has quantity inputs which you read from the blue axes.</p>
+<p>Once you have the blue axes arranged suitably for your modeling purpose, it’s not hard to write the customized function in, for instance, a computer implementation. To illustrate for the scaled example in <a href="#fig-scaling-2-panels" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-scaling-2-panels</span></a>(b), we’ll call the customize quantity-to-quantity function <code>modelfun()</code>:</p>
+<p><strong>Input scaling facts</strong>: The math input 0 has the blue label 100. A step of one unit on the math axes corresponds to a step of 50 on the blue axes.</p>
+<p><strong>Output scaling facts</strong>: The math output 0 corresponds to about 2 on the blue axes; this means that the <span class="math inline">\(B\)</span> output scaling parameter is 2. The math output 1 corresponds to 7 on the blue axes, so that 1 step in math input—from 0 to 1—corresponds to steping from 2 to 7 in the quantity output. That is, a step of one unit of math output is 5 units of quantity output. This corresponds to an <span class="math inline">\(A\)</span> parameter of 5 for the output scaling.</p>
+</section>
+<section id="sec-global-oil-production" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="sec-global-oil-production"><span class="header-section-number">7.3</span> Example: Global oil production</h2>
+<p><a href="#fig-world-oil-triptych" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-world-oil-triptych</span></a> shows global oil production each year since 1900. Production is measured in terrawatt-hours. To put that in context, 16 PWh is enough fuel for all the world’s 1.7 billion gasoline vehicles for a year’s driving. [If the global fleet were electric, the energy consumption would be about 3.5 PWh.]</p>
+<p>Oil production through 1975 follows an exponential growth pattern: increasing at an every-increasing rate.</p>
+<div class="cell" data-layout="[[1.3,1], [1]]">
+<div id="fig-world-oil-triptych" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-world-oil-triptych-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-world-oil-triptych" style="flex-basis: 56.5%;justify-content: flex-start;">
+<div id="fig-world-oil-triptych-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-world-oil-triptych-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-world-oil-triptych-1.png" class="img-fluid figure-img" data-ref-parent="fig-world-oil-triptych" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-world-oil-triptych-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Oil production in petaawatt-hours of energy
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-world-oil-triptych" style="flex-basis: 43.5%;justify-content: flex-start;">
+<div id="fig-world-oil-triptych-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-world-oil-triptych-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-world-oil-triptych-2.png" class="img-fluid figure-img" data-ref-parent="fig-world-oil-triptych" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-world-oil-triptych-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Core modeling function: <code>exp2()</code>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-world-oil-triptych" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-world-oil-triptych-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-world-oil-triptych-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-world-oil-triptych-3.png" class="img-fluid figure-img" data-ref-parent="fig-world-oil-triptych" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-world-oil-triptych-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Scaled model
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-world-oil-triptych-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.3: Global oil production since 1900 and two candidate core modeling functions.
+</figcaption>
+</figure>
+</div>
+</div>
+<p>The scales of the historical oil-production plot are straightforward. The data run from 1900 to 2023. Production was near zero in 1900 and reached about 50 PWh in 2023. The production growth pattern before about 1975 is reminiscent of the shape of the <code>exp2()</code> core modeling function, but the scale in the graph of <code>exp2()</code> is unsuited to the data scale.</p>
+<p>By figuratively picking up the oil-data graph, along with its scales, and stretching and shifting it appropriately, we can adopt the scale to the shape of the exponential function, at least for the years before 1975. The result, in panel (c), is a graphic with two scales. The blue scales on the outside come from the oil data. The input scaling for this model of oil production comes from the alignment of the mathematical gridding with the horizontal blue quantity scale.</p>
+<p>For instance, zero on the mathematical horizontal grid—the location of the double-headed vertical “output” line—matches up to 1956. You can also see that year 2000 in the blue scale matches up closely to 4 on the horizontal grid scale. Consequently, the input scaling function will turn 1956 into 0 and year 2000 to 4.</p>
+</section>
+<section id="stories-told-by-shape" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="stories-told-by-shape"><span class="header-section-number">7.4</span> Stories told by shape</h2>
+<p>For each core modeling function, we present the story in two ways: a narrative and a graph. The action of stories typically develops over time. In the language of functions, we will treat time as the input and examine the output over time. Of course, in any given modeling context, the input might be something other than time: for instance, the dose of a drug, or the speed of a vehicle.</p>
+<p>To avoid unnecessary abstraction, our descriptions will assume that the function’s output is the outdoor temperature. The brief stories we will tell to introduce each function will be about how temperature changes over time.</p>
+<div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<dl>
+<dt>osc(&nbsp;)</dt>
+<dd>
+A function that oscillates smoothly up and down, repeating itself over and over again. Such repeating functions are called ☞&nbsp;<strong>periodic</strong><span id="finger-periodic-definition" data-label="periodic">&nbsp;☜</span>. For example, the outdoor temperature rises and falls each day, repeating itself roughly the same way day after day.
+</dd>
+</dl>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-osc-ex" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-osc-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-osc-ex-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-osc-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.4: osc(&nbsp;)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<dl>
+<dt>hillside(&nbsp;)</dt>
+<dd>
+The hillside function starts steadily, then gradually increases before leveling off. For example, hillside() might represent the temperature as a warm front moves past at around 10 am: a steady high temperature in the afternoon having gradually replaced the the mornings low temperature.
+</dd>
+</dl>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-hillside-ex" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hillside-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-hillside-ex-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hillside-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.5: hillside(&nbsp;)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<dl>
+<dt>hill()</dt>
+<dd>
+The hill() function goes up from a baseline and then goes back down to the baseline. For instance, the hill() can describe a heat wave lasting several days before relief and the return to normal temperature.
+</dd>
+</dl>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-hill-ex" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hill-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-hill-ex-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hill-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.6: hill(&nbsp;)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<dl>
+<dt>exp2(&nbsp;)</dt>
+<dd>
+After each unit interval of time, the temperature <em>doubles</em> from what it was at the start of the interval. Think of an apocalyptic science-fiction story about climate change. The temperature is increasing over time, and as it does, various feedback mechanisms—e.g., the release of methane from melting permafrost or the increased absorption of sunlight by the ocean as an ice cap melts—strengthen.
+</dd>
+<dd>
+Eventually, of course, something has to give. The doubling pattern cannot continue indefinitely. But the <code>exp2()</code> core modeling function doesn’t add that bit to the story.
+</dd>
+</dl>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-exp2-ex" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exp2-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-exp2-ex-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exp2-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.7: exp2(&nbsp;)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<dl>
+<dt>log2()</dt>
+<dd>
+Picking up on the science fiction described under exp2(), imagine a crusty, old meteorologist who tells <em>how long</em> it will take for the doubling temperature to reach any given level.
+</dd>
+</dl>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-log2-ex" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-log2-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-log2-ex-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-log2-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.8: log2(&nbsp;)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<dl>
+<dt>same(&nbsp;)</dt>
+<dd>
+As time increases, the temperature increases likewise. Hour to hour, the temperature increases by the same amount.
+</dd>
+</dl>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-same-ex" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-same-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-same-ex-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-same-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.9: same(&nbsp;)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<dl>
+<dt>flat()</dt>
+<dd>
+A story with no action. As time goes by, nothing changes! Daytime temperatures are the same as nighttime temperatures.
+</dd>
+</dl>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-flat-ex" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flat-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-flat-ex-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flat-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.10: flat(&nbsp;)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Chap-06-functions.html" class="pagination-link" aria-label="Introduction to Functions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Functions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Chap-08-uncertainty.html" class="pagination-link" aria-label="Uncertainty in quantities">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

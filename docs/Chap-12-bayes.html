@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>12&nbsp; Bayesian reasoning – Quantitative Argumentation</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Chap-13-dynamics.html" rel="next">
+<link href="./Chap-11-likelihood.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-10-tradeoffs.html">Decision, evidence, and belief</a></li><li class="breadcrumb-item"><a href="./Chap-12-bayes.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative Argumentation</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-01-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argument and reasoning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-02-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems, dimensions, and data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-03-quantities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-04-rates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-05-magnitudes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Order of magnitude</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-06-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-07-core-modeling-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-09-composing-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Composing functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Decision, evidence, and belief</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-10-tradeoffs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trade-offs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-11-likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-12-bayes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modeling change</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-13-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dynamics: Modeling change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-14-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-15-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capstone: Toward AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-16-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix-Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Chapter Summaries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-10-tradeoffs.html">Decision, evidence, and belief</a></li><li class="breadcrumb-item"><a href="./Chap-12-bayes.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-bayes" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><em>Vocabulary Review</em></p>
+<ul>
+<li>analysis (3)</li>
+<li>bayesian (8)</li>
+<li>data (2)</li>
+<li>functions (6)</li>
+<li>hypothesis (8)</li>
+<li>likelihood (11)</li>
+<li>mean (8)</li>
+<li>operationalization (2)</li>
+<li>per (3)</li>
+<li>point (3)</li>
+<li>range (8)</li>
+<li>rate (4)</li>
+<li>uncertainty (8)</li>
+<li>value (2)</li>
+</ul>
+<p><em>New</em></p>
+<ul>
+<li>posterior</li>
+<li>prior</li>
+</ul>
+</div></div><p>We are in the midst of a real-world experiment involving millions of people in a life-or-death situation. Perhaps that is an overly dramatic description. The experiment we have in mind concerns the testing of self-driving taxis in urban areas. Companies like Waymo have deployed fleets of self-driving cars that offer a taxi service.</p>
+<p>That such testing is allowed is itself notable. How much experience will we need with the cars to be sure that we are making a proper judgment?</p>
+<section id="an-uncertain-situation" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="an-uncertain-situation"><span class="header-section-number">12.1</span> An uncertain situation</h2>
+<p>Companies currently run pilot programs deploying self-driving taxis in a handful of cities. They have already collected substantial amounts of data and reported summaries such as this <a href="https://waymo.com/blog/2023/12/waymo-significantly-outperforms-comparable-human-benchmarks-over-7-million">Waymo bulletin</a>. Instead of commenting on this data, let us imagine ourselves at the time when the safety experiment is just beginning. Then, we will gradually accumulate data to form and update our beliefs about fleet safety. We will keep it realistic, but because the data will be made-up, do not use this example to draw conclusions about the real world.</p>
+<p>“Safety” is a dimension, an aspect of the transportation system. Modeling safety starts by defining it clearly, to <em>operationalize</em> it. Our operationalization in this discussion will be the <em>number of miles driven</em> by each car from the time it enters service until the first accident. We can define an “accident” as an incident that generates a claim on insurance or requires a police report. For other purposes, a different operationalization might be appropriate, for instance the number of close calls or near-misses</p>
+<p>A car without an accident to date is not necessarily safe. Even accident-free cars provide information about fleet safety; the duration of the no-accident-yet interval carries that information. (See <a href="Chap-11-likelihood.html#fig-likelihood-curve">Figure 11.2</a>.) A car that goes a large number of miles without an accident provides pro-safety evidence; A car that has an accident after a small number of miles does the opposite.</p>
+<p>Chance influences whether a car is in an accident. This play of chance can be modeled with a probability distribution. An appropriate family of distributions for this was used earlier in <a href="Chap-11-likelihood.html#sec-hypothesis-and-likelihood">Chapter 11</a>: the exponential family. In <a href="Chap-11-likelihood.html#sec-hypothesis-and-likelihood">Chapter 11</a> we used the <em>time</em> between incidents. For driving, the mileage of each car is a better representation of that car’s exposure to the risk of accidents.</p>
+<p>Exponential distributions model the time interval, or mileage, in our case, between incidents. The interval here is the mileage from the start of the experiment until the first accident. For an individual car, this interval is modeled as random, a draw from the exponential distribution used to model the individual cars.</p>
+<p>Even though each accident (or lack of accident) is random, the fleet safety plays a role. This fleet-level safety is operationalized by the particular <em>rate</em> parameter used for the individual-car randomness. The appropriate value for the <em>rate</em> parameter is uncertain. This uncertainty is large at the start of the experiment. As the experiment proceeds and more data arrives, the uncertainty will decrease.</p>
+</section>
+<section id="the-fleet-wide-likelihood-function" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="the-fleet-wide-likelihood-function"><span class="header-section-number">12.2</span> The fleet-wide likelihood function</h2>
+<p>Fleet-safety uncertainty is a probability distribution on the <em>rate</em> parameter itself. Unlike individual-car uncertainty, this need not be exponential in form. At first, we don’t even know the proper form for the distribution should be. We will have to discover that form as we go along.</p>
+<p>Suppose that at the end of each month the mileage and accident status of every car in the fleet are recorded. For any assumed value of the rate parameter, the likelihood of the observed data can be computed: multiply together the likelihoods for each individual car’s observed outcome.</p>
+<p>The rate parameter is uncertain. Repeating the likelihood calculation for each possible value of the <em>rate</em> allows us to see how plausible each value is given the observed data. In other words, we create a <em>likelihood function</em> for the rate parameter.</p>
+<p>Imagine that you are the person responsible for constructing the likelihood function that incorporates the latest data. You have a stack of cards, each recording the current mileage of an individual car or, if the car had an accident, the mileage at which the accident occurred. Each card’s information corresponds to an individual likelihood function for that car.</p>
+<p>Plotting the individual-car likelihood functions requires choosing appropriate range of values for the rate parameter. Historical data on human-driven cars suggests a rate of about five serious accidents per million vehicle miles. A sensible plotting range is 0 to 40 accidents per million miles. The upper end lets you consider hypothetically very dangerous cars. The low end hypothesizes that self-driving cars are safer than human-driven. The middle hypothesizes that self-driving cars are about as safe as human-driven cars. <a href="Chap-12-bayes.html#fig-individual-cars">Figure 12.1</a> shows three individual-car likelihood functions based on the most recent data for that car. The cars plotted in panels (a) and (c) have not yet had an accident. The car in (b) had an accident at mileage 78,954.</p>
+<div id="fig-individual-cars" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-individual-cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-individual-cars" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-individual-cars-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-individual-cars-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-12-bayes_files/figure-html/fig-individual-cars-1.png" class="img-fluid figure-img" data-ref-parent="fig-individual-cars" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-individual-cars-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) 31,448 miles with no accident
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-individual-cars" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-individual-cars-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-individual-cars-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-12-bayes_files/figure-html/fig-individual-cars-2.png" class="img-fluid figure-img" data-ref-parent="fig-individual-cars" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-individual-cars-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) 78,954 miles with an accident
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-individual-cars" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-individual-cars-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-individual-cars-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-12-bayes_files/figure-html/fig-individual-cars-3.png" class="img-fluid figure-img" data-ref-parent="fig-individual-cars" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-individual-cars-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) 54,365 miles with no accident
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-individual-cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.1: Individual likelihood functions for several cars based on their mileage and accident status.
+</figcaption>
+</figure>
+</div>
+<p>Consider the likelihood functions graphed in <a href="Chap-12-bayes.html#fig-individual-cars">Figure 12.1</a>. The two accident-free cars’ likelihood functions differ only slightly in shape.</p>
+<p>The accident-free cars favor a low hypothesized rate parameter. Their likelihood functions peak at a rate of 0 accidents per million miles and fall steadily as the hypothesized rate increases. This evidence hardly proves that the cars are safe. Recall that a likelihood ratio of 10 is only “limited evidence” in favor of the more likely hypothesis. (See <a href="Chap-11-likelihood.html#tbl-likelihood-ratio-verbal">Table 11.2</a>.) Only hypothesized rates where the likelihood falls <em>below</em> the <span style="color: magenta;">magenta</span> can be considered unlikely. So the accident-free cars don’t rule out a very high hypothesized rate of 40 accidents per million miles. This isn’t surprising, since the rate 40 per million miles amounts to an average of one accident every 25,000 miles! Reaching 54,000 miles isn’t shocking even under high risk.</p>
+<p>The car in panel (b) experienced an accident. Its likelihood function has an argmax at a hypothesized rate of 12.7 accidents per million miles. This means an average of one accident every 80,000 miles, entirely consistent with the car having had an accident at 78,954 miles. This car only weakly argues against rates below 0.5 accidents per million miles.</p>
+<p>Any individual car’s evidence does not precisely identify a specific hypothesized rate parameter. Each car here is entirely consistent with the historical rate for human-driven cars.</p>
+<p>But your job is not yet complete. Combine the evidence from all the individual cars to assess what they have to say about fleet safety. Fortunately, this is easy. Just multiply the functions together. The result, from just these three cars is shown in <a href="Chap-12-bayes.html#fig-combined-cars">Figure 12.2</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-combined-cars" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-combined-cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-12-bayes_files/figure-html/fig-combined-cars-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-combined-cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.2: Combined likelihood for all three cars
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Data from just three cars cannot resolve whether the self-driving cars are safer or more dangerous than human-driven cars. You need data from hundreds or perhaps thousands of cars.</p>
+<p>Since individual-car likelihoods are weak on their own, you decide to adopt a work flow where, as you pick up each car’s data card, you immediately update the combined likelihood, by multiplying it by the new card’s likelihood.</p>
+</section>
+<section id="the-prior" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="the-prior"><span class="header-section-number">12.3</span> The Prior</h2>
+<p>There’s a small technical glitch to take care of. The first card has no combined likelihood to multiply it with. Two simple work-arounds are available:</p>
+<ol type="a">
+<li><p>Use the likelihood function from the first card as the initial combined likelihood.</p></li>
+<li><p>Start with a combined likelihood function of that is uniform, which effectively says “I have no prior evidence for one hypothesized rate over another.”</p></li>
+</ol>
+<p>Note that (a) and (b) amount to the same thing. In practice you are starting out with the likelihood function from the first card. But designers already did substantial work to make the cars safe. For instance, the government approved the test cars for use on the public roads in the first place.</p>
+<p>The Bayesian framework has a slot for inserting such before-the-first-data-card knowledge into the analysis. This is called the ☞&nbsp;<strong>prior</strong><span id="finger-prior-definition" data-label="prior">&nbsp;☜</span> and reflects what you know <em>before</em> looking at the data. The “you” here is important. The experiment aims to convince others, no just yourself, that enough evidence exists for a meaningful conclusion. So the prior should reflect the beliefs of both the skeptic and the enthusiast.</p>
+<p>US Supreme Court Justice Ruth Bader Ginsburg had a helpful view about debate. She said, “Fight for the things that you care about, but do it in a way that will lead others to join you.” One way to lead others to join you is to acknowledge the possibility that they might be right. In the Bayesian framework, this means broadening your prior to support the views of all (reasonable) people engaged in the debate. You do not have to assign much probability to those views, but you must assign some.</p>
+<p>Sensible priors should be broad, not narrow minded. This point is not unique to quantitative analysis, but applies to reasoning and debate more generally.</p>
+<blockquote class="blockquote">
+<p><em>To have doubted one’s own first principles is the mark of a civilized man.</em> — Supreme Court Justice, Oliver Wendell Holmes, Jr (1841-1935)</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>Doubt is an uncomfortable condition, but certainty is a ridiculous one.</em> — Voltaire (1694-1778)</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>The whole problem with the world is that fools and fanatics are always so certain of themselves, and wiser people so full of doubts.</em> — Bertrand Russell (1872-1970)</p>
+</blockquote>
+</section>
+<section id="sec-posterior" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="sec-posterior"><span class="header-section-number">12.4</span> The Posterior and Bayesian updating</h2>
+<p>Let’s re-consider the work-flow presented in the previous section. You started with an appropriately vague prior, then multiplied it successively by the likelihood from each data card as you picked it up. In the end, you have a distribution that reflects all the data. This distribution is called the ☞&nbsp;<strong>posterior</strong><span id="finger-posterior-definition" data-label="posterior">&nbsp;☜</span>, the state of your knowledge after taking all the data into account.</p>
+<p>Calling the likelihood function from the first card L_1_() and so on for the subsequent cards, the posterior distribution after n cards is:</p>
+<p>posterior() <span class="math inline">\(\equiv\)</span> prior() <span class="math inline">\(\times\)</span> L_1_() <span class="math inline">\(\times\)</span> L_2_() <span class="math inline">\(\times\)</span> … <span class="math inline">\(\times\)</span> L_n_()</p>
+<p>Since the prior() in the previous section was vague, perhaps even <code>flat()</code>, it’s reasonable to wonder why even to give it a name; just multiply the cards’ likelihood functions together. Indeed, for a hundred years statistical theory was dominated by exactly this point of view, named “Frequentist statistics.”</p>
+<p>Consider, however, a slightly different scenario for processing the data on vehicle mileage and accidents. Rather than a batch of cards coming in all at once, suppose that they arrive sequentially, one by one. For the sake of definiteness, let’s assume that they arrive once per day and that the likelihood function for each day’s data is L_day_().</p>
+<p>On day zero, before any cards arrive, all you have is your vague prior, which we’ll call prior_0_(). In comes the first card, day 1, and you perform your calculation, multiplying that day’s likelihood by the prior:</p>
+<p>posterior_1() $L_1_() <span class="math inline">\(\times\)</span> prior_0_()</p>
+<p>On day two, the second card arrives. The Bayesian multiplication for day two will be</p>
+<p>posterior_2() $L_2_() <span class="math inline">\(\times\)</span> posterior_1_()</p>
+<p>And for day three:</p>
+<p>posterior_3() $L_3_() <span class="math inline">\(\times\)</span> posterior_2_()</p>
+<p>The general pattern is that yesterday’s posterior becomes today’s prior. The prior is your state of knowledge in the morning. The posterior is your state of knowledge after the day’s work is done.</p>
+<p>Even if prior_0_() is vague, the prior for successive days will become less and less vague as more data is incorporated.</p>
+<p>To illustrate, consider this dramatic example. A small ship has caught on fire. The crew has mere moments to send an SOS which includes a rough latitude and longitude for their location. “Rough” means that there is uncertainty.</p>
+<p>The SOS is received by far-away radio stations. The content of the SOS contains the rough coordinates, but the <em>direction</em> from which the signal is received is also noted. These directions, one from each station help to define the search target.</p>
+<p>Before the SOS, the Coast Guard’s prior for the sinking ship is more or less uniform, covering a broad expanse of ocean. (Indeed, the Coast Guard doesn’t yet know there is a sinking ship.)</p>
+<p>Receipt of the SOS allows the Coast Guard to calculate a likelihood for the ship’s location based on the Coast Guard’s previous experience with the accuracy of such signals. Similarly, the direction-detecting equipment gives a likelihood function for the direction of the sinking ship relative to the Coast Guard’s stations’ locations. Multiplying these three likelihoods—from the SOS contents, and the two directions—allows the Coast Guard to calculate a <em>posterior probability</em> for the location where the ship sank. <a href="Chap-12-bayes.html#fig-ship-posterior1">Figure 12.3</a> shows the posterior probability as a function of latitude and longitude.</p>
+<div id="fig-ship-posterior1" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-ship-posterior1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.3: Posterior probability for the ship’s location based on the SOS and direction-detecting equipment.
+</figcaption>
+<div aria-describedby="fig-ship-posterior1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ship-posterior1" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ship-posterior1-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ship-posterior1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-12-bayes_files/figure-html/fig-ship-posterior1-1.png" class="img-fluid figure-img" data-ref-parent="fig-ship-posterior1" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ship-posterior1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Based only on the SOS content.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ship-posterior1" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ship-posterior1-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ship-posterior1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-12-bayes_files/figure-html/fig-ship-posterior1-2.png" class="img-fluid figure-img" data-ref-parent="fig-ship-posterior1" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ship-posterior1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Adding in directional data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>Anxious to find the ship’s crew, one of the Coast Guard stations sends out a search and rescue plane. It flies in a straight line toward the most likely location in <a href="Chap-12-bayes.html#fig-ship-posterior1">Figure 12.3</a>(b). It can be hard to spot a life raft from a quick-moving plane. Again, based on the plane’s course and the Coast Guard’s experience they can construct a likelihood for the plane’s finding the raft. This is shown in <a href="Chap-12-bayes.html#fig-ship-posterior2">Figure 12.4</a>(a).</p>
+<div id="fig-ship-posterior2" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ship-posterior2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ship-posterior2" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ship-posterior2-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ship-posterior2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-12-bayes_files/figure-html/fig-ship-posterior2-1.png" class="img-fluid figure-img" data-ref-parent="fig-ship-posterior2" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ship-posterior2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) The likelihood for the plane to spot the life raft.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ship-posterior2" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ship-posterior2-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ship-posterior2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-12-bayes_files/figure-html/fig-ship-posterior2-2.png" class="img-fluid figure-img" data-ref-parent="fig-ship-posterior2" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ship-posterior2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) The updated posterior probability after the plane’s flight.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ship-posterior2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.4: Posterior probability for the ship’s location after incorporating directional data.
+</figcaption>
+</figure>
+</div>
+<p>The plane complete’s its mission, but unfortunately it does not spot the life raft. Taking this information into account, the new posterior probability for the raft’s position is shown in <a href="Chap-12-bayes.html#fig-ship-posterior2">Figure 12.4</a>(b).</p>
+<p>The sensible thing at this point is to send out another plane to fly another course. Your job is to decide what the course should be to maximize the chances of spotting the raft. The current posterior provides a lot of guidance here. What would you do?</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Chap-11-likelihood.html" class="pagination-link" aria-label="Hypothesis and likelihood">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Chap-13-dynamics.html" class="pagination-link" aria-label="Dynamics: Modeling change">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dynamics: Modeling change</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

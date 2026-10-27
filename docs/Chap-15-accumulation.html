@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>15&nbsp; Accumulation – Quantitative Argumentation</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Chap-16-operations.html" rel="next">
+<link href="./Chap-14-rates-of-change.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-13-dynamics.html">Modeling change</a></li><li class="breadcrumb-item"><a href="./Chap-15-accumulation.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative Argumentation</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-01-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argument and reasoning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-02-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems, dimensions, and data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-03-quantities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-04-rates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-05-magnitudes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Order of magnitude</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-06-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-07-core-modeling-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-09-composing-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Composing functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Decision, evidence, and belief</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-10-tradeoffs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trade-offs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-11-likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-12-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modeling change</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-13-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dynamics: Modeling change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-14-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-15-accumulation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capstone: Toward AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-16-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix-Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Chapter Summaries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-13-dynamics.html">Modeling change</a></li><li class="breadcrumb-item"><a href="./Chap-15-accumulation.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-accumulation" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><em>Vocabulary Review</em></p>
+<ul>
+<li>calculus (14)</li>
+<li>data (2)</li>
+<li>derivative (14)</li>
+<li>differentiation (14)</li>
+<li>dynamical rule (13)</li>
+<li>euler framework (13)</li>
+<li>exponential growth (13)</li>
+<li>functions (6)</li>
+<li>margin (14)</li>
+<li>per (3)</li>
+<li>point (3)</li>
+<li>quantity (3)</li>
+<li>rate (4)</li>
+<li>rate of change (4)</li>
+<li>state (13)</li>
+<li>time series (13)</li>
+<li>value (2)</li>
+<li>with respect to (3)</li>
+</ul>
+<p><em>New</em></p>
+<ul>
+<li>accumulation</li>
+<li>anti-differentiation</li>
+<li>incidence</li>
+<li>integration</li>
+</ul>
+</div></div><p>Here are a couple of definitions of “accumulation” from the <a href="">Oxford Languages</a> dictionary.</p>
+<blockquote class="blockquote">
+<p><em>The acquisition or gradual gathering of something. Example: “the accumulation of wealth”</em></p>
+<p><em>A mass or quantity of something that has gradually gathered or been acquired. Example: “the accumulation of paperwork on her desk”</em></p>
+</blockquote>
+<p>The previous chapter focused on turning a function into another function that gives the instantaneous rate of change. That process is called <em>differentiation</em>. This chapter is about going the other way: starting out with a function that is the derivative of something, and figuring out what that something is. Consider these scenarios:</p>
+<ol type="1">
+<li><p>A beachcomber starts with an empty basket and walks north along a beach. Roughly once every five minutes, she sees a collectible shell. She picks it up, places the shell in her basket, and walks on. At the end of a long, two-hour excursion, how many shells has she accumulated?</p></li>
+<li><p>An intern works at a large accounting firm during rush season. He gets paid $25/hour, increasing to $37.50 if he works “overtime,” that is, more than 40 hours in a week. At the end of the week, he has worked 68 hours. What are his accumulated earnings for the week?</p></li>
+<li><p>An epidemic spreads through a community. On the first day, only a couple of people catch the virus. But as more people become infected, the infection rate increases, reaching 20 new cases on the 7th day. The health department keeps a daily list of new cases. Overall, how many names accumulate during the first ten days?</p></li>
+</ol>
+<p>Each of these three scenarios involves a quantity accumulating over time: shells, money, and people falling ill.&nbsp;And each involves one or more <em>rates of change</em> and a <em>duration</em></p>
+<ol type="1">
+<li>One shell per 5 minutes over a two-hour walk.</li>
+<li>$25 per hour, going up to the “time-and-a-half” rate of $37.50 per hour after 40 hours worked over 68 total hours.</li>
+<li>Two new cases per day, increasing to a rate of 20 new cases per day at the end of the first seven days.</li>
+</ol>
+<p>Solving the <em>shell-collection</em> problem is straightforward: <em>Multiply the rate times the duration</em>:</p>
+<p><span class="math display">\[\frac{1}{5} \frac{\text{shell}}{\text{minute}} \times 2\, \text {hours} =
+\frac{2}{5}\, \text{shell} \times \frac{\text{hour}}{\text{minute}} = \frac{2}{5} \text{shell} \times \frac{60\ \text{minute}}{\text{minute}} = \frac{120}{5} \text{shell} = 24\, \text{shell}\]</span></p>
+<p>The wages problem involves more bookkeeping. The first 40 working hours are paid at a rate of $25/hour. Multiply the rate times the duration, <span class="math display">\[40, \text{hours} \times \$25/\text{hour} = \$1000\ ,\]</span> giving $1000 for that part of the week. The remaining 68 - 40 = 28 hours are paid at $37.50/hour: <span class="math display">\[28, \text{hours} \times \$37.50 / \text{hour} = \$1050 .\]</span> Adding these two components gives $1000 + $1050 = $2050 in overall earnings for the week.</p>
+<p>The epidemic problem is more difficult because the infection rate (new cases per day) is changing during the week under consideration. This change in rate is also seen in the wages problem, where the wage rate changed from $25 to $37.50 during the period of interest.</p>
+<p>Even though the three problems appear to differ in complexity, they can all be solved by the same mathematical method. We call this method “accumulation,” but it is more widely known by the standard mathematical term “integration”.</p>
+<div style="page-break-after: always;"></div>
+<section id="the-rate-of-change-framework" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="the-rate-of-change-framework"><span class="header-section-number">15.1</span> The rate-of-change framework</h2>
+<p>To understand why the three problems posed above can be solved by a single method, let’s restate them in a common framework. For each, we’ll depict the instantaneous rate of change (with respect to time) as a function of time. The output of the three functions is variously shells/hour, dollars/hour, and cases/day. The left column in <a href="#fig-three-problems-roc" class="quarto-xref">Figure&nbsp;<span>15.1</span></a> shows the three rate-of-change functions.</p>
+<div id="fig-three-problems-roc" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-three-problems-roc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.1: The rate of change function for each of the three scenarios.
+</figcaption>
+<div aria-describedby="fig-three-problems-roc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-three-problems-roc" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-three-problems-roc-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-three-problems-roc-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-three-problems-roc-1.png" class="img-fluid figure-img" data-ref-parent="fig-three-problems-roc" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-three-problems-roc-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Shell collection rate
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-three-problems-roc" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-three-problems-roc-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-three-problems-roc-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-three-problems-roc-2.png" class="img-fluid figure-img" data-ref-parent="fig-three-problems-roc" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-three-problems-roc-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Shells collected so far
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-three-problems-roc" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-three-problems-roc-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-three-problems-roc-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-three-problems-roc-3.png" class="img-fluid figure-img" data-ref-parent="fig-three-problems-roc" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-three-problems-roc-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Wage rate
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-three-problems-roc" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-three-problems-roc-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-three-problems-roc-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-three-problems-roc-4.png" class="img-fluid figure-img" data-ref-parent="fig-three-problems-roc" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-three-problems-roc-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) Wages earned so far
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-three-problems-roc" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-three-problems-roc-5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-three-problems-roc-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-three-problems-roc-5.png" class="img-fluid figure-img" data-ref-parent="fig-three-problems-roc" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-three-problems-roc-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(e) New cases rate
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-three-problems-roc" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-three-problems-roc-6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-three-problems-roc-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-three-problems-roc-6.png" class="img-fluid figure-img" data-ref-parent="fig-three-problems-roc" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-three-problems-roc-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(f) Total cases to date
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>The right-hand column of <a href="#fig-three-problems-roc" class="quarto-xref">Figure&nbsp;<span>15.1</span></a> shows accumulations of the rate-of-change functions in the left column. Calculating the accumulation from the rate-of-change function is a fully automated process called “anti-differentiation” that requires little or no creative input.</p>
+</section>
+<section id="example-figuring-taxes-owed" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="example-figuring-taxes-owed"><span class="header-section-number">15.2</span> Example: Figuring taxes owed</h2>
+<p><a href="Chap-14-rates-of-change.html#sec-on-the-margins">Section 14.1</a> discussed the calculation of income taxes <em>on the margin</em>. The tax law specified the <em>marginal</em> tax rate at each level of income. (See <a href="Chap-14-rates-of-change.html#tbl-1913-brackets">Table 14.1</a>.)</p>
+<p>As discussed in <a href="Chap-14-rates-of-change.html#sec-rates-of-change">Chapter 14</a>, <em>differentiation</em> is the name given to finding a marginal function from a “mother” function. The function so derived is called a <em>derivative</em>. These names point to a critically important habit of mind for quantitative reasoners: we think about relationships such as <a href="Chap-14-rates-of-change.html#tbl-1913-brackets">Table 14.1</a> as <em>functions</em>. Why is this important? Knowing that the relationship is a function reminds us of a set of operations that can be performed on it to put it in a more useful form for whatever purpose is at hand.</p>
+<p>Consider the purpose originally served by the tax-bracket table: to inform members of Congress the exact policy they were imposing on taxpayers. The tax-bracket table does not serve another purpose very well: enabling taxpayers to easily figure out what they owe. The result is tax forms like that in <a href="Chap-14-rates-of-change.html#fig-1913-1040">Figure 14.1</a> which are potentially off-putting.</p>
+<!--[Possibly, the legislators did not completely understand their own policy, not envisioning the sort of calculation illustrated in [Figure 14.1](Chap-14-rates-of-change.html#fig-1913-1040). Senator Elihu Root wrote to a correspondent: "I guess you will have to go to jail. If that is the result of not understanding the Income Tax law I shall meet you there. We will have a merry, merry time, for all our friends will be there. It will be an intellectual center, for no one understands the Income Tax law except persons who have not sufficient intelligence to understand the questions that arise under it." [Source](https://www.taxnotes.com/tax-history-project/tax-history-original-intent-and-revenue-act-1913/2013/09/30/f7h8)]{.column-margin} -->
+<p>Quantitative reasoners who know about differentiation and derivatives have a powerful framework for simplifying the presentation of marginal tax-rate information to taxpayers. Since the <em>marginal</em> tax rate is a function, we can graph it. (<a href="#fig-tax-rate-functions" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>(a))</p>
+<div id="fig-tax-rate-functions" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-tax-rate-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.2: Tax-rate functions
+</figcaption>
+<div aria-describedby="fig-tax-rate-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-tax-rate-functions" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-tax-rate-functions-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-tax-rate-functions-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-tax-rate-functions-1.png" class="img-fluid figure-img" data-ref-parent="fig-tax-rate-functions" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-tax-rate-functions-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Marginal rate
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-tax-rate-functions" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-tax-rate-functions-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-tax-rate-functions-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-tax-rate-functions-2.png" class="img-fluid figure-img" data-ref-parent="fig-tax-rate-functions" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-tax-rate-functions-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Total rate
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>The two functions in <a href="#fig-tax-rate-functions" class="quarto-xref">Figure&nbsp;<span>15.2</span></a> convey the same information, but in different forms. The <em>marginal rate</em> function (<a href="#fig-tax-rate-functions" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>(a)) literally the Congressional policy. Using it, you can look up the <em>marginal</em> tax rate at any income. For example, a blue vertical line has been drawn at an income of $200,000. The marginal tax rate at that income is exactly 5%. Even so, the tax-payer does <em>not</em> owe $200,000 <span class="math inline">\(\times\)</span> 5% = $10,000. The 5% refers to the additional tax owed on a small incremental increase in income.</p>
+<p>The <em>total tax owed</em> function (<a href="#fig-tax-rate-functions" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>(b)) is set up to suit people calculating how much to pay. The output is the amount of tax owed. At the blue line for a $200,000 income, the tax owed is $860.</p>
+<p>This is not a book about income tax calculations. The important point is about the connection between the two functions shown in <a href="#fig-tax-rate-functions" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>. This sort of connection is fundamental to quantitative reasoning. <a href="#fig-tax-rate-functions" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>(a) is the <em>derivative</em> of <a href="#fig-tax-rate-functions" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>(b). No new information is needed to construct <a href="#fig-tax-rate-functions" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>(a) from <a href="#fig-tax-rate-functions" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>(b); they are merely different ways of representing the same information.</p>
+<p>As we said, function (a) is the <em>derivative</em> of (b). The derivation of (a) from (b) is done by the process of <em>differentiation</em>, that is, calculating marginal rates of change</p>
+<p>It is equally possible to compute function (b) from function (a). Math textbooks call the computational process ☞&nbsp;<strong>integration</strong><span id="finger-integration-definition" data-label="integration">&nbsp;☜</span> or, almost the same thing, ☞&nbsp;<strong>anti-differentiation</strong><span id="finger-anti-differentiation-definition" data-label="anti-differentiation">&nbsp;☜</span>. A good, everyday word to describe the process is ☞&nbsp;<strong>accumulation</strong><span id="finger-accumulation-definition" data-label="accumulation">&nbsp;☜</span>. Function (b) accumulates the marginal tax payments over the entirety of the taxpayer’s income.</p>
+<p>The connection between <em>differentiation</em> and <em>anti-differentiation</em> (which is so clear from the words used) is important in practice. Many of our core modeling functions are derivative/anti-derivative pairs.</p>
+<p>Calculus students memorize such patterns. We defer to the exercises a description of the processes by which anti-derivatives can be computed. This is for two reasons: 1) the process is automatic, 2) the main point is to know, whenever you are working with a function, whether its derivative or anti-derivative might be a better form than the function itself for the purpose a model is being built for.</p>
+</section>
+<section id="anti-differentiation" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="anti-differentiation"><span class="header-section-number">15.3</span> Anti-differentiation</h2>
+<p>There are various algorithms for calculating the anti-derivative of a rate-of-change function. Traditional calculus students learn—or, at least, study!—algebraic techniques that can become puzzle-solving problems of considerable difficulty. Sometimes, there is no algebraic solution. But finding the anti-derivative need not be a puzzle. Here, we will demonstrate the idea graphically. To illustrate, we will use an important pair of functions related by differentiation and anti-differentiation.</p>
+<div id="fig-diff-antidiff" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diff-antidiff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="www/hill-to-hillside.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diff-antidiff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.3: <code>hill()</code> and <code>hillside()</code> are a derivative/anti-derivative pair.
+</figcaption>
+</figure>
+</div>
+<p>The hill() function gives the <em>derivative</em>—that is, the rate-of-change function—of the hillside() function. Conversely, the hillside() function is the <em>anti-derivative</em> of the hill() function. Differentiation turns a function into its rate-of-change function. Anti-differentiation undoes differentiation.</p>
+<p>A homey metaphor may help here. Imagine a family of functions mutually related by differentiation or anti-differentiation. We’ll label the functions Francis, Georgia, Heather, Ulrika, and Victoria: F(), G(), H(), U(), V(). The relationships among these functions are that G() is the derivative of F(), H() is the derivative of G(), H() is the derivative of H(), and so on. In human terms, these functions correspond to succesive generations in a family. Francis is the great-grandmother, Georger the grandmother, Heather the mother, Ulrika the daughter, and the grand-daughter is Victoria. Differentiation is the function that takes a person and produces their direct offspring. Anti-differentiation takes a function and produces their mother.</p>
+<p>For demonstration purposes, to see how an anti-derivative can be calculated, let’s break convention and use a special graphical format to display a rate-of-change function.</p>
+<p>Keep in mind that differentiation contructs an new “daughter” function from a “mother” function. Finding the daughter is straightforward; it is the function whose <strong>value</strong> at any input corresponds to the <strong>slope</strong> of the mother at that same input. <a href="#fig-segmentize" class="quarto-xref">Figure&nbsp;<span>15.4</span></a> shows a function F(x) in black, and a kind of compass for measuring slopes. The slope of F() varies across the input values. We can calculate that slope for many different input values. Ordinarily we would plot the derivative—that is, the daughter function—using the vertical axis for the measured slope.</p>
+<p>But <a href="#fig-segmentize" class="quarto-xref">Figure&nbsp;<span>15.4</span></a>(a) shows the daugher function (in <span style="color: blue;">blue</span>) not in the usual way as a value, but instead as a small, sloped line segment. The reader can confirm this by matching each <span style="color: blue;">blue line segment</span> to the slope of the black function directly above or below it.</p>
+<div id="fig-segmentize" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-segmentize-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-segmentize" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-segmentize-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-segmentize-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-segmentize-1.png" class="img-fluid figure-img" data-ref-parent="fig-segmentize" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-segmentize-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Differentiation gives the slope for any input.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-segmentize" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-segmentize-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-segmentize-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-segmentize-2.png" class="img-fluid figure-img" data-ref-parent="fig-segmentize" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-segmentize-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Anti-differentiation accumulates the slopes to reconstruct the function (green).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-segmentize-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.4: A function (black) with its rate-of-change function depicted as short inclined segments (blue).
+</figcaption>
+</figure>
+</div>
+<p>Anti-differentiation is the process of accumulating the sloped segments to reconstruct a function with those slopes. The accumulation itself is child’s play. Start with the leftmost segment. Raise the segment next to it so that the two segments match. Continue the process by moving to the next segment, and so on.</p>
+<p>Playing this child’s game of connecting the segments by moving each segment vertically traces out the green curve. Evidently, the green curve has the same <strong>shape</strong> as the original mother function F().</p>
+<p>The green curve runs parallel to the original F() but can have a different vertical position. Why? The game-playing child is free to place the first segment at any vertical position she likes. The reconstructed function will be moved up or down accordingly. When we accumulate, whether seashells or inclined segments, we are free to specify how much was “in the basket” when we started.</p>
+</section>
+<section id="example-qalys-versus-cost" class="level2 page-columns page-full" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="example-qalys-versus-cost"><span class="header-section-number">15.4</span> Example: QALYs versus cost</h2>
+<p><a href="Chap-14-rates-of-change.html#fig-qaly-vs-cost">Figure 14.3</a> showed functions for the number of quality-adjusted life-years saved and the expenditure on each of two hypothetical programs, which we called Natal and Cancer. Where did these functions come from? The quick answer is that the functions are the anti-derivatives of another function. That other function, the derivative of QALYs(expenditure), has a simple logic that can easily be illustrated. Such a situation is common across many areas of science or quantitative reasoning. Indeed, we saw it in <a href="Chap-13-dynamics.html#sec-dynamics">Chapter 13</a>. The SIR model is merely a description of the rates of change of susceptibles and infectives as functions of the numbers in each group. Tracking the course of the epidemic over time was a mechanical operation (“Euler’s method”) that integrated the rate-of-change functions.</p>
+<p>Consider now the QALY(expenditure) function for the Cancer program. From ongoing public health data collection, we know the ☞&nbsp;<strong>incidence</strong><span id="finger-incidence-definition" data-label="incidence">&nbsp;☜</span> of cancer cases, that is, how many new cases arise in a year. We also have a good idea, from medical experience, of <em>survival times</em> for people with cancer and how survival is different with and without treatment. To illustrate, <a href="#fig-colon-survival" class="quarto-xref">Figure&nbsp;<span>15.5</span></a> shows “survival curves” for colon cancer victims, comparing those who underwent radical surgery to those where the surgical intervention was merely palliative.</p>
+<div id="fig-colon-survival" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-colon-survival-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="www/colon-survival-operation.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-colon-survival-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.5: Comparative survival curves for people undergoing surgery for colon cancer. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8677537/figure/goab048-F1/">Source</a>
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-colon-survival" class="quarto-xref">Figure&nbsp;<span>15.5</span></a> shows two survival “curves” constructed from patients’ records in a clinical study. Each curve is a function that takes months of survival as input and returns as output the fraction of all patients who survived that long. For instance, about 60% of patients who underwent radical surgery survived for 100 months, whereas only about 15% of palliative-treatment patients survived that long.</p>
+<p>The advantage of thinking of survival time as a function is that we can imagine what other inputs might go into the function. For instance, we might have patient age, sex, and stage of cancer at the time of diagnosis, or other information. Such functions are often constructed by researchers. An example, for colon cancer, is linked to in <a href="#fig-mdanderson-calculator" class="quarto-xref">Figure&nbsp;<span>15.6</span></a>.</p>
+<div id="fig-mdanderson-calculator" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mdanderson-calculator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="www/MDAnderson-calculator.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mdanderson-calculator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.6: A calculator for (average) survival time with colon cancer. <a href="https://www3.mdanderson.org/app/medcalc/index.cfm?pagename=coloncancer">Link</a>.
+</figcaption>
+</figure>
+</div>
+<p>Using such functions, we can compute the expected survival time for each age or cancer-stage class of patients diagnosed with colon cancer. More specifically, we can compute the average <em>extra</em> survival time for those who undergo radical surgery.</p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">This illustrates an important distinction between public health and medicine. For an individual patient, a medical doctor might prefer to present the survival curve to show the range of possible outcomes. But for social policy making, we are not dealing with individuals but <em>groups</em> of people. This is the public health perspective. Average outcome gives a good indication for the group as a whole.</span></div></div>
+<p>For the sake of argument, we will imagine that the average <em>extra</em> survival time is a decreasing function of age. That is, younger patients are more likely to survive longer. Perhaps this is more easily seen in reverse. An elderly patient is, for various reasons, unlikely to survive the 20-year period covered by the survival curve. <a href="#fig-survival-sketch" class="quarto-xref">Figure&nbsp;<span>15.7</span></a> sketches out what the <em>extra</em> survival time verus age function might look like.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-survival-sketch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-survival-sketch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-survival-sketch-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-survival-sketch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.7: A sketch of an imagined function giving <em>extra</em> survival time versus age.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The detailed calculation needed to translate <a href="#fig-survival-sketch" class="quarto-xref">Figure&nbsp;<span>15.7</span></a> into a function of QALYs saved per person treated is hard to understand without extensive modeling experience. But the general outline is accessible. Using only the treatment cost and the age distribution of incidence, we can translate the horizontal axis into the total cost of treating all people up to any given age. The result will be a graph showing the marginal years saved at each cost. Accumulating (anti-differentiating) that marginal years saved function over the cost produces the curve shown in <a href="Chap-14-rates-of-change.html#fig-qaly-vs-cost">Figure 14.3</a>(b).</p>
+<p>The point for us is that figuring out relationships like that in <a href="Chap-14-rates-of-change.html#fig-qaly-vs-cost">Figure 14.3</a>(b) is based on several habits of experienced quantitative reasoners:</p>
+<ol type="1">
+<li><p>Thinking of years saved <em>on the margin</em>, that is, the function that describes how many years are saved for each additional unit of cost.</p></li>
+<li><p>Knowing that the on-the-margin function corresponds to another function, total years saved versus cost, that is an ordinary anti-derivative of the function in (1).</p></li>
+<li><p>Realizing that the function in (1) is much easier to justify, a good format for representing the relationship between years saved and cost, so putting our effort into modeling (1) and then using the automatic process of anti-differentiation to produce the function in (2).</p></li>
+</ol>
+</section>
+<section id="sec-peak-population" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="sec-peak-population"><span class="header-section-number">15.5</span> Example: Predicting peak population</h2>
+<p>Sometimes, clear patterns in the rate-of-change function can be easily modeled, but then need to be translated via anti-differentiation to display the information of interest. An instance of this is seen in the population of the US, as it has grown over the centuries.</p>
+<p>Every 10 years, starting in 1790, the US Census Bureau carries out a constitutionally mandated census: a count of the current population. The overall count as a function of year is shown in <a href="#fig-pop-growth" class="quarto-xref">Figure&nbsp;<span>15.8</span></a>.</p>
+<p>In the 230 years spanned by the census data, the US population has grown 100-fold, from about 4 million in 1790 to about 330,000,000 in 2020. <a href="#fig-pop-growth" class="quarto-xref">Figure&nbsp;<span>15.8</span></a> shows the growth. Note that there is a lot of fluctuation in the data. These are not just random. The deviations correspond to historical events. There is a relatively low growth rate from 1860 to 1870, due to the US Civil War. The Great Depression is evident in the very low growth rates from 1930 to 1940. Baby Boom: look at the growth from 1950 to 1960. The bump from 1990 to 2000? Not coincidentally, the 1990 Immigration Act substantially increased the yearly rate of immigration.</p>
+<div id="fig-pop-growth" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-pop-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.8: Two views of population growth in the US.
+</figcaption>
+<div aria-describedby="fig-pop-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-pop-growth" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-pop-growth-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-pop-growth-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-pop-growth-1.png" class="img-fluid figure-img" data-ref-parent="fig-pop-growth" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pop-growth-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Population
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-pop-growth" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-pop-growth-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-pop-growth-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-pop-growth-2.png" class="img-fluid figure-img" data-ref-parent="fig-pop-growth" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pop-growth-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Rate of change in population with respect to time
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>Both panels in <a href="#fig-pop-growth" class="quarto-xref">Figure&nbsp;<span>15.8</span></a> are based on the Census data. Panel (a) plots the actual population. The upward curving pattern of the data (in black) in panel (a) is reminiscent of exponential growth. We annotated the data with two curves, both with strict exponential growth at the year percentage rates indicated. In the context of actual exponential growth, the data do not convincingly show exponential growth.</p>
+<p>The rate of change in population (with respect to time) is the slope of the segments in panel (a). Panel (b) translates that slope into position along the vertical axis. The blue line in panel (b) guides the eye to see an ascending, straight-line pattern in the data, admittedly with some sharp, decade-long deviations from the line.</p>
+<p>One is tempted to conclude from <a href="#fig-pop-growth" class="quarto-xref">Figure&nbsp;<span>15.8</span></a> that, if the US population follows the historical pattern, it will continue to grow at an ever-faster rate. However, that conclusion is not well-founded. The problem is the lack of a theoretical framework for interpreting the data.</p>
+<p><a href="Chap-13-dynamics.html#sec-dynamics">Chapter 13</a> has some lessons to teach about growth, particularly exponential growth. Remember that the Euler framework for dynamics does not start with a time series, such as those in <a href="#fig-pop-growth" class="quarto-xref">Figure&nbsp;<span>15.8</span></a>. Instead, the Euler framework starts with a <em>dynamical rule</em>, the function that takes the <em>state</em> of the system (population, here) and turns it into a rate of change with respect to time. The plots in <a href="#fig-pop-growth" class="quarto-xref">Figure&nbsp;<span>15.8</span></a> have <em>time</em> on the horizontal axis, not population. <a href="#fig-pop-dynamics" class="quarto-xref">Figure&nbsp;<span>15.9</span></a>(a) presents the data in dynamical rule format: change in state (with respect to time) versus state.</p>
+<div id="fig-pop-dynamics" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-pop-dynamics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.9: Plotting dynamics of growth
+</figcaption>
+<div aria-describedby="fig-pop-dynamics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-pop-dynamics" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-pop-dynamics-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-pop-dynamics-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-pop-dynamics-1.png" class="img-fluid figure-img" data-ref-parent="fig-pop-dynamics" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pop-dynamics-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Dynamical rule
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-pop-dynamics" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-pop-dynamics-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-pop-dynamics-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-pop-dynamics-2.png" class="img-fluid figure-img" data-ref-parent="fig-pop-dynamics" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pop-dynamics-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Proportional change (%) of state
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p><a href="#fig-pop-dynamics" class="quarto-xref">Figure&nbsp;<span>15.9</span></a>(a) plots the yearly rate of change (with respect to time) versus the population. The format is exactly that of a dynamical rule in the Euler framework. True exponential growth corresponds to a same() dynamical rule. (See <a href="Chap-13-dynamics.html#fig-steady-dyn">Figure 13.8</a>.) The particular dynamical rule shown corresponds to 1.94%. That is, the blue line shows the dynamical rule that is <span id="eq-194-percent"><span class="math display">\[\text{ROC population}(P) \equiv 1.0194\, P\ . \tag{15.1}\]</span></span></p>
+<p>The 1.94% per year dramatically overstates population growth when the population exceeds 100 million, a level reached by 1920. At 100 million and above, the data <em>suggest</em> a lower rate of growth. Owing to the peaks and dips in the data, it is hard to see a straight line above 100 million population. Nonetheless, the dynamics are clearly different above 100 million than they were below that.</p>
+<p>One way to incorporate <em>changing dynamics</em> into <a href="#eq-194-percent" class="quarto-xref">Math expression&nbsp;<span>15.1</span></a> is to replace the 1.0194 with a function of year. We will call it r(year), and we would like the data to show us what it is. For this, we need to plot r(year) versus <em>year</em>, not population. <a href="#eq-194-year" class="quarto-xref">Math expression&nbsp;<span>15.2</span></a> re-arranges <a href="#eq-194-percent" class="quarto-xref">Math expression&nbsp;<span>15.1</span></a> to emphasize that both ROC population and population themselves are functions of <em>year</em>.</p>
+<p><span class="math display">\[\text{ROC population}(year) \equiv r(year)\, P(year)\]</span> or <span id="eq-194-year"><span class="math display">\[r(year)\equiv \frac{\text{ROC population}(year)}{\text{P}(year)} . \tag{15.2}\]</span></span></p>
+<p>To see the form of r(year) from the data, plot <span class="math inline">\(\frac{\text{ROC population}(year)}{\text{P}(year)}\)</span> versus year. <a href="#fig-pop-dynamics" class="quarto-xref">Figure&nbsp;<span>15.9</span></a>(b) does this. It is much easier to infer from the data in <a href="#fig-pop-dynamics" class="quarto-xref">Figure&nbsp;<span>15.9</span></a>(b) a pattern of a linearly decreasing (with respect to time) yearly growth rate (r(year)).</p>
+<p>If the trend (blue line in <a href="#fig-pop-dynamics" class="quarto-xref">Figure&nbsp;<span>15.9</span></a>(b)) in the growth rate continues, the US will reach zero net growth around 2070, then enter negative growth. Of course, negative growth is just decline. A simple prediction from <a href="Chap-15-accumulation.html#fig-pop-growth">Figure 15.8</a>(b) is that the argmax of the US population—that is, the year that the growth rate reaches zero—will occur around 2070.</p>
+<p>Using the tools of mathematical accumulation, we can accumulate the rate of change (that is, r(year) P(year)) over future years to estimate the future population. <a href="#fig-population-future" class="quarto-xref">Figure&nbsp;<span>15.10</span></a> shows the result.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-population-future" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-population-future-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-15-accumulation_files/figure-html/fig-population-future-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-population-future-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.10: The Census population data along with the function forecasting future population based on the rate-of-change model in <a href="#fig-pop-dynamics" class="quarto-xref">Figure&nbsp;<span>15.9</span></a>(b)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>According to the accumulation model, the population peaks in 2075 at 390 million. We will be back down to the present population level in about 100 years.</p>
+<p>Professional demographers construct much more sophisticated models using detailed data from many sources and, as needed, take into account the age structure of the population to predict future births. The demographers at the US Census Bureau predict that the population will reach a maximum of 404 million in 2060, shown by the little blue dot in <a href="#fig-population-future" class="quarto-xref">Figure&nbsp;<span>15.10</span></a>. That is not too different from what we got by analyzing the raw census numbers alone. Importantly, we analyzed those numbers in the context of the Euler framework (<a href="Chap-13-dynamics.html#sec-dynamics">Chapter 13</a>), formulating a model dynamical rule and using the <em>accounting method</em> (that is, <em>accumulation</em>) to translate the dynamical rule into a time series.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Chap-14-rates-of-change.html" class="pagination-link" aria-label="Rates of change">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Chap-16-operations.html" class="pagination-link" aria-label="Moving Past Two Inputs">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

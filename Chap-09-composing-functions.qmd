@@ -1,11 +1,3 @@
----
-number-offset: 8
-crossref:
-  fig-title: "Figure 9."
-  fig-prefix: "Fig 9."
-  tbl-title: "Table 9."
----
-
 ```{r include=FALSE}
 #| label: ch09-r-a6438c2b
 source("_start-up.R")
@@ -78,19 +70,19 @@ one_pill <- function(t, at=0) {
 ```{r}
 #| label: fig-one-pill
 #| echo: false
-#| fig-cap: 'Multiplying the two functions in `r xf("fig-one-pill-separate")` to create the overall drug concentration profile for a single pill.'
-slice_plot(one_pill(t) ~ t, domain(t = -1:24), npts = 500) |>
+#| fig-cap: 'Multiplying the two functions in [Figure 9.1](Chap-09-composing-functions.html#fig-one-pill-separate) to create the overall drug concentration profile for a single pill.'
+slice_plot(one_pill(t) ~ t, domain(t = -1:24), npts = 500,
+           color = .slice_color.) |>
   gf_labs(y = "Drug concentration (mg / liter)", 
           x = "Time since pill taken (hr)") 
 ```
 
-IN DRAFT: Fix the figure reference in the caption.
 
 
 ::: {.callout-note}
 ## Multiplication in epidemics
 
-Recall the SIR model introduced in `r xf("sec-epidemics")`, where it was described as a book-keeping device for tracking the number of susceptible, infective, and recovered individuals in a population.  For each new day, the number of new infectives is a function of the current number of infectives (I) and of susceptibles (S).
+Recall the SIR model introduced in `r xf("sec-modeling-an-epidemic")`, where it was described as a book-keeping device for tracking the number of susceptible, infective, and recovered individuals in a population.  For each new day, the number of new infectives is a function of the current number of infectives (I) and of susceptibles (S).
 
 Consider how new infectives are *produced*: a current infective comes into contact with a currently susceptible person. Each such encounter or *interaction* carries a risk that the susceptible person will become infected. Imagine that the infective encounters several other people each day. Those other people might currently have the illness, or have already recovered from the illness. But some of the contacts will be susceptible. How many? It depends on the fraction of the population who are susceptible. The fraction is S / N, where N is the total population. In terms of our core modeling functions, the fraction of people who are susceptible is `same(S)` with some output scaling. Likewise, the risk that a susceptible who has been in contact with a current infective is just another layer of output scaling on the `same(S)` function. 
 
@@ -130,7 +122,7 @@ slice_plot(one_pill(t - 10) + one_pill(t - 18) +
              one_pill(t - 42) + one_pill(t - 50) +
              one_pill(t - 58) ~ t, 
              domain(t = 6:60),
-           npts = 1000)  |>
+           npts = 1000, color = .slice_color.)  |>
   gf_labs(y = "Drug concentration (mg / liter)", 
           x = "Time of day") |>
   gf_refine(
@@ -162,7 +154,8 @@ Let's graph the function:
 #| fig-cap: "Drug concentration over time when taking one pill per day at triple the dose. The drug concentration falls below the therapeutic dose (the magenta line) for almost half of each day."
   slice_plot(once_per_day(t)  ~ t, 
              domain(t = 6:60),
-             npts = 1000)  |>
+             npts = 1000,
+             color = .slice_color.)  |>
     gf_labs(y = "Drug concentration (mg / liter)", 
                    x = "Time of day") |>
     gf_refine(
@@ -173,7 +166,7 @@ Let's graph the function:
     gf_theme(axis.text.x = element_text(angle = 45, hjust = 1)) |> 
     gf_labs(y = "Drug concentration (mg / liter)", 
           x = "Time of day") |>
-    gf_hline(yintercept = 1, color = "magenta")
+    gf_hline(yintercept = 1, color = .hline_color.)
 ```
 
 
@@ -211,7 +204,7 @@ We've identified four input quantities: teacher `performance`, parent's `educati
 
 Typically, as in this example, the input quantities have different dimension and are measured in different units. For example, in this example, `income` is measured in dollars (dimension {{< var dim.currency >}}), `education` in years of schooling (dimension {{< var dim.time >}}), `performance` as a score on an evaluation (dimension {{< var dim.number >}}), and `size` as the number of students in a class (also dimension {{< var dim.number >}}). [There are many scales for measuring school performance. When we talk about them, we don't typically give a unit name. For instance, a score of"600 on the SAT math test," which is roughly equivalent to a score of "25 on the ACT text," or a "gradepoint of 3.5."]{.column-margin} The output quantity, `score`, also has dimension {{< var dim.number >}} and its own units. 
 
-A linear combination is an ideal format for combining input quantities with different dimensions. It is a generalization of the **output scaling** introduced in `r xf("sec-core-modeling-functions")` which we used to convert the pure-number output of the core modeling functions to an output quantity with dimension and units. For our example, the function might be written this way:
+A linear combination is an ideal format for combining input quantities with different dimensions. It is a generalization of the **output scaling** introduced in `r xf("sec-core-functions")` which we used to convert the pure-number output of the core modeling functions to an output quantity with dimension and units. For our example, the function might be written this way:
 
 \newpage
 
@@ -277,7 +270,7 @@ The contours tell you more about the terrain than the elevation at each point. F
 
 Or consider the narrow neck connecting the two larger landmasses. This is marked "haul over," which makes sense because the path connecting the south side of the next to the north side does not cross any contours. That path is relatively flat, a good route to haul a boat overland between the two sides.  
 
-The equivalent of a topographical map for functions is called a `r xf_definition("contour plot")`. The output of the function corresponds to the elevation in the map, two inputs play the roles of latitude and longitude respectively. A contour plot provides a mechanism to read off the output for given values of the inputs, but the skilled interpreter can glean more information than that. `r xf("fig-sultriness-contour")` shows an example, the heat-index function introduced in `r xf("sec-functions")`. The inputs are temperature and humidity; the output is the heat index.
+The equivalent of a topographical map for functions is called a `r xf_definition("contour plot")`. The output of the function corresponds to the elevation in the map, two inputs play the roles of latitude and longitude respectively. A contour plot provides a mechanism to read off the output for given values of the inputs, but the skilled interpreter can glean more information than that. `r xf("fig-sultriness-contour")` shows an example, the heat-index function introduced in `r xf("sec-intro-to-functions")`. The inputs are temperature and humidity; the output is the heat index.
 
 Panel (a) of `r xf("fig-sultriness-contour")` shows the function in tabular form, just as it was presented in the 1979 paper that introduced the heat index. Given values for the temperature and humidity, you can easily find the corresponding output from the table.
 

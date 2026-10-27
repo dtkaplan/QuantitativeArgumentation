@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Uncertainty in quantities – Quantitative Argumentation</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Chap-09-composing-functions.html" rel="next">
+<link href="./Chap-07-core-modeling-functions.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-06-functions.html">Using functions</a></li><li class="breadcrumb-item"><a href="./Chap-08-uncertainty.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative Argumentation</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-01-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argument and reasoning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-02-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems, dimensions, and data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-03-quantities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-04-rates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-05-magnitudes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Order of magnitude</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-06-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-07-core-modeling-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-08-uncertainty.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-09-composing-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Composing functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Decision, evidence, and belief</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-10-tradeoffs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trade-offs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-11-likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-12-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modeling change</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-13-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dynamics: Modeling change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-14-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-15-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capstone: Toward AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-16-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix-Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Chapter Summaries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-06-functions.html">Using functions</a></li><li class="breadcrumb-item"><a href="./Chap-08-uncertainty.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-uncertainty" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><em>Vocabulary Review</em></p>
+<ul>
+<li>analysis (3)</li>
+<li>data (2)</li>
+<li>functions (6)</li>
+<li>models (1)</li>
+<li>number line (3)</li>
+<li>per (3)</li>
+<li>point (3)</li>
+<li>quantity (3)</li>
+<li>rate (4)</li>
+<li>sample (2)</li>
+<li>value (2)</li>
+</ul>
+<p><em>New</em></p>
+<ul>
+<li>bayesian</li>
+<li>exponential distribution</li>
+<li>frequentism</li>
+<li>hypothesis</li>
+<li>mean</li>
+<li>normal distribution</li>
+<li>probability distributions</li>
+<li>random number generation</li>
+<li>range</li>
+<li>relative probability</li>
+<li>simulation</li>
+<li>standard deviation</li>
+<li>uncertainty</li>
+<li>uniform distribution</li>
+<li>variance</li>
+</ul>
+</div></div><p>We have looked at functions so far as our model representation of the relationship between one quantity (the function output) and one or more other quantities (the function inputs). This role for functions will remain central to how we use models for quantitative reasoning. Still, there are other important uses for functions.</p>
+<p>This chapter considers a distinctly different use for functions: quantifying the ☞&nbsp;<strong>uncertainty</strong><span id="finger-uncertainty-definition" data-label="uncertainty">&nbsp;☜</span> in the value of a single quantity.</p>
+<p>Imagine a family in the process of constructing a budget for next year. Naturally, the family has a good idea about their expected income next year. Likewise, they can estimate next year’s expenses for rent, utilities, food, transportation, and so on. This information guides them in planning for discretionary spending, such as vacations, clothing, and so on.</p>
+<p>Suppose the family’s current rent is 1500 dollars per month. The lease is up for renewal in 6 months; they are almost sure the rent will increase—their best guess: a 4% increase to $1560 per month.</p>
+<p>Most people making budgets use a best guess for quantities whose exact value is uncertain. Doing this, the family figures next year’s total rent expenditures as six monthly payments of $1,500 per month, followed by another six months at $ 1,560 per month. Total: $18,360 per year.</p>
+<p>In situations where the stakes are higher, it can be worthwhile to keep track not just of the best guess but of the <em>uncertainty</em> in that guess. It is common to express uncertainty using ☞&nbsp;<strong>ranges</strong><span id="finger-range-definition" data-label="range">&nbsp;☜</span> <a href=".column-margin">An equivalent format is “approximately 80 <span class="math inline">\(\pm\)</span> 20 Cals per mile.”</a> For instance, in <a href="Chap-04-rates.html#sec-rates">Chapter 4</a>, an AI quoted a range for the number of Cals burned per mile while walking: “approximately 60 to 100 Cals.”</p>
+<div class="page-columns page-full"><p>The shorthand notation for the range just mentioned is [60, 100]. In statistics, such a range is not intended as an absolute statement that the value can never be less than 60 or greater than 100.  Rather, it is a statement that the value is <em>likely</em> to be in the range, and <em>unlikely</em> to be outside of it.</p><div class="no-row-height column-margin column-container"><span class="">In the statistics interpretation of ranges like [60, 100], “likely” is interpreted as a 95% chance.</span></div></div>
+<p>However, when doing calculations—such as adding up the uncertainties for each of the several budget categories—the range format does not suffice. To support quantitative reasoning, we need another format for expressing uncertainty.</p>
+<section id="sec-relative-probability" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="sec-relative-probability"><span class="header-section-number">8.1</span> Relative probability</h2>
+<p>The fundamental problem with the range format is this: It is not necessarily the case that uncertainty propagated through a function is correctly represented by applying the function to both the top and bottom of the range.</p>
+<p>To illustrate, consider the number of Cals burned by a person in a walk of about 3 to 4 miles. In addition to this walk length information, we know that the energy consumption per unit distance is 60 to 100 Cal/mile. As described in <a href="Chap-03-quantities.html#sec-quantities">Chapter 3</a>, we combine quantities with different dimensions by either multiplication or division. The correct choice here is multiplication, since [Cal] = [miles] [Cal/mile]. This multiplication would directly provide the answer if there was no uncertainty attached to the distance or energy consumption per unit distance. But here, we are not just multiplying quantities but <em>uncertain quantities</em> described by ranges. Using the range notation the multiplication can be written like this: <span id="eq-range-walking-kinetics"><span class="math display">\[[3 \ \text{ to }\  4]\, \text{miles} \times [60\ \text{ to }\ 100]\, \text{Cals/mile} =\ \LARGE{\textbf{?}}\ . \tag{8.1}\]</span></span></p>
+<p>The question mark in <a href="#eq-range-walking-kinetics" class="quarto-xref">Math expression&nbsp;<span class="quarto-unresolved-ref">eq-range-walking-kinetics</span></a> is justified because there is no standard way to multiply uncertainty <em>ranges</em>. Anyone can invent a <em>reasonable-sounding</em> strategy for the calculation, for instance, multiply the lower ends of each range, and similarly for the upper end of the result: <span class="math display">\[[3 \times 60\ \text{ to }\ 4 \times 100]\,\text{Cals} = [180 \ \text{ to }\  400]\, \text{Cals}\ .\]</span> As reasonable as this looks, there is a problem with the strategy: how can we tell whether it gives the <em>right</em> answer to the underlying question?</p>
+<p>Indeed, there are situations where the above strategy is clearly wrong. For instance, consider multiplying the two ranges [-3 to 5] by [-10 to 2]. Slavishly following the above procedure yields a range of [30 to 10]. Is this right? For both ranges, note that zero is well within the limits. Multiplying any number by zero gives zero, so zero ought to be inside the range produced by the multiplication. However, zero is not in [30 to 10].</p>
+<p>Figuring out how to reliably handle calculations involving uncertainty involved the work of many mathematicians and scientists over the 18th and 19th centuries. A good answer to the walking energetics question in <a href="#eq-range-walking-kinetics" class="quarto-xref">Math expression&nbsp;<span class="quarto-unresolved-ref">eq-range-walking-kinetics</span></a> is [200 to 360] Cals. Similarly, a good answer to [-3,5]<span class="math inline">\(\times\)</span>[-10,2] is [-25 to 17], which correctly includes zero inside the range.</p>
+<p>The advent of the computer has made such uncertainty calculations much more accessible. At the heart of the matter is the concept of ☞&nbsp;<strong>probability distributions</strong><span id="finger-probability-distributions-definition" data-label="probability distributions">&nbsp;☜</span>. When we use a range (such as 3 to 4 miles or 60 to 100 Cals/mile) to represent uncertainty, we mention only two values for the quantity: the lower and upper bounds on the range. In contrast, probability distributions consider every possible value: the whole number line, not just the two points defining the range.</p>
+<p>A probability distribution can be created by assigning a positive number to each point on the number line. This number is called a ☞&nbsp;<strong>relative probability</strong><span id="finger-relative-probability-definition" data-label="relative probability">&nbsp;☜</span>. Relative probability numbers cannot be negative.</p>
+<p>There are an infinite number of points on the number line, so to use probability distributions, we need to keep track of an infinite number of relative probabilities: one for each point on the number line. Fortunately, <a href="Chap-06-functions.html#sec-intro-to-functions">Chapter 6</a> has already provided a mechanism for handling the situation: <em>functions</em>.</p>
+<p>To illustrate, consider the uncertainty we previously represented as the range 60 to 100 Cals/mile. <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-cal-per-mile-distribution</span></a> shows the corresponding probability distribution as a <em>function</em>.</p>
+<div id="fig-cal-per-mile-distribution" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cal-per-mile-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chap-08-uncertainty_files/figure-html/ch08-r-daec77b8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cal-per-mile-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: A standard probability distribution corresponding to 60 to 100 Cal/mile.
+</figcaption>
+</figure>
+</div>
+<p>The <em>input</em> to the function is drawn from the set of possible values for the uncertain quantity. The <em>output</em> from the function is the relative probability for that particular value of the quantity. In <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-cal-per-mile-distribution</span></a>, the relative probability for 40 Cal/mile is very low —practically zero. On the other hand, the highest relative probability corresponds to 80 Cal/mile. The numerical value of the function output at 80 Cal/mile is 40. That particular value, 40, tells us very little on its own; it needs to be put in context. The context for a relative probability is the function output for other inputs, that is, for other possibilities of the Cal/mile value. For instance, the relative probability for 60 Cal/mile is about 5, while the relative probability for 80 Cal/mile is about 40—that is, eight times as likely as 60 Cal/mile.</p>
+<p>When the output of a relative probability function is close to zero, the occurrence of the corresponding input value is vanishingly rare. We took advantage of this in <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-cal-per-mile-distribution</span></a> to avoid showing the entire number line on the input axis; we centered the display on the most likely values.</p>
+<p><code>hill()</code> is often a good choice for modeling a probability distribution. Often, but not always. The following section explores <code>hill()</code> along with a handful of other probability distribution functions. Note that in general the core modeling functions are not used for probability distributions. <code>hill()</code> is the one exception. We will have more to say about this in <a href="Chap-08-uncertainty.html#sec-simulation">Section 8.4</a>.</p>
+</section>
+<section id="sec-where-from" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="sec-where-from"><span class="header-section-number">8.2</span> Where do probability distributions come from?</h2>
+<p>Probability was invented in the 17th century by mathematicians interested in gambling. Progress was made by a mixture of experience reinforced by mathematical theorizing and algebraic derivation.</p>
+<p>A significant development was the realization, in the late 18th and early 19th centuries, that the <code>hill()</code> function was particularly useful in the analysis of data. <code>hill()</code>-like distributions were observed frequently in data from diverse contexts, so much so that it came to be called the “☞&nbsp;<strong>normal distribution</strong><span id="finger-normal-distribution-definition" data-label="normal distribution">&nbsp;☜</span>.” Mathematical theorizing, long after the normal distribution came into use, showed that in a scenario in which many independent random numbers, from whatever source, are added together, the normal distribution, or something very much like it, results. This scenario appears frequently in statistical calculations. However, over-reliance on this scenario outside statistical methodology can lead people to wrongly discount the possibility of rare events such as droughts, floods, and financial crises.</p>
+<p>Probability distributions like the normal distribution are often used to model uncertainty. In Chapters <a href="Chap-11-likelihood.html#sec-hypothesis-and-likelihood">11</a> and <a href="Chap-12-bayes.html#sec-bayes">12</a>, we will add a somewhat different perspective: a probability distribution is a ☞&nbsp;<strong>hypothesis</strong><span id="finger-hypothesis-definition" data-label="hypothesis">&nbsp;☜</span> which we use to make sense of our experiences and observations in the world.</p>
+<p>Starting about 1900, statisticians looked at the question of how correctly to infer properties of the real world from the results of statistical calculations. That is, they wanted to figure out what kinds of conclusions about the world are justified by analysis of data. This matter is called ☞&nbsp;<strong>statistical inference</strong><span id="finger-statistical-inference-definition" data-label="statistical inference">&nbsp;☜</span>. One important school of thought emphasized making mathematically provable statements about inference. To do this, they had to develop a theoretical framework which came to be called ☞&nbsp;<strong>frequentism</strong><span id="finger-frequentism-definition" data-label="frequentism">&nbsp;☜</span>. Frequentist methods play a central role among statistical theorists and remain the foundation of much statistical education. Readers who have studied statistics have likely used formulas and nomenclature—e.g., p-value, hypothesis tests—that stem from the Frequentist point of view. Another framework for inference, ☞&nbsp;<strong>Bayesian</strong><span id="finger-bayesian-definition" data-label="Bayesian">&nbsp;☜</span> inference, predates Frequentism. In the Bayesian point of view, the emphasis is not on defining things in a way suitable to support mathematical proof, but rather in a way to answer questions in a form needed for quantitative reasoning, uncertainty assessment, and decision making. Over the last half-century, the Bayesian point of view has gained many adherents among statistical theorists, partly because Bayesian calculations that were once difficult became practical by using computers. In this book, we adopt the Bayesian perspective.</p>
+</section>
+<section id="sec-exemplary-distributions" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="sec-exemplary-distributions"><span class="header-section-number">8.3</span> Exemplary probability distributions</h2>
+<p>There is an infinity of probability distributions simply because there is an infinity of functions. Nevertheless, almost always modelers draw from a small library of about twenty named distributions. More precisely, these are ☞&nbsp;<strong>named families of distributions</strong><span id="finger-named-families-of-distributions-definition" data-label="named families of distributions">&nbsp;☜</span>. Each of these families includes one or two parameters that, often, are equivalent to applying an <em>input transformation</em> and/or <em>output transformation</em>. In this section, we focus on three distributions that modelers use in everyday work: the <em>normal</em>, the <em>uniform</em>, and the <em>exponential</em>.</p>
+<dl>
+<dt>Uniform distribution</dt>
+<dd>
+The ☞&nbsp;<strong>uniform distribution</strong><span id="finger-uniform-distribution-definition" data-label="uniform distribution">&nbsp;☜</span> models a situation where the possibilities must be within a known range, but could be anywhere in that range. <a href="#fig-afternoon-uniform" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-uniform</span></a> shows what a uniform distribution would be for a situation like this: “She texted that she will arrive in the afternoon, but I don’t know exactly when.”
+</dd>
+</dl>
+<div id="fig-afternoon-uniform" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-afternoon-uniform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chap-08-uncertainty_files/figure-html/ch08-r-12e1388b-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-afternoon-uniform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2: A uniform distribution.
+</figcaption>
+</figure>
+</div>
+<p>The parameters for the uniform distribution family are the minimum and maximum extremes of the range of possibilities.</p>
+<dl>
+<dt>Normal distribution</dt>
+<dd>
+We introduced the normal distribution in <a href="#sec-relative-probability" class="quarto-xref"><span class="quarto-unresolved-ref">sec-relative-probability</span></a> as the standard distribution family that corresponds to the type of uncertainty often expressed using a range or the <span class="math inline">\(\pm\)</span> notation.
+</dd>
+</dl>
+<p>It surprises many people that these notations do not correspond to the <em>uniform distribution</em>. Recall that the uniform distribution labels as <em>impossible</em> any outcome outside of the range from minimum to maximum. However, in many circumstances, an outcome outside the range is merely unlikely, not impossible. For instance, is it impossible that our friend will arrive in the evening or before noon?</p>
+<p>The normal distribution, on the other hand, softens the edges and replaces “impossible” with “not likely.” The further from the interval, the less likely. The closer to the center of the interval, the more likely. The normal distribution in <a href="#fig-afternoon-normal" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-normal</span></a> includes the possibility that she arrived yesterday or will arrive next week. Very, very unlikely, but possible.</p>
+<div id="fig-afternoon-normal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-afternoon-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chap-08-uncertainty_files/figure-html/ch08-r-8d58086a-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-afternoon-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.3: A normal distribution smooths out the sharp corners of <a href="#fig-afternoon-uniform" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-uniform</span></a>.
+</figcaption>
+</figure>
+</div>
+<p>The parameters for the normal distribution set the center and spread, but are usually called the “☞&nbsp;<strong>mean</strong><span id="finger-mean-definition" data-label="mean">&nbsp;☜</span>” and “☞&nbsp;<strong>standard deviation</strong><span id="finger-standard-deviation-definition" data-label="standard deviation">&nbsp;☜</span>.” (Some authors prefer to use “☞&nbsp;<strong>variance</strong><span id="finger-variance-definition" data-label="variance">&nbsp;☜</span>” instead of “standard deviation”: the variance is the square of the standard deviation.) The mean can be any value; the standard deviation must be positive.</p>
+<dl>
+<dt>Exponential distribution</dt>
+<dd>
+The ☞&nbsp;<strong>Exponential distribution</strong><span id="finger-exponential-distribution-definition" data-label="Exponential distribution">&nbsp;☜</span> corresponds to a different message from a friend. “It’s noon now. I’m going to try to get there right away. I think it will take about an hour, but I do not know anything beyond that. It might be much longer.” The exponential distribution expresses much greater uncertainty at the high end. A much more typical application would be the uncertain time between 100-year storms.
+</dd>
+</dl>
+<div id="fig-afternoon-exp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-afternoon-exp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chap-08-uncertainty_files/figure-html/ch08-r-942e9e91-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-afternoon-exp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.4: The exponential distribution.
+</figcaption>
+</figure>
+</div>
+<p>A concrete way to think about the exponential distribution is as a description of the intervals <em>between</em> randomly occurring events. In <a href="#fig-afternoon-exp" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-exp</span></a>, the first event was assumed to be at noon; the second event will be the time that the friend arrives. The exponential model is based on the idea that there is a fixed probability that the second event will happen in a short interval after the first. But if it doesn’t occur in that short interval, the same probability applies to the event happening in the next short interval, and so on. Perhaps contrary to intuition, this means that the probability of the second interval happening at time t after the first event decays exponentially with t, as in <a href="Chap-08-uncertainty.html#fig-afternoon-exp">Figure 8.4</a>.</p>
+<p>The exponential model assumes that the second event is equally likely to occur at any time. There is one parameter for the distribution typically called “lambda” (which is <span class="math inline">\(\lambda\)</span> in the Greek alphabet). The mean time between events is <span class="math inline">\(1/\lambda\)</span>. (In <a href="#fig-afternoon-exp" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-exp</span></a>, the mean corresponds to that for the distributions shown in <a href="#fig-afternoon-normal" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-normal</span></a> and <a href="#fig-afternoon-uniform" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-uniform</span></a>.)</p>
+</section>
+<section id="sec-simulation" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="sec-simulation"><span class="header-section-number">8.4</span> Simulation</h2>
+<p>A relative probability distribution function takes a possible value as input and returns a number. That number is an indication of how <em>likely</em> that possible value is. Relative probability distributions are useful for describing uncertainty.</p>
+<p>Often, however, we need to reason about the consequences of input uncertainty for the uncertainty in the output of the function. One technique for such reasoning with uncertainty is ☞&nbsp;<strong>simulation</strong><span id="finger-simulation-definition" data-label="simulation">&nbsp;☜</span>.</p>
+<p>At the heart of simulation is the idea of using a relative probability distribution function to generate a likely input value. The input values that are associated with a high relative probability are more likely to be generated than those associated with a low relative probability.</p>
+<p>We call the process of generating a likely input value ☞&nbsp;<strong>randomly sampling from the distribution</strong><span id="finger-randomly-sampling-from-the-distribution-definition" data-label="randomly sampling from the distribution">&nbsp;☜</span> or, more generally, ☞&nbsp;<strong>random number generation</strong><span id="finger-random-number-generation-definition" data-label="random number generation">&nbsp;☜</span>.</p>
+<p>For instance, in <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-cal-per-mile-distribution</span></a>, a random sample between, say, 75 and 85 would be quite likely, while sample values less than 40 would be vanishingly unlikely.</p>
+<p>Random number generation is an important tool for many modeling applications and even plays a role in constructing the responses from AI systems. Such generators are provided for many computer languages and are often built into the language itself.</p>
+<p>To illustrate, let’s generate a single random sample from the distribution in <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-cal-per-mile-distribution</span></a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean=</span><span class="dv">80</span>, <span class="at">sd=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 89.78027</code></pre>
+</div>
+</div>
+<p>Generating a single number does not give much information, so modelers often generate many random numbers. We will illustrate with 20, but it’s common to generate thousands or even millions of random numbers</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">mean=</span><span class="dv">80</span>, <span class="at">sd=</span><span class="dv">10</span>) <span class="sc">|&gt;</span>  <span class="co"># The hill() distribution.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 74.8 75.1 85.0 97.6 71.6 88.4 86.6 81.9 88.1 89.3 81.4
+[12] 71.7 68.5 62.0 80.2 74.4 88.4 72.1 70.3 95.5</code></pre>
+</div>
+</div>
+<p>As a simple example of using simulation, consider the problem posed at the start of this chapter: [-3,5]<span class="math inline">\(\times\)</span>[-10,2].</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">102</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>product <span class="ot">&lt;-</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runif</span>(<span class="dv">20</span>, <span class="at">min =</span>  <span class="sc">-</span><span class="dv">3</span>, <span class="at">max =</span> <span class="dv">5</span>) <span class="sc">*</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runif</span>(<span class="dv">20</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="at">max =</span> <span class="dv">2</span>)  </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(product, <span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]   1.7  -2.5 -11.3  -3.4  15.7  -2.1 -42.2   1.9 -21.0
+[10]  -1.6 -21.4   1.9 -32.8   0.0   2.7 -28.9 -25.2   0.0
+[19]  -7.5 -20.2</code></pre>
+</div>
+</div>
+<p>Notice that the 20 samples of the product vary from one to the other. It is only as a group that they give us information about the uncertainty in the product. Computer graphics—with a much larger sample—makes it easy to visualize the uncertainty, as in <span class="citation" data-cites="two-multiplied-uniforms">@two-multiplied-uniforms</span>. The distribution is not uniform, but rather has a peak in the middle and tails off to zero at the extremes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-two-multiplied-uniforms" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-two-multiplied-uniforms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-08-uncertainty_files/figure-html/fig-two-multiplied-uniforms-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-two-multiplied-uniforms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.5: Relative probability distribution for [-3,5] <span class="math inline">\(\times\)</span> [-10,2] computed with 200,000 random samples.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Chap-07-core-modeling-functions.html" class="pagination-link" aria-label="Core modeling functions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Chap-09-composing-functions.html" class="pagination-link" aria-label="Composing functions">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Composing functions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

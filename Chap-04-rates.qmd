@@ -1,10 +1,4 @@
----
-number-offset: 3
-crossref:
-  fig-title: "Figure 4."
-  fig-prefix: "Fig 4."
-  tbl-title: "Table 4."
----
+
 
 # Rates {#sec-rates}
 
@@ -161,7 +155,7 @@ Marks <- tibble::tribble(
 ) |> mutate(mid = (temp + temp2) / 2)
 Cool |> point_plot(temp ~ time) |>
   gf_labs(y = "Temperature (C)", x = "Time (min)") |>
-  gf_hline(yintercept = ~ temp, color = "blue",
+  gf_hline(yintercept = ~ temp, color = .hline_color.,
           data = Cool |> filter(time %in% c(5, 35))) |>
   gf_segment(temp + temp2 ~ time + time, data = Marks,
              color = "magenta", 
@@ -179,7 +173,7 @@ Cool |> point_plot(temp ~ time) |>
          midtime = (time + time2) / 2)
 Cool |> point_plot(temp ~ time) |>
   gf_labs(y = "", x = "Time (min)") |>
-  gf_hline(yintercept = ~ temp, color = "blue",
+  gf_hline(yintercept = ~ temp, color = .hline_color.,
           data = Cool |> filter(time %in% c(5, 35))) |>
   gf_segment(temp + temp2 ~ time + time2, data = Marks2,
              color = "darkgreen", 

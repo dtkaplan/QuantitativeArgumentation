@@ -1,11 +1,3 @@
----
-number-offset: 1
-crossref:
-  fig-title: "Figure 2."
-fig-prefix: "Fig 2."
-tbl-title: "Table 2."
----
-
 
 # Systems, dimensions, and data {#sec-systems}
 
@@ -35,7 +27,7 @@ Even in informal speech, we use the word "system" a lot. In this book, we will b
 
 This chapter sets up a framework for thinking about "elements" or "items" productively, with an eye toward what goes into a model used in quantitative argumentation. To give you an idea of what's coming, consider the following thought, which at this point may seem like a mere jumble of words
 
-> "Systems are composed of dimensions and the relationships which connect them. In models, dimensions are represented by quantities."
+> "Systems are composed of dimensions and the relationships which connect those dimensions. In models, dimensions are represented by quantities."
 
 In some cases, being consistent in terminology means avoiding some words with which you are undoubtedly familiar from mathematics classes. The issue here is that words like "variable" are used for so many unrelated purposes that they lose specific meaning. For instance, in statistics and data science, the noun variable refers to an aspect or quality of an object, for instance temperature or humidity or comfort. But in mathematics, "variable" has several distinct meanings, such as an "unknown" or a symbol, as in "$x$ is a variable. Find $x$." 
 
@@ -43,7 +35,7 @@ In the traditional curriculum, mathematics and statistics are treated largely in
 
 ## Dimension
 
-There are several synonyms for scientist's or statistician’s "variable." Familiar among these are  "characteristic", "factor," and "aspect" as well as "trait," "feature," "attribute," and "property." In this book, all such synonyms will be grouped under the word `r xf_definition("dimension")`. An example sentence: "Her personality has several dimensions: intelligence, honesty, anxiety, and diligence."
+There are several synonyms for scientist's or statistician’s `r xf_definition("variable")`" Familiar among these are  "characteristic", "factor," and "aspect" as well as "trait," "feature," "attribute," and "property." In this book, all such synonyms will be grouped under the word `r xf_definition("dimension")`. An example sentence: "Her personality has several dimensions: intelligence, honesty, anxiety, and diligence."
 
 `r xf("sec-quantities")` uses the geometrical idea of "space." As you know, objects or spaces are often described using their "dimensions." For instance, a book has three spatial dimensions: width, length, and height. Of course, a book has other attributes as well, each of which we will call a dimension: weight, price, page-count, genre, and so on.
 
@@ -51,7 +43,7 @@ Many of the dimensions of a book are easily measured. Others, such as "genre," r
 
 Often, to construct a mathematical model, we will need to quantify a dimension such as anxiety, honesty, or genre. That is, we need to translate a dimension into some measurable quantity. 
 
-The way that the dimension (as in aspect or property) is translated is called `r xf_definition("operationalization")`. We can operationalize length using a ruler. We can operationalize weight using a scale. Such operationalizations are obvious and familiar. But what's familiar to us in the 21st century was not always familiar. The measurement of temperature is a case in point. Before 1600, "temperature" was sensed by skin or the glowing color of hot metal, but not measured. Around 1610, the "thermoscope" enabled visualization of temperature using the level of water in a tube. Not until more than a decade later was a quantitative scale—a ruler—added to the thermoscope, turning it into a thermometer.  From a modeling perspective, a thermometer is a device that operationalizes the quantitative measurement of temperature. Today, of course, thermometers are the obvious and familiar ways to measure temperature.
+The way that the dimension (as in aspect or property) is translated is called `r xf_definition("operationalization")`. We can operationalize length using a ruler. We can operationalize weight using a scale. Such operationalizations are obvious and familiar. But what's familiar to us in the 21st century was not always familiar. The measurement of temperature is a case in point. Before 1600, "temperature" was sensed by skin or the glowing color of hot metal, but not measured quantitatively. Around 1610, the "thermoscope" enabled visualization of temperature using the level of water in a tube. Not until more than a decade later was a quantitative scale—a ruler—added to the thermoscope, turning it into a thermometer.  From a modeling perspective, a thermometer is a device that operationalizes the quantitative measurement of temperature. Today, of course, thermometers are the obvious and familiar ways to measure temperature.
 
 Age and height are also familiar dimensions. We operationalize height, for instance, by marking the top of a person’s head on a wall or door frame, then using a ruler to measure (that is, "quantify") the distance from the floor to the mark. We operationalize age—this will be obvious—by calculating the time difference between birth and the moment of measurement. (More commonly, we ask the person!)
 
@@ -59,7 +51,7 @@ Sometimes an operationalization is technical, obscure, and to some extent arbitr
 
 In a quantitative model of a system, each dimension of the system is operationalized into a quantity that measures that characteristic. Being attentive to the details of the operationalization can be an important component of critical thinking.
 
-The `r xf_definition("value of a quantity")` is a specific numerical level along with the appropriate unit. (See `r xf("sec-quantities")`.) Typically, the value will differ across contexts, say, from hour to hour or place to place. For example, as I write this, the outdoor temperature is 52°F, as operationalized by the US Weather Service from a thermometer in a ventilated, shielded box at a specific location in my city. Values can change; the temperature tomorrow will likely be different. In reading "the temperature tomorrow will be different," the underlying idea is not that the variable or operationalization will change—the Weather Service will keep doing what it has done for many years. Instead, the idea of "different" is that the value of the quantity will be different.
+Quantities have `r xf_definition("value", text = "values")`, that is, a specific numerical level along with the appropriate unit. (See `r xf("sec-quantities")`.) For many system dimensions, the value of the operationalized quantity will differ across contexts, say, from hour to hour or place to place. For example, as I write this, the outdoor temperature is 52°F, as operationalized by the US Weather Service from a thermometer in a ventilated, shielded box at a specific location in my city. Values can change; the temperature tomorrow will likely be different. In reading "the temperature tomorrow will be different," the underlying idea is not that the variable or operationalization will change—the Weather Service will keep doing what it has done for many years. Instead, the idea of "different" is that the value of the quantity will be different.
 
 ## Example: Operationalizing comfort
 
@@ -129,5 +121,5 @@ The specimens in every data frame are often a sample from a potentially larger e
 
 You might have assembled your collection in the usual way, by wandering along a beach and picking up the shells that caught your eye. The abstract word for such a process is `r xf_definition("sampling")`. It is helpful to have a term for the larger entity from which each specimen was sampled. The word "population" is often used here. Even though the root of "population" is the same as for the word "people," when it comes to data frames we use "population" to refer to any source of specimens. For instance, we might have a population of stars or a population of events such as daily weather or forest fires.
 
-It’s consistent with our usage in this book to say that a population has dimensions, meaning the set of aspects or qualities of the elements in the population. Those dimensions may be related to one another, for example the relationship between age and height of young children. But there is something subtle going on. When it comes to data, any detected relationships are collective properties across all the specimens in your sample. You can only discern a relationship from data when you have multiple specimens to compare to one another.
+In this book, when we say that a population has dimensions, we mean the set of aspects or qualities of the elements in the population. Those dimensions may be related to one another, for example the relationship between age and height of young children. But there is something subtle going on. When it comes to data, any detected relationships are collective properties across all the specimens in your sample. You can only discern a relationship from data when you have multiple specimens to compare to one another.
 

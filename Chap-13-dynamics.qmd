@@ -1,11 +1,3 @@
----
-number-offset: 12
-crossref:
-  fig-title: "Figure 13."
-  fig-prefix: "Fig 13."
-  tbl-title: "Table 13."
----
-
 # Dynamics: Modeling change {#sec-dynamics}
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
@@ -304,8 +296,7 @@ vectorfield_plot(dS~ ifelse(S > 100000-I, NA, -a*S*I), dI ~ ifelse(I > 100000-S,
   color = ~ color, 
   inherit = FALSE, 
             arrow = arrow(length=unit(0.05, "inches"))) |>
-  gf_refine(coord_fixed(), scale_color_identity()) |>
-  gf_theme(theme_minimal()) 
+  gf_refine(coord_fixed(), scale_color_identity()) 
 
 ```
 
@@ -436,15 +427,15 @@ streamlines(system,
             domain(P=-5:5, S = 0:1), 
             dt = 0.1, npts=5, alpha = 0.5) |>
   phase_line(2) 
-slice_plot(1 ~ P, domain(P=-5:5)) |>
+slice_plot(1 ~ P, domain(P=-5:5), color = .slice_color.) |>
   gf_labs(y = "Rate of change of P", x = "State P") |>
   gf_lims(y = c(-1.5, 1.5), x = c(-5,5)) |>
-  gf_hline(yintercept = 0, color = "blue") |>
+  gf_hline(yintercept = 0, color = .hline_color.) |>
   gf_theme(theme_minimal())
-slice_plot(t + 0.25 ~ t, domain(t=0:5)) |>
+slice_plot(t + 0.25 ~ t, domain(t=0:5), color = .slice_contrast.) |>
   gf_labs(y = "State P", x = "Time") |>
-  gf_hline(yintercept = 0, color = "blue") |>
-  gf_theme(theme_minimal()) |>
+  gf_hline(yintercept = 0, color = .hline_color.) |>
+  
   gf_refine(scale_y_continuous(breaks = c(0, 1, 2, 3, 4, 5) ))
 
 ```
@@ -471,14 +462,14 @@ streamlines(system,
             domain(P=-5:5, S = 0:1), 
             dt = 0.1, npts=8) |>
   phase_line(4) 
-slice_plot(P ~ 0.69315*P, domain(P=-5:5)) |>
+slice_plot(P ~ 0.69315*P, domain(P=-5:5), color = .slice_color.) |>
   gf_labs(y = "Rate of change of P", x = "State P") |>
   gf_lims(y = c(-5, 5)) |>
-  gf_hline(yintercept = 0, color = "blue") |>
+  gf_hline(yintercept = 0, color = .hline_color.) |>
   gf_theme(theme_minimal())
-slice_plot(0.25 * exp(0.69315*t) ~ t, domain(t=0:6.3)) |>
+slice_plot(0.25 * exp(0.69315*t) ~ t, domain(t=0:6.3), color = .slice_contrast.) |>
   gf_labs(y = "State P", x = "Time") |>
-  gf_hline(yintercept = 0, color = "blue") |>
+  gf_hline(yintercept = 0, color = .hline_color.) |>
   gf_refine(scale_y_continuous(breaks = c(0, 1, 2, 4, 8, 16) )) |>
   gf_theme(theme_minimal())
 ```
@@ -535,11 +526,10 @@ In @fig-theory-vs-practice, we compare the exponential growth dynamics (black) t
 #| echo: false
 #| message: false
 #| warning: false
-# slice_plot(3*log(2)*P  ~ P, domain(P=0:1.3e2)) |>
+# slice_plot(3*log(2)*P  ~ P, domain(P=0:1.3e2), color = .slice_color.) |>
 #   gf_labs(y = "Rate of change of mass (kg per hour)", 
 #           x = "Mass of bacteria (kg)") |>
-#   gf_hline(yintercept = 0, color = "blue") |>
-#   gf_theme(theme_minimal()) 
+#   gf_hline(yintercept = 0, color = .hline_color.) 
 
 realistic_fun <- function(P) {
   ifelse(P < 0.01, 
@@ -555,18 +545,18 @@ Pts <- tibble::tibble(t = c(0,1,2,3,4, 5,5.5, 6, 6.25, 6.5, 6.75, 7, 7.1, 7.15, 
 P2 <- traj_plot(P(t) ~ t, soln, color = "tomato",  linewidth=1.3) |>
   # gf_refine(scale_y_log10()) |>
   gf_lims(x = c(0,60)) |>
-  gf_hline(yintercept =0.01, linewidth = 5, color = "green", alpha = 0.2) |>
+  gf_hline(yintercept =0.01, linewidth = 5, color = .hline_color., alpha = 0.2) |>
   gf_line(P ~ t, data = Pts, color = "black", linewidth = 0.5) 
   
-P1 <- slice_plot(3*log(2)*P ~ P, domain(P=0:0.4)) |>
-  slice_plot(realistic_fun(P) ~ P, color = "tomato") |>
+P1 <- slice_plot(3*log(2)*P ~ P, domain(P=0:0.4), color = .slice_color.) |>
+  slice_plot(realistic_fun(P) ~ P, color = .slice_color.) |>
   gf_labs(y = "Rate of change of mass (kg per hour)", 
           x = "Mass of bacteria (kg)") |>
-  gf_hline(yintercept = 0, color = "blue") |>
-  gf_theme(theme_minimal()) |>
+  gf_hline(yintercept = 0, color = .hline_color.) |>
+  
   gf_hline(yintercept =0.007, linewidth = 5, color = "green", alpha = 0.2)
-P1 |> gf_theme(theme_minimal(base_size = 16)) 
-P2 |> gf_theme(theme_minimal(base_size = 16))
+P1 
+P2 
 ```
 
 

@@ -64,7 +64,7 @@ row sep=-\pgflinewidth
 
 \begin{pgfonlayer}{highlight}
 \node[
-fill=orange,
+fill=green,
 opacity=.35,
 rounded corners=8mm,
 fit=(M-1-3)(M-6-3),
@@ -72,7 +72,7 @@ inner sep=4mm
 ]{};
 
 \node[
-fill=green!60,
+fill=orange!60,
 opacity=.35,
 rounded corners=8mm,
 fit=(M-3-1)(M-3-4),
@@ -80,27 +80,27 @@ inner sep=3mm
 ]{};
 \end{pgfonlayer}
 
-\node[boxorange,above=12mm of M-1-3] (colbox) {Column};
-\node[boxgreen,left=10mm of M-3-1] (rowbox) {Row};
+\node[boxgreen,above=12mm of M-1-3] (colbox) {Column};
+\node[boxorange,left=10mm of M-3-1] (rowbox) {Row};
 
-\node[boxorange,below=18mm of M-6-2,xshift=1.1cm,minimum width=7cm] (varbox)
+\node[boxgreen,below=18mm of M-6-2,xshift=1.1cm,minimum width=7cm] (varbox)
 {4 Variables};
 
-\node[boxgreen,right=20mm of M-4-4,minimum width=5cm] (specbox)
-{5 Specimens};
+\node[boxorange,right=20mm of M-4-4,minimum width=5cm,rotate=-90,xshift=-1in] (specbox)
+{5    Specimens};
 
 \begin{pgfonlayer}{annotation}
 
 \foreach \c/\dx in {1/-2.4,2/-0.8,3/0.8,4/2.4}{
-\draw[orange!85!black,very thick,->]
+\draw[green!85!black,very thick,->]
 ($(varbox.north)+(\dx mm,0)$)
 .. controls +(90:1.8) and +(-90:1.2) ..
 (M-6-\c.south);
 }
 
 \foreach \r in {2,...,6}{
-\draw[green!65!black,very thick,->]
-(specbox.west)
+\draw[orange!65!black,very thick,->]
+(specbox.south)
 .. controls +(-2,0) and +(1,0) ..
 (M-\r-4.east);
 }

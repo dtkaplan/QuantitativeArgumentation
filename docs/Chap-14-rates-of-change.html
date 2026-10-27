@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>14&nbsp; Rates of change – Quantitative Argumentation</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Chap-15-accumulation.html" rel="next">
+<link href="./Chap-13-dynamics.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-13-dynamics.html">Modeling change</a></li><li class="breadcrumb-item"><a href="./Chap-14-rates-of-change.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative Argumentation</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-01-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argument and reasoning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-02-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems, dimensions, and data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-03-quantities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-04-rates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-05-magnitudes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Order of magnitude</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-06-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-07-core-modeling-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-09-composing-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Composing functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Decision, evidence, and belief</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-10-tradeoffs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trade-offs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-11-likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-12-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modeling change</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-13-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dynamics: Modeling change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-14-rates-of-change.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-15-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capstone: Toward AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-16-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix-Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Chapter Summaries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-13-dynamics.html">Modeling change</a></li><li class="breadcrumb-item"><a href="./Chap-14-rates-of-change.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-rates-of-change" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><em>Vocabulary Review</em></p>
+<ul>
+<li>analysis (3)</li>
+<li>data (2)</li>
+<li>functions (6)</li>
+<li>mean (8)</li>
+<li>models (1)</li>
+<li>operationalization (2)</li>
+<li>per (3)</li>
+<li>quantity (3)</li>
+<li>rate (4)</li>
+<li>rate of change (4)</li>
+<li>state (13)</li>
+<li>total change (3)</li>
+<li>tradeoffs (10)</li>
+<li>value (2)</li>
+<li>velocity (13)</li>
+<li>with respect to (3)</li>
+<li>worth (3)</li>
+</ul>
+<p><em>New</em></p>
+<ul>
+<li>calculus</li>
+<li>continuity</li>
+<li>derivative</li>
+<li>differentiation</li>
+<li>diminishing marginal returns</li>
+<li>first derivative</li>
+<li>margin</li>
+<li>second derivative</li>
+</ul>
+</div></div><p><a href="Chap-04-rates.html#sec-rates">Chapter 4</a> introduced the distinction between a <em>rate</em> and a <em>rate of change</em>. A rate is one quantity divided by another. A rate of change is also a rate. But it is a special kind of rate.</p>
+<p>The word “special” when talking about rates of change is relevant in two different senses. One definition is “different from usual.” Indeed if a rate is the usual thing, then a rate of change is different from usual because the quantities that form the <em>ratio</em> are always <em>changes</em> in a quantity. And not just changes, but <strong>simultaneous changes</strong>. By photographic analogy, you can measure a rate by looking at a snapshot: read off the instantaneous values of the two quantities of interest, then divide one by the other. In contrast, measuring a <em>rate of change</em> requires a movie: a <em>series</em> of instantaneous snapshots. The minimum length of the movie is small, just two frames. You measure the two quantities in one of the frames, then in the other. Take the change in each quantity between the two frames, then form a ratio of those <em>changes</em>.</p>
+<p>Another meaning of “special” is captured by synonyms: exceptional, extraordinary, unique, important, significant, rare. Although the distinction between a <em>rate</em> and a <em>rate of change</em> may seem trivial at first glance, the invention of the concept (1600’s) and the gradual realization of the many important applications (starting about 1700 and speeding up over the next century and more) shaped many aspects of the modern world. This is most evident in science, technology, and engineering and the reason that a large fraction of STEM students are <em>required</em> to study rates of change and learn to do calculations with them. But it is just as important in economic matters, whether it be theories of how markets and firms work, or business decisions about prices and production.</p>
+<p>Even if you have no interest in science, business, or economics, rates of change almost certainly apply to matters of importance to you. Knowing about rates of change, and how they are special, provides a major tool for understanding and making decisions about important matters. Later in this chapter, we’ll illustrate using death and taxes. First, though, let’s motivate the how and why of rates of change.</p>
+<section id="sec-on-the-margins" class="level2 page-columns page-full" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="sec-on-the-margins"><span class="header-section-number">14.1</span> Taxes on the margins</h2>
+<p>Income taxes in the US are calculated according to “brackets.” Each bracket specifies the tax <em>rate</em>, that is the fraction of income that is to be paid as taxes. <a href="Chap-14-rates-of-change.html#tbl-1913-brackets">Table 14.1</a> gives the brackets for taxes in 1913, the first year after the 16th Amendment to the US Constitution that empowered Congress to impose income tax.</p>
+<!-- [The Amendment says, "The Congress shall have power to lay and collect taxes on incomes, from whatever source derived, without apportionment among the several States, and without regard to any census or enumeration." Strictly speaking, even before the amendment Congress had the power to tax income. However, the Supreme Court had dictated that any such tax had to be "apportioned," that is, imposed equally based on the population of each state. This was impractical, since *per capita* income differs from state to state.]{.column-margin} -->
+<div id="tbl-1913-brackets" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-1913-brackets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.1: 1913 US Federal tax brackets. Source: <a href="https://bradfordtaxinstitute.com/Endnotes/IRS_Form_1040_1913.pdf">The 1913 1040 form</a>
+</figcaption>
+<div aria-describedby="tbl-1913-brackets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Income</th>
+<th>Tax rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>$0</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>$3000</td>
+<td>1%</td>
+</tr>
+<tr class="odd">
+<td>$20,000</td>
+<td>2%</td>
+</tr>
+<tr class="even">
+<td>$50,000</td>
+<td>3%</td>
+</tr>
+<tr class="odd">
+<td>$75,000</td>
+<td>4%</td>
+</tr>
+<tr class="even">
+<td>$100,000</td>
+<td>5%</td>
+</tr>
+<tr class="odd">
+<td>$250,000</td>
+<td>6%</td>
+</tr>
+<tr class="even">
+<td>$500,000</td>
+<td>7%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="page-columns page-full"><p>Care must be taken in interpreting <a href="Chap-14-rates-of-change.html#tbl-1913-brackets">Table 14.1</a>. Despite appearances, it does not say, for instance, that someone earning $3000 must pay 1% (that is, $30) in taxes. The correct interpretation is that the $3K earner pays zero tax.  But on any incremental income amount <em>above</em> $3K, the tax rate will be 1%. For instance, imagine a taxpayer who earned $4000. They will pay 0% on the first $3000 and 1% on the next $1000, so a $10 payment in total.</p><div class="no-row-height column-margin column-container"><span class="">Using a standard cost-of-living conversion, $4000 in 1913 was equivalent to about $140,000 in the mid-2020s. The $10 payment in 1913 corresponds to about $44 in 2020s money.</span></div></div>
+<p>In 1913, only about one-percent of households had an income of $3000 or greater, so taxpayers were a wealthy group of people.</p>
+<p><a href="Chap-14-rates-of-change.html#fig-1913-1040">Figure 14.1</a> shows lines 7 and 8 from the tax form for 1913. The form is blank, but we have filled in the numbers for a person earning the very large (in 1913) income of $90,000 per year.</p>
+<div id="fig-1913-1040" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-1913-1040-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.1: Part of the 1913 US income-tax form. It has been filled in as appropriate for a total income of $90,000.
+</figcaption>
+<div aria-describedby="fig-1913-1040-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="www/1913-brackets-filled-in.png" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
+<p><a href="Chap-14-rates-of-change.html#fig-1913-1040">Figure 14.1</a> is pretty confusing. There are a lot of numbers filled in. Ironically, even though the income is $90,000, that number does not appear on the form!</p>
+<div id="fig-2024-tax-table" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2024-tax-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- empty figure block. The actual image is included in the aside below. -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2024-tax-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.2: The format used today for a <em>tax table</em> converts directly from income to taxes owed.
+</figcaption>
+</figure>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><img src="www/2024-tax-table2.png" class="img-fluid" style="width:2in"></p>
+</div></div><p>The 2024 tax table simplifies the calculation by giving a table. You need only look up your income. <a href="#fig-2024-tax-table" class="quarto-xref">Figure&nbsp;<span>14.2</span></a> shows the appropriate entry from page 9 (of 11) of the closely-spaced pages. Less arithmetic, but still the income of $90,000 doesn’t appear.</p>
+<p>A tax rate, as you know, is the fraction of income owed as tax. The tax table (<a href="#fig-2024-tax-table" class="quarto-xref">Figure&nbsp;<span>14.2</span></a>) does not indicate the rate, just the tax owed.</p>
+<p>The quantities presented in the 1913 form in <a href="#fig-1913-1040" class="quarto-xref">Figure&nbsp;<span>14.1</span></a> are not actually tax rates, although they look like it. In the form, they don’t even give a name to those quantities. The correct name is ☞&nbsp;<strong>marginal tax rates</strong><span id="finger-marginal-tax-rates-definition" data-label="marginal tax rates">&nbsp;☜</span>. A marginal tax rate is a <em>rate of change</em>; it compares a small change in income to the corresponding change in taxes owed. The tax policy expressed on line 8 of the 1913 form is a function: for any level of income, it tells the marginal tax rate for that income.</p>
+<p>The advantage of specifying taxes in terms of marginal rates is two-fold. First, just a handful of numbers can convey the entirety of the matter. This is much easier to make sense of than the 11-pages of numbers given in the modern tax tables.</p>
+<p>The second advantage is one of fairness, avoiding sharp breaks in the amount of taxes owed. Income $3000, taxes (in 1913) zero. Income $3001, taxes (in 1913) one cent, at least if marginal rates are being used. If the numbers gave overall rate, if it said that people with incomes of $3001 have to pay a tax rate of 1%, their taxes owed would be $30.01. A one-dollar increase in income leads to a $30.01 increase in tax owed. Stated another way, the take home earnings of the person with a gross income of $3000 is $3000. The take-home income for a gross income of $3001 will be $2970.99. Not very fair.</p>
+<p>Author Charles Dickens expressed his concern about a lack of such fairness in the Victorian-era laws about debt. In <em>David Copperfield</em>, Mr.&nbsp;Micawber famously stated:</p>
+<blockquote class="blockquote">
+<p>“<em>Annual income twenty pounds, annual expenditure nineteen pounds nineteen and six, result happiness. Annual income twenty pounds, annual expenditure twenty pounds ought and six, result misery.</em>”</p>
+</blockquote>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">A modern reader, used to decimal currency, may find this hard to follow. The difference between “nineteen pounds nineteen (shillings) and six (pence)” and twenty pounds ought and six amounts to 1 shilling out of a total of 400 shllings. That is, one-quarter of a percent in income separates happiness from misery.</span></div></div>
+<p>The overall principle here is that small differences in input should lead to small differences in output. In mathematical language, this is a principle called ☞&nbsp;<strong>continuity</strong><span id="finger-continuity-definition" data-label="continuity">&nbsp;☜</span>. In terms of the graph of a function, continuity means you can trace the function with a pencil without having to lift it off the table.</p>
+<p>Having dealt with fairness in taxes, it is time to turn to fairness in deaths. First, however, we look at the meaning of “marginal.”</p>
+</section>
+<section id="on-the-margin" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="on-the-margin"><span class="header-section-number">14.2</span> On the margin</h2>
+<p>The word ☞&nbsp;<strong>margin</strong><span id="finger-margin-definition" data-label="margin">&nbsp;☜</span> comes from the Latin <em>margo</em>, meaning “edge.” On a printed book, the margins are at the edge of the text. “Marginal” is an adjective meaning situated on the edge of something else. When we talk about <em>marginal income</em>, the thing with an edge is the income itself. For instance, for the hypothetical person in 1913 with a $3000 income, the edge is at $3000. The <em>marginal income</em> sits at the edge; it is a small increment of income, say $1. The marginal tax rate is the rate that applies to that small increment, but not necessarily to the part of the income on the other side of the edge, the part below $3000.</p>
+<p>In exploring systems whose state changes in time in <a href="Chap-13-dynamics.html#sec-dynamics">Chapter 13</a>, we considered rates of change of the state quantities. In particular, we worked with the concept of an <em>instantaneous</em> rate of change of state, the rate of change that applies for just an instant as the trajectory passes through each state in turn.</p>
+<p><em>Marginal rate</em> conveys the same sense as instantaneous, both are concerned with examining a tiny change on the edge of where you are. Of course, “instant” applies to time, while “marginal” applies to other kinds of quantities, for example income or expenditure or tax rate.</p>
+<p>Economists often speak of ☞&nbsp;<strong>diminishing marginal returns</strong><span id="finger-diminishing-marginal-returns-definition" data-label="diminishing marginal returns">&nbsp;☜</span>. Consider, for instance, the situation of buying a car. They buyer is spending money and expects to get benefits in return: convenience and transportation services. For this, it suffices to buy the base model of the car. Many people go further, adding a marginal expense to buy an “options package,” with, say, heated seats and cruise control. In response to this marginal expense, the buyer anticipates getting a somewhat better car, that is, marginal benefits. But these marginal benefits are typically small in comparison to the benefits provided by the base model of the car. After all, by far the most important benefit of the car is providing transportaion services. When the ratio of the marginal benefits to the marginal expense is smaller than the benefit/cost ratio of the base model, one says that buying car options has <em>diminishing marginal returns</em>.</p>
+<p>The next section looks at diminishing marginal returns in the context of setting health policy.</p>
+</section>
+<section id="sec-competitive-allocation" class="level2 page-columns page-full" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="sec-competitive-allocation"><span class="header-section-number">14.3</span> Competitive allocation</h2>
+<p>Many important matters in public and private decision making involve setting priorities. Compelling examples are provided by life-and-death issues. Consider this made-up setting which can illustrate important decision-making principles and is still somewhat realistic:</p>
+<blockquote class="blockquote">
+<p>There are two innovations in public health care being considered. We will imagine them to be pre-natal clinic and improved cancer treatment, but give them very short names—“natal” and “cancer”—as a reminder that this is a made-up example.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The potential benefits from each innovation play out over the years. The Natal program will cost $5-billion, the cancer program $10-billion. Which one should the investment go to?</p>
+</blockquote>
+<p>Different people can have different, reasonable views. Families of cancer victims will understandably place emphasis on the cancer initiative. People whose interests and lives center on young children might lean toward the natal initiative. Still others will advocate a compromise: split the $10-billion between both initiatives. And, inevitably, there will be another group who ask, “Why limit the budget to $10-billion? Fund both!”</p>
+<div class="page-columns page-full"><p>The funding dilemma is an example of a <em>trade-off</em>. (<a href="Chap-10-tradeoffs.html#sec-tradeoffs">Chapter 10</a>) The new thing in this situation is that both objective functions—lives saved by spending on “natal” versus lives saved by “cancer” spending—are both quantified with the same dimension. </p><div class="no-row-height column-margin column-container"><span class="">But see the discussion of QALYs below.</span></div></div>
+<p>The bald debate between advocates of spending on “natal” versus “cancer” does not point to a resolution. But since the objectives are measured in the same dimension, we do not need to think carefully about the “shadow costs” introduced in <a href="Chap-10-tradeoffs.html#sec-tradeoffs">Chapter 10</a>. Instead, it’s likely that the dualing advocates have a common goal: maximize the efficiency of the spending.</p>
+<p>Consider briefly what should be the operationalization of the goals of the optimization problem. Perhaps it is obvious that a meaningful operationalization of the positive impact of each initiative would be the <em>number of lives saved</em>. Laudable though this be, this operationalization does not capture some important considerations. For instance, does deferring death for one day or one month count equally to deferring death for one year? “Number of lives saved” has dimension [1]. But [T] is also important.</p>
+<p>A more nuanced operationalization is <em>quality adjusted life years</em> (QALYs). The “years” gives QALYs dimension [T].We will measure benefits in QALYs, but the same quantitative principles apply to other measures of benefit. And, since the reader is probably unfamiliar with QALYs, please accept for the purposes of discussion that QALYs are a better match to many people’s intuitive values than “lives saved.” Here are the (made-up) facts:</p>
+<blockquote class="blockquote">
+<p>The Natal program will save 500,000 QALYs each year. The Cancer program will save 750,000 QALYs yearly.</p>
+</blockquote>
+<p>Here are two quantitative arguments that lead to different outcomes:</p>
+<ol type="a">
+<li>The Cancer program saves more QALYs, so fund Cancer.</li>
+<li>The Natal program costs $10,000 per QALY, while the Cancer program costs more: about $13,000 per QALY. Natal is a more economical choice.</li>
+</ol>
+<p>Previous examples in this book have pointed out situations where <em>rates</em>, as in dollars-per-QALY, are more informative that single quantities. But it does not seem obviously wrong to favor the save-more-QALYs (a) argument over the save more dollars-per-QALY (b).</p>
+<p>Arguments (a) and (b)—amount vs rate—are not the only way to compare the programs. Let’s consider one more useful quantitative perspective: <em>rate of change</em>.</p>
+<p>In order to use rates of change, we need more information than provided above. We have to imagine that each program could be launched with a lower level of funding or perhaps even a higher level. Each potential level of funding corresponds to a QALY savings. <a href="#fig-QALY-vs-cost" class="quarto-xref">Figure&nbsp;<span>14.3</span></a> shows two hypothetical functions: QALYs saved as a function of expenditure for the natal and cancer programs separately.</p>
+<div id="fig-QALY-vs-cost" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-QALY-vs-cost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.3: QALYs saved as a function of expenditure on each health initiative. The “facts” presented above are represented by the *. Plausible functions are sketched in for each initiative.
+</figcaption>
+<div aria-describedby="fig-QALY-vs-cost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-QALY-vs-cost" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-QALY-vs-cost-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-QALY-vs-cost-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-14-rates-of-change_files/figure-html/fig-QALY-vs-cost-1.png" class="img-fluid figure-img" data-ref-parent="fig-QALY-vs-cost" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-QALY-vs-cost-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Natal initiative
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-QALY-vs-cost" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-QALY-vs-cost-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-QALY-vs-cost-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-14-rates-of-change_files/figure-html/fig-QALY-vs-cost-2.png" class="img-fluid figure-img" data-ref-parent="fig-QALY-vs-cost" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-QALY-vs-cost-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Cancer initiative
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>At a glance, the Natal and Cancer functions sketched in <a href="Chap-14-rates-of-change.html#fig-qaly-vs-cost">Figure 14.3</a> are very similar. Nevertheless, the two functions have different implications for how to allocate the funds available. An appropriate analysis using <em>rates of change</em> will let us see this.</p>
+<p>To start, we zoom in more closely to the domain near to the proposed funding level for each initiative. <a href="#fig-zoom-in-to-stars" class="quarto-xref">Figure&nbsp;<span>14.4</span></a> shows the competitive situation. In both graphs, the vertical scale covers 4000 QALYs; the horizontal scale covers $100 million.</p>
+<div id="fig-zoom-in-to-stars" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-zoom-in-to-stars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.4: Zooming in on the *’s in <a href="#fig-QALY-vs-cost" class="quarto-xref">Figure&nbsp;<span>14.3</span></a>.
+</figcaption>
+<div aria-describedby="fig-zoom-in-to-stars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-zoom-in-to-stars" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-zoom-in-to-stars-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-zoom-in-to-stars-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-14-rates-of-change_files/figure-html/fig-zoom-in-to-stars-1.png" class="img-fluid figure-img" data-ref-parent="fig-zoom-in-to-stars" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-zoom-in-to-stars-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Natal
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-zoom-in-to-stars" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-zoom-in-to-stars-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-zoom-in-to-stars-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-14-rates-of-change_files/figure-html/fig-zoom-in-to-stars-2.png" class="img-fluid figure-img" data-ref-parent="fig-zoom-in-to-stars" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-zoom-in-to-stars-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Cancer
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>The rate of change of QALYs with respect to expenditure corresponds to the slope of the curve. <a href="#fig-QALY-vs-cost" class="quarto-xref">Figure&nbsp;<span>14.3</span></a> shows that the slopes for the two programs are very different at the proposed expenditure levels. <a href="#fig-zoom-in-to-stars" class="quarto-xref">Figure&nbsp;<span>14.4</span></a> makes it easier to calculate the slope. For the Natal program, an increase in expenditure of $50 million corresponds to an increase in QALYs of 2,400. In contrast, for the Cancer program, a $50 million increase corresponds to only about 400 QALYs. The rate of change for Natal is <span class="math inline">\(\frac{2400}{50} = 48\)</span> QALYs per $million. For Cancer, the rate of change is <span class="math inline">\(\frac{400}{50} = 8\)</span> QALYs per $million.</p>
+<p>The important implication here is that a million dollars is worth more QALYs if spent on Natal than on Cancer. This suggests that we should transfer money from Cancer to Natal. But how much?</p>
+<p>Suppose we moved $5 billion from Cancer to Natal. The picture will look like <a href="#fig-swap-cancer-natal" class="quarto-xref">Figure&nbsp;<span>14.5</span></a>. The <span style="color: red;">red</span> stars mark the new spending proposal, re-allocating $5 billion from Cancer to Natal. The new proposal buys 1260 QALYs, the original proposal buys 1250. In reality we would never have such detailed information to distinguish a model output of 1260 from 1250; they are effectively the same. The implication: we are indifferent between the two proposals.</p>
+<div id="fig-swap-cancer-natal" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-swap-cancer-natal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.5: QALYs gained versus expenditure
+</figcaption>
+<div aria-describedby="fig-swap-cancer-natal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-swap-cancer-natal" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-swap-cancer-natal-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-swap-cancer-natal-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-14-rates-of-change_files/figure-html/fig-swap-cancer-natal-1.png" class="img-fluid figure-img" data-ref-parent="fig-swap-cancer-natal" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-swap-cancer-natal-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Natal
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-swap-cancer-natal" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-swap-cancer-natal-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-swap-cancer-natal-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-14-rates-of-change_files/figure-html/fig-swap-cancer-natal-2.png" class="img-fluid figure-img" data-ref-parent="fig-swap-cancer-natal" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-swap-cancer-natal-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Cancer
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>Does indifference between the two spending proposals—$5 billion for natal and $10 billion for cancer, versus $10 billion for natal and $5 billion for cancer—mean that it doesn’t really matter how we split the money between the two programs? Before rashly jumping to this conclusion, we should do a bit more analysis.</p>
+<p>In <a href="#fig-swap-cancer-natal" class="quarto-xref">Figure&nbsp;<span>14.5</span></a> we have annotated the graph with the rate of change (QALYs per million dollars) at the <span style="color: red;">red</span> proposal. This rate of change is, of course, the slope of the function at the selected expenditure level. We would need to do a little calculation to find the numerical value for the rate of change, but we can visualize it by drawing a line segment that has the same slope as the function at the selected expenditure level. The slope is steeper for Cancer than Natal, suggesting that we ought to shift money back to Cancer from Natal. This may seem futile, switching money back and forth, but that’s because we are shifting a lot of money: $5 billion. Suppose we shift less.</p>
+<p>Whatever spending level we choose, there will be a QALY level marked by the star <em>and</em> a rate of change marked by the slope of the line segment. <a href="#fig-many-starts" class="quarto-xref">Figure&nbsp;<span>14.6</span></a> plots some of these line segments and stars at many different levels of expenditure.</p>
+<div id="fig-many-starts" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-many-starts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.6: QALYs saved and rate of change at many expenditure values. The graphs are too crowded to read clearly.
+</figcaption>
+<div aria-describedby="fig-many-starts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-many-starts" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-many-starts-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-many-starts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-14-rates-of-change_files/figure-html/fig-many-starts-1.png" class="img-fluid figure-img" data-ref-parent="fig-many-starts" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-many-starts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Natal
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-many-starts" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-many-starts-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-many-starts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-14-rates-of-change_files/figure-html/fig-many-starts-2.png" class="img-fluid figure-img" data-ref-parent="fig-many-starts" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-many-starts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Cancer
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p><a href="#fig-many-starts" class="quarto-xref">Figure&nbsp;<span>14.6</span></a> is too crowded to serve its main purpose: showing the rates of change at many different values of expenditure. We need to simplify things.</p>
+<p>We can accomplish this by changing the format for representing rates of change from slope liness into a quantity that can be plotted. The units for the values will be QALYs per million dollars, a different dimension than shown by the vertical axis in <a href="#fig-many-starts" class="quarto-xref">Figure&nbsp;<span>14.6</span></a>. So we need to make a new graphics frame to show QALYs per million dollars. We do that in <a href="#fig-qalys-per-dollar" class="quarto-xref">Figure&nbsp;<span>14.7</span></a>.</p>
+<div id="fig-qalys-per-dollar" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-qalys-per-dollar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.7: The rate of change, QALYs per million dollars, as a function of expenditure level.
+</figcaption>
+<div aria-describedby="fig-qalys-per-dollar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-qalys-per-dollar" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-qalys-per-dollar-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-qalys-per-dollar-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-14-rates-of-change_files/figure-html/fig-qalys-per-dollar-1.png" class="img-fluid figure-img" data-ref-parent="fig-qalys-per-dollar" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-qalys-per-dollar-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Natal
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-qalys-per-dollar" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-qalys-per-dollar-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-qalys-per-dollar-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-14-rates-of-change_files/figure-html/fig-qalys-per-dollar-2.png" class="img-fluid figure-img" data-ref-parent="fig-qalys-per-dollar" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-qalys-per-dollar-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Cancer
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>Keep in mind the purpose of the analysis: to find out how to allocate the total of $15 billion to Natal and Cancer to make the QALYs saved as large as possible. The information in <a href="#fig-qalys-per-dollar" class="quarto-xref">Figure&nbsp;<span>14.7</span></a> is not yet in the form that lets us see the answer we seek. We will have to do some work in order to get an answer that serves our purpose.</p>
+<p>Whenever our expenditure policy corresponds to different rates of change (QALYs per million dollars) for the two policies, we would want to shift money from the program with the lower rate of change to the program with the higher rate of change. When such shifting brings the expenditures to levels where the two rate of changes are equal, no further shifting is called for: the earlier imbalance has been corrected.</p>
+<p>To illustrate, we have annotated the graphs with two red lines, both drawn at the level of 75 QALYs per million dollars. For Natal, this rate of change occurs at an expenditure level of about $2 billion. For Cancer, 75 QALYs per million dollars occurs at an expenditure level of about $5.5 billion. Those two values of expenditure are in balance in a very important sense: at those values, there is no reason to swap funds between Natal and Cancer.</p>
+<p>Even so, at the $2 billion (Natal) and $6 billion (Cancer) levels we are spending only (!) eight billion dollars. But there is $15 billion available. To find out where the spending is in balance at a total level of $15 billion, we need to do a little work. This is purely mathematical work, so ideally suited to delegate to a computer. But let’s follow the process.</p>
+<p>At 75 QALYs per million dollars, we spent only $8 billion. If we spend more, we will be at an operating point with fewer QALYs per million dollars. That sounds bad, but remember that the QALYs per million dollars is a <em>rate of change</em>. So long as the rate of change is <em>positive</em>, spending more produces more QALYs overall.</p>
+<p>In <a href="Chap-13-dynamics.html#sec-dynamics">Chapter 13</a> explored systems whose state changes in time. There we spoke of the <em>dynamical function</em>, that is, the function that gives the <em>instantaneous</em> rate of change (with respect to time) of the state quantities.</p>
+<p>Suppose we were to increase spending to bring the system into balance at a level of 50 QALYs per million dollars. This happens at an expenditure level of $6 billion (Natal) and $7 billion (Cancer), so $13 billion in total. Still too little spending, but closer to the target of $15 billion. Evidently, there is more mathematical work to do: keep trying different levels of QALYs per million dollars until we hit upon one that brings us to a total expenditure of $15 billion. Doing so produces the information we need: At a marginal benefit of about 40 QALYs per million dollars, total expenditures are $15 billion, split $7.8 billion for Natal and $7.2 billion for Cancer. Outcome from the spending: 1,313,000 QALYs.</p>
+<p>Undeniably, reaching the result involves an intricate argument in which a neophyte is likely to get frustrated and make errors. First, we imagined there to be a production function that relates expenditures to QALYs saved, not just the two pairs given originally as facts.</p>
+<ul>
+<li>Natal: $5 billion produces 500,000 QALYs</li>
+<li>Cancer: $10 billion produces 750,000 QALYs</li>
+</ul>
+<p>Next, we introduced a new perspective: A spending level is in balance only when the <em>rate of change</em> of QALYs with respect to dollars is the same for both Natal and Cancer.</p>
+<p>We then looked at the two production functions, calculating their rates of change at many expenditure input values. Finally, we found expenditure levels totaling $15 billion split between Natal and Cancer in a way that produced an equal marginal benefit for each.</p>
+<div class="page-columns page-full"><p>Without spending a single dollar above the $15 billion total expenditure, we have re-allocated spending in a way that increased output from 1,250,000 QALYs to 1,313,000 QALYs. That is an increase of 63,000 QALYs with no extra costs. 63,000 QALYs corresponds to saving the lives of 1000 18-year olds, giving each of them 63 extra years of full-quality life. That seems worthwhile d.</p><div class="no-row-height column-margin column-container"><span class="">Of course, the QALYs don’t have to go to 18-year olds. 63,000 QALYs might also correspond to saving the lives of 10,000 75-year olds, or 100,000 80-year olds</span></div></div>
+<p>Everyone understands why prospective medical professionals—doctors and nurses—go through difficult years of schooling. It helps them to save lives and increase the quality of life. It is the same thing for quantitative reasoning: a few years of difficult schooling to master an approach to analysis that can save lives and increase the quality of those lives.</p>
+<p>It is understandable if the reader is not completely convinced that the analysis described above is correct. Partly, that’s because many of the concepts are new. And there are some difficult to believe aspects of the argument. For instance, In determining the best allocation of expenditures, we looked only at marginal benefits, not the total change in QALYs. In <a href="Chap-15-accumulation.html#sec-accumulation">Chapter 15</a> we will see why the marginal-benefit function has latent in it the critical information about the total change. And in <a href="Chap-16-operations.html#sec-moving-past-two-inputs">Chapter 16</a> we will introduce a few mathematical operations, each of which is pretty simple, that can be used to build processes such as the one by which we figured out the optimal allocation of spending.</p>
+</section>
+<section id="sec-deriv-at-3" class="level2 page-columns page-full" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="sec-deriv-at-3"><span class="header-section-number">14.4</span> Differentiation and the derivative</h2>
+<p>The <em>marginal</em>—or, equivalently, <em>instantaneous</em>—rate-of-change functions plotted in <a href="#fig-qalys-per-dollar" class="quarto-xref">Figure&nbsp;<span>14.7</span></a> for Natal and Cancer are intimately related to the functions presented in <a href="#fig-QALY-vs-cost" class="quarto-xref">Figure&nbsp;<span>14.3</span></a>. Indeed, all the information needed to calculate the <a href="#fig-qalys-per-dollar" class="quarto-xref">Figure&nbsp;<span>14.7</span></a> is already present in <a href="#fig-QALY-vs-cost" class="quarto-xref">Figure&nbsp;<span>14.3</span></a>. One can fairly say that <a href="#fig-qalys-per-dollar" class="quarto-xref">Figure&nbsp;<span>14.7</span></a> is ☞&nbsp;<strong>derived from</strong><span id="finger-derived-from-definition" data-label="derived from">&nbsp;☜</span> <a href="#fig-QALY-vs-cost" class="quarto-xref">Figure&nbsp;<span>14.3</span></a>.</p>
+<p>Let’s explore how the derivation is done. For the demonstration, we will use a generic name for a function, say <span class="math inline">\(f()\)</span>. The function <span class="math inline">\(f()\)</span> could be just about anything: a core modeling function, a linear combination, product, or pipelining of multiple functions. Data could have been involved in composing the function, for example using linear <em>regression</em> or <em>machine learning</em>.</p>
+<div class="page-columns page-full"><p>It will be handy to have a name for the marginal-change function that we derive from <span class="math inline">\(f()\)</span>. There are all sorts of possibilities. Isaac Newton (1643-1727) would have called  <span class="math inline">\(f()\)</span> the <em>fluent</em> and the derived function the <em>fluxion</em>, although nobody uses that nomenclature now. Newton’s contemporary, Wilhelm Leibniz (1646-1716) described the derived function as “the <em>ratio of the differentials</em>.” For him, a ☞&nbsp;<strong>differential</strong><span id="finger-differential-definition" data-label="differential">&nbsp;☜</span> was just a small <em>change</em> in a quantity. The <em>ratio</em> involves two quantity: take the small change in one and divide it by the corresponding change in the other. We no longer use the name “ratio of differentials,” but it is easy to trace the evolutionary link to “rate of change.”</p><div class="no-row-height column-margin column-container"><span class="">Why “would have called?” The mathematical concept of “function” was introduced only some decades after Newton’s death. Newton’s terminology for what we now call a function was variously “a changing quantity” or “a curve.”</span></div></div>
+<p>The word that used universally today for the kind of function we have in mind, <em>derived</em> from a function <span class="math inline">\(f()\)</span>, is rather pedestrian: the ☞&nbsp;<strong>derivative</strong><span id="finger-derivative-definition" data-label="derivative">&nbsp;☜</span> of <span class="math inline">\(f()\)</span>. The word used to name the <em>process of calculating</em> the derivative of <span class="math inline">\(f()\)</span> or any other function is ☞&nbsp;<strong>differentiation</strong><span id="finger-differentiation-definition" data-label="differentiation">&nbsp;☜</span>. The field that has “differentiation” as a major object is called ☞&nbsp;<strong>calculus</strong><span id="finger-calculus-definition" data-label="calculus">&nbsp;☜</span>.</p>
+<p>Despite the off-putting name “calculus,” differentiation can be accomplished very simply. We start with a function <span class="math inline">\(f()\)</span> that has one argument. It doesn’t matter what that argument is named, but having <em>some</em> name is helpful. We will name the argument <span class="math inline">\(t\)</span>. By convention, <span class="math inline">\(t\)</span> is often used to denote “time,” but differentiation does not need to be about time. For example, in <a href="#fig-QALY-vs-cost" class="quarto-xref">Figure&nbsp;<span>14.3</span></a> the argument—the input to the function—was “expenditure” of money.</p>
+<p>The nature of a function is that it turns the input into another quantity, the output. We have been graphing functions for a while, but merely as a reminder, in a slice plot the input quantity is represented by position on the horizontal axis, while the output corresponds to position along the vertical axis. Just for illustration, <a href="#fig-f-of-t" class="quarto-xref">Figure&nbsp;<span>14.8</span></a> shows a picture of a made-up <span class="math inline">\(f(t)\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-f-of-t" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f-of-t-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-14-rates-of-change_files/figure-html/fig-f-of-t-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-of-t-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.8: Illustrating the rate of change of the output of the function as the ipnut changes from 3.0 (blue) to 3.2 (red).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="Chap-04-rates.html#sec-rates-of-change-brief">Section 4.4</a> introduced the “rate of change” as the ratio of two changes. <a href="#fig-f-of-t" class="quarto-xref">Figure&nbsp;<span>14.8</span></a> shows a function evaluated at two nearby input values. From this, we can calculate the rate of change of the output value with respect to the input value, that is, the change in output divided by the change of input. In <a href="#fig-f-of-t" class="quarto-xref">Figure&nbsp;<span>14.8</span></a>, read the change of input off the horizontal axis: 3.2 - 3 = 0.2. Read the change of output off the vertical axis: <span class="math inline">\(f(3.2) - f(3) = 5.64 - 4.25 = 1.39\)</span>. The rate of change is the ratio of the two changes 1.39 / 0.2 = 6.96.</p>
+</section>
+<section id="instant-instantaneous-tiny-input-change" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="instant-instantaneous-tiny-input-change"><span class="header-section-number">14.5</span> Instant? Instantaneous? Tiny input change?</h2>
+<p>In the previous example, we used input values of 3 and 3.2 as two inputs and calculated the rate of change as the corresponding difference in output—<span class="math inline">\(f(3.2) - f(3.0)\)</span>—divided by the difference in input. In the language of <em>marginal change</em>, these inputs corresponding to looking at an increment of 0.2 from the “edge” 3.0.</p>
+<p>The word “instant” and the phrase <em>instantaneous change</em> implicitly refer to <em>time</em>. This nomenclature reflects the history of development of these concepts, where the applications were to motion of objects over time. But application areas are much broader now, for instance, in the QALY/expenditure example the input is <em>spending level</em>. An “instant of spending” doesn’t make literal sense; the real meaning is the “current spending level.” A so-called “instantaneous” change of spending isn’t meant to refer to time but to a change in spending that is tiny. How tiny? For spending at the level of a billion dollars, a change of 1 cent is certainly tiny. So is one dollar or even a thousand or a million dollars.</p>
+<p>Is it fair to take a change of spending of one-million dollars as tiny, that is, “instantaneous”? As long as we are looking for <em>tiny</em>, why not set the change of spending to zero, as small as it can get.</p>
+<p>A input change of zero throws a wrench into the mechanism for calculating rates of change. Looking to the example of <a href="Chap-14-rates-of-change.html#fig-f-of-t">Figure 14.8</a>, in response to zero change in input the change in output would be <span class="math inline">\(f(3) - f(3) = 0\)</span>. The rate of change over the instant would be <span class="math display">\[\frac{f(3) - f(3)}{3-3} = \frac{0}{0} =\ ???\]</span></p>
+<p>The straightforward resolution to this problem is not to throw the wrench in the first place. Instead of exactly zero duration, use a small but non-zero duration.</p>
+<p>One perspective on small reflects our interest in looking at the rate of change as it varies for different inputs. Consider <a href="#fig-many-starts" class="quarto-xref">Figure&nbsp;<span>14.6</span></a>: the slope of the function varies as the input changes. In the Natal vs Cancer allocation problem, <a href="#fig-qalys-per-dollar" class="quarto-xref">Figure&nbsp;<span>14.7</span></a>, the changing slope enabled us to find inputs that balanced the marginal benefits of spending between Natal and Cancer. If we are going to compare the slope of QALYs per million dollars at two different spending points, say 3.1 million USD and 3.2 million USD, “small” means “smaller than 0.1 million USD.”</p>
+<p>A second perspective is that our choice of “small,” so long as it is small enough, should not affect the result of the calculation. Or, more precisely, a change of input is “small” when making it even smaller would give the same result. If there were many people calculating a rate of change, using their own choices for “small,” we would like them nevertheless to get the same answer!</p>
+</section>
+<section id="sec-infinitesimal" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="sec-infinitesimal"><span class="header-section-number">14.6</span> Vanishingly small</h2>
+<p>Newton and Leibniz and the people who used their techniques for the next 200 years did not have modern computers available. Verifying, by trial and error, that a proposed <code>h</code> is small enough would have been tedious work. And the phrase “small enough” doesn’t carry enough <a href="https://en.wikipedia.org/wiki/Gravitas">gravitas</a> to honor a technique that was becoming more and more central to mathematics. Understandably, they sought a more dignified word, a word that would draw attention away from the need to search for a “small enough” change in input. The first ever calculus textbook, from 1694, had the title, “Analyse des Infiniment Petits,” that is, “Analysis into the infinitely small.” In a somewhat later book, Newton wrote and explanation which is only clear if you already understand it: “Those ultimate ratios … are not actually ratios of ultimate quantities, but limits … which they can approach so closely that their difference is less than any given quantity”. The phrase “vanishingly small” for the change in input was used by proponents of calculus, and “evanescent” in one famous early critique (philosopher George Berkeley, 1734). Instead of “infinitely small,” some preferred the word “infinitesimal.” A famous image for the hard-to-grasp notion of something that stays even as it shrinks toward zero was provided by Charles Lutwidge Dodgson (1832-1898) who, under the pen-name Lewis Carroll, introduced the Cheshire Cat. The cat’s smile corresponds to the rate of change. You cannot have a smile without a body surrounding it, just as you cannot have a rate of change of a function with a change in the input. In <em>Alice in Wonderland</em>, the Cat’s smile remains even as the body disappears.</p>
+<p>In calculus textbooks from the last 150 years, derivatives are defined as “limits” with a notation like <span class="math display">\[\lim_{h \rightarrow 0} \frac{f(x + h) - f(x)}{h} .\]</span></p>
+<p>None of this need concern the person using calculus to create and interpret models. The practical test that <code>h</code> is small enough is readily implemented on the computer without any need for philosophical reflection.</p>
+<div id="fig-cheshire-cat" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cheshire-cat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="www/Cheshire-cat.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cheshire-cat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.9: The Cheshire Cat from <em>Alice in Wonderland</em>.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-derivative-is-a-function" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="the-derivative-is-a-function"><span class="header-section-number">14.7</span> The derivative is a function</h2>
+<p>In <a href="#sec-deriv-at-3" class="quarto-xref"><span>Section 14.4</span></a> we calculated the rate of change of the function graphed in <a href="#fig-f-of-t" class="quarto-xref">Figure&nbsp;<span>14.8</span></a> at the input value <code>t &lt;- 3</code>. But we could have equally well performed the calculation for any other input value. The output of the calculation is a quantity.</p>
+<p>When we can describe the algorithm for a calculation at any in a set of input values, we have a function. In other words, the derivative of a function is also a function. The new function takes the same inputs as the original. An analogy is the relationship between mother and child. Both are people. And children can become mothers with their own children, that is, grandchildren of the original mother.</p>
+<p>To keep track of this generational ladder of functions, it helps to have a notation that shows the family relationship explicitly, such as a surname. We will use a function name as the surname, e.g., <span class="math inline">\(f()\)</span> or <span class="math inline">\(osc()\)</span> or rainfall(). To indicate a derivative of the named function, we will use the symbol <span class="math inline">\(\partial\)</span>, which is usually pronounced “d.” We need something more: an indication of which is the with-respect-to input. When a function has a single input, naming the with-respect-to input is not strictly necessary. Still, it can be a good habit for clarity.</p>
+<p>Consider a function with two inputs, however, such as <span class="math inline">\(f(x, t)\)</span>. <span class="math inline">\(f()\)</span> is the surname. The derivative <em>with respect to</em> <span class="math inline">\(x\)</span> is written, <span class="math inline">\(\partial_x f(x, t)\)</span>. Similarly, the derivative with respect to <span class="math inline">\(t\)</span> is written <span class="math inline">\(\partial_t f(x, t)\)</span>. Both <span class="math inline">\(\partial_x f(x,t)\)</span> and <span class="math inline">\(\partial_t f(x,t)\)</span> are descendents of the same parent function <span class="math inline">\(f(x,t)\)</span>. But the two different derivatives are related in a manner analogous to half-siblings, sharing one mother but different fathers. Such children can have very different personalities, but are still closely related.</p>
+<p>Remember that the derivative of a function is itself a function, so think about <span class="math inline">\(\partial_x f()\)</span> and <span class="math inline">\(\partial_t f()\)</span> as being names. This notation for names reminds us where the function came from, or, to use an older English grammar, <em>whence they were derived</em>.</p>
+<p><span class="math inline">\(\partial_x f(x,t)\)</span> and <span class="math inline">\(\partial_t f(x,t)\)</span>, being functions themselves, they also can be differentiated with respect to either of their inputs. It would be long-winded to write <span class="math inline">\(\partial_x \partial_x f()\)</span> as the name of the function which is derived with respect to <span class="math inline">\(x\)</span> from <span class="math inline">\(\partial_x f()\)</span>. For concision, we write instead <span class="math inline">\(\partial_{xx} f()\)</span>. Generically, such derivatives are called ☞&nbsp;<strong>second derivatives</strong><span id="finger-second-derivatives-definition" data-label="second derivatives">&nbsp;☜</span>. <span class="math inline">\(\partial_x f()\)</span> is the “first derivative of <span class="math inline">\(f()\)</span> with respect to <span class="math inline">\(x\)</span>,” analogous to the child of <span class="math inline">\(f()\)</span>, that is, the first generation of descendents. <span class="math inline">\(\partial_{xx} f()\)</span> is the grandchild of <span class="math inline">\(f()\)</span>: the second generation of descendents. <span class="math inline">\(\partial_{xx} f()\)</span> has siblings and cousins such as <span class="math inline">\(\partial_{tt} f()\)</span> and <span class="math inline">\(\partial_{xt} f()\)</span>.</p>
+<p>There is one everyday situation where second-derivatives can be felt viscerally. Suppose we know where an object (such as a car, plane, or bike) is at any time <span class="math inline">\(t\)</span>. That is, position is a function of <span class="math inline">\(t\)</span>, which we could call <em>pos(t)</em>. The velocity of the object is the derivative of position. The acceleration is the second derivative of position, or, if you prefer, the first derivative of velocity. You can feel acceleration, although we typically label the feeling as “force.” Newton’s <em>Second Law of Motion</em> famously states that force equals mass&nbsp;<span class="math inline">\(\times\)</span>&nbsp;acceleration: <span class="math inline">\(F = m a\)</span>.</p>
+<p>The second derivative can play an important role in many fields outside of physics or mathematics. There is rarely a reason, except in technical work, to consider the third or higher derivatives.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Notations for derivatives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The reader who has studied calculus will be familiar with other notations for derivatives. Naturally, the ones that appeared early in the history of calculus became standards, such as Leibniz’s notation <span class="math inline">\(\frac{dy}{dx}\)</span> and Newton’s dot notation <span class="math inline">\(\dot{y}\)</span>, invented in the late 1600s. Unfortunately, these commonly used notations pre-date the modern concept of a function and nothing in the notation hints that the objects are <em>functions</em> rather than <em>quantities</em>. (The use of <span class="math inline">\(y\)</span>, unadorned with the parentheses that are every function’s birthright, stems from an algebraic convention learned by beginning students, such as <span class="math inline">\(y = m x + b\)</span>, where we would write <span class="math inline">\(y(x) \equiv m x + b\)</span>.)</p>
+<p>Another standard calculus notation does use a function’s name, as in <span class="math inline">\(f'\)</span> for the first derivative of <span class="math inline">\(f()\)</span> with respect to its single input. Second derivatives are denoted <span class="math inline">\(f''\)</span></p>
+<p>For functions with a single input, all of the various notations—<span class="math inline">\(\frac{df}{dx}\)</span>, <span class="math inline">\(f'\)</span>, and <span class="math inline">\(\dot{f}\)</span>—have the same meaning as <span class="math inline">\(\partial_x f()\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The “Two Cultures”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In 1959, C.P. Snow, a British writer and scientist, proposed a model of what he saw as an increasing split between the sciences and the humanities. He called this the “two cultures.” Any observer of the contemporary academic world will be sympathetic to Snow’s thesis that science and the humanities operate in mutual incomprehensibility.</p>
+<p>Increasingly, decisions in government policy and industry are driven by quantitative analysis of models and data. If such decisions, or support or opposition to such decisions, become incomprehensible even to highly educated people, we are on the verge of descending into conflict and irrationality.</p>
+<p>One of Snow’s examples is particularly germane to the issue of <em>instantaneous change</em>. He wrote:</p>
+<blockquote class="blockquote">
+<p>“<em>A good many times I have been present at gatherings of people who, by the standards of the traditional culture, are thought highly educated …. If I had asked—What do you mean by mass, or acceleration, which is the scientific equivalent of saying, Can you read?—not more than one in ten of the highly educated would have felt that I was speaking the same language.</em>”</p>
+</blockquote>
+</div>
+</div>
+<p>Students who take a calculus course memorize the derivatives of a handful of families of functions: e.g.&nbsp;sin(), sqrt(), exp(), ln(), <span class="math inline">\(x^n\)</span>, and so on. They learn <em>rules</em> for algebraically computing from this handful the derivatives of even more obscure functions. And they spend a lot of time calculating second-, third-, and high-order derivatives. These rules along with the algebraic framework for them, and the insistence on a mathematically precise definition of “small enough,” make calculus, as it is commonly taught, a hard subject. And aside from future teachers of college-level math and physics, few graduates of a calculus course will use what they learned in their career. The important, useful ideas in calculus are that one function can be related to another function by differentiation, that the derived function has the same inputs as the original but an output that differs both in value and <em>dimension</em>, and that important problems of ☞&nbsp;<strong>equilibrium</strong><span id="finger-equilibrium-definition" data-label="equilibrium">&nbsp;☜</span>, as in the useful balance of funding between Natal and Cancer, are more easily thought of when the idea of differentiation can be applied.</p>
+<p>In <a href="Chap-16-operations.html#sec-moving-past-two-inputs">Chapter 16</a> we will see another important use for derivatives: performing mathematical tasks.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Chap-13-dynamics.html" class="pagination-link" aria-label="Dynamics: Modeling change">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dynamics: Modeling change</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Chap-15-accumulation.html" class="pagination-link" aria-label="Accumulation">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

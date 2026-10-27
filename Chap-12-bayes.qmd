@@ -1,12 +1,3 @@
----
-number-offset: 11
-crossref:
-  fig-title: "Figure 12."
-  fig-prefix: "Fig 12."
-  tbl-title: "Table 12."
-  tbl-prefix: "Table 12."
----
-
 ```{r include=FALSE}
 #| label: ch12-r-84d495b6
 source("_start-up.R")
@@ -68,22 +59,22 @@ Plotting the individual-car likelihood functions requires choosing appropriate r
 #| - 54,365 miles with no accident
 dom <- domain(rate = 0:40)
 
-Pa <- slice_plot(1-pexp(31448, rate/1e6) ~ rate, dom) |>
+Pa <- slice_plot(1-pexp(31448, rate/1e6) ~ rate, dom, color = .slice_color.) |>
   gf_labs(x = "Hypothesized rate (per million miles)", 
   y = "Individual-car likelihood") |>
   gf_lims(y = c(0,1)) |>
-  gf_hline(yintercept = 0.1, color="magenta")
+  gf_hline(yintercept = 0.1, color=.hline_color.)
 
-Pb <- slice_plot(dexp(78954, rate/1e6) ~ rate, dom) |>
+Pb <- slice_plot(dexp(78954, rate/1e6) ~ rate, dom, color = .slice_color.) |>
     gf_labs(x = "Hypothesized rate (per million miles)", 
     y = "Individual-car likelihood") |>
-    gf_hline(yintercept = 0.46e-6, color="magenta")
+    gf_hline(yintercept = 0.46e-6, color=.hline_color.)
 
-Pc <- slice_plot(1 - pexp(54365, rate/1e6) ~ rate, dom) |>
+Pc <- slice_plot(1 - pexp(54365, rate/1e6) ~ rate, dom, color = .slice_color.) |>
     gf_labs(x = "Hypothesized rate (per million miles)", 
     y = "Individual-car likelihood") |>
   gf_lims(y = c(0,1)) |>
-  gf_hline(yintercept = 0.1, color="magenta")
+  gf_hline(yintercept = 0.1, color=.hline_color.)
 
   Pa
   Pb
@@ -105,10 +96,11 @@ But your job is not yet complete. Combine the evidence from all the individual c
 #| echo: false
 #| fig-cap: "Combined likelihood for all three cars"
 slice_plot(dexp(78954, rate/1e6)*
-(1-pexp(54365, rate/1e6)*(1-pexp(31448, rate/1e6))) ~ rate, domain(rate=0:40)) |>
+(1-pexp(54365, rate/1e6)*(1-pexp(31448, rate/1e6))) ~ rate, 
+      domain(rate=0:40), color = .slice_color.) |>
     gf_labs(x = "Hypothesized rate (per million miles)", 
     y = "Individual-car likelihood") |>
-    gf_hline(yintercept = 0.44e-6, color="magenta")
+    gf_hline(yintercept = 0.44e-6, color=.hline_color.)
 ```
 
 Data from just three cars cannot resolve whether the self-driving cars are safer or more dangerous than human-driven cars. You need data from hundreds or perhaps thousands of cars.

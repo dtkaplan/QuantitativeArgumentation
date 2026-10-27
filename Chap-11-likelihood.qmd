@@ -1,11 +1,3 @@
----
-number-offset: 10
-crossref:
-  fig-title: "Figure 11."
-  fig-prefix: "Fig 11."
-  tbl-title: "Table 11."
----
-
 # Hypothesis and likelihood {#sec-hypothesis-and-likelihood}
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
@@ -68,7 +60,7 @@ Intervals <- tibble::tibble(
   ypos = -seq(.001,.003, length=4))
 slice_plot(dexp(delta, rate = 0.03) ~ delta, 
            domain(delta = 1:50),
-           color = "blue") |>
+           color = .slice_color.) |>
   gf_segment(0 + exp_prob ~ delta + delta, data = Intervals,
              color = "black") |>
   gf_point(exp_prob ~ delta, color = "black",
@@ -77,8 +69,7 @@ slice_plot(dexp(delta, rate = 0.03) ~ delta,
   label = ~signif(exp_prob,3), data = Intervals,
   position = position_nudge(x = 5)) |>
   gf_text(-0.001 ~ delta, label = ~ delta, data = Intervals) |>
-  gf_labs(x = "Interval (years)", y = "Likelihood") |>
-  gf_theme(theme_minimal(base_size = 12))
+  gf_labs(x = "Interval (years)", y = "Likelihood") 
 ```
  
 The likelihood for each individual observation is the value of the likelihood function at that observation. For instance, the likelihood of an interval of 14 years is 0.0197. When there are multiple observations, we need to combine their likelihoods. How to accomplish this?
@@ -153,20 +144,20 @@ for_incomplete <- function(obs, rate) {
   res
 }
 slice_plot(for_complete(c(17, 14, 23, 31), rate) ~ rate,
-  domain(rate = 0.00:0.14), npts = 1000) |>
+  domain(rate = 0.00:0.14), npts = 1000, color = .slice_color.) |>
   #gf_refine(scale_y_log10(),
   #scale_x_log10()) |>
   gf_vline(xintercept = c(0.0146, 0.109),
     color = "magenta") |>
     gf_lims(y = c(0, 10e-8)) |>
-    gf_hline(yintercept = c(8.98e-8)*c(1, 1/6.82), color = "gray") |>
+    gf_hline(yintercept = c(8.98e-8)*c(1, 1/6.82), color = .hline_color.) |>
   gf_labs(x = "Rate parameter (per year)")
 
 slice_plot(for_incomplete(37, rate) ~ rate,
   domain(rate = 0.00:0.14), npts = 1000,
-  color = "blue") |>
+  color = .slice_color.) |>
   gf_labs(x = "Rate parameter (per year)") |>
-  gf_hline(yintercept = c(1, 1/6.82), color = "gray") |>
+  gf_hline(yintercept = c(1, 1/6.82), color = .hline_color.) |>
   gf_vline(xintercept = c(0, 0.0519), color = "magenta")
 # argM(for_complete(c(17, 14, 23, 31), rate) ~ rate, domain(rate = 0.003:0.2))
 # Zeros(for_complete(c(17, 14, 23, 31), rate) - (8.98e-8 / 6.82) ~ rate, domain(rate = 0.003:0.2))
@@ -175,13 +166,13 @@ slice_plot(for_incomplete(37, rate) ~ rate,
 # Zeros(for_incomplete(37, rate) - (1/6.82) ~ rate, domain(rate = 0.003:0.2))
 
 slice_plot(for_complete(c(17, 14, 23, 31), rate) * for_incomplete(37, rate) ~ rate,
-  domain(rate = 0.00:0.14), npts = 1000) |>
+  domain(rate = 0.00:0.14), npts = 1000, color = .slice_color.) |>
   #gf_refine(scale_y_log10(),
   #scale_x_log10()) |>
   gf_vline(xintercept = c(0.0102, 0.0761),
     color = "magenta") |>
     gf_lims(y = c(0, 10e-8)) |>
-    gf_hline(yintercept = c(2.12e-8)*c(1, 1/6.82), color = "gray") |>
+    gf_hline(yintercept = c(2.12e-8)*c(1, 1/6.82), color = .hline_color.) |>
   gf_labs(x = "Rate parameter (per year)")
 ```
 

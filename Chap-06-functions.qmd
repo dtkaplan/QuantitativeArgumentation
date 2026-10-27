@@ -1,11 +1,3 @@
----
-number-offset: 5
-crossref:
-  fig-title: "Figure 6."
-  fig-prefix: "Fig 6."
-  tbl-title: "Table 6."
----
-
 # Introduction to Functions {#sec-intro-to-functions}
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
@@ -142,12 +134,13 @@ Like all algorithms, this one is written in terms of tasks that the processor al
 
 The simplest algorithms are those where the answer is already known. For instance, to learn how to add numbers with multiple digits, you first had to memorize the basic facts of single-digit arithmetic: the *addition table*.
 
-`r xf("sec-basic-functions")` introduces a small set of basic functions called the "core modeling functions." Each of these is pretty simple, and you will be expected to be able to sketch out a rough graph and know the values of certain special inputs and their output values. Of course, human memory is fallible. So you will have a computer implementation of each core modeling function to use and refer to. 
+`r xf("sec-core-functions")` introduces a small set of basic functions called the "core modeling functions." Each of these is pretty simple, and you will be expected to be able to sketch out a rough graph and know the values of certain special inputs and their output values. Of course, human memory is fallible. So you will have a computer implementation of each core modeling function to use and refer to. 
 
 
 ## What do you need to know about an algorithm?
 
 In the modern world, many of the objects we use productively every day are so complicated that few people, if any, know exactly what is inside them. For example, telephoning a friend does not require knowing in detail how a phone or a telecommunications system works. Drivers typically do not know how a modern gasoline engine works. We can use these machines because they have a user interface that we know how to operate. Using the interface lets us confirm we are using it properly. For instance, confidence in a phone comes (in part) from the text messages sent and successfully received.
+
 
 The same is true of functions. Using a function requires knowing what kinds of inputs it takes and observing what kind of output it produces. [Although the "t" in "mortgage" is silent, it refers to an important aspect mortgage loans. The root *mort* means "death", as in "mortality." In a mortgage, the borrower pays the lender a fixed amount each month. This gradually reduces the amount of money owed. When that amount reaches zero, the mortgage is dead: no more payments are required. Some people even have funereal rites to celebrate the death of a mortgage.](.column-margin) To illustrate, consider a situation faced by people buying a home. Almost always, they buyer needs to borrow money, a form of loan called a "mortgage." 
 

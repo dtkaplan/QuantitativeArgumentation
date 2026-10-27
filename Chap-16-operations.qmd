@@ -1,14 +1,3 @@
----
-number-offset: 15
-crossref:
-  fig-title: "Figure 16."
-  fig-prefix: "Fig 16."
-  tbl-title: "Table 16."
-  tbl-prefix: "Table 16."
----
-
-
-
 # Moving Past Two Inputs {#sec-moving-past-two-inputs} 
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
@@ -82,9 +71,8 @@ Our mathematical hills will be functions. The function's output is the hill's el
 #| fig-height: 4
 raw <- doodle_fun( ~ x, seed = 8329)                 
 f <- function(x) 30 + raw(x-2)
-slice_plot(f(distance) ~ distance, domain(distance = 0:10)) |>
-  gf_labs(x = "Position on road (km)", y = "Elevation (m)") |>
-  gf_theme(theme_minimal(base_size = 14))
+slice_plot(f(distance) ~ distance, domain(distance = 0:10), color = .slice_color.) |>
+  gf_labs(x = "Position on road (km)", y = "Elevation (m)") 
 ```
 
 `r xf("fig-hill-1")` provides an example of such a function. Where should you walk on the road to reach the highest elevation? A glance is enough to find the answer: about 5 miles.
@@ -97,11 +85,10 @@ slice_plot(f(distance) ~ distance, domain(distance = 0:10)) |>
 #| warning: false
 #| fig-cap: "Elevation vs position along a road, displaying the value of the output only at the places where you have already been. Rate of change is the slope of the blue segment."
 
-slice_plot(f(distance) ~ distance, domain(distance = 0:10), alpha = 0) |>
+slice_plot(f(distance) ~ distance, domain(distance = 0:10), alpha = 0, color = .slice_color.) |>
   gf_labs(x = "Distance along road (km)", y = "Elevation (m)") |>
-  slice_plot(f(distance) ~ distance, domain(distance=1.75:2.25), alpha = 0.5, color = "blue") |>
-  gf_point(f(2) ~ 2) |>
-  gf_theme(theme_minimal(base_size = 14))
+  slice_plot(f(distance) ~ distance, domain(distance=1.75:2.25), alpha = 0.5, color = .slice_contrast.) |>
+  gf_point(f(2) ~ 2) 
 ```
 
 The key tool for navigating the foggy road is the rate-of-change function: the derivative. You can find its value at your position by taking a small step right, then measuring the elevation again. If the new elevation is higher, the rate of change is positive.
@@ -144,25 +131,23 @@ Recall that for a function with two inputs, say $f(x, y)$, there are two differe
 g <- doodle_fun( ~ x + y, seed = 8332)
 contour_plot(g(longitude, latitude) ~ longitude & latitude,
              domain(longitude = -5:5, latitude = -5:5)) |>
-  gf_hline(yintercept = ~ -1.25, color = "gray") |>
-  gf_vline(xintercept = ~ -3.5, color = "black") |>
+  gf_hline(yintercept = ~ -1.25, color = .hline_color.) |>
+  gf_vline(xintercept = ~ -3.5, color = .vline_color.) |>
   gf_point(-1.25 ~ -3.5, color = "tomato", size=2, alpha = 0.1, inherit = FALSE) |>
-  gf_refine(coord_fixed()) |>
-  gf_theme(theme_minimal(base_size = 14))
+  gf_refine(coord_fixed()) 
 # ggsave("fig-hill-with-roads-a.png") # for pdf version
 
 contour_plot(g(longitude, latitude) ~ longitude & latitude,
              domain(longitude = -3.6:-3.4, latitude = -1.15:-1.35),
              skip = 0) |>
-  gf_hline(yintercept = ~ -1.25, color = "lightgray", linewidth = 2) |>
-  gf_vline(xintercept = ~ -3.5, color = "darkgray", linewidth = 2) |>
+  gf_hline(yintercept = ~ -1.25, color = .hline_color., linewidth = 2) |>
+  gf_vline(xintercept = ~ -3.5, color = .vline_color., linewidth = 2) |>
   gf_point(-1.25 ~ -3.5, color = "tomato", size=4, alpha = 0.1, inherit = FALSE) |>
   gf_segment(-1.25 + -1.25 ~ -3.5 + -3.475, color = "darkgreen",
              arrow = arrow(length = unit(2, "mm"))) |>
   gf_segment(-1.25 + -1.225 ~ -3.5 + -3.5, color = "darkgreen",
              arrow = arrow(length = unit(2, "mm"))) |>
-  gf_refine(coord_fixed()) |>
-  gf_theme(theme_minimal(base_size = 14))
+  gf_refine(coord_fixed())
 # ggsave("fig-hill-with-roads-b.png") # for the pdf version
 ```
 
@@ -219,8 +204,7 @@ contour_plot(g(x, y) ~ x & y, domain(x = -5:5, y = -5:5), alpha = 0.5, label_alp
   gf_refine(coord_fixed()) |>
   gf_segment(y + gy ~ x + gx, data = position, arrow = arrow(length = unit(2, "mm")), color = "darkgray" ) |>
   gf_point(y ~ x, inherit=FALSE, data = position, shape = 1, size = 4) |>
-  gf_text(y ~ x, inherit = FALSE, data = position, label = ~ n, size = 3, color="tomato") |>
-  gf_theme(theme_minimal(base_size = 14))
+  gf_text(y ~ x, inherit = FALSE, data = position, label = ~ n, size = 3, color="tomato") 
 ```
 
 

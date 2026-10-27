@@ -1,11 +1,3 @@
----
-number-offset: 13
-crossref:
-  fig-title: "Figure 14."
-  fig-prefix: "Fig 14."
-  tbl-title: "Table 14."
----
-
 # Rates of change {#sec-rates-of-change}
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
@@ -174,13 +166,15 @@ In order to use rates of change, we need more information than provided above. W
 cancer_f <- function(cost) {(7.5e2/0.70501)*(pnorm(cost, mean = 2, sd = 3.5)-0.283855)}
 natal_f <-function(cost) {(5e2/2.236068)*sqrt(cost)}
 
-slice_plot(natal_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts=300) |>
+slice_plot(natal_f(expenditure) ~ expenditure, domain(expenditure=0:15), 
+           npts=300, color = .slice_color.) |>
   gf_point(5e2 ~ 5, inherit = FALSE, shape = 8, size = 4, color = "blue" ) |>
   gf_labs(y = "QALYs (thousands)", x = "Expenditure ($billions)") |>
   gf_lims(y = c(0, 10e2)) |>
   gf_theme(theme_minimal())
 
-slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts = 300) |>
+slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure=0:15), 
+           npts = 300, color = .slice_contrast.) |>
   gf_point(7.5e2 ~ 10, inherit = FALSE, shape = 8, size = 4, color = "blue" )  |>
   gf_labs(y = "QALYs (thousands)", x = "Expenditure ($billions)") |>
   gf_lims(y = c(0, 10e2)) |>
@@ -202,13 +196,15 @@ To start, we zoom in more closely to the domain near to the proposed funding lev
 #| - Natal
 #| - Cancer
 #| layout-ncol: 2
-slice_plot(natal_f(expenditure) ~ expenditure, domain(expenditure = 4.5:5.5), npts=300) |>
+slice_plot(natal_f(expenditure) ~ expenditure, domain(expenditure = 4.5:5.5), 
+           npts=300, color = .slice_color.) |>
   gf_point(500 ~ 5, inherit = FALSE, shape = 8, size = 4, color = "blue" ) |>
   gf_labs(y = "QALYs (thousands)", x = "Expenditure ($billions)") |>
   gf_lims(x = 5 + c(-0.05, 0.05), y = 5e2 + c(-1, 1) * 2.5) |>
   gf_theme(theme_minimal())
 
-slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure = 9.5:10.5), npts = 300) |>
+slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure = 9.5:10.5), 
+           npts = 300, color = .slice_contrast.) |>
   gf_point(7.5e2 ~ 10, inherit = FALSE, shape = 8, size = 4, color = "blue" )  |>
   gf_labs(y = "QALYs (thousands)", x = "Expenditure ($billions)") |>
   gf_lims(x = 10 + c(-0.05, 0.05), y = 7.5e2 + c(-1, 1) * 2.5) |>
@@ -231,7 +227,8 @@ Suppose we moved $5 billion from Cancer to Natal. The picture will look like @fi
 #| fig-subcap:
 #| - Natal
 #| - Cancer
-slice_plot(natal_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts=300) |>
+slice_plot(natal_f(expenditure) ~ expenditure, domain(expenditure=0:15), 
+           npts=300, color = .slice_color.) |>
   gf_point(707 ~ 10, inherit = FALSE, shape = 8, size = 4, color = "tomato" ) |>
   gf_point(500 ~ 5, inherit = FALSE, shape = 8, size = 4, color = "blue" ) |>
   gf_labs(y = "QALYs (thousands)", x = "Expenditure ($billions)") |>
@@ -239,7 +236,8 @@ slice_plot(natal_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts=30
   gf_lims(y = c(0, 10e2)) |>
   gf_theme(theme_minimal())
 
-slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts = 300) |>
+slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure=0:15), 
+           npts = 300, color = .slice_color.) |>
   gf_point(553 ~ 5, inherit = FALSE, shape = 8, size = 4, color = "tomato" )  |>
   gf_point(7.5e2 ~ 10, inherit = FALSE, shape = 8, size = 4, color = "blue" ) |> 
   gf_labs(y = "QALYs (thousands)", x = "Expenditure ($billions)") |>
@@ -280,7 +278,8 @@ Values <- tibble::tibble(
   left_natal   = natal_qalys - 3*natal_slope,
   right_natal  = natal_qalys + 3*natal_slope)
 
-slice_plot(natal_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts=300) |>
+slice_plot(natal_f(expenditure) ~ expenditure, domain(expenditure=0:15), 
+           npts=300, color = .slice_color.) |>
   gf_point(natal_qalys ~ spend, data = Values,
            inherit = FALSE, shape = 8, size = 4, color = "tomato" ) |>
   gf_labs(y = "QALYs (thousands)", x = "Expenditure ($billions)") |>
@@ -289,7 +288,8 @@ slice_plot(natal_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts=30
   gf_lims(y = c(0, 10e2)) |>
   gf_theme(theme_minimal())
 
-slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure=0:15), npts=300) |>
+slice_plot(cancer_f(expenditure) ~ expenditure, domain(expenditure=0:15), 
+           npts=300, color = .slice_color.) |>
   gf_point(cancer_qalys ~ spend, data = Values,
            inherit = FALSE, shape = 8, size = 4, color = "tomato" ) |>
   gf_labs(y = "QALYs (thousands)", x = "Expenditure ($billions)") |>
@@ -314,15 +314,17 @@ We can accomplish this by changing the format for representing rates of change f
 #| - "Natal"
 #| - "Cancer"
 
-slice_plot(d_natal(expenditure) ~ expenditure, domain(expenditure=0:15), npts=300) |>
+slice_plot(d_natal(expenditure) ~ expenditure, domain(expenditure=0:15), 
+          npts=300, color = .slice_color.) |>
   gf_labs(y = "Rate of change (QALYs per million dollars)", x = "Expenditure ($billions)") |>
-  gf_hline(yintercept = 75, color = "tomato") |>
+  gf_hline(yintercept = 75, color = .hline_color.) |>
   gf_lims(y = c(0,500))
 
 
-slice_plot(d_cancer(expenditure) ~ expenditure, domain(expenditure=0:15), npts=300) |>
+slice_plot(d_cancer(expenditure) ~ expenditure, domain(expenditure=0:15), 
+           npts=300, color = .slice_color.) |>
   gf_labs(y = "Rate of change (QALYs per million dollars)", x = "Expenditure ($billions)") |>
-  gf_hline(yintercept = 75, color = "tomato") |>
+  gf_hline(yintercept = 75, color = .hline_color.) |>
   gf_lims(y = c(0,500))
 
 ```
@@ -391,10 +393,10 @@ The nature of a function is that it turns the input into another quantity, the o
 #| label: fig-f-of-t
 #| echo: false
 #| warning: false
-#| fig-cap: "Illustrating the rate of change of the output of the function as the inut changes from 3.0 (blue) to 3.2 (red)."
+#| fig-cap: "Illustrating the rate of change of the output of the function as the ipnut changes from 3.0 (blue) to 3.2 (red)."
 raw <- mosaicCalc::doodle_fun(~ t, seed = 937)
 f <- makeFun((raw((t-2.5)*2 ) + 10)/2 ~ t)
-P <- slice_plot(f(t) ~ t, domain(t = 0:5)) |>
+P <- slice_plot(f(t) ~ t, domain(t = 0:5), color = .slice_color.) |>
   gf_labs(y = "Output f(t)", x = "Input t")
 Points <- tibble(
   t = c(3, 3.2),

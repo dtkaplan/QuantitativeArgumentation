@@ -62,8 +62,51 @@ qr_margin_note <- function(url, description) {
   paste0(
     "::: {.column-margin}\n",
     description, "\n\n",
-    "![](", png_path, "){width=0.5in}\n",
+    "![](", png_path, "){width=0.75in}\n",
     ":::"
   )
 }
+
+# GGPLOT2 themes
+
+library(ggplot2)
+
+# 1. Define the bright, color-blind safe Okabe-Ito palette
+# (Excluding black/grey to keep the colors vibrant)
+bright_cb_palette <- c(
+  "#E69F00", # Orange
+  "#56B4E9", # Sky Blue
+  "#009E73", # Bluish Green
+  "#F0E442", # Yellow
+  "#0072B2", # Blue
+  "#D55E00", # Vermilion
+  "#CC79A7"  # Reddish Purple
+)
+
+.slice_color. <- "#0072B2"
+.slice_contrast. <- "#CC79A7"
+.hline_color. <- "#E69F00"
+.vline_color. <- "#56B4E9"
+
+# 2. Automate color and fill palettes globally across all plots
+options(
+  ggplot2.discrete.colour = function() scale_colour_manual(values = bright_cb_palette),
+  ggplot2.discrete.fill   = function() scale_fill_manual(values = bright_cb_palette)
+)
+
+# 3. Set global text, axis, and layout properties
+theme_set(
+  theme_minimal(base_size = 12) + 
+  theme(
+    text = element_text(color = "#222222"),
+    axis.title = element_text(size = 12, face = "bold"),
+    axis.text = element_text(size = 11),
+    panel.grid.minor = element_blank(),
+    legend.position = "bottom"
+  )
+)
+
+# 4. Set global geometry defaults (Line thickness, Point size, and Primary color)
+update_geom_defaults("line", list(color = "#0072B2", linewidth = 1.5)) # Defaults to Blue
+update_geom_defaults("point", list(color = "#D55E00", size = 2.5))    # Defaults to Vermilion
 

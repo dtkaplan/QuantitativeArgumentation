@@ -1,12 +1,3 @@
----
-number-offset: 7
-crossref:
-  fig-title: "Figure 8."
-  fig-prefix: "Fig 8."
-  tbl-title: "Table 8."
-  thm-title: "Enrichment 8."
----
-
 # Uncertainty in quantities {#sec-uncertainty}
 
 ```{r include=FALSE}
@@ -55,7 +46,7 @@ The advent of the computer has made such uncertainty calculations much more acce
 
 A probability distribution can be created by assigning a positive number to each point on the number line. This number is called a `r xf_definition("relative probability")`. Relative probability numbers cannot be negative. 
 
-There are an infinite number of points on the number line, so to use probability distributions, we need to keep track of an infinite number of relative probabilities: one for each point on the number line. Fortunately, `r xf("sec-functions")` has already provided a mechanism for handling the situation: *functions*.
+There are an infinite number of points on the number line, so to use probability distributions, we need to keep track of an infinite number of relative probabilities: one for each point on the number line. Fortunately, `r xf("sec-intro-to-functions")` has already provided a mechanism for handling the situation: *functions*.
 
 To illustrate, consider the uncertainty we previously represented as the range 60 to 100 Cals/mile. @fig-cal-per-mile-distribution shows the corresponding probability distribution as a *function*.
 
@@ -65,7 +56,8 @@ To illustrate, consider the uncertainty we previously represented as the range 6
 #| echo: false
 slice_plot(1000*dnorm(rate, mean=80, sd=10) ~ rate,
            domain(rate = 20:120),
-           npts = 300) |>
+           npts = 300,
+           color = .slice_color.) |>
   gf_labs(x = "Possible values for Cal / mile",
           y = "Relative probability") |>
   gf_refine(scale_x_continuous(breaks = c(20,40,60,70, 80, 90, 100, 120)))
@@ -103,7 +95,7 @@ Uniform distribution
 #| label: ch08-r-12e1388b
 #| echo: false
 slice_plot(ifelse(x > 12 & x < 17, 1, 0) ~ x,
-           domain(x = 0:24), npts = 600) |>
+           domain(x = 0:24), npts = 600, color = .slice_color.) |>
   gf_labs(y = "Relative probability",
           x = "Time of day") |>
   gf_refine(
@@ -130,7 +122,7 @@ The normal distribution, on the other hand, softens the edges and replaces "impo
 #| label: ch08-r-8d58086a
 #| echo: false
 slice_plot(dnorm(x, mean = 14.5, sd = sqrt(25/12)) ~ x,
-           domain(x = 0:24), npts = 600) |>
+           domain(x = 0:24), npts = 600, color = .slice_color.) |>
   gf_labs(y = "Relative probability",
           x = "Time of day") |>
   gf_refine(
@@ -153,7 +145,7 @@ Exponential distribution
 #| label: ch08-r-942e9e91
 #| echo: false
 slice_plot(dexp(x-12, rate = 1 / 2.5) ~ x,
-           domain(x = 0:24), npts = 600) |>
+           domain(x = 0:24), npts = 600, color = .slice_color.) |>
   gf_labs(y = "Relative probability",
           x = "Time of day") |>
   gf_refine(

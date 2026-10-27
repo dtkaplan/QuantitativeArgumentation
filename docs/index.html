@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Daniel T. Kaplan">
+<meta name="dcterms.date" content="2026-12-31">
+
+<title>Quantitative Argumentation</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Chap-01-models.html" rel="next">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative Argumentation</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-01-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argument and reasoning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-02-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems, dimensions, and data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-03-quantities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-04-rates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-05-magnitudes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Order of magnitude</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-06-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-07-core-modeling-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-09-composing-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Composing functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Decision, evidence, and belief</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-10-tradeoffs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trade-offs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-11-likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-12-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modeling change</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-13-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dynamics: Modeling change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-14-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-15-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capstone: Toward AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-16-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix-Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Chapter Summaries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-preface" id="toc-sec-preface" class="nav-link active" data-scroll-target="#sec-preface">Preface</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Quantitative Argumentation</h1>
+<p class="subtitle lead">Making Sense with Numbers</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Daniel T. Kaplan </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 31, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sec-preface" class="level1 unnumbered">
+<h1 class="unnumbered">Preface</h1>
+<section id="notes-to-pre-publication-reviewers" class="level2">
+<h2 class="anchored" data-anchor-id="notes-to-pre-publication-reviewers">Notes to Pre-publication Reviewers</h2>
+<p>In 2023, I was challenged to develop two new core quantitative courses. This was part of a broader project to rethink the liberal arts curriculum from the ground up, and “core” meant something more stringent than usual. The courses would serve a requirement for <em>all</em> entering students to take exactly <em>those</em> courses. The courses filled a slot that, at almost all universities and colleges, is occupied by introductory statistics and pre-calculus/intro-calculus.</p>
+<p>Students come from high school with widely varying expectations about where they will be placed in the mathematics curriculum, anywhere from Calc III to no place at all. This pair of courses was to be the common placement for <em>all</em> students, regardless of background.</p>
+<p>The courses were to be closely aligned with a mission to foster critical thinking generally, as well as leadership in both the public and entrepreneurial realms. They were not to be a mere sample of college-level topics but a coherent introduction to methods genuinely useful in policy debates, commerce, and science.</p>
+<p>This book is the text for one of the two courses. The <a href="https://dtkaplan.github.io/INF-1220-QR2/static-documents/Block-by-block.html">paired course</a> covers data science and statistics, including methods common to contemporary science as well as causal inference and the Bayesian framework.</p>
+<p>A free, online version of the book will be published alongside this print edition. Exercises, discussion materials, and supplementary resources will also be available online.</p>
+<!-- I was recruited based on my 25-year background of developing and teaching innovative quantitative courses in applied calculus, data science, computing, and allied topics such as epidemiology and machine learning. Just prior to starting the liberal-arts commission, I had served a three-year appointment as a distinguished visiting professor at the US Air Force Academy, charged with facilitating mainstream mathematics faculty to replace the traditional required calculus sequence with a more modern and applied approach that would be attractive and meaningful to students and support the extensive science, technology, and engineering requirements of the Academy. -->
+</section>
+<section id="preface-for-the-to-be-released-version" class="level2">
+<h2 class="anchored" data-anchor-id="preface-for-the-to-be-released-version">Preface (for the to-be released version)</h2>
+<p>You, the reader, likely fall into one of three groups: students in college, students bound for college, or college instructors. A goal often claimed by colleges is that, among other things, they foster the development of <em>critical thinking</em> skills. While often used merely as a marketing slogan or mission statement, many college faculty press for the explicit teaching of critical thinking to be taught explicitly. This book is allied is allied with that goal.</p>
+<p>This book has a particular emphasis on critical thinking with quantitative information. But there are broad themes in the explicit critical thinking movement that are worth keeping in mind when considering how to teach critical thinking. Among these are 1) finding, evaluating, and using information effectively, 2) translating data and knowledge into formats that highlight key relationships, 3) building sound arguments based on evidence and knowledge, and 4) being aware of your own thinking patterns, including the development of new patterns and finding the appropriate level of skepticism and to your own and other’s conclusions.</p>
+<p>There is an argument to be made that traditional mathematics education serves these themes, but I think it is a weak argument. When it comes to (1), statistics is a much better fit than algebra. And while algebra does provide a <em>format for knowledge</em> as in (2), it is very limited, leaving no room for uncertainty or even data. The mathematical approach to <em>building sound arguments</em> is centered on proof and symbolic manipulation. But there are few settings in the real world where mathematical proof is applicable. Building sound arguments in practice often requires reasoning with incomplete information, uncertainty, and incomplete understanding.</p>
+<p>The traditional approach is strongest in providing mechanisms for new patterns of thinking, for instance the idea of marginal or instantaneous change, which has many applications in describing and analyzing the world around us. But the structure of the traditional curriculum puts the mathematical thinking patterns most central to making use of information out of reach for most students.</p>
+<p>This book seeks to provide access to the quantitative concepts and skills that can support critical thinking. A central theme is <em>modeling</em>, the process of building quantitative representations of real-world systems. We make use of a concrete framework for modeling that can be taught and learned. In this framework, the system components are <strong>quantities</strong>. As a concept, <em>quantities</em> are akin to <em>number</em> but involve additional information that provides basic facts about how different kinds of quantities are related to one another. There are almost no equations used. Instead, the relationships between quantities in models are represented with <strong>functions</strong> and <strong>spaces</strong>. Equally important are the ideas of <strong>rates</strong> and <strong>rates of change</strong>.</p>
+<p>These modeling tools are also the elements of an important language to describe <strong>uncertainty and risk</strong> quantitatively. Increasingly, particularly over the last 40 years with the mainstream adoption of <strong>Bayesian inference</strong>, this language provides the means to use new <strong>observations and evidence</strong> to update our existing models.</p>
+<p>Naturally, the point is not to build models for their own sake. They are built to allow us to extract information and conclusions from them that can inform our understanding of the real world and inform decision-making. Another important use for models is to foster communication between individuals and groups, allowing us to try to resolve through principled argument the uncertainties and disagreements that often paralyze or divide us.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="comments-to-instructors" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="comments-to-instructors">Comments to instructors</h2>
+<p>The instructor interested in using this book or drawing from it to design a course is entitled to know why I have broken with many established conventions for teaching mathematics. The motivation has been a skeptical attitude: Are these conventions useful? What alternatives may be more effective for demonstrating that the mathematical topics are useful and provide new ways to think about important issues outside of mathematics?</p>
+<p>Consider, for instance, the central role of algebra in the established curriculum. Mathematics instructors have generally been educated in the established curriculum and have come to think of algebra as an essential component of advanced mathematical thinking. We treat algebra as a way of explaining, and a framework for student evaluation. We often define student success in terms of skills in algebraic manipulation and whether the student is ready to take on a course in calculus. Some students, particularly the students we encounter in our university-level mathematics courses, have gained enough proficiency in algebraic manipulation to encourage us to use these skills as the foundation for further mathematical learning.</p>
+<p>From the student point of view, however, the situation is different. A large fraction of students do not establish sufficient algebra skills to participate successfully in the university-level curriculum. Studies from professional organizations such as the Mathematical Association of America suggest that “a large fraction” means something like 80-90%. (To satisfy yourself that this is accurate, prompt an AI with this: “What fraction of college-bound students succeed in mastering algebra to an extent that they can use it effectively in university-level mathematics such as calculus?”)</p>
+<p>We temper our disappointment with this lack of success with assertions like, “Calculus is hard!” and “Not everyone is cut out for mathematics.” And we make the most of our limited successes by accepting the contention that passing Calc I constitutes success.</p>
+<p>Before accepting this state of affairs, it is worth questioning whether another approach to presenting mathematical concepts could lead to greater understanding of the quantitative concepts used throughout our economy, society, and science. My experience over 30 years of college teaching is that de-emphasizing algebraic manipulation can enable students to access not just anecdotes of mathematical analysis but the very topics that appear in the third and later semesters of the traditional calculus curriculum: functions of multiple variables, partial derivatives (and their uses), linear algebra, and differential equations.</p>
+<p>Naturally, I am not suggesting that the students following an alternative pathway are able to do the problem sets associated with linear algebra or differential equations. But they can understand how dynamics are described and trajectories calculated. They can create an accurate mental picture of what it means to “train” a model or to evaluate trade-offs in realistic scenarios.</p>
+<p>What are the alternatives to algebra-focused instruction? We can start by noting that most of the topics taught in a high-school level algebra course are not relevant to the skills needed for quantitative analysis of systems and data. Factoring polynomials? Solving quadratic equations? Division of polynomials? You won’t find them in this book. Better to build on foundational skills like understanding functions as a transformation of inputs to an output, and graphical interpretation of relationships described by functions.</p>
+<p>Some, but not much, algebra is needed to understand rates of change, and an entirely adequate understanding can be developed from function graphics without formulas. Some, but not much, algebra is needed to work with dimensional analysis. The algebra of logarithms and <span class="math inline">\(e^t\)</span> need not interfere with the development of understanding of magnitudes and the ever-increasing rate of change of exponential growth. Emphasizing functional notation rather than the idiosyncrasies of <span class="math inline">\(x^{-2}\)</span>, <span class="math inline">\(\sqrt{3}{t}\)</span>, or <span class="math inline">\(\sin^{-1}(x)\)</span> removes many pitfalls and connects better to the computational environments (even in spreadsheets) that students will encounter in their careers.</p>
+<p>Famously, word problems are not a strong motivator of interest in algebra. Better to set the goal as building representations of real-world systems and using these representations to extract meaningful insights and make informed decisions.</p>
+<p>A good approximation to the convention curriculum is “teaching algebra to reach calculus.” The standard, and often encountered alternative is, “teaching algebra for its own sake.” The alternative used in this book is to teach the fundamental ideas of calculus first, with a particular emphasis on why these ideas are important and useful. One such fundamental idea is “rates of change.” This book introduces it early (chapter 4) and with only elementary algebra. The topic is used over and over again in various contexts before using the nomenclature of derivatives and accumulation: describing functions, dimensional analysis, handling trade-offs, dealing with data and hypotheses using likelihood, and modeling dynamic systems.</p>
+<p>Overall, the style of this book is to <em>use</em> mathematical concepts first, and minimize or even exclude the bathwater of mathematical formalisms such as limits. The flow of topics emphasizes mathematical description rather than the precise definition of ideas in mathematical terms. The students working through the book will develop an intuitive and practical understanding of the concepts and an understanding that, with further work, they could use them in their own work and applications. And, those students who have succeeded in the conventional mathematics curriculum general find themselves with a greatly enriched understanding of the mechanisms and applied purpose of the mathematical tools they have previously learned.</p>
+<ul>
+<li>Daniel Kaplan, October 2026, Saint Paul, Minnesota </li>
+</ul>
+</section>
+<section id="sequencing-of-chapters" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="sequencing-of-chapters">Sequencing of chapters</h2>
+<p>In general, each chapter builds on the previous chapters. But there is some flexibility; not every chapter uses concepts from <em>all</em> the previous chapters.</p>
+<div class="cell" data-fig-width="4" data-fig-height="5" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="384" height="480" viewbox="0.00 0.00 574.00 699.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 695.6)">
+<title>chapter_dependencies</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-695.6 570,-695.6 570,4 -4,4"></polygon>
+<g id="clust1" class="cluster">
+<title>cluster_foundations</title>
+<path fill="#ddebf7" stroke="#5b9bd5" d="M65,-390.8C65,-390.8 371,-390.8 371,-390.8 377,-390.8 383,-396.8 383,-402.8 383,-402.8 383,-671.6 383,-671.6 383,-677.6 377,-683.6 371,-683.6 371,-683.6 65,-683.6 65,-683.6 59,-683.6 53,-677.6 53,-671.6 53,-671.6 53,-402.8 53,-402.8 53,-396.8 59,-390.8 65,-390.8"></path>
+<text text-anchor="middle" x="218" y="-667" font-family="Times,serif" font-size="14.00">Foundations</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_right</title>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_inference</title>
+<path fill="#e2f0d9" stroke="#548235" d="M28,-88C28,-88 254,-88 254,-88 260,-88 266,-94 266,-100 266,-100 266,-296.8 266,-296.8 266,-302.8 260,-308.8 254,-308.8 254,-308.8 28,-308.8 28,-308.8 22,-308.8 16,-302.8 16,-296.8 16,-296.8 16,-100 16,-100 16,-94 22,-88 28,-88"></path>
+<text text-anchor="middle" x="141" y="-292.2" font-family="Times,serif" font-size="14.00">Decision, Evidence and Belief</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_calculus</title>
+<path fill="#fce4d6" stroke="#d6a84f" d="M286,-16C286,-16 538,-16 538,-16 544,-16 550,-22 550,-28 550,-28 550,-296.8 550,-296.8 550,-302.8 544,-308.8 538,-308.8 538,-308.8 286,-308.8 286,-308.8 280,-308.8 274,-302.8 274,-296.8 274,-296.8 274,-28 274,-28 274,-22 280,-16 286,-16"></path>
+<text text-anchor="middle" x="412" y="-292.2" font-family="Times,serif" font-size="14.00">Modeling Change</text>
+</g>
+<!-- C1 -->
+<g id="node1" class="node">
+<title>C1</title>
+<path fill="white" stroke="#333333" d="M123.31,-650.8C123.31,-650.8 72.69,-650.8 72.69,-650.8 66.69,-650.8 60.69,-644.8 60.69,-638.8 60.69,-638.8 60.69,-626.8 60.69,-626.8 60.69,-620.8 66.69,-614.8 72.69,-614.8 72.69,-614.8 123.31,-614.8 123.31,-614.8 129.31,-614.8 135.31,-620.8 135.31,-626.8 135.31,-626.8 135.31,-638.8 135.31,-638.8 135.31,-644.8 129.31,-650.8 123.31,-650.8"></path>
+<text text-anchor="middle" x="98" y="-628.6" font-family="Helvetica,sans-Serif" font-size="14.00">1 Models</text>
+</g>
+<!-- C2 -->
+<g id="node2" class="node">
+<title>C2</title>
+<path fill="white" stroke="#333333" d="M238.85,-650.8C238.85,-650.8 179.15,-650.8 179.15,-650.8 173.15,-650.8 167.15,-644.8 167.15,-638.8 167.15,-638.8 167.15,-626.8 167.15,-626.8 167.15,-620.8 173.15,-614.8 179.15,-614.8 179.15,-614.8 238.85,-614.8 238.85,-614.8 244.85,-614.8 250.85,-620.8 250.85,-626.8 250.85,-626.8 250.85,-638.8 250.85,-638.8 250.85,-644.8 244.85,-650.8 238.85,-650.8"></path>
+<text text-anchor="middle" x="209" y="-628.6" font-family="Helvetica,sans-Serif" font-size="14.00">2 Systems</text>
+</g>
+<!-- C1&#45;&gt;C2 -->
+<g id="edge1" class="edge">
+<title>C1-&gt;C2</title>
+<path fill="none" stroke="#555555" d="M135.58,-632C135.58,-632 160.26,-632 160.26,-632"></path>
+<polygon fill="#555555" stroke="#555555" points="160.26,-634.45 167.26,-632 160.26,-629.55 160.26,-634.45"></polygon>
+</g>
+<!-- C3 -->
+<g id="node3" class="node">
+<title>C3</title>
+<path fill="white" stroke="#333333" d="M363.21,-650.8C363.21,-650.8 294.79,-650.8 294.79,-650.8 288.79,-650.8 282.79,-644.8 282.79,-638.8 282.79,-638.8 282.79,-626.8 282.79,-626.8 282.79,-620.8 288.79,-614.8 294.79,-614.8 294.79,-614.8 363.21,-614.8 363.21,-614.8 369.21,-614.8 375.21,-620.8 375.21,-626.8 375.21,-626.8 375.21,-638.8 375.21,-638.8 375.21,-644.8 369.21,-650.8 363.21,-650.8"></path>
+<text text-anchor="middle" x="329" y="-628.6" font-family="Helvetica,sans-Serif" font-size="14.00">3 Quantities</text>
+</g>
+<!-- C2&#45;&gt;C3 -->
+<g id="edge2" class="edge">
+<title>C2-&gt;C3</title>
+<path fill="none" stroke="#555555" d="M250.97,-638C250.97,-638 275.76,-638 275.76,-638"></path>
+<polygon fill="#555555" stroke="#555555" points="275.76,-640.45 282.76,-638 275.76,-635.55 275.76,-640.45"></polygon>
+</g>
+<!-- C4 -->
+<g id="node4" class="node">
+<title>C4</title>
+<path fill="white" stroke="#333333" d="M229.25,-578.8C229.25,-578.8 186.75,-578.8 186.75,-578.8 180.75,-578.8 174.75,-572.8 174.75,-566.8 174.75,-566.8 174.75,-554.8 174.75,-554.8 174.75,-548.8 180.75,-542.8 186.75,-542.8 186.75,-542.8 229.25,-542.8 229.25,-542.8 235.25,-542.8 241.25,-548.8 241.25,-554.8 241.25,-554.8 241.25,-566.8 241.25,-566.8 241.25,-572.8 235.25,-578.8 229.25,-578.8"></path>
+<text text-anchor="middle" x="208" y="-556.6" font-family="Helvetica,sans-Serif" font-size="14.00">4 Rates</text>
+</g>
+<!-- C3&#45;&gt;C4 -->
+<g id="edge3" class="edge">
+<title>C3-&gt;C4</title>
+<path fill="none" stroke="#555555" d="M282.5,-626C271.59,-626 263.08,-626 263.08,-626 263.08,-626 263.08,-566 263.08,-566 263.08,-566 248.31,-566 248.31,-566"></path>
+<polygon fill="#555555" stroke="#555555" points="248.31,-563.55 241.31,-566 248.31,-568.45 248.31,-563.55"></polygon>
+</g>
+<!-- C5 -->
+<g id="node5" class="node">
+<title>C5</title>
+<path fill="white" stroke="#333333" d="M363.05,-578.8C363.05,-578.8 284.95,-578.8 284.95,-578.8 278.95,-578.8 272.95,-572.8 272.95,-566.8 272.95,-566.8 272.95,-554.8 272.95,-554.8 272.95,-548.8 278.95,-542.8 284.95,-542.8 284.95,-542.8 363.05,-542.8 363.05,-542.8 369.05,-542.8 375.05,-548.8 375.05,-554.8 375.05,-554.8 375.05,-566.8 375.05,-566.8 375.05,-572.8 369.05,-578.8 363.05,-578.8"></path>
+<text text-anchor="middle" x="324" y="-556.6" font-family="Helvetica,sans-Serif" font-size="14.00">5 Magnitudes</text>
+</g>
+<!-- C4&#45;&gt;C5 -->
+<g id="edge4" class="edge">
+<title>C4-&gt;C5</title>
+<path fill="none" stroke="#555555" d="M241.24,-554C241.24,-554 265.58,-554 265.58,-554"></path>
+<polygon fill="#555555" stroke="#555555" points="265.58,-556.45 272.58,-554 265.58,-551.55 265.58,-556.45"></polygon>
+</g>
+<!-- C6 -->
+<g id="node6" class="node">
+<title>C6</title>
+<path fill="white" stroke="#333333" d="M241.37,-506.8C241.37,-506.8 174.63,-506.8 174.63,-506.8 168.63,-506.8 162.63,-500.8 162.63,-494.8 162.63,-494.8 162.63,-482.8 162.63,-482.8 162.63,-476.8 168.63,-470.8 174.63,-470.8 174.63,-470.8 241.37,-470.8 241.37,-470.8 247.37,-470.8 253.37,-476.8 253.37,-482.8 253.37,-482.8 253.37,-494.8 253.37,-494.8 253.37,-500.8 247.37,-506.8 241.37,-506.8"></path>
+<text text-anchor="middle" x="208" y="-484.6" font-family="Helvetica,sans-Serif" font-size="14.00">6 Functions</text>
+</g>
+<!-- C4&#45;&gt;C6 -->
+<g id="edge5" class="edge">
+<title>C4-&gt;C6</title>
+<path fill="none" stroke="#555555" d="M208,-542.63C208,-542.63 208,-514.21 208,-514.21"></path>
+<polygon fill="#555555" stroke="#555555" points="210.45,-514.21 208,-507.21 205.55,-514.21 210.45,-514.21"></polygon>
+</g>
+<!-- C7 -->
+<g id="node7" class="node">
+<title>C7</title>
+<path fill="white" stroke="#333333" d="M286.15,-434.8C286.15,-434.8 129.85,-434.8 129.85,-434.8 123.85,-434.8 117.85,-428.8 117.85,-422.8 117.85,-422.8 117.85,-410.8 117.85,-410.8 117.85,-404.8 123.85,-398.8 129.85,-398.8 129.85,-398.8 286.15,-398.8 286.15,-398.8 292.15,-398.8 298.15,-404.8 298.15,-410.8 298.15,-410.8 298.15,-422.8 298.15,-422.8 298.15,-428.8 292.15,-434.8 286.15,-434.8"></path>
+<text text-anchor="middle" x="208" y="-412.6" font-family="Helvetica,sans-Serif" font-size="14.00">7 Core modeling functions</text>
+</g>
+<!-- C6&#45;&gt;C7 -->
+<g id="edge6" class="edge">
+<title>C6-&gt;C7</title>
+<path fill="none" stroke="#555555" d="M208,-470.63C208,-470.63 208,-442.21 208,-442.21"></path>
+<polygon fill="#555555" stroke="#555555" points="210.45,-442.21 208,-435.21 205.55,-442.21 210.45,-442.21"></polygon>
+</g>
+<!-- C8 -->
+<g id="node8" class="node">
+<title>C8</title>
+<path fill="white" stroke="#333333" d="M246.48,-276C246.48,-276 169.52,-276 169.52,-276 163.52,-276 157.52,-270 157.52,-264 157.52,-264 157.52,-252 157.52,-252 157.52,-246 163.52,-240 169.52,-240 169.52,-240 246.48,-240 246.48,-240 252.48,-240 258.48,-246 258.48,-252 258.48,-252 258.48,-264 258.48,-264 258.48,-270 252.48,-276 246.48,-276"></path>
+<text text-anchor="middle" x="208" y="-253.8" font-family="Helvetica,sans-Serif" font-size="14.00">8 Uncertainty</text>
+</g>
+<!-- C7&#45;&gt;C8 -->
+<!-- C7&#45;&gt;C8 -->
+<g id="edge15" class="edge">
+<title>C7-&gt;C8</title>
+<path fill="none" stroke="#555555" d="M224.75,-390.8C224.75,-375.71 224.75,-341.67 224.75,-315.85"></path>
+<polygon fill="#555555" stroke="#555555" points="227.2,-315.8 224.75,-308.8 222.3,-315.8 227.2,-315.8"></polygon>
+</g>
+<!-- C9 -->
+<g id="node12" class="node">
+<title>C9</title>
+<path fill="white" stroke="#333333" d="M438.41,-276C438.41,-276 301.59,-276 301.59,-276 295.59,-276 289.59,-270 289.59,-264 289.59,-264 289.59,-252 289.59,-252 289.59,-246 295.59,-240 301.59,-240 301.59,-240 438.41,-240 438.41,-240 444.41,-240 450.41,-246 450.41,-252 450.41,-252 450.41,-264 450.41,-264 450.41,-270 444.41,-276 438.41,-276"></path>
+<text text-anchor="middle" x="370" y="-253.8" font-family="Helvetica,sans-Serif" font-size="14.00">9 Composing functions</text>
+</g>
+<!-- C7&#45;&gt;C9 -->
+<g id="edge16" class="edge">
+<title>C7-&gt;C9</title>
+<path fill="none" stroke="#555555" d="M294.06,-390.8C294.06,-375.71 294.06,-341.67 294.06,-315.85"></path>
+<polygon fill="#555555" stroke="#555555" points="296.51,-315.8 294.06,-308.8 291.61,-315.8 296.51,-315.8"></polygon>
+</g>
+<!-- C11 -->
+<g id="node10" class="node">
+<title>C11</title>
+<path fill="white" stroke="#333333" d="M179.01,-204C179.01,-204 102.99,-204 102.99,-204 96.99,-204 90.99,-198 90.99,-192 90.99,-192 90.99,-180 90.99,-180 90.99,-174 96.99,-168 102.99,-168 102.99,-168 179.01,-168 179.01,-168 185.01,-168 191.01,-174 191.01,-180 191.01,-180 191.01,-192 191.01,-192 191.01,-198 185.01,-204 179.01,-204"></path>
+<text text-anchor="middle" x="141" y="-181.8" font-family="Helvetica,sans-Serif" font-size="14.00">11 Likelihood</text>
+</g>
+<!-- C8&#45;&gt;C11 -->
+<g id="edge9" class="edge">
+<title>C8-&gt;C11</title>
+<path fill="none" stroke="#555555" d="M174.51,-239.83C174.51,-239.83 174.51,-211.41 174.51,-211.41"></path>
+<polygon fill="#555555" stroke="#555555" points="176.96,-211.41 174.51,-204.41 172.06,-211.41 176.96,-211.41"></polygon>
+</g>
+<!-- C10 -->
+<g id="node9" class="node">
+<title>C10</title>
+<path fill="white" stroke="#333333" d="M113.76,-276C113.76,-276 36.24,-276 36.24,-276 30.24,-276 24.24,-270 24.24,-264 24.24,-264 24.24,-252 24.24,-252 24.24,-246 30.24,-240 36.24,-240 36.24,-240 113.76,-240 113.76,-240 119.76,-240 125.76,-246 125.76,-252 125.76,-252 125.76,-264 125.76,-264 125.76,-270 119.76,-276 113.76,-276"></path>
+<text text-anchor="middle" x="75" y="-253.8" font-family="Helvetica,sans-Serif" font-size="14.00">10 Trade-offs</text>
+</g>
+<!-- C10&#45;&gt;C11 -->
+<g id="edge7" class="edge">
+<title>C10-&gt;C11</title>
+<path fill="none" stroke="#555555" d="M108.19,-239.83C108.19,-239.83 108.19,-211.41 108.19,-211.41"></path>
+<polygon fill="#555555" stroke="#555555" points="110.64,-211.41 108.19,-204.41 105.74,-211.41 110.64,-211.41"></polygon>
+</g>
+<!-- C12 -->
+<g id="node11" class="node">
+<title>C12</title>
+<path fill="white" stroke="#333333" d="M209.43,-132C209.43,-132 72.57,-132 72.57,-132 66.57,-132 60.57,-126 60.57,-120 60.57,-120 60.57,-108 60.57,-108 60.57,-102 66.57,-96 72.57,-96 72.57,-96 209.43,-96 209.43,-96 215.43,-96 221.43,-102 221.43,-108 221.43,-108 221.43,-120 221.43,-120 221.43,-126 215.43,-132 209.43,-132"></path>
+<text text-anchor="middle" x="141" y="-109.8" font-family="Helvetica,sans-Serif" font-size="14.00">12 Bayesian reasoning</text>
+</g>
+<!-- C11&#45;&gt;C12 -->
+<g id="edge8" class="edge">
+<title>C11-&gt;C12</title>
+<path fill="none" stroke="#555555" d="M141,-167.83C141,-167.83 141,-139.41 141,-139.41"></path>
+<polygon fill="#555555" stroke="#555555" points="143.45,-139.41 141,-132.41 138.55,-139.41 143.45,-139.41"></polygon>
+</g>
+<!-- C13 -->
+<g id="node13" class="node">
+<title>C13</title>
+<path fill="white" stroke="#333333" d="M407.42,-204C407.42,-204 332.58,-204 332.58,-204 326.58,-204 320.58,-198 320.58,-192 320.58,-192 320.58,-180 320.58,-180 320.58,-174 326.58,-168 332.58,-168 332.58,-168 407.42,-168 407.42,-168 413.42,-168 419.42,-174 419.42,-180 419.42,-180 419.42,-192 419.42,-192 419.42,-198 413.42,-204 407.42,-204"></path>
+<text text-anchor="middle" x="370" y="-181.8" font-family="Helvetica,sans-Serif" font-size="14.00">13 Dynamics</text>
+</g>
+<!-- C9&#45;&gt;C13 -->
+<g id="edge10" class="edge">
+<title>C9-&gt;C13</title>
+<path fill="none" stroke="#555555" d="M370,-239.83C370,-239.83 370,-211.41 370,-211.41"></path>
+<polygon fill="#555555" stroke="#555555" points="372.45,-211.41 370,-204.41 367.55,-211.41 372.45,-211.41"></polygon>
+</g>
+<!-- C14 -->
+<g id="node14" class="node">
+<title>C14</title>
+<path fill="white" stroke="#333333" d="M427.92,-132C427.92,-132 312.08,-132 312.08,-132 306.08,-132 300.08,-126 300.08,-120 300.08,-120 300.08,-108 300.08,-108 300.08,-102 306.08,-96 312.08,-96 312.08,-96 427.92,-96 427.92,-96 433.92,-96 439.92,-102 439.92,-108 439.92,-108 439.92,-120 439.92,-120 439.92,-126 433.92,-132 427.92,-132"></path>
+<text text-anchor="middle" x="370" y="-109.8" font-family="Helvetica,sans-Serif" font-size="14.00">14 Rates of change</text>
+</g>
+<!-- C13&#45;&gt;C14 -->
+<g id="edge11" class="edge">
+<title>C13-&gt;C14</title>
+<path fill="none" stroke="#555555" d="M370,-167.83C370,-167.83 370,-139.41 370,-139.41"></path>
+<polygon fill="#555555" stroke="#555555" points="372.45,-139.41 370,-132.41 367.55,-139.41 372.45,-139.41"></polygon>
+</g>
+<!-- C15 -->
+<g id="node15" class="node">
+<title>C15</title>
+<path fill="white" stroke="#333333" d="M391.5,-60C391.5,-60 294.5,-60 294.5,-60 288.5,-60 282.5,-54 282.5,-48 282.5,-48 282.5,-36 282.5,-36 282.5,-30 288.5,-24 294.5,-24 294.5,-24 391.5,-24 391.5,-24 397.5,-24 403.5,-30 403.5,-36 403.5,-36 403.5,-48 403.5,-48 403.5,-54 397.5,-60 391.5,-60"></path>
+<text text-anchor="middle" x="343" y="-37.8" font-family="Helvetica,sans-Serif" font-size="14.00">15 Accumulation</text>
+</g>
+<!-- C14&#45;&gt;C15 -->
+<g id="edge12" class="edge">
+<title>C14-&gt;C15</title>
+<path fill="none" stroke="#555555" d="M352.02,-95.83C352.02,-95.83 352.02,-67.41 352.02,-67.41"></path>
+<polygon fill="#555555" stroke="#555555" points="354.47,-67.41 352.02,-60.41 349.57,-67.41 354.47,-67.41"></polygon>
+</g>
+<!-- C16 -->
+<g id="node16" class="node">
+<title>C16</title>
+<path fill="white" stroke="#333333" d="M529.94,-60C529.94,-60 448.06,-60 448.06,-60 442.06,-60 436.06,-54 436.06,-48 436.06,-48 436.06,-36 436.06,-36 436.06,-30 442.06,-24 448.06,-24 448.06,-24 529.94,-24 529.94,-24 535.94,-24 541.94,-30 541.94,-36 541.94,-36 541.94,-48 541.94,-48 541.94,-54 535.94,-60 529.94,-60"></path>
+<text text-anchor="middle" x="489" y="-37.8" font-family="Helvetica,sans-Serif" font-size="14.00">16 Operations</text>
+</g>
+<!-- C14&#45;&gt;C16 -->
+<g id="edge13" class="edge">
+<title>C14-&gt;C16</title>
+<path fill="none" stroke="#555555" d="M440.04,-114C443.13,-114 444.96,-114 444.96,-114 444.96,-114 444.96,-67.17 444.96,-67.17"></path>
+<polygon fill="#555555" stroke="#555555" points="447.41,-67.17 444.96,-60.17 442.51,-67.17 447.41,-67.17"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Chap-01-models.html" class="pagination-link" aria-label="Argument and reasoning">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argument and reasoning</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

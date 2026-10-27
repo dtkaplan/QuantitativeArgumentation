@@ -16,6 +16,7 @@
 - argmax
 - argmin
 - dominates
+- incommensurate
 - maximum
 - minimum
 - objective function

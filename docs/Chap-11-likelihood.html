@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11&nbsp; Hypothesis and likelihood – Quantitative Argumentation</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Chap-12-bayes.html" rel="next">
+<link href="./Chap-10-tradeoffs.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-10-tradeoffs.html">Decision, evidence, and belief</a></li><li class="breadcrumb-item"><a href="./Chap-11-likelihood.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative Argumentation</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-01-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argument and reasoning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-02-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems, dimensions, and data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-03-quantities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-04-rates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-05-magnitudes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Order of magnitude</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-06-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-07-core-modeling-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-09-composing-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Composing functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Decision, evidence, and belief</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-10-tradeoffs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trade-offs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-11-likelihood.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-12-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modeling change</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-13-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dynamics: Modeling change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-14-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-15-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capstone: Toward AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-16-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix-Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Chapter Summaries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-10-tradeoffs.html">Decision, evidence, and belief</a></li><li class="breadcrumb-item"><a href="./Chap-11-likelihood.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-hypothesis-and-likelihood" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><em>Vocabulary Review</em></p>
+<ul>
+<li>bayesian (8)</li>
+<li>data (2)</li>
+<li>exponential distribution (8)</li>
+<li>hypothesis (8)</li>
+<li>magnitude (5)</li>
+<li>models (1)</li>
+<li>objective function (10)</li>
+<li>per (3)</li>
+<li>point (3)</li>
+<li>probability distributions (8)</li>
+<li>quantity (3)</li>
+<li>rate (4)</li>
+<li>system (6)</li>
+<li>uncertainty (8)</li>
+<li>value (2)</li>
+</ul>
+<p><em>New</em></p>
+<ul>
+<li>likelihood</li>
+<li>likelihood framework</li>
+<li>null hypothesis</li>
+<li>scientific method</li>
+</ul>
+</div></div><p>We build models based on our understanding of the systems being modeled. Naturally, this understanding is not perfect. Indeed, there can be honest dispute about how a system operates and what factors are most important in influencing its behavior.</p>
+<p>In many (most?) settings, it is not realistic to expect the modeler to get things right the first time, or even after several tries. Effective modelers treat their work as an application of the ☞&nbsp;<strong>scientific method</strong><span id="finger-scientific-method-definition" data-label="scientific method">&nbsp;☜</span>, iteratively refining their models based on insight and evidence.</p>
+<p>Such refinement depends on the ability to compare models to one another and pick the better one. In the language of <a href="Chap-10-tradeoffs.html#sec-tradeoffs">Chapter 10</a>, we might call this finding an “optimal” model. We will do this by developing an objective function that takes competing models as input and returns as output a numerical measure of each model’s performance.</p>
+<p>The method is standard in many areas of science, technology, commerce, and any field where decisions must be taken. The standard terminology, however, is not usually about comparing models. The word used most often is “hypothesis.” The two words—“model” and “hypothesis”—are closely related. Every model is a formalized implementation of a hypothesis about how the system being modeled works.</p>
+<p>There are many definitions for the word hypothesis. Often, the definitions emphasize the ☞&nbsp;<strong>scientific method</strong><span id="finger-scientific-method-definition" data-label="scientific method">&nbsp;☜</span>, one description of which is called the ☞&nbsp;<strong>hypothetico-deductive method</strong><span id="finger-hypothetico-deductive-method-definition" data-label="hypothetico-deductive method">&nbsp;☜</span>, as described <a href="https://en.wikipedia.org/wiki/Hypothetico-deductive_model">here</a>. In the context of the scientific method, a reasonable definition for “hypothesis” is along the lines of the following, offered by an AI prompted to define “hypothesis” specifically in the context of the scientific method:</p>
+<blockquote class="blockquote">
+<p><em>A hypothesis is a testable explanation for a phenomenon that serves as a starting point for further investigation through experimentation or observation.</em></p>
+</blockquote>
+<p>We often think of hypotheses (and the models that implement them) as developing over time, as implied by the phrase “further investigation.” But for the purposes of comparing and competing hypotheses, a better picture is that of a set of models all present at the same time, like the candidates in an election.</p>
+<p>To choose the best among the hypotheses, we need to be able to compare them to one another in terms of their ability to account for observed data and make accurate predictions. The numerical measure, the output of our objective function, is a quantity called ☞&nbsp;<strong>likelihood</strong><span id="finger-likelihood-definition" data-label="likelihood">&nbsp;☜</span>.</p>
+<section id="sec-likelihood-framework" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="sec-likelihood-framework"><span class="header-section-number">11.1</span> The likelihood framework</h2>
+<p><a href="Chap-08-uncertainty.html#sec-uncertainty">Chapter 8</a> discussed how to use <em>probability distributions</em> to quantify uncertainty. <a href="Chap-08-uncertainty.html#sec-where-from">Section 8.2</a> introduced a Bayesian notion of where probability distributions come from: they are hypotheses concocted by humans.</p>
+<p>In the ☞&nbsp;<strong>likelihood framework</strong><span id="finger-likelihood-framework-definition" data-label="likelihood framework">&nbsp;☜</span>, we replace ideas about individual hypotheses being correct or incorrect, right or wrong, true or false. Instead, we consider <em>collections</em> of hypotheses, putting them into <em>competition</em> with one another, just as sports playoffs pit different athletes or teams against one another. In sports, a higher score gives a team a claim to being better than the opponent.</p>
+<p>In the likelihood framework, the competing entities are hypotheses represented by probability distributions about the relative probability of each possible observed outcome. The “score” for each competing hypothesis is the “☞&nbsp;<strong>likelihood</strong><span id="finger-likelihood-definition" data-label="likelihood">&nbsp;☜</span>.” And just as sports teams compete in a particular setting—a game or match—hypotheses compete in a setting: data.</p>
+<p>The reader who has never heard of “likelihood” in this sense may wonder if the framework is the right or best one for placing hypotheses into competition. We turn to the field of statistics to answer. As described in <a href="Chap-08-uncertainty.html#sec-where-from">Section 8.2</a>, Bayesian and Frequentist statisticians fundamentally disagree. Despite their conflicting stances, both camps put likelihood at the center of their methodologies.</p>
+<p>To illustrate how likelihood works, consider how to model uncertainty in the time interval between major events, for example, the time between economic depressions or the time between magnitude 6.5+ earthquakes in a region.</p>
+<p>To be specific, suppose we have data on the timing of the last five events of some kind: events occurred in 1905, 1919, 1950, 1973, and 1990. We would like to model the uncertainty in the timing of the next event based on these observations. We have information on five observed intervals between consecutive events. Four of them are definite: 14 years between 1905 and 1919, 31 years between 1919 and 1950, 23 years between 1950 and 1973, and 17 years between 1973 and 1990. The fifth interval, between 1990 and the next event, is unknown. This doesn’t mean that we have no information about it. At this time of this writing, 2027, we know the fifth interval is at least 37 years long.</p>
+<p>The standard model for the interval between random events is the exponential distribution. This has one parameter, the rate. A good choice of rate is the one most consistent with the data. Likelihood provides the measure of consistency between a hypothesized rate and the observed intervals. The exponential function <a href="Chap-11-likelihood.html#fig-exp-20-model">Figure 11.1</a> shows the likelihood of any one interval observation for a hypothesized rate of 0.03. Each of the observed intervals, 14, 17, 23, and 31 years has been marked in the graph.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-exp-20-model" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exp-20-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-11-likelihood_files/figure-html/fig-exp-20-model-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exp-20-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.1: The likelihood for any observed interval under the hypothesis of an exponential distribution with rate 0.03. The four completed intervals by vertical lines. The likelihood of each is printed beside the vertical line.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The likelihood for each individual observation is the value of the likelihood function at that observation. For instance, the likelihood of an interval of 14 years is 0.0197. When there are multiple observations, we need to combine their likelihoods. How to accomplish this?</p>
+<p>The answer comes from the same feature of probability arithmetic that you may have encountered in games (or in math classes about games). For instance, the probability of rolling a 5 with a die is 1/6. The probability of rolling a 5 twice in a row involves combining the individual probabilities by multiplication: 1/6&nbsp;<span class="math inline">\(\times\)</span>&nbsp;1/6&nbsp;=&nbsp;1/36.</p>
+<p>The overall likelihood of our four observations—intervals of 14, 17, 23, and 31 years—is the product of their individual likelihoods: #<span class="math inline">\(0.0197 \times 0.0180 \times 0.0150 \times 0.0118 = 6.325e-8\ .\)</span>$ This number is very small in magnitude. That’s because there are very many other possibilities for the intervals that could have been observed, say, 12, 19, 24, 28 and such. Since there are so many similar sets of numbers, the likelihood of observing any particular one is small. As you’ll see, the ultimate use of likelihoods is to compare them one to another, that is, to compare their <em>relative size</em>.</p>
+<p>If all we had were the four completed intervals, the overall likelihood of 6.325e-8 would be the value we assign to the specific hypothesis of an exponential distribution with a rate parameter of 0.03. We are going to put this specific hypothesis into a competition for the <em>best</em> hypothesis. As described in <a href="Chap-10-tradeoffs.html#sec-tradeoffs">Chapter 10</a>, to define “best,” we need an <em>objective function</em> whose input will be the rate parameter and whose output will be the overall likelihood of our observed data—14, 17, 23, and 31 years—under that hypothesis.</p>
+<p>By carrying out the same calculations we did for a rate of 0.03, we can find the likelihood for other rates. These are displayed in <a href="Chap-11-likelihood.html#tbl-several-rates">Table 11.1</a>. The workflow is this, for each row:</p>
+<ol type="i">
+<li>set the hypothesized rate</li>
+<li>compute the likelihood of each observation under that rate</li>
+<li>multiply these likelihoods to get the overall likelihood for the row.</li>
+</ol>
+<p>This is repeated for each hypothesized rate. For the sake of conciseness, <a href="Chap-11-likelihood.html#tbl-several-rates">Table 11.1</a> shows only five hypothesized rates. See <a href="Chap-11-likelihood.html#fig-likelihood-curve">Figure 11.2</a> for a more complete picture.</p>
+<div id="tbl-several-rates" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-several-rates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11.1: The likelihoods of the observations under five different hypothesized rates.
+</figcaption>
+<div aria-describedby="tbl-several-rates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>hypothesized rate</th>
+<th>14</th>
+<th>17</th>
+<th>23</th>
+<th>31</th>
+<th>overall</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.03 per year</td>
+<td>0.0197</td>
+<td>0.0180</td>
+<td>0.0150</td>
+<td>0.01180</td>
+<td>6.33e-8</td>
+</tr>
+<tr class="even">
+<td>0.04 per year</td>
+<td>0.0228</td>
+<td>0.0203</td>
+<td>0.0159</td>
+<td>0.01160</td>
+<td>8.54e-8</td>
+</tr>
+<tr class="odd">
+<td>0.05 per year</td>
+<td>0.0248</td>
+<td>0.0214</td>
+<td>0.0158</td>
+<td>0.01060</td>
+<td>8.92e-8</td>
+</tr>
+<tr class="even">
+<td>0.06 per year</td>
+<td>0.0259</td>
+<td>0.0216</td>
+<td>0.0151</td>
+<td>0.00934</td>
+<td>7.90e-8</td>
+</tr>
+<tr class="odd">
+<td>0.07 per year</td>
+<td>0.0263</td>
+<td>0.0213</td>
+<td>0.0140</td>
+<td>0.00799</td>
+<td>6.26e-8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>From the overall likelihood for each of the hypothesized rate parameters shown in <a href="Chap-11-likelihood.html#tbl-several-rates">Table 11.1</a>, we can see that a rate of 0.05 /year is more likely than our original hypothesis of 0.03 / year. But we can say more. The likelihood ratio comparing the 0.05 per year hypothesis to the 0.03 per year hypothesis is 1.41. <a href="Chap-11-likelihood.html#tbl-likelihood-ratio-verbal">Table 11.2</a>, to be introduced in the next section, translates likelihood ratios into verbal statements of relative support. A likelihood ratio of 1.41 is really “no evidence” in favor of 0.05 per year versus 0.03 per year. The reason for this wimpy result is that four observations is a tiny amount of data.</p>
+<p>If we can’t argue for the 0.05 per year hypothesis over the 0.03 per year hypothesis based on the four complete observations, what possible hypotheses can we rule out. To illustrate this, we’re going to extend the calculations shown in <a href="Chap-11-likelihood.html#tbl-several-rates">Table 11.1</a> to a wider range of intervals and plot the results in <a href="Chap-11-likelihood.html#fig-likelihood-curve">Figure 11.2</a>.</p>
+<div id="fig-likelihood-curve" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-likelihood-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-likelihood-curve" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-likelihood-curve-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-likelihood-curve-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-11-likelihood_files/figure-html/fig-likelihood-curve-1.png" class="img-fluid figure-img" data-ref-parent="fig-likelihood-curve" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-likelihood-curve-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) The four completed intervals.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-likelihood-curve" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-likelihood-curve-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-likelihood-curve-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-11-likelihood_files/figure-html/fig-likelihood-curve-2.png" class="img-fluid figure-img" data-ref-parent="fig-likelihood-curve" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-likelihood-curve-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) The one incomplete interval of 37 years.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-likelihood-curve" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-likelihood-curve-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-likelihood-curve-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-11-likelihood_files/figure-html/fig-likelihood-curve-3.png" class="img-fluid figure-img" data-ref-parent="fig-likelihood-curve" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-likelihood-curve-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) All five intervals combined.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-likelihood-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.2: Likelihood of the observed data as a function of the hypothesized <em>rate</em> parameter.
+</figcaption>
+</figure>
+</div>
+<p>Panel (a) shows the likelihood function for the four complete intervals, the same calculation as in <a href="Chap-11-likelihood.html#tbl-several-rates">Table 11.1</a>.</p>
+<p>Panel (b) is the likelihood function for the incomplete interval, that is, an interval that is still ongoing after 37 years from 1990 to 2027. If the rate parameter were very low, say one event per 100 years, an incomplete interval of at least 37 years is very likely. If the rate parameter were higher, say one even per 10 years, the likelihood of seeing the 37-year incomplete interval is very low.</p>
+<p>Panel (c) puts together the data from the complete and incomplete intervals. The likelihood function in (c) is the <em>product</em> of the two likelihood functions in (a) and (b).</p>
+<p>The amount of data available dictates how precise a statement is justified by the evidence. Statisticians often quantify precision in this context by using the <span class="math inline">\(\pm\)</span> notation. For instance, an estimate of <span class="math inline">\(0.03 \pm 0.01\)</span> would indicate “95-percent confidence” that the true rate parameter lies within the interval <span class="math inline">\(0.02\)</span> to <span class="math inline">\(0.04\)</span>. In each of panels (a), (b), and (c) we have indicated this 95-percent confidence interval with the vertical <span style="color: magenta;">magenta</span> lines.</p>
+<p>A good rule of thumb is that quadrupling the amount of data roughly halves the width of the confidence interval. But there is little reason to expect the new interval to be centered on the old estimate. The most one can say is that the new interval will probably overlap the original interval. That may be counter-intuitive, but uncertainty is sometimes that way!</p>
+</section>
+<section id="sec-evidence-into-words" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="sec-evidence-into-words"><span class="header-section-number">11.2</span> Putting numerical evidence into words</h2>
+<p>A <em>likelihood</em> ratio is a measure of the strength of evidence. In interpreting likelihood, verbal ideas like “weak” evidence, “moderate,” and “strong” turn out to correspond to the <em>magnitude</em> of the likelihood ratio, where “magnitude” is used in the sense of <a href="Chap-05-magnitudes.html#sec-order-of-magnitude">Chapter 5</a>.</p>
+<p>The translation of a continuous quantity into a small set of verbal descriptions necessarily involves imposing some breakpoints. <a href="#tbl-likelihood-ratio-verbal" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-likelihood-ratio-verbal</span></a> provides a widely accepted set of breakpoints for translating the magnitude of the likelihood ratio into a verbal interpretation.</p>
+<div id="tbl-likelihood-ratio-verbal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-likelihood-ratio-verbal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11.2: A scale for translating the likelihood ratio into verbal categories.
+</figcaption>
+<div aria-describedby="tbl-likelihood-ratio-verbal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Magnitude</th>
+<th>Likelihood<br>ratio</th>
+<th>Verbal interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>No evidence.</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>10</td>
+<td>Limited evidence to support the hypothesis.</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>100</td>
+<td>Moderate evidence to support the hypothesis.</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>1000</td>
+<td>Moderately strong evidence to support the hypothesis.</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>10000</td>
+<td>Strong evidence to support the hypothesis.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>In accepting the verbal interpretations in <a href="Chap-11-likelihood.html#tbl-likelihood-ratio-verbal">Table 11.2</a> we are relying on the experience of past researchers. There’s nothing wrong with that. But it would be nice to have a definite interpretation of what “limited” or “moderate” evidence constitutes. The mathematics of likelihood provide a means to do this.</p>
+<p>First, there’s general consensus among statisticians and scientists that a likelihood ratio of 10,000 is sufficient to satisfy the criterion for “strong evidence” in favor of a hypothesis. Now, imagine that your observations have yielded a likelihood ratio of 100. How much more evidence would you need to collect to reach a ratio of 10,000. One answer is, you can’t know for sure because you don’t know in what direction the new evidence will point.</p>
+<p>But assume you are excited enough about your existing evidence to believe it will be worthwhile to continue collecting data. Your excitement leads you to suspect that the additional data will point in approximately the same direction as your current evidence. (But there is never a guarantee!) If your suspicion were correct, you would have to plan to <strong>double</strong> the amount of data you use to calculate the likelihood ratio. A nice way to do this would be to have some other researcher confirm your earlier results while doubling the amount of data overall.</p>
+<p>Suppose you flip a coin 10 times and get 6 heads. Are you justified in believing the coin is biased toward heads? To answer this question, you need to compare two hypotheses. One hypothesis is that the coin is not biased, that is, the likelihood of getting a head is 0.5. Statisticians refer to such a “nothing-out-of-the-ordinary” hypothesis as a ☞&nbsp;<strong>Null hypothesis</strong><span id="finger-null-hypothesis-definition" data-label="Null hypothesis">&nbsp;☜</span>. You need another hypothesis to compare it to, a hypothesis that specifies what is the <em>amount</em> of bias. Let’s call this the “research hypothesis.”” For instance, you might consider a research hypothesis that the likelihood of getting a head is 0.6.</p>
+<p>Under the Null hypothesis the likelihood of getting 6 heads and 4 tails is:</p>
+<p><span class="math display">\[\underbrace{0.5 \cdot 0.5 \cdot 0.5 \cdot 0.5 \cdot 0.5 \cdot 0.5}_\text{For the heads} \cdot \underbrace{0.5 \cdot 0.5 \cdot 0.5 \cdot 0.5}_\text{For the tails} = 0.0010\]</span></p>
+<p>Under the research hypothesis, the likelihood of getting 6 heads and 4 tails is:</p>
+<p><span class="math display">\[\underbrace{0.6 \cdot 0.6 \cdot 0.6 \cdot 0.6 \cdot 0.6 \cdot 0.6}_\text{For the heads} \cdot \underbrace{0.4 \cdot 0.4 \cdot 0.4 \cdot 0.4}_\text{For the tails} = 0.0012\]</span></p>
+<p>The likelihood ratio comparing the research hypothesis to the Null hypothesis is 1.2. This provides no reason to favor the research hypothesis. But, like a detective hunting for the criminal, you can try to collect more evidence, that is, more data.</p>
+<p>For fun, imagine a dialog with the chief investigator (your boss) and with a likelihood expert present:</p>
+<p>Detective: Chief, I only have very preliminary evidence that the coin is biased (at 0.6), but I have a strong hunch and I’m sure it will become more convincing if I collect more data.</p>
+<p>Chief: How much time have you spent on this?</p>
+<p>Detective: Just two days. But enough to feel it in my gut that the coin is biased.</p>
+<p>Chief: It would be nice to put this case to bed, one way or the other. Take another two days and update me then.</p>
+<p>Detective: Will do. Thanks, Chief.</p>
+<p><em>Two days later</em></p>
+<p>Detective: I have been following up on the case. What I’m seeing is a match to my previous hunch, I think it’s more than a hunch.</p>
+<p>Chief: Do you think you can wrap it up in another two days?</p>
+<p>Detective: I’m confident.</p>
+<p>Department Likelihood expert: Hold on. Your first two days investigation produced a likelihood ratio of 1.2. If your new data is consistent with your previous data, the combined likelihood ratio will be the square of 1.2, which is 1.44. If you were to spend another 4 days, the ratio would be 1.44&nbsp;<span class="math inline">\(\times\)</span>&nbsp;1.44&nbsp;=&nbsp;2.07. That would be laughed out of court!</p>
+<p>Chief: What would it take for the evidence to be convincing?</p>
+<p>Department Likelihood expert: For evidence “beyond a reasonable doubt”, we would need a likelihood ratio of 10,000 or thereabouts. That would take about 100 days worth of data. And even after that, there’s no reason to think, at this point, that things would come out the way you want.</p>
+<p>Chief: How much data would we need to convince the perp to accept a plea deal?</p>
+<p>Department Likelihood expert: For a plea deal, the required likelihood ratio would be much lower, perhaps around 100 to 1000. We’re talking 50 to 75 days of evidence collecting.</p>
+<p>Chief (to Detective): I want you off the case. We’ve got better things to do.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Chap-10-tradeoffs.html" class="pagination-link" aria-label="Trade-offs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trade-offs</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Chap-12-bayes.html" class="pagination-link" aria-label="Bayesian reasoning">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Quantities – Quantitative Argumentation</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Chap-04-rates.html" rel="next">
+<link href="./Chap-02-systems.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-01-models.html">Foundations</a></li><li class="breadcrumb-item"><a href="./Chap-03-quantities.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative Argumentation</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-01-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argument and reasoning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-02-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems, dimensions, and data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-03-quantities.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-04-rates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-05-magnitudes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Order of magnitude</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Using functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-06-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-07-core-modeling-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Core modeling functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-08-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uncertainty in quantities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-09-composing-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Composing functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Decision, evidence, and belief</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-10-tradeoffs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trade-offs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-11-likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis and likelihood</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-12-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bayesian reasoning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modeling change</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-13-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dynamics: Modeling change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-14-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-15-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accumulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capstone: Toward AI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap-16-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Moving Past Two Inputs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix-Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Chapter Summaries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chap-01-models.html">Foundations</a></li><li class="breadcrumb-item"><a href="./Chap-03-quantities.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-quantities" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Quantities</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><em>Vocabulary Review</em></p>
+<ul>
+<li>dimension (2)</li>
+<li>operationalization (2)</li>
+<li>value (2)</li>
+</ul>
+<p><em>New</em></p>
+<ul>
+<li>analysis</li>
+<li>base dimensions</li>
+<li>base units</li>
+<li>capita</li>
+<li>controlling for</li>
+<li>conversion factor</li>
+<li>coordinate plane</li>
+<li>derived dimensions</li>
+<li>derived units</li>
+<li>dimensionless</li>
+<li>flavors of one</li>
+<li>number line</li>
+<li>partial change</li>
+<li>per</li>
+<li>point</li>
+<li>pure number</li>
+<li>quantity</li>
+<li>si</li>
+<li>space</li>
+<li>units</li>
+<li>with respect to</li>
+<li>worth</li>
+</ul>
+</div></div><p>In <a href="Chap-02-systems.html#sec-systems">Chapter 2</a> we used the word “dimension” to stand for any of the properties or attributes of an object or system. For example, among the many dimensions of a person are age, eye color, sex, strength, health, and so on. We also discussed “operationalization,” which mean the process or procedure for converting a dimension into a quantity. That is, operationalization tells how to <em>measure</em> a dimension, turning it into one or more quantities. For instance, we might operationalize “health” using measures such as blood pressure, cholesterol level, blood-sugar level, and so on.</p>
+<p>I would be understandable to think that “quantity” is simple another word for “number.” Quantitative argumentation, however, needs to take careful account of the <em>kind</em> of quantity being considered. For instance, a quantity of 5 could be 5 seconds, 5 dollars, 5 miles, or 5 gallons. The number 5 is the same in each case, but the <em>kind</em> of quantity is different. This is likely obvious to you, but there is more to be said.</p>
+<p>In this book, we will use “<em>quantity</em>” within a specific framework of surrounding concepts. Mastering this framework will make clear many things that are confusing to untrained people, which is to say, most everybody. The framework is not complex, but it requires some discipline and precision of thought.</p>
+<section id="sec-quantity-framework" class="level2 page-columns page-full" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-quantity-framework"><span class="header-section-number">3.1</span> The quantity framework</h2>
+<div class="page-columns page-full"><p>☞&nbsp;<strong>Quantity</strong><span id="finger-quantity-definition" data-label="Quantity">&nbsp;☜</span> and its framework concern anything measurable in a standardized way. Here are a few examples of <em>standardized measures</em>: foot, meter, degrees F, pints, hours, acres, miles, kilograms, pounds, dollars, miles per hour.  Scientists and engineers, craftsmen, business people, health-care workers, and others learn more specialized standard units, such as joules, amps, coulombs, moles, watts, kilowatt-hours, board feet, and many, many more. They also encounter words for the <em>kind of thing</em> being measured: length, time, mass, weight, energy, power, volume, flow, speed, costs, prices, and such.</p><div class="no-row-height column-margin column-container"><span class="">The word ☞&nbsp;<strong>per</strong><span id="finger-per-definition" data-label="per">&nbsp;☜</span> is used technically. See <a href="Chap-04-rates.html#sec-rates">Chapter 4</a>.</span></div></div>
+<p>“Standardized measures” are better known, in both technical and everyday speech, as ☞&nbsp;<strong>units</strong><span id="finger-units-definition" data-label="units">&nbsp;☜</span>. Our technical definition of quantity is a combination of two or (optionally) three elements:</p>
+<div id="def-quantity-composition" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.1</strong></span> A <em>quantity</em> is composed of these elements:</p>
+<blockquote class="blockquote">
+<ol type="i">
+<li>A <strong>pure number</strong> such as 7 or 2.15 or 6.1 <span class="math inline">\(\times 10^{-8}\)</span></li>
+<li>A <strong>unit</strong> such as “meter,” “bushel,” or “acre.”</li>
+<li>(Optionally) additional words describing the stuff more specifically, for instance, “a bushel <em>of apples</em>” or “a pint <em>of blueberries</em>.”</li>
+</ol>
+</blockquote>
+</div>
+<p>The primary use of quantities is to state or record <em>how much</em> there is of something. Most people are well acquainted with this use, having learned it about the same time as they learned arithmetic. As a reminder, we turn to a nice book from 1931, <em>Arithmetic for the Practical Man</em> by J.E. Thompson. He wrote:</p>
+<blockquote class="blockquote">
+<p>Common measurements are of several kinds …. The chief of the common measurements are those of</p>
+<ol type="i">
+<li>Length</li>
+<li>Surface, or area</li>
+<li>Volume, or capacity</li>
+<li>Weight, or force of gravity</li>
+<li>Time</li>
+<li>Angles, latitude and longitude</li>
+<li>Temperature, or intensity of heat</li>
+<li>Money, or value</li>
+</ol>
+</blockquote>
+<p>The “several kinds” of things in Thompson’s list are mutually ☞&nbsp;<strong>incommensurate</strong><span id="finger-incommensurate-definition" data-label="incommensurate">&nbsp;☜</span>: They cannot be arithmetically compared to one another or added to (or subtracted from) one another. Is a mile larger than a cubic centimeter? Invalid comparison. Is 212°F bigger than 45 degrees of latitude? Don’t go there, even though both units are named “degrees.” How much is 12 seconds plus 4 dollars? No.</p>
+</section>
+<section id="base-units" class="level2 page-columns page-full" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="base-units"><span class="header-section-number">3.2</span> Base units</h2>
+<p>A <em>unit</em> is a way of quantifying “how much.” To say, “this video covers 30” involves a number but not a “how much.” For that, we have to specify what the 30 refers to. Thirty seconds or 30 minutes are both reasonable durations for videos, but one can also find videos that cover high-speed events, like the <a href="https://www.youtube.com/watch?v=4Lv7DsKfwAk">flare-up of a match</a>, with much of the action occurring over 30 milliseconds. At the other extreme, this <a href="https://www.youtube.com/watch?v=w77zPAtVTuI">time-lapse video of a bean sprouting</a> covers about 30 days. Milliseconds, seconds, minutes, hours, days, months, years, centuries, millennia, etc. are different standard units of time.</p>
+<p>Units are part of everyday life: liters, cups, acres, degrees C, miles, cubits, meters, microns, feet, carats, drams, and so on. The quantitative thinker must have in mind, for each quantity under consideration, what the units of measure are. The particular units employed vary from country to country. Different professions use different units for the same kind of quantity. For instance, a jeweler uses a carat as a measure of mass, while a shipping company might use a ton (or, slightly different, a “tonne”).</p>
+<p><em>Le Système international d’unités</em>, usually referred to as ☞&nbsp;<strong>SI</strong><span id="finger-si-definition" data-label="SI">&nbsp;☜</span>, is the primary official definition for units. SI distinguishes between two classes of units: seven <a href="https://en.wikipedia.org/wiki/International_System_of_Units#History">☞&nbsp;<strong>base units</strong><span id="finger-base-units-definition" data-label="base units">&nbsp;☜</span></a> and many, many ☞&nbsp;<strong>derived units</strong><span id="finger-derived-units-definition" data-label="derived units">&nbsp;☜</span>. Examples of the kinds of things measured in derived units: force, energy, pressure, power, and dose of radioactivity. Each base unit (see Table 2.1) provides a “letter” in a seven-letter alphabet for describing all SI units. The different base units cannot be defined in terms of one another, but derived units can.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Table 2.1: The four (of seven) base units in SI most often encountered in everyday life. For completeness, note that the other three base units are the ampere (electric current), the mole (amount of a substance), and the candela (luminous intensity).</p>
+</div></div><table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Kind of <br> quantity</th>
+<th style="text-align: right;">Unit <br> name</th>
+<th style="text-align: left;">Unit <br> symbol</th>
+<th style="text-align: left;">Dimension <br> symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">time</td>
+<td style="text-align: right;">second</td>
+<td style="text-align: left;">s</td>
+<td style="text-align: left;">T</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">length</td>
+<td style="text-align: right;">meter</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">L</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mass</td>
+<td style="text-align: right;">kilogram</td>
+<td style="text-align: left;">kg</td>
+<td style="text-align: left;">M</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">temperature</td>
+<td style="text-align: right;">kelvin</td>
+<td style="text-align: left;">K</td>
+<td style="text-align: left;"><span class="math inline">\(\Theta\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The SI base units have a strongly scientific or technological flavor. But quantitative reasoning is important in other domains as well. Consequently, this book frequently use two more base units that are not covered by SI: people and ☞&nbsp;<strong>worth</strong><span id="finger-worth-definition" data-label="worth">&nbsp;☜</span>.</p>
+<p>We count people not by their mass or volume, but <em>by the head</em>. The Latin word for head is ☞&nbsp;<strong>capita</strong><span id="finger-capita-definition" data-label="capita">&nbsp;☜</span>, and the phrase <em>per capita</em> is common in quantitative descriptions of economies, educational systems, and the like. There are alternatives to <em>capita</em> when counting people. It depends on the context: deaths, births, passengers, students, children, patients, victims, fatalities, and so on.</p>
+<div class="page-columns page-full"><p>As for “worth,” this is a rich and subjective concept.  And there are many kinds of worth. The notion of worth that is most widely considered in quantitative reasoning is, effectively, monetary worth. The meaning of a given quantity of money is what it can buy, which changes from place to place and time to time. A second is a fixed amount of time, wherever and whenever, but a dollar corresponds to different amounts of stuff depending on where and when it is spent.</p><div class="no-row-height column-margin column-container"><span class="">“Subjective”: relating to a personal viewpoint.</span></div></div>
+<div class="page-columns page-full"><p>Economists, to deal with changing value over time, often measure money in terms of inflation-adjusted currency, for instance, “☞&nbsp;<strong>constant dollars</strong><span id="finger-constant-dollars-definition" data-label="constant dollars">&nbsp;☜</span>.” As regards place-to-place variation, especially between countries, a concept called “☞&nbsp;<strong>purchasing power parity</strong><span id="finger-purchasing-power-parity-definition" data-label="purchasing power parity">&nbsp;☜</span>” (PPP) is applied.  This operationalization of money is not perfect, nor can it be, considering the broad set of contexts in which money is a factor. However, the quality of a model reflects its <em>utility</em> in providing information. Not including money because of the imperfection of its operationalization would undercut such utility.</p><div class="no-row-height column-margin column-container"><span class="">Economists go so far as to identify inflation-adjusted prices as “real prices.” The price actually paid is called a “nominal price.”</span></div></div>
+<p>Theoreticians have created a base unit for money called the “International Dollar.” In practice, however, the US Dollar (USD) is widely used, augmented by terms such as “constant 2020” or “adjusted for PPP.”</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Table 2.2: Three dimensions not included in the SI but which are useful for general quantitative reasoning.</p>
+</div></div><table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 18%">
+<col style="width: 23%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Kind of <br> quantity</th>
+<th style="text-align: right;">Unit name</th>
+<th style="text-align: left;">Unit <br> symbol</th>
+<th style="text-align: left;">Dimension <br> symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">people</td>
+<td style="text-align: right;">capita</td>
+<td style="text-align: left;">person</td>
+<td style="text-align: left;">C (for “capita”)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">money</td>
+<td style="text-align: right;">USD</td>
+<td style="text-align: left;">USD</td>
+<td style="text-align: left;">W (for “worth)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pure number</td>
+<td style="text-align: right;">“dimensionless”</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">[1]</td>
+</tr>
+</tbody>
+</table>
+<p>We have made up the dimension symbols C and W. There is no standard in general use, though perhaps there should be.</p>
+</section>
+<section id="derived-units" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="derived-units"><span class="header-section-number">3.3</span> Derived units</h2>
+<p>Arithmetic multiplication or division of base quantities produces many of the quantities we deal with regularly. The most familiar examples involve division: a unit for velocity is “miles <em>per</em> hour”; a unit for flow of a liquid (as in the output of a shower head) is “liters <em>per</em> minute.” The word ☞&nbsp;<strong>per</strong><span id="finger-per-definition" data-label="per">&nbsp;☜</span> is shorthand for “divided by.”</p>
+<p>Multiplication is also extremely common. An <em>area</em> is a length multiplied by a length. If the lengths are in inches, the area is in “square inches,” that is, an inch multiplied by an inch. The units “square mile” or “square foot” are the same, with the base unit inch replaced by mile or foot, respectively. Similarly, volume is area multiplied by length. For instance, a liter is 10 cm <span class="math inline">\(\times\)</span> 10 cm <span class="math inline">\(\times\)</span> 10 cm, or, according to convention, 1000 cm<sup>3</sup> (pronounced “cubic centimeters”).</p>
+<p>We use the term “<strong>derived units</strong>” for the kinds of units created by multiplication or division of the base units. A <em>meter</em> is a base SI unit; a <em>cubic meter</em> is a derived unit. The SI derived unit for velocity is meters per second. Both meters and seconds are SI base units. Meters-per-second, like miles-per-hour, is a <em>derived unit</em>.</p>
+<p>“Per” is used in units to signify division. In contrast, there is no word to indicate multiplication. Instead, the two base units involved are merely named one after the other, as in “man-hours” (a unit for effort) or “acre-feet” (a unit of volume used in hydrology).</p>
+<p>We often use simple names for units consisting of complicated assemblies of multiplied or divided base units. For example, a watt (unit symbol W) is an SI derived unit of power. In terms of SI base units, it is kg <span class="math inline">\(\cdot\)</span> m<sup>2</sup> per s<sup>3</sup>.</p>
+</section>
+<section id="sec-standard-dimensions" class="level2 page-columns page-full" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="sec-standard-dimensions"><span class="header-section-number">3.4</span> Standard dimensions</h2>
+<div class="page-columns page-full"><p>Since the unit is an essential component of any quantity, quantitative reasoning requires care in working with units. A matter of considerable importance when working with units is ☞&nbsp;<strong>commensurability</strong><span id="finger-commensurability-definition" data-label="commensurability">&nbsp;☜</span>, the ability to measure by the same standard.  For example, all of these units refer to <em>volume</em>: liters, cups, cc, pints, gallons, bushels, barrels, cubic meters, and acre-feet. These volume units are <em>commensurate</em>, meaning that one can measure the same quantity using any of them. It might make the most sense to measure the volume of water in a swimming pool using cubic meters—the volume is 2500 m<sup>3</sup>—since the meter is the SI base unit for length. (A standard pool is 50 m long by 25 m wide by 2 m deep.) Nevertheless, it is possible—if frivolous—to measure the pool’s volume in cups, bushels, or acre-feet. (Just FYI, there are 10,567,000 cups or 70,943.98 bushels or 2.026786 acre-feet in a pool.)</p><div class="no-row-height column-margin column-container"><span class="">The word <em>commensurate</em> is from the Latin <em>com</em> (together) and <em>mensurare</em> (to measure).</span></div></div>
+<p>Only when the quantities are commensurate can we add or subtract them. For instance, the sum of 3 cups and 0.5 gallons is a valid quantity equivalent to 2.60247 liters, 11 cups, 0.6875 gallons, etc. However, “3 cups plus 20 seconds” makes no sense, since volume and time are not commensurate.</p>
+<p>☞&nbsp;<strong>Dimensional analysis</strong><span id="finger-dimensional-analysis-definition" data-label="Dimensional analysis">&nbsp;☜</span> is an important method to keep track of how quantities are related. Tables 2.1 &amp; 2.2 show the symbol for the dimension for each basic unit. These are called ☞&nbsp;<strong>base dimensions</strong><span id="finger-base-dimensions-definition" data-label="base dimensions">&nbsp;☜</span>. Any unit that is commensurate with a base unit—for instance, mile and yard are commensurate with the base unit meter—shares that base unit’s dimension.</p>
+<p>Each quantity expressible in a derived unit has a corresponding ☞&nbsp;<strong>derived dimensions</strong><span id="finger-derived-dimensions-definition" data-label="derived dimensions">&nbsp;☜</span>. Just as derived units are composed by multiplication and division, derived dimensions are composed by multiplying and dividing the basic dimensions. For instance, the dimension of <em>surface area</em> is L <span class="math inline">\(\times\)</span> L . Some derived dimensions are complicated, for example, the dimension of <em>power</em>: M L<sup>2</sup> T<sup>-3</sup>. When writing such dimensions, we tend to use exponents when a basic dimension appears more than once, such as the -2 on T<sup>2</sup>.</p>
+<p>Just looking at M L<sup>2</sup> T<sup>-3</sup> does not easily call to mind the word “power.” It helps to have a notation for translating names into the corresponding composition of base dimensions. For this purpose, we use square brackets. For instance, we can write the dimension of <em>power</em> using square braces: [power]. In this shorthand, [power] means the same thing as M L<sup>2</sup> T<sup>-3</sup>. Similarly, if we are working with a derived unit like miles per hour (mph), we will write that unit in square braces when referring to the corresponding dimension. For instance, [mph] = L T<sup>-1</sup>.</p>
+<p>In addition to the six dimensions listed above—T, L, M, <span class="math inline">\(\Theta\)</span>, C, and W—it will be helpful to add one more: the dimension of a ☞&nbsp;<strong>pure number</strong><span id="finger-pure-number-definition" data-label="pure number">&nbsp;☜</span>. A pure number is a special kind of quantity in that it carries <em>no unit designation</em>. 7 is a pure number, as is <span class="math inline">\(\pi\)</span> and most of the numbers you considered in high-school mathematics. All pure numbers share the same dimension, which we will write by putting the number 1 in square brackets, like this, [1].</p>
+<p>All the base dimensions have names—e.g.&nbsp;time, worth, capita, length—and [1] is certainly an important and useful dimension deserving of a name. The word equivalent for [1] is “☞&nbsp;<strong>dimensionless</strong><span id="finger-dimensionless-definition" data-label="dimensionless">&nbsp;☜</span>.” Admittedly, using “dimensionless” as a type of dimension takes some getting used to.</p>
+<p>Pure numbers are not the only kinds of dimensionless quantities. Importantly, angles are dimensionless but are measured in units such as degrees or radians. An angle of 90 degrees is the same as an angle <span class="math inline">\(\pi/2\)</span> radians. Different units, same quantity. Students may recall from trigonometric studies the definition of the unit “<em>radian</em>” as the L along the arc of a circle divided by the L of the radius, as in <a href="#fig-angle-ratio" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-angle-ratio</span></a>. A length divided by another length is dimensionless.</p>
+<div id="fig-angle-ratio" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-angle-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: An angle (denoted <span class="math inline">\(\theta\)</span> here) is the ratio of the length <span class="math inline">\(s\)</span> of the arc subtended by the angle to the radius <span class="math inline">\(r\)</span> of the circle centered on the vertex of the angle: <span class="math inline">\(\theta = s / r\)</span>. [Image source: <a href="https://utsa.pressbooks.pub/precalculus/chapter/__unknown__-2/">UTSA Libraries and Museums</a>]
+</figcaption>
+<div aria-describedby="fig-angle-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="www/angle-ratio.png" class="img-fluid figure-img" style="width:2.5in">
+</div>
+</figure>
+</div>
+<p>Steep roads often have “grade markers” indicating how steep they are. In the US, interstate highways may not be steeper than 6%. The <em>steepness</em> is operationalized as the change in elevation divided by the horizontal distance travelled. Driving the steepest mile along Lincoln Gap Road in Vermont (USA) involves a net change in elevation of about 800 feet. The road grade is therefore 800 ft/mile. We can write the ratio more explicitly in terms of the two quantities involved:</p>
+<p><span id="eq-lincoln-gap"><span class="math display">\[\frac{800\, \text{ft}}{1\, \text{mile}} =
+\frac{800\, \text{ft}}{5280\, \text{ft}} =
+\boxed{\frac{800}{5280}}\ \cancelto{1}{\boxed{\frac{\text{ft}}{\text{ft}}}} = 0.1515\ . \tag{3.1}\]</span></span></p>
+<p>In the boxed quantity in <a href="#eq-lincoln-gap" class="quarto-xref">Math expression&nbsp;<span class="quarto-unresolved-ref">eq-lincoln-gap</span></a>, we have converted 1 mile to its equivalent: 5280 feet. The result is a unit ft-per-ft, which is simply the number 1. So the grade is <span class="math inline">\(800/5280 \approx 0.15 = 15\%\)</span>. Percent is the standard dimensionless unit to report grades. ß</p>
+</section>
+<section id="unit-conversion" class="level2 page-columns page-full" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="unit-conversion"><span class="header-section-number">3.5</span> Unit conversion</h2>
+<div class="page-columns page-full"><p>To facilitate addition, subtraction, and comparison of quantities, we often need to convert them to a common unit, as in <a href="#eq-lincoln-gap" class="quarto-xref">Math expression&nbsp;<span class="quarto-unresolved-ref">eq-lincoln-gap</span></a>. For conversion, the units must be commensurate. Except for temperatures,  we convert between commensurate units by multiplication with a ☞&nbsp;<strong>conversion factor</strong><span id="finger-conversion-factor-definition" data-label="conversion factor">&nbsp;☜</span>.</p><div class="no-row-height column-margin column-container"><span class="">The units for representing [temperature] are commensurate: °C, °F, °K. However, conversion among them involves not just multiplication but also addition or subtraction. The reason has to do with the meaning of zero. While 0 s means no time at all and 0 m means no length at all, the commonly used temperature units differ on what zero means. In degrees C, zero is the freezing point of water. In degrees F, zero marks a temperature well below freezing. In °K, zero means no thermal energy, corresponding to -273.15°C.</span></div></div>
+<p>Every conversion problem involves a “from” quantity and a “to” quantity. In converting 12.5 miles to meters, the “from” quantity is in units of miles and the “to” quantity is in meters. The conversion factor <em>always</em> multiplies the “from” quantity. The result of the multiplication is the “to” quantity. The appropriate conversion factor for 12.5 miles to meters is 1609.34 m/mile. The conversion is</p>
+<p><span class="math display">\[1609.34\, \frac{\text{m}}{\text{mile}} \times 12.5\, \text{miles} = 1609.34 \times 12.5 \, \boxed{{\text{m}} \times \cancelto{1}{\frac{\text{miles}}{\text{miles}}}\ \ \ }\]</span> <span id="eq-miles-to-meters"><span class="math display">\[= 20116.75\, \text{m} . \tag{3.2}\]</span></span></p>
+<p>The key to the conversion is in the box of <a href="#eq-miles-to-meters" class="quarto-xref">Math expression&nbsp;<span class="quarto-unresolved-ref">eq-miles-to-meters</span></a>. The “mile” appears on both the top and bottom of the quantity. This cancels out the two occurrences of “mile” to leave us with m.</p>
+<p>Conversion factors are always dimensionless; that is, [any conversion factor] = [1]. Even so, keeping the <em>units</em> of a conversion factor in mind substantially reduces the possibility of confusion or error. We call conversion factors ☞&nbsp;<strong>flavors of one</strong><span id="finger-flavors-of-one-definition" data-label="flavors of one">&nbsp;☜</span> because every conversion factor is equivalent to the number 1. Every conversion factor is the ratio of <em>two equal quantities</em>, although the quantities are expressed in different units.</p>
+<p>To illustrate, we will rewrite statements like “an inch is 0.0254 m” as flavors of one. Naturally, the word “is” in “1 inch is 0.0254 m” means that “1 inch” is the same quantity as “0.0254 m.” Dividing one by the other gives:</p>
+<p><span class="math display">\[\frac{1\, \text{inch}}{0.0254\, \text{m}} = 39.37\, \frac{\text{inches}}{\text{m}} = \text{flavor of}\ 1\ .\]</span></p>
+<p>Similarly, “1 day is 86,400 s” can be translated to a ratio with “1 day” on top and “86,400 s” on the bottom:</p>
+<p><span class="math display">\[\frac{1\, \text{day}}{86400\, \text{s}} = 0.0000157407 \, \frac{\text{days}}{\text{s}} = \text{flavor of}\ 1\ .\]</span></p>
+<p>Writing conversion factors as ratios <em>with units</em> signals clearly which is the “from” quantity and which is the “to” quantity. Not writing the units ratio explicitly invites confusion. For example, when converting 1 second to days, does one multiply by 86,400 or divide by 86,400? Remember that the conversion factor always <em>multiplies</em> the “from” quantity. Therefore, the correct conversion factor will be the flavor of one with the “from” unit on the bottom. Accidentally flipping the top and bottom of the conversion factor results in large errors.</p>
+<p>Both <span class="math inline">\(39.37\, \frac{\text{inches}}{\text{m}}\)</span> and <span class="math inline">\(0.0000157407 \, \frac{\text{days}}{\text{s}}\)</span> are quantities that are flavors of one. The numerical parts of the quantity—39.37 and 0.0000157407—are not 1, but the units—for instance, <span class="math inline">\(\frac{\text{days}}{\text{s}}\)</span>—balance this out to give an overall “unit-full,” dimensionless quantity that equals 1.</p>
+</section>
+<section id="sec-change-as-a-quantity" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="sec-change-as-a-quantity"><span class="header-section-number">3.6</span> Change as a quantity</h2>
+<p>You walk to work on a crisp, autumn day. On your return home, it’s uncomfortably warm. What happened? The temperature changed. It was 41<sup>○</sup>F in the morning and 75<sup>○</sup>F in the late afternoon. That’s a <strong>change</strong> of 34<sup>○</sup>F <em>from</em> morning <em>to</em> afternoon.</p>
+<p>Many people find this obvious, but it is worth pointing out. The change—34<sup>○</sup>F in the example—is calculated by taking the <em>to</em> value and subtracting the <em>from</em> value: 75<sup>○</sup>F - 41<sup>○</sup>F = 34<sup>○</sup>F.</p>
+<p>That night, the temperature drops to 52<sup>○</sup>F. The temperature change <em>from</em> late afternoon to nighttime is 52<sup>○</sup>F - 75<sup>○</sup>F = -23<sup>○</sup>F. Change can be either positive or negative, depending on whether the <em>to</em> value is larger or smaller than the <em>from</em> value.</p>
+<p>For a quantitative change to be meaningful, both the <em>to</em> and <em>from</em> quantities must have the same dimension; they must be the same <em>kind of thing</em>. In the previous examples, the variable is temperature for both <em>to</em> and <em>from</em>.</p>
+<p>It is natural to think about change in terms of <em>change over time</em>, e.g., from morning to afternoon. However, quantitative reasoning often uses “<em>change</em>” in a more general sense: any difference in the value of a quantity from one setting to another. For instance, air pressure changes with elevation: at sea level, it is relatively high compared to the pressure at the top of a mountain. We call this <em>change over elevation</em>. Another example: look at a map of average temperature. The average temperature at 45<sup>○</sup> latitude is typically different from that at 35<sup>○</sup> latitude: a <em>change over latitude</em>. Still another example: the relative humidity is, all other things being equal, lower at higher temperatures: a <em>change over temperature</em>.</p>
+<p>Although we quantify change by looking at the shifting value of one variable, there is always a <em>second variable</em>. The second variable sets the context for the change. In the previous paragraph, we used the word “over” as the marker for the second variable. To illustrate, in the change in air pressure over elevation, we are primarily interested in the variable <em>air pressure</em>. The second context-setting variable is <em>elevation</em>.</p>
+<p>Recognizing that quantitative change involves <em>two</em> variables, we will highlight the second, context-setting variable with a more memorable phrase: “☞&nbsp;<strong>with respect to</strong><span id="finger-with-respect-to-definition" data-label="with respect to">&nbsp;☜</span>,” as in “change in humidity with respect to temperature” or “change in GDP with respect to tariff levels” or “change in blood pressure with respect to dosage of some drug.”</p>
+<p>Often, several context-setting variables contribute at the same time to a change in the primary variable. Imagine, for instance, that the primary variable is the dollar value of sales in an ice-cream shop. Typically, sales varies from one time to another, that is, <em>with respect to time</em>. But underlying the change with respect to time are other context-setting variables: the change with respect to outdoor temperature or sunniness level. Sales may shift with respect to price; perhaps the shop raised prices. Moreover, we might gain an advantage in understanding sales patterns by treating <em>time</em> as two distinct variables: sales with respect to the <em>hour of the day</em> or with respect to the <em>day of the week</em>.</p>
+<p>A distinctive concept in quantitative reasoning is ☞&nbsp;<strong>partial change</strong><span id="finger-partial-change-definition" data-label="partial change">&nbsp;☜</span>. We signalled partial change very subtly in an earlier example with the phrase “☞&nbsp;<strong>all other things being constant</strong><span id="finger-all-other-things-being-constant-definition" data-label="all other things being constant">&nbsp;☜</span>.” In a partial change, we examine the change in the primary variable with respect to one context-setting variable, while holding the other context-setting variables constant. The ☞&nbsp;<strong>total change</strong><span id="finger-total-change-definition" data-label="total change">&nbsp;☜</span> in the primary variable is regarded as being the sum of contributions over all the context-setting variables from the individual partial changes with respect to one context-setting variable at a time. (Economists sometimes use the Latin phrase <a href="https://en.wikipedia.org/wiki/Ceteris_paribus"><em>ceteris paribus</em></a> to express the idea of holding all other things constant.)</p>
+<p>Reasoning with partial change is one facet of quantitative ☞&nbsp;<strong>analysis</strong><span id="finger-analysis-definition" data-label="analysis">&nbsp;☜</span>. (The word “analysis” stems from two Greek roots which together mean “loosen up.”) breaking up the overall system into contributing components. But how to hold the other context-setting variables constant? Experimentalists do this by imposing constant, laboratory control conditions. There are also statistical techniques that can be applied even when a good experiment is not feasible. The reports of results from such statistical studies often contain the phrase “☞&nbsp;<strong>controlling for</strong><span id="finger-controlling-for-definition" data-label="controlling for">&nbsp;☜</span> or”☞&nbsp;<strong>holding constant</strong><span id="finger-holding-constant-definition" data-label="holding constant">&nbsp;☜</span>” even though even though data were collected outside a controlled laboratory environment. How to accomplish “controlling for” is a central and important issue in statistical and econometric method; important enough that the <a href="https://www.nobelprize.org/uploads/2021/10/advanced-economicsciencesprize2021.pdf">2021 Nobel prize in economics</a> was awarded for work on this issue.</p>
+</section>
+<section id="sec-spaces" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="sec-spaces"><span class="header-section-number">3.7</span> Spaces</h2>
+<p>For understandable reasons, humans have a strong intuitive sense of spatial relationships. Some (but not all) quantitative reasoners instinctively apply spatial metaphors to mathematical concepts and perform aspects of mathematical reasoning in terms of spatial relationships. A key example is the ☞&nbsp;<strong>number line</strong><span id="finger-number-line-definition" data-label="number line">&nbsp;☜</span>, which simplifies reasoning about numbers.</p>
+<p>A number line is a valid representation of a quantity. In this metaphor, a ☞&nbsp;<strong>point</strong><span id="finger-point-definition" data-label="point">&nbsp;☜</span> on the line stands for a value for the quantity. The number line itself is the set of all admissible values for the quantity. (Many kinds of quantities do not admit negative values in which case we start the line at zero and extend it in only the positive direction.)</p>
+<p>Often, quantitative reasoners must work with multiple quantities simultaneously. For instance, in the epidemic model introduced in <a href="Chap-01-models.html#sec-models">Chapter 1</a>, the numbers of susceptibles (S) and infectives (I) change simultaneously in a coordinated manner.</p>
+<p>One could think of this pair of quantities as represented by a pair of number lines, but there is a more powerful spatial representation: a mathematical ☞&nbsp;<strong>space</strong><span id="finger-space-definition" data-label="space">&nbsp;☜</span>. For the (S, I) pair, the space is analogous to the physical space of points on a table top. Each <em>point</em> on the table top corresponds to a specific, unique (S, I) value pair. To read off the quantitative values, we place two perpendicular, intersecting number lines on the table. The two number lines form the ☞&nbsp;<strong>Cartesian coordinate system</strong><span id="finger-cartesian-coordinate-system-definition" data-label="Cartesian coordinate system">&nbsp;☜</span>, named after the French philosopher René Descartes (1596-1650), who contributed substantially to methods for spatial reasoning about mathematical objects. The <em>space</em> denominated by the coordinate system is the ☞&nbsp;<strong>coordinate plane</strong><span id="finger-coordinate-plane-definition" data-label="coordinate plane">&nbsp;☜</span>.</p>
+<p>The coordinate plane is said to be <em>two-dimensional</em>, since each point corresponds uniquely to two coordinate values. Many people are comfortable thinking about <em>three-dimensional</em> coordinate space, marked out by three mutually perpendicular number lines. For instance, three quantities specify an airplane’s instantaneous position: latitude, longitude, and altitude. The everyday space that we (and airplanes) move around in is familiar: no math training necessary!</p>
+<p>Most people find it hard to intuitively grasp the meaning of spaces of dimension higher than 3. Indeed, many people insist that there is no such thing. However, the physical existence of high-dimensional spaces is not the issue; it turns out to be incredibly powerful to <em>think</em> in terms of high-dimensional spaces. Almost always, such thinking involves training and mastering a fluent switching back and forth between sets of quantities and positions in space. In this introductory-level book, we will use only a handful of examples involving high-dimensional spaces. The examples we use will be one- or two-dimensional so that intuition can guide.</p>
+<p>The take-home point is that we use the word <em>space</em> to refer to a collection of quantities. If the collection has just a single quantity, the space is the number line. A set of two quantities corresponds to the coordinate plane, and a set of three quantities to a point in regular 3-dimensional space. In this sense, a set of ten quantities corresponds to a point in 10-dimensional space, and on and on to higher dimensions.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Chap-02-systems.html" class="pagination-link" aria-label="Systems, dimensions, and data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems, dimensions, and data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Chap-04-rates.html" class="pagination-link" aria-label="Rates">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rates</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

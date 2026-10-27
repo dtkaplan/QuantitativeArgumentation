@@ -1,11 +1,3 @@
----
-number-offset: 2
-crossref:
-  fig-title: "Figure 3."
-  fig-prefix: "Fig 3."
-  tbl-title: "Table 3."
----
-
 
 # Quantities {#sec-quantities}
 
