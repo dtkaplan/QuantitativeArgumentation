@@ -69,7 +69,7 @@ A good approximation to the convention curriculum is "teaching algebra to reach 
 
 Overall, the style of this book is to *use* mathematical concepts first, and minimize or even exclude the bathwater of mathematical formalisms such as limits. The flow of topics emphasizes mathematical description rather than the precise definition of ideas in mathematical terms. The students working through the book will develop an intuitive and practical understanding of the concepts and an understanding that, with further work, they could use them in their own work and applications. And, those students who have succeeded in the conventional mathematics curriculum general find themselves with a greatly enriched understanding of the mechanisms and applied purpose of the mathematical tools they have previously learned.
 
-- Daniel Kaplan, October 2026, Saint Paul, Minnesota
+- Daniel Kaplan, December 2026, Saint Paul, Minnesota
 \newpage
 
 ## Sequencing of chapters {.unnumbered}

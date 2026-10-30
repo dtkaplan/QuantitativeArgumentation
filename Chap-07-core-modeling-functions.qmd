@@ -158,42 +158,42 @@ Often, the name of a core function is a reminder of the shape. For instance, `hi
 
 Psame <- canonical_same(input_range = c(-2.5, 2.5),  
   output_range=c(-2.75, 2.75),
-  panel = c(border = FALSE), floating_axes = c(grid = TRUE)) |>
+  panel = c(border = FALSE), floating_axes = c(grid = TRUE), curve=c(linewidth = 2)) |>
   gf_refine(coord_cartesian(ratio = 1)) 
 
 Pflat <- canonical_flat(input_range = c(-2.5, 2.5),  
   output_range=c(-1.5, 2.1),
-  panel = c(border = FALSE), floating_axes = c(grid = TRUE)) |>
+  panel = c(border = FALSE), floating_axes = c(grid = TRUE), curve=c(linewidth = 2)) |>
   gf_refine(coord_cartesian(ratio = 1)) 
 
 Precip <- canonical_recip(input_range = c(-2.5, 2.5), 
   output_range=c(-2.5, 2.5),
-  panel = c(border = FALSE), floating_axes = c(grid = TRUE)) |>
+  panel = c(border = FALSE), floating_axes = c(grid = TRUE), curve=c(linewidth = 2)) |>
   gf_refine(coord_cartesian(ratio = 1)) 
 
 Posc <- canonical_osc(input_range = c(-2.5, 2.5),  
   output_range=c(-2.1, 2.1),
-  panel = c(border = FALSE), floating_axes = c(grid = TRUE)) |>
+  panel = c(border = FALSE), floating_axes = c(grid = TRUE), curve=c(linewidth = 2)) |>
   gf_refine(coord_cartesian(ratio = 1)) 
 
 Pexp2 <- canonical_exp2(input_range = c(-2.5, 2.5),  
   output_range=c(-0.2, 3.5),
-  panel = c(border = FALSE), floating_axes = c(grid = TRUE)) |>
+  panel = c(border = FALSE), floating_axes = c(grid = TRUE), curve=c(linewidth = 2)) |>
   gf_refine(coord_cartesian(ratio = 1)) 
 
 Plog2 <- canonical_log2(input_range = c(-0.5, 4.5),  
   output_range=c(-3, 3.5),
-  panel = c(border = FALSE), floating_axes = c(grid = TRUE)) |>
+  panel = c(border = FALSE), floating_axes = c(grid = TRUE), curve=c(linewidth = 2)) |>
   gf_refine(coord_cartesian(ratio = 1)) 
 
 Phill <- canonical_hill(input_range = c(-2.5, 2.5),  
   output_range=c(-1.1, 2.5),
-  panel = c(border = FALSE), floating_axes = c(grid = TRUE)) |>
+  panel = c(border = FALSE), floating_axes = c(grid = TRUE), curve=c(linewidth = 2)) |>
   gf_refine(coord_cartesian(ratio = 1)) 
 
 Phillside <- canonical_hillside(input_range = c(-2.5, 2.5),  
   output_range=c(-1.5, 2.1),
-  panel = c(border = FALSE), floating_axes = c(grid = TRUE)) |>
+  panel = c(border = FALSE), floating_axes = c(grid = TRUE), curve=c(linewidth = 2)) |>
   gf_refine(coord_cartesian(ratio = 1)) 
 
 
@@ -425,7 +425,8 @@ scaled_plot(
   input_range = c(-2, 3), 
   output = "ggplot",
   panel = c(border = FALSE),
-  floating_axes = c(grid = TRUE)) |>
+  floating_axes = c(grid = TRUE),
+  curve=c(linewidth = 2)) |>
   gf_refine(coord_cartesian(ratio = 1)) 
 scaled_plot(
   fun = hillside, 
@@ -437,7 +438,8 @@ scaled_plot(
   a = 50,
   output = "ggplot",
   panel = c(border = FALSE),
-  floating_axes = c(grid = TRUE)) |>
+  floating_axes = c(grid = TRUE),
+  curve=c(linewidth = 2)) |>
   gf_refine(coord_cartesian(ratio = 1)) |>
   gf_labs(x = "Input quantity (with units)",
           y = "Out quantity (with units)")
@@ -460,7 +462,7 @@ Once you have the blue axes arranged suitably for your modeling purpose, it's no
 
 ## Example: Global oil production {#sec-global-oil-production}
 
-@fig-world-oil-triptych shows global oil production each year since 1900. Production is measured in terrawatt-hours. To put that in context, 16 PWh is enough fuel for all the world's 1.7 billion gasoline vehicles for a year's driving. [If the global fleet were electric, the energy consumption would be about 3.5 PWh.]
+@fig-world-oil-triptych shows global oil production each year since 1900. Production is measured in terrawatt-hours. To put that in context, 16 PWh is enough fuel for all the world's 1.7 billion gasoline vehicles for a year's driving. [If the global fleet were electric, the energy consumption would be about 3.5 PWh.]{.column-margin}
 
 Oil production through 1975 follows an exponential growth pattern: increasing at an every-increasing rate.
 
@@ -468,16 +470,14 @@ Oil production through 1975 follows an exponential growth pattern: increasing at
 #| label: fig-world-oil-triptych
 #| echo: false
 #| message: false
-#| layout: "[[1.3,1], [1]]"
 #| fig-cap: |
-#|   Global oil production since 1900 and two candidate core modeling functions.
+#|   Global oil production since 1900 and the closest looking core modeling functions.
 #| fig-subcap: 
-#| - "Oil production in petaawatt-hours of energy"
-#| - "Core modeling function: `exp2()`"
-#| - "Scaled model"
+#| - "Oil production (petaawatt-hours)"
+#| - "Model fun: `exp2()`"
 World_oil |>
   mutate(oil = oil/1000) |>
-  gf_point(oil ~ year, alpha = 0.5, size=0.1) |>
+  gf_point(oil ~ year, alpha = 0.5, size=2) |>
   gf_labs(x = "Year", 
           y = "Oil production (PWh)") |>
           gf_vline(xintercept = 1956) |>
@@ -486,12 +486,26 @@ World_oil |>
 Pexp2 <- canonical_plot(
   fun = exp2, 
   output_range = c(-0.5, 5), 
-  input_range = c(-2.3, 2.3), 
+  input_range = c(-3, 3), 
   output = "ggplot",
   panel = c(border = FALSE),
-  floating_axes = c(grid = TRUE)) |>
+  floating_axes = c(grid = TRUE),
+  curve=c(linewidth = 2)) |>
   gf_refine(coord_cartesian(ratio = 1)) 
 Pexp2
+```
+
+The scales of the historical oil-production plot are straightforward. The data run from 1900 to 2023. Production was near zero in 1900 and reached about 50 PWh in 2023. The production growth pattern before about 1975 is reminiscent of the shape of the `exp2()` core modeling function, but the scale in the graph of `exp2()` is unsuited to the data. 
+
+By figuratively picking up the oil-data graph, along with its scales, and stretching and shifting it appropriately, we can adopt the scale to the shape of the exponential function, at least for the years before 1975. The result of the shifting and scaling is shown in `r xf("fig-oil-scaled")`. The blue scales on the outside come from the oil data. The input scaling for this model of oil production comes from the alignment of the mathematical grid with the horizontal blue quantity scale. 
+
+```{r}
+#| label: fig-oil-scaled
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Shifting and stretching @fig-world-oil-triptych(b) of `exp2()`  to match the data. The scales from the data are applied to calculate the input and output scaling required." 
+
 
 Oil_scaled <- World_oil |>
   mutate(year = (year - 1956)/11.,
@@ -509,10 +523,6 @@ scaled_plot(
   gf_refine(coord_cartesian(ratio = 1)) 
 ```
 
-The scales of the historical oil-production plot are straightforward. The data run from 1900 to 2023. Production was near zero in 1900 and reached about 50 PWh in 2023. The production growth pattern before about 1975 is reminiscent of the shape of the `exp2()` core modeling function, but the scale in the graph of `exp2()` is unsuited to the data scale. 
-
-By figuratively picking up the oil-data graph, along with its scales, and stretching and shifting it appropriately, we can adopt the scale to the shape of the exponential function, at least for the years before 1975. The result, in panel (c), is a graphic with two scales. The blue scales on the outside come from the oil data. The input scaling for this model of oil production comes from the alignment of the mathematical gridding with the horizontal blue quantity scale. 
-
 For instance, zero on the mathematical horizontal grid---the location of the double-headed vertical "output" line---matches up to 1956. You can also see that year 2000 in the blue scale matches up closely to 4 on the horizontal grid scale.  Consequently, the input scaling function will turn 1956 into 0 and year 2000 to 4. 
 
 
@@ -525,8 +535,7 @@ To avoid unnecessary abstraction, our descriptions will assume that the function
 
 :::: {layout="[1,0.1, 1]"}
 ::: {}
-osc( )
-: A function that oscillates smoothly up and down, repeating itself over and over again. Such repeating functions are called `r xf_definition("periodic")`. For example, the outdoor temperature rises and falls each day, repeating itself roughly the same way day after day. 
+`osc( )`   A function that oscillates smoothly up and down, repeating itself over and over again. Such repeating functions are called `r xf_definition("periodic")`. For example, the outdoor temperature rises and falls each day, repeating itself roughly the same way day after day. 
 :::
 
 :::{}
@@ -547,7 +556,8 @@ scaled_plot(
   x0 = 0.05,
   A = 10,
   B = 72,
-  floating_axes = c(grid = TRUE)) |>
+  floating_axes = c(grid = TRUE),
+  curve=c(linewidth = 2)) |>
   gf_labs(x = "Hours", y = "Temperature (°F)") |>
   gf_refine(coord_cartesian(ratio = 1)) 
 ```
@@ -556,8 +566,8 @@ scaled_plot(
 
 :::: {layout="[1,0.1, 1]"}
 ::: {}
-hillside( )
-: The hillside function starts steadily, then gradually increases before leveling off. For example, hillside() might represent the temperature as a warm front moves past at around 10 am: a steady high temperature in the afternoon having gradually replaced the the mornings low temperature.
+`hillside( )`    
+The hillside function starts steadily, then gradually increases before leveling off. For example, hillside() might represent the temperature as a warm front moves past at around 10 am: a steady high temperature in the afternoon having gradually replaced the the mornings low temperature.
 :::
 
 ::: {}
@@ -578,19 +588,18 @@ scaled_plot(
   x0 = -10/2.1,
   A = 20,
   B = 56,
-  floating_axes = c(grid = TRUE)) |>
+  floating_axes = c(grid = TRUE),
+  curve=c(linewidth = 2)) |>
   gf_labs(x = "Hours (after midnight)", y = "Temperature (°F)") |>
   gf_refine(coord_cartesian(ratio = 1)) 
 ```
 :::
-
 ::::
 
 :::: {layout="[1,0.1, 1]"}
-
 ::: {}
-hill()
-: The hill() function goes up from a baseline and then goes back down to the baseline. For instance, the hill() can describe a heat wave lasting several days before relief and the return to normal temperature.
+`hill()`    
+The hill() function goes up from a baseline and then goes back down to the baseline. For instance, the hill() can describe a heat wave lasting several days before relief and the return to normal temperature.
 :::
 
 ::: {}
@@ -612,18 +621,21 @@ scaled_plot(
   x0 = -13/3,
   A = 15,
   B = 70,
-  floating_axes = c(grid = TRUE)) |>
+  floating_axes = c(grid = TRUE),
+  curve=c(linewidth = 2)) |>
   gf_labs(x = "Day in July", y = "Daily high temperature (°F)") |>
   gf_refine(coord_cartesian(ratio=3)) 
 ```
 :::
 ::::
 
+
+[Such feedback mechanisms include the release of methane from melting permafrost or the increased absorption of sunlight by the ocean as an ice cap melts. Eventually, of course, something has to give. The doubling pattern cannot continue indefinitely. But the `exp2()` core modeling function doesn't capture that bit of the story.]{.column-margin}
+
 :::: {layout="[1,0.1, 1]"}
 ::: {}
-exp2( )
-: After each unit interval of time, the temperature *doubles* from what it was at the start of the interval. Think of an apocalyptic science-fiction story about climate change. The temperature is increasing over time, and as it does, various feedback mechanisms---e.g., the release of methane from melting permafrost or the increased absorption of sunlight by the ocean as an ice cap melts---strengthen.
-: Eventually, of course, something has to give. The doubling pattern cannot continue indefinitely. But the `exp2()` core modeling function doesn't add that bit to the story.
+`exp2( )`    
+After each unit interval of time, the temperature *doubles* from what it was at the start of the interval. Think of an apocalyptic science-fiction story about climate change. The temperature is increasing over time, and as it does, various feedback mechanisms strengthen.
 :::
 
 ::: {}
@@ -644,7 +656,8 @@ scaled_plot(
   x0 = -2045/4,
   A = 1,
   B = 21.1,
-  floating_axes = c(grid = TRUE)) |>
+  floating_axes = c(grid = TRUE),
+  curve=c(linewidth = 2)) |>
   gf_labs(y = "Yearly Sea Surface Temp (°C)", x = "Year") |>
   gf_refine(coord_cartesian(ratio = 1)) 
 ```
@@ -657,8 +670,8 @@ scaled_plot(
 :::: {layout="[1,0.1, 1]"}
 
 ::: {}
-log2()
-: Picking up on the science fiction described under exp2(), imagine a crusty, old meteorologist who tells *how long* it will take for the doubling temperature to reach any given level. 
+`log2()`    
+Picking up on the science fiction described under exp2(), imagine a crusty, old meteorologist who tells *how long* it will take for the doubling temperature to reach any given level. 
 :::
 
 ::: {}
@@ -680,7 +693,8 @@ scaled_plot(
   x0 = -21,
   A = 4,
   B = 2045,
-  floating_axes = c(grid = TRUE)) |>
+  floating_axes = c(grid = TRUE),
+  curve=c(linewidth = 2)) |>
   gf_labs(x = "Sea Surface Temp (°C)", y = "Year") |>
   gf_refine(coord_cartesian(ratio = 1)) 
 ```
@@ -693,8 +707,8 @@ scaled_plot(
 
 :::: {layout="[1,0.1, 1]"}
 ::: {}
-same( )
-: As time increases, the temperature increases likewise. Hour to hour, the temperature increases by the same amount.
+`same( )`    
+As time increases, the temperature increases likewise. Hour to hour, the temperature increases by the same amount.
 :::
 
 ::: {}
@@ -715,7 +729,8 @@ scaled_plot(
   x0 = 0,
   A = 2.1,
   B = 18,
-  floating_axes = c(grid = TRUE)) |>
+  floating_axes = c(grid = TRUE),
+  curve=c(linewidth = 2)) |>
   gf_labs(y = "Temp (°C)", x = "Hours after sunrise") |>
   gf_refine(coord_cartesian(ratio = 1)) 
 ```
@@ -724,8 +739,8 @@ scaled_plot(
 
 :::: {layout="[1,0.1, 1]"}
 ::: {}
-flat()
-: A story with no action. As time goes by, nothing changes! Daytime temperatures are the same as nighttime temperatures.
+`flat()`    
+A story with no action. As time goes by, nothing changes! Daytime temperatures are the same as nighttime temperatures.
 :::
 
 ::: {}
@@ -746,7 +761,8 @@ scaled_plot(
   x0 = 0,
   A = 0.6,
   B = 18,
-  floating_axes = c(grid = TRUE)) |>
+  floating_axes = c(grid = TRUE),
+  curve=c(linewidth = 2)) |>
   gf_labs(y = "Temp (°C)", x = "Hours after sunrise") |>
   gf_refine(coord_cartesian(ratio = 1)) 
 ```

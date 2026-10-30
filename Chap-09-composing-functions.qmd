@@ -102,6 +102,7 @@ With input scaling, we can adjust the time at which the pill is taken. Let's use
 
 The drug from each pill adds to whatever is already in the bloodstream. So the function giving the drug concentration for pills taken at 8-hour intervals (starting at 10 am on day 1) is:
 
+::: {.callout-note icon=false title="R definition of `all_pills()`"}
 ```{r eval = FALSE}
 all_pills <- function(t) {
   one_pill(t - 10) + one_pill(t - 18) + one_pill(t - 26) + 
@@ -109,6 +110,7 @@ all_pills <- function(t) {
   one_pill(t - 58) # ... and so on.
 }
 ```
+:::
 
 `All_pills(t)` is an example of a `r xf_definition("linear combination of functions")`. Here, the functions being combined are all input-shifted version of the same `pill(t)` function, but linear combinations can involve any functions. `r xf("fig-drug-bloodstream")` shows `all_pills()` over the first two-and-a-half days of the prescription.
 
@@ -139,12 +141,14 @@ Compare the situation in `r xf("fig-triple-dose")` to that of `r xf("fig-one-pil
 
 This situation also falls under the aegis of the *linear combination* technique. In linear combinations, the modeler is free to set the output scale the functions being combined. For the one-dose-per-day plan (at triple the dose) the model of drug concentration looks like this:
 
+::: {.callout-note icon=false title="R function for one pill per day"}
 ```{r}
 once_per_day <- function(t) {
   3 * one_pill(t - 10) + 3 * one_pill(t - 34) + 
     3 * one_pill(t - 58) # ... and so on
 }
 ```
+:::
 
 Let's graph the function:
 
@@ -176,16 +180,16 @@ It turns out that the method of linear combinations is well suited to constructi
 
 ## Linear regression
 
-[In everyday speech, the word "regression" means a [return to a previous, less advanced, or worse state.](https://dictionary.cambridge.org/us/dictionary/english/regression) 
+[In everyday speech, the word "regression" means a [return to a previous, less advanced, or worse state.](https://dictionary.cambridge.org/us/dictionary/english/regression)]{.column-margin}
+
+
+
+This section introduces a mainstream method for finding good coefficients so that a linear combination of functions approximates data. This is one of the most common quantitative techniques. Unfortunately, the standard name for the technique is bizarre: `r xf_definition("linear regression")`. This strange name is so ubiquitous that it deserves explanation even before we outline the method itself. The usage of "regression" in statistics in the 1890s reflected a misconception that treated a simple mathematical pattern as if it emerged from an underlying natural, biological, or economic process. History can be sticky; our modern understanding is better captured by the name `r xf_definition("linear modeling")`. 
 
 `r qr_margin_note(
   "https://dictionary.cambridge.org/us/dictionary/english/regression",
-  "Definition of regression"
+  " " #definition of regression
 )`
-
-
-
-A linear *combination* is a mathematical idea: a way to build new functions by combining existing functions. This is in not at all the meaning of the word in the phrase "linear regression." We arrived at this confusing situation by historical accident. The original usage in statistics in the 1890s reflected a misconception that treated a simple mathematical pattern as if it emerged from an underlying natural, biological, or economic process. History can be sticky; our modern understanding is better captured by the name `r xf_definition("linear modeling")`.]{.column-margin} Very often, however, the point of building a new function is to represent *data*, constructing a function that captures the patterns seen in the data. The technique for using data to inform the construction of a linear combination is traditionally called `r xf_definition("linear regression")`. 
 
 The `same()` and `flat()` core modeling functions are the most common building blocks for linear regression models, but in principle any function can be included in a linear regression. And, linear regression effectively automates the process of *output scaling* introduced in `r xf("sec-input-output-transforms")`.
 
@@ -208,6 +212,8 @@ A linear combination is an ideal format for combining input quantities with diff
 
 \newpage
 
+::: {.callout-note icon=false title="R syntax for a linear combination"}
+[Caution: these are placeholders for the coefficients]{.column-margin}
 ```{r eval=FALSE}
 score_model <- 
   function(performance, education, income, size) {
@@ -218,6 +224,7 @@ score_model <-
     E
 }
 ```
+:::
 
 The quantity `A` is a conversion factor that turns `performance` into a quantity that has the same units and dimension as `score`. Similarly, `B` converts years of `education` into a `score` and so on for `C`, `D`, and `E`. [Another word for "coefficient" is `r xf_definition("scalar")`. This name is a reminder that the point is to "scale" something.]{.column-margin} These conversion factors are called `r xf_definition("coefficient", text="coefficients")`.
  
@@ -272,12 +279,12 @@ Or consider the narrow neck connecting the two larger landmasses. This is marked
 
 The equivalent of a topographical map for functions is called a `r xf_definition("contour plot")`. The output of the function corresponds to the elevation in the map, two inputs play the roles of latitude and longitude respectively. A contour plot provides a mechanism to read off the output for given values of the inputs, but the skilled interpreter can glean more information than that. `r xf("fig-sultriness-contour")` shows an example, the heat-index function introduced in `r xf("sec-intro-to-functions")`. The inputs are temperature and humidity; the output is the heat index.
 
-Panel (a) of `r xf("fig-sultriness-contour")` shows the function in tabular form, just as it was presented in the 1979 paper that introduced the heat index. Given values for the temperature and humidity, you can easily find the corresponding output from the table.
+Panel (a) of `r xf("fig-sultriness-contour")` is a too-small-to-read reproduction of `r xf("tbl-sultriness")`. It is used here to show an important spatial pattern in the table, that the heat index is undefined for high temperatures and humidities. 
 
-Panel (b) shows the heat index function as a contour plot. By avoiding the table's visual clutter of a grid of numbers, some simple patterns can be seen. For instance, consider on (b) the heat index output for input temperatures lower than 30°C; the contours run in parallel with a slight upward slope from left to right. 
+Panel (b) shows the heat index function as a *contour plot*. By avoiding the table's visual clutter of a grid of numbers, some simple patterns can be seen. For instance, consider on (b) the heat index output for input temperatures lower than 30°C; the contours run in parallel with a slight upward slope from left to right. 
 
 
-```{r echo=FALSE, eval=FALSE}
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
 my_heat_index <- function(temperature, humidity) {
   temp <- QRA::heat_index(temperature, humidity/100)
   temp[is.na(temp)] <- 70
@@ -293,7 +300,7 @@ hi_plot <- contour_plot(
   skip = 2) |>
   gf_labs(y = "Dry Bulb Temperature (C)", x = "Relative Humidity (%)") |>
   gf_refine(scale_y_reverse()) |>
-  gf_refine(coord_fixed(ratio = 5))
+  gf_refine(coord_fixed(ratio = 4))
 
 ggsave(hi_plot, file = "www/sultriness-contour.png")
 ```
@@ -306,16 +313,16 @@ The close spacing of the contours indicates, as in the topographical map of `r x
 
 The inclination of the contours tells us something else: the heat index for high ambient temperatures is closely linked to both humidity and temperature. And the curvature of the contour lines indicates an *interaction* between temperature and humidity.
 
+The explanation for the big change in pattern from top to bottom on the plot is physiological, not meteorological. Keep in mind that human core body temperature is 37°C. Metabolism generates heat and the core temperature would go up above 37°C if it were not for the body's cooling mechanisms. When a lot of heat is being generated, as in exercise, one of these cooling mechanisms becomes evident: sweating. Sweating is most effective at low humidities. At high humidities, the evaporation of sweat is less efficient, leading to a rapid increase in perceived heat, which is captured by the steep contours in the heat index plot.
+
 ::: {#fig-sultriness-contour layout-ncol=2 fig-cap-location="top"}
 
-![As a table](www/sultriness-table.png)
+![As a table](www/Steadman-table.png)
 
 ![As a contour plot](www/sultriness-contour.png)
 
 Two graphical presentations of the heat index function. Panel (b) has been drawn with an upside-down vertical axis, the better to correspond the tabular convention of increasing values from top to bottom.
 :::
-
-The explanation for the big change in pattern from top to bottom on the plot is physiological, not meteorological. Keep in mind that human core body temperature is 37°C. Metabolism generates heat and the core temperature would go up above 37°C if it were not for the body's cooling mechanisms. When a lot of heat is being generated, as in exercise, one of these cooling mechanisms becomes evident: sweating. Sweating is most effective at low humidities. At high humidities, the evaporation of sweat is less efficient, leading to a rapid increase in perceived heat, which is captured by the steep contours in the heat index plot.
 
 A heat index of 37°C leaves no way for the body to dissipate metabolic heat. Consequently, the core body temperature starts to go up. You can see from the function output that a heat index of 37°C corresponds to dry-bulb temperatures around 42°C, *so long as the humidity is low*. But as humidity increases, the safety mechanism of sweating shorts out and the skin temperature rises quickly.
 

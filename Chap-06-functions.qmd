@@ -1,3 +1,14 @@
+---
+filters:
+  - _extensions/quarto-ext/shinylive/shinylive.lua
+webr:
+  packages:
+    - ggplot2
+    - dplyr
+    - mosaicCalc
+    - tibble
+---
+
 # Introduction to Functions {#sec-intro-to-functions}
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
@@ -47,7 +58,7 @@ Models are always limited in scope; they don't try to account for every feature 
 
 ## The organization of a function
 
-In diagrams like @fig-solar-diag1, each sharp-cornered box corresponds to a function. Specifying what are the inputs to a function is essential, but the complete story requires an essential additional feature: an `r xf_definition("algorithm")`. The algorithm is a complete operational description of the process to be followed in turning the inputs into the output. 
+In diagrams like @fig-solar-diag1, each sharp-cornered box corresponds to a function. Specifying what are the inputs to a function is essential, but the complete story requires an essential additional feature: an `r xf_definition("algorithm")`. The algorithm is a complete operational description of the process to be followed in turning the inputs into the output. [Admittedly, the name "algorithm" is offputting to many people. It comes from the name of a mathematician, Muhammad ibn Musa al-Khwarizmi (c. 780 – c. 850). He is famous for a book whose whose title contains "al Jabr," Arabic for "the reunion of broken parts." Our word "algebra" comes directly from "al Jabr." Al-Khwarizmi's book gives a description of the steps to follow when reuniting, say, the broken parts of what we now write as $a = x / b$ to get $x = a\,b$.]{.column-margin}
 
 Mathematics classes often use functions without displaying the algorithm that implements the input-to-output process. For instance, you may remember the $\sin$ function, and even memorized the output produced for a handful of particular inputs. A typical classroom notation might look like $\sin \pi = 0$. This particular example denotes that when the input number is $\pi$, the output of the $\sin$ function will be zero.
 
@@ -61,9 +72,7 @@ On a hot day, comfort is a function of temperature and humidity. That is, temper
 
 Temperature and humidity are both quantities, so they are directly suited to be inputs to a function. It's less obvious how to operationalize *comfort*, which is a subjective and multi-dimensional concept.
 
-One widely used operationalization of comfort is the so-called "heat index," which often appears in weather reports and forecasts. [@sec-heat-index presents the heat-index algorithm and its origins.]{.column-margin} 
-
-It helps to give a function a name so that it can be referred to and distinguished from other functions. Using mnemonic names---that is, names that remind you what the function is about---is a good practice. We will call the function `heat_index()`.
+One widely used operationalization of comfort is the so-called "heat index," which often appears in weather reports and forecasts. It helps to give a function a name so that it can be referred to and distinguished from other functions. Using mnemonic names---that is, names that remind you what the function is about---is a good practice. We will call the function `heat_index()`.
 
 The parentheses following the name are a convention to remind us that `heat_index` is a function. Otherwise, we might confuse it with a quantity. For the sake of clarity, this book will write function names followed by parentheses, e.g. `heat_index()`. In use, the parentheses provide punctuation for organizing the inputs. These will be placed inside the parentheses, separated by commas. For instance, the heat index on a day where the temperature is 30 °C and the humidity is 80% will be calculated as: 
 
@@ -77,100 +86,99 @@ We have already mentioned that the `heat_index()` function takes two inputs: tem
 
 Without going into detail, the definition of `heat_index()` looks like this:
 
+::: {#nte-heat-index-pseudocode .callout-note icon=false title="R syntax to define a function"}
 ```{verbatim}
 heat_index <- function(temperature, humidity) {
   # Algorithm goes here.
 }
 ```
+:::
 
-This notation organizes four pieces of information:
+The algorithm is all important, but we will put off discussing it in detail for now. Instead, let's focus in the first line of @nte-heat-index-pseudocode. It is a bit of notation that  organizes four pieces of information:
 
-1. this is a function; 
+1. `function()` indicates that this is a function; 
 2. the name of the function is `heat_index`; 
-3. it takes two inputs, 
+3. the function  takes two inputs, 
 4. the first input is named temperature, the second is named humidity, 
 
 The names that go inside the `function()` parentheses are often called the *arguments* of the function (although we will also refer to them as *inputs* in this book). Arguments are like characters in a play. Inputs are the actors who play the characters. Note, however, that in this book we are already using "argument" with a specific meaning as in the title of this book. We will use the shorthand `r xf_definition("arg")` the names of inputs to a function, and reserve "argument" for the sense of `r xf("sec-models")`, that is, a claim supported by evidence and a chain of reasoning. .
 
 When using `heat_index()` to perform a calculation, we give the arg values inside parentheses as in `heat_index(30, 0.80)`.
 
-
 If the user wrote the inputs in the wrong order, `heat_index(0.80, 30)` it would be as if the user wanted to specify a very cold temperature (0.70 °F) and a meaninglessly high humidity (8500%). To avoid such problems, the R language allows the user to refer to the args by their names rather than their positions:
+
+::: {.callout-note icon=false title="R session: Invoking `heat_index()`"}
 
 ```{r}
 heat_index(humidity = 0.80, temperature = 30)
 ```
-
-
-
-## Operationalizing comfort: the heat index {#sec-heat-index}
-
-The heat index is familiar to those living in hot climates; few realize that it originated as a careful quantitative operationalization of comfort. [R.G. Steadman ["The Assessment of Sultriness"](www/Foundations/apme-1520-0450_1979_018_0861_taospi_2_0_co_2.pdf), *Journal of Applied Meteorology and Climatology*. July 1979 pp. 861-873]{.column-margin} Key research into the manner was presented by R.G. Steadman in 1979 as the "sultriness index".
-
-@fig-sultriness-table displays the sultriness function graphically, but doesn't convey the extensive quantitative modeling that went into its development. 
-
-::: {#fig-sultriness-table}
-![](www/sultriness-table.png){width="3.5in"}
-
-The sultriness function. (Source: [Assessment of sultriness](www/Foundations/apme-1520-0450_1979_018_0861_taospi_2_0_co_2.pdf), p. 862.) Note: Meteorologists measure the "dry bulb" temperature with an ordinary thermometer. In contrast, the "wet bulb" temperature measures evaporative cooling, operationalized by wrapping the thermometer with wet gauze.
 :::
-
 
 ## Algorithms
 
-We called @fig-sultriness-table the sultriness *function*. But the research article that introduced it did not write `sultriness(temperature, humidity)` or give an implementation as a formula. @fig-sultriness-table, which is intended for a human reader, is the only presentation that was given in the research article.
+In @nte-heat-index-pseudocode we merely wrote a comment to the human reader, "Algorithm goes here." To actually use an R function, the algorithm has to be described in valid computer code. We don't expect the reader to be able to write or even read elaborate computer code. But to be able to give a better image of what an algorithm is, let's write the algorithm in `heat_index()` in plain English, making use of the information printed in @tbl-sultriness. Said another way, we are going to pretend that the reader is a computer who is to be programmed.
 
-It's likely that you can figure out how to find the output of `heat_index()` given the inputs. You can confirm that a temperature of 30 °C and humidity of 80% corresponds to a heat index of 37 °C.
+Every algorithm is built out of simpler algorithms. The simplest algorithms are those that you can immediately perform. In a computer processor, these are simple operations like addition that are built into the hardware. For our imagined programming language for the reader, we will build the `heat_index()` algorithm out of your capabilities when it comes to reading tables. The algorithm can be described using four operations, each of which is simple to do.
 
-But, imagining that you don't know how to use @fig-sultriness-table, let's write out instructions. Such instructions have a more formal name: `r xf_definition("algorithms")`. Admittedly, the name "algorithm" is offputting to many people. It comes from the name of a mathematician, Muhammad ibn Musa al-Khwarizmi (c. 780 – c. 850). He is famous for a book whose key word is "al Jabr," Arabic for "the reunion of broken parts." Our word "algebra" comes directly from "al Jabr." Al-Khwarizmi's book gives a description of the steps to follow when reuniting, say, the broken parts of what we now write as $a = x / b$ to get $x = a\,b$.
+1. Locate @tbl-sultriness.
+2. Take the temperature input and find the closest value in the left column of the table. That closest value marks the row of interest.
+3. Take the humidity input and find the closest value in the top row of the table. That closest value marks the column of interest.
+4. Find the number at the junction of the row and the column of interest. Return that as the output of the function. 
 
-Here's a table-reading algorithm, in a form intended for an educated person:
+You likely learned in school how to perform steps such as this. So we are imagining that you come to the situation knowing things like how to find the closest value to some input in a row or column. So all we need to say is "find the closest ...." and you know what to do.
 
-1. Take the temperature and find the closest value in the left column of the table. That closest value marks the row of interest.
-2. Take the humidity and find the closest value in the top row of the table. That closest value marks the column of interest.
-3. Find the number at the junction of the row and the column of interest. That is output. 
+\newpage
 
-Like all algorithms, this one is written in terms of tasks that the processor already know how to perform, e.g. "find the closest value." If you didn't know how to perform that task, you would need a description of the steps involved. That is, algorithms are often written in terms of other algorithms.
+## Operationalizing comfort: the heat index {#sec-heat-index}
 
-The simplest algorithms are those where the answer is already known. For instance, to learn how to add numbers with multiple digits, you first had to memorize the basic facts of single-digit arithmetic: the *addition table*.
+The heat index is familiar to those living in hot climates; few realize that it originated as a careful quantitative operationalization of comfort. 
 
-`r xf("sec-core-functions")` introduces a small set of basic functions called the "core modeling functions." Each of these is pretty simple, and you will be expected to be able to sketch out a rough graph and know the values of certain special inputs and their output values. Of course, human memory is fallible. So you will have a computer implementation of each core modeling function to use and refer to. 
+\enlargethispage{6\baselineskip}
 
+
+
+```{r echo=FALSE, warning=FALSE}
+heat_index_table <- readr::read_csv(
+  "www/sultriness-table.csv",
+  col_types = readr::cols(.default = readr::col_character())
+)
+options(knitr.kable.NA = "")
+
+knitr::kable(
+      heat_index_table,
+      col.names = c("(°C)", paste0(seq(0, 100, 10), "%")),
+      align = c("c", rep("c", 11)),
+      longtable = FALSE) |>
+  kableExtra::add_header_above(c("Tempature", "Relative humidity (%)" = 11)) |>
+  kableExtra::column_spec(1, bold = TRUE) |>
+  kableExtra::kable_styling(latex_options="hold_position", font_size = 8)
+```
+
+```{r}
+#| label: tbl-sultriness
+#| echo: false
+#| warning: false
+#| tbl-cap: "'Temperature-humidity scale: Apparent temperature (°C) corresponding to each combination of dry-bulb temperature and relative humidity. Values in parentheses correspond to skin humidities above 90% and are approximate.'---quoted from original source."
+#| tbl-cap-location: margin
+knitr::kable(data.frame())
+```
+\newpage
+
+ Key research into the manner was presented by R.G. Steadman in 1979 as the "sultriness index". The index was published as a table, reproduced in @tbl-sultriness. [R.G. Steadman ["The Assessment of Sultriness"](www/Foundations/apme-1520-0450_1979_018_0861_taospi_2_0_co_2.pdf), *Journal of Applied Meteorology and Climatology*. July 1979 pp. 861-873]{.column-margin} 
+
+
+It's natural to think of a table as a graphical printing device using rows and columns to show values. Printing aside, it is helpful to think about @tbl-sultriness as a *function*. 
+
+But the research article that introduced it did not write `heat_index(temperature, humidity)` or give an implementation as a formula. It's likely that you can figure out how to find the output of `heat_index()` given the inputs. You can confirm that a temperature of 30 °C and humidity of 80% corresponds to a heat index of 37 °C.
 
 ## What do you need to know about an algorithm?
 
 In the modern world, many of the objects we use productively every day are so complicated that few people, if any, know exactly what is inside them. For example, telephoning a friend does not require knowing in detail how a phone or a telecommunications system works. Drivers typically do not know how a modern gasoline engine works. We can use these machines because they have a user interface that we know how to operate. Using the interface lets us confirm we are using it properly. For instance, confidence in a phone comes (in part) from the text messages sent and successfully received.
 
 
-The same is true of functions. Using a function requires knowing what kinds of inputs it takes and observing what kind of output it produces. [Although the "t" in "mortgage" is silent, it refers to an important aspect mortgage loans. The root *mort* means "death", as in "mortality." In a mortgage, the borrower pays the lender a fixed amount each month. This gradually reduces the amount of money owed. When that amount reaches zero, the mortgage is dead: no more payments are required. Some people even have funereal rites to celebrate the death of a mortgage.](.column-margin) To illustrate, consider a situation faced by people buying a home. Almost always, they buyer needs to borrow money, a form of loan called a "mortgage." 
+The same is true of functions. Using a function requires knowing what kinds of inputs it takes and observing what kind of output it produces. [Although the "t" in "mortgage" is silent, it refers to an important aspect mortgage loans. The root *mort* means "death", as in "mortality." In a mortgage, the borrower pays the lender a fixed amount each month. This gradually reduces the amount of money owed. When that amount reaches zero, the mortgage is dead: no more payments are required. Some people even have funereal rites to celebrate the death of a mortgage.]{.column-margin} To illustrate, consider a situation faced by people buying a home. Almost always, they buyer needs to borrow money, a form of loan called a "mortgage." 
 
 The internet has apps that calculate monthly mortgage payments. Behind such apps is a function that takes three inputs: the amount borrowed (the principal), the annual interest rate on the loan, and the loan duration (that is, the number of monthly payments needed to pay off the loan.) The function's output is the amount of the monthly payment. In internet apps, inputs are often specified with sliders or check-boxes or drop-down menus. To stay close to the `function(arg1, arg2, arg3)` notation, we provide an implementation using that convention. In the interactive version of this book, you can even find the output for any inputs you care to specify.
-
-::: {.content-hidden unless-format="html"}
-Try it out in @chk-monthly-payment, where, at least initially, the args have been set to a $200,000 loan at 6 percent interest for a standard 30-year duration (360 months).
-
-```r
-monthly_payment(principal, interest_rate, duration)
-```
-
-```{webr}
-#| echo: false
-#| context: setup
-monthly_payment <- function(principal, interest_rate, duration) {
-  # Annual in percent to monthly interest rate in decimal
-  r <- interest_rate / 1200 # monthly interest
-  duration_in_months <- duration * 12
-  principal * r * (1+r)^duration_in_months / ((1+r)^duration_in_months - 1)
-}
-```
-
-```{webr}
-#| caption: "Mortgage payment calculator"
-#| label: chk-monthly-payment
-monthly_payment(200000, 6, 30)
-```
-
-:::
 
 ```{r}
 #| label: ch06-r-8ef51a62
@@ -184,16 +192,14 @@ monthly_payment <- function(principal, interest_rate, duration) {
 }
 ```
 
-::: {.content-hidden unless-format="pdf"}
-
+::: {.callout-note icon=false title="R command and output"}
 ```{r}
-#| label: ch06-r-b9b18c00
+#| label: ch06-r-payment
 monthly_payment(200000, 6, 30)
 ```
-
-Keep in mind that `monthly_payment()` is a *model* of what you have to pay. It takes into account the interest rate and the duration of the loan. But there are often other dimensions of the situation, for example, processing fees or mortgage insurance. You, or your real-estate agent, will need a more complete model of the situation. Even AI can easily get it wrong if it doesn't know the details of the mortgage contract you will eventually be signing.
 :::
 
+Keep in mind that `monthly_payment()` is a *model* of what you have to pay. It takes into account the interest rate and the duration of the loan. But there are often other dimensions of the situation, for example, processing fees or mortgage insurance. You, or your real-estate agent, will need a more complete model of the situation. Even AI can easily get it wrong if it doesn't know the details of the mortgage contract you will eventually be signing.
 
 Typically, computer languages accept purely numerical inputs rather than a complete description of the quantity. So, the first input is `200000` rather than $200,000, the second is `6` rather than 6%, and the third is `30` rather than 30 years.
 
@@ -219,6 +225,8 @@ A randomly selected mortgage payment calculator from the internet. The interface
   "https://en.wikipedia.org/wiki/Mortgage_calculator",
   "Derivation of a mortgage calculator formula"
 )`
+
+\newpage
 
 What about the algorithm behind the app? Does the ordinary user need to know that? Being able to see and interpret the algorithm---which is, in this case, a formula---would enhance mastery of the subject. However, in practice, even algebraically skilled people who might understand a [derivation of the formula](https://en.wikipedia.org/wiki/Mortgage_calculator) and be able to translate it into computer code will need to check the results. Will AI help? Maybe eventually. Sadly, the AI query I used in 2025, "How to calculate mortgage payment," returned a formula with a fatal error.
 

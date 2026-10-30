@@ -212,44 +212,46 @@ A homey metaphor may help here. Imagine a family of functions mutually related b
 
 For demonstration purposes, to see how an anti-derivative can be calculated, let's break convention and use a special graphical format to display a rate-of-change function. 
 
-Keep in mind that differentiation contructs an new "daughter" function from a "mother" function. Finding the daughter is straightforward; it is the function whose **value** at any input corresponds to the **slope** of the mother at that same input. @fig-segmentize shows a function F(x) in black, and a kind of compass for measuring slopes. The slope of F() varies across the input values. We can calculate that slope for many different input values. Ordinarily we would plot the derivative---that is, the daughter function---using the vertical axis for the measured slope. 
+Keep in mind that differentiation constructs an new "daughter" function from a "mother" function. Finding the daughter is straightforward; it is the function whose **value** at any input corresponds to the **slope** of the mother at that same input. @fig-segmentize shows a function F(x) in blue, annotated with a red compass for measuring slopes. The slope of F() varies across the input values. We can calculate that slope for many different input values. Ordinarily we would plot the derivative---that is, the daughter function---using the vertical axis for the measured slope. 
 
-But @fig-segmentize(a) shows the daugher function (in [blue]{style="color: blue;"}) not in the usual way as a value, but instead as a small, sloped line segment. The reader can confirm this by matching each [blue line segment]{style="color: blue;"} to the slope of the black function directly above or below it.
+But @fig-segmentize(a) shows the daughter function not in the usual way as values, but instead as small, sloped line segments in alternating [purple]{style="color: #CC79A7;"} and [blue]{style="color: #0072B2;"}. The reader can confirm this by matching each colored segment to the slope of the smooth function directly above or below it.
 
 ```{r}
 #| label: fig-segmentize
-#| fig-cap: "A function (black) with its rate-of-change function depicted as short inclined segments (blue)." 
+#| fig-cap: "A function (continuous curve) with its rate-of-change function depicted as short inclined segments." 
 #| fig-cap-location: bottom
 #| fig-subcap: 
 #| - "Differentiation gives the slope for any input."
-#| - "Anti-differentiation accumulates the slopes to reconstruct the function (green)."
+#| - "Anti-differentiation accumulates the segments to reconstruct the function (green)."
 #| echo: false
 #| warning: false
-#| layout-ncol: 2
+#| layout-ncol: 1
 f <- doodle_fun(~ x, seed = 133)
 Pts <- Znotes::segmentize(f(x) ~ x, h=0.25, domain(x=-5:5), npts=1) |>
   dplyr::mutate(top = cumsum(ymax - ymin), bottom=top - (ymax-ymin))
 
+Pts$alpha <- rep(c(1, 0.3), length.out = nrow(Pts))
+Pts$segcolor <- rep(c(.slice_contrast., .slice_color.), length.out = nrow(Pts))
+
 slice_plot(f(x) ~ x, domain(x=-5:5), color = .slice_color.) |>
-  gf_segment(ymin + ymax ~ xmin + xmax, data = Pts, color="blue", size=1.5) |>
+  gf_segment(ymin + ymax ~ xmin + xmax, data = Pts, color= ~ segcolor, size=1.5) |>
   # gf_segment(bottom + top ~ xmin + xmax, data = Pts) |>
   gf_lims(y=c(-4,10)) |>
   # gf_errorbar(0 ~ -2.35 + -1.85, color="blue", width=2) |>
   # gf_text(0 ~ -2.25, label="dx", color="blue", vjust=-1) |>
   gf_labs(y="Output of F(x)") |>
-  slope_rose(nice_slopes = c(-2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5), y = 2.5, x = 0) |> 
-  gf_theme(theme_minimal())
+  add_slope_rose(nice_slopes = c(-2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5), y = 2.5, x = 0) |>
+  gf_refine(scale_color_manual(values=c(.slice_contrast., .slice_color.), guide = "none"))
 
 slice_plot(f(x) ~ x, domain(x=-5:5), alpha = 0, color = .slice_color.) |>
-  gf_segment(bottom + top ~ xmin + xmax, data = Pts, color = "green", size = 1.5) |>
-  gf_segment(ymin + ymax ~ xmin + xmax, data = Pts, color="blue", size=1.5) |>
+  gf_segment(bottom + top ~ xmin + xmax, data = Pts, color = ~ segcolor, size = 1.5) |>
+  gf_segment(ymin + ymax ~ xmin + xmax, data = Pts, color= ~ segcolor, size=1.5) |>
   gf_lims(y=c(-4,10)) |>
   # gf_errorbar(0 ~ -2.35 + -1.85, color="blue", width=2) |>
   # gf_text(0 ~ -2.25, label="dx", color="blue", vjust=-1) |>
   gf_labs(y="Output of F(x)") |>
-  slope_rose(nice_slopes = c(-2.5, -2, -1.5, -1, -0.5, 0,  0.5, 1, 1.5, 2, 2.5), y = 2.5, x = 0) |> 
-  gf_theme(theme_minimal())
-
+  add_slope_rose(nice_slopes = c(-2.5, -2, -1.5, -1, -0.5, 0,  0.5, 1, 1.5, 2, 2.5), y = 2.5, x = 0) |>
+  gf_refine(scale_color_manual(values=c(.slice_contrast., .slice_color.), guide = "none"))
 ```
 
 Anti-differentiation is the process of accumulating the sloped segments to reconstruct a function with those slopes. The accumulation itself is child's play. Start with the leftmost segment. Raise the segment next to it so that the two segments match. Continue the process by moving to the next segment, and so on.

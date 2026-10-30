@@ -203,7 +203,6 @@ Receipt of the SOS allows the Coast Guard to calculate a likelihood for the ship
 #| label: fig-ship-posterior1
 #| echo: false
 #| warning: false
-#| layout-ncol: 2
 #| fig-cap-location: top
 #| fig-cap: "Posterior probability for the ship's location based on the SOS and direction-detecting equipment."
 #| fig-subcap: 
@@ -236,11 +235,10 @@ Anxious to find the ship's crew, one of the Coast Guard stations sends out a sea
 #| label: fig-ship-posterior2
 #| echo: false
 #| warning: false
-#| layout-ncol: 2
 #| fig-cap: "Posterior probability for the ship's location after incorporating directional data."
 #| fig-subcap: 
-#| - "The likelihood for the plane to spot the life raft."
-#| - "The updated posterior probability after the plane's flight."
+#| - "The likelihood for the plane to spot the life raft during its first eearch flight. ."
+#| - "The updated posterior probability after the plane's unsuccessful search flight."
 ggplot(Grid, aes(x = x1, y = x2, z = plane_prob)) +
   geom_contour_filled(alpha = 0.5) +
   geom_contour(color = "white", linewidth = 0.2) +

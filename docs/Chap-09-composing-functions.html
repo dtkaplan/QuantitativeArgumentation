@@ -486,12 +486,24 @@ Figure&nbsp;9.2: Multiplying the two functions in <a href="Chap-09-composing-fun
 <p><a href="Chap-09-composing-functions.html#fig-one-pill">Figure 9.2</a> depicts the concentration of a drug after taking a single pill. Let’s extend the model to cover situations where multiple pills are taken over time, as with the prescribed “one pill every 8 hours for seven days.”</p>
 <p>With input scaling, we can adjust the time at which the pill is taken. Let’s use <code>pill(t)</code> to refer to the function depicted in <a href="Chap-09-composing-functions.html#fig-one-pill">Figure 9.2</a>. This pill was taken at hour 0. If hour 0 is mid-night, then <code>pill(t - 10)</code> is the function for a pill taken at 10 am. Similarly, <code>pill(t - 18)</code> represents a pill taken at 6 pm. And <code>pill(t - 26)</code> is the next one on the schedule. and so on for the whole seven-day prescription.</p>
 <p>The drug from each pill adds to whatever is already in the bloodstream. So the function giving the drug concentration for pills taken at 8-hour intervals (starting at 10 am on day 1) is:</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="R definition of `all_pills()`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>R definition of <code>all_pills()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>all_pills <span class="ot">&lt;-</span> <span class="cf">function</span>(t) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">one_pill</span>(t <span class="sc">-</span> <span class="dv">10</span>) <span class="sc">+</span> <span class="fu">one_pill</span>(t <span class="sc">-</span> <span class="dv">18</span>) <span class="sc">+</span> <span class="fu">one_pill</span>(t <span class="sc">-</span> <span class="dv">26</span>) <span class="sc">+</span> </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">one_pill</span>(t <span class="sc">-</span> <span class="dv">34</span>) <span class="sc">+</span> <span class="fu">one_pill</span>(t <span class="sc">-</span> <span class="dv">42</span>) <span class="sc">+</span> <span class="fu">one_pill</span>(t <span class="sc">-</span> <span class="dv">50</span>) <span class="sc">+</span> </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">one_pill</span>(t <span class="sc">-</span> <span class="dv">58</span>) <span class="co"># ... and so on.</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 </div>
 <p><code>All_pills(t)</code> is an example of a ☞&nbsp;<strong>linear combination of functions</strong><span id="finger-linear-combination-of-functions-definition" data-label="linear combination of functions">&nbsp;☜</span>. Here, the functions being combined are all input-shifted version of the same <code>pill(t)</code> function, but linear combinations can involve any functions. <a href="Chap-09-composing-functions.html#fig-drug-bloodstream">Figure 9.3</a> shows <code>all_pills()</code> over the first two-and-a-half days of the prescription.</p>
 <div class="cell">
@@ -508,14 +520,26 @@ Figure&nbsp;9.3: Concentration of a medicine in the bloodstream of a person who 
 </div>
 </div>
 </div>
-<p><a href="#fig-drug-bloodstream" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-drug-bloodstream</span></a> shows how each additional pill raises the drug concentration. Suppose the pharmacist’s goal is to maintain at all times a drug concentration above the therapeutic level of 1 mg/liter, providing no respite to the bacteria causing the infection.</p>
+<p><a href="#fig-drug-bloodstream" class="quarto-xref">Figure&nbsp;<span>9.3</span></a> shows how each additional pill raises the drug concentration. Suppose the pharmacist’s goal is to maintain at all times a drug concentration above the therapeutic level of 1 mg/liter, providing no respite to the bacteria causing the infection.</p>
 <p>Compare the situation in <a href="Chap-09-composing-functions.html#fig-triple-dose">Figure 9.4</a> to that of <a href="Chap-09-composing-functions.html#fig-one-pill">Figure 9.2</a>. A single pill per day regimen would result in the drug concentration falling below 1 mg/liter for most of the day. That’s not acceptable. The most obvious fix comes from recognizing that pill every 8 hours is three pills a day. So to be fair, the comparison the daily pill should have three times the dose of the 8-hour pill. Taking this into account, will the one-pill-per-day regimen work if we <em>tripled</em> the dose of each pill?</p>
 <p>This situation also falls under the aegis of the <em>linear combination</em> technique. In linear combinations, the modeler is free to set the output scale the functions being combined. For the one-dose-per-day plan (at triple the dose) the model of drug concentration looks like this:</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="R function for one pill per day">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>R function for one pill per day
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>once_per_day <span class="ot">&lt;-</span> <span class="cf">function</span>(t) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span> <span class="sc">*</span> <span class="fu">one_pill</span>(t <span class="sc">-</span> <span class="dv">10</span>) <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> <span class="fu">one_pill</span>(t <span class="sc">-</span> <span class="dv">34</span>) <span class="sc">+</span> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span> <span class="sc">*</span> <span class="fu">one_pill</span>(t <span class="sc">-</span> <span class="dv">58</span>) <span class="co"># ... and so on</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 </div>
 <p>Let’s graph the function:</p>
 <div class="cell">
@@ -537,8 +561,8 @@ Figure&nbsp;9.4: Drug concentration over time when taking one pill per day at tr
 </section>
 <section id="linear-regression" class="level2 page-columns page-full" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="linear-regression"><span class="header-section-number">9.2</span> Linear regression</h2>
-<p>[In everyday speech, the word “regression” means a <a href="https://dictionary.cambridge.org/us/dictionary/english/regression">return to a previous, less advanced, or worse state.</a></p>
-<p>A linear <em>combination</em> is a mathematical idea: a way to build new functions by combining existing functions. This is in not at all the meaning of the word in the phrase “linear regression.” We arrived at this confusing situation by historical accident. The original usage in statistics in the 1890s reflected a misconception that treated a simple mathematical pattern as if it emerged from an underlying natural, biological, or economic process. History can be sticky; our modern understanding is better captured by the name ☞&nbsp;<strong>linear modeling</strong><span id="finger-linear-modeling-definition" data-label="linear modeling">&nbsp;☜</span>.]{.column-margin} Very often, however, the point of building a new function is to represent <em>data</em>, constructing a function that captures the patterns seen in the data. The technique for using data to inform the construction of a linear combination is traditionally called ☞&nbsp;<strong>linear regression</strong><span id="finger-linear-regression-definition" data-label="linear regression">&nbsp;☜</span>.</p>
+<div class="page-columns page-full"><p>[</p><div class="no-row-height column-margin column-container"><span class="">In everyday speech, the word “regression” means a <a href="https://dictionary.cambridge.org/us/dictionary/english/regression">return to a previous, less advanced, or worse state.</a></span></div></div>
+<p>This section introduces a mainstream method for finding good coefficients so that a linear combination of functions approximates data. This is one of the most common quantitative techniques. Unfortunately, the standard name for the technique is bizarre: ☞&nbsp;<strong>linear regression</strong><span id="finger-linear-regression-definition" data-label="linear regression">&nbsp;☜</span>. This strange name is so ubiquitous that it deserves explanation even before we outline the method itself. The usage of “regression” in statistics in the 1890s reflected a misconception that treated a simple mathematical pattern as if it emerged from an underlying natural, biological, or economic process. History can be sticky; our modern understanding is better captured by the name ☞&nbsp;<strong>linear modeling</strong><span id="finger-linear-modeling-definition" data-label="linear modeling">&nbsp;☜</span>.</p>
 <p>The <code>same()</code> and <code>flat()</code> core modeling functions are the most common building blocks for linear regression models, but in principle any function can be included in a linear regression. And, linear regression effectively automates the process of <em>output scaling</em> introduced in <a href="Chap-07-core-modeling-functions.html#sec-input-output-transforms">Section 7.2</a>.</p>
 <p>Let’s use an example to set the stage for understanding linear regression/modeling. Suppose you are studying the factors that contribute to student performance in elementary school. Teachers like to think of themselves as the critical factor, but also point to the benefits of small class sizes and supportive family environments. It’s easy to imagine a system where teacher performance in the classroom is carefully observed and scored by experts, although genuine experts are always in short supply. But, for our example, let’s operationalize teacher skill using such a performance evaluation. Class size is easy to operationalize: count the students in each class and average over each student’s classes.</p>
 <p>Supportive family environments? This is harder. We are all inspired by stories of undereducated parents pushing their children to succeed against the odds. Operationalizing this dimension (these dimensions?) requires identifying measurable indicators. Two such are the parents’ level of education and the family’s income. (Perhaps it’s really <em>lack of income</em> that matters, since low-income families often face significant challenges.)</p>
@@ -549,6 +573,17 @@ Figure&nbsp;9.4: Drug concentration over time when taking one pill per day at tr
 <div class="page-columns page-full"><p>Typically, as in this example, the input quantities have different dimension and are measured in different units. For example, in this example, <code>income</code> is measured in dollars (dimension W), <code>education</code> in years of schooling (dimension T), <code>performance</code> as a score on an evaluation (dimension [1]), and <code>size</code> as the number of students in a class (also dimension [1]).  The output quantity, <code>score</code>, also has dimension [1] and its own units.</p><div class="no-row-height column-margin column-container"><span class="">There are many scales for measuring school performance. When we talk about them, we don’t typically give a unit name. For instance, a score of”600 on the SAT math test,” which is roughly equivalent to a score of “25 on the ACT text,” or a “gradepoint of 3.5.”</span></div></div>
 <p>A linear combination is an ideal format for combining input quantities with different dimensions. It is a generalization of the <strong>output scaling</strong> introduced in <a href="Chap-07-core-modeling-functions.html#sec-core-functions">Chapter 7</a> which we used to convert the pure-number output of the core modeling functions to an output quantity with dimension and units. For our example, the function might be written this way:</p>
 <div style="page-break-after: always;"></div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="R syntax for a linear combination">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>R syntax for a linear combination
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>score_model <span class="ot">&lt;-</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(performance, education, income, size) {</span>
@@ -559,7 +594,9 @@ Figure&nbsp;9.4: Drug concentration over time when taking one pill per day at tr
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    E</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="page-columns page-full"><p>The quantity <code>A</code> is a conversion factor that turns <code>performance</code> into a quantity that has the same units and dimension as <code>score</code>. Similarly, <code>B</code> converts years of <code>education</code> into a <code>score</code> and so on for <code>C</code>, <code>D</code>, and <code>E</code>.  These conversion factors are called ☞&nbsp;<strong>coefficients</strong><span id="finger-coefficient-definition" data-label="coefficient">&nbsp;☜</span>.</p><div class="no-row-height column-margin column-container"><span class="">Another word for “coefficient” is ☞&nbsp;<strong>scalar</strong><span id="finger-scalar-definition" data-label="scalar">&nbsp;☜</span>. This name is a reminder that the point is to “scale” something.</span></div></div>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><span class="callout-margin-content">Caution: these are placeholders for the coefficients</span></div><div class="page-columns page-full"><p>The quantity <code>A</code> is a conversion factor that turns <code>performance</code> into a quantity that has the same units and dimension as <code>score</code>. Similarly, <code>B</code> converts years of <code>education</code> into a <code>score</code> and so on for <code>C</code>, <code>D</code>, and <code>E</code>.  These conversion factors are called ☞&nbsp;<strong>coefficients</strong><span id="finger-coefficient-definition" data-label="coefficient">&nbsp;☜</span>.</p><div class="no-row-height column-margin column-container"><span class="">Another word for “coefficient” is ☞&nbsp;<strong>scalar</strong><span id="finger-scalar-definition" data-label="scalar">&nbsp;☜</span>. This name is a reminder that the point is to “scale” something.</span></div></div>
 <p>We can figure out the units and dimension of each of the coefficients using the <em>conversion factor</em> ideas from <a href="Chap-03-quantities.html#sec-quantities">Chapter 3</a>. For instance, the <code>C</code> coefficient has to turn <code>income</code> (dimension W) into a <code>score</code> (dimension [1]), so its dimension would be [1] / W. Even more, we can say what are the <em>units</em> of <code>C</code>: if <code>income</code> is measured in dollars and <code>score</code> is measured in SAT points, then the units of <code>C</code> would be SAT points per dollar.</p>
 <div class="page-columns page-full"><p>Knowing the units and dimensions of the coefficients helps, but it does not directly tell what the numerical value of the quantity should be. This is where the method of linear regression comes in: to find the numerical values of the coefficients that best match the observed data. The calculations themselves are based on theory beyond the scope of this book, but that poses no problem at all since linear regression is implemented in software that anyone can use. </p><div class="no-row-height column-margin column-container"><span class="">IN DRAFT: Some computing skill development exercises demonstrate how.</span></div></div>
 <p>Given that software finds the values of the coefficients, the modeler can focus on two critical tasks:</p>
@@ -594,12 +631,13 @@ Figure&nbsp;9.5: 1958 US Geological Survey topographical map of St.&nbsp;John in
 <p>The contours tell you more about the terrain than the elevation at each point. For example, the steepest route up from any given point is perpendicular to the contour through that point. Steep areas of terrain have closely spaced contours. Conversely, areas with widely spaced contours are relatively flat, as you can see along the shoreline of Hansen Bay. Naturally, the steepness of a path depends on which direction the path goes. Paths perpendicular to contours are steep, paths parallel to contours are flat. With this in mind, look at the road that links Hansen Bay to Princess Creek in the far northwest corner of the map. Roads are generally designed to avoid going steeply uphill, and you can see that the Princess Creek/Hansen Bay road tends to follow the contours, crossing obliquely at shallow angles rather than cutting straight up the steepest slopes.</p>
 <p>Or consider the narrow neck connecting the two larger landmasses. This is marked “haul over,” which makes sense because the path connecting the south side of the next to the north side does not cross any contours. That path is relatively flat, a good route to haul a boat overland between the two sides.</p>
 <p>The equivalent of a topographical map for functions is called a ☞&nbsp;<strong>contour plot</strong><span id="finger-contour-plot-definition" data-label="contour plot">&nbsp;☜</span>. The output of the function corresponds to the elevation in the map, two inputs play the roles of latitude and longitude respectively. A contour plot provides a mechanism to read off the output for given values of the inputs, but the skilled interpreter can glean more information than that. <a href="Chap-09-composing-functions.html#fig-sultriness-contour">Figure 9.6</a> shows an example, the heat-index function introduced in <a href="Chap-06-functions.html#sec-intro-to-functions">Chapter 6</a>. The inputs are temperature and humidity; the output is the heat index.</p>
-<p>Panel (a) of <a href="Chap-09-composing-functions.html#fig-sultriness-contour">Figure 9.6</a> shows the function in tabular form, just as it was presented in the 1979 paper that introduced the heat index. Given values for the temperature and humidity, you can easily find the corresponding output from the table.</p>
-<p>Panel (b) shows the heat index function as a contour plot. By avoiding the table’s visual clutter of a grid of numbers, some simple patterns can be seen. For instance, consider on (b) the heat index output for input temperatures lower than 30°C; the contours run in parallel with a slight upward slope from left to right.</p>
+<p>Panel (a) of <a href="Chap-09-composing-functions.html#fig-sultriness-contour">Figure 9.6</a> is a too-small-to-read reproduction of UNRESOLVED tbl-sultriness. It is used here to show an important spatial pattern in the table, that the heat index is undefined for high temperatures and humidities.</p>
+<p>Panel (b) shows the heat index function as a <em>contour plot</em>. By avoiding the table’s visual clutter of a grid of numbers, some simple patterns can be seen. For instance, consider on (b) the heat index output for input temperatures lower than 30°C; the contours run in parallel with a slight upward slope from left to right.</p>
 <p>Such parallel contours correspond to the function being a linear combination of the inputs. The slope means that the function increases with both dry-bulb temperature and relative humidity. That the slope is shallow means that—at least in the top portion of the graphical space—the function hardly depends on humidity.</p>
 <p>Now consider dry-bulb temperatures higher than 30°C, especially for humidities greater than, say, 50%. The contours are still parallel but they are heavily inclined from left to right and closely spaced together.</p>
 <p>The close spacing of the contours indicates, as in the topographical map of <a href="Chap-09-composing-functions.html#fig-saint-john">Figure 9.5</a>, the function is very steep: a small change in either input produces a large change in the output. This relationship is what’s behind the common summertime complaint: “It’s not the heat, it’s the humidity.”</p>
 <p>The inclination of the contours tells us something else: the heat index for high ambient temperatures is closely linked to both humidity and temperature. And the curvature of the contour lines indicates an <em>interaction</em> between temperature and humidity.</p>
+<p>The explanation for the big change in pattern from top to bottom on the plot is physiological, not meteorological. Keep in mind that human core body temperature is 37°C. Metabolism generates heat and the core temperature would go up above 37°C if it were not for the body’s cooling mechanisms. When a lot of heat is being generated, as in exercise, one of these cooling mechanisms becomes evident: sweating. Sweating is most effective at low humidities. At high humidities, the evaporation of sweat is less efficient, leading to a rapid increase in perceived heat, which is captured by the steep contours in the heat index plot.</p>
 <div id="fig-sultriness-contour" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sultriness-contour-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -610,7 +648,7 @@ Figure&nbsp;9.6: Two graphical presentations of the heat index function. Panel (
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www/sultriness-table.png" class="img-fluid figure-img"></p>
+<p><img src="www/Steadman-table.png" class="img-fluid figure-img"></p>
 <figcaption>As a table</figcaption>
 </figure>
 </div>
@@ -627,7 +665,6 @@ Figure&nbsp;9.6: Two graphical presentations of the heat index function. Panel (
 </div>
 </figure>
 </div>
-<p>The explanation for the big change in pattern from top to bottom on the plot is physiological, not meteorological. Keep in mind that human core body temperature is 37°C. Metabolism generates heat and the core temperature would go up above 37°C if it were not for the body’s cooling mechanisms. When a lot of heat is being generated, as in exercise, one of these cooling mechanisms becomes evident: sweating. Sweating is most effective at low humidities. At high humidities, the evaporation of sweat is less efficient, leading to a rapid increase in perceived heat, which is captured by the steep contours in the heat index plot.</p>
 <p>A heat index of 37°C leaves no way for the body to dissipate metabolic heat. Consequently, the core body temperature starts to go up. You can see from the function output that a heat index of 37°C corresponds to dry-bulb temperatures around 42°C, <em>so long as the humidity is low</em>. But as humidity increases, the safety mechanism of sweating shorts out and the skin temperature rises quickly.</p>
 <p>A heat index of 65°C or thereabouts is thought to be the limit of human tolerance. After a few hours of exposure at this level the risk of death is very high. At high humidities, this fatal threshold is reached even when the ambient dry-bulb temperature is near normal body temperature.</p>
 

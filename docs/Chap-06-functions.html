@@ -113,6 +113,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
@@ -441,21 +443,20 @@ Figure&nbsp;6.1: A diagram of a simple system. The dimensions are named. A sharp
 </figcaption>
 </figure>
 </div>
-<p>Such diagrams name the dimension, e.g., “Cloudiness.” The arrows pointing into the box surrounding the word indicate which other dimensions are having an influence. In <a href="#fig-solar-diag1" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-solar-diag1</span></a>, “production” is in a box with sharp corners, with arrows pointing in, signifying that “production” is the <em>output</em> of a function. The inputs to the function are at the tail-end of the arrows: “cloudiness” and “sun position.” Taken as a whole, the diagram says that electricity <em>production</em> is a function of the <em>sun position</em> and the amount of <em>cloudiness</em>.</p>
-<div class="page-columns page-full"><p>Models are always limited in scope; they don’t try to account for every feature in a system. The notation used in <a href="#fig-solar-diag1" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-solar-diag1</span></a> makes it explicit what dimensions are being modeled and which dimensions are taken as givens. The sharp-cornered box denotes dimensions that are produced within the model. <span class="column_margin">Economists call such dimensions ☞&nbsp;<strong>endogenous</strong><span id="finger-endogenous-definition" data-label="endogenous">&nbsp;☜</span> meaning to “come from inside.”</span> The round-cornered boxes indicate which dimensions are taken as given, that is, “coming from outside” the model. </p><div class="no-row-height column-margin column-container"><span class="">Economists use the word ☞&nbsp;<strong>exogenous</strong><span id="finger-exogenous-definition" data-label="exogenous">&nbsp;☜</span>, where the prefix <em>exo</em> means “outside of.”</span></div></div>
-<p><a href="#fig-solar-diag1" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-solar-diag1</span></a> depicts a very simple model of a photovoltaic electricity generation system. But models can be much more complicated, with both sharp- and round-cornered boxes providing inputs to any given sharp-cornered box.</p>
+<p>Such diagrams name the dimension, e.g., “Cloudiness.” The arrows pointing into the box surrounding the word indicate which other dimensions are having an influence. In <a href="#fig-solar-diag1" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>, “production” is in a box with sharp corners, with arrows pointing in, signifying that “production” is the <em>output</em> of a function. The inputs to the function are at the tail-end of the arrows: “cloudiness” and “sun position.” Taken as a whole, the diagram says that electricity <em>production</em> is a function of the <em>sun position</em> and the amount of <em>cloudiness</em>.</p>
+<div class="page-columns page-full"><p>Models are always limited in scope; they don’t try to account for every feature in a system. The notation used in <a href="#fig-solar-diag1" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> makes it explicit what dimensions are being modeled and which dimensions are taken as givens. The sharp-cornered box denotes dimensions that are produced within the model. <span class="column_margin">Economists call such dimensions ☞&nbsp;<strong>endogenous</strong><span id="finger-endogenous-definition" data-label="endogenous">&nbsp;☜</span> meaning to “come from inside.”</span> The round-cornered boxes indicate which dimensions are taken as given, that is, “coming from outside” the model. </p><div class="no-row-height column-margin column-container"><span class="">Economists use the word ☞&nbsp;<strong>exogenous</strong><span id="finger-exogenous-definition" data-label="exogenous">&nbsp;☜</span>, where the prefix <em>exo</em> means “outside of.”</span></div></div>
+<p><a href="#fig-solar-diag1" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> depicts a very simple model of a photovoltaic electricity generation system. But models can be much more complicated, with both sharp- and round-cornered boxes providing inputs to any given sharp-cornered box.</p>
 </section>
 <section id="the-organization-of-a-function" class="level2 page-columns page-full" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="the-organization-of-a-function"><span class="header-section-number">6.2</span> The organization of a function</h2>
-<p>In diagrams like <a href="#fig-solar-diag1" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-solar-diag1</span></a>, each sharp-cornered box corresponds to a function. Specifying what are the inputs to a function is essential, but the complete story requires an essential additional feature: an ☞&nbsp;<strong>algorithm</strong><span id="finger-algorithm-definition" data-label="algorithm">&nbsp;☜</span>. The algorithm is a complete operational description of the process to be followed in turning the inputs into the output.</p>
+<div class="page-columns page-full"><p>In diagrams like <a href="#fig-solar-diag1" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>, each sharp-cornered box corresponds to a function. Specifying what are the inputs to a function is essential, but the complete story requires an essential additional feature: an ☞&nbsp;<strong>algorithm</strong><span id="finger-algorithm-definition" data-label="algorithm">&nbsp;☜</span>. The algorithm is a complete operational description of the process to be followed in turning the inputs into the output. </p><div class="no-row-height column-margin column-container"><span class="">Admittedly, the name “algorithm” is offputting to many people. It comes from the name of a mathematician, Muhammad ibn Musa al-Khwarizmi (c. 780 – c. 850). He is famous for a book whose whose title contains “al Jabr,” Arabic for “the reunion of broken parts.” Our word “algebra” comes directly from “al Jabr.” Al-Khwarizmi’s book gives a description of the steps to follow when reuniting, say, the broken parts of what we now write as <span class="math inline">\(a = x / b\)</span> to get <span class="math inline">\(x = a\,b\)</span>.</span></div></div>
 <p>Mathematics classes often use functions without displaying the algorithm that implements the input-to-output process. For instance, you may remember the <span class="math inline">\(\sin\)</span> function, and even memorized the output produced for a handful of particular inputs. A typical classroom notation might look like <span class="math inline">\(\sin \pi = 0\)</span>. This particular example denotes that when the input number is <span class="math inline">\(\pi\)</span>, the output of the <span class="math inline">\(\sin\)</span> function will be zero.</p>
 <p>For any input values that you haven’t memorized, you need to refer to the algorithm behind <span class="math inline">\(\sin\)</span> to calculate the output. The algorithm, however, is hidden inside a calculator or the like. You provide the input using the keypad then press a labeled button to invoke the algorithm to work on that input. The output is displayed on the screen.</p>
 <p>Functions like <span class="math inline">\(\sin\)</span> take only a single input. But the functions we use in modeling often take two or more inputs. The notation we use for functions therefore has to be able to handle multiple inputs and, of particular importance, say which input plays what role in the algorithm.</p>
 <p>We will use a concrete example to demonstrate how this is done.</p>
 <p>On a hot day, comfort is a function of temperature and humidity. That is, temperature and humidity are the inputs, comfort is the output. Hot and wet conditions produced discomfort; cool, dry conditions are more comfortable. The previous sentence corresponds to a function that takes temperature and humidity as inputs and produces “comfort” as an output.</p>
 <p>Temperature and humidity are both quantities, so they are directly suited to be inputs to a function. It’s less obvious how to operationalize <em>comfort</em>, which is a subjective and multi-dimensional concept.</p>
-<div class="page-columns page-full"><p>One widely used operationalization of comfort is the so-called “heat index,” which often appears in weather reports and forecasts. </p><div class="no-row-height column-margin column-container"><span class=""><a href="#sec-heat-index" class="quarto-xref"><span class="quarto-unresolved-ref">sec-heat-index</span></a> presents the heat-index algorithm and its origins.</span></div></div>
-<p>It helps to give a function a name so that it can be referred to and distinguished from other functions. Using mnemonic names—that is, names that remind you what the function is about—is a good practice. We will call the function <code>heat_index()</code>.</p>
+<p>One widely used operationalization of comfort is the so-called “heat index,” which often appears in weather reports and forecasts. It helps to give a function a name so that it can be referred to and distinguished from other functions. Using mnemonic names—that is, names that remind you what the function is about—is a good practice. We will call the function <code>heat_index()</code>.</p>
 <p>The parentheses following the name are a convention to remind us that <code>heat_index</code> is a function. Otherwise, we might confuse it with a quantity. For the sake of clarity, this book will write function names followed by parentheses, e.g.&nbsp;<code>heat_index()</code>. In use, the parentheses provide punctuation for organizing the inputs. These will be placed inside the parentheses, separated by commas. For instance, the heat index on a day where the temperature is 30 °C and the humidity is 80% will be calculated as:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heat_index</span>(<span class="dv">30</span>, <span class="fl">0.80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -466,78 +467,587 @@ Figure&nbsp;6.1: A diagram of a simple system. The dimensions are named. A sharp
 <div class="page-columns page-full"><p>The process of calculating the output of a function for specific inputs, as above, has many names. Informally, we could say that we are “running the function.” Some people prefer the verb to be “executing.”  In mathematics, the process is called “evaluating” the function or even “applying” the function to its inputs.</p><div class="no-row-height column-margin column-container"><span class="">Here, “executing” is not about killing but instead about doing something, for instance the orders of an executive officer.</span></div></div>
 <p>We have already mentioned that the <code>heat_index()</code> function takes two inputs: temperature and humidity. In the algorithm implemented by <code>heat_index()</code>, temperature and humidity play different roles. We identify where each comes in by using names. You don’t need to know how to program computers to follow this book. Still, much of the notation can be understood with just a little instruction. In the text of this book, we will use the conventions of a popular computer language: R.</p>
 <p>Without going into detail, the definition of <code>heat_index()</code> looks like this:</p>
+<div id="nte-heat-index-pseudocode" class="callout callout-style-default callout-note no-icon callout-titled" title="R syntax to define a function">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+R command&nbsp;6.1: R syntax to define a function
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>heat_index &lt;- function(temperature, humidity) {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  # Algorithm goes here.</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This notation organizes four pieces of information:</p>
+</div>
+</div>
+<p>The algorithm is all important, but we will put off discussing it in detail for now. Instead, let’s focus in the first line of <a href="#nte-heat-index-pseudocode" class="quarto-xref">R command&nbsp;<span>6.1</span></a>. It is a bit of notation that organizes four pieces of information:</p>
 <ol type="1">
-<li>this is a function;</li>
+<li><code>function()</code> indicates that this is a function;</li>
 <li>the name of the function is <code>heat_index</code>;</li>
-<li>it takes two inputs,</li>
+<li>the function takes two inputs,</li>
 <li>the first input is named temperature, the second is named humidity,</li>
 </ol>
 <p>The names that go inside the <code>function()</code> parentheses are often called the <em>arguments</em> of the function (although we will also refer to them as <em>inputs</em> in this book). Arguments are like characters in a play. Inputs are the actors who play the characters. Note, however, that in this book we are already using “argument” with a specific meaning as in the title of this book. We will use the shorthand ☞&nbsp;<strong>arg</strong><span id="finger-arg-definition" data-label="arg">&nbsp;☜</span> the names of inputs to a function, and reserve “argument” for the sense of <a href="Chap-01-models.html#sec-models">Chapter 1</a>, that is, a claim supported by evidence and a chain of reasoning. .</p>
 <p>When using <code>heat_index()</code> to perform a calculation, we give the arg values inside parentheses as in <code>heat_index(30, 0.80)</code>.</p>
 <p>If the user wrote the inputs in the wrong order, <code>heat_index(0.80, 30)</code> it would be as if the user wanted to specify a very cold temperature (0.70 °F) and a meaninglessly high humidity (8500%). To avoid such problems, the R language allows the user to refer to the args by their names rather than their positions:</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Calling the `heat_index()` R function">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Calling the <code>heat_index()</code> R function
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heat_index</span>(<span class="at">humidity =</span> <span class="fl">0.80</span>, <span class="at">temperature =</span> <span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 37.66704</code></pre>
 </div>
 </div>
-</section>
-<section id="sec-heat-index" class="level2 page-columns page-full" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="sec-heat-index"><span class="header-section-number">6.3</span> Operationalizing comfort: the heat index</h2>
-<div class="page-columns page-full"><p>The heat index is familiar to those living in hot climates; few realize that it originated as a careful quantitative operationalization of comfort.  Key research into the manner was presented by R.G. Steadman in 1979 as the “sultriness index”.</p><div class="no-row-height column-margin column-container"><span class="">R.G. Steadman <a href="www/Foundations/apme-1520-0450_1979_018_0861_taospi_2_0_co_2.pdf">“The Assessment of Sultriness”</a>, <em>Journal of Applied Meteorology and Climatology</em>. July 1979 pp.&nbsp;861-873</span></div></div>
-<p><a href="#fig-sultriness-table" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sultriness-table</span></a> displays the sultriness function graphically, but doesn’t convey the extensive quantitative modeling that went into its development.</p>
-<div id="fig-sultriness-table" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-sultriness-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="www/sultriness-table.png" class="img-fluid figure-img" style="width:3.5in">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sultriness-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.2: The sultriness function. (Source: <a href="www/Foundations/apme-1520-0450_1979_018_0861_taospi_2_0_co_2.pdf">Assessment of sultriness</a>, p.&nbsp;862.) Note: Meteorologists measure the “dry bulb” temperature with an ordinary thermometer. In contrast, the “wet bulb” temperature measures evaporative cooling, operationalized by wrapping the thermometer with wet gauze.
+</div>
+</section>
+<section id="algorithms" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="algorithms"><span class="header-section-number">6.3</span> Algorithms</h2>
+<p>In <a href="#nte-heat-index-pseudocode" class="quarto-xref">R command&nbsp;<span>6.1</span></a> we merely wrote a comment to the human reader, “Algorithm goes here.” To actually use an R function, the algorithm has to be described in valid computer code. We don’t expect the reader to be able to write or even read elaborate computer code. But to be able to give a better image of what an algorithm is, let’s write the algorithm in <code>heat_index()</code> in plain English, making use of the information printed in <a href="#tbl-sultriness" class="quarto-xref">Table&nbsp;<span>6.1</span></a>. Said another way, we are going to pretend that the reader is a computer who is to be programmed.</p>
+<p>Every algorithm is built out of simpler algorithms. The simplest algorithms are those that you can immediately perform. In a computer processor, these are simple operations like addition that are built into the hardware. For our imagined programming language for the reader, we will build the <code>heat_index()</code> algorithm out of your capabilities when it comes to reading tables. The algorithm can be described using four operations, each of which is simple to do.</p>
+<ol type="1">
+<li>Locate <a href="#tbl-sultriness" class="quarto-xref">Table&nbsp;<span>6.1</span></a>.</li>
+<li>Take the temperature input and find the closest value in the left column of the table. That closest value marks the row of interest.</li>
+<li>Take the humidity input and find the closest value in the top row of the table. That closest value marks the column of interest.</li>
+<li>Find the number at the junction of the row and the column of interest. Return that as the output of the function.</li>
+</ol>
+<p>You likely learned in school how to perform steps such as this. So we are imagining that you come to the situation knowing things like how to find the closest value to some input in a row or column. So all we need to say is “find the closest ….” and you know what to do.</p>
+</section>
+<section id="sec-heat-index" class="level2 page-columns page-full" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="sec-heat-index"><span class="header-section-number">6.4</span> Operationalizing comfort: the heat index</h2>
+<p>The heat index is familiar to those living in hot climates; few realize that it originated as a careful quantitative operationalization of comfort.</p>
+<div class="cell page-columns page-full" data-tbl-cap-location="margin">
+<div id="tbl-sultriness" class="cell quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" data-tbl-cap-location="margin">
+<figure class="quarto-float quarto-float-tbl figure page-columns page-full">
+<div aria-describedby="tbl-sultriness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-tbl margin-caption" id="tbl-sultriness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: ‘Temperature-humidity scale: Apparent temperature (°C) corresponding to each combination of dry-bulb temperature and relative humidity. Values in parentheses correspond to skin humidities above 90% and are approximate.’—quoted from original source.
 </figcaption>
 </figure>
 </div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Tempature
+</div></th>
+<th colspan="11" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Relative humidity (%)
+</div></th>
+</tr>
+<tr class="even">
+<th style="text-align: center;" data-quarto-table-cell-role="th">(°C)</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">0%</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">10%</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">20%</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">30%</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">40%</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">50%</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">60%</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">70%</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">80%</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">90%</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">100%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">20</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">21</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">21</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">22</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">24</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">23</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">24</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">26</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">25</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">26</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">27</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">28</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: center;">(36)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">29</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">(40)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">30</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">(40)</td>
+<td style="text-align: center;">(45)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">31</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">(45)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">32</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">(51)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">33</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">(49)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">34</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">(47)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">35</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">(45)</td>
+<td style="text-align: center;">(51)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">36</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">(49)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">37</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">41</td>
+<td style="text-align: center;">46</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">38</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">(49)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">39</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">41</td>
+<td style="text-align: center;">46</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">40</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">49</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">41</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">41</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">42</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">47</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">43</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">49</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">44</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">41</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">45</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">47</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">46</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">49</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">47</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">48</td>
+<td style="text-align: center;">41</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">53</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">49</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">47</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">50</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="page-columns page-full"><p>Key research into the manner was presented by R.G. Steadman in 1979 as the “sultriness index”. The index was published as a table, reproduced in <a href="#tbl-sultriness" class="quarto-xref">Table&nbsp;<span>6.1</span></a>. </p><div class="no-row-height column-margin column-container"><span class="">R.G. Steadman <a href="www/Foundations/apme-1520-0450_1979_018_0861_taospi_2_0_co_2.pdf">“The Assessment of Sultriness”</a>, <em>Journal of Applied Meteorology and Climatology</em>. July 1979 pp.&nbsp;861-873</span></div></div>
+<p>It’s natural to think of a table as a graphical printing device using rows and columns to show values. Printing aside, it is helpful to think about <a href="#tbl-sultriness" class="quarto-xref">Table&nbsp;<span>6.1</span></a> as a <em>function</em>.</p>
+<p>But the research article that introduced it did not write <code>heat_index(temperature, humidity)</code> or give an implementation as a formula. It’s likely that you can figure out how to find the output of <code>heat_index()</code> given the inputs. You can confirm that a temperature of 30 °C and humidity of 80% corresponds to a heat index of 37 °C.</p>
 </section>
-<section id="algorithms" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="algorithms"><span class="header-section-number">6.4</span> Algorithms</h2>
-<p>We called <a href="#fig-sultriness-table" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sultriness-table</span></a> the sultriness <em>function</em>. But the research article that introduced it did not write <code>sultriness(temperature, humidity)</code> or give an implementation as a formula. <a href="#fig-sultriness-table" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sultriness-table</span></a>, which is intended for a human reader, is the only presentation that was given in the research article.</p>
-<p>It’s likely that you can figure out how to find the output of <code>heat_index()</code> given the inputs. You can confirm that a temperature of 30 °C and humidity of 80% corresponds to a heat index of 37 °C.</p>
-<p>But, imagining that you don’t know how to use <a href="#fig-sultriness-table" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sultriness-table</span></a>, let’s write out instructions. Such instructions have a more formal name: ☞&nbsp;<strong>algorithms</strong><span id="finger-algorithms-definition" data-label="algorithms">&nbsp;☜</span>. Admittedly, the name “algorithm” is offputting to many people. It comes from the name of a mathematician, Muhammad ibn Musa al-Khwarizmi (c. 780 – c. 850). He is famous for a book whose key word is “al Jabr,” Arabic for “the reunion of broken parts.” Our word “algebra” comes directly from “al Jabr.” Al-Khwarizmi’s book gives a description of the steps to follow when reuniting, say, the broken parts of what we now write as <span class="math inline">\(a = x / b\)</span> to get <span class="math inline">\(x = a\,b\)</span>.</p>
-<p>Here’s a table-reading algorithm, in a form intended for an educated person:</p>
-<ol type="1">
-<li>Take the temperature and find the closest value in the left column of the table. That closest value marks the row of interest.</li>
-<li>Take the humidity and find the closest value in the top row of the table. That closest value marks the column of interest.</li>
-<li>Find the number at the junction of the row and the column of interest. That is output.</li>
-</ol>
-<p>Like all algorithms, this one is written in terms of tasks that the processor already know how to perform, e.g.&nbsp;“find the closest value.” If you didn’t know how to perform that task, you would need a description of the steps involved. That is, algorithms are often written in terms of other algorithms.</p>
-<p>The simplest algorithms are those where the answer is already known. For instance, to learn how to add numbers with multiple digits, you first had to memorize the basic facts of single-digit arithmetic: the <em>addition table</em>.</p>
-<p><a href="Chap-07-core-modeling-functions.html#sec-core-functions">Chapter 7</a> introduces a small set of basic functions called the “core modeling functions.” Each of these is pretty simple, and you will be expected to be able to sketch out a rough graph and know the values of certain special inputs and their output values. Of course, human memory is fallible. So you will have a computer implementation of each core modeling function to use and refer to.</p>
-</section>
-<section id="what-do-you-need-to-know-about-an-algorithm" class="level2" data-number="6.5">
+<section id="what-do-you-need-to-know-about-an-algorithm" class="level2 page-columns page-full" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="what-do-you-need-to-know-about-an-algorithm"><span class="header-section-number">6.5</span> What do you need to know about an algorithm?</h2>
 <p>In the modern world, many of the objects we use productively every day are so complicated that few people, if any, know exactly what is inside them. For example, telephoning a friend does not require knowing in detail how a phone or a telecommunications system works. Drivers typically do not know how a modern gasoline engine works. We can use these machines because they have a user interface that we know how to operate. Using the interface lets us confirm we are using it properly. For instance, confidence in a phone comes (in part) from the text messages sent and successfully received.</p>
-<p>The same is true of functions. Using a function requires knowing what kinds of inputs it takes and observing what kind of output it produces. <a href=".column-margin">Although the “t” in “mortgage” is silent, it refers to an important aspect mortgage loans. The root <em>mort</em> means “death”, as in “mortality.” In a mortgage, the borrower pays the lender a fixed amount each month. This gradually reduces the amount of money owed. When that amount reaches zero, the mortgage is dead: no more payments are required. Some people even have funereal rites to celebrate the death of a mortgage.</a> To illustrate, consider a situation faced by people buying a home. Almost always, they buyer needs to borrow money, a form of loan called a “mortgage.”</p>
+<div class="page-columns page-full"><p>The same is true of functions. Using a function requires knowing what kinds of inputs it takes and observing what kind of output it produces.  To illustrate, consider a situation faced by people buying a home. Almost always, they buyer needs to borrow money, a form of loan called a “mortgage.”</p><div class="no-row-height column-margin column-container"><span class="">Although the “t” in “mortgage” is silent, it refers to an important aspect mortgage loans. The root <em>mort</em> means “death”, as in “mortality.” In a mortgage, the borrower pays the lender a fixed amount each month. This gradually reduces the amount of money owed. When that amount reaches zero, the mortgage is dead: no more payments are required. Some people even have funereal rites to celebrate the death of a mortgage.</span></div></div>
 <p>The internet has apps that calculate monthly mortgage payments. Behind such apps is a function that takes three inputs: the amount borrowed (the principal), the annual interest rate on the loan, and the loan duration (that is, the number of monthly payments needed to pay off the loan.) The function’s output is the amount of the monthly payment. In internet apps, inputs are often specified with sliders or check-boxes or drop-down menus. To stay close to the <code>function(arg1, arg2, arg3)</code> notation, we provide an implementation using that convention. In the interactive version of this book, you can even find the output for any inputs you care to specify.</p>
-<p>Try it out in <span class="citation" data-cites="chk-monthly-payment">@chk-monthly-payment</span>, where, at least initially, the args have been set to a $200,000 loan at 6 percent interest for a standard 30-year duration (360 months).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monthly_payment</span>(principal, interest_rate, duration)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell" data-context="setup">
-<pre class="{webr}"><code>#| echo: false
-#| context: setup
-monthly_payment &lt;- function(principal, interest_rate, duration) {
-  # Annual in percent to monthly interest rate in decimal
-  r &lt;- interest_rate / 1200 # monthly interest
-  duration_in_months &lt;- duration * 12
-  principal * r * (1+r)^duration_in_months / ((1+r)^duration_in_months - 1)
-}</code></pre>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="R command and output">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-<div class="cell" data-caption="Mortgage payment calculator">
-<pre class="{webr}"><code>#| caption: "Mortgage payment calculator"
-#| label: chk-monthly-payment
-monthly_payment(200000, 6, 30)</code></pre>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>R command and output
 </div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monthly_payment</span>(<span class="dv">200000</span>, <span class="dv">6</span>, <span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1199.101</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>Keep in mind that <code>monthly_payment()</code> is a <em>model</em> of what you have to pay. It takes into account the interest rate and the duration of the loan. But there are often other dimensions of the situation, for example, processing fees or mortgage insurance. You, or your real-estate agent, will need a more complete model of the situation. Even AI can easily get it wrong if it doesn’t know the details of the mortgage contract you will eventually be signing.</p>
 <p>Typically, computer languages accept purely numerical inputs rather than a complete description of the quantity. So, the first input is <code>200000</code> rather than $200,000, the second is <code>6</code> rather than 6%, and the third is <code>30</code> rather than 30 years.</p>
 <p>What is needed to know to use this function successfully? Here is a list:</p>
 <ol type="1">
@@ -550,7 +1060,7 @@ monthly_payment(200000, 6, 30)</code></pre>
 <li><code>duration</code>: the number of years</li>
 <li>Output: A numerical amount. The currency will be the same as that of the <code>principal</code> input.</li>
 </ol></li>
-<li>A way to check the function’s action and whether the user correctly works the interface. Such checking can take several forms. The simplest is to give the same inputs to a trusted source, as in <a href="#fig-mortgage-calculator-app" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mortgage-calculator-app</span></a>, and compare the outputs.</li>
+<li>A way to check the function’s action and whether the user correctly works the interface. Such checking can take several forms. The simplest is to give the same inputs to a trusted source, as in <a href="#fig-mortgage-calculator-app" class="quarto-xref">Figure&nbsp;<span>6.2</span></a>, and compare the outputs.</li>
 </ol>
 <div id="fig-mortgage-calculator-app" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -558,7 +1068,7 @@ monthly_payment(200000, 6, 30)</code></pre>
 <img src="www/mortgage-calculator.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mortgage-calculator-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.3: A randomly selected mortgage payment calculator from the internet. The interface is different from the <code>monthly_payment()</code> function, with entry slots for house price and down payment rather than <code>principal</code>.
+Figure&nbsp;6.2: A randomly selected mortgage payment calculator from the internet. The interface is different from the <code>monthly_payment()</code> function, with entry slots for house price and down payment rather than <code>principal</code>.
 </figcaption>
 </figure>
 </div>

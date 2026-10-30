@@ -18,14 +18,14 @@ Even in informal speech, we use the word "system" a lot. In this book, we will b
 
 
 > **System**: *a framework or an organized structure with interconnected elements.* Or, from the [Merriam-Webster](https://www.merriam-webster.com/dictionary/system) dictionary: "a regularly interacting or interdependent group of items forming a unified whole."
+ 
+
+This chapter sets up a framework for thinking about "elements" or "items" productively, with an eye toward what goes into a model used in quantitative argumentation. To give you an idea of what's coming, consider the following thought, which at this point may seem like a mere jumble of words
 
 `r qr_margin_note(
  "https://www.merriam-webster.com/dictionary/system", 
  'Merriam-Webster'
  )`
- 
-
-This chapter sets up a framework for thinking about "elements" or "items" productively, with an eye toward what goes into a model used in quantitative argumentation. To give you an idea of what's coming, consider the following thought, which at this point may seem like a mere jumble of words
 
 > "Systems are composed of dimensions and the relationships which connect those dimensions. In models, dimensions are represented by quantities."
 
@@ -71,9 +71,11 @@ The Wong-Baker FACES pain scale, which turns a subjective feeling into a quantit
 
 A common criticism of quantitative analysis is that any particular quantitative operationalization is imperfect and incomplete. This criticism can be valid and serve as a prompt to refine the operationalization and the analysis method, but it by no means invalidates quantitative analysis.  The test of operationalization is not whether it is perfect, but whether it is good enough to contribute meaningfully to the purposes for which we are conducting the quantitative analysis.
 
+\newpage
+
 ## Data
 
-We are using "givens" to refer to the entire scope of facts, knowledge, and belief about the world. Some people informally use "data" here. Indeed "Data" is rooted in a Latin root: "to give" or "given." But for us `r xf_definition("data")` will stand for recorded facts, findings, and measurements. 
+We use "givens" use to refer to the entire scope of facts, knowledge, and belief about the world. Some people informally use "data" here. Indeed "Data" is rooted in a Latin root: "to give" or "given." But for us `r xf_definition("data")` will stand for recorded facts, findings, and measurements. 
 
 A broad, modern definition of "data" might be "anything that can be stored on a computer," the sort of material mined when training AI systems. Such data can take many forms: video, audio, maps and other images, text. Even the contents of a personal diary recording fleeting thoughts and perceptions is data in the can-be-stored-on-a-computer sense.
 

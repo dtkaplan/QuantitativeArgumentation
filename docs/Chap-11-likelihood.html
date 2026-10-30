@@ -383,15 +383,15 @@ window.Quarto = {
 </blockquote>
 <p>We often think of hypotheses (and the models that implement them) as developing over time, as implied by the phrase “further investigation.” But for the purposes of comparing and competing hypotheses, a better picture is that of a set of models all present at the same time, like the candidates in an election.</p>
 <p>To choose the best among the hypotheses, we need to be able to compare them to one another in terms of their ability to account for observed data and make accurate predictions. The numerical measure, the output of our objective function, is a quantity called ☞&nbsp;<strong>likelihood</strong><span id="finger-likelihood-definition" data-label="likelihood">&nbsp;☜</span>.</p>
-<section id="sec-likelihood-framework" class="level2" data-number="11.1">
+<section id="sec-likelihood-framework" class="level2 page-columns page-full" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="sec-likelihood-framework"><span class="header-section-number">11.1</span> The likelihood framework</h2>
 <p><a href="Chap-08-uncertainty.html#sec-uncertainty">Chapter 8</a> discussed how to use <em>probability distributions</em> to quantify uncertainty. <a href="Chap-08-uncertainty.html#sec-where-from">Section 8.2</a> introduced a Bayesian notion of where probability distributions come from: they are hypotheses concocted by humans.</p>
 <p>In the ☞&nbsp;<strong>likelihood framework</strong><span id="finger-likelihood-framework-definition" data-label="likelihood framework">&nbsp;☜</span>, we replace ideas about individual hypotheses being correct or incorrect, right or wrong, true or false. Instead, we consider <em>collections</em> of hypotheses, putting them into <em>competition</em> with one another, just as sports playoffs pit different athletes or teams against one another. In sports, a higher score gives a team a claim to being better than the opponent.</p>
 <p>In the likelihood framework, the competing entities are hypotheses represented by probability distributions about the relative probability of each possible observed outcome. The “score” for each competing hypothesis is the “☞&nbsp;<strong>likelihood</strong><span id="finger-likelihood-definition" data-label="likelihood">&nbsp;☜</span>.” And just as sports teams compete in a particular setting—a game or match—hypotheses compete in a setting: data.</p>
 <p>The reader who has never heard of “likelihood” in this sense may wonder if the framework is the right or best one for placing hypotheses into competition. We turn to the field of statistics to answer. As described in <a href="Chap-08-uncertainty.html#sec-where-from">Section 8.2</a>, Bayesian and Frequentist statisticians fundamentally disagree. Despite their conflicting stances, both camps put likelihood at the center of their methodologies.</p>
 <p>To illustrate how likelihood works, consider how to model uncertainty in the time interval between major events, for example, the time between economic depressions or the time between magnitude 6.5+ earthquakes in a region.</p>
-<p>To be specific, suppose we have data on the timing of the last five events of some kind: events occurred in 1905, 1919, 1950, 1973, and 1990. We would like to model the uncertainty in the timing of the next event based on these observations. We have information on five observed intervals between consecutive events. Four of them are definite: 14 years between 1905 and 1919, 31 years between 1919 and 1950, 23 years between 1950 and 1973, and 17 years between 1973 and 1990. The fifth interval, between 1990 and the next event, is unknown. This doesn’t mean that we have no information about it. At this time of this writing, 2027, we know the fifth interval is at least 37 years long.</p>
-<p>The standard model for the interval between random events is the exponential distribution. This has one parameter, the rate. A good choice of rate is the one most consistent with the data. Likelihood provides the measure of consistency between a hypothesized rate and the observed intervals. The exponential function <a href="Chap-11-likelihood.html#fig-exp-20-model">Figure 11.1</a> shows the likelihood of any one interval observation for a hypothesized rate of 0.03. Each of the observed intervals, 14, 17, 23, and 31 years has been marked in the graph.</p>
+<p>To be specific, suppose we have data on the timing of the last five events of some kind: say, earthquakes occurring in 1905, 1919, 1950, 1973, and 1990. We would like to model the uncertainty in the timing of the next event based on these observations. We have information on five observed intervals between consecutive earthquakes. Four of them are definite: <span class="margin-note">The four completed intervals.</span> 14 years between 1905 and 1919, 31 years between 1919 and 1950, 23 years between 1950 and 1973, and 17 years between 1973 and 1990. The fifth interval, between 1990 and the next event, is unknown. This doesn’t mean that we have no information about it. At this time of this writing, 2027, we know the fifth interval is at least 37 years long.</p>
+<p>The standard model for the interval between random events is the exponential distribution. This has one parameter, the rate. A good choice of rate is the one most consistent with the data. Likelihood provides the measure of consistency between a hypothesized rate and the observed intervals. The exponential function <a href="Chap-11-likelihood.html#fig-exp-20-model">Figure 11.1</a> shows the likelihood of any one interval observation for a hypothesized rate of 0.03 events per year. Each of the observed complete intervals—14, 17, 23, and 31 years—has been marked in the graph.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-exp-20-model" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -409,7 +409,7 @@ Figure&nbsp;11.1: The likelihood for any observed interval under the hypothesis 
 <p>The likelihood for each individual observation is the value of the likelihood function at that observation. For instance, the likelihood of an interval of 14 years is 0.0197. When there are multiple observations, we need to combine their likelihoods. How to accomplish this?</p>
 <p>The answer comes from the same feature of probability arithmetic that you may have encountered in games (or in math classes about games). For instance, the probability of rolling a 5 with a die is 1/6. The probability of rolling a 5 twice in a row involves combining the individual probabilities by multiplication: 1/6&nbsp;<span class="math inline">\(\times\)</span>&nbsp;1/6&nbsp;=&nbsp;1/36.</p>
 <p>The overall likelihood of our four observations—intervals of 14, 17, 23, and 31 years—is the product of their individual likelihoods: #<span class="math inline">\(0.0197 \times 0.0180 \times 0.0150 \times 0.0118 = 6.325e-8\ .\)</span>$ This number is very small in magnitude. That’s because there are very many other possibilities for the intervals that could have been observed, say, 12, 19, 24, 28 and such. Since there are so many similar sets of numbers, the likelihood of observing any particular one is small. As you’ll see, the ultimate use of likelihoods is to compare them one to another, that is, to compare their <em>relative size</em>.</p>
-<p>If all we had were the four completed intervals, the overall likelihood of 6.325e-8 would be the value we assign to the specific hypothesis of an exponential distribution with a rate parameter of 0.03. We are going to put this specific hypothesis into a competition for the <em>best</em> hypothesis. As described in <a href="Chap-10-tradeoffs.html#sec-tradeoffs">Chapter 10</a>, to define “best,” we need an <em>objective function</em> whose input will be the rate parameter and whose output will be the overall likelihood of our observed data—14, 17, 23, and 31 years—under that hypothesis.</p>
+<p>If all we had were the four completed intervals, the overall likelihood of 6.325e-8 would be the value we assign to the specific hypothesis of an exponential distribution with a rate parameter of 0.03. We are going to put this specific hypothesis into a competition for the <em>best</em> hypothesis. As described in <a href="Chap-10-tradeoffs.html#sec-tradeoffs">Chapter 10</a>, to define “best,” we need an <em>objective function</em> whose input will be the rate parameter and whose output will be the overall likelihood of our observed data—14, 17, 23, and 31 year intervals between earthquakes—under that hypothesis.</p>
 <p>By carrying out the same calculations we did for a rate of 0.03, we can find the likelihood for other rates. These are displayed in <a href="Chap-11-likelihood.html#tbl-several-rates">Table 11.1</a>. The workflow is this, for each row:</p>
 <ol type="i">
 <li>set the hypothesized rate</li>
@@ -420,7 +420,7 @@ Figure&nbsp;11.1: The likelihood for any observed interval under the hypothesis 
 <div id="tbl-several-rates" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-several-rates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.1: The likelihoods of the observations under five different hypothesized rates.
+Table&nbsp;11.1: The likelihoods of the car observations under five different hypothesized rates.
 </figcaption>
 <div aria-describedby="tbl-several-rates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -480,65 +480,66 @@ Table&nbsp;11.1: The likelihoods of the observations under five different hypoth
 </div>
 </figure>
 </div>
-<p>From the overall likelihood for each of the hypothesized rate parameters shown in <a href="Chap-11-likelihood.html#tbl-several-rates">Table 11.1</a>, we can see that a rate of 0.05 /year is more likely than our original hypothesis of 0.03 / year. But we can say more. The likelihood ratio comparing the 0.05 per year hypothesis to the 0.03 per year hypothesis is 1.41. <a href="Chap-11-likelihood.html#tbl-likelihood-ratio-verbal">Table 11.2</a>, to be introduced in the next section, translates likelihood ratios into verbal statements of relative support. A likelihood ratio of 1.41 is really “no evidence” in favor of 0.05 per year versus 0.03 per year. The reason for this wimpy result is that four observations is a tiny amount of data.</p>
-<p>If we can’t argue for the 0.05 per year hypothesis over the 0.03 per year hypothesis based on the four complete observations, what possible hypotheses can we rule out. To illustrate this, we’re going to extend the calculations shown in <a href="Chap-11-likelihood.html#tbl-several-rates">Table 11.1</a> to a wider range of intervals and plot the results in <a href="Chap-11-likelihood.html#fig-likelihood-curve">Figure 11.2</a>.</p>
-<div id="fig-likelihood-curve" class="quarto-layout-panel">
+<p>From the overall likelihood for each of the hypothesized rate parameters shown in <a href="Chap-11-likelihood.html#tbl-several-rates">Table 11.1</a>, we can see that an earthquake rate of 0.05&nbsp;/&nbsp;year is more likely than our original hypothesis of 0.03&nbsp;/&nbsp;year. But we can say more. The likelihood ratio comparing the 0.05 per year hypothesis to the 0.03 per year hypothesis is 1.41. <a href="Chap-11-likelihood.html#tbl-likelihood-ratio-verbal">Table 11.2</a>, to be introduced in the next section, translates likelihood ratios into verbal statements of relative support. A likelihood ratio of 1.41 is really “no evidence” in favor of 0.05&nbsp;per&nbsp;year versus 0.03&nbsp;per&nbsp;year. The reason for this wimpy result is that four observations is a tiny amount of data.</p>
+<p>If we can’t argue for the 0.05 per year hypothesis over the 0.03 per year hypothesis based on the four complete observations, what possible hypotheses can we rule out? To illustrate this, we’re going to extend the calculations shown in <a href="Chap-11-likelihood.html#tbl-several-rates">Table 11.1</a> to a wider range of hypothesized rates and plots the results in <a href="Chap-11-likelihood.html#fig-likelihood-curve">Figure 11.2</a>.</p>
+<div class="cell-output cell-output-stderr">
+<pre data-cap-location="bottom"><code>Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.</code></pre>
+</div>
+<div class="cell fig-cap-location-bottom quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-likelihood-curve" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-likelihood-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-likelihood-curve" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-likelihood-curve-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-likelihood-curve-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Chap-11-likelihood_files/figure-html/fig-likelihood-curve-1.png" class="img-fluid figure-img" data-ref-parent="fig-likelihood-curve" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-likelihood-curve-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) The four completed intervals.
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-likelihood-curve" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-likelihood-curve-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-likelihood-curve-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Chap-11-likelihood_files/figure-html/fig-likelihood-curve-2.png" class="img-fluid figure-img" data-ref-parent="fig-likelihood-curve" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-likelihood-curve-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) The one incomplete interval of 37 years.
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-likelihood-curve" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-likelihood-curve-3" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-likelihood-curve-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Chap-11-likelihood_files/figure-html/fig-likelihood-curve-3.png" class="img-fluid figure-img" data-ref-parent="fig-likelihood-curve" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-likelihood-curve-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c) All five intervals combined.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
+<img src="Chap-11-likelihood_files/figure-html/fig-likelihood-curve-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-likelihood-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.2: Likelihood of the observed data as a function of the hypothesized <em>rate</em> parameter.
+Figure&nbsp;11.2: Likelihood of the observed completed interval data as a function of the hypothesized <em>rate</em> parameter. The vertical <span style="color: magenta;">magenta</span> lines mark the 95% interval.
 </figcaption>
 </figure>
 </div>
-<p>Panel (a) shows the likelihood function for the four complete intervals, the same calculation as in <a href="Chap-11-likelihood.html#tbl-several-rates">Table 11.1</a>.</p>
-<p>Panel (b) is the likelihood function for the incomplete interval, that is, an interval that is still ongoing after 37 years from 1990 to 2027. If the rate parameter were very low, say one event per 100 years, an incomplete interval of at least 37 years is very likely. If the rate parameter were higher, say one even per 10 years, the likelihood of seeing the 37-year incomplete interval is very low.</p>
-<p>Panel (c) puts together the data from the complete and incomplete intervals. The likelihood function in (c) is the <em>product</em> of the two likelihood functions in (a) and (b).</p>
-<p>The amount of data available dictates how precise a statement is justified by the evidence. Statisticians often quantify precision in this context by using the <span class="math inline">\(\pm\)</span> notation. For instance, an estimate of <span class="math inline">\(0.03 \pm 0.01\)</span> would indicate “95-percent confidence” that the true rate parameter lies within the interval <span class="math inline">\(0.02\)</span> to <span class="math inline">\(0.04\)</span>. In each of panels (a), (b), and (c) we have indicated this 95-percent confidence interval with the vertical <span style="color: magenta;">magenta</span> lines.</p>
-<p>A good rule of thumb is that quadrupling the amount of data roughly halves the width of the confidence interval. But there is little reason to expect the new interval to be centered on the old estimate. The most one can say is that the new interval will probably overlap the original interval. That may be counter-intuitive, but uncertainty is sometimes that way!</p>
+</div>
+</div>
+</div>
+<div class="page-columns page-full"><p>The four completed intervals are consistent with a wide range of event rates. Said another way, the estimate of the accident rate from the four completed intervals is not very precise. Statisticians often quantify precision in this context by using the <span class="math inline">\(\pm\)</span> notation.  For instance, an estimate of <span class="math inline">\(0.03 \pm 0.01\)</span> would indicate “95-percent confidence” that the true rate parameter lies within the interval <span class="math inline">\(0.02\)</span> to <span class="math inline">\(0.04\)</span>.</p><div class="no-row-height column-margin column-container"><span class="">Technical point: We’re using the likelihood function as if it were a probability distribution. This is a common practice in “frequentist” statistics, the sort taught in conventional statistics courses. In <a href="Chap-12-bayes.html#sec-bayes">Chapter 12</a> we’ll show the mathematical Bayesian method for conversion of likelihood functions to probability distributions.</span></div></div>
+<p>What about the fifth interval, the one that started in 1990 and has not yet been closed by another earthquake? That unclosed interval also has relevant information. Informally, the earthquake-free period of 37 years (up to the date of writing) suggests a low earthquake rate. More formally, we can translate the exponential probability model for time between earthquakes into a probability of observing <em>no</em> earthquake since the 1990 one. This probability distribution informs the likelihood for the observation of “no earthquake yet” for a range of different hypothesized earthquake rates. UNRESOLVED fig-likelihood-curve2 shows this likelihood function.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-likelihood-curve2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-likelihood-curve2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-11-likelihood_files/figure-html/fig-likelihood-curve2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-likelihood-curve2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.3: Likelihood for the observation of no earthquake since 1990 at a range of different hypothesized earthquake rates. The <span style="color:magenta;">magenta</span> lines show the 95% interval.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The likelihood function in UNRESOLVED fig-likelihood-curve2 shows that the observation of no earthquake since 1990 argues for a low earthquake rate. The 95% interval is inconsistent with that from <a href="Chap-11-likelihood.html#fig-likelihood-curve">Figure 11.2</a>. That’s because they are based on different observations: the four completed intervals versus the incomplete interval since 1990.</p>
+<p>Multiplying the likelihood functions from <a href="Chap-11-likelihood.html#fig-likelihood-curve">Figure 11.2</a> and UNRESOLVED fig-likelihood-curve2 gives the likelihood function for all <em>five</em> observations, four complete intervals and the one incomplete one. UNRESOLVED fig-likelihood-curve3 shows this combined likelihood.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-likelihood-curve3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-likelihood-curve3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-11-likelihood_files/figure-html/fig-likelihood-curve3-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-likelihood-curve3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.4: Combined likelihood for all five intervals.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that the vertical scales differ in the graphs of the likelihood functions. That’s of no concern, since it is the <em>relative</em> likelihood that matters.</p>
 </section>
 <section id="sec-evidence-into-words" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="sec-evidence-into-words"><span class="header-section-number">11.2</span> Putting numerical evidence into words</h2>
 <p>A <em>likelihood</em> ratio is a measure of the strength of evidence. In interpreting likelihood, verbal ideas like “weak” evidence, “moderate,” and “strong” turn out to correspond to the <em>magnitude</em> of the likelihood ratio, where “magnitude” is used in the sense of <a href="Chap-05-magnitudes.html#sec-order-of-magnitude">Chapter 5</a>.</p>
-<p>The translation of a continuous quantity into a small set of verbal descriptions necessarily involves imposing some breakpoints. <a href="#tbl-likelihood-ratio-verbal" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-likelihood-ratio-verbal</span></a> provides a widely accepted set of breakpoints for translating the magnitude of the likelihood ratio into a verbal interpretation.</p>
+<p>The translation of a continuous quantity into a small set of verbal descriptions necessarily involves imposing some breakpoints. <a href="#tbl-likelihood-ratio-verbal" class="quarto-xref">Table&nbsp;<span>11.2</span></a> provides a widely accepted set of breakpoints for translating the magnitude of the likelihood ratio into a verbal interpretation.</p>
 <div id="tbl-likelihood-ratio-verbal" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-likelihood-ratio-verbal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -593,6 +594,16 @@ Table&nbsp;11.2: A scale for translating the likelihood ratio into verbal catego
 <p>Under the research hypothesis, the likelihood of getting 6 heads and 4 tails is:</p>
 <p><span class="math display">\[\underbrace{0.6 \cdot 0.6 \cdot 0.6 \cdot 0.6 \cdot 0.6 \cdot 0.6}_\text{For the heads} \cdot \underbrace{0.4 \cdot 0.4 \cdot 0.4 \cdot 0.4}_\text{For the tails} = 0.0012\]</span></p>
 <p>The likelihood ratio comparing the research hypothesis to the Null hypothesis is 1.2. This provides no reason to favor the research hypothesis. But, like a detective hunting for the criminal, you can try to collect more evidence, that is, more data.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>A likely dialog
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>For fun, imagine a dialog with the chief investigator (your boss) and with a likelihood expert present:</p>
 <p>Detective: Chief, I only have very preliminary evidence that the coin is biased (at 0.6), but I have a strong hunch and I’m sure it will become more convincing if I collect more data.</p>
 <p>Chief: How much time have you spent on this?</p>
@@ -609,6 +620,8 @@ Table&nbsp;11.2: A scale for translating the likelihood ratio into verbal catego
 <p>Chief: How much data would we need to convince the perp to accept a plea deal?</p>
 <p>Department Likelihood expert: For a plea deal, the required likelihood ratio would be much lower, perhaps around 100 to 1000. We’re talking 50 to 75 days of evidence collecting.</p>
 <p>Chief (to Detective): I want you off the case. We’ve got better things to do.</p>
+</div>
+</div>
 
 
 </section>

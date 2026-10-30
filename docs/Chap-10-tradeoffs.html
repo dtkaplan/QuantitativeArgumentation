@@ -387,51 +387,46 @@ window.Quarto = {
 <p>Optimization problems sometimes involve situations where the goal is to minimize rather than maximize the output. Any minimization problem can be turned into a maximization problem by putting a minus sign in front of the objective function.</p>
 <p>The “solution” to the optimization problem is the input value that achieves this maximum (or minimum) output. The output achieved is called the objective function’s ☞&nbsp;<strong>maximum</strong><span id="finger-maximum-definition" data-label="maximum">&nbsp;☜</span> or ☞&nbsp;<strong>minimum</strong><span id="finger-minimum-definition" data-label="minimum">&nbsp;☜</span>, depending on the context, but the point is to find the input value that produces it. Such an input could be reasonably called the “optimum input,” but the technical name for it is the ☞&nbsp;<strong>argmax</strong><span id="finger-argmax-definition" data-label="argmax">&nbsp;☜</span>. For a minimization problem, the corresponding word is ☞&nbsp;<strong>argmin</strong><span id="finger-argmin-definition" data-label="argmin">&nbsp;☜</span>.</p>
 <p>“Argmax” and “argmin” are not ordinary English words; they are syllabic abbreviations, like FedEx (short for Federal Express), formed from the first syllables of words in a phrase. The phrase relevant to optimization is “the <strong>arg</strong>ument that produces the <strong>max</strong>imum output value.” Keep in mind that “argument” in this phrase is used as a synonym for “input.”</p>
-<p><a href="#fig-argmax-examples" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-argmax-examples</span></a> shows the argmax for two example objective functions. Those functions each have an output that varies with its input. In the spirit of fun, we imagine that the output in panel (a) is the taste score assigned to a baked item and, for (b), the relative probability of locating a shipwreck. However, the output scale does not matter at all to the optimization problem. The argmax is merely the <em>input</em> that produces the maximum output.</p>
-<div id="fig-argmax-examples" class="quarto-layout-panel">
+<p><a href="#fig-argmax-example1" class="quarto-xref">Figure&nbsp;<span>10.1</span></a> shows the argmax for a simple objective function that takes a single input. In the spirit of fun, we imagine that the output in panel (a) is the quality score (output) assigned to a pastries baked at several different temperatures (input). The blue dot marks the argmax. We’ve placed the dot on the temperature axis as a reminder that the argmax is an <em>input</em> value. Applying the objective function to that input value—that is, baking a pastry at that temperature and tasting it to give a quality score—gives the highest score pastry compared to pastries cooked at other temperatures.</p>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div id="fig-argmax-example1" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
 <figure class="quarto-float quarto-float-fig figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-argmax-examples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.1: The argmax (blue dot) for each of two example objective functions.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-argmax-example1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: Quality of a pastry as a function of the oven temperature selected by the baker. The blue dot marks the argmax.
 </figcaption>
-<div aria-describedby="fig-argmax-examples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-argmax-examples" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-argmax-examples-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-argmax-examples-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Chap-10-tradeoffs_files/figure-html/fig-argmax-examples-1.png" class="img-fluid figure-img" data-ref-parent="fig-argmax-examples" width="672">
+<div aria-describedby="fig-argmax-example1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-10-tradeoffs_files/figure-html/fig-argmax-example1-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-argmax-examples-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Objective function with one input.
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-argmax-examples" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-argmax-examples-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-argmax-examples-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Chap-10-tradeoffs_files/figure-html/fig-argmax-examples-2.png" class="img-fluid figure-img" data-ref-parent="fig-argmax-examples" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-argmax-examples-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Objective function with two inputs.
-</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>The argmax, that is, tastiest baking temperature for the pastry is 315 °F.</p>
+<p>Objective functions in different contexts can have many more inputs. The argmax is the setting for all the inputs that gives the highest output value. In professional work, its common to have objective functions that have tens or thousands of inputs. <span class="callout-margin">You can’t make the sun shine or the wind blow, but you can turn on a natural gas turbine very quickly. Nuclear power plants have a long start-up time. An old coal-powered generator takes hours to turn on and wastes energy when it’s turned off.</span> An example is provided by electric utilities that have to plan out a days-long schedule for different generation resources—solar, natural gas, wind, nuclear—to meet predicted demand at the lowest cost.</p>
+<p>In training Large Language AI models, the objective function literally can have billions of inputs.</p>
+<p>We can’t readily visualize a function with many inputs, so the graphical example we will use here has just two inputs. (In <a href="Chap-16-operations.html#sec-moving-past-two-inputs">Chapter 16</a> we introduce computational strategies for handling more inputs.) <a href="Chap-10-tradeoffs.html#fig-argmax-example2">Figure 10.2</a> shows an imagined scenario where satellite and aerial magnetic sensing data have been used in a computer model to estimate the relative probability for each possible location of a sunken ship. That is, the computer model is the objective function. The people coordinating a search using submersible robots can use this objective function to map out their search. It’s might be sensible to start the search at the argmax—the most likely location—then move out to lower probability areas until the ship is found.</p>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div id="fig-argmax-example2" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-argmax-example2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.2: Shipwreck location probability distribution. The blue dot marks the argmax, that is, the single most likely location for the wreck.
+</figcaption>
+<div aria-describedby="fig-argmax-example2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-10-tradeoffs_files/figure-html/fig-argmax-example2-1.png" class="img-fluid figure-img" width="672">
 </div>
 </figure>
 </div>
-<p>To judge from panel (a), the tastiest baking temperature for the item is 315 °F. As for the shipwreck, its most likely position is (122 W, 7.4 N), but the relative probability there is not much higher than at areas within about <span class="math inline">\(\pm 1\)</span> degree of longitude and latitude. In each panel, the blue dot marks the input value, not the output value.</p>
-<p>How does one find the argmax? If you have a graph, look at it, find the point in the picture that corresponds to the peak of the hill and read off the input values for that point.</p>
-<p>It is hard to construct useful graphics when the objective function has three or more inputs. Optimization problems with many inputs can be solved with a different technique, which we will discuss in <a href="Chap-16-operations.html#sec-moving-past-two-inputs">Chapter 16</a>. In training AI models, the objective function literally can have billions of inputs.</p>
-<p>The technique for finding an argmax can be implemented in software. This fact lowers the priority to the student of learning mathematical theory of optimization. The real questions one faces in optimization are how to develop a model for the objective function and whether there is an argmax at all.</p>
+</div>
+</div>
+<p>The objective function in <a href="Chap-10-tradeoffs.html#fig-argmax-example2">Figure 10.2</a> has its argmax at geolocation (122 W, 7.4 N). But the relative probability there is not much higher than at areas within about <span class="math inline">\(\pm 1\)</span> degree of longitude and latitude. So the salvage party might not find the wreck at the argmax and need to search nearby.</p>
+<p>Finding an argmax when the objective function takes only a few inputs is not hard. It becomes harder when there are many inputs related in a complicated way. For example, training a Large Language Model can take days or weeks of intensive, expensive computer processing.</p>
 </section>
 <section id="toward-trade-offs" class="level2 page-columns page-full" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="toward-trade-offs"><span class="header-section-number">10.2</span> Toward trade-offs</h2>
-<p>Often, the purpose of finding an argmax is to guide a decision or choice. In <a href="Chap-10-tradeoffs.html#fig-argmax-examples">Figure 10.1</a>(a), the choice involves setting the oven temperature to produce the tastiest cake. In (b), the choice is where to start searching for the sunken wreck.</p>
-<p>Sometimes, however, the proposed objective function does not capture all relevant considerations. In such cases, the argmax of an objective function may not guide a good decision. For instance, consider the objective function in <a href="Chap-10-tradeoffs.html#fig-car-speed">Figure 10.2</a> that takes an automobile’s speed as input and produces as output the time until the car reaches its destination. This is a minimization problem, since we want to take the least time possible to get to the destination.</p>
+<p>Often, the purpose of finding an argmax is to guide a decision or choice. In UNRESOLVED fig-argmax-examples(a), the choice involves setting the oven temperature to produce the tastiest cake. In (b), the choice is where to start searching for the sunken wreck.</p>
+<p>Sometimes, however, the proposed objective function does not capture all relevant considerations. In such cases, the argmax of an objective function may not guide a good decision. For instance, consider the objective function in <a href="Chap-10-tradeoffs.html#fig-car-speed">Figure 10.3</a> that takes an automobile’s speed as input and produces as output the time until the car reaches its destination. This is a minimization problem, since we want to take the least time possible to get to the destination.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-car-speed" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -440,13 +435,13 @@ Figure&nbsp;10.1: The argmax (blue dot) for each of two example objective functi
 <img src="Chap-10-tradeoffs_files/figure-html/fig-car-speed-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-car-speed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.2: Time in hours to a destination 100 km away as a function of car speed. To minimize time to destination, a higher speed is better.
+Figure&nbsp;10.3: Time in hours to a destination 100 km away as a function of car speed. To minimize time to destination, a higher speed is better.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="page-columns page-full"><p><a href="Chap-10-tradeoffs.html#fig-car-speed">Figure 10.2</a> shows the objective function. Naturally, the faster the car goes, the less time it takes to reach the destination. We’ve marked the argmin near 120 km/h on the graphics input scale, but mathematically any input larger than this would result in an even better (lower) output, which is the meaning of the blue arrow. Keep in mind that the blue annotation corresponds to an arg<strong>min</strong>, even though it is at a <em>high</em> speed. </p><div class="no-row-height column-margin column-container"><span class="">Remember: The “min” in argmin refers to the output of the objective function, not the input. The “minimum” is the about the output of the function, the “argmin” is about the input that generates the minimum output.</span></div></div>
+<div class="page-columns page-full"><p><a href="Chap-10-tradeoffs.html#fig-car-speed">Figure 10.3</a> shows the objective function. Naturally, the faster the car goes, the less time it takes to reach the destination. We’ve marked the argmin near 120 km/h on the graphics input scale, but mathematically any input larger than this would result in an even better (lower) output, which is the meaning of the blue arrow. Keep in mind that the blue annotation corresponds to an arg<strong>min</strong>, even though it is at a <em>high</em> speed. </p><div class="no-row-height column-margin column-container"><span class="">Remember: The “min” in argmin refers to the output of the objective function, not the input. The “minimum” is the about the output of the function, the “argmin” is about the input that generates the minimum output.</span></div></div>
 <p>The optimization result—the argmin being at a high speed, i.e., go as fast as possible—violates any driver’s common sense. The problem is that the model has only one objective: minimizing time to destination. Any responsible driver will incorporate additional objectives into the decision-making process. Let’s list some of these:</p>
 <ol type="1">
 <li>minimize time to destination</li>
@@ -474,7 +469,7 @@ Figure&nbsp;10.2: Time in hours to a destination 100 km away as a function of ca
 <p>For instance, suppose that fuel costs went up by a factor of 100, that is, that gasoline cost about $400 US per gallon (approximately $100 per liter). The fuel-related cost of driving a mile would increase from about 15 cents per mile to about $15 per mile. We can construct a small model to quantify the implications of this. Supposing that a highway speed reduction from 60 mph to 40 mph reduces fuel consumption by, say, 20%. Travel time on a previously 1 hour trip (60 miles at 60 mph) would increase to 1.5 hours (60 miles at 40 mph): a 30-minute increase in travel time. This time increase is offset by the savings on fuel. At $4 per gallon fuel cost, the 20% reduction in fuel use would save 3 cents per mile, or $1.80 over the 60-mile trip. Judge for yourself whether a savings of $1.80 is worth the extra 30 minutes of travel time. I think most people would say no. At the higher fuel costs, the savings would be $180. I suspect most people would gladly exchange 30 minutes of their time for $180.</p>
 <p>You might discard this observation on the grounds that the hypothetical 100-fold increase in fuel costs is unrealistic. That people would change their behavior in this extreme scenario, however, is a signal that drivers are sensitive to fuel costs. Think for yourself whether a $90 savings would be worth the 30 minutes. Or perhaps $45 would be worth it, or even $15. If so, we don’t need the 100-fold increase to make the point; an 8-fold increase is all that’s required.</p>
 <p>Now consider a scenario in which a zero-tolerance policy to speeding is adopted. Any violation of the speed limit would lead to a suspension of your driver’s license. Would this change your driving behavior? Most likely it would. (At least until the next election when the people responsible for the policy would be thrown out of office).</p>
-<p>To simplify the discussion, <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.3</a> imagines an optimization context with two objective functions, Score() and Savings(). The input to each is a policy measure (analogous to the speed you choose to drive). For easier comparison between the two functions, they have been overlaid on the same plot. For each function, the argmax is an input value, that is, a point on the horizontal axis. The two functions have different argmaxes. And there are different vertical scales, one applying to Score and the other to Savings. Note that the vertical scales differ not just in amount but in dimension: one is a “Score in points” and the other is a “Savings in tons.”</p>
+<p>To simplify the discussion, <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.4</a> imagines an optimization context with two objective functions, Score() and Savings(). The input to each is a policy measure (analogous to the speed you choose to drive). For easier comparison between the two functions, they have been overlaid on the same plot. For each function, the argmax is an input value, that is, a point on the horizontal axis. The two functions have different argmaxes. And there are different vertical scales, one applying to Score and the other to Savings. Note that the vertical scales differ not just in amount but in dimension: one is a “Score in points” and the other is a “Savings in tons.”</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-two-obj-funs" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -483,7 +478,7 @@ Figure&nbsp;10.2: Time in hours to a destination 100 km away as a function of ca
 <img src="Chap-10-tradeoffs_files/figure-html/fig-two-obj-funs-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-two-obj-funs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.3: Two objective functions whose outputs have different dimension. For later reference, a handful of values of the policy measure input are marked with letters. For instance, policy D corresponds to an input value 3.
+Figure&nbsp;10.4: Two objective functions whose outputs have different dimension. For later reference, a handful of values of the policy measure input are marked with letters. For instance, policy D corresponds to an input value 3.
 </figcaption>
 </figure>
 </div>
@@ -491,10 +486,10 @@ Figure&nbsp;10.3: Two objective functions whose outputs have different dimension
 </div>
 <p>If Score() were the only objective function, we would set the policy measure to 3, the argmax for Score(). Similarly, if Savings() were the only objective function, we would set the policy measure to 5, the argmax for Savings().</p>
 <p>It would be handy to add the two objective functions together to produce a single function whose argmax can be conclusively found. But the outputs of the two objective functions are stated with different dimensions and units: score is in points while savings is in tons. That is, the two outputs are incommensurate. As described in <a href="Chap-03-quantities.html#sec-quantities">Chapter 3</a>, addition is not a valid operation when quantities have different dimensions. (A hint about what is to come: Division is valid even when the quantities have different dimensions.)</p>
-<p>But if both objectives in <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.3</a> are worthy of consideration, setting the policy measure at the argmax of one leads to a seriously suboptimal outcome for the other objective.</p>
-<p>Let’s switch to another graphical format to illustrate the trade-off. In <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.3</a> the horizontal axis the the policy measure, that is, the input to the objective problems. The two vertical axes correspond to the output of the two objective functions—Score() and Savings()—one axis for each function.</p>
-<p>In <a href="Chap-10-tradeoffs.html#fig-both-objectives">Figure 10.4</a> we re-arrange the axes. First, we delete entirely the horizontal input axis and represent the input value as the position along a curve. For clarity, <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.3</a> we marked with letters nine different input values. Those same letters appear in <a href="Chap-10-tradeoffs.html#fig-both-objectives">Figure 10.4</a> as locations along the curve. But the axes for <a href="Chap-10-tradeoffs.html#fig-both-objectives">Figure 10.4</a> are re-arranged versions of the two vertical axes from <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.3</a>. Each point on the curve shows the output of the Score and Savings function for one input value. For example, for the input value A, the position on the curve marked with A is based on the Score value for input A and the Savings value for input A.</p>
-<p>From <a href="Chap-10-tradeoffs.html#fig-both-objectives">Figure 10.4</a>, what can we say about which choice is the best? It’s important to keep in mind that each of the objective functions in <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.3</a> is for a <em>maximization</em> problem. So bigger outputs are better. From the axes, you might translate this into a simple rule: move as far as possible to the north-east. But this isn’t right.</p>
+<p>But if both objectives in <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.4</a> are worthy of consideration, setting the policy measure at the argmax of one leads to a seriously suboptimal outcome for the other objective.</p>
+<p>Let’s switch to another graphical format to illustrate the trade-off. In <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.4</a> the horizontal axis the the policy measure, that is, the input to the objective problems. The two vertical axes correspond to the output of the two objective functions—Score() and Savings()—one axis for each function.</p>
+<p>In <a href="Chap-10-tradeoffs.html#fig-both-objectives">Figure 10.5</a> we re-arrange the axes. First, we delete entirely the horizontal input axis and represent the input value as the position along a curve. For clarity, <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.4</a> we marked with letters nine different input values. Those same letters appear in <a href="Chap-10-tradeoffs.html#fig-both-objectives">Figure 10.5</a> as locations along the curve. But the axes for <a href="Chap-10-tradeoffs.html#fig-both-objectives">Figure 10.5</a> are re-arranged versions of the two vertical axes from <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.4</a>. Each point on the curve shows the output of the Score and Savings function for one input value. For example, for the input value A, the position on the curve marked with A is based on the Score value for input A and the Savings value for input A.</p>
+<p>From <a href="Chap-10-tradeoffs.html#fig-both-objectives">Figure 10.5</a>, what can we say about which choice is the best? It’s important to keep in mind that each of the objective functions in <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.4</a> is for a <em>maximization</em> problem. So bigger outputs are better. From the axes, you might translate this into a simple rule: move as far as possible to the north-east. But this isn’t right.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-both-objectives" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -503,18 +498,18 @@ Figure&nbsp;10.3: Two objective functions whose outputs have different dimension
 <img src="Chap-10-tradeoffs_files/figure-html/fig-both-objectives-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-both-objectives-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.4: Illustration of the trade-off between two objectives: score() and savings().
+Figure&nbsp;10.5: Illustration of the trade-off between two objectives: score() and savings().
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><a href="Chap-10-tradeoffs.html#fig-both-objectives">Figure 10.4</a> lets us compare any two input choices, say D versus E or A versus B. In order to claim that one of the labeled choices is better than the other, we need the outcome on <strong>both</strong> graphical axes to be better for one choice than for the other. For instance, both the Score and the Savings are larger at input B than at input A. Choice B is therefore better in all respects than choice A. In contrast, when comparing D versus E, we see that E has a larger Savings but it also has a <em>smaller</em> Score.</p>
+<p><a href="Chap-10-tradeoffs.html#fig-both-objectives">Figure 10.5</a> lets us compare any two input choices, say D versus E or A versus B. In order to claim that one of the labeled choices is better than the other, we need the outcome on <strong>both</strong> graphical axes to be better for one choice than for the other. For instance, both the Score and the Savings are larger at input B than at input A. Choice B is therefore better in all respects than choice A. In contrast, when comparing D versus E, we see that E has a larger Savings but it also has a <em>smaller</em> Score.</p>
 <p>When comparing two inputs, as with A and B, if one is better in all respects—here this means better both in Score and in Savings—we say that one choice ☞&nbsp;<strong>dominates</strong><span id="finger-dominates-definition" data-label="dominates">&nbsp;☜</span> the other. B dominates A.</p>
 <p>We can compare any two input levels in this way. For instance, F <em>dominates</em> G because it has higher Savings and a higher Score. And D dominates C for the same reason. But we cannot demonstrate that F dominates D or vice versa; each is strong on one axis but weak on the other.</p>
 <p>Since F dominates G, H, and I, we can eliminate those choices; they are sub-optimal. Similarly, D dominates C, B, and A, eliminating those as sensible choices.</p>
 <p>Deleting all the dominated inputs, what’s left? Any choice from F through E to D.</p>
-<p>Here is another, more human oriented way to look at the situation. Suppose we have two people, one a big fan of setting the policy measure to 8, that is, favoring option I. The other is more moderate and prefers option F. Now they are presented with the objective functions in <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.3</a>. The F-advocate can make a compelling argument to the I-advocate. Moving from I to F will accomplish both objectives better; a win-win outcome.</p>
+<p>Here is another, more human oriented way to look at the situation. Suppose we have two people, one a big fan of setting the policy measure to 8, that is, favoring option I. The other is more moderate and prefers option F. Now they are presented with the objective functions in <a href="Chap-10-tradeoffs.html#fig-two-obj-funs">Figure 10.4</a>. The F-advocate can make a compelling argument to the I-advocate. Moving from I to F will accomplish both objectives better; a win-win outcome.</p>
 <p>If the competition were between partisans of F, E, and D, however, the win-win argument doesn’t apply. To convince the F-partisans to move toward E (or further along, to D), the E-partisan would have to acknowledge that the increased outcome for Score (by about 22 points) would come at the cost of a decrease in the outcome for Savings (by about 8 tons).</p>
 <p>Another way to say this is that there is a <em>price</em> for Score in terms of Savings. Usually, a price is a ratio of money per item, e.g.&nbsp;$2.89 per apple. Note that in a price, the item purchased is on the bottom of the ratio. And the top quantity does not have to be money; it could be tons of Savings. In this situation, switching between F and E entails a gain of 8 tons of Savings at the loss (that is, cost) of 22 points in Score. As a price for Score, this is 8/22 = 0.36 tons per point. This ratio is called the ☞&nbsp;<strong>shadow price</strong><span id="finger-shadow-price-definition" data-label="shadow price">&nbsp;☜</span>. The word price is appropriate by analogy to the things we buy, measured as money per unit of the goods purchased, as in $4 per gallon of gasoline.</p>
 <p>Whenever there is the possibility of an exchange, a price is the quantitative indicator to help determine whether the exchange is worthwhile. You wouldn’t buy a shirt if it were, in your opinion, too expensive. You get to make this choice, but knowing the price helps to make the decision criterion more clear.</p>

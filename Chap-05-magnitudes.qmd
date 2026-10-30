@@ -15,7 +15,7 @@ source("_start-up.R")
 `r paste(readLines("_Words/chap_5.txt"), collapse = "\n")` 
 :::
 
-In his 2018 book *Factfulness*, physician and global health expert Hans Rosling skews a common misconception that the countries of the world are mainly split between rich, healthy countries and poor countries with ill living conditions. `r xf("fig-gdp-mortality")` displays data comparing child mortality across countries over a wide range of GDP levels both in 1960 and 2020. ["Child Mortality" is operationalized as the rate of death of children under five years in age. It ranges widely from country to country, from around 30 deaths per 1000 children down to almost zero.]{.column-margin}
+In his 2018 book *Factfulness*, physician and global health expert Hans Rosling skews a common misconception that the countries of the world are mainly split between rich, healthy countries and poor countries with ill living conditions. `r xf("fig-gdp-mortality")` displays data comparing child mortality across countries over a wide range of GDP levels both in 1960 and 2020. 
 
 ```{r}
 #| label: ch05-r-649faba4
@@ -71,6 +71,7 @@ P3 <- P1 |>
   scale_y_log10())
 ```
 
+Are the data, as depicted in `r xf("fig-gdp-mortality")`, consistent with the rich vs poor split between countries? Or is there a smooth spectrum from low to high GDP and corresponding child mortality rates?
 
 ```{r}
 #| label: fig-gdp-mortality
@@ -89,13 +90,17 @@ P0 |> gf_girafe()
   "Interactive versions of the graphs identify each country"
 )`
 
-::: {.content-include unless-format="html"}
+::: {.content-hidden unless-format="html"}
 `r xf("fig-gdp-mortality")` is interactive; hovering the cursor over a dot causes the country name to appear, along with the precise numerical value for mortality and GDP.
 :::
 
-Are the data, as depicted in `r xf("fig-gdp-mortality")`, consistent with the rich vs poor split between countries? Or is there a smooth spectrum from low to high GDP and corresponding child mortality rates?
+
+
+
 
 There is a tall vertical column of poor countries with high mortality rates and a long horizontal row  of rich countries with low mortality. At the intersection between the row of points and the column of points is a knot of countries with GDP much lower than the rich countries and child mortality lower than the poorest countries. Some economists justify the use of GDP as a measure of well-being by pointing to the horizontal row of countries to claim there is a strong relationship between health and wealth
+
+["Child Mortality" is operationalized as the rate of death of children under five years in age. It ranges widely from country to country, from around 30 deaths per 1000 children down to almost zero.]{.column-margin}
 
 Looking at the first few rows of the data behind @fig-gdp-mortality shows the structure of the data:
 
@@ -228,7 +233,8 @@ The standard prefixes "milli" and "kilo" mean, respectively, one-thousandth and 
 
 The system was introduced on a limited basis by the revolutionary government of France. (See `r xf("tbl-magnitude-prefixes")`.) It has been extended to handle larger and smaller quantities on several occasions.
 
-\newpage
+
+Only a handful of prefixes are in everyday use: micro, milli, kilo, mega, giga. These cover a broad range, from a tiny dose of medicine to the wealth of ultra-rich individuals. Notice that the most used prefixes each shift the decimal point by three places, enabling the range of quantities to eliminate leading or trailing zeros and be represented as numbers with one, two, or three digits plus the prefix. The 1795 prefixes that move the decimal point by 1 or 2 places have mostly fallen out of use. The most common exception is *centi*, which is widely used for length: centimeter (cm). The prefix *hecto* is in regular use to refer to area; a "hectare" is an area of (100 m)-squared, that is, (100 m)^2^ =  100^2^ m^2^ = 10,000 m^2^.
 
 ::: {#tbl-magnitude-prefixes}
 Abbreviation | Prefix | Moves decimal point | Year of introduction
@@ -250,9 +256,6 @@ Abbreviation | Prefix | Moves decimal point | Year of introduction
 Official unit prefixes that move the decimal point to avoid zero counting. The year of introduction of each prefix paints a picture of when people started to talk about quantities very large and very small. Additional prefixes, used only in very specialized situations, were added in 1964, 1991, and 2022.
 :::
 
-
-Only a handful of prefixes are in everyday use: micro, milli, kilo, mega, giga. These cover a broad range, from a tiny dose of medicine to the wealth of ultra-rich individuals. Notice that the most used prefixes each shift the decimal point by three places, enabling the range of quantities to eliminate leading or trailing zeros and be represented as numbers with one, two, or three digits plus the prefix. The 1795 prefixes that move the decimal point by 1 or 2 places have mostly fallen out of use. The most common exception is *centi*, which is widely used for length: centimeter (cm). The prefix *hecto* is in regular use to refer to area; a "hectare" is an area of (100 m)-squared, that is, (100 m)^2^ =  100^2^ m^2^ = 10,000 m^2^.
-
 For temperatures, on the other hand, the prefix system is not used. Even without prefixes, we can write everyday temperatures with two digits. 
 
 As regards time, we have an idiomatic system for avoiding zeros: seconds, minutes, hours, days, weeks, months, years, decades, centuries, millennia. The right-moving prefixes, however, are used for time: milliseconds, microseconds, and such.
@@ -266,9 +269,9 @@ People can easily confuse prefixes they do not use often. Such mistakes can lead
 
 The prefix system works best when applied to units with short names, such as meters, grams, watts, joules, and so on. Things can get out of hand with derived units. For instance, a fundamental quantity used in quantum physics is Planck's constant, which has the unusual dimension [energy] $\times$ [time].
 
-::: {.column-page-inset-right}
-Planck's constant: `0.000000000000000000000000000000000662607015` m^2^ kg / s
-:::
+
+Planck's constant: `0.000000000000000000000000000000000662607015` m^2^ kg / s
+
 
 Doing calculations with such numbers is error-prone, since it is easy to omit or add zeros and hard to see at a glance that this has occurred.  Writing it more compactly with prefixes is not much help:
 

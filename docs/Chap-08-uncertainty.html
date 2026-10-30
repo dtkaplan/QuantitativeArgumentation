@@ -420,20 +420,20 @@ window.Quarto = {
 <p>Imagine a family in the process of constructing a budget for next year. Naturally, the family has a good idea about their expected income next year. Likewise, they can estimate next year’s expenses for rent, utilities, food, transportation, and so on. This information guides them in planning for discretionary spending, such as vacations, clothing, and so on.</p>
 <p>Suppose the family’s current rent is 1500 dollars per month. The lease is up for renewal in 6 months; they are almost sure the rent will increase—their best guess: a 4% increase to $1560 per month.</p>
 <p>Most people making budgets use a best guess for quantities whose exact value is uncertain. Doing this, the family figures next year’s total rent expenditures as six monthly payments of $1,500 per month, followed by another six months at $ 1,560 per month. Total: $18,360 per year.</p>
-<p>In situations where the stakes are higher, it can be worthwhile to keep track not just of the best guess but of the <em>uncertainty</em> in that guess. It is common to express uncertainty using ☞&nbsp;<strong>ranges</strong><span id="finger-range-definition" data-label="range">&nbsp;☜</span> <a href=".column-margin">An equivalent format is “approximately 80 <span class="math inline">\(\pm\)</span> 20 Cals per mile.”</a> For instance, in <a href="Chap-04-rates.html#sec-rates">Chapter 4</a>, an AI quoted a range for the number of Cals burned per mile while walking: “approximately 60 to 100 Cals.”</p>
+<div class="page-columns page-full"><p>In situations where the stakes are higher, it can be worthwhile to keep track not just of the best guess but of the <em>uncertainty</em> in that guess. It is common to express uncertainty using ☞&nbsp;<strong>ranges</strong><span id="finger-range-definition" data-label="range">&nbsp;☜</span>  For instance, in <a href="Chap-04-rates.html#sec-rates">Chapter 4</a>, an AI quoted a range for the number of Cals burned per mile while walking: “approximately 60 to 100 Cals.”</p><div class="no-row-height column-margin column-container"><span class="">An equivalent format is “approximately 80 <span class="math inline">\(\pm\)</span> 20 Cals per mile.”</span></div></div>
 <div class="page-columns page-full"><p>The shorthand notation for the range just mentioned is [60, 100]. In statistics, such a range is not intended as an absolute statement that the value can never be less than 60 or greater than 100.  Rather, it is a statement that the value is <em>likely</em> to be in the range, and <em>unlikely</em> to be outside of it.</p><div class="no-row-height column-margin column-container"><span class="">In the statistics interpretation of ranges like [60, 100], “likely” is interpreted as a 95% chance.</span></div></div>
 <p>However, when doing calculations—such as adding up the uncertainties for each of the several budget categories—the range format does not suffice. To support quantitative reasoning, we need another format for expressing uncertainty.</p>
 <section id="sec-relative-probability" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="sec-relative-probability"><span class="header-section-number">8.1</span> Relative probability</h2>
 <p>The fundamental problem with the range format is this: It is not necessarily the case that uncertainty propagated through a function is correctly represented by applying the function to both the top and bottom of the range.</p>
 <p>To illustrate, consider the number of Cals burned by a person in a walk of about 3 to 4 miles. In addition to this walk length information, we know that the energy consumption per unit distance is 60 to 100 Cal/mile. As described in <a href="Chap-03-quantities.html#sec-quantities">Chapter 3</a>, we combine quantities with different dimensions by either multiplication or division. The correct choice here is multiplication, since [Cal] = [miles] [Cal/mile]. This multiplication would directly provide the answer if there was no uncertainty attached to the distance or energy consumption per unit distance. But here, we are not just multiplying quantities but <em>uncertain quantities</em> described by ranges. Using the range notation the multiplication can be written like this: <span id="eq-range-walking-kinetics"><span class="math display">\[[3 \ \text{ to }\  4]\, \text{miles} \times [60\ \text{ to }\ 100]\, \text{Cals/mile} =\ \LARGE{\textbf{?}}\ . \tag{8.1}\]</span></span></p>
-<p>The question mark in <a href="#eq-range-walking-kinetics" class="quarto-xref">Math expression&nbsp;<span class="quarto-unresolved-ref">eq-range-walking-kinetics</span></a> is justified because there is no standard way to multiply uncertainty <em>ranges</em>. Anyone can invent a <em>reasonable-sounding</em> strategy for the calculation, for instance, multiply the lower ends of each range, and similarly for the upper end of the result: <span class="math display">\[[3 \times 60\ \text{ to }\ 4 \times 100]\,\text{Cals} = [180 \ \text{ to }\  400]\, \text{Cals}\ .\]</span> As reasonable as this looks, there is a problem with the strategy: how can we tell whether it gives the <em>right</em> answer to the underlying question?</p>
+<p>The question mark in <a href="#eq-range-walking-kinetics" class="quarto-xref">Math expression&nbsp;<span>8.1</span></a> is justified because there is no standard way to multiply uncertainty <em>ranges</em>. Anyone can invent a <em>reasonable-sounding</em> strategy for the calculation, for instance, multiply the lower ends of each range, and similarly for the upper end of the result: <span class="math display">\[[3 \times 60\ \text{ to }\ 4 \times 100]\,\text{Cals} = [180 \ \text{ to }\  400]\, \text{Cals}\ .\]</span> As reasonable as this looks, there is a problem with the strategy: how can we tell whether it gives the <em>right</em> answer to the underlying question?</p>
 <p>Indeed, there are situations where the above strategy is clearly wrong. For instance, consider multiplying the two ranges [-3 to 5] by [-10 to 2]. Slavishly following the above procedure yields a range of [30 to 10]. Is this right? For both ranges, note that zero is well within the limits. Multiplying any number by zero gives zero, so zero ought to be inside the range produced by the multiplication. However, zero is not in [30 to 10].</p>
-<p>Figuring out how to reliably handle calculations involving uncertainty involved the work of many mathematicians and scientists over the 18th and 19th centuries. A good answer to the walking energetics question in <a href="#eq-range-walking-kinetics" class="quarto-xref">Math expression&nbsp;<span class="quarto-unresolved-ref">eq-range-walking-kinetics</span></a> is [200 to 360] Cals. Similarly, a good answer to [-3,5]<span class="math inline">\(\times\)</span>[-10,2] is [-25 to 17], which correctly includes zero inside the range.</p>
+<p>Figuring out how to reliably handle calculations involving uncertainty involved the work of many mathematicians and scientists over the 18th and 19th centuries. A good answer to the walking energetics question in <a href="#eq-range-walking-kinetics" class="quarto-xref">Math expression&nbsp;<span>8.1</span></a> is [200 to 360] Cals. Similarly, a good answer to [-3,5]<span class="math inline">\(\times\)</span>[-10,2] is [-25 to 17], which correctly includes zero inside the range.</p>
 <p>The advent of the computer has made such uncertainty calculations much more accessible. At the heart of the matter is the concept of ☞&nbsp;<strong>probability distributions</strong><span id="finger-probability-distributions-definition" data-label="probability distributions">&nbsp;☜</span>. When we use a range (such as 3 to 4 miles or 60 to 100 Cals/mile) to represent uncertainty, we mention only two values for the quantity: the lower and upper bounds on the range. In contrast, probability distributions consider every possible value: the whole number line, not just the two points defining the range.</p>
 <p>A probability distribution can be created by assigning a positive number to each point on the number line. This number is called a ☞&nbsp;<strong>relative probability</strong><span id="finger-relative-probability-definition" data-label="relative probability">&nbsp;☜</span>. Relative probability numbers cannot be negative.</p>
 <p>There are an infinite number of points on the number line, so to use probability distributions, we need to keep track of an infinite number of relative probabilities: one for each point on the number line. Fortunately, <a href="Chap-06-functions.html#sec-intro-to-functions">Chapter 6</a> has already provided a mechanism for handling the situation: <em>functions</em>.</p>
-<p>To illustrate, consider the uncertainty we previously represented as the range 60 to 100 Cals/mile. <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-cal-per-mile-distribution</span></a> shows the corresponding probability distribution as a <em>function</em>.</p>
+<p>To illustrate, consider the uncertainty we previously represented as the range 60 to 100 Cals/mile. <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span>8.1</span></a> shows the corresponding probability distribution as a <em>function</em>.</p>
 <div id="fig-cal-per-mile-distribution" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cal-per-mile-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -452,8 +452,8 @@ Figure&nbsp;8.1: A standard probability distribution corresponding to 60 to 100 
 </figcaption>
 </figure>
 </div>
-<p>The <em>input</em> to the function is drawn from the set of possible values for the uncertain quantity. The <em>output</em> from the function is the relative probability for that particular value of the quantity. In <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-cal-per-mile-distribution</span></a>, the relative probability for 40 Cal/mile is very low —practically zero. On the other hand, the highest relative probability corresponds to 80 Cal/mile. The numerical value of the function output at 80 Cal/mile is 40. That particular value, 40, tells us very little on its own; it needs to be put in context. The context for a relative probability is the function output for other inputs, that is, for other possibilities of the Cal/mile value. For instance, the relative probability for 60 Cal/mile is about 5, while the relative probability for 80 Cal/mile is about 40—that is, eight times as likely as 60 Cal/mile.</p>
-<p>When the output of a relative probability function is close to zero, the occurrence of the corresponding input value is vanishingly rare. We took advantage of this in <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-cal-per-mile-distribution</span></a> to avoid showing the entire number line on the input axis; we centered the display on the most likely values.</p>
+<p>The <em>input</em> to the function is drawn from the set of possible values for the uncertain quantity. The <em>output</em> from the function is the relative probability for that particular value of the quantity. In <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span>8.1</span></a>, the relative probability for 40 Cal/mile is very low —practically zero. On the other hand, the highest relative probability corresponds to 80 Cal/mile. The numerical value of the function output at 80 Cal/mile is 40. That particular value, 40, tells us very little on its own; it needs to be put in context. The context for a relative probability is the function output for other inputs, that is, for other possibilities of the Cal/mile value. For instance, the relative probability for 60 Cal/mile is about 5, while the relative probability for 80 Cal/mile is about 40—that is, eight times as likely as 60 Cal/mile.</p>
+<p>When the output of a relative probability function is close to zero, the occurrence of the corresponding input value is vanishingly rare. We took advantage of this in <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span>8.1</span></a> to avoid showing the entire number line on the input axis; we centered the display on the most likely values.</p>
 <p><code>hill()</code> is often a good choice for modeling a probability distribution. Often, but not always. The following section explores <code>hill()</code> along with a handful of other probability distribution functions. Note that in general the core modeling functions are not used for probability distributions. <code>hill()</code> is the one exception. We will have more to say about this in <a href="Chap-08-uncertainty.html#sec-simulation">Section 8.4</a>.</p>
 </section>
 <section id="sec-where-from" class="level2" data-number="8.2">
@@ -469,7 +469,7 @@ Figure&nbsp;8.1: A standard probability distribution corresponding to 60 to 100 
 <dl>
 <dt>Uniform distribution</dt>
 <dd>
-The ☞&nbsp;<strong>uniform distribution</strong><span id="finger-uniform-distribution-definition" data-label="uniform distribution">&nbsp;☜</span> models a situation where the possibilities must be within a known range, but could be anywhere in that range. <a href="#fig-afternoon-uniform" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-uniform</span></a> shows what a uniform distribution would be for a situation like this: “She texted that she will arrive in the afternoon, but I don’t know exactly when.”
+The ☞&nbsp;<strong>uniform distribution</strong><span id="finger-uniform-distribution-definition" data-label="uniform distribution">&nbsp;☜</span> models a situation where the possibilities must be within a known range, but could be anywhere in that range. <a href="#fig-afternoon-uniform" class="quarto-xref">Figure&nbsp;<span>8.2</span></a> shows what a uniform distribution would be for a situation like this: “She texted that she will arrive in the afternoon, but I don’t know exactly when.”
 </dd>
 </dl>
 <div id="fig-afternoon-uniform" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -494,11 +494,11 @@ Figure&nbsp;8.2: A uniform distribution.
 <dl>
 <dt>Normal distribution</dt>
 <dd>
-We introduced the normal distribution in <a href="#sec-relative-probability" class="quarto-xref"><span class="quarto-unresolved-ref">sec-relative-probability</span></a> as the standard distribution family that corresponds to the type of uncertainty often expressed using a range or the <span class="math inline">\(\pm\)</span> notation.
+We introduced the normal distribution in <a href="#sec-relative-probability" class="quarto-xref"><span>Section 8.1</span></a> as the standard distribution family that corresponds to the type of uncertainty often expressed using a range or the <span class="math inline">\(\pm\)</span> notation.
 </dd>
 </dl>
 <p>It surprises many people that these notations do not correspond to the <em>uniform distribution</em>. Recall that the uniform distribution labels as <em>impossible</em> any outcome outside of the range from minimum to maximum. However, in many circumstances, an outcome outside the range is merely unlikely, not impossible. For instance, is it impossible that our friend will arrive in the evening or before noon?</p>
-<p>The normal distribution, on the other hand, softens the edges and replaces “impossible” with “not likely.” The further from the interval, the less likely. The closer to the center of the interval, the more likely. The normal distribution in <a href="#fig-afternoon-normal" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-normal</span></a> includes the possibility that she arrived yesterday or will arrive next week. Very, very unlikely, but possible.</p>
+<p>The normal distribution, on the other hand, softens the edges and replaces “impossible” with “not likely.” The further from the interval, the less likely. The closer to the center of the interval, the more likely. The normal distribution in <a href="#fig-afternoon-normal" class="quarto-xref">Figure&nbsp;<span>8.3</span></a> includes the possibility that she arrived yesterday or will arrive next week. Very, very unlikely, but possible.</p>
 <div id="fig-afternoon-normal" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-afternoon-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -513,7 +513,7 @@ We introduced the normal distribution in <a href="#sec-relative-probability" cla
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-afternoon-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8.3: A normal distribution smooths out the sharp corners of <a href="#fig-afternoon-uniform" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-uniform</span></a>.
+Figure&nbsp;8.3: A normal distribution smooths out the sharp corners of <a href="#fig-afternoon-uniform" class="quarto-xref">Figure&nbsp;<span>8.2</span></a>.
 </figcaption>
 </figure>
 </div>
@@ -542,8 +542,8 @@ Figure&nbsp;8.4: The exponential distribution.
 </figcaption>
 </figure>
 </div>
-<p>A concrete way to think about the exponential distribution is as a description of the intervals <em>between</em> randomly occurring events. In <a href="#fig-afternoon-exp" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-exp</span></a>, the first event was assumed to be at noon; the second event will be the time that the friend arrives. The exponential model is based on the idea that there is a fixed probability that the second event will happen in a short interval after the first. But if it doesn’t occur in that short interval, the same probability applies to the event happening in the next short interval, and so on. Perhaps contrary to intuition, this means that the probability of the second interval happening at time t after the first event decays exponentially with t, as in <a href="Chap-08-uncertainty.html#fig-afternoon-exp">Figure 8.4</a>.</p>
-<p>The exponential model assumes that the second event is equally likely to occur at any time. There is one parameter for the distribution typically called “lambda” (which is <span class="math inline">\(\lambda\)</span> in the Greek alphabet). The mean time between events is <span class="math inline">\(1/\lambda\)</span>. (In <a href="#fig-afternoon-exp" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-exp</span></a>, the mean corresponds to that for the distributions shown in <a href="#fig-afternoon-normal" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-normal</span></a> and <a href="#fig-afternoon-uniform" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-afternoon-uniform</span></a>.)</p>
+<p>A concrete way to think about the exponential distribution is as a description of the intervals <em>between</em> randomly occurring events. In <a href="#fig-afternoon-exp" class="quarto-xref">Figure&nbsp;<span>8.4</span></a>, the first event was assumed to be at noon; the second event will be the time that the friend arrives. The exponential model is based on the idea that there is a fixed probability that the second event will happen in a short interval after the first. But if it doesn’t occur in that short interval, the same probability applies to the event happening in the next short interval, and so on. Perhaps contrary to intuition, this means that the probability of the second interval happening at time t after the first event decays exponentially with t, as in <a href="Chap-08-uncertainty.html#fig-afternoon-exp">Figure 8.4</a>.</p>
+<p>The exponential model assumes that the second event is equally likely to occur at any time. There is one parameter for the distribution typically called “lambda” (which is <span class="math inline">\(\lambda\)</span> in the Greek alphabet). The mean time between events is <span class="math inline">\(1/\lambda\)</span>. (In <a href="#fig-afternoon-exp" class="quarto-xref">Figure&nbsp;<span>8.4</span></a>, the mean corresponds to that for the distributions shown in <a href="#fig-afternoon-normal" class="quarto-xref">Figure&nbsp;<span>8.3</span></a> and <a href="#fig-afternoon-uniform" class="quarto-xref">Figure&nbsp;<span>8.2</span></a>.)</p>
 </section>
 <section id="sec-simulation" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="sec-simulation"><span class="header-section-number">8.4</span> Simulation</h2>
@@ -551,35 +551,71 @@ Figure&nbsp;8.4: The exponential distribution.
 <p>Often, however, we need to reason about the consequences of input uncertainty for the uncertainty in the output of the function. One technique for such reasoning with uncertainty is ☞&nbsp;<strong>simulation</strong><span id="finger-simulation-definition" data-label="simulation">&nbsp;☜</span>.</p>
 <p>At the heart of simulation is the idea of using a relative probability distribution function to generate a likely input value. The input values that are associated with a high relative probability are more likely to be generated than those associated with a low relative probability.</p>
 <p>We call the process of generating a likely input value ☞&nbsp;<strong>randomly sampling from the distribution</strong><span id="finger-randomly-sampling-from-the-distribution-definition" data-label="randomly sampling from the distribution">&nbsp;☜</span> or, more generally, ☞&nbsp;<strong>random number generation</strong><span id="finger-random-number-generation-definition" data-label="random number generation">&nbsp;☜</span>.</p>
-<p>For instance, in <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-cal-per-mile-distribution</span></a>, a random sample between, say, 75 and 85 would be quite likely, while sample values less than 40 would be vanishingly unlikely.</p>
+<p>For instance, in <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span>8.1</span></a>, a random sample between, say, 75 and 85 would be quite likely, while sample values less than 40 would be vanishingly unlikely.</p>
 <p>Random number generation is an important tool for many modeling applications and even plays a role in constructing the responses from AI systems. Such generators are provided for many computer languages and are often built into the language itself.</p>
-<p>To illustrate, let’s generate a single random sample from the distribution in <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-cal-per-mile-distribution</span></a>.</p>
+<p>To illustrate, let’s generate a single random sample from the distribution in <a href="#fig-cal-per-mile-distribution" class="quarto-xref">Figure&nbsp;<span>8.1</span></a>.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="R random number generator for normal distribution.">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>R random number generator for normal distribution.
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean=</span><span class="dv">80</span>, <span class="at">sd=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 89.78027</code></pre>
+<pre><code>[1] 75.85691</code></pre>
+</div>
+</div>
 </div>
 </div>
 <p>Generating a single number does not give much information, so modelers often generate many random numbers. We will illustrate with 20, but it’s common to generate thousands or even millions of random numbers</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="R generation of sample of size 20">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>R generation of sample of size 20
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">mean=</span><span class="dv">80</span>, <span class="at">sd=</span><span class="dv">10</span>) <span class="sc">|&gt;</span>  <span class="co"># The hill() distribution.</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">mean=</span><span class="dv">80</span>, <span class="at">sd=</span><span class="dv">10</span>)                                                                           <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 74.8 75.1 85.0 97.6 71.6 88.4 86.6 81.9 88.1 89.3 81.4
-[12] 71.7 68.5 62.0 80.2 74.4 88.4 72.1 70.3 95.5</code></pre>
+<pre><code> [1] 95.8 92.9 87.0 76.1 92.3 65.5 90.2 86.5
+ [9] 86.3 77.3 80.5 83.2 88.7 83.5 64.1 72.3
+[17] 90.2 79.7 93.3 84.3</code></pre>
+</div>
+</div>
 </div>
 </div>
 <p>As a simple example of using simulation, consider the problem posed at the start of this chapter: [-3,5]<span class="math inline">\(\times\)</span>[-10,2].</p>
-<div class="cell">
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Simulation written in R">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Simulation written in R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell" width="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">102</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>product <span class="ot">&lt;-</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runif</span>(<span class="dv">20</span>, <span class="at">min =</span>  <span class="sc">-</span><span class="dv">3</span>, <span class="at">max =</span> <span class="dv">5</span>) <span class="sc">*</span> </span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runif</span>(<span class="dv">20</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="at">max =</span> <span class="dv">2</span>)  </span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(product, <span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]   1.7  -2.5 -11.3  -3.4  15.7  -2.1 -42.2   1.9 -21.0
-[10]  -1.6 -21.4   1.9 -32.8   0.0   2.7 -28.9 -25.2   0.0
-[19]  -7.5 -20.2</code></pre>
+<pre><code> [1]   1.7  -2.5 -11.3  -3.4  15.7  -2.1 -42.2
+ [8]   1.9 -21.0  -1.6 -21.4   1.9 -32.8   0.0
+[15]   2.7 -28.9 -25.2   0.0  -7.5 -20.2</code></pre>
+</div>
+</div>
 </div>
 </div>
 <p>Notice that the 20 samples of the product vary from one to the other. It is only as a group that they give us information about the uncertainty in the product. Computer graphics—with a much larger sample—makes it easy to visualize the uncertainty, as in <span class="citation" data-cites="two-multiplied-uniforms">@two-multiplied-uniforms</span>. The distribution is not uniform, but rather has a peak in the middle and tails off to zero at the extremes.</p>

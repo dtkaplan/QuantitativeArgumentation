@@ -6,7 +6,7 @@ book:
   title: "Quantitative Argumentation"
   subtitle: "Making Sense with Numbers"
   author: "Daniel T. Kaplan"
-  date: "2027"
+  date: "Nov. 2027"
   chapters:
     - index.qmd   
 
@@ -69,6 +69,11 @@ format:
     mainfontoptions:
       - Numbers=Lowercase
       - Numbers=Proportional   
+
+    include-before-body:
+      text: |
+        \raggedbottom
+ 
     include-in-header:
       text: |
         \usepackage{amsmath}
@@ -101,7 +106,7 @@ format:
           \restoregeometry
         }
         \makeatother
-    fig-pos: "H"
+    fig-pos: "htbp"
     geometry:
       - inner=1.25in
       - marginparwidth=2in
@@ -118,3 +123,8 @@ crossref:
   eq-title: "Math expression"
   eq-prefix: "Math expression"
   thm-title: "Enrichment"
+
+language:
+  chapters: true
+  crossref-nte-prefix: "R command"
+  crossref-nte-title: "R command"

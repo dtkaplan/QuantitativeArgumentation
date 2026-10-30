@@ -86,7 +86,10 @@ bright_cb_palette <- c(
 .slice_color. <- "#0072B2"
 .slice_contrast. <- "#CC79A7"
 .hline_color. <- "#E69F00"
+.hsegment_color. <- "#009E73"
 .vline_color. <- "#56B4E9"
+.data_color. <- "#002618"
+.slope_color. <- "#D55E00"
 
 # 2. Automate color and fill palettes globally across all plots
 options(

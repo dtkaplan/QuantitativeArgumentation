@@ -144,12 +144,6 @@ Pure numbers are not the only kinds of dimensionless quantities. Importantly, an
 An angle (denoted $\theta$ here) is the ratio of the length $s$ of the arc subtended by the angle to the radius  $r$ of the circle centered on the vertex of the angle: $\theta = s / r$. [Image source: [UTSA Libraries and Museums](https://utsa.pressbooks.pub/precalculus/chapter/__unknown__-2/)]
 :::
 
-
-`r qr_margin_note(
- "https://utsa.pressbooks.pub/precalculus/chapter/__unknown__-2/",
- "Image source"
-)`
-
 Steep roads often have "grade markers" indicating how steep they are. In the US, interstate highways may not be steeper than 6%. The *steepness* is operationalized as the change in elevation divided by the horizontal distance travelled. Driving the steepest mile along Lincoln Gap Road in Vermont (USA) involves a net change in elevation of about 800 feet. The road grade is therefore 800 ft/mile. We can write the ratio more explicitly in terms of the two quantities involved:
 
 $$\frac{800\, \text{ft}}{1\, \text{mile}} = 
@@ -179,11 +173,11 @@ Conversion factors are always dimensionless; that is, [any conversion factor] = 
 
 To illustrate, we will rewrite statements like "an inch is 0.0254 m" as flavors of one. Naturally, the word "is" in "1 inch is 0.0254 m" means that "1 inch" is the same quantity as "0.0254 m." Dividing one by the other gives:
 
-$$\frac{1\, \text{inch}}{0.0254\, \text{m}} = 39.37\, \frac{\text{inches}}{\text{m}} = \text{flavor of}\ 1\ .$$
+$$\frac{1\, \text{inch}}{0.0254\, \text{m}} = 39.37\, \frac{\text{inches}}{\text{m}}\ \text{which is a flavor of}\ 1\ .$$
 
 Similarly, "1 day is 86,400 s" can be translated to a ratio with "1 day" on top and "86,400 s" on the bottom: 
 
-$$\frac{1\, \text{day}}{86400\, \text{s}} = 0.0000157407 \, \frac{\text{days}}{\text{s}} = \text{flavor of}\ 1\ .$$
+$$\frac{1\, \text{day}}{86400\, \text{s}} = 0.0000157407 \, \frac{\text{days}}{\text{s}} \ \text{another flavor of}\ 1\ .$$
 
 Writing conversion factors as ratios *with units* signals clearly which is the "from" quantity and which is the "to" quantity. Not writing the units ratio explicitly invites confusion. For example, when converting 1 second to days, does one multiply by 86,400 or divide by 86,400? Remember that the conversion factor always *multiplies* the "from" quantity. Therefore, the correct conversion factor will be the flavor of one with the "from" unit on the bottom. Accidentally flipping the top and bottom of the conversion factor results in large errors.
 

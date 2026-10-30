@@ -21,7 +21,7 @@ To illustrate a rate that doesn't look like one, consider this everyday example.
 
 **AI Response**: Walking a mile burns approximately 60-to-100 calories, but this varies based on individual weight, pace, terrain, and fitness level. The word "calorie" is common in everyday speech, so it's understandable that the AI is using it. However, the quantitative unit is a "cal." One-thousand cal is, in metric convention, a kcal, but it is often written "Cal," with a capital C. Dietary information is usually presented in this large unit. A cal or Cal is commensurate with the metric unit Joule (J). We will use "Cal" in this dialog. 
 
-[Just FYI ... The *dimension* of cal, Cal, and J is [energy]. [Energy] in terms of base dimensions is written M L^2^ T^-2^ ]{.column-margin}
+[Just FYI ... Cal, cal, and J are different units with dimension [energy]. In terms of the base dimensions, [energy] is  M L^2^ T^-2^ ]{.column-margin}
 
 The AI agent might have responded, "How should I know? You didn't tell me how many miles you walk." But the actual response was clever, as if the AI were thinking, "He didn't tell me his walking distance. What kind of answer can I give that will be meaningful even without the distance information?" That is where *rates* come into the matter.
 
@@ -122,7 +122,7 @@ An increase from *1 in 10,000* to 2700 is staggering and suggests that things ar
 
 Be aware that the practice of using percent as a unit can produce large numbers, like 2700%, that may create a misleading impression. The statement in the article would have been more meaningfully phrased as, "By 2024, 28 in every 10,000 abstracts contained 'delve'."
 
-
+\newpage
 
 ## Rates of change {#sec-rates-of-change-brief}
 
@@ -134,61 +134,76 @@ A `r xf_definition("rate of change")` includes both the primary and the context-
 
 "Primary" and "context-setting" can be thought of in terms of *functions*. (See `r xf("sec-intro-to-functions")`.) The context-setting quantity is the input, while the "primary" quantity is the output.
 
-To illustrate, consider the temperature of a cup of coffee over time as the cup sits at room temperature. "Over time" corresponds to the quantitative-thinking concept of *function*: temperature is a function of time. @fig-stan-coffee shows some data collected by [Prof. Stan Wagon](www/Cooling_Coffee_without_Solving_Different.pdf). He poured near-boiling coffee into a cup instrumented with a recording thermometer. Following the familiar pattern, the coffee cooled.
+To illustrate, consider the temperature of a cup of coffee over time as the cup sits at room temperature. "Over time" corresponds to the quantitative-thinking concept of *function*: temperature is a function of time. @fig-stan-coffee shows some data collected by [Prof. Stan Wagon](www/Cooling_Coffee_without_Solving_Different.pdf). He poured near-boiling coffee into a cup instrumented with a recording thermometer. Following the familiar pattern, the coffee cooled, as shown in `r xf("fig-stan-coffee")`.
+
+Tan horizontal lines mark the temperature levels recorded at 5 and 35 minutes. The *change* in temperature with respect to time is the vertical distance shown by the [magenta arrow]{style="color: magenta;"}. The change over the 30-minute time interval is 29.9$^\circ$C. The dimension of the change is simply `r mydim(temperature)`, that is, temperature.
 
 ```{r}
 #| label: fig-stan-coffee
 #| echo: false
-#| layout-ncol: 2
-#| fig-cap: "Coffee temperature recorded every five minutes for four hours (240 minutes)."
+#| fig-cap: "Coffee temperature recorded every five minutes over two hours (120 minutes). The annotations mark the change in temperature and the *rate of change* of temperature with respect to time over a 30-minute interval"
 #| fig-cap-location: top
-#| fig-subcap:
-#| - Change in temperature with respect to time
-#| - Rate of change of temperature with respect to time
 Cool <- mosaicData::CoolingWater |> 
-  filter(time > 0, (time %% 5) == 0)
+  filter(time > 0, (time %% 5) == 0, time < 120) |>
+  mutate(roc = (temp - lag(temp))/(time - lag(time)),
+         midtime = (time + lag(time))/2)
 Marks <- tibble::tribble(
   ~ time, ~ temp, ~ temp2, ~ label,  
-  # 75, 84.9, 65.3, "19.6 C",
-  # 125, 65.3, 55.0, "10.3 C",
-  125, 84.9, 55.0, "29.9 C"
+  125, 84.9, 55.0, "Change in temperature: 29.9 C"
 ) |> mutate(mid = (temp + temp2) / 2)
-Cool |> point_plot(temp ~ time) |>
-  gf_labs(y = "Temperature (C)", x = "Time (min)") |>
-  gf_hline(yintercept = ~ temp, color = .hline_color.,
-          data = Cool |> filter(time %in% c(5, 35))) |>
-  gf_segment(temp + temp2 ~ time + time, data = Marks,
-             color = "magenta", 
-             arrow = grid::arrow(ends="both", type = "closed", 
-                                 length = unit(0.15, "inches"))) |>
-  gf_label(mid ~ time, label = ~ label, data = Marks, color = "magenta")
-  
-  Marks2 <- tibble::tribble(
+
+Marks2 <- tibble::tribble(
   ~ time, ~time2, ~ temp, ~ temp2, ~ label,  
-  # 75, 84.9, 65.3, "19.6 C",
-  # 125, 65.3, 55.0, "10.3 C",
-  5, 35, 84.9, 55.0, "Slope -1.0 C/min"
+  5, 35, 84.9, 55.0, "Rate of change: -0.997 °C/min"
 ) |> 
   mutate(midtemp = (temp + temp2) / 2,
          midtime = (time + time2) / 2)
-Cool |> point_plot(temp ~ time) |>
-  gf_labs(y = "", x = "Time (min)") |>
+
+Cool |> point_plot(temp ~ time, color = .data_color.) |>
+  gf_lims(x = c(-5, 120)) |>
+  gf_labs(y = "Temperature (°C)", x = "Time (min)") |>
   gf_hline(yintercept = ~ temp, color = .hline_color.,
           data = Cool |> filter(time %in% c(5, 35))) |>
-  gf_segment(temp + temp2 ~ time + time2, data = Marks2,
-             color = "darkgreen", 
+  gf_segment(temp + temp2 ~ time2 + time2, data = Marks2,
+             color = "magenta", 
              arrow = grid::arrow(ends="both", type = "closed", 
                                  length = unit(0.15, "inches"))) |>
-  gf_label(midtemp ~ time2, label = ~ label, data = Marks2, color = "darkgreen",
-           angle = -65)
+  gf_label(mid ~ 42, label = ~ label, data = Marks, color = "magenta", angle = -90, size=3) |>
+  gf_segment(temp + temp2 ~ time + time2, data = Marks2,
+             color = .slope_color., 
+             arrow = grid::arrow(ends="both", type = "closed", 
+                                 length = unit(0.15, "inches"))) |>
+  gf_label(midtemp ~ 10, label = ~ label, data = Marks2, color = .slope_color.,
+           angle = -58, size = 3) |>
+  gf_segment(53 + 53~ 5 + 35, data = Marks,
+             color = .hsegment_color., 
+             arrow = grid::arrow(ends="both", type = "closed", 
+                                 length = unit(0.15, "inches")))  |>
+  gf_label(47 ~ 20, label = "Change in time: 30 mins", data = Marks2, color = .hsegment_color.,
+           size = 3)       
 ```
 
+The *rate of change* over the 30-minute time interval is -29.9$^\circ$C / 30 min = - 0.997$^\circ$C/min. Notice that the dimension of the rate of change is `r mydim(temperature)` `r mydim(time)`^-1^, that is, temperature *divided by time*.
 
-Blue lines mark the temperature levels recorded at 5 and 35 minutes. The *change* in temperature with respect to time is the vertical distance shown by the [magenta arrow]{style="color: magenta;"}. The change over the 30-minute time interval is 29.9$^\circ$C. The dimension of the change is simply `r mydim(temperature)`, that is, temperature, read directly from the vertical axis.
+Note that we can calculate the rate of change for any interval, not just the particular 30-minute interval marked by the green arrow. `r xf("fig-stan-coffee2")` shows the *rate of change* over the time period covered in `r xf("fig-stan-coffee")`
 
-The *rate of change* over the 30-minute time interval is - 29.9$^\circ$C / 30 min = - 0.997$^\circ$C/min. Notice that the dimension of the rate of change is `r mydim(temperature)``r mydim(time)`^-1^, that is, temperature *divided by time*.
+```{r}
+#| label: fig-stan-coffee2
+#| echo: false
+#| warning: false
+#| fig-cap: "The rate of change of temperature with respect to time. Units are °C/min."
+#| fig-cap-location: top
 
-Note that we could have calculated the rate of change for any interval, not just the 30-minute interval between times marked by the blue lines. Thus, the rate of change can itself change. The idea of changing rates of change takes some getting used to. But it forms a cornerstone of quantitative argumentation. We come back to it in `r xf("sec-dynamics")`.
+Cool  |>
+  point_plot(roc ~ midtime, 
+             color = .slope_color., size=3) |>
+  gf_line(roc ~ midtime, 
+             color = .slope_color., alpha=0.5) |>
+  gf_labs(y = "Rate of change (°C/min)", x = "Time (min)") |>
+  gf_lims(y = c(NA, 0))
+```
+
+Note that in the cooling coffee setting the *rate of change of temperature* itself changes over time. The idea of changing rates of change takes some getting used to and we don't need to deal with it in detail until `r xf("sec-dynamics")`. Still, we have enough background to figure out the units and dimension of the "rate of change with respect to time of the rate of change of temperature with respect to time." In English, this is a daunting phrase. But graphically, it corresponds to the slopes of the line segments connecting the points in `r xf("fig-stan-coffee2")`. [The units of those slopes will be the units of the vertical axis divided by the units of the horizontal axis, so °C/min^2^, which has dimension `r mydim(temperature)` `r mydim(time)`^-2^]{.column-margin}
 
 ## Compound rates
 
@@ -259,7 +274,7 @@ BTU (British Thermal Unit) is a measure of energy. The amount of heating "servic
   "Heating degree-days"
 )`
     
-Notice that the unit "BTU/HDD/Sq.Ft." quoted by the AI is ambiguous. It should be BTU per HDD-(ft^2^). Suppose that we misinterpret the quoted range---5.0 to 10.0---as being in units of BTU/(HDD/ft^2^). For the 1200-square-foot house in the example, we would have 6000 degree-days divided by 1200 square feet, resulting in 5 degree-days per square foot. The total BTU usage for the house would be (mis-)calculated as 5.0 to 10.0 BTU per (HDD/Sq.Ft.) $\times$ 5 HDD/Sq.Ft. = 25 to 50 BTU. For comparison, bringing 1 liter of water to a boil consumes about 250 BTU. It is hard to imagine that heating a house for a year would use less energy than boiling a liter of water. Mistaking HDD $\times$ ft^2^. for HDD *per* ft^2^ will cause a lot of trouble when designing or outfitting a house! 
+Note that the unit "BTU/HDD/Sq.Ft." quoted by the AI is ambiguous. It should be BTU per HDD-(ft^2^). Suppose that we misinterpret the quoted range---5.0 to 10.0---as being in units of BTU/(HDD/ft^2^). For the 1200-square-foot house in the example, we would have 6000 degree-days divided by 1200 square feet, resulting in 5 degree-days per square foot. The total BTU usage for the house would be (mis-)calculated as 5.0 to 10.0 BTU per (HDD/Sq.Ft.) $\times$ 5 HDD/Sq.Ft. = 25 to 50 BTU. For comparison, bringing 1 liter of water to a boil consumes about 250 BTU. It is hard to imagine that heating a house for a year would use less energy than boiling a liter of water. Mistaking HDD $\times$ ft^2^. for HDD *per* ft^2^ will cause a lot of trouble when designing or outfitting a house! 
 
 ## Multiplying quantities
 

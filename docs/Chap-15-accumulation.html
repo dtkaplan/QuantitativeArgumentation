@@ -558,13 +558,13 @@ Figure&nbsp;15.3: <code>hill()</code> and <code>hillside()</code> are a derivati
 <p>The hill() function gives the <em>derivative</em>—that is, the rate-of-change function—of the hillside() function. Conversely, the hillside() function is the <em>anti-derivative</em> of the hill() function. Differentiation turns a function into its rate-of-change function. Anti-differentiation undoes differentiation.</p>
 <p>A homey metaphor may help here. Imagine a family of functions mutually related by differentiation or anti-differentiation. We’ll label the functions Francis, Georgia, Heather, Ulrika, and Victoria: F(), G(), H(), U(), V(). The relationships among these functions are that G() is the derivative of F(), H() is the derivative of G(), H() is the derivative of H(), and so on. In human terms, these functions correspond to succesive generations in a family. Francis is the great-grandmother, Georger the grandmother, Heather the mother, Ulrika the daughter, and the grand-daughter is Victoria. Differentiation is the function that takes a person and produces their direct offspring. Anti-differentiation takes a function and produces their mother.</p>
 <p>For demonstration purposes, to see how an anti-derivative can be calculated, let’s break convention and use a special graphical format to display a rate-of-change function.</p>
-<p>Keep in mind that differentiation contructs an new “daughter” function from a “mother” function. Finding the daughter is straightforward; it is the function whose <strong>value</strong> at any input corresponds to the <strong>slope</strong> of the mother at that same input. <a href="#fig-segmentize" class="quarto-xref">Figure&nbsp;<span>15.4</span></a> shows a function F(x) in black, and a kind of compass for measuring slopes. The slope of F() varies across the input values. We can calculate that slope for many different input values. Ordinarily we would plot the derivative—that is, the daughter function—using the vertical axis for the measured slope.</p>
-<p>But <a href="#fig-segmentize" class="quarto-xref">Figure&nbsp;<span>15.4</span></a>(a) shows the daugher function (in <span style="color: blue;">blue</span>) not in the usual way as a value, but instead as a small, sloped line segment. The reader can confirm this by matching each <span style="color: blue;">blue line segment</span> to the slope of the black function directly above or below it.</p>
+<p>Keep in mind that differentiation constructs an new “daughter” function from a “mother” function. Finding the daughter is straightforward; it is the function whose <strong>value</strong> at any input corresponds to the <strong>slope</strong> of the mother at that same input. <a href="#fig-segmentize" class="quarto-xref">Figure&nbsp;<span>15.4</span></a> shows a function F(x) in blue, annotated with a red compass for measuring slopes. The slope of F() varies across the input values. We can calculate that slope for many different input values. Ordinarily we would plot the derivative—that is, the daughter function—using the vertical axis for the measured slope.</p>
+<p>But <a href="#fig-segmentize" class="quarto-xref">Figure&nbsp;<span>15.4</span></a>(a) shows the daughter function not in the usual way as values, but instead as small, sloped line segments in alternating <span style="color: #CC79A7;">purple</span> and <span style="color: #0072B2;">blue</span>. The reader can confirm this by matching each colored segment to the slope of the smooth function directly above or below it.</p>
 <div id="fig-segmentize" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-segmentize-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-segmentize" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-segmentize" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-segmentize-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-segmentize-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -576,14 +576,16 @@ Figure&nbsp;15.3: <code>hill()</code> and <code>hillside()</code> are a derivati
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-segmentize" style="flex-basis: 50.0%;justify-content: flex-start;">
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-segmentize" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-segmentize-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-segmentize-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Chap-15-accumulation_files/figure-html/fig-segmentize-2.png" class="img-fluid figure-img" data-ref-parent="fig-segmentize" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-segmentize-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Anti-differentiation accumulates the slopes to reconstruct the function (green).
+(b) Anti-differentiation accumulates the segments to reconstruct the function (green).
 </figcaption>
 </figure>
 </div>
@@ -591,7 +593,7 @@ Figure&nbsp;15.3: <code>hill()</code> and <code>hillside()</code> are a derivati
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-segmentize-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15.4: A function (black) with its rate-of-change function depicted as short inclined segments (blue).
+Figure&nbsp;15.4: A function (continuous curve) with its rate-of-change function depicted as short inclined segments.
 </figcaption>
 </figure>
 </div>

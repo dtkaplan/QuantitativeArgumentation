@@ -385,7 +385,7 @@ Figure&nbsp;7.1: Graph paper onto which the core modeling functions will be disp
 </div>
 <p>The coordinates of the graph paper are used to determine the input-to-output values of the function. The grid lines in the display are not just decoration: they show how a numeric input gets translated to a numeric output.</p>
 <p>In the displays of the core modeling functions, you can infer the numerical values of input and output by counting the vertical and horizontal grid lines respectively. The vertical axis marks zero on the horizontal scale. The successive vertical lines correspond to values separated by 1. The horizontal grid lines are interpreted in the same way.</p>
-<p>Why not label the graph paper with the numerical values? It would be simple enough to do, but for the reasons described in <a href="#sec-input-output-transforms" class="quarto-xref"><span class="quarto-unresolved-ref">sec-input-output-transforms</span></a> it would make the graphics too busy.</p>
+<p>Why not label the graph paper with the numerical values? It would be simple enough to do, but for the reasons described in <a href="#sec-input-output-transforms" class="quarto-xref"><span>Section 7.2</span></a> it would make the graphics too busy.</p>
 <p>We will work with eight core modeling functions. Often, one or another of these eight will suffice for modeling the relationship between two quantities.</p>
 <p><span class="smallcaps">The eight core modeling functions.</span></p>
 <p>We have constructed the core modeling collection from the collective experience of modelers over many generations. We have intentionally violated convention by giving even famous functions new names that are more descriptive than the traditional names.</p>
@@ -558,85 +558,78 @@ Figure&nbsp;7.2: Input and output scaling applied to the core function hillside(
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-scaling-2-panels" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-scaling-2-panels</span></a> shows the essence of the scaling technique. We apply a new set of tick marks is applied to the modeling function. These are shown in blue in the figure.</p>
-<p>In providing a quantity as input to the function, use the blue labels on the horizontal axis. In reading off the output, use the blue labels on the vertical axis. For the scaled function depicted in <a href="#fig-scaling-2-panels" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-scaling-2-panels</span></a>, the input 150 (with units as appropriate) corresponds to the output 5 (again, with whatever are units of the output quantity).</p>
+<p><a href="#fig-scaling-2-panels" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> shows the essence of the scaling technique. We apply a new set of tick marks is applied to the modeling function. These are shown in blue in the figure.</p>
+<p>In providing a quantity as input to the function, use the blue labels on the horizontal axis. In reading off the output, use the blue labels on the vertical axis. For the scaled function depicted in <a href="#fig-scaling-2-panels" class="quarto-xref">Figure&nbsp;<span>7.2</span></a>, the input 150 (with units as appropriate) corresponds to the output 5 (again, with whatever are units of the output quantity).</p>
 <p>In brief, the core modeling function takes pure-number input and output which you can read from the black grid lines. The input-and-output scaled function has quantity inputs which you read from the blue axes.</p>
-<p>Once you have the blue axes arranged suitably for your modeling purpose, it’s not hard to write the customized function in, for instance, a computer implementation. To illustrate for the scaled example in <a href="#fig-scaling-2-panels" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-scaling-2-panels</span></a>(b), we’ll call the customize quantity-to-quantity function <code>modelfun()</code>:</p>
+<p>Once you have the blue axes arranged suitably for your modeling purpose, it’s not hard to write the customized function in, for instance, a computer implementation. To illustrate for the scaled example in <a href="#fig-scaling-2-panels" class="quarto-xref">Figure&nbsp;<span>7.2</span></a>(b), we’ll call the customize quantity-to-quantity function <code>modelfun()</code>:</p>
 <p><strong>Input scaling facts</strong>: The math input 0 has the blue label 100. A step of one unit on the math axes corresponds to a step of 50 on the blue axes.</p>
 <p><strong>Output scaling facts</strong>: The math output 0 corresponds to about 2 on the blue axes; this means that the <span class="math inline">\(B\)</span> output scaling parameter is 2. The math output 1 corresponds to 7 on the blue axes, so that 1 step in math input—from 0 to 1—corresponds to steping from 2 to 7 in the quantity output. That is, a step of one unit of math output is 5 units of quantity output. This corresponds to an <span class="math inline">\(A\)</span> parameter of 5 for the output scaling.</p>
 </section>
-<section id="sec-global-oil-production" class="level2" data-number="7.3">
+<section id="sec-global-oil-production" class="level2 page-columns page-full" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="sec-global-oil-production"><span class="header-section-number">7.3</span> Example: Global oil production</h2>
-<p><a href="#fig-world-oil-triptych" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-world-oil-triptych</span></a> shows global oil production each year since 1900. Production is measured in terrawatt-hours. To put that in context, 16 PWh is enough fuel for all the world’s 1.7 billion gasoline vehicles for a year’s driving. [If the global fleet were electric, the energy consumption would be about 3.5 PWh.]</p>
+<div class="page-columns page-full"><p><a href="#fig-world-oil-triptych" class="quarto-xref">Figure&nbsp;<span>7.3</span></a> shows global oil production each year since 1900. Production is measured in terrawatt-hours. To put that in context, 16 PWh is enough fuel for all the world’s 1.7 billion gasoline vehicles for a year’s driving. </p><div class="no-row-height column-margin column-container"><span class="">If the global fleet were electric, the energy consumption would be about 3.5 PWh.</span></div></div>
 <p>Oil production through 1975 follows an exponential growth pattern: increasing at an every-increasing rate.</p>
-<div class="cell" data-layout="[[1.3,1], [1]]">
-<div id="fig-world-oil-triptych" class="quarto-layout-panel">
+<div class="cell">
+<div id="fig-world-oil-triptych" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-world-oil-triptych-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-world-oil-triptych" style="flex-basis: 56.5%;justify-content: flex-start;">
+<div class="cell-output-display">
 <div id="fig-world-oil-triptych-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-world-oil-triptych-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Chap-07-core-modeling-functions_files/figure-html/fig-world-oil-triptych-1.png" class="img-fluid figure-img" data-ref-parent="fig-world-oil-triptych" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-world-oil-triptych-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Oil production in petaawatt-hours of energy
+(a) Oil production (petaawatt-hours)
 </figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-world-oil-triptych" style="flex-basis: 43.5%;justify-content: flex-start;">
+<div class="cell-output-display">
 <div id="fig-world-oil-triptych-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-world-oil-triptych-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Chap-07-core-modeling-functions_files/figure-html/fig-world-oil-triptych-2.png" class="img-fluid figure-img" data-ref-parent="fig-world-oil-triptych" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-world-oil-triptych-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Core modeling function: <code>exp2()</code>
+(b) Model fun: <code>exp2()</code>
 </figcaption>
 </figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-world-oil-triptych" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-world-oil-triptych-3" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-world-oil-triptych-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Chap-07-core-modeling-functions_files/figure-html/fig-world-oil-triptych-3.png" class="img-fluid figure-img" data-ref-parent="fig-world-oil-triptych" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-world-oil-triptych-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c) Scaled model
-</figcaption>
-</figure>
-</div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-world-oil-triptych-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.3: Global oil production since 1900 and two candidate core modeling functions.
+Figure&nbsp;7.3: Global oil production since 1900 and the closest looking core modeling functions.
 </figcaption>
 </figure>
 </div>
 </div>
-<p>The scales of the historical oil-production plot are straightforward. The data run from 1900 to 2023. Production was near zero in 1900 and reached about 50 PWh in 2023. The production growth pattern before about 1975 is reminiscent of the shape of the <code>exp2()</code> core modeling function, but the scale in the graph of <code>exp2()</code> is unsuited to the data scale.</p>
-<p>By figuratively picking up the oil-data graph, along with its scales, and stretching and shifting it appropriately, we can adopt the scale to the shape of the exponential function, at least for the years before 1975. The result, in panel (c), is a graphic with two scales. The blue scales on the outside come from the oil data. The input scaling for this model of oil production comes from the alignment of the mathematical gridding with the horizontal blue quantity scale.</p>
+<p>The scales of the historical oil-production plot are straightforward. The data run from 1900 to 2023. Production was near zero in 1900 and reached about 50 PWh in 2023. The production growth pattern before about 1975 is reminiscent of the shape of the <code>exp2()</code> core modeling function, but the scale in the graph of <code>exp2()</code> is unsuited to the data.</p>
+<p>By figuratively picking up the oil-data graph, along with its scales, and stretching and shifting it appropriately, we can adopt the scale to the shape of the exponential function, at least for the years before 1975. The result of the shifting and scaling is shown in UNRESOLVED fig-oil-scaled. The blue scales on the outside come from the oil data. The input scaling for this model of oil production comes from the alignment of the mathematical grid with the horizontal blue quantity scale.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-oil-scaled" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-oil-scaled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Chap-07-core-modeling-functions_files/figure-html/fig-oil-scaled-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oil-scaled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.4: Shifting and stretching <a href="#fig-world-oil-triptych" class="quarto-xref">Figure&nbsp;<span>7.3</span></a>(b) of <code>exp2()</code> to match the data. The scales from the data are applied to calculate the input and output scaling required.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>For instance, zero on the mathematical horizontal grid—the location of the double-headed vertical “output” line—matches up to 1956. You can also see that year 2000 in the blue scale matches up closely to 4 on the horizontal grid scale. Consequently, the input scaling function will turn 1956 into 0 and year 2000 to 4.</p>
 </section>
-<section id="stories-told-by-shape" class="level2" data-number="7.4">
+<section id="stories-told-by-shape" class="level2 page-columns page-full" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="stories-told-by-shape"><span class="header-section-number">7.4</span> Stories told by shape</h2>
 <p>For each core modeling function, we present the story in two ways: a narrative and a graph. The action of stories typically develops over time. In the language of functions, we will treat time as the input and examine the output over time. Of course, in any given modeling context, the input might be something other than time: for instance, the dose of a drug, or the speed of a vehicle.</p>
 <p>To avoid unnecessary abstraction, our descriptions will assume that the function’s output is the outdoor temperature. The brief stories we will tell to introduce each function will be about how temperature changes over time.</p>
 <div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
-<dl>
-<dt>osc(&nbsp;)</dt>
-<dd>
-A function that oscillates smoothly up and down, repeating itself over and over again. Such repeating functions are called ☞&nbsp;<strong>periodic</strong><span id="finger-periodic-definition" data-label="periodic">&nbsp;☜</span>. For example, the outdoor temperature rises and falls each day, repeating itself roughly the same way day after day.
-</dd>
-</dl>
+<p><code>osc(&nbsp;)</code>&nbsp;&nbsp;&nbsp;A function that oscillates smoothly up and down, repeating itself over and over again. Such repeating functions are called ☞&nbsp;<strong>periodic</strong><span id="finger-periodic-definition" data-label="periodic">&nbsp;☜</span>. For example, the outdoor temperature rises and falls each day, repeating itself roughly the same way day after day.</p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
 <p>&nbsp;</p>
@@ -650,7 +643,7 @@ A function that oscillates smoothly up and down, repeating itself over and over 
 <img src="Chap-07-core-modeling-functions_files/figure-html/fig-osc-ex-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-osc-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.4: osc(&nbsp;)
+Figure&nbsp;7.5: osc(&nbsp;)
 </figcaption>
 </figure>
 </div>
@@ -662,12 +655,7 @@ Figure&nbsp;7.4: osc(&nbsp;)
 <div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
-<dl>
-<dt>hillside(&nbsp;)</dt>
-<dd>
-The hillside function starts steadily, then gradually increases before leveling off. For example, hillside() might represent the temperature as a warm front moves past at around 10 am: a steady high temperature in the afternoon having gradually replaced the the mornings low temperature.
-</dd>
-</dl>
+<p><code>hillside(&nbsp;)</code>&nbsp;&nbsp;&nbsp;&nbsp; The hillside function starts steadily, then gradually increases before leveling off. For example, hillside() might represent the temperature as a warm front moves past at around 10 am: a steady high temperature in the afternoon having gradually replaced the the mornings low temperature.</p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
 <p>&nbsp;</p>
@@ -681,7 +669,7 @@ The hillside function starts steadily, then gradually increases before leveling 
 <img src="Chap-07-core-modeling-functions_files/figure-html/fig-hillside-ex-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hillside-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.5: hillside(&nbsp;)
+Figure&nbsp;7.6: hillside(&nbsp;)
 </figcaption>
 </figure>
 </div>
@@ -693,12 +681,7 @@ Figure&nbsp;7.5: hillside(&nbsp;)
 <div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
-<dl>
-<dt>hill()</dt>
-<dd>
-The hill() function goes up from a baseline and then goes back down to the baseline. For instance, the hill() can describe a heat wave lasting several days before relief and the return to normal temperature.
-</dd>
-</dl>
+<p><code>hill()</code>&nbsp;&nbsp;&nbsp;&nbsp; The hill() function goes up from a baseline and then goes back down to the baseline. For instance, the hill() can describe a heat wave lasting several days before relief and the return to normal temperature.</p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
 <p>&nbsp;</p>
@@ -712,7 +695,7 @@ The hill() function goes up from a baseline and then goes back down to the basel
 <img src="Chap-07-core-modeling-functions_files/figure-html/fig-hill-ex-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hill-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.6: hill(&nbsp;)
+Figure&nbsp;7.7: hill(&nbsp;)
 </figcaption>
 </figure>
 </div>
@@ -721,18 +704,11 @@ Figure&nbsp;7.6: hill(&nbsp;)
 </div>
 </div>
 </div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">Such feedback mechanisms include the release of methane from melting permafrost or the increased absorption of sunlight by the ocean as an ice cap melts. Eventually, of course, something has to give. The doubling pattern cannot continue indefinitely. But the <code>exp2()</code> core modeling function doesn’t capture that bit of the story.</span></div></div>
 <div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
-<dl>
-<dt>exp2(&nbsp;)</dt>
-<dd>
-After each unit interval of time, the temperature <em>doubles</em> from what it was at the start of the interval. Think of an apocalyptic science-fiction story about climate change. The temperature is increasing over time, and as it does, various feedback mechanisms—e.g., the release of methane from melting permafrost or the increased absorption of sunlight by the ocean as an ice cap melts—strengthen.
-</dd>
-<dd>
-Eventually, of course, something has to give. The doubling pattern cannot continue indefinitely. But the <code>exp2()</code> core modeling function doesn’t add that bit to the story.
-</dd>
-</dl>
+<p><code>exp2(&nbsp;)</code>&nbsp;&nbsp;&nbsp;&nbsp; After each unit interval of time, the temperature <em>doubles</em> from what it was at the start of the interval. Think of an apocalyptic science-fiction story about climate change. The temperature is increasing over time, and as it does, various feedback mechanisms strengthen.</p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
 <p>&nbsp;</p>
@@ -746,7 +722,7 @@ Eventually, of course, something has to give. The doubling pattern cannot contin
 <img src="Chap-07-core-modeling-functions_files/figure-html/fig-exp2-ex-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exp2-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.7: exp2(&nbsp;)
+Figure&nbsp;7.8: exp2(&nbsp;)
 </figcaption>
 </figure>
 </div>
@@ -759,7 +735,7 @@ Figure&nbsp;7.7: exp2(&nbsp;)
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
 <dl>
-<dt>log2()</dt>
+<dt><code>log2()</code>&nbsp;&nbsp;&nbsp;&nbsp;</dt>
 <dd>
 Picking up on the science fiction described under exp2(), imagine a crusty, old meteorologist who tells <em>how long</em> it will take for the doubling temperature to reach any given level.
 </dd>
@@ -777,7 +753,7 @@ Picking up on the science fiction described under exp2(), imagine a crusty, old 
 <img src="Chap-07-core-modeling-functions_files/figure-html/fig-log2-ex-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-log2-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.8: log2(&nbsp;)
+Figure&nbsp;7.9: log2(&nbsp;)
 </figcaption>
 </figure>
 </div>
@@ -789,12 +765,7 @@ Figure&nbsp;7.8: log2(&nbsp;)
 <div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
-<dl>
-<dt>same(&nbsp;)</dt>
-<dd>
-As time increases, the temperature increases likewise. Hour to hour, the temperature increases by the same amount.
-</dd>
-</dl>
+<p><code>same(&nbsp;)</code>&nbsp;&nbsp;&nbsp;&nbsp; As time increases, the temperature increases likewise. Hour to hour, the temperature increases by the same amount.</p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
 <p>&nbsp;</p>
@@ -808,7 +779,7 @@ As time increases, the temperature increases likewise. Hour to hour, the tempera
 <img src="Chap-07-core-modeling-functions_files/figure-html/fig-same-ex-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-same-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.9: same(&nbsp;)
+Figure&nbsp;7.10: same(&nbsp;)
 </figcaption>
 </figure>
 </div>
@@ -820,12 +791,7 @@ Figure&nbsp;7.9: same(&nbsp;)
 <div class="quarto-layout-panel" data-layout="[1,0.1, 1]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 47.6%;justify-content: flex-start;">
-<dl>
-<dt>flat()</dt>
-<dd>
-A story with no action. As time goes by, nothing changes! Daytime temperatures are the same as nighttime temperatures.
-</dd>
-</dl>
+<p><code>flat()</code>&nbsp;&nbsp;&nbsp;&nbsp; A story with no action. As time goes by, nothing changes! Daytime temperatures are the same as nighttime temperatures.</p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
 <p>&nbsp;</p>
@@ -839,7 +805,7 @@ A story with no action. As time goes by, nothing changes! Daytime temperatures a
 <img src="Chap-07-core-modeling-functions_files/figure-html/fig-flat-ex-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flat-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.10: flat(&nbsp;)
+Figure&nbsp;7.11: flat(&nbsp;)
 </figcaption>
 </figure>
 </div>

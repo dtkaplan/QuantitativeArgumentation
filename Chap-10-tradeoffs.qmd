@@ -36,19 +36,15 @@ The "solution" to the optimization problem is the input value that achieves this
 
 "Argmax" and "argmin" are not ordinary English words; they are syllabic abbreviations, like FedEx (short for Federal Express), formed from the first syllables of words in a phrase. The phrase relevant to optimization is "the **arg**ument that produces the **max**imum output value." Keep in mind that "argument" in this phrase is used as a synonym for "input."
 
-@fig-argmax-examples shows the argmax for two example objective functions. Those functions each have an output that varies with its input. In the spirit of fun, we imagine that the output in panel (a) is the taste score assigned to a baked item and, for (b), the relative probability of locating a shipwreck. However, the output scale does not matter at all to the optimization problem. The argmax is merely the *input* that produces the maximum output.
+@fig-argmax-example1 shows the argmax for a simple objective function that takes a single input. In the spirit of fun, we imagine that the output in panel (a) is the quality score (output) assigned to a pastries baked at several different temperatures (input). The blue dot marks the argmax. We've placed the dot on the temperature axis as a reminder that the argmax is an *input* value. Applying the objective function to that input value---that is, baking a pastry at that temperature and tasting it to give a quality score---gives the highest score pastry compared to pastries cooked at other temperatures.
 
 ```{r}
-#| label: fig-argmax-examples
+#| label: fig-argmax-example1
 #| echo: false
 #| message: false
 #| warning: false
-#| layout-ncol: 2
 #| fig-cap-location: "top"
-#| fig-cap: "The argmax (blue dot) for each of two example objective functions."
-#| fig-subcap:
-#| - Objective function with one input.
-#| - Objective function with two inputs.
+#| fig-cap: "Quality of a pastry as a function of the oven temperature selected by the baker. The blue dot marks the argmax."
 raw1 <- mosaicCalc::doodle_fun( ~ x, seed = 9329)
 f1 <- function(temperature) {
     30 - 4*raw1((temperature - 325)/25)
@@ -57,7 +53,24 @@ slice_plot(f1(x) ~ x, domain(x = 250:400), color = .slice_color.) |>
 gf_point(0 ~ 315, color = "blue", size = 4) |>
 gf_labs(x = "Oven temperature (°F)", y = "Tasters' score") |>
 gf_lims(y = c(0,100)) 
+```
 
+The argmax, that is, tastiest baking temperature for the pastry is 315 °F. 
+
+Objective functions in different contexts can have many more inputs. The argmax is the setting for all the inputs that gives the highest output value. In professional work, its common to have objective functions that have tens or thousands of inputs. [You can't make the sun shine or the wind blow, but you can turn on a natural gas turbine very quickly. Nuclear power plants have a long start-up time. An old coal-powered generator takes hours to turn on and wastes energy when it's turned off.]{.callout-margin} An example is provided by electric utilities that have to plan out a days-long schedule for different generation resources---solar, natural gas, wind, nuclear---to meet predicted demand at the lowest cost. 
+
+In training Large Language AI models, the objective function literally can have billions of inputs.
+
+
+We can't readily visualize a function with many inputs, so the graphical example we will use here has just two inputs. (In `r xf("sec-moving-past-two-inputs")` we introduce computational strategies for handling more inputs.) `r xf("fig-argmax-example2")` shows an imagined scenario where satellite and aerial magnetic sensing data have been used in a computer model to estimate the relative probability for each possible location of a sunken ship. That is, the computer model is the objective function. The people coordinating a search using submersible robots can use this objective function to map out their search. It's might be sensible to start the search at the argmax---the most likely location---then move out to lower probability areas until the ship is found.  
+
+```{r}
+#| label: fig-argmax-example2
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap-location: "top"
+#| fig-cap: "Shipwreck location probability distribution. The blue dot marks the argmax, that is, the single most likely location for the wreck."
 raw2 <- mosaicCalc::doodle_fun( ~ x + y, seed = 6493)
 
 f2 <- function(x, y) {
@@ -69,13 +82,9 @@ gf_point(7.4 ~ 122, color = "blue", size = 4) |>
 gf_refine(coord_fixed())
 ```
 
-To judge from panel (a), the tastiest baking temperature for the item is 315 °F. As for the shipwreck, its most likely position is (122 W, 7.4 N), but the relative probability there is not much higher than at areas within about $\pm 1$ degree of longitude and latitude. In each panel, the blue dot marks the input value, not the output value.
+The objective function in `r xf("fig-argmax-example2")` has its argmax at geolocation (122 W, 7.4 N). But the relative probability there is not much higher than at areas within about $\pm 1$ degree of longitude and latitude. So the salvage party might not find the wreck at the argmax and need to search nearby. 
 
-How does one find the argmax? If you have a graph, look at it, find the point in the picture that corresponds to the peak of the hill and read off the input values for that point. 
-
-It is hard to construct useful graphics when the objective function has three or more inputs. Optimization problems with many inputs can be solved with a different technique, which we will discuss in `r xf("sec-moving-past-two-inputs")`. In training AI models, the objective function literally can have billions of inputs.
-
-The technique for finding an argmax can be implemented in software. This fact lowers the priority to the student of learning mathematical theory of optimization. The real questions one faces in optimization are how to develop a model for the objective function and whether there is an argmax at all. 
+Finding an argmax when the objective function takes only a few inputs is not hard. It becomes harder when there are many inputs related in a complicated way. For example, training a Large Language Model can take days or weeks of intensive, expensive computer processing.
 
 ## Toward trade-offs
 
