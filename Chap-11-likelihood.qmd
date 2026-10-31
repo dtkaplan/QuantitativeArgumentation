@@ -122,7 +122,8 @@ If we can't argue for the 0.05 per year hypothesis over the 0.03 per year hypoth
 ```{r}
 #| label: fig-likelihood-curve
 #| echo: false
-#| layout-ncol: 3
+#| message: false
+#| warning: false
 #| fig-cap: "Likelihood of the observed completed interval data as a function of the hypothesized *rate* parameter. The vertical [magenta]{style='color: magenta;'} lines mark the 95% interval."
 #| fig-cap-location: bottom
 for_complete <- function(obs, rate) { 
@@ -170,6 +171,8 @@ slice_plot(for_incomplete(37, rate) ~ rate,
 
 The likelihood function in `r xf("fig-likelihood-curve2")` shows that the observation of no earthquake since 1990 argues for a low earthquake rate. The 95% interval is inconsistent with that from `r xf("fig-likelihood-curve")`. That's because they are based on different observations: the four completed intervals versus the incomplete interval since 1990.
 
+[Reminder: Likelihood (a number) is the probability of generating the observed data from a specific, hypothesized model. The model here is the exponential distribution for the interval between earthquakes with the rate parameter set to a specific, given, hypothesized value. The graphs show the likelihood *functions*, that is, the likelihood at each possible hypothesized rate. This is why the graphs of the function label the input axis as "*hypothesized rate*."]{.callout-note}
+
 Multiplying the likelihood functions from `r xf("fig-likelihood-curve")` and `r xf("fig-likelihood-curve2")` gives the likelihood function for all *five* observations, four complete intervals and the one incomplete one. `r xf("fig-likelihood-curve3")` shows this combined likelihood.
 
 
@@ -185,7 +188,7 @@ slice_plot(for_complete(c(17, 14, 23, 31), rate) * for_incomplete(37, rate) ~ ra
     color = "magenta") |>
     gf_lims(y = c(0, NA)) |>
     gf_hline(yintercept = c(2.12e-8)*c(1, 1/6.82), color = .hline_color.) |>
-  gf_labs(x = "Rate parameter (per year)")
+  gf_labs(x = "Hypothesized rate parameter (per year)")
 ```
 
 Note that the vertical scales differ in the graphs of the likelihood functions. That's of no concern, since it is the *relative* likelihood that matters.
@@ -229,36 +232,64 @@ $$\underbrace{0.6 \cdot 0.6 \cdot 0.6 \cdot 0.6 \cdot 0.6 \cdot 0.6}_\text{For t
 The likelihood ratio comparing the research hypothesis to the Null hypothesis is 1.2. This provides no reason to favor the research hypothesis. But, like a detective hunting for the criminal, you can try to collect more evidence, that is, more data. 
 
 ::: {.callout-note icon=false}
-## A likely dialog
+## A Likely dialog
 For fun, imagine a dialog with the chief investigator (your boss) and with a likelihood expert present:
 
-Detective: Chief, I only have very preliminary evidence that the coin is biased (at 0.6), but I have a strong hunch and I'm sure it will become more convincing if I collect more data.
+**Detective**: Chief, I only have very preliminary evidence that the coin is biased (at 0.6), but I have a strong hunch and I'm sure it will become more convincing if I collect more data.
 
-Chief: How much time have you spent on this?
+ 
 
-Detective: Just two days. But enough to feel it in my gut that the coin is biased.
+**Chief**: How much time have you spent on this?
 
-Chief: It would be nice to put this case to bed, one way or the other. Take another two days and update me then. 
+ 
 
-Detective: Will do. Thanks, Chief. 
+**Detective**: Just two days. But enough to feel it in my gut that the coin is biased.
+
+ 
+
+**Chief**: It would be nice to put this case to bed, one way or the other. Take another two days and update me then. 
+
+ 
+
+**Detective**: Will do. Thanks, Chief. 
+
+ 
 
 *Two days later*
 
-Detective: I have been following up on the case. What I'm seeing is a match to my previous hunch, I think it's more than a hunch.
+ 
 
-Chief: Do you think you can wrap it up in another two days?
+**Detective**: I have been following up on the case. What I'm seeing is a match to my previous hunch, I think it's more than a hunch.
 
-Detective: I'm confident.
+ 
 
-Department Likelihood expert: Hold on. Your first two days investigation produced a likelihood ratio of 1.2. If your new data is consistent with your previous data, the combined likelihood ratio will be the square of 1.2, which is 1.44. If you were to spend another 4 days, the ratio would be 1.44 $\times$ 1.44 = 2.07. That would be laughed out of court!
+**Chief**: Do you think you can wrap it up in another two days?
 
-Chief: What would it take for the evidence to be convincing?
+ 
 
-Department Likelihood expert: For evidence "beyond a reasonable doubt", we would need a likelihood ratio of 10,000 or thereabouts. That would take about 100 days worth of data. And even after that, there's no reason to think, at this point, that things would come out the way you want.
+**Detective**: I'm confident.
 
-Chief: How much data would we need to convince the perp to accept a plea deal?
+ 
 
-Department Likelihood expert: For a plea deal, the required likelihood ratio would be much lower, perhaps around 100 to 1000. We're talking 50 to 75 days of evidence collecting.
+**Department Likelihood expert**: Hold on. Your first two days investigation produced a likelihood ratio of 1.2. If your new data is consistent with your previous data, the combined likelihood ratio will be the square of 1.2, which is 1.44. If you were to spend another 4 days, the ratio would be 1.44 $\times$ 1.44 = 2.07. That would be laughed out of court!
 
-Chief (to Detective): I want you off the case. We've got better things to do.
+ 
+
+**Chief**: What would it take for the evidence to be convincing?
+
+ 
+
+**Department Likelihood expert**: For evidence "beyond a reasonable doubt", we would need a likelihood ratio of 10,000 or thereabouts. That would take about 100 days worth of data. And even after that, there's no reason to think, at this point, that things would come out the way you want.
+
+ 
+
+**Chief**: How much data would we need to convince the perp to accept a plea deal?
+
+ 
+
+**Department Likelihood expert**: For a plea deal, the required likelihood ratio would be much lower, perhaps around 100 to 1000. We're talking 50 to 75 days of evidence collecting.
+
+ 
+
+**Chief** (to Detective): I want you off the case. We've got better things to do.
 :::

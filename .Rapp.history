@@ -1,0 +1,3 @@
+load("/Users/kaplan/QuantitativeArgumentation/XREFS.rda")
+nrow((XREFS))
+head(XREFS)

@@ -504,6 +504,6 @@ One of Snow's examples is particularly germane to the issue of *instantaneous ch
 
 Students who take a calculus course memorize the derivatives of a handful of families of functions: e.g. sin(), sqrt(), exp(), ln(), $x^n$, and so on. They learn *rules* for algebraically computing from this handful the derivatives of even more obscure functions. And they spend a lot of time calculating second-, third-, and high-order derivatives. These rules along with the algebraic framework for them, and the insistence on a mathematically precise definition of "small enough," make calculus, as it is commonly taught, a hard subject. And aside from future teachers of college-level math and physics, few graduates of a calculus course will use what they learned in their career. The important, useful ideas in calculus are that one function can be related to another function by differentiation, that the derived function has the same inputs as the original but an output that differs both in value and `r mydim(dim)`, and that important problems of `r xf_definition("equilibrium")`, as in the useful balance of funding between Natal and Cancer, are more easily thought of when the idea of differentiation can be applied.
 
-In `r xf("sec-moving-past-two-inputs")` we will see another important use for derivatives: performing mathematical tasks.
+In `r xf("sec-moving-past-two-inputs")` we will see another important use for derivatives: performing mathematical tasks such as training large-language AI models.
 
 

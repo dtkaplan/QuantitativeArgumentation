@@ -629,9 +629,6 @@ scaled_plot(
 :::
 ::::
 
-
-[Such feedback mechanisms include the release of methane from melting permafrost or the increased absorption of sunlight by the ocean as an ice cap melts. Eventually, of course, something has to give. The doubling pattern cannot continue indefinitely. But the `exp2()` core modeling function doesn't capture that bit of the story.]{.column-margin}
-
 :::: {layout="[1,0.1, 1]"}
 ::: {}
 `exp2( )`    
@@ -665,7 +662,13 @@ scaled_plot(
 
 ::::
 
+::: {.aside}
+```{=latex}
+\vspace*{-1.0in}
+```
 
+Such feedback mechanisms include the release of methane from melting permafrost or the increased absorption of sunlight by the ocean as an ice cap melts. Eventually, of course, something has to give. The doubling pattern cannot continue indefinitely. But the `exp2()` core modeling function doesn't capture that bit of the story.
+:::
 
 :::: {layout="[1,0.1, 1]"}
 

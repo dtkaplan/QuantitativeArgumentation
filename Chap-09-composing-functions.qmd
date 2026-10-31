@@ -79,7 +79,7 @@ slice_plot(one_pill(t) ~ t, domain(t = -1:24), npts = 500,
 
 
 
-::: {.callout-note}
+::: {.callout-note icon=false}
 ## Multiplication in epidemics
 
 Recall the SIR model introduced in `r xf("sec-modeling-an-epidemic")`, where it was described as a book-keeping device for tracking the number of susceptible, infective, and recovered individuals in a population.  For each new day, the number of new infectives is a function of the current number of infectives (I) and of susceptibles (S).

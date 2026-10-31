@@ -4,6 +4,7 @@
 - formal reasoning
 - givens
 - heuristic reasoning
+- Large language model (LLM)
 - models
 - quantitative models
 - SIR model

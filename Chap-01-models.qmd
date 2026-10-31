@@ -51,7 +51,7 @@ iii. To match a slowing speed, use your brakes.
 
 There are overlapping uses of words or synonyms in these three statements such as "speed" and "slowing" or "difference" and "match". Now imagine a mental process that even unconsciously notes such overlaps and uses them to link the beliefs together. Seeing brake lights flash might, for instance, activate belief (i), which then activates belief (ii), which in turn activates belief (iii). In this way, a mental connection is made between observing brake lights and the action of touching your brakes.
 
-We will leave the biology of this to neuroscientists. But computer scientists have long studied reasoning, especially machine reasoning. The last few years have seen breakthroughs in building such machines, resulting in the so-called "Large Language Models" (LLMs) or "Artificial Intelligence" (AI) that you may be using on an everyday basis.
+We will leave the biology of this to neuroscientists. But computer scientists have long studied reasoning, especially machine reasoning. The last few years have seen breakthroughs in building such machines, resulting in the so-called `r xf_definition("Large Language Models")` (LLMs) or "Artificial Intelligence" (AI) that you may be using on an everyday basis.
 
 LLMs rely on finding alignments between text segments and using such alignments to build reasoning chains. Later chapters outline how such machines work. For now, we will stick to the chain metaphor.
 

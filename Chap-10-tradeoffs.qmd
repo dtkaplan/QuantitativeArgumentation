@@ -59,7 +59,7 @@ The argmax, that is, tastiest baking temperature for the pastry is 315 °F.
 
 Objective functions in different contexts can have many more inputs. The argmax is the setting for all the inputs that gives the highest output value. In professional work, its common to have objective functions that have tens or thousands of inputs. [You can't make the sun shine or the wind blow, but you can turn on a natural gas turbine very quickly. Nuclear power plants have a long start-up time. An old coal-powered generator takes hours to turn on and wastes energy when it's turned off.]{.callout-margin} An example is provided by electric utilities that have to plan out a days-long schedule for different generation resources---solar, natural gas, wind, nuclear---to meet predicted demand at the lowest cost. 
 
-In training Large Language AI models, the objective function literally can have billions of inputs.
+In training large-language AI models, the objective function literally can have billions of inputs.
 
 
 We can't readily visualize a function with many inputs, so the graphical example we will use here has just two inputs. (In `r xf("sec-moving-past-two-inputs")` we introduce computational strategies for handling more inputs.) `r xf("fig-argmax-example2")` shows an imagined scenario where satellite and aerial magnetic sensing data have been used in a computer model to estimate the relative probability for each possible location of a sunken ship. That is, the computer model is the objective function. The people coordinating a search using submersible robots can use this objective function to map out their search. It's might be sensible to start the search at the argmax---the most likely location---then move out to lower probability areas until the ship is found.  
@@ -84,7 +84,7 @@ gf_refine(coord_fixed())
 
 The objective function in `r xf("fig-argmax-example2")` has its argmax at geolocation (122 W, 7.4 N). But the relative probability there is not much higher than at areas within about $\pm 1$ degree of longitude and latitude. So the salvage party might not find the wreck at the argmax and need to search nearby. 
 
-Finding an argmax when the objective function takes only a few inputs is not hard. It becomes harder when there are many inputs related in a complicated way. For example, training a Large Language Model can take days or weeks of intensive, expensive computer processing.
+Finding an argmax when the objective function takes only a few inputs is not hard. It becomes harder when there are many inputs related in a complicated way. For example, training a large-language model can take days or weeks of intensive, expensive computer processing.
 
 ## Toward trade-offs
 

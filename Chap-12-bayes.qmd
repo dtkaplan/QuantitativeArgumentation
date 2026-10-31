@@ -157,11 +157,8 @@ The general pattern is that yesterday's posterior becomes today's prior. The pri
 
 Even if prior_0_() is vague, the prior for successive days will become less and less vague as more data is incorporated.
 
-To illustrate, consider this dramatic example. A small ship has caught on fire. The crew has mere moments to send an SOS which includes a rough latitude and longitude for their location. "Rough" means that there is uncertainty.
+## Example: A ship in trouble
 
-The SOS is received by far-away radio stations. The content of the SOS contains the rough coordinates, but the *direction* from which the signal is received is also noted. These directions, one from each station help to define the search target. 
-
-Before the SOS, the Coast Guard's prior for the sinking ship is more or less uniform, covering a broad expanse of ocean. (Indeed, the Coast Guard doesn't yet know there is a sinking ship.) 
 
 ```{r}
 #| echo: false
@@ -175,7 +172,22 @@ Sigma2 <- matrix(c(1.3, -0.75,
 
 Grid <- expand.grid(x1 = seq(-3, 3, length.out = 100),
                      x2 = seq(-3, 3, length.out = 100))
-Grid$density <- (dmvnorm(Grid, mean = mu, sigma = Sigma) + dmvnorm(Grid, mean = mu2, sigma = Sigma2))
+
+                     direction1 <- function(Grid, center = c(-8, 8)) {
+  angle <- atan2(Grid$x2 - center[2], Grid$x1 - center[1]) * 180 / pi
+  dnorm(angle, -46, 2) + 2*dnorm(angle, -41, 5)
+}
+Grid$angle1 <- direction1(Grid)
+
+direction2 <- function(Grid, center = c(8, 8)) {
+  angle <- atan2(Grid$x2 - center[2], Grid$x1 - center[1]) * 180 / pi
+  dnorm(angle, -137, 2) + dnorm(angle, -132, 4)
+}
+Grid$angle2 <- direction2(Grid)
+
+Grid$density <- Grid$angle1 * Grid$angle2
+
+# Grid$density <- (dmvnorm(Grid, mean = mu, sigma = Sigma) + dmvnorm(Grid, mean = mu2, sigma = Sigma2))
 
 
 plane_fun <- function(Grid, center = c(0,0), angle = 45) { #degrees
@@ -196,30 +208,64 @@ Grid$SOS <- dmvnorm(Grid [, c(1,2)], mean = SOS_location, sigma = SOS_Sigma)
 
 ```
 
-Receipt of the SOS allows the Coast Guard to calculate a likelihood for the ship's location based on the Coast Guard's previous experience with the accuracy of such signals. Similarly, the direction-detecting equipment gives a likelihood function for the direction of the sinking ship relative to the Coast Guard's stations' locations. Multiplying these three likelihoods---from the SOS contents, and the two directions---allows the Coast Guard to calculate a *posterior probability* for the location where the ship sank. `r xf("fig-ship-posterior1")` shows the posterior probability as a function of latitude and longitude.
-
+A small ship sets out to sea, but the transponder that tracks its location fails on the second day. By the fourth day of the voyage, the ship's position is largely unknown. It's reasonable to model the uncertainty in location as a uniform probability distribution over a wide region. This constitutes the prior, drawn in `r xf("fig-ship-prior")`.
 
 ```{r}
-#| label: fig-ship-posterior1
+#| label: fig-ship-prior
 #| echo: false
-#| warning: false
-#| fig-cap-location: top
-#| fig-cap: "Posterior probability for the ship's location based on the SOS and direction-detecting equipment."
+#| fig-cap: "Prior for the ship's location on the evening of day four. The uniform nature of the prior reflects complete uncertainty about where the ship might be in this patch of the ocean."
+Grid2 <- expand.grid(x1 = seq(-3, 3, length.out = 100),
+                     x2 = seq(-3, 3, length.out = 100))
+Grid2$prior <- dnorm(sqrt(Grid2$x1^2 + Grid2$x2^2), 0, 12)
+Grid2$prior[1] <- 0
+ggplot(Grid2, aes(x = x1, y = x2, z = prior)) +
+  geom_contour_filled(alpha = 0.5) +
+  coord_fixed() +
+  xlab("Longitude (deg)") + 
+  ylab("Latitude (deg)") + guides(fill = "none", color="none")
+```
+
+Unhappily, a fire erupts onboard the ship on the evening of day four. The crew has mere moments to send a brief SOS message. 
+
+The SOS is received by far-away radio stations on land. Being so brief, the SOS message text doesn't state the ship's latitude and longitude. Fortunately, however, the radio receivers on land are *directional*, that is, they can trace the approximate direction from which the signal comes. This provides location information but comes with substantial uncertainty. This uncertainty can be modeled with a likelihood function. 
+
+That likelihood function takes as input a hypothesized location for the ship. With a given location---even though it is merely a hypothesis---the direction to each of the two receiving stations can be exactly determined. In general, this won't be an exact match to the Coast Guards radio direction-finding data. To the extent that the calculated hypothetical direction matches the observed one, the likelihood is higher. By repeating the calculation for many different hypothesized locations a likelihood *function* can be established. `r xf("fig-direction-likelihoods")` displays this calculated function.
+
+```{r echo=FALSE}
+#| label: fig-direction-likelihoods
+#| fig-cap: "Location likelihood for the individual direction-finding stations"
 #| fig-subcap: 
-#| - "Based only on the SOS content."
-#| - "Adding in directional data."
-#| 
-ggplot(Grid, aes(x = x1, y = x2, z = SOS)) +
+#| - Station 1
+#| - Station 2
+ggplot(Grid, aes(x = x1, y = x2, z = angle1)) +
   geom_contour_filled(alpha = 0.5) +
   geom_contour(color = "white", linewidth = 0.2) +
   guides(fill = "none", color="none") + 
   coord_fixed() +
   xlab("Longitude (deg)") + 
-  ylab("Latitude (deg)") 
+  ylab("Latitude (deg)")  
 
-# Note: This is not SOS times angular uncertainties but
-# a hand-crafted mix of gaussians. I liked the look of
-# this and didn't revise it to be SOS x angle1 x angle2
+ggplot(Grid, aes(x = x1, y = x2, z = angle2)) +
+  geom_contour_filled(alpha = 0.5) +
+  geom_contour(color = "white", linewidth = 0.2) +
+  guides(fill = "none", color="none") + 
+  coord_fixed() +
+  xlab("Longitude (deg)") + 
+  ylab("Latitude (deg)")   
+```
+
+
+Remember that the prior distribution reflects the initial ignorance of the ship's location. The direction-finding likelihoods narrow this down. 
+
+Multiplying the prior by the likelihood for Station 1 and the likelihood for Station 2 gives the posterior shown in `r xf("fig-ship-location")`.
+
+
+```{r}
+#| label: fig-ship-location
+#| echo: false
+#| warning: false
+#| fig-cap-location: top
+#| fig-cap: "Posterior probability for the ship's location based on the original prior and both directional measurements."
 ggplot(Grid, aes(x = x1, y = x2, z = density)) +
   geom_contour_filled(alpha = 0.5) +
   geom_contour(color = "white", linewidth = 0.2) +
@@ -229,16 +275,15 @@ ggplot(Grid, aes(x = x1, y = x2, z = density)) +
   ylab("Latitude (deg)")   
 ```
 
-Anxious to find the ship's crew, one of the Coast Guard stations sends out a search and rescue plane. It flies in a straight line toward the most likely location in `r xf("fig-ship-posterior1")`(b). It can be hard to spot a life raft from a quick-moving plane. Again, based on the plane's course and the Coast Guard's experience they can construct a likelihood for the plane's finding the raft. This is shown in `r xf("fig-ship-posterior2")`(a).
+Anxious to find the ship's crew, one of the Coast Guard stations sends out a search and rescue plane. It flies in a straight line toward the most likely location in `r xf("fig-ship-posterior1")`(b). 
+
+It can be hard to spot a life raft from a quick-moving plane. Again, based on the plane's course and the Coast Guard's experience they can construct a likelihood for the plane's finding the raft. This is graphed in `r xf("fig-plane-likelihood")`.
 
 ```{r}
-#| label: fig-ship-posterior2
+#| label: fig-plane-likelihood
 #| echo: false
 #| warning: false
-#| fig-cap: "Posterior probability for the ship's location after incorporating directional data."
-#| fig-subcap: 
-#| - "The likelihood for the plane to spot the life raft during its first eearch flight. ."
-#| - "The updated posterior probability after the plane's unsuccessful search flight."
+#| fig-cap: "The likelihood function for the plane to spot the life raft on the course it follows on its first search flight."
 ggplot(Grid, aes(x = x1, y = x2, z = plane_prob)) +
   geom_contour_filled(alpha = 0.5) +
   geom_contour(color = "white", linewidth = 0.2) +
@@ -246,7 +291,32 @@ ggplot(Grid, aes(x = x1, y = x2, z = plane_prob)) +
   coord_fixed() +
   xlab("Longitude (deg)") + 
   ylab("Latitude (deg)") 
+```
 
+The likelihood for spotting the ship is a strong function of the hypothesized ship location. Success is most likely if the ship is close to the plane's course, less likely when the ship is far from the course. 
+
+The plane-spots-ship likelihood in `r xf("fig-plane-likelihood")` depends only on the course flown by the plane and the observational skill of the plane's crew. Although the course was selected based on the posterior distribution in `r xf("fig-ship-location")`, once the plane is on its way the likelihood function is about the plane, not about the ship. It does not factor in what is known about the ship's location. 
+
+Once we know the outcome of the plane's observations, we can  combine the likelihood of that observation from the plane with the the current prior, that is, the posterior that takes into account the information from the direction finding radios.
+
+The plane completes its mission, but unfortunately it does not spot the life raft. So the relevant likelihood function is for *not* seeing the ship, that is, 1 minus the likelihood plotted in `r xf("fig-plane-likelihood")`.
+
+After the plane's fruitless search flight, the new posterior for the ship's location shows low probability for the locations where the plane would have been likely to spot the ship *if the ship had been at those locations.*   
+
+Now we are in a position to combine all the information:
+
+1. The initial prior before radio detection data came in. `r xf("fig-ship-prior")`
+2. The likelihoods from the individual Stations' direction observations. `r xf("fig-direction-likelihoods")` (a) and (b).
+3. The plane's unsuccessful search. One minus `r xf("fig-plane-likelihood")`.
+
+The posterior distribution is based on all of (1), (2), and (3) and is calculated by multiplying the prior (1) by the likelihoods of (2) and (3). This Bayesian product of prior and likelihoods is shown `r xf("fig-ship-posterior2")`.
+
+
+```{r}
+#| label: fig-ship-posterior2
+#| echo: false
+#| warning: false
+#| fig-cap: "The updated posterior probability after the plane's unsuccessful search flight."
 Grid$posterior <- Grid$density * (1 - Grid$plane_prob)
 
 ggplot(Grid, aes(x = x1, y = x2, z = posterior)) +
@@ -258,6 +328,7 @@ ggplot(Grid, aes(x = x1, y = x2, z = posterior)) +
   ylab("Latitude (deg)")  
 ```
 
-The plane complete's its mission, but unfortunately it does not spot the life raft. Taking this information into account, the new posterior probability for the raft's position is shown in `r xf("fig-ship-posterior2")`(b).
+This overall posterior has a complex shape because the plane's failing to see the ship rules out certain locations for the ship. 
 
-The sensible thing at this point is to send out another plane to fly another course. Your job is to decide what the course should be to maximize the chances of spotting the raft. The current posterior provides a lot of guidance here. What would you do?
+Successive search flights can be arranged to target those regions in `r xf("fig-ship-posterior2")` where the probability is still high. Each unsuccessful search mission will rule out additional areas for the ship's location. A successful search mission---something we all hope for---will narrow the posterior to a very small region. When that region is so small that a rescue flight could easily spot the ship, the search is effectively over.
+

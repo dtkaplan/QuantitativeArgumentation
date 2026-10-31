@@ -133,21 +133,16 @@ To construct a complete dynamical rule, we still need to generalize this to appl
 
 $$\text{pendulum\_rule}(\text{pos}, \text{vel}) \equiv \left(\text{vel},\  -6.78(\text{pos} - 19)\right)$${#eq-pen-rule-2}
 
-Rules in this form are suitable for calculation, but to get a better understanding of how the system works, @fig-gif-state-space(a) shows the state space with the two-component output of the dynamical rule drawn as a vector. The graphic displays the dynamical rule at only about 200 points in a row-and-column grid in state space. In reality, the dynamical rule applies to *all* points in the space. We cannot show them all because the graphic would become a solid mass of black arrows.
+Rules in this form are suitable for calculation, but to get a better understanding of how the system works, @fig-pendulum-state-space shows the state space with the two-component output of the dynamical rule drawn as a vector. The graphic displays the dynamical rule at only about 200 points in a row-and-column grid in state space. In reality, the dynamical rule applies to *all* points in the space. We cannot show them all because the graphic would become a solid mass of black arrows.
 
-Applying the accounting method turns the dynamical rule into a trajectory. @fig-gif-state-space(b) shows the trajectory. The initial state (time = 0) is marked 0. The other boxed numbers indicate the time (in seconds) at which the state reached that point.
 
 ```{r}
-#| label: fig-gif-state-space
-#| layout-ncol: 2
+#| label: fig-pendulum-state-space
 #| echo: false
 #| warning: false
 #| message: false
 #| fig-cap: "The dynamical rule for the system of `r('fig-pendulum-gif')`. The rate of change at selected points in the state space is a vector since both components of the state are changing." 
 #| fig-cap-location: "top"
-#| fig-subcap:
-#| - Dynamical rule
-#| - Trajectory
 pend_gif<- makeODE(dp ~ v, dv ~ - 6.78 * (p - 19))
 soln <- integrateODE(pend_gif, domain(t=0:2), p = 8, v=2)
 
@@ -156,16 +151,28 @@ flow_field(pend_gif,
            npts = 14, scale = 0.75) |>
   gf_labs(x = "Position (deg)", y = "Velocity (deg/sec)" ) |>
   gf_refine(coord_fixed(ratio=.4)) 
-  traj_plot(v(t) ~ p(t), soln, linewidth = 1, alpha = 0.5,
-            color = "blue",
-          nt = 10) |>
-    gf_refine(coord_fixed(ratio=.4))  
-
 ```
 
+Applying the accounting method turns the dynamical rule into a trajectory. @fig-pendulum-traj shows a trajectory. The starting point for the trajectory, that is, the initial state (time = 0) is marked 0. The other boxed numbers indicate the time (in seconds) at which the state reached that point along the trajectory. 
 
+```{r}
+#| label: fig-pendulum-traj
+#| echo: false
+#| fig.cap: "Trajectory of the pendulum."
+traj_plot(v(t) ~ p(t), soln, linewidth = 1, alpha = 0.5,
+            color = "blue",
+          nt = 10) |>
+    gf_refine(coord_fixed(ratio=.4)) |>
+    gf_labs(x = "Position (deg)", y = "Velocity (deg/sec)")
+```
 
-We draw the dynamical rule at the various points in the state space with a straight arrow. The arrow has two components, horizontal and vertical. Similarly, there is an *instantaneous rate of change* for each component of the state. The arrows show both instantaneous rates of change simultaneously. In contrast, the trajectory traces out the evolving state over a period of time: two seconds in @fig-gif-state-space(b). The trajectory is a smooth curve. The accounting method does the mathematical work to turn the straight arrows of the dynamical rule into a curved trajectory.
+Naturally, a different initial state would give a different trajectory. The dynamical rule accounting method turns any given initial state into the corresponding trajectory.
+
+Comparing `r xf("fig-pendulum-state-space")` with `r xf("fig-pendulum-traj")` reveals that at each instant, the direction of the trajectory matches that of the flow from the dynamical rule. 
+
+We draw the dynamical rule at the various points in the state space with a straight arrow. The arrow has two components, horizontal and vertical. Similarly, there is an *instantaneous rate of change* for each component of the state. The arrows show both instantaneous rates of change simultaneously. In contrast, the trajectory traces out the evolving state over a period of time: two seconds in @fig-pendulum-state-space. The trajectory is a smooth curve. The accounting method does the mathematical work to turn the straight arrows of the dynamical rule into a curved trajectory.
+
+You can see from `r xf("fig-pendulum-traj")` that the trajectory is looping around a circle. A complete loop would take about 2.5 seconds. If we had plotted the trajectory further into the future, it would follow the loop over and over again, just as the pendulum swings back and forth. The back and forth movement in position is translated into a circle when we include the velocity axis of the state space. Velocity is alternatingly positive and negative. Notice from `r xf("fig-pendulum-traj")` that when velocity is negative, the position decreases with time. When velocity is positive, position *increases* with time. The overall motion in state space is a circle.
 
 ::: {.callout-note #nte-find-accel-pendulum}
 ## Estimating acceleration
@@ -384,9 +391,6 @@ To evaluate patterns like that shown in @fig-world-population, it pays to drop t
 
 We can start with dynamical systems that are, mathematically, extremely simple. What do we mean by "simple?" Two things: 1) the state space consists of just a single quantity, and 2) the dynamical rule is free from complexity. In honor of @fig-world-population, we will call the state quantity $P$. (Of course, any other name would do: $x$, pop, $S$ for state, and so on.)
 
-
-
-
 The simplest function in our core modeling collection is flat(), where the output is always 1 regardless of the input. We will start from there and gradually add complexity.  
 
 ```{r}
@@ -407,7 +411,7 @@ phase_line <- function(P, aspect=2) {
 }
 ```
 
-@fig-flat-dyn shows the dynamics of the flat() rule in three different ways. On top (panel (a)) is the flow field. In principle, since the state space is one-dimensional, all the flow arrows should be on the number line. To avoid the arrows overlapping, however, we have spread them out at random vertically. Panel (b) shows the dynamical rule, namely, the function flat($P$). Panel (c) shows how the state $P$ changes with time. (The name given to how something changes with time is `r xf_definition("time series")`.)
+@fig-flat-dyn shows the dynamics of the flat() rule in three different ways. On top (panel (a)) is the the dynamical rule, namely, the function flat($P$). Panel (b) shows flow. In principle, since the state space is one-dimensional, all the flow arrows should be on the number line. To avoid the arrows overlapping, however, we have spread them out at random vertically. Panel (c) shows how the state $P$ changes with time. (The name given to how something changes with time is `r xf_definition("time series")`.)
 
 Keep in mind the substantial difference between the dynamical rule and the corresponding pattern of how $P$ changes with time, that is, the time series. The dynamical rule is a function that takes $P$ as input and produces the rate of change of $P$ as output. The time series is also a function, but instead of taking $P$ as input, it takes *time* (t) as the input. Moreover, in the time series, the output of the function is $P$ itself, not the rate of change in $P$. 
 
@@ -415,23 +419,25 @@ Keep in mind the substantial difference between the dynamical rule and the corre
 ```{r}
 #| label: fig-flat-dyn
 #| echo: false
-#| layout-ncol: 2
 #| fig-cap: "Flow field when dynamical rule is flat()."
 #| fig-cap-location: top
 #| fig-subcap:
-#| - Flow field
 #| - Dynamical rule
-#| - State vs time
+#| - Flow field
+#| - "Time series: state vs time"
 system <- makeODE(dP ~ 1, dS ~ 0)
-streamlines(system, 
-            domain(P=-5:5, S = 0:1), 
-            dt = 0.1, npts=5, alpha = 0.5) |>
-  phase_line(2) 
+
 slice_plot(1 ~ P, domain(P=-5:5), color = .slice_color.) |>
   gf_labs(y = "Rate of change of P", x = "State P") |>
   gf_lims(y = c(-1.5, 1.5), x = c(-5,5)) |>
   gf_hline(yintercept = 0, color = .hline_color.) |>
   gf_theme(theme_minimal())
+
+streamlines(system, 
+            domain(P=-5:5, S = 0:1), 
+            dt = 0.1, npts=5, alpha = 0.5) |>
+  phase_line(2) 
+
 slice_plot(t + 0.25 ~ t, domain(t=0:5), color = .slice_contrast.) |>
   gf_labs(y = "State P", x = "Time") |>
   gf_hline(yintercept = 0, color = .hline_color.) |>
@@ -440,33 +446,37 @@ slice_plot(t + 0.25 ~ t, domain(t=0:5), color = .slice_contrast.) |>
 
 ```
 
-The flow arrows tell a simple story. The flow is the same for every value of $P$: steady, rightward movement. Tracking along the flow would give us P as a function of *time*, that is, the trajectory (panel (c)). The dynamical rule (panel (b)) corresponds with the flow: the rate of change of P with respect to time is constant. Of course, this is also what the trajectory shows: the rate of change of P with respect to time is constant.
+The flow arrows tell a simple story. The flow is the same for every value of $P$: steady, rightward movement. Tracking along the flow would give us P as a function of *time*, that is, the trajectory (panel (c)). The dynamical rule (panel (a)) corresponds with the flow: the rate of change of P with respect to time is constant. Of course, this is also what the trajectory shows: the rate of change of P with respect to time is constant.
 
 A good name for the patterns in @fig-flat-dyn is `r xf_definition("steady growth")`. A domestic example of steady growth is the accumulation of water in a bathtub as it flows in at a steady rate from the faucet.
 
-Following the strategy of gradually adding complexity to the dynamical rule, consider the second simplest of the core modeling functions: same(). @fig-steady-dyn shows the dynamics. Notice that the flow arrows (@fig-steady-dyn(a)) differ markedly in length. For positive $P$, the larger $P$ is, the longer the right-pointing flow arrow. (For negative $P$, the more negative the larger the left-pointing flow arrow.) The dynamical rule, same(), is straightforward (panel (b). However, the consequences of the dynamical rule are not at all steady. The state grows at an ever-increasing rate; the larger $P$ is, the faster $P$ changes with respect to time.
+Following the strategy of gradually adding complexity to the dynamical rule, consider the second simplest of the core modeling functions: `same()`. @fig-same-dyn shows the dynamics. The dynamical rule---that is, the familiar `same()` function---is simple. The flow arrows for `same()` are just a little more complicated than they were for `flat()`. (`r xf("fig-flat-dyn")`(b)). The difference is that the flow arrows in  Notice that the flow arrows drawn in `r xf("fig-same-dyn")`(b) are not all the same length. For positive states $P$, the larger $P$ is, the longer the right-pointing flow arrow. (For negative $P$, the more negative the larger the left-pointing flow arrow.) The dynamical rule, same(), is straightforward (panel (a)). However, the consequences of the dynamical rule are not at all steady. The state grows at an ever-increasing rate; the larger $P$ is, the faster $P$ changes with respect to time.
 
 
 ```{r}
-#| label: fig-steady-dyn
+#| label: fig-same-dyn
 #| echo: false
-#| layout-ncol: 2
+#| message: false
+#| warning: false
 #| fig-cap: "Flow field when dynamical rule is same()."
 #| fig-cap-location: top
 #| fig-subcap:
-#| - Flow field
 #| - Dynamical rule
-#| - State vs time
+#| - Flow field
+#| - "Time series: State vs time"
 system <- makeODE(dP ~ 0.69315*P, dS ~ 0)
-streamlines(system, 
-            domain(P=-5:5, S = 0:1), 
-            dt = 0.1, npts=8) |>
-  phase_line(4) 
+
 slice_plot(P ~ 0.69315*P, domain(P=-5:5), color = .slice_color.) |>
   gf_labs(y = "Rate of change of P", x = "State P") |>
   gf_lims(y = c(-5, 5)) |>
   gf_hline(yintercept = 0, color = .hline_color.) |>
   gf_theme(theme_minimal())
+
+streamlines(system, 
+            domain(P=-5:5, S = 0:1), 
+            dt = 0.1, npts=8) |>
+  phase_line(4) 
+
 slice_plot(0.25 * exp(0.69315*t) ~ t, domain(t=0:6.3), color = .slice_contrast.) |>
   gf_labs(y = "State P", x = "Time") |>
   gf_hline(yintercept = 0, color = .hline_color.) |>
@@ -474,12 +484,12 @@ slice_plot(0.25 * exp(0.69315*t) ~ t, domain(t=0:6.3), color = .slice_contrast.)
   gf_theme(theme_minimal())
 ```
 
-@fig-steady-dyn shows *exponential growth*. It stems from using same() as the dynamical rule. With same() as the *dynamics*, the state itself follows *exponential* growth.
+@fig-same-dyn shows *exponential growth*. It stems from using same() as the dynamical rule. With same() as the *dynamics*, the state itself follows *exponential* growth.
 
-It is important to point out a distinctive feature of exponential growth, the same feature that we see in the exp2(t) function. Referring to the time series (panel (c) in @fig-steady-dyn), we see the doubling phenomenon. For instance, track $P$ as it increases from $P=0.5$ to $P=1$, a change that occurs in one time unit. Similarly, to grow from $P=1$ to $P=2$ takes one time unit. Same for the growth from $P=2$ to $P=4$: one time unit. And so on. 
+It is important to point out a distinctive feature of exponential growth, the same feature that we see in the exp2(t) function. Referring to the time series (panel (c) in @fig-same-dyn), we see the doubling phenomenon. For instance, track $P$ as it increases from $P=0.5$ to $P=1$, a change that occurs in one time unit. Similarly, to grow from $P=1$ to $P=2$ takes one time unit. Same for the growth from $P=2$ to $P=4$: one time unit. And so on. 
 
 
-It is always the same: exponential growth corresponds to the state doubling every unit of time. In @fig-steady-dyn, we arranged things so that the doubling time is 1. However, it is still exponential growth even when the doubling time is different. For instance, under ideal conditions, a bacterial population doubles every 20 minutes. 
+It is always the same: exponential growth corresponds to the state doubling every unit of time. In @fig-same-dyn, we arranged things so that the doubling time is 1. However, it is still exponential growth even when the doubling time is different. For instance, under ideal conditions, a bacterial population doubles every 20 minutes. 
 
 Doubling every 20 minutes means that there are three doublings in one hour. Starting with a population of p, the three doublings produce, successively, at intervals of 20 minutes, population 2p, 4p, and, at the end of the hour, 8p; the population increases 8-fold in one hour. In two hours, the 8-fold increase will repeat, giving a 64-fold increase over the two hours! When the dynamics are same(), the 64-fold increase will occur every two hours.
 
@@ -513,16 +523,16 @@ The reason for the striking divergence between theory and reality is that the th
 
 The reality is that the bacterial mass reaches a steady state, so we know that the dynamical rule must give zero growth at the steady-state mass. The simple dynamical rule same() does not do this. The model is wrong---like all models!---but same() is wrong in a way that fundamentally misstates the pattern of bacterial growth. 
 
-In @fig-theory-vs-practice, we compare the exponential growth dynamics (black) to a more realistic pattern that produces exponential growth when the bacterial mass is small, but brings the growth to zero at the steady state.
+In @fig-theory-vs-practice shows a more realistic pattern. The growth rate increases with mass, but only up to a point. With higher mass, the growth rate is slower and, at $P=0.4$ falls to zero. 
 
 ```{r}
 #| label: fig-theory-vs-practice
-#| fig-cap: "Dynamics of bacterial growth. Black is the same(P) model, red is a more realistic model."
+#| fig-cap: "Dynamics of realistic bacterial growth. Exponential growth works when the state is small, but can't carry on forever."
 #| fig-cap-location: top
 #| fig-subcap:
 #| - Dynamics (vertical axis is mass growth rate)
-#| - Time series (vertical axis is mass)
-#| layout-ncol: 2
+#| - Flow field
+#| - Time series (vertical axis is mass of bacteria.)
 #| echo: false
 #| message: false
 #| warning: false
@@ -532,34 +542,39 @@ In @fig-theory-vs-practice, we compare the exponential growth dynamics (black) t
 #   gf_hline(yintercept = 0, color = .hline_color.) 
 
 realistic_fun <- function(P) {
-  ifelse(P < 0.01, 
-         2.08*P, # up to 0.
-         .0208*(1 - (P-0.01)/0.3))
+  ifelse(P < 0.1, 
+         0.308*P, # up to 0.
+         0.0308*(1 - (P-0.1)/0.3))
 }
 
-theory <- makeODE(dP ~ 2.08*P)
-reality <- makeODE(dP ~ realistic_fun(P) )
-soln <- integrateODE(reality, P=0.0000001, domain(t=0:60))
-theory_soln <- integrateODE(theory, P = 0.0000001, domain(t = 0:8))
-Pts <- tibble::tibble(t = c(0,1,2,3,4, 5,5.5, 6, 6.25, 6.5, 6.75, 7, 7.1, 7.15, 7.2, 7.25), P = theory_soln$P(t))    
-P2 <- traj_plot(P(t) ~ t, soln, color = "tomato",  linewidth=1.3) |>
+
+reality <- makeODE(dP ~ realistic_fun(P), dS ~ 0.0 )
+
+soln <- integrateODE(reality, P=0.001, S = 0, domain(t=0:60))
+
+P3 <- traj_plot(P(t) ~ t, soln, color = "tomato",  linewidth=1.3, nt = 0) |>
   # gf_refine(scale_y_log10()) |>
   gf_lims(x = c(0,60)) |>
-  gf_hline(yintercept =0.01, linewidth = 5, color = .hline_color., alpha = 0.2) |>
-  gf_line(P ~ t, data = Pts, color = "black", linewidth = 0.5) 
+  gf_labs(y = "Bacterial mass (gm)", x = "Time (hours)")
+
   
-P1 <- slice_plot(3*log(2)*P ~ P, domain(P=0:0.4), color = .slice_color.) |>
-  slice_plot(realistic_fun(P) ~ P, color = .slice_color.) |>
-  gf_labs(y = "Rate of change of mass (kg per hour)", 
-          x = "Mass of bacteria (kg)") |>
-  gf_hline(yintercept = 0, color = .hline_color.) |>
-  
-  gf_hline(yintercept =0.007, linewidth = 5, color = "green", alpha = 0.2)
+
+P2 <- streamlines(reality, 
+            domain(P=0.03:0.38, S = 0:0.1), 
+            dt = 0.1, npts=9) |>
+  phase_line(1) |>
+  gf_labs(x = "Mass of bacteria (gm)", y="")
+
+P1 <- slice_plot(realistic_fun(P) ~ P, domain(P=0:0.4),
+                 color = .slice_color.) |>
+  gf_labs(y = "Rate of change of mass (gm per hour)", 
+          x = "Mass of bacteria (gm)") |>
+  gf_hline(yintercept = 0, color = .hline_color.)
 P1 
 P2 
+P3
 ```
 
-
-In steady growth, as t increases by one unit, the value of $P$ increases by a fixed quantity. So, in @fig-flat-dyn(c), the value of $P$ increases by the same amount when t goes from 0 to 1 as it does when t goes from 1 to 2 or from 2 to 3.
+The flow field for this more realistic model is subtle. For very low mass, the growth is slow. So the flow arrows for mass near zero are very short. The flow arrows get long as mass increases, but then shorten again for even higher masses.
 
 
