@@ -1,0 +1,29 @@
+word: plane
+for-chapter: 16
+valid:
+  - A flat two-dimensional geometric surface that can contain vectors and lines.
+  - A two-dimensional surface extending through a space, such as the plane spanned by two vectors.
+  - A flat geometric space that may sit inside a higher-dimensional space.
+  - A two-dimensional set of positions that remains flat within three-dimensional space.
+  - A geometric surface that contains directions and can be viewed edge-on as a line.
+invalid:
+  - text: "A curved surface whose shape changes at every point."
+    justification: "A plane is flat; a curved surface is not a plane."
+  - text: "A single line with only one dimension."
+    justification: "A plane is two-dimensional, although it can appear as a line when viewed edge-on."
+  - text: "A three-dimensional solid that fills all space around it."
+    justification: "A plane is a two-dimensional surface, not a three-dimensional volume."
+  - text: "A vector that points in the direction of greatest increase."
+    justification: "That is a gradient vector; a plane is a geometric surface."
+  - text: "The set of all possible states in a dynamical system."
+    justification: "That is state space; a plane may be a two-dimensional subspace within a larger space."
+  - text: "A probability distribution over two input quantities."
+    justification: "A distribution assigns relative probabilities; a plane is a geometric object."
+  - text: "A point where two vectors intersect."
+    justification: "A plane can contain vectors and their common origin, but it is an extended two-dimensional surface."
+  - text: "A data table containing two columns of measurements."
+    justification: "A data table can represent two variables, but a plane is a geometric space of positions."
+  - text: "A curve joining points with equal function output."
+    justification: "That is a contour line; a plane is a two-dimensional surface."
+  - text: "A coordinate that gives a vector's length but not its direction."
+    justification: "That describes a scalar magnitude, not a plane."

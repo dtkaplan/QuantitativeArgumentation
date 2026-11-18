@@ -1,0 +1,41 @@
+word: sample
+for-chapter: 2
+valid:
+- A subset of specimens selected from a larger population for study.
+- A group of multiple observations drawn from the broader collection of interest.
+- A portion of a population used to investigate its properties or relationships.
+- Selected specimens that provide data about a larger source of objects.
+- A collection of observations taken from a population, whose representativeness can
+  be assessed.
+invalid:
+- text: One individual object or event represented by a row in a data frame.
+  justification: This describes specimen, not sample. In this chapter, sample refers
+    to a subset of specimens selected from a larger population for study.
+- text: The entry at the intersection of one specimen and one variable in a data frame.
+  justification: This describes value, not sample. In this chapter, sample refers
+    to a subset of specimens selected from a larger population for study.
+- text: A column in a data frame that records one property across its specimens.
+  justification: This describes variable, not sample. In this chapter, sample refers
+    to a subset of specimens selected from a larger population for study.
+- text: Examining a system by breaking it into contributing components.
+  justification: This describes analysis, not sample. In this chapter, sample refers
+    to a subset of specimens selected from a larger population for study.
+- text: Fundamental dimensions from which derived dimensions are formed.
+  justification: This describes base dimensions, not sample. In this chapter, sample
+    refers to a subset of specimens selected from a larger population for study.
+- text: Fundamental SI units that are not defined in terms of one another.
+  justification: This describes base units, not sample. In this chapter, sample refers
+    to a subset of specimens selected from a larger population for study.
+- text: A unit for counting people, from the Latin word for head.
+  justification: This describes capita, not sample. In this chapter, sample refers
+    to a subset of specimens selected from a larger population for study.
+- text: Accounting for other variables while examining a relationship of interest.
+  justification: This describes controlling for, not sample. In this chapter, sample
+    refers to a subset of specimens selected from a larger population for study.
+- text: A dimensionless ratio of equal quantities used to convert between commensurate
+    units.
+  justification: This describes conversion factor, not sample. In this chapter, sample
+    refers to a subset of specimens selected from a larger population for study.
+- text: A two-dimensional space marked by two perpendicular number lines.
+  justification: This describes coordinate plane, not sample. In this chapter, sample
+    refers to a subset of specimens selected from a larger population for study.

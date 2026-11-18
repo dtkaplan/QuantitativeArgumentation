@@ -1,0 +1,29 @@
+word: linear regression
+for-chapter: 9
+valid:
+  - A data-based method for finding coefficients in a linear combination that best fits observed data.
+  - A procedure that estimates a linear model's coefficients by matching model outputs to observations.
+  - A technique for constructing a linear relationship between measured inputs and an output using data.
+  - A method that selects scaling coefficients so a linear combination approximates observed outcomes.
+  - A modeling approach that fits coefficients to data for predicting an output from selected inputs.
+invalid:
+  - text: "A method for proving that an observed relationship is caused by one input."
+    justification: "Regression fits a model to data; fitted coefficients alone do not prove causation."
+  - text: "A procedure that always fits a curved function rather than a linear combination."
+    justification: "The chapter presents linear regression as fitting coefficients in a linear combination."
+  - text: "A way to sort observations from the newest to the oldest."
+    justification: "The statistical method uses data to estimate model coefficients; it does not mean ordering observations."
+  - text: "A rule that chooses coefficients without using any observed data."
+    justification: "Linear regression is described as a data-based method for finding coefficients."
+  - text: "A technique that uses only the mean and standard deviation of one quantity."
+    justification: "Regression models an output from selected inputs using fitted coefficients; it is not limited to those summaries."
+  - text: "A plot that displays equal-output contours for two input quantities."
+    justification: "That is a contour plot; linear regression is a method for fitting model coefficients to data."
+  - text: "A coefficient that converts an input quantity into the output's units."
+    justification: "That is one coefficient's role within a model; linear regression is the method for estimating coefficients."
+  - text: "A guarantee that a fitted model will predict every future observation exactly."
+    justification: "Regression finds coefficients that best match data; it does not guarantee exact predictions."
+  - text: "A process for generating random inputs from a probability distribution."
+    justification: "That is random number generation, not fitting a linear model to observed data."
+  - text: "A return to an earlier, less advanced state of a system."
+    justification: "That is the everyday meaning of regression; in this chapter, linear regression means data-based linear modeling."

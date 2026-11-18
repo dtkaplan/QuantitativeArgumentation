@@ -1,0 +1,29 @@
+word: derivative
+for-chapter: 14
+valid:
+  - A function giving the rate of change of another function at each input.
+  - A function derived from an original function whose output is its slope at the same input.
+  - The rate-of-change function associated with a given function.
+  - A new function that maps each original input to the original function's local rate of change.
+  - A function that describes how quickly the original function's output changes with its input.
+invalid:
+  - text: "A single average rate of change across the entire domain."
+    justification: "The derivative is a function giving rates of change at inputs, not necessarily one overall average."
+  - text: "The original function's output value at each input."
+    justification: "The derivative gives the rate of change, not the original function's output."
+  - text: "A function that reverses the original and recovers its inputs from outputs."
+    justification: "A derivative describes rates of change; it is not generally an inverse function."
+  - text: "The total accumulated change in a function over its domain."
+    justification: "Accumulation relates to anti-differentiation; the derivative gives instantaneous rates of change."
+  - text: "The change in input divided by the corresponding change in output."
+    justification: "The rate of change uses output change divided by input change."
+  - text: "A number that must be constant for every input to the function."
+    justification: "A derivative is itself a function and can vary across inputs."
+  - text: "The probability distribution of observed function values."
+    justification: "A derivative is a rate-of-change function, not a probability distribution."
+  - text: "The second rate of change of every function."
+    justification: "A derivative usually means the first derived function; a second derivative is obtained by differentiating again."
+  - text: "A list of all the inputs at which a function equals zero."
+    justification: "Those inputs are roots; a derivative gives the function's rate of change."
+  - text: "A unit conversion factor that changes the scale of a function's output."
+    justification: "A coefficient can scale output; a derivative describes change in output relative to input."

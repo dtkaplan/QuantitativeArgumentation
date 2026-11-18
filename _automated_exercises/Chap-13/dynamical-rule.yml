@@ -1,0 +1,29 @@
+word: dynamical rule
+for-chapter: 13
+valid:
+  - A function that maps the system's current state to its instantaneous rate of change.
+  - A rule specifying how the state changes over the next instant from each possible state.
+  - The state-to-change relationship that describes the near-future motion of a system.
+  - A function giving the direction and rate at which the state moves through state space.
+  - The component of a dynamical model that determines changes from the current state.
+invalid:
+  - text: "A function giving the system's state directly as a function of time."
+    justification: "That is a trajectory; the dynamical rule maps a state to its instantaneous change."
+  - text: "A list of every state the system has occupied in the past."
+    justification: "That is historical data; the dynamical rule specifies change from a current state."
+  - text: "A set of possible states with no information about how they change."
+    justification: "That is the state space; the dynamical rule describes movement from its states."
+  - text: "A rule that gives several unrelated futures for the same state."
+    justification: "The chapter treats the dynamical rule as a function, with one output for each input state."
+  - text: "The mechanism itself, such as a pendulum or an airplane."
+    justification: "The physical mechanism is the system; the rule mathematically describes how its state changes."
+  - text: "A constant value describing the system's initial condition only."
+    justification: "An initial state starts a trajectory; the dynamical rule applies to possible states generally."
+  - text: "The total change accumulated over the entire history of a system."
+    justification: "The rule gives instantaneous change; accumulating it over time produces a trajectory."
+  - text: "A time series showing the state at successive times."
+    justification: "A time series records state over time; the dynamical rule maps state to rate of change."
+  - text: "A description of how quickly position changes with respect to position."
+    justification: "The dynamical rule gives the rate of state change with time as a function of state."
+  - text: "A probability distribution assigning likelihood to each possible observation."
+    justification: "That is a probability model; a dynamical rule describes state change in a system."

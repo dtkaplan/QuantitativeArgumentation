@@ -1,0 +1,29 @@
+word: coefficient
+for-chapter: 9
+valid:
+  - A scaling factor multiplying an input term in a linear combination.
+  - A conversion factor that turns an input quantity into units of the model output.
+  - A model parameter that determines an input's contribution to a linear model's output.
+  - A multiplier that gives the rate of output change associated with an input.
+  - A scalar used to scale a function or quantity before combining it with other terms.
+invalid:
+  - text: "The input quantity that a model is trying to explain."
+    justification: "The input is a model variable; the coefficient is the multiplier applied to that input."
+  - text: "A measured output value observed for one specimen."
+    justification: "An observed output is data; a coefficient is a model parameter estimated from data."
+  - text: "A rule for turning a function output back into its original input."
+    justification: "A coefficient scales a term in the forward model; it is not an inverse function."
+  - text: "A label naming the units of the output, such as points or dollars."
+    justification: "Units describe measurement; a coefficient is a conversion factor with units that connect input and output."
+  - text: "A value that must be the same in every regression model."
+    justification: "Coefficients depend on the data and which inputs are included in the model."
+  - text: "The average of all the model's input values."
+    justification: "A coefficient is a fitted scaling factor, not generally an average of inputs."
+  - text: "A curve showing the relationship between two function inputs."
+    justification: "A contour plot displays a multi-input function; a coefficient is a numerical multiplier in the model."
+  - text: "A probability distribution describing uncertainty in the output."
+    justification: "A coefficient is a model parameter in a linear combination, not an uncertainty distribution."
+  - text: "A random number added to a model so its output changes unpredictably."
+    justification: "Coefficients are interpretable scaling factors estimated to fit data, not random noise terms."
+  - text: "A statement that one input causes an output to change in all circumstances."
+    justification: "A coefficient expresses the model's conditional rate of change, not by itself a universal causal claim."

@@ -1,0 +1,29 @@
+word: dot product
+for-chapter: 16
+valid:
+  - A scalar calculated by multiplying corresponding vector components and summing the products.
+  - An arithmetic operation on two vectors used to calculate their directional alignment.
+  - The sum of pairwise component products for two vectors of the same dimension.
+  - A symmetric numerical comparison of two vectors that underlies their alignment measure.
+  - A number obtained from two vectors whose sign indicates whether their directions tend to agree or oppose.
+invalid:
+  - text: "A vector formed by placing the components of two vectors side by side."
+    justification: "The dot product is a scalar number, not a combined vector."
+  - text: "The sum of the lengths of two vectors."
+    justification: "The dot product uses corresponding components; it is not the sum of vector lengths."
+  - text: "A ratio of each component in the first vector to the matching component in the second."
+    justification: "The operation multiplies corresponding components and sums the products."
+  - text: "A calculation whose result changes when the two vectors are swapped."
+    justification: "The dot product is symmetric: swapping the vectors leaves the result unchanged."
+  - text: "The distance between the endpoints of two vectors."
+    justification: "Endpoint distance is a geometric distance; the dot product is an arithmetic operation on components."
+  - text: "A probability assigned to the event that two vectors match exactly."
+    justification: "The dot product is not a probability; it is used to measure vector alignment."
+  - text: "The product of the two vector lengths, regardless of their directions."
+    justification: "The dot product also depends on the angle between the vectors, not only their lengths."
+  - text: "A rule that projects one vector onto another without using components."
+    justification: "The dot product is computed from corresponding components and can be used in projection calculations."
+  - text: "A vector's length multiplied by itself."
+    justification: "That corresponds to a vector dotted with itself, but a dot product is an operation on two vectors."
+  - text: "A coordinate that identifies a point in the input space."
+    justification: "A vector can represent a coordinate, but the dot product is the scalar operation performed on a pair of vectors."

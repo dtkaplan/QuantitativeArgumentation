@@ -1,0 +1,29 @@
+word: anti-differentiation
+for-chapter: 15
+valid:
+  - The process of finding a function whose derivative is a given rate-of-change function.
+  - An operation that reverses differentiation by recovering a function from its derivative.
+  - The function-building process that undoes differentiation and is carried out through accumulation.
+  - Finding a parent function from a known derivative, up to a starting-value choice.
+  - A way to reconstruct a function from its rate of change by accumulating marginal changes.
+invalid:
+  - text: "The process of differentiating a function to obtain its rate of change."
+    justification: "That is differentiation; anti-differentiation works in the reverse direction."
+  - text: "A method for finding the maximum output of a function."
+    justification: "That is optimization; anti-differentiation reconstructs a function from its derivative."
+  - text: "A process that turns a total function into a derivative."
+    justification: "That describes differentiation, the operation anti-differentiation undoes."
+  - text: "The subtraction of one derivative from another."
+    justification: "Anti-differentiation is an inverse relationship to differentiation, not subtraction."
+  - text: "A technique for calculating a function's average value."
+    justification: "Averages summarize values; anti-differentiation finds a function from a rate-of-change function."
+  - text: "A process that uniquely recovers the original function without any starting information."
+    justification: "Accumulation allows a starting value to be specified; different starting values shift the reconstructed function."
+  - text: "A distribution family used to represent uncertainty in event timing."
+    justification: "That is an exponential distribution; anti-differentiation is a function operation."
+  - text: "A method that changes a function's input units but leaves its output unchanged."
+    justification: "Unit conversion is different; anti-differentiation reconstructs a function from its derivative."
+  - text: "A process that records a system's state at evenly spaced times."
+    justification: "That is collecting a time series; anti-differentiation relates rates of change to the original function."
+  - text: "The rate of increase of a quantity at the current margin."
+    justification: "That is a marginal rate; anti-differentiation uses rates to recover totals or functions."

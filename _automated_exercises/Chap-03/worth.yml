@@ -1,0 +1,57 @@
+word: worth
+for-chapter: 3
+valid:
+- A base dimension used for monetary value, whose meaning depends on place and time.
+- A quantity dimension representing what money can buy in a particular context.
+- A practical monetary measure that varies with purchasing power across times and
+  locations.
+- The money-related base unit used in quantitative reasoning beyond the SI units.
+- A measure of monetary value, often operationalized with currency and adjustments
+  for inflation or place.
+invalid:
+- text: Rates formed by arithmetic combinations of other rates.
+  justification: This describes compound rates, not worth. In this chapter, worth
+    refers to a base dimension used for monetary value, whose meaning depends on place
+    and time.
+- text: A ratio of two quantities where division expresses a relationship between
+    their underlying dimensions.
+  justification: This describes rate, not worth. In this chapter, worth refers to
+    a base dimension used for monetary value, whose meaning depends on place and time.
+- text: The change in a primary quantity divided by the corresponding change in a
+    context-setting quantity.
+  justification: This describes rate of change, not worth. In this chapter, worth
+    refers to a base dimension used for monetary value, whose meaning depends on place
+    and time.
+- text: A number format that condenses scientific notation into a single magnitude
+    value.
+  justification: This describes logarithm, not worth. In this chapter, worth refers
+    to a base dimension used for monetary value, whose meaning depends on place and
+    time.
+- text: A measure of the size of a number, closely related to its exponent in scientific
+    notation.
+  justification: This describes magnitude, not worth. In this chapter, worth refers
+    to a base dimension used for monetary value, whose meaning depends on place and
+    time.
+- text: A factor-of-ten scale used to describe how much larger or smaller one number
+    is than another.
+  justification: This describes order of magnitude, not worth. In this chapter, worth
+    refers to a base dimension used for monetary value, whose meaning depends on place
+    and time.
+- text: A number format that expresses a value as a mantissa multiplied by a power
+    of ten.
+  justification: This describes scientific notation, not worth. In this chapter, worth
+    refers to a base dimension used for monetary value, whose meaning depends on place
+    and time.
+- text: Arranging values in order so their relative sizes are easier to compare.
+  justification: This describes sorting, not worth. In this chapter, worth refers
+    to a base dimension used for monetary value, whose meaning depends on place and
+    time.
+- text: The process of constructing good arguments from evidence and reasoning.
+  justification: This describes argumentation, not worth. In this chapter, worth refers
+    to a base dimension used for monetary value, whose meaning depends on place and
+    time.
+- text: Reasoning that applies explicit rules whose correct application yields certain
+    conclusions.
+  justification: This describes formal reasoning, not worth. In this chapter, worth
+    refers to a base dimension used for monetary value, whose meaning depends on place
+    and time.

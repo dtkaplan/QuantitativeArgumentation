@@ -1,0 +1,29 @@
+word: calculus
+for-chapter: 14
+valid:
+  - The mathematical field centered on differentiation and related operations on functions.
+  - A framework for relating functions through derivatives and rates of change.
+  - The study of differentiation, which constructs rate-of-change functions from functions.
+  - A mathematical approach connecting changing quantities with derived functions.
+  - The field in which differentiation and its related methods are developed and applied.
+invalid:
+  - text: "A method for calculating only the average of a dataset."
+    justification: "Calculus in this chapter concerns functions and rates of change, not just data averages."
+  - text: "A rule for assigning probability to each possible outcome."
+    justification: "That is a probability distribution; calculus studies operations such as differentiation."
+  - text: "The process of adding up observations without regard to their input values."
+    justification: "The chapter focuses on calculus as relating functions by differentiation and accumulation."
+  - text: "A method that applies only to physical motion through time."
+    justification: "Rates of change and derivatives also apply to inputs such as spending, not only time or motion."
+  - text: "A single derivative value measured at one input."
+    justification: "A derivative is itself a function; calculus is the broader mathematical field."
+  - text: "A system of symbols used only to solve polynomial equations."
+    justification: "The chapter presents calculus as a framework for relating functions and rates of change."
+  - text: "The act of converting all quantities into the same unit."
+    justification: "That is unit conversion; calculus concerns mathematical operations on functions."
+  - text: "A graphing technique that reads function outputs from contour lines."
+    justification: "That is contour plotting; calculus includes differentiation and related function operations."
+  - text: "A guarantee that a function is continuous everywhere."
+    justification: "Continuity is a property of a function, not a guarantee made by calculus."
+  - text: "The total change of a quantity, without reference to a rate of change."
+    justification: "Accumulation can recover totals from rates; calculus also studies derivatives and their relationships."

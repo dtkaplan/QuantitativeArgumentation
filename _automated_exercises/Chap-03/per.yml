@@ -1,0 +1,44 @@
+word: per
+for-chapter: 3
+valid:
+- A word that signals division, with the following quantity in the denominator.
+- A technical marker meaning divided by in units and rates.
+- The word used to express the divisor in a ratio, as in miles per hour.
+- A verbal notation for division that clarifies how two quantities are related.
+- A unit phrase indicating that one quantity is divided by another.
+invalid:
+- text: A location in a space that corresponds to one or more coordinate values.
+  justification: This describes point, not per. In this chapter, per refers to a word
+    that signals division, with the following quantity in the denominator.
+- text: A number with no unit designation, such as seven or pi.
+  justification: This describes pure number, not per. In this chapter, per refers
+    to a word that signals division, with the following quantity in the denominator.
+- text: A standardized measure consisting of a pure number and a unit, optionally
+    with a descriptor.
+  justification: This describes quantity, not per. In this chapter, per refers to
+    a word that signals division, with the following quantity in the denominator.
+- text: The International System of Units, the primary official system for defining
+    units.
+  justification: This describes SI, not per. In this chapter, per refers to a word
+    that signals division, with the following quantity in the denominator.
+- text: A collection of quantities whose values identify locations within it.
+  justification: This describes space, not per. In this chapter, per refers to a word
+    that signals division, with the following quantity in the denominator.
+- text: Standardized measures that specify how much of a quantity is present.
+  justification: This describes units, not per. In this chapter, per refers to a word
+    that signals division, with the following quantity in the denominator.
+- text: A phrase identifying the context-setting quantity against which a change is
+    examined.
+  justification: This describes with respect to, not per. In this chapter, per refers
+    to a word that signals division, with the following quantity in the denominator.
+- text: A base dimension used for monetary value, whose meaning depends on place and
+    time.
+  justification: This describes worth, not per. In this chapter, per refers to a word
+    that signals division, with the following quantity in the denominator.
+- text: Rates formed by arithmetic combinations of other rates.
+  justification: This describes compound rates, not per. In this chapter, per refers
+    to a word that signals division, with the following quantity in the denominator.
+- text: A ratio of two quantities where division expresses a relationship between
+    their underlying dimensions.
+  justification: This describes rate, not per. In this chapter, per refers to a word
+    that signals division, with the following quantity in the denominator.

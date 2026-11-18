@@ -1,0 +1,29 @@
+word: first derivative
+for-chapter: 14
+valid:
+  - The derivative of the original function, giving its rate of change with respect to an input.
+  - The first function obtained by differentiating a function once.
+  - A function whose values give the original function's slope at corresponding inputs.
+  - The rate-of-change function one differentiation step removed from the original.
+  - The derivative that describes how the original function's output changes as its input changes.
+invalid:
+  - text: "The derivative of the derivative, obtained after differentiating twice."
+    justification: "That is a second derivative; the first derivative results from one differentiation."
+  - text: "The original function's output at each input."
+    justification: "The first derivative gives the rate of change, not the original output values."
+  - text: "The total change accumulated across the function's input domain."
+    justification: "That concerns accumulation; the first derivative is a rate-of-change function."
+  - text: "A single slope value that is constant for every input."
+    justification: "The first derivative is a function and can have different values at different inputs."
+  - text: "The rate at which the derivative itself changes."
+    justification: "That is the second derivative, not the first derivative."
+  - text: "A measure of the spread of values around a mean."
+    justification: "That describes standard deviation; the first derivative describes function slope."
+  - text: "A function that maps outputs back to their original inputs."
+    justification: "That is an inverse relationship, not a derivative."
+  - text: "A probability score assigned to an observed value."
+    justification: "That is relative probability or likelihood; the first derivative gives rate of change."
+  - text: "A value describing the function only at its maximum point."
+    justification: "The first derivative is defined across the input domain where the rate of change can be evaluated."
+  - text: "The original function after its input has been shifted by one unit."
+    justification: "A shift changes the function's input; differentiation creates a function of rates of change."

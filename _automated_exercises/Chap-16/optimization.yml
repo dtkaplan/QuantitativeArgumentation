@@ -1,0 +1,29 @@
+word: optimization
+for-chapter: 16
+valid:
+  - Finding input values that maximize or minimize an objective function.
+  - The task of selecting a choice that produces the best value of a specified objective.
+  - Searching a function's input space for a maximum or minimum output.
+  - Choosing settings that improve an objective function, often by following local rates of change.
+  - A quantitative problem of finding inputs that attain a desired extreme output.
+invalid:
+  - text: "A process for collecting observations without comparing possible choices."
+    justification: "Optimization compares choices through an objective function to find a maximum or minimum."
+  - text: "A method for finding every input that produces an output of zero."
+    justification: "That is solving for roots; optimization seeks an extreme output."
+  - text: "A guarantee that every objective function has one unique best input."
+    justification: "An optimum may be non-unique or difficult to find; uniqueness is not guaranteed."
+  - text: "A process that changes a function's output while leaving all inputs fixed."
+    justification: "Optimization searches over input choices to improve the objective output."
+  - text: "A way to classify data using labels supplied for every possible case."
+    justification: "That describes a supervised learning task, not optimization generally."
+  - text: "A method that only finds the average value of a function."
+    justification: "Optimization seeks an extreme value, not an average."
+  - text: "A process that always minimizes every possible objective simultaneously."
+    justification: "Objectives can conflict; optimization depends on the chosen objective or trade-off criteria."
+  - text: "A rule that maps each state to its instantaneous rate of change."
+    justification: "That is a dynamical rule; optimization finds inputs that maximize or minimize an objective."
+  - text: "A procedure that requires a symbolic equation for the objective function."
+    justification: "The chapter notes that optimization can use local evaluations even when a formula is unavailable."
+  - text: "A measure of alignment between two vectors."
+    justification: "Alignment is a geometric measure; optimization is the task of finding best input settings."

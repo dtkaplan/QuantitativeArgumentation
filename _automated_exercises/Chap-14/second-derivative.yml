@@ -1,0 +1,29 @@
+word: second derivative
+for-chapter: 14
+valid:
+  - The derivative of a function's first derivative.
+  - A function obtained by differentiating the original function twice.
+  - The rate of change of the first derivative, such as acceleration from position.
+  - A second-generation derivative that describes how the first derivative varies.
+  - A function derived from the first derivative and sharing the original function's inputs.
+invalid:
+  - text: "The derivative of the original function, calculated once."
+    justification: "That is the first derivative; the second derivative differentiates the first derivative."
+  - text: "The original function's output after being squared."
+    justification: "Squaring a function is not the same as differentiating twice."
+  - text: "The total accumulated output over the function's domain."
+    justification: "That concerns accumulation; the second derivative is a rate of change of the first derivative."
+  - text: "A single number that must be the same at every input."
+    justification: "A second derivative is generally a function and may vary across input values."
+  - text: "The rate of change of the original function's input."
+    justification: "The derivative describes output change relative to input; the second derivative differentiates that rate again."
+  - text: "The rate of change of position, also called velocity."
+    justification: "Velocity is the first derivative of position; acceleration is its second derivative."
+  - text: "A measure of variation around the mean of a distribution."
+    justification: "That is statistical spread, not a derivative of a function."
+  - text: "The first derivative evaluated at two different inputs."
+    justification: "Two first-derivative values are not themselves a second derivative; the derivative of the first derivative is."
+  - text: "A function that converts each input into the original function's value."
+    justification: "That is the original function; a second derivative gives the second-order rate of change."
+  - text: "The second observed value in a time series."
+    justification: "A time-series observation is not a second derivative; derivatives describe rates of change."

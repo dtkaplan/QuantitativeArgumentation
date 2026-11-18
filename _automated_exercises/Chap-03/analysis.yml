@@ -1,0 +1,41 @@
+word: analysis
+for-chapter: 3
+valid:
+- Examining a system by breaking it into contributing components.
+- A process of separating a complex situation into parts to understand their contributions.
+- Systematic examination of components or relationships to clarify a quantitative
+  question.
+- Reasoning that loosens a whole problem into pieces that can be studied.
+- The study of how component changes contribute to an overall result.
+invalid:
+- text: Fundamental dimensions from which derived dimensions are formed.
+  justification: This describes base dimensions, not analysis. In this chapter, analysis
+    refers to examining a system by breaking it into contributing components.
+- text: Fundamental SI units that are not defined in terms of one another.
+  justification: This describes base units, not analysis. In this chapter, analysis
+    refers to examining a system by breaking it into contributing components.
+- text: A unit for counting people, from the Latin word for head.
+  justification: This describes capita, not analysis. In this chapter, analysis refers
+    to examining a system by breaking it into contributing components.
+- text: Accounting for other variables while examining a relationship of interest.
+  justification: This describes controlling for, not analysis. In this chapter, analysis
+    refers to examining a system by breaking it into contributing components.
+- text: A dimensionless ratio of equal quantities used to convert between commensurate
+    units.
+  justification: This describes conversion factor, not analysis. In this chapter,
+    analysis refers to examining a system by breaking it into contributing components.
+- text: A two-dimensional space marked by two perpendicular number lines.
+  justification: This describes coordinate plane, not analysis. In this chapter, analysis
+    refers to examining a system by breaking it into contributing components.
+- text: Dimensions formed by multiplying or dividing base dimensions.
+  justification: This describes derived dimensions, not analysis. In this chapter,
+    analysis refers to examining a system by breaking it into contributing components.
+- text: Units formed by multiplying or dividing base units.
+  justification: This describes derived units, not analysis. In this chapter, analysis
+    refers to examining a system by breaking it into contributing components.
+- text: Having the pure-number dimension, with no combination of base dimensions.
+  justification: This describes dimensionless, not analysis. In this chapter, analysis
+    refers to examining a system by breaking it into contributing components.
+- text: Dimensionless ratios formed by dividing two exactly equal quantities.
+  justification: This describes flavors of one, not analysis. In this chapter, analysis
+    refers to examining a system by breaking it into contributing components.

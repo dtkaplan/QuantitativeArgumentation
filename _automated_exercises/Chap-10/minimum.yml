@@ -1,0 +1,29 @@
+word: minimum
+for-chapter: 10
+valid:
+  - The smallest output value attained by an objective function.
+  - The lowest value a function produces over its domain.
+  - The least objective outcome, distinct from the input that produces it.
+  - The lowest output achieved among the available choices.
+  - The smallest function value associated with some input in the domain.
+invalid:
+  - text: "The input value at which the function's output is smallest."
+    justification: "That input is the argmin; the minimum is the output value."
+  - text: "The greatest output value a function can produce."
+    justification: "That is the maximum, not the minimum."
+  - text: "The smallest input value in the function's domain."
+    justification: "Minimum refers to output, not the size of an input."
+  - text: "The average output value across all choices."
+    justification: "The average is not necessarily the smallest output."
+  - text: "The function's set of possible inputs."
+    justification: "That is the domain; the minimum is the lowest output attained."
+  - text: "The price ratio used to compare two objective functions."
+    justification: "That is a shadow price; minimum is an objective output value."
+  - text: "A choice that improves every objective compared with another choice."
+    justification: "That describes dominance, not a function's lowest output."
+  - text: "A point where the function's output equals zero."
+    justification: "A zero is not necessarily a minimum; the minimum is the lowest output over the domain."
+  - text: "The input that produces the greatest objective value."
+    justification: "That is an argmax, not the minimum output."
+  - text: "A value that every possible input must produce."
+    justification: "A minimum is attained for some input; other inputs may produce larger outputs."

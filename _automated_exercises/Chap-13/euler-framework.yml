@@ -1,0 +1,29 @@
+word: Euler framework
+for-chapter: 13
+valid:
+  - A description of a dynamical system using its state, dynamical rule, and accounting over time.
+  - The chapter's framework for defining state change instantaneously and accumulating it into a trajectory.
+  - A modeling approach that advances a system from an initial state using small time steps and its rate of change.
+  - A framework separating a system's state, its change rule, and the calculation of its time evolution.
+  - A stepwise arithmetic method for tracing a trajectory from a dynamical rule and initial state.
+invalid:
+  - text: "A method that directly gives the exact state at every future time without calculating changes."
+    justification: "The framework uses the dynamical rule and repeated small steps to calculate a trajectory."
+  - text: "A rule that describes only the physical structure of a system."
+    justification: "The framework describes state, state change, and the accounting that traces motion over time."
+  - text: "A probability model for assigning likelihood to possible states."
+    justification: "The Euler framework is a method for describing and calculating dynamical change, not a probability distribution."
+  - text: "A way to determine the initial state by averaging all later observations."
+    justification: "The initial state is supplied; the framework uses it to step forward through time."
+  - text: "An algebraic procedure that requires solving a closed-form equation for every system."
+    justification: "The chapter emphasizes an arithmetic, stepwise method that can be carried out computationally."
+  - text: "A framework in which the trajectory itself determines the dynamical rule."
+    justification: "The rule gives instantaneous change; accounting under that rule produces the trajectory."
+  - text: "A system whose state is always a single fixed number."
+    justification: "The state can contain one or more changing quantities; the framework does not require a fixed state."
+  - text: "A technique for finding the maximum of an objective function."
+    justification: "That is optimization; the Euler framework calculates the time evolution of a dynamical system."
+  - text: "A graphical method that reads trajectories directly from contour lines."
+    justification: "Contour plots visualize functions; Euler's method traces a trajectory by accumulating small changes."
+  - text: "A process that records only the system's final state and ignores intermediate changes."
+    justification: "The framework builds a trajectory through repeated state updates over small time increments."

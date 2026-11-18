@@ -1,0 +1,32 @@
+```{r setup, echo=FALSE}
+library(devoirs3)
+devoirs3::devoirs_start(docID = "devoirs3-word-or-phrase-1-one")
+```
+
+```{devoirs_choices word_or_phrase_1_one_choices}
+- A highlighted term that carries a defined meaning beyond its ordinary conversational use.:
+    correct: true
+    feedback: Correct.
+- A phrase that must contain exactly two words.:
+    correct: false
+    feedback: The term may be one word or several words; there is no fixed length
+      requirement.
+- A rule that transforms givens into new beliefs.:
+    correct: false
+    feedback: That describes reasoning; a word or phrase is a vocabulary expression.
+- A word that can only be used in casual conversation.:
+    correct: false
+    feedback: The term is highlighted precisely because it has a technical meaning
+      beyond casual usage.
+```
+
+Only one of the following is a valid description of word or phrase. Mark that one.
+
+```{r}
+devoirs3::devoirs_selection(
+  label = "word-or-phrase-1-one",
+  question = "Only one of the following is a valid description of word or phrase. Mark that one.",
+  answers = word_or_phrase_1_one_choices,
+  multiple = FALSE
+)()
+```

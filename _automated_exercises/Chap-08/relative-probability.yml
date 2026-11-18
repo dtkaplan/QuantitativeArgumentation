@@ -1,0 +1,29 @@
+word: relative probability
+for-chapter: 8
+valid:
+  - A nonnegative number assigned to a possible value to indicate its likelihood relative to other values.
+  - The output of a probability distribution function for a particular possible value.
+  - A quantity showing how likely one possible value is compared with alternatives.
+  - A nonnegative likelihood score whose meaning comes from comparison with scores for other possibilities.
+  - A value indicating the comparative likelihood of one outcome under a probability model.
+invalid:
+  - text: "A negative number showing that an outcome is less than impossible."
+    justification: "Relative probability values cannot be negative."
+  - text: "The exact percentage chance of a value, read directly from any distribution output."
+    justification: "A relative probability is interpreted by comparison with other outputs and is not automatically a percentage."
+  - text: "A fixed guarantee that one particular value will occur."
+    justification: "Relative probability indicates likelihood, not certainty."
+  - text: "The distance between the maximum and minimum possible values."
+    justification: "That is a range; relative probability is assigned to individual possible values."
+  - text: "The average of all possible values in a distribution."
+    justification: "That describes a mean; relative probability is the likelihood score for a particular value."
+  - text: "A number that must be identical for every possible value."
+    justification: "Relative probabilities can vary; their differences show which possibilities are more likely."
+  - text: "The probability model itself, rather than one of its outputs."
+    justification: "The distribution is the function; relative probability is the output for a particular input value."
+  - text: "A value that describes the spread of a normal distribution."
+    justification: "Standard deviation describes spread; relative probability is assigned to a possible outcome."
+  - text: "A random sample generated from an uncertain quantity."
+    justification: "A random sample is an outcome; relative probability is the score indicating how likely that outcome is."
+  - text: "A frequency count of how many times a value has already been observed."
+    justification: "Observed frequency can inform a model, but relative probability is the distribution's comparative likelihood value."

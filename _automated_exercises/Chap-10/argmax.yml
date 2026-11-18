@@ -1,0 +1,29 @@
+word: argmax
+for-chapter: 10
+valid:
+  - The input value that produces the greatest output of an objective function.
+  - The argument, or input, at which a function reaches its maximum.
+  - A choice from the input domain that yields the objective function's largest output.
+  - The setting of the inputs that achieves the highest value of a function.
+  - The maximizing input, rather than the maximum output itself.
+invalid:
+  - text: "The greatest output value produced by an objective function."
+    justification: "That is the maximum; argmax names the input that produces it."
+  - text: "The input that produces the smallest possible output."
+    justification: "That is an argmin; argmax identifies an input producing the largest output."
+  - text: "A function's domain, containing every possible input."
+    justification: "The domain is the set of possible inputs; the argmax is a maximizing input from that set."
+  - text: "The average of all outputs produced by a function."
+    justification: "An average summarizes outputs; argmax identifies an input where the output is greatest."
+  - text: "The greatest input value in the function's domain."
+    justification: "The argmax need not be the largest input; it is the input that maximizes the output."
+  - text: "A point where the function's output is zero."
+    justification: "A zero of a function has output zero; an argmax is chosen by its highest output."
+  - text: "The maximum output divided by the input that produced it."
+    justification: "Argmax refers to an input value, not a ratio of output and input."
+  - text: "A statement that all possible choices have equal objective value."
+    justification: "An argmax is a maximizing choice; equal outputs are not required."
+  - text: "The set of observed data used to fit a model."
+    justification: "Data may be used to construct an objective function, but are not its argmax."
+  - text: "A procedure for searching randomly through the input domain."
+    justification: "A search algorithm may find an argmax, but argmax is the maximizing input itself."

@@ -1,0 +1,29 @@
+word: skeleton
+for-chapter: 13
+valid:
+  - The shared structural form of rate-of-change functions before their coefficients are specified.
+  - A basic function pattern that identifies which terms will appear before model-specific coefficients are added.
+  - The common template for related dynamical rules, later completed with different coefficient values.
+  - A function's framework of terms, awaiting the coefficients that give it its particular form.
+  - A preliminary structure for a model function that is later fleshed out with parameter values.
+invalid:
+  - text: "A complete numerical model with every coefficient already determined."
+    justification: "The skeleton is the structure before coefficients, or the model's 'flesh,' is filled in."
+  - text: "The collection of all possible states of a dynamical system."
+    justification: "That is the state space; a skeleton is the template for the rate-of-change functions."
+  - text: "A physical framework made of bones that supports a moving body."
+    justification: "The chapter uses skeleton figuratively for a function's structural template."
+  - text: "A trajectory showing the system's state throughout time."
+    justification: "A trajectory is the evolving state; the skeleton is the preliminary form of the dynamical-rule function."
+  - text: "A list of observed data used to estimate a model."
+    justification: "Data may help estimate coefficients, but the skeleton is the function's structural form."
+  - text: "A coefficient that converts an input quantity into output units."
+    justification: "Coefficients flesh out the skeleton; they are not the skeleton itself."
+  - text: "A rule that specifies the exact future state without a time step."
+    justification: "The skeleton is a model structure for instantaneous rate-of-change functions, not a complete future trajectory."
+  - text: "A set of probability distributions describing uncertain parameters."
+    justification: "That describes uncertainty; the chapter's skeleton is a template for dynamical functions."
+  - text: "A function with no inputs and a constant output."
+    justification: "The skeleton can include several state variables and terms; it is not necessarily a constant function."
+  - text: "A completed output value produced by evaluating a function."
+    justification: "An output is a function evaluation; the skeleton is the form of the function itself."

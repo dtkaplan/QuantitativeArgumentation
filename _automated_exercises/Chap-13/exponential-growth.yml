@@ -1,0 +1,29 @@
+word: exponential growth
+for-chapter: 13
+valid:
+  - A pattern in which a quantity repeatedly doubles over equal time intervals.
+  - Growth characterized by the same proportional increase over equal periods.
+  - A process where successive doublings take the same amount of time.
+  - A quantity's increasing pattern when its rate of change is proportional to its current value.
+  - Growth described by a doubling time that remains constant as the quantity increases.
+invalid:
+  - text: "A pattern in which a quantity repeatedly halves over equal intervals."
+    justification: "That is exponential decay; exponential growth involves successive doublings."
+  - text: "A fixed number of units is added during every time period."
+    justification: "That describes steady additive growth; exponential growth increases proportionally."
+  - text: "A quantity that grows by the same percentage only once."
+    justification: "Exponential growth is a continuing pattern of proportional increase over time."
+  - text: "A process in which the doubling interval gets longer at every step."
+    justification: "The chapter characterizes exponential growth by successive doublings taking the same time."
+  - text: "A distribution for the time between randomly occurring events."
+    justification: "That is the exponential distribution; exponential growth describes how a quantity changes over time."
+  - text: "A guaranteed increase by one unit per day, regardless of current size."
+    justification: "A constant additive increase is steady growth, not exponential growth."
+  - text: "A process that must continue forever at an increasing rate."
+    justification: "Exponential growth describes a mathematical pattern; real systems can change or stop following it."
+  - text: "The time needed for a decreasing quantity to lose half its value."
+    justification: "That is halving time for exponential decay, not growth."
+  - text: "A system whose state remains constant while time passes."
+    justification: "Exponential growth is an increasing state pattern, not a constant one."
+  - text: "A quantity whose growth is independent of its current value."
+    justification: "In exponential growth, the proportional rate of change is tied to the current quantity."

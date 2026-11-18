@@ -1,0 +1,55 @@
+word: heuristic reasoning
+for-chapter: 1
+valid:
+- Fast, broadly applicable reasoning that uses useful but fallible rules of thumb.
+- Common-sense reasoning that helps people respond efficiently to situations.
+- Reasoning based on practical links that are often useful but not guaranteed to be
+  correct.
+- A flexible way to draw conclusions quickly from familiar patterns and experience.
+- Reasoning that is widely useful in everyday life, though less certain than formal
+  reasoning.
+invalid:
+- text: A machine-learning system that uses patterns and alignments in text to generate
+    language.
+  justification: This describes Large language model (LLM), not heuristic reasoning.
+    In this chapter, heuristic reasoning refers to fast, broadly applicable reasoning
+    that uses useful but fallible rules of thumb.
+- text: Representations of items, processes, or settings that are easier to use than
+    the reality.
+  justification: This describes models, not heuristic reasoning. In this chapter,
+    heuristic reasoning refers to fast, broadly applicable reasoning that uses useful
+    but fallible rules of thumb.
+- text: Models built from mathematical components to support reasoning about real-world
+    situations.
+  justification: This describes quantitative models, not heuristic reasoning. In this
+    chapter, heuristic reasoning refers to fast, broadly applicable reasoning that
+    uses useful but fallible rules of thumb.
+- text: An epidemic model that tracks susceptible, infective, and recovered people
+    over time.
+  justification: This describes SIR model, not heuristic reasoning. In this chapter,
+    heuristic reasoning refers to fast, broadly applicable reasoning that uses useful
+    but fallible rules of thumb.
+- text: A highlighted term whose meaning is specifically defined for use in the book.
+  justification: This describes word or phrase, not heuristic reasoning. In this chapter,
+    heuristic reasoning refers to fast, broadly applicable reasoning that uses useful
+    but fallible rules of thumb.
+- text: Recorded facts, findings, and measurements.
+  justification: This describes data, not heuristic reasoning. In this chapter, heuristic
+    reasoning refers to fast, broadly applicable reasoning that uses useful but fallible
+    rules of thumb.
+- text: A rectangular array of data organized into rows and columns.
+  justification: This describes data frame, not heuristic reasoning. In this chapter,
+    heuristic reasoning refers to fast, broadly applicable reasoning that uses useful
+    but fallible rules of thumb.
+- text: An aspect, property, or characteristic of an object or system.
+  justification: This describes dimension, not heuristic reasoning. In this chapter,
+    heuristic reasoning refers to fast, broadly applicable reasoning that uses useful
+    but fallible rules of thumb.
+- text: The kind of object represented by every specimen in a data frame.
+  justification: This describes object type, not heuristic reasoning. In this chapter,
+    heuristic reasoning refers to fast, broadly applicable reasoning that uses useful
+    but fallible rules of thumb.
+- text: A procedure for translating a dimension into a measurable quantity.
+  justification: This describes operationalization, not heuristic reasoning. In this
+    chapter, heuristic reasoning refers to fast, broadly applicable reasoning that
+    uses useful but fallible rules of thumb.

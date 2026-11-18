@@ -58,7 +58,7 @@ Crucial problems with "Calc I" are
 - It is overly theoretical, with emphasis on "limits" and "series and sequences." Although conventional calculus approaches the topics of differentiation and integration from this theoretical perspective, a superior understanding of the uses and relationships between these topics can be achieved simply by reference to an intuitive notion of "small."
 - It fails to engage computing and the concepts of data organization needed at many levels in the workplace. 
     * One aspect of this is that traditional mathematics notation, whatever it's visual appeal, has many ambiguities to the uninitiated and does not take advantages of the vast improvement in expression provided by modern computer notation. 
-    * Although iteration and random-number generation are important and accessible technologies in quantitative work, there is no algebra-based notation for these techniques.
+    * Although iteration and random-number generation are important and accessible technologies in quantitative work, algebraic notation does not encompass them.
 
 Notwithstanding the points in (5), a very wide range of students needs to engage with the "mathematics of change" and the many ways in which quantitative change is encountered in professional work, for instance the meaning of inflation rates.
     
@@ -73,7 +73,9 @@ The traditional high-school or college mathematics curriculum more or less ignor
 
 # CONCISION REVIEW
 
-I would like to identify sentence fragments that are unnecessarily wordy, that is, where this is a more concise formulation that says the same thing without losing meaning. Please consult the general literature about good writing to identify such fragments and suggest more concise alternatives. The response should take the form of a table in the Chat dialog pane that lists the identified sentences one per row. Each row should consist of a clickable link to the VS Code editor for that sentence as well as the first words (up to 10) of the faulty sentence and the first words of the suggested replacement. Give the results in a batch size of up to 10 rows. Do not edit the Chapter file, I will take care of that.
+I would like to identify sentence fragments that are unnecessarily wordy, that is, where this is a more concise formulation that says the same thing without losing meaning. Please consult the general literature about good writing to identify such fragments and suggest more concise alternatives. A good source of ideas is this page at [Purdue's Online writing lab](https://owl.purdue.edu/owl/general_writing/academic_writing/conciseness/eliminating_words.html)
+
+Your response should take the form of a table in the Chat dialog pane that lists the identified sentences one per row. Each row should consist of a clickable link to the VS Code editor for that sentence as well as the first words (up to 10) of the faulty sentence and the first words of the suggested replacement. Give the results in a batch size of up to 10 rows. Do not edit the Chapter file, I will take care of that.
 
 IGNORE LINES AFTER THIS POINT
 
@@ -86,5 +88,4 @@ I have a bad habit of starting sentences with "[In or some other preposition] [s
 
 - response in `_overlong-wording.csv`
 
-See this page at [Purdue's Online writing lab](https://owl.purdue.edu/owl/general_writing/academic_writing/conciseness/eliminating_words.html)
 

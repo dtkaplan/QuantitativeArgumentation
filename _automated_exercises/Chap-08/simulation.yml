@@ -1,0 +1,29 @@
+word: simulation
+for-chapter: 8
+valid:
+  - Using random draws from input distributions to study uncertainty in a function's output.
+  - A computational technique that propagates uncertain inputs through a model by repeated sampling.
+  - Repeatedly generating likely inputs and evaluating a function to examine possible outputs.
+  - A way to estimate output uncertainty by sampling uncertain inputs from their distributions.
+  - Using a model and random values to explore the consequences of uncertainty.
+invalid:
+  - text: "Replacing uncertain inputs with their mean values and evaluating the function once."
+    justification: "Simulation samples from input distributions repeatedly rather than relying only on one best guess."
+  - text: "A proof that a model's output is correct for every possible input."
+    justification: "Simulation explores outcomes under a model; it does not prove the model correct."
+  - text: "A method that records only the minimum and maximum input values."
+    justification: "Simulation uses sampled values from distributions, not merely the endpoints of a range."
+  - text: "A process for drawing a graph without calculating any model outputs."
+    justification: "Simulation evaluates the model on generated inputs to study its outputs."
+  - text: "A technique that eliminates uncertainty by identifying the one true input."
+    justification: "Simulation represents consequences of uncertainty; it does not reveal a guaranteed true input."
+  - text: "A distribution assigning relative probabilities to possible values."
+    justification: "That is a probability distribution; simulation uses distributions to generate inputs and explore outputs."
+  - text: "A calculation that multiplies the lower and upper ends of two ranges."
+    justification: "The chapter presents simulation as a way to handle uncertain calculations that ranges alone cannot reliably solve."
+  - text: "A decision rule that selects the hypothesis with the largest mean."
+    justification: "Simulation is a sampling-based computational technique, not a hypothesis-selection rule."
+  - text: "A single random number generated once from a model."
+    justification: "One draw can be part of a simulation, but simulation uses model evaluations to reason about output uncertainty."
+  - text: "A method that requires every input to be known exactly."
+    justification: "Simulation is useful precisely when inputs are uncertain and represented by probability distributions."

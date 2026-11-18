@@ -1,0 +1,29 @@
+word: normal distribution
+for-chapter: 8
+valid:
+  - A bell-shaped distribution centered at its mean, with likelihood tapering away from the center.
+  - A probability model in which values near the center are more likely than values far from it.
+  - A symmetric distribution family described by its mean and standard deviation.
+  - A model that represents a central range as likely while allowing less likely values beyond it.
+  - A smooth, hill-shaped distribution commonly used to model uncertainty around a central value.
+invalid:
+  - text: "A distribution that makes all values in a bounded interval equally likely."
+    justification: "That is a uniform distribution; a normal distribution gives greater relative probability near its center."
+  - text: "A model that makes every value outside its stated range impossible."
+    justification: "The normal distribution has no hard range boundary; distant values are unlikely, not impossible."
+  - text: "A distribution whose likelihood steadily decreases from a starting point and has only positive values."
+    justification: "That describes the general shape of an exponential distribution, not the symmetric normal family."
+  - text: "A collection of observed data values arranged from smallest to largest."
+    justification: "That is an ordered dataset; a normal distribution is a probability model."
+  - text: "A single number giving the average of a sample."
+    justification: "That is a sample mean; the normal distribution is a family of models with center and spread parameters."
+  - text: "A process for repeatedly drawing numbers from a model."
+    justification: "That is random number generation or simulation, not a distribution family."
+  - text: "A distribution described by its minimum and maximum possible values only."
+    justification: "Those endpoints describe a uniform distribution's range; a normal distribution also assigns probability beyond a typical interval."
+  - text: "A model in which the probability of an event grows with the time since the last event."
+    justification: "That is not the normal model; the chapter describes normal distributions as symmetric around a center."
+  - text: "The square of the standard deviation, used as the distribution's center."
+    justification: "Variance is the square of standard deviation and measures spread, not the center."
+  - text: "A statement that a proposed scientific explanation is true."
+    justification: "A hypothesis may use a normal distribution, but the distribution itself is a probability model."

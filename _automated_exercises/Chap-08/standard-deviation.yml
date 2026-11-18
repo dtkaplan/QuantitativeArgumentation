@@ -1,0 +1,29 @@
+word: standard deviation
+for-chapter: 8
+valid:
+  - A positive parameter describing the spread of a normal distribution around its mean.
+  - The scale parameter that determines how widely a normal distribution extends from its center.
+  - A measure of dispersion used with the mean to specify a normal distribution.
+  - A parameter indicating the typical spread of values around the distribution's central value.
+  - The square root of the variance, used to describe a distribution's spread.
+invalid:
+  - text: "The central or average value of a normal distribution."
+    justification: "The mean gives the center; standard deviation describes spread around it."
+  - text: "The square of a distribution's mean."
+    justification: "Standard deviation is related to variance, not the square of the mean."
+  - text: "The interval from the smallest to the largest possible value."
+    justification: "That is a range; standard deviation is a parameter describing spread."
+  - text: "A number that may be negative and sets the center of the normal curve."
+    justification: "The chapter says standard deviation must be positive; the mean sets the center."
+  - text: "A probability assigned to one particular observation."
+    justification: "Relative probability describes an individual value's likelihood; standard deviation summarizes spread."
+  - text: "A parameter that makes every value in a range equally likely."
+    justification: "That describes a uniform distribution, not the spread parameter of a normal distribution."
+  - text: "The rate of events per unit time in an exponential model."
+    justification: "That is the exponential distribution's rate parameter, not standard deviation."
+  - text: "The number of observations in a random sample."
+    justification: "Sample size counts observations; standard deviation describes variability."
+  - text: "The difference between a model's output and its input."
+    justification: "Standard deviation is a distribution parameter, not a comparison between function inputs and outputs."
+  - text: "A guaranteed maximum distance of every value from the mean."
+    justification: "Standard deviation describes spread but does not impose a hard maximum distance."

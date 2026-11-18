@@ -15,21 +15,13 @@ source("_start-up.R")
 
 The word "special" when talking about rates of change is relevant in two different senses. One definition is "different from usual." Indeed if a rate is the usual thing, then a rate of change is different from usual because the quantities that form the *ratio* are always *changes* in a quantity. And not just changes, but **simultaneous changes**. By photographic analogy, you can measure a rate by looking at a snapshot: read off the instantaneous values of the two quantities of interest, then divide one by the other. In contrast, measuring a *rate of change* requires a movie: a *series* of instantaneous snapshots. The minimum length of the movie is small, just two frames. You measure the two quantities in one of the frames, then in the other. Take the change in each quantity between the two frames, then form a ratio of those *changes*.
 
-
-
-
 Another meaning of "special" is captured by synonyms: exceptional, extraordinary, unique, important, significant, rare. Although the distinction between a *rate* and a *rate of change* may seem trivial at first glance, the invention of the concept (1600's) and the gradual realization of the many important applications (starting about 1700 and  speeding up over the next century and more) shaped many aspects of the modern world. This is most evident in science, technology, and engineering and the reason that a large fraction of STEM students are *required* to study rates of change and learn to do calculations with them. But it is just as important in economic matters, whether it be theories of how markets and firms work, or business decisions about prices and production.
 
 Even if you have no interest in science, business, or economics, rates of change almost certainly apply to matters of importance to you. Knowing about rates of change, and how they are special, provides a major tool for understanding and making decisions about important matters. Later in this chapter, we'll illustrate using death and taxes. First, though, let's motivate the how and why of rates of change.
 
 ## Taxes on the margins {#sec-on-the-margins}
 
-`r qr_margin_note(
-  "https://bradfordtaxinstitute.com/Endnotes/IRS_Form_1040_1913.pdf",
-  "1913 US Federal tax brackets"
-)`
-
-Income taxes in the US are calculated according to "brackets." Each bracket specifies the tax *rate*, that is the fraction of income that is to be paid as taxes. `r xf("tbl-1913-brackets")` gives the brackets for taxes in 1913, the first year after the 16th Amendment to the US Constitution that empowered Congress to impose income tax. 
+Income taxes in the US are calculated according to "brackets." `r xf("tbl-1913-brackets")` gives the brackets for taxes in 1913, the first year after the 16th Amendment to the US Constitution that empowered Congress to impose income tax. 
 
 <!-- [The Amendment says, "The Congress shall have power to lay and collect taxes on incomes, from whatever source derived, without apportionment among the several States, and without regard to any census or enumeration." Strictly speaking, even before the amendment Congress had the power to tax income. However, the Supreme Court had dictated that any such tax had to be "apportioned," that is, imposed equally based on the population of each state. This was impractical, since *per capita* income differs from state to state.]{.column-margin} -->
 
@@ -49,61 +41,52 @@ $500,000 | 7%
 1913 US Federal tax brackets. Source: [The 1913 1040 form](https://bradfordtaxinstitute.com/Endnotes/IRS_Form_1040_1913.pdf)
 :::
 
+Printing the table in this manner hides an important fact about tax brackets. Each bracket consists of a *range of incomes*. A table that is more explicit about this *range* would look like this:
 
+Bracket | Marginal<br>rate
+--------|-----
+$[0 to 3000]  | 0%
+$[3000 to 20000] | 1%
+$[20000  to 50000] | 2%
+$[50000  to 75000] | 3%
+$[75000  to 100000] | 4%
+$[100000 to 250000] | 5%  
+$[250000 to 500000] | 6%
+$[500000 and up] | 7%
 
+A marginal tax rate is a *rate of change*; it compares a small change in income to the corresponding change in taxes owed. 
 
+Consider an earner in 1913 with an income of $4000. [Using a standard cost-of-living conversion, $4000 in 1913 was equivalent to about $140,000 in the mid-2020s. The $10 payment in 1913 corresponds to about $350 in 2020s money.]{.column-margin} The $4000 total income is spread across *two* of the tax brackets. The first bracket, from zero to $3000, incurs no tax. Better to say, however, that the taxes owed from the first bracket are $0. 
 
+The remainder of the earner's income falls into the *second* bracket. The income in this bracket is taxed at a rate (in 1913) of 1%. The $4000 earner has $1000 of income in the second bracket. That income warrants $10 in taxes bill. 
 
+None of the $4000 earner's income reaches the third or higher brackets, so no tax is owed from any of those. The total tax bill is the sum of the taxes from all eight brackets: $0 + $10 + $0 + $0 + $0 + $0 + $0 + $0 = $10.
 
-Care must be taken in interpreting `r xf("tbl-1913-brackets")`. Despite appearances, it does not say, for instance, that someone earning $3000 must pay 1% (that is, $30) in taxes. The correct interpretation is that the $3K earner pays zero tax.  [Using a standard cost-of-living conversion, $4000 in 1913 was equivalent to about $140,000 in the mid-2020s. The $10 payment in 1913 corresponds to about $44 in 2020s money.]{.column-margin} But on any incremental income amount *above* $3K, the tax rate will be 1%. 
-For instance, imagine a taxpayer who earned $4000. They will pay 0% on the first $3000 and 1% on the next $1000, so a $10 payment in total.
+In 1913, only 1 percent of US households had incomes above $3000. The vast majority of those 1 percent needed only the second bracket, so the accounting formula was simple:
 
-In 1913, only about one-percent of households had an income of $3000 or greater, so taxpayers were a wealthy group of people.
+$0.01 \times (\text{income} - 3000)$
 
-`r xf("fig-1913-1040")` shows lines 7 and 8 from the tax form for 1913. The form is blank, but we have filled in the numbers for a person earning the very large (in 1913) income of $90,000 per year.
+The small number of households with incomes above $20,000 were the only ones who needed to do more complex calculations. They could afford an accountant to do it for them. 
 
-::: {#fig-1913-1040 fig-cap-location="top"}
-
-![](www/1913-brackets-filled-in.png)
-
-Part of the 1913 US income-tax form. It has been filled in as appropriate for a total income of $90,000.
-
-:::
-
-`r xf("fig-1913-1040")` is pretty confusing. There are a lot of numbers filled in. Ironically, even though the income is $90,000, that number does not appear on the form!
-
+In the 2020s, about 60% of households owe income tax. To simplify their calculations, the table for taxes owed is formatted differently. `r xf("fig-2024-tax-table")` shows the format.
 
 ::: {#fig-2024-tax-table}
-<!-- empty figure block. The actual image is included in the aside below. -->
-
-The format used today for a *tax table* converts directly from income to taxes owed.
-:::
-
-::: {.aside}
 ![](www/2024-tax-table2.png){width=2in}
+
+The format used today for a *tax table* converts directly from income to taxes owed. The full table takes up 11 closely-spaced pages even though there are fewer marginal rates than in 1913.
 :::
-
-The 2024 tax table simplifies the calculation by giving a table. You need only look up your income. @fig-2024-tax-table shows the appropriate entry from page 9 (of 11) of the closely-spaced pages. Less arithmetic, but still the income of $90,000 doesn't appear. 
-
-
-A tax rate, as you know, is the fraction of income owed as tax. The tax table (@fig-2024-tax-table) does not indicate the rate, just the tax owed.
-
-
-
-
-The quantities presented in the 1913 form in @fig-1913-1040 are not actually tax rates, although they look like it. In the form, they don't even give a name to those quantities. The correct name is `r xf_definition("marginal tax rates")`. A marginal tax rate is a *rate of change*; it compares a small change in income to the corresponding change in taxes owed. The tax policy expressed on line 8 of the 1913 form is a function: for any level of income, it tells the marginal tax rate for that income.
 
 The advantage of specifying taxes in terms of marginal rates is two-fold. First, just a handful of numbers can convey the entirety of the matter. This is much easier to make sense of than the 11-pages of numbers given in the modern tax tables.
 
-The second advantage is one of fairness, avoiding sharp breaks in the amount of taxes owed. Income $3000, taxes (in 1913) zero. Income $3001, taxes (in 1913) one cent, at least if marginal rates are being used. If the numbers gave overall rate, if it said that people with incomes of $3001 have to pay a tax rate of 1%, their taxes owed would be $30.01. A one-dollar increase in income leads to a $30.01 increase in tax owed. Stated another way, the take home earnings of the person with a gross income of $3000 is $3000. The take-home income for a gross income of $3001 will be $2970.99. Not very fair.
+The second advantage is one of fairness, avoiding sharp breaks in the amount of taxes owed. 1913 income $3000, taxes zero. A jump to an income level of $3001 would incur only one cent in taxes. If, unfairly, the overall tax rate at $3001 were 1%, the taxpayer would owe $30.01. That's a big leap for an increase of only $1 in income.
 
-Author Charles Dickens expressed his concern about a lack of such fairness in the Victorian-era laws about debt. In *David Copperfield*, Mr. Micawber famously stated: 
+Author Charles Dickens (1812-1870)expressed his concern about such a lack of fairness in the Victorian-era laws about debt. In *David Copperfield*, Mr. Micawber famously stated: 
 
-> "*Annual income twenty pounds, annual expenditure nineteen pounds nineteen and six, result happiness. Annual income twenty pounds, annual expenditure twenty pounds ought and six, result misery.*" 
+> *Annual income twenty pounds, annual expenditure nineteen pounds nineteen and six, result happiness. Annual income twenty pounds, annual expenditure twenty pounds ought and six, result misery.*
 
-[A modern reader, used to decimal currency, may find this hard to follow. The difference between "nineteen pounds nineteen (shillings) and six (pence)" and twenty pounds ought and six amounts to 1 shilling out of a total of 400 shllings. That is, one-quarter of a percent in income separates happiness from misery.]{.column-margin}
+[A modern reader, used to decimal currency, may find this hard to follow. The difference between "nineteen pounds nineteen (shillings) and six (pence)" and twenty pounds ought and six amounts to 1 shilling out of a total of 400 shillings. That is, one-quarter of a percent in income separates happiness from misery.]{.column-margin}
 
-The overall principle here is that small differences in input should lead to small differences in output. In mathematical language, this is a principle called `r xf_definition("continuity")`. In terms of the graph of a function, continuity means you can trace the function with a pencil without having to lift it off the table. 
+The overall principle here is that small differences in input should lead to small differences in output. In mathematical language, this is a principle called `r xf_definition("continuity")`. In terms of the graph of a function, continuity means you can trace the function with a pencil without having to lift it off the paper. 
 
 Having dealt with fairness in taxes, it is time to turn to fairness in deaths. First, however, we look at the meaning of "marginal."
 
@@ -117,30 +100,25 @@ In exploring systems whose state changes in time in `r xf("sec-dynamics")`, we c
 
 Economists often speak of `r xf_definition("diminishing marginal returns")`. Consider, for instance, the situation of buying a car. They buyer is spending money and expects to get benefits in return: convenience and transportation services. For this, it suffices to buy the base model of the car. Many people go further, adding a marginal expense to buy an "options package," with, say, heated seats and cruise control. In response to this marginal expense, the buyer anticipates getting a somewhat better car, that is, marginal benefits. But these marginal benefits are typically small in comparison to the benefits provided by the base model of the car. After all, by far the most important benefit of the car is providing transportaion services. When the ratio of the marginal benefits to the marginal expense is smaller than the benefit/cost ratio of the base model, one says that buying car options has *diminishing marginal returns*.
 
-
-
-
 The next section looks at diminishing marginal returns in the context of setting health policy.
 
 ## Competitive allocation {#sec-competitive-allocation}
 
 Many important matters in public and private decision making involve setting priorities. Compelling examples are provided by life-and-death issues. Consider this made-up setting which can illustrate important decision-making principles and is still somewhat realistic:
 
-> There are two innovations in public health care being considered. We will imagine them to be pre-natal clinic and improved cancer treatment, but give them very short names---"natal" and "cancer"---as a reminder that this is a made-up example.
+> Two innovations in public health care being considered. We will imagine them to be pre-natal clinic and improved cancer treatment, but give them very short names---"natal" and "cancer"---as a reminder that this is a made-up example.
 
 > The potential benefits from each innovation play out over the years. The Natal program will cost $5-billion, the cancer program $10-billion. Which one should the investment go to?
 
 Different people can have different, reasonable views. Families of cancer victims will understandably place emphasis on the cancer initiative. People whose interests and lives center on young children might lean toward the natal initiative. Still others will advocate a compromise: split the $10-billion between both initiatives. And, inevitably, there will be another group who ask, "Why limit the budget to $10-billion? Fund both!"
 
-The funding dilemma is an example of a *trade-off*. (`r xf("sec-tradeoffs")`) The new thing in this situation is that both objective functions---lives saved by spending on "natal" versus lives saved by "cancer" spending---are both quantified with the same dimension. [But see the discussion of QALYs below.]{.column-margin} 
+The funding dilemma is an example of a *trade-off*. (`r xf("sec-tradeoffs")`) In the presence of a budget, the trade-off is between Natal and Cancer. But if the budget were unlimited, there would still be a trade-off with other ways---pre-natal care, for instance---to use the funds.
 
-The bald debate between advocates of spending on "natal" versus "cancer" does not point to a resolution. But since the objectives are measured in the same dimension, we do not need to think carefully about the "shadow costs" introduced in `r xf("sec-tradeoffs")`. Instead, it's likely that the dualing advocates have a common goal: maximize the efficiency of the spending. 
-
-Consider briefly what should be the operationalization of the goals of the optimization problem. Perhaps it is obvious that a meaningful operationalization of the positive impact of each initiative would be the *number of lives saved*. Laudable though this be, this operationalization does not capture some important considerations. For instance, does deferring death for one day or one month count equally to deferring death for one year? "Number of lives saved" has dimension [1]. But [T] is also important.
+News reports often measure the effect of an intervention by "lives saved." The sad fact of life, however, is that we cannot avoid death, only delay it.  Does deferring death for one day or one month count equally to deferring death for one year? "Number of lives saved" has dimension [1]. But the total delay in death (dimension [T]) is also important.
 
 A more nuanced operationalization is *quality adjusted life years* (QALYs). The "years" gives QALYs dimension [T].We will measure benefits in QALYs, but the same quantitative principles apply to other measures of benefit. And, since the reader is probably unfamiliar with QALYs, please accept for the purposes of discussion that QALYs are a better match to many people's intuitive values than "lives saved." Here are the (made-up) facts:
 
-> The Natal program will save 500,000 QALYs each year. The Cancer program will save 750,000 QALYs yearly.
+> The Natal program will save 500,000 QALYs. The Cancer program will save 750,000 QALYs.
 
 Here are two quantitative arguments that lead to different outcomes:
 
@@ -151,7 +129,7 @@ Previous examples in this book have pointed out situations where *rates*, as in 
 
 Arguments (a) and (b)---amount vs rate---are not the only way to compare the programs. Let's consider one more useful quantitative perspective: *rate of change*.
 
-In order to use rates of change, we need more information than provided above. We have to imagine that each program could be launched with a lower level of funding or perhaps even a higher level. Each potential level of funding corresponds to a QALY savings. @fig-QALY-vs-cost shows two hypothetical functions: QALYs saved as a function of expenditure for the natal and cancer programs separately.
+To use rates of change, we need more information than provided above. We have to imagine that each program could be launched with a lower level of funding or perhaps even a higher level. Each potential level of funding corresponds to a QALY savings. @fig-QALY-vs-cost shows two hypothetical functions: QALYs saved as a function of expenditure for the natal and cancer programs separately.
 
 ```{r}
 #| label: fig-QALY-vs-cost
@@ -329,11 +307,11 @@ slice_plot(d_cancer(expenditure) ~ expenditure, domain(expenditure=0:15),
 
 ```
 
-Keep in mind the purpose of the analysis: to find out how to allocate the total of $15 billion to Natal and Cancer to make the QALYs saved as large as possible. The information in @fig-qalys-per-dollar is not yet in the form that lets us see the answer we seek. We will have to do some work in order to get an answer that serves our purpose. 
+Keep in mind the purpose of the analysis: to find out how to allocate the total of $15 billion to Natal and Cancer to make the QALYs saved as large as possible. The information in @fig-qalys-per-dollar is not yet in the form that lets us see the answer we seek. We will have to do some work to get an answer that serves our purpose. 
 
 Whenever our expenditure policy corresponds to different rates of change (QALYs per million dollars) for the two policies, we would want to shift money from the program with the lower rate of change to the program with the higher rate of change. When such shifting brings the expenditures to levels where the two rate of changes are equal, no further shifting is called for: the earlier imbalance has been corrected.
 
-To illustrate, we have annotated the graphs with two red lines, both drawn at the level of 75 QALYs per million dollars. For Natal, this rate of change occurs at an expenditure level of about $2 billion. For Cancer, 75 QALYs per million dollars occurs at an expenditure level of about $5.5 billion. Those two values of expenditure are in balance in a very important sense: at those values, there is no reason to swap funds between Natal and Cancer.
+To illustrate, we have annotated the graphs with two red lines, both drawn at the level of 75 QALYs per million dollars. For Natal, this rate of change occurs at an expenditure level of about $2 billion. For Cancer, 75 QALYs per million dollars occurs at an expenditure level of about $5.5 billion. Those two values of expenditure are in balance in a very important sense: those values give no advantage to swap funds between Natal and Cancer or *vice versa*.
 
 ```{r}
 #| label: ch14-r-b333a6fd
@@ -352,13 +330,13 @@ dollars_natal <- function(QALY) {
 q = 40; dollars_cancer(q) + dollars_natal(q)
 ```
 
-Even so, at the $2 billion (Natal) and $6 billion (Cancer) levels we are spending only (!) eight billion dollars. But there is $15 billion available. To find out where the spending is in balance at a total level of $15 billion, we need to do a little work. This is purely mathematical work, so ideally suited to delegate to a computer. But let's follow the process.
+Even so, at the $2 billion (Natal) and $6 billion (Cancer) levels we are spending only (!) eight billion dollars. But we have $15 billion available. To find out where the spending is in balance at a total level of $15 billion, we need to do a little work. This is purely mathematical work, so ideally suited to delegate to a computer. But let's follow the process.
 
 At 75 QALYs per million dollars, we spent only $8 billion. If we spend more, we will be at an operating point with fewer QALYs per million dollars. That sounds bad, but remember that the QALYs per million dollars is a *rate of change*. So long as the rate of change is *positive*, spending more produces more QALYs overall.
 
 In `r xf("sec-dynamics")` explored systems whose state changes in time. There we spoke of the *dynamical function*, that is, the function that gives the *instantaneous* rate of change (with respect to time) of the state quantities. 
 
-Suppose we were to increase spending to bring the system into balance at a level of 50 QALYs per million dollars. This happens at an expenditure level of $6 billion (Natal) and $7 billion (Cancer), so $13 billion in total. Still too little spending, but closer to the target of $15 billion. Evidently, there is more mathematical work to do: keep trying different levels of QALYs per million dollars until we hit upon one that brings us to a total expenditure of $15 billion. Doing so produces the information we need: At a marginal benefit of about 40 QALYs per million dollars, total expenditures are $15 billion, split $7.8 billion for Natal and $7.2 billion for Cancer. Outcome from the spending: 1,313,000 QALYs.
+Suppose we were to increase spending to bring the system into balance at a level of 50 QALYs per million dollars. This happens at an expenditure level of $6 billion (Natal) and $7 billion (Cancer), so $13 billion in total. Still too little spending, but closer to the target of $15 billion. Evidently, we have more mathematical work to do: keep trying different levels of QALYs per million dollars until we hit upon one that brings us to a total expenditure of $15 billion. Doing so produces the information we need: At a marginal benefit of about 40 QALYs per million dollars, total expenditures are $15 billion, split $7.8 billion for Natal and $7.2 billion for Cancer. Outcome from the spending: 1,313,000 QALYs.
 
 Undeniably, reaching the result involves an intricate argument in which a neophyte is likely to get frustrated and make errors. First, we imagined there to be a production function that relates expenditures to QALYs saved, not just the two pairs given originally as facts.
 
@@ -369,11 +347,11 @@ Next, we introduced a new perspective: A spending level is in balance only when 
 
 We then looked at the two production functions, calculating their rates of change at many expenditure input values. Finally, we found expenditure levels totaling $15 billion split between Natal and Cancer in a way that produced an equal marginal benefit for each.
 
-Without spending a single dollar above the $15 billion total expenditure, we have re-allocated spending in a way that increased output from 1,250,000 QALYs to 1,313,000 QALYs. [Of course, the QALYs don't have to go to 18-year olds. 63,000 QALYs might also correspond to saving the lives of 10,000 75-year olds, or 100,000 80-year olds]{.column-margin}That is an increase of 63,000 QALYs with no extra costs. 63,000 QALYs corresponds to saving the lives of 1000 18-year olds, giving each of them 63 extra years of full-quality life. That seems worthwhile d.
+Without spending a single dollar above the $15 billion total expenditure, we have re-allocated spending in a way that increased output from 1,250,000 QALYs to 1,313,000 QALYs. [Of course, the QALYs don't have to go to 18-year olds. 63,000 QALYs might also correspond to saving the lives of 10,000 75-year olds, or 100,000 80-year olds]{.column-margin}That is an increase of 63,000 QALYs with no extra costs. 63,000 QALYs corresponds to saving the lives of 1000 18-year olds, giving each 63 extra years of full-quality life. That seems worthwhile d.
 
 Everyone understands why prospective medical professionals---doctors and nurses---go through difficult years of schooling. It helps them to save lives and increase the quality of life. It is the same thing for quantitative reasoning: a few years of difficult schooling to master an approach to analysis that can save lives and increase the quality of those lives.
 
-It is understandable if the reader is not completely convinced that the analysis described above is correct. Partly, that's because many of the concepts are new. And there are some difficult to believe aspects of the argument. For instance, In determining the best allocation of expenditures, we looked only at marginal benefits, not the total change in QALYs. In `r xf("sec-accumulation")` we will see why the marginal-benefit function has latent in it the critical information about the total change. And in `r xf("sec-moving-past-two-inputs")` we will introduce a few mathematical operations, each of which is pretty simple, that can be used to build processes such as the one by which we figured out the optimal allocation of spending. 
+It is understandable if the reader is not completely convinced that the analysis described above is correct. Partly, that's because many of the concepts are new and partly because it's hard to believe aspects of the argument. For instance, In determining the best allocation of expenditures, we looked only at marginal benefits, not the total change in QALYs. In `r xf("sec-accumulation")` we will see why the marginal-benefit function has latent in it the critical information about the total change. And in `r xf("sec-moving-past-two-inputs")` we will introduce a few mathematical operations, each of which is pretty simple, that can be used to build processes such as the one by which we figured out the optimal allocation of spending. 
 
 ## Differentiation and the derivative {#sec-deriv-at-3}
 
@@ -381,7 +359,7 @@ The *marginal*---or, equivalently, *instantaneous*---rate-of-change functions pl
 
 Let's explore how the derivation is done. For the demonstration, we will use a generic name for a function, say $f()$. The function $f()$ could be just about anything: a core modeling function, a linear combination, product, or pipelining of multiple functions. Data could have been involved in composing the function, for example using linear *regression* or *machine learning*.
 
-It will be handy to have a name for the marginal-change function that we derive from $f()$. There are all sorts of possibilities. Isaac Newton (1643-1727) would have called [Why "would have called?" The mathematical concept of "function" was introduced only some decades after Newton's death. Newton's terminology for what we now call a function was variously "a changing quantity" or "a curve."]{.column-margin} $f()$ the *fluent* and the derived function the *fluxion*, although nobody uses that nomenclature now. Newton's contemporary, Wilhelm Leibniz (1646-1716) described the derived function as "the *ratio of the differentials*." For him, a `r xf_definition("differential")` was just a small *change* in a quantity. The *ratio* involves two quantity: take the small change in one and divide it by the corresponding change in the other. We no longer use the name "ratio of differentials," but it is easy to trace the evolutionary link to "rate of change."
+It will be handy to have a name for the marginal-change function that we derive from $f()$. Isaac Newton (1643-1727) used the word "fluxion," but this was before the modern distinction between a *quantity* and a *function* was developed. Newton's contemporary, Wilhelm Leibniz (1646-1716), described the derived quantity as "the *ratio of the differentials*." For him, a `r xf_definition("differential")` was just a small *change* in a quantity. The *ratio* involves two quantities: take the small change in one and divide it by the corresponding change in the other. We no longer use the name "ratio of differentials," but it is easy to trace the evolutionary link to "rate of change."
 
 The word that used universally today for the kind of function we have in mind, *derived* from a function $f()$, is rather pedestrian: the `r xf_definition("derivative")` of $f()$. The word used to name the *process of calculating* the derivative of $f()$ or any other function is `r xf_definition("differentiation")`. The field that has "differentiation" as a major object is called `r xf_definition("calculus")`.
 
@@ -393,7 +371,7 @@ The nature of a function is that it turns the input into another quantity, the o
 #| label: fig-f-of-t
 #| echo: false
 #| warning: false
-#| fig-cap: "Illustrating the rate of change of the output of the function as the ipnut changes from 3.0 (blue) to 3.2 (red)."
+#| fig-cap: "Illustrating the rate of change of the output of the function as the input changes from 3.0 (blue) to 3.2 (red)."
 raw <- mosaicCalc::doodle_fun(~ t, seed = 937)
 f <- makeFun((raw((t-2.5)*2 ) + 10)/2 ~ t)
 P <- slice_plot(f(t) ~ t, domain(t = 0:5), color = .slice_color.) |>
@@ -473,24 +451,11 @@ Remember that the derivative of a function is itself a function, so think about 
 
 $\partial_x f(x,t)$ and $\partial_t f(x,t)$, being functions themselves, they also can be differentiated with respect to either of their inputs. It would be long-winded to write $\partial_x \partial_x f()$ as the name of the function which is derived with respect to $x$ from $\partial_x f()$. For concision, we write instead $\partial_{xx} f()$. Generically, such derivatives are called `r xf_definition("second derivatives")`. $\partial_x f()$ is the "first derivative of $f()$ with respect to $x$," analogous to the child of $f()$, that is, the first generation of descendents. $\partial_{xx} f()$ is the grandchild of $f()$: the second generation of descendents. $\partial_{xx} f()$ has siblings and cousins such as $\partial_{tt} f()$ and $\partial_{xt} f()$.
 
-There is one everyday situation where second-derivatives can be felt viscerally. Suppose we know where an object (such as a car, plane, or bike) is at any time $t$. That is, position is a function of $t$, which we could call *pos(t)*. The velocity of the object is the derivative of position. The acceleration is the second derivative of position, or, if you prefer, the first derivative of velocity. You can feel acceleration, although we typically label the feeling as "force." Newton's *Second Law of Motion* famously states that force equals mass $\times$ acceleration: $F = m a$.
+Despite the seeming abstractness of second derivatives, they can sometimes be felt viscerally. Suppose we know where an object (such as a car, plane, or bike) is at any time $t$. That is, position is a function of $t$, which we could call *pos(t)*. The velocity of the object is the derivative of position. The acceleration is the second derivative of position, or, if you prefer, the first derivative of velocity. You can feel acceleration, although we typically label the feeling as "force." Newton's *Second Law of Motion* famously states that force equals mass $\times$ acceleration: $F = m a$.
 
-The second derivative can play an important role in many fields outside of physics or mathematics. There is rarely a reason, except in technical work, to consider the third or higher derivatives.
+The second derivative can play an important role in many fields outside of physics or mathematics. Third or higher derivatives, however, are only rarely encountered in practice outside of technical work.
 
-
-::: {.callout-note}
-## Notations for derivatives
-
-The reader who has studied calculus will be familiar with other notations for derivatives. Naturally, the ones that appeared early in the history of calculus became standards, such as Leibniz's notation $\frac{dy}{dx}$ and Newton's dot notation $\dot{y}$, invented in the late 1600s. Unfortunately, these commonly used notations pre-date the modern concept of a function and nothing in the notation hints that the objects are *functions* rather than *quantities*. (The use of $y$, unadorned with the parentheses that are every function's birthright, stems from an algebraic convention learned by beginning students, such as $y = m x + b$, where we would write $y(x) \equiv m x + b$.)
-
-Another standard calculus notation does use a function's name, as in $f'$ for the first derivative of $f()$ with respect to its single input. Second derivatives are denoted $f''$
-
-For functions with a single input, all of the various notations---$\frac{df}{dx}$, $f'$, and $\dot{f}$---have the same meaning as $\partial_x f()$.
-:::
-
-
-
-::: {.callout-note}
+::: {.callout-note icon="false"}
 ## The "Two Cultures"
 
 In 1959, C.P. Snow, a British writer and scientist, proposed a model of what he saw as an increasing split between the sciences and the humanities. He called this the "two cultures." Any observer of the contemporary academic world will be sympathetic to Snow's thesis that science and the humanities operate in mutual incomprehensibility. 
@@ -506,4 +471,12 @@ Students who take a calculus course memorize the derivatives of a handful of fam
 
 In `r xf("sec-moving-past-two-inputs")` we will see another important use for derivatives: performing mathematical tasks such as training large-language AI models.
 
+::: {.callout-note icon="false"}
+## Notations for derivatives
 
+The reader who has studied calculus will be familiar with other notations for derivatives. Naturally, the ones that appeared early in the history of calculus became standards, such as Leibniz's notation $\frac{dy}{dx}$ and Newton's dot notation $\dot{y}$, invented in the late 1600s. Unfortunately, these commonly used notations pre-date the modern concept of a function and nothing in the notation hints that the objects are *functions* rather than *quantities*. (The use of $y$, unadorned with the parentheses that are every function's birthright, stems from an algebraic convention learned by beginning students, such as $y = m x + b$, where we would write $y(x) \equiv m x + b$.)
+
+Another standard calculus notation does use a function's name, as in $f'$ for the first derivative of $f()$ with respect to its single input. Second derivatives are denoted $f''$
+
+For functions with a single input, all of the various notations---$\frac{df}{dx}$, $f'$, and $\dot{f}$---have the same meaning as $\partial_x f()$.
+:::

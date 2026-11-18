@@ -1,0 +1,29 @@
+word: dynamical systems
+for-chapter: 13
+valid:
+  - Systems whose states change over time according to a dynamical rule.
+  - Models of systems that describe how their configurations evolve over time.
+  - Systems characterized by a state, a rule for its change, and an evolving trajectory.
+  - Mathematical descriptions of changing systems, including their states and rates of change.
+  - Systems in which the current state determines how the system changes next.
+invalid:
+  - text: "Systems whose mechanisms physically change shape whenever they are observed."
+    justification: "The chapter notes that a mechanism may stay fixed while its state changes over time."
+  - text: "Collections of quantities whose values never change."
+    justification: "Dynamical systems are specifically about changing states."
+  - text: "A set of equations that maps observations to hypotheses without time or state."
+    justification: "The chapter defines these systems through state change over time."
+  - text: "Any device that contains moving mechanical parts."
+    justification: "Dynamical systems can be mathematical or social models, not only mechanical devices."
+  - text: "A graph showing one fixed relationship between input and output."
+    justification: "A function may form part of a model, but a dynamical system represents state evolution over time."
+  - text: "A probability distribution describing uncertainty about a single value."
+    justification: "That describes uncertainty; a dynamical system models changing state."
+  - text: "Systems with no measurable state variables."
+    justification: "The state is essential: it provides a complete description of the system at an instant."
+  - text: "A process in which the future is chosen randomly, independently of the current state."
+    justification: "In the chapter's framework, the dynamical rule maps each state to its rate of change."
+  - text: "A collection of observations ordered by size rather than by time."
+    justification: "A time series orders state values over time; dynamical systems model the evolving state."
+  - text: "A system that can only be described by a complete historical record."
+    justification: "The state is defined to capture the instantaneous configuration needed by the dynamical rule."

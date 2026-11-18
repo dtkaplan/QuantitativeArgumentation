@@ -52,8 +52,8 @@ Plotting the individual-car likelihood functions requires choosing appropriate r
 #| label: fig-individual-cars
 #| echo: false
 #| layout-ncol: 2
-#| fig.cap: "Individual likelihood functions for several cars based on their mileage and accident status."
-#| fig.subcap:
+#| fig-cap: "Individual likelihood functions for several cars based on their mileage and accident status."
+#| fig-subcap:
 #| - 31,448 miles with no accident
 #| - 78,954 miles with an accident
 #| - 54,365 miles with no accident
@@ -119,7 +119,7 @@ Note that (a) and (b) amount to the same thing. In practice you are starting out
 
 The Bayesian framework has a slot for inserting such before-the-first-data-card knowledge into the analysis. This is called the `r xf_definition("prior")` and reflects what you know *before* looking at the data. The "you" here is important. The experiment aims to convince others, no just yourself, that enough evidence exists for a meaningful conclusion. So the prior should reflect the beliefs of both the skeptic and the enthusiast.
 
-US Supreme Court Justice Ruth Bader Ginsburg had a helpful view about debate. She said, "Fight for the things that you care about, but do it in a way that will lead others to join you." One way to lead others to join you is to acknowledge the possibility that they might be right. In the Bayesian framework, this means broadening your prior to support the views of all (reasonable) people engaged in the debate. You do not have to assign much probability to those views, but you must assign some.
+US Supreme Court Justice Ruth Bader Ginsburg had a helpful view about debate. She said, "Fight for the things that you care about, but do it in a way that will lead others to join you." Acknowledging the possibility that others might be right is a good start for leading others to join you. In the Bayesian framework, this means broadening your prior to support the views of all (reasonable) people engaged in the debate. You do not have to assign much probability to those views, but you must assign some.
 
 Sensible priors should be broad, not narrow minded. This point is not unique to quantitative analysis, but applies to reasoning and debate more generally.
 
@@ -275,7 +275,7 @@ ggplot(Grid, aes(x = x1, y = x2, z = density)) +
   ylab("Latitude (deg)")   
 ```
 
-Anxious to find the ship's crew, one of the Coast Guard stations sends out a search and rescue plane. It flies in a straight line toward the most likely location in `r xf("fig-ship-posterior1")`(b). 
+Anxious to find the ship's crew, one of the Coast Guard stations sends out a search and rescue plane. It flies in a straight line toward the most likely location in `r xf("fig-ship-location")`. 
 
 It can be hard to spot a life raft from a quick-moving plane. Again, based on the plane's course and the Coast Guard's experience they can construct a likelihood for the plane's finding the raft. This is graphed in `r xf("fig-plane-likelihood")`.
 

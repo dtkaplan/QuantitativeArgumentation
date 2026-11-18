@@ -1,0 +1,29 @@
+word: trade-off
+for-chapter: 10
+valid:
+  - A situation in which one person must balance competing objectives.
+  - A choice that improves one goal at the cost of another goal.
+  - A conflict between objectives that requires deciding how much of each to prioritize.
+  - A single decision-maker's exchange between outcomes that cannot all be maximized at once.
+  - A situation where pursuing one objective can mean sacrificing some of another.
+invalid:
+  - text: "A transaction in which two different people exchange goods."
+    justification: "The chapter distinguishes a trade-off as a balance of objectives faced by one party."
+  - text: "A choice that improves every objective without worsening any."
+    justification: "That is a win-win improvement or dominance, not a trade-off."
+  - text: "A situation where there is only one possible objective."
+    justification: "Trade-offs arise because competing objectives must be balanced."
+  - text: "A guarantee that all goals can be combined by direct addition."
+    justification: "Objective outputs may be incommensurate, making direct addition invalid."
+  - text: "The input value producing the greatest output of one objective function."
+    justification: "That is an argmax; trade-off describes tension between goals."
+  - text: "A ratio giving the amount of one objective exchanged for another."
+    justification: "That ratio is a shadow price, which can help quantify a trade-off."
+  - text: "A random variation in the value of one quantity."
+    justification: "That is uncertainty; a trade-off concerns competing objectives and choices."
+  - text: "A decision in which all alternatives have identical outcomes."
+    justification: "If outcomes are identical, there is no competing objective benefit to balance."
+  - text: "A policy that maximizes one objective and ignores all other goals."
+    justification: "A trade-off involves balancing competing objectives, rather than considering only one."
+  - text: "A function that assigns an outcome to each possible choice."
+    justification: "That is an objective function; a trade-off is the conflict among objectives it helps evaluate."

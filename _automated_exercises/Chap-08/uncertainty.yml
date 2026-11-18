@@ -1,0 +1,29 @@
+word: uncertainty
+for-chapter: 8
+valid:
+  - The incomplete knowledge about the value a quantity will have.
+  - The unresolved range of possible values for a quantity.
+  - A description of how unsure we are about a quantity's value.
+  - The variation in a quantity that remains when its exact value is unknown.
+  - A way of representing that a quantity's value is not known precisely.
+invalid:
+  - text: "A guarantee that a quantity will take one exact, known value."
+    justification: "Uncertainty concerns what is not known precisely; a guaranteed exact value leaves no uncertainty."
+  - text: "A fixed relationship that determines one output from specified inputs."
+    justification: "That describes a function relationship; uncertainty concerns incomplete knowledge about a quantity's value."
+  - text: "The unit used to measure a quantity, such as dollars or miles."
+    justification: "Units express how a quantity is measured, not how uncertain its value is."
+  - text: "A number generated at random by a computer."
+    justification: "A random number can represent uncertainty, but uncertainty is the unknown quantity, not the generated number itself."
+  - text: "A statement that all possible values are equally likely."
+    justification: "Equal relative probability is a uniform distribution; uncertainty need not assign equal likelihood to possibilities."
+  - text: "A bell-shaped curve with a center and spread."
+    justification: "That describes a normal distribution, one possible model of uncertainty rather than uncertainty itself."
+  - text: "A quantity's average value across a set of observations."
+    justification: "An average is a mean; it can summarize a distribution but does not by itself describe uncertainty."
+  - text: "The square of a distribution's standard deviation."
+    justification: "That is variance, a measure of spread, not the broader condition of not knowing a quantity's value precisely."
+  - text: "The interval between the lowest and highest values a quantity can possibly take."
+    justification: "A range is one way to express uncertainty; uncertainty itself is not restricted to interval endpoints."
+  - text: "A conclusion that can be drawn only after observing every possible outcome."
+    justification: "The chapter represents uncertainty before all outcomes are known; complete observation would remove much of it."

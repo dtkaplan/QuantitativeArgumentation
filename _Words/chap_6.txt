@@ -10,7 +10,6 @@
 *New*
 
 - algorithm
-- algorithms
 - arg
 - exogenous
 - functions

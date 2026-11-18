@@ -1,0 +1,29 @@
+word: incommensurate
+for-chapter: 10
+valid:
+  - Describing objective outputs measured in different dimensions or units that cannot be directly added.
+  - Not expressed on a common scale, so values cannot be meaningfully combined by addition.
+  - A relation between quantities, such as points and tons, that lack directly comparable units.
+  - Having outputs that cannot be directly aggregated because they measure different things.
+  - Describing objectives whose values require conversion before direct quantitative comparison.
+invalid:
+  - text: "Measured in identical units, making the outputs directly addable."
+    justification: "That describes commensurate quantities; incommensurate outputs lack common units."
+  - text: "Having no numerical value that can be measured."
+    justification: "Incommensurate objectives can have numerical values; their units differ."
+  - text: "A state in which all objective functions have the same maximum."
+    justification: "Incommensurability concerns units and dimensions, not whether maxima coincide."
+  - text: "A relationship where one option improves every objective."
+    justification: "That describes dominance, not the comparability of objective outputs."
+  - text: "A condition in which an objective function has no possible inputs."
+    justification: "An empty input domain is unrelated; incommensurate describes outputs with different units."
+  - text: "A guarantee that two quantities are equal in magnitude."
+    justification: "Incommensurate outputs cannot be directly compared by magnitude because they use different dimensions."
+  - text: "A strategy for choosing the most likely hypothesis."
+    justification: "That is model comparison; incommensurate describes objectives that lack a shared measurement scale."
+  - text: "The property of having no trade-off between objectives."
+    justification: "Incommensurate outputs are one reason direct aggregation is difficult in a trade-off."
+  - text: "A conversion factor that changes one unit into another."
+    justification: "A conversion factor can make quantities commensurate; it is not what incommensurate means."
+  - text: "A quantity divided by another quantity to produce a rate."
+    justification: "That describes a rate; incommensurate refers to outputs that cannot be directly combined."

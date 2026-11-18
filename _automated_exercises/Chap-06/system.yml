@@ -1,0 +1,49 @@
+word: system
+for-chapter: 6
+valid:
+  - A framework or organized structure made up of interconnected elements.
+  - An organized set of dimensions whose elements are connected to one another.
+  - A structure in which relationships among elements can be represented and modeled.
+  - A collection of connected elements that can be studied as an organized whole.
+  - An organized framework whose dimensions may influence one another.
+invalid:
+  - text: |
+      A random collection of unrelated elements with no connections among them.
+    justification: |
+      The chapter defines a system as organized and interconnected, not as unrelated elements.
+  - text: |
+      A single output quantity with no other dimensions or relationships.
+    justification: |
+      A system is an organized framework of interconnected elements, not merely one isolated output.
+  - text: |
+      A procedure for turning function inputs into an output.
+    justification: |
+      That describes an algorithm. A system is the organized structure whose elements and relationships may be modeled.
+  - text: |
+      The name assigned to one of the inputs in a function.
+    justification: |
+      That is an arg. A system is a framework of interconnected elements.
+  - text: |
+      A model dimension that always comes from outside the model.
+    justification: |
+      That describes an exogenous dimension. A system can include both external and internally modeled dimensions.
+  - text: |
+      A mathematical rule that accepts inputs and returns one output.
+    justification: |
+      That describes a function, which can represent one relationship within a system rather than the whole system.
+  - text: |
+      A list of numerical values with no interpretation or relationships.
+    justification: |
+      A system requires organized, interconnected elements; an unrelated list of values does not meet that description.
+  - text: |
+      A claim supported by evidence and a chain of reasoning.
+    justification: |
+      That describes an argument in this book's terminology, not an organized structure of interconnected elements.
+  - text: |
+      A structure in which every element is independent and cannot affect another.
+    justification: |
+      This contradicts the chapter's emphasis on interconnected elements in a system.
+  - text: |
+      A single algorithm that contains every possible model and all its outputs.
+    justification: |
+      An algorithm is a process for calculating an output. A system is an organized framework of interconnected elements.

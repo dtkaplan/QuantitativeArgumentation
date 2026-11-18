@@ -1,0 +1,29 @@
+word: steady growth
+for-chapter: 13
+valid:
+  - Increase at a constant rate, producing equal additions over equal time intervals.
+  - A pattern where the quantity rises linearly because its rate of change stays constant.
+  - Growth like water entering a bathtub at an unchanging flow rate.
+  - A state that increases by the same amount during each equal interval of time.
+  - Growth with a constant rate of change rather than repeated proportional increases.
+invalid:
+  - text: "Growth in which the quantity doubles during every equal time interval."
+    justification: "That is exponential growth; steady growth adds a constant amount per interval."
+  - text: "A quantity that remains unchanged as time passes."
+    justification: "Steady growth is increasing, even though its rate is constant."
+  - text: "A pattern where the rate of increase grows in proportion to the quantity."
+    justification: "That describes exponential growth, not constant-rate steady growth."
+  - text: "A process that adds a different random amount in every interval."
+    justification: "Steady growth has a constant rate, not arbitrary interval-to-interval changes."
+  - text: "The time needed for an amount to double."
+    justification: "That is doubling time; steady growth describes a constant additive rate."
+  - text: "A model for waiting times between randomly occurring events."
+    justification: "That is an exponential distribution; steady growth is a trajectory pattern."
+  - text: "A decline in which the value halves after equal intervals."
+    justification: "That is exponential decay, not steady growth."
+  - text: "A state that changes at a rate determined by its current value."
+    justification: "That is the defining proportional behavior of exponential growth, not steady growth."
+  - text: "A constant value of the state with a positive starting time."
+    justification: "Steady growth means the state increases continuously at a constant rate."
+  - text: "A rule specifying only the system's initial state."
+    justification: "An initial state is a starting value; steady growth describes how the state changes over time."

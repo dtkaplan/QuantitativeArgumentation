@@ -1,0 +1,29 @@
+word: variance
+for-chapter: 8
+valid:
+  - The square of a distribution's standard deviation, used to describe spread.
+  - A measure of dispersion equal to the standard deviation multiplied by itself.
+  - A parameter that expresses spread in squared units rather than the units of the quantity.
+  - The squared counterpart to standard deviation for describing a distribution's spread.
+  - A measure of how broadly values vary, defined as the square of standard deviation.
+invalid:
+  - text: "The square root of standard deviation, describing the center of a distribution."
+    justification: "Variance is the square of standard deviation and describes spread, not center."
+  - text: "The average or central value of a distribution."
+    justification: "The mean describes the center; variance describes spread."
+  - text: "The distance between the smallest and largest possible values."
+    justification: "That is the range, not variance."
+  - text: "A relative probability assigned to one possible outcome."
+    justification: "Relative probability describes an outcome's likelihood; variance summarizes distribution spread."
+  - text: "A parameter that specifies the rate of events in an exponential model."
+    justification: "The exponential rate parameter is not variance."
+  - text: "A measure that must have the same units as the original quantity."
+    justification: "Variance is squared standard deviation, so its units are squared."
+  - text: "The probability that a value falls inside a stated range."
+    justification: "That is an interval probability; variance is a measure of spread."
+  - text: "The number of values drawn during a simulation."
+    justification: "That is the sample size; variance measures how values are dispersed."
+  - text: "A guarantee that all observations lie within a fixed distance of the mean."
+    justification: "Variance summarizes spread but does not set a hard bound on every observation."
+  - text: "The parameter that makes all outcomes equally likely within an interval."
+    justification: "Equal likelihood within an interval describes a uniform distribution, not variance."

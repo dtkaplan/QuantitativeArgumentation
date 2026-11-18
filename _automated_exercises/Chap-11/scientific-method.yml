@@ -1,0 +1,29 @@
+word: scientific method
+for-chapter: 11
+valid:
+  - An iterative process of refining explanations by using insight and evidence.
+  - A way of developing and revising models through observation, testing, and evidence.
+  - A process in which hypotheses are examined against observations and revised as needed.
+  - An approach to investigation that uses evidence to improve explanatory models over time.
+  - A method of building understanding by proposing explanations and evaluating their consequences.
+invalid:
+  - text: "A procedure that accepts the first proposed model without testing it."
+    justification: "The chapter emphasizes iterative refinement based on insight and evidence."
+  - text: "A guarantee that experiments will prove one hypothesis permanently true."
+    justification: "Scientific investigation compares and refines models; evidence does not make a hypothesis permanently certain."
+  - text: "A list of facts that can never be revised."
+    justification: "The scientific method involves using evidence to refine understanding and models."
+  - text: "A technique for calculating a function's maximum output."
+    justification: "That is optimization; the scientific method is a broader process for developing and evaluating explanations."
+  - text: "A way to gather observations without forming or comparing explanations."
+    justification: "The chapter presents hypotheses and models as central to scientific comparison and refinement."
+  - text: "A probability distribution assigning likelihood to every possible outcome."
+    justification: "That describes a probability distribution, which may represent a hypothesis but is not the whole method."
+  - text: "A method that relies only on personal intuition and rejects evidence."
+    justification: "The chapter specifically describes model refinement based on both insight and evidence."
+  - text: "A single experiment that settles every question about a system."
+    justification: "The process is iterative; models are often refined through multiple rounds of investigation."
+  - text: "A way to choose the most popular explanation in a debate."
+    justification: "Scientific models are compared using evidence, not popularity."
+  - text: "A rule for assigning a prior distribution to a hypothesis."
+    justification: "A prior is part of Bayesian analysis; the scientific method is the broader evidence-driven process."

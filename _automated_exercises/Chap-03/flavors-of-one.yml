@@ -1,0 +1,49 @@
+word: flavors of one
+for-chapter: 3
+valid:
+- Dimensionless ratios formed by dividing two exactly equal quantities.
+- Conversion factors that have different unit expressions but are each equal to one.
+- Ratios of equivalent quantities used to change units without changing the amount.
+- Quantities such as inches per meter that equal one because numerator and denominator
+  represent the same length.
+- Unit-bearing forms of one used to convert a quantity from one commensurate unit
+  to another.
+invalid:
+- text: A one-dimensional line on which points represent values of a quantity.
+  justification: This describes number line, not flavors of one. In this chapter,
+    flavors of one refers to dimensionless ratios formed by dividing two exactly equal
+    quantities.
+- text: Change in a primary quantity with respect to one variable while other variables
+    are held constant.
+  justification: This describes partial change, not flavors of one. In this chapter,
+    flavors of one refers to dimensionless ratios formed by dividing two exactly equal
+    quantities.
+- text: A word that signals division, with the following quantity in the denominator.
+  justification: This describes per, not flavors of one. In this chapter, flavors
+    of one refers to dimensionless ratios formed by dividing two exactly equal quantities.
+- text: A location in a space that corresponds to one or more coordinate values.
+  justification: This describes point, not flavors of one. In this chapter, flavors
+    of one refers to dimensionless ratios formed by dividing two exactly equal quantities.
+- text: A number with no unit designation, such as seven or pi.
+  justification: This describes pure number, not flavors of one. In this chapter,
+    flavors of one refers to dimensionless ratios formed by dividing two exactly equal
+    quantities.
+- text: A standardized measure consisting of a pure number and a unit, optionally
+    with a descriptor.
+  justification: This describes quantity, not flavors of one. In this chapter, flavors
+    of one refers to dimensionless ratios formed by dividing two exactly equal quantities.
+- text: The International System of Units, the primary official system for defining
+    units.
+  justification: This describes SI, not flavors of one. In this chapter, flavors of
+    one refers to dimensionless ratios formed by dividing two exactly equal quantities.
+- text: A collection of quantities whose values identify locations within it.
+  justification: This describes space, not flavors of one. In this chapter, flavors
+    of one refers to dimensionless ratios formed by dividing two exactly equal quantities.
+- text: Standardized measures that specify how much of a quantity is present.
+  justification: This describes units, not flavors of one. In this chapter, flavors
+    of one refers to dimensionless ratios formed by dividing two exactly equal quantities.
+- text: A phrase identifying the context-setting quantity against which a change is
+    examined.
+  justification: This describes with respect to, not flavors of one. In this chapter,
+    flavors of one refers to dimensionless ratios formed by dividing two exactly equal
+    quantities.

@@ -1,0 +1,29 @@
+word: bayesian
+for-chapter: 8
+valid:
+  - An approach to inference that uses distributions to express and update beliefs about hypotheses.
+  - A framework in which probability distributions represent knowledge and uncertainty about the world.
+  - A perspective on inference that combines prior knowledge with evidence from observations.
+  - A method of reasoning that updates a probability distribution as data arrive.
+  - An approach that uses probability distributions to support uncertainty assessment and decisions.
+invalid:
+  - text: "A method that forbids using any knowledge formed before collecting data."
+    justification: "Bayesian inference can represent pre-data knowledge with a prior distribution."
+  - text: "A school of thought that treats every hypothesis as simply true or false."
+    justification: "The chapter describes Bayesian reasoning in terms of distributions over hypotheses, not only binary verdicts."
+  - text: "A rule stating that all possible outcomes must have equal probability."
+    justification: "Bayesian distributions need not be uniform; they can assign different relative probabilities to outcomes."
+  - text: "A technique for calculating only the arithmetic mean of a sample."
+    justification: "Bayesian inference concerns updating distributions and reasoning from evidence, not just calculating a mean."
+  - text: "A probability distribution that always has a bell-shaped curve."
+    justification: "Bayesian describes an inference framework; it does not require the normal distribution."
+  - text: "A computer routine that generates unpredictable values without a model."
+    justification: "Random number generation can support Bayesian calculations, but it is not the meaning of Bayesian."
+  - text: "The claim that data alone determine a conclusion without assumptions."
+    justification: "Bayesian analysis explicitly combines data with assumptions or prior knowledge."
+  - text: "A way to turn a hypothesis into a guaranteed fact after one observation."
+    justification: "Evidence updates support for hypotheses; it does not guarantee that a hypothesis is true."
+  - text: "A distribution describing only values observed in the past."
+    justification: "Bayesian distributions can represent uncertainty about hypotheses and quantities, including unobserved possibilities."
+  - text: "The frequentist framework under a different name."
+    justification: "The chapter distinguishes Bayesian and Frequentist frameworks as different approaches to inference."

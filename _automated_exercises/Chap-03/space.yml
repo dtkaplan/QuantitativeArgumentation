@@ -1,0 +1,49 @@
+word: space
+for-chapter: 3
+valid:
+- A collection of quantities whose values identify locations within it.
+- A multidimensional representation in which each point corresponds to a set of quantity
+  values.
+- A set of one or more quantities considered together as possible positions.
+- A mathematical setting where locations represent combinations of values.
+- A framework of quantities, such as a number line or coordinate plane, used to represent
+  states.
+invalid:
+- text: Standardized measures that specify how much of a quantity is present.
+  justification: This describes units, not space. In this chapter, space refers to
+    a collection of quantities whose values identify locations within it.
+- text: A phrase identifying the context-setting quantity against which a change is
+    examined.
+  justification: This describes with respect to, not space. In this chapter, space
+    refers to a collection of quantities whose values identify locations within it.
+- text: A base dimension used for monetary value, whose meaning depends on place and
+    time.
+  justification: This describes worth, not space. In this chapter, space refers to
+    a collection of quantities whose values identify locations within it.
+- text: Rates formed by arithmetic combinations of other rates.
+  justification: This describes compound rates, not space. In this chapter, space
+    refers to a collection of quantities whose values identify locations within it.
+- text: A ratio of two quantities where division expresses a relationship between
+    their underlying dimensions.
+  justification: This describes rate, not space. In this chapter, space refers to
+    a collection of quantities whose values identify locations within it.
+- text: The change in a primary quantity divided by the corresponding change in a
+    context-setting quantity.
+  justification: This describes rate of change, not space. In this chapter, space
+    refers to a collection of quantities whose values identify locations within it.
+- text: A number format that condenses scientific notation into a single magnitude
+    value.
+  justification: This describes logarithm, not space. In this chapter, space refers
+    to a collection of quantities whose values identify locations within it.
+- text: A measure of the size of a number, closely related to its exponent in scientific
+    notation.
+  justification: This describes magnitude, not space. In this chapter, space refers
+    to a collection of quantities whose values identify locations within it.
+- text: A factor-of-ten scale used to describe how much larger or smaller one number
+    is than another.
+  justification: This describes order of magnitude, not space. In this chapter, space
+    refers to a collection of quantities whose values identify locations within it.
+- text: A number format that expresses a value as a mantissa multiplied by a power
+    of ten.
+  justification: This describes scientific notation, not space. In this chapter, space
+    refers to a collection of quantities whose values identify locations within it.

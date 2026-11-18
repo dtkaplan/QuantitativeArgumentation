@@ -1,0 +1,29 @@
+word: gradient
+for-chapter: 16
+valid:
+  - A vector combining a function's rates of change in its input directions.
+  - The direction and amount of steepest increase in a function's output at an input location.
+  - A vector of partial rates of change that points uphill in the function's input space.
+  - A local summary of how output changes with each input, pointing toward greatest increase.
+  - The vector formed from a function's derivatives with respect to its inputs.
+invalid:
+  - text: "The function's output value at its highest point."
+    justification: "The gradient is a vector of local rates of change, not the maximum output."
+  - text: "A single rate of change that must be the same in every input direction."
+    justification: "A multi-input function has a rate of change for each direction; the gradient combines them."
+  - text: "The path a system follows after its initial state is chosen."
+    justification: "That is a trajectory; the gradient points uphill locally in the function's input space."
+  - text: "A vector pointing in the direction of steepest decrease."
+    justification: "The gradient points toward steepest increase; its negative points downhill."
+  - text: "A measure of the angle between two data vectors."
+    justification: "Alignment measures the angle between vectors; the gradient combines function rates of change."
+  - text: "A function that maps a state to its time derivative."
+    justification: "That is a dynamical rule; a gradient is a vector of input-direction rates for a function."
+  - text: "The total accumulated change in a function over its input domain."
+    justification: "Accumulation sums marginal changes; the gradient gives local direction and amount of increase."
+  - text: "A scalar that measures how long a vector is."
+    justification: "Vector length is a magnitude; the gradient is a vector of rates of change."
+  - text: "A plane containing every possible input to a function."
+    justification: "A plane is a geometric subspace; the gradient is a vector defined at an input location."
+  - text: "A random direction selected without evaluating the function."
+    justification: "The gradient is calculated from rates of change and points in the steepest uphill direction."

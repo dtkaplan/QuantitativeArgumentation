@@ -1,0 +1,51 @@
+word: argumentation
+for-chapter: 1
+valid:
+- The process of constructing good arguments from evidence and reasoning.
+- Using reasons and evidence to support a claim and guide decisions.
+- A way of connecting facts, beliefs, and assumptions to a conclusion.
+- The practice of building arguments that can support useful debate and action.
+- Reasoned support for claims, aimed at making informed decisions.
+invalid:
+- text: Reasoning that applies explicit rules whose correct application yields certain
+    conclusions.
+  justification: This describes formal reasoning, not argumentation. In this chapter,
+    argumentation refers to the process of constructing good arguments from evidence
+    and reasoning.
+- text: The facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+  justification: This describes givens, not argumentation. In this chapter, argumentation
+    refers to the process of constructing good arguments from evidence and reasoning.
+- text: Fast, broadly applicable reasoning that uses useful but fallible rules of
+    thumb.
+  justification: This describes heuristic reasoning, not argumentation. In this chapter,
+    argumentation refers to the process of constructing good arguments from evidence
+    and reasoning.
+- text: A machine-learning system that uses patterns and alignments in text to generate
+    language.
+  justification: This describes Large language model (LLM), not argumentation. In
+    this chapter, argumentation refers to the process of constructing good arguments
+    from evidence and reasoning.
+- text: Representations of items, processes, or settings that are easier to use than
+    the reality.
+  justification: This describes models, not argumentation. In this chapter, argumentation
+    refers to the process of constructing good arguments from evidence and reasoning.
+- text: Models built from mathematical components to support reasoning about real-world
+    situations.
+  justification: This describes quantitative models, not argumentation. In this chapter,
+    argumentation refers to the process of constructing good arguments from evidence
+    and reasoning.
+- text: An epidemic model that tracks susceptible, infective, and recovered people
+    over time.
+  justification: This describes SIR model, not argumentation. In this chapter, argumentation
+    refers to the process of constructing good arguments from evidence and reasoning.
+- text: A highlighted term whose meaning is specifically defined for use in the book.
+  justification: This describes word or phrase, not argumentation. In this chapter,
+    argumentation refers to the process of constructing good arguments from evidence
+    and reasoning.
+- text: Recorded facts, findings, and measurements.
+  justification: This describes data, not argumentation. In this chapter, argumentation
+    refers to the process of constructing good arguments from evidence and reasoning.
+- text: A rectangular array of data organized into rows and columns.
+  justification: This describes data frame, not argumentation. In this chapter, argumentation
+    refers to the process of constructing good arguments from evidence and reasoning.

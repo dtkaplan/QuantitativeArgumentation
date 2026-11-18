@@ -1,0 +1,49 @@
+word: exogenous
+for-chapter: 6
+valid:
+  - Describes a dimension that is taken as given from outside a model.
+  - Coming from outside the model rather than being produced within it.
+  - A label for model inputs whose values are treated as external givens.
+  - Refers to a dimension represented by a round-cornered box in the chapter's diagrams.
+  - Describes a model dimension that the model does not itself calculate.
+invalid:
+  - text: |
+      A dimension produced inside the model by one of its functions.
+    justification: |
+      That describes an endogenous dimension. Exogenous dimensions are taken as given from outside the model.
+  - text: |
+      A process that turns a function's inputs into its output.
+    justification: |
+      That is an algorithm. Exogenous describes where a dimension comes from relative to the model.
+  - text: |
+      The name assigned to an input in a function definition.
+    justification: |
+      That is an arg. Exogenous describes a dimension treated as coming from outside a model.
+  - text: |
+      A dimension that must always be the output of every function in a model.
+    justification: |
+      Exogenous dimensions are given from outside; they are not defined by always being function outputs.
+  - text: |
+      A dimension that is excluded from a model because it has no effect on anything.
+    justification: |
+      Exogenous means taken as given from outside the model, not irrelevant or absent from the model.
+  - text: |
+      A value that comes from inside a model and is calculated by the model.
+    justification: |
+      This reverses the definition. A value produced within the model is endogenous, not exogenous.
+  - text: |
+      A complete operational description for calculating a function's output.
+    justification: |
+      That is an algorithm. Exogenous identifies a dimension's relation to the model boundary.
+  - text: |
+      The numerical result displayed after a function is evaluated.
+    justification: |
+      That is a function's output. Exogenous describes a dimension treated as an external given.
+  - text: |
+      A system made up of interconnected elements.
+    justification: |
+      That describes a system. Exogenous indicates that a dimension is taken from outside a model.
+  - text: |
+      A dimension that has no value until the model has calculated it.
+    justification: |
+      A dimension calculated by the model is endogenous. Exogenous dimensions are treated as given.

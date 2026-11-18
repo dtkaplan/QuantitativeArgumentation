@@ -1,0 +1,53 @@
+word: models
+for-chapter: 1
+valid:
+- Representations of items, processes, or settings that are easier to use than the
+  reality.
+- Simplified representations built to help people understand, test, or make decisions
+  about something.
+- Substitutes for real-world situations that can be examined or modified more conveniently.
+- Representations used to reason about a real-world item, process, or setting.
+- Constructs that stand in for reality and help answer questions about it.
+invalid:
+- text: Models built from mathematical components to support reasoning about real-world
+    situations.
+  justification: This describes quantitative models, not models. In this chapter,
+    models refers to representations of items, processes, or settings that are easier
+    to use than the reality.
+- text: An epidemic model that tracks susceptible, infective, and recovered people
+    over time.
+  justification: This describes SIR model, not models. In this chapter, models refers
+    to representations of items, processes, or settings that are easier to use than
+    the reality.
+- text: A highlighted term whose meaning is specifically defined for use in the book.
+  justification: This describes word or phrase, not models. In this chapter, models
+    refers to representations of items, processes, or settings that are easier to
+    use than the reality.
+- text: Recorded facts, findings, and measurements.
+  justification: This describes data, not models. In this chapter, models refers to
+    representations of items, processes, or settings that are easier to use than the
+    reality.
+- text: A rectangular array of data organized into rows and columns.
+  justification: This describes data frame, not models. In this chapter, models refers
+    to representations of items, processes, or settings that are easier to use than
+    the reality.
+- text: An aspect, property, or characteristic of an object or system.
+  justification: This describes dimension, not models. In this chapter, models refers
+    to representations of items, processes, or settings that are easier to use than
+    the reality.
+- text: The kind of object represented by every specimen in a data frame.
+  justification: This describes object type, not models. In this chapter, models refers
+    to representations of items, processes, or settings that are easier to use than
+    the reality.
+- text: A procedure for translating a dimension into a measurable quantity.
+  justification: This describes operationalization, not models. In this chapter, models
+    refers to representations of items, processes, or settings that are easier to
+    use than the reality.
+- text: A subset of specimens selected from a larger population for study.
+  justification: This describes sample, not models. In this chapter, models refers
+    to representations of items, processes, or settings that are easier to use than
+    the reality.
+- text: One individual object or event represented by a row in a data frame.
+  justification: This describes specimen, not models. In this chapter, models refers
+    to representations of items, processes, or settings that are easier to use than
+    the reality.

@@ -1,0 +1,29 @@
+word: margin
+for-chapter: 14
+valid:
+  - The edge or current level of a quantity at which a small additional change is considered.
+  - The boundary point where an incremental change is applied.
+  - A quantity's current edge, used to describe a small addition or marginal effect.
+  - The point at which the next small increment of income, spending, or another input occurs.
+  - The current level of an input viewed as the starting edge for measuring an additional change.
+invalid:
+  - text: "The average level of a quantity across all observations."
+    justification: "The margin is the current edge or level, not an average across observations."
+  - text: "A large change measured across the entire range of possible inputs."
+    justification: "Marginal reasoning concerns a small increment at the current edge."
+  - text: "The total amount accumulated from the beginning of a process."
+    justification: "A total is accumulated; the margin refers to the current boundary for an incremental change."
+  - text: "The difference between two objective functions with incompatible units."
+    justification: "Incommensurability concerns units; margin refers to the edge of a quantity."
+  - text: "A blank space printed around the text of a page only."
+    justification: "The chapter uses the broader sense of an edge or boundary, especially for marginal quantities."
+  - text: "A rate that applies to every unit of a quantity equally."
+    justification: "A marginal rate applies to a small increment at the current edge, not necessarily to all prior units."
+  - text: "The maximum output of a function."
+    justification: "A maximum is an output value; margin is the current level where a small increment is considered."
+  - text: "The point where a function's derivative equals zero."
+    justification: "A zero derivative may mark a stationary point; margin means the edge at which a small change is assessed."
+  - text: "A guarantee that the next unit will have the same effect as the previous one."
+    justification: "Marginal effects can vary with the current level; the margin identifies where the next increment is considered."
+  - text: "A function's input domain as a whole."
+    justification: "The domain contains all possible inputs; the margin is the current edge or level under consideration."

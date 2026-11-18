@@ -79,4 +79,38 @@ Chap-12-bayes.qmd,364,"It may sound odd to calculate a prior by assuming a prior
 Chap-12-bayes.qmd,450,"It can be unsettling at first to express the success rate as a distribution rather than a single number.","Expressing the success rate as a distribution rather than a single number can be unsettling.","Use a direct gerund subject."
 Chap-12-bayes.qmd,452,"The Pentagon's claim of 100% reliability does indeed find some support from the posterior distribution.","The posterior gives some support to the Pentagon's claim of 100% reliability.","Replace nominal construction with a direct verb."
 
+Updated todo list
+
+I’ll scan the chapter for recurring wordy patterns, then make focused edits that preserve the instructional meaning and voice. I’ll start with the chapter text and nearby project guidance so I can distinguish genuine padding from deliberate explanation.
+
+Read memory
+
+Read , lines 1 to 240
+
+The first section has clear copyediting opportunities beyond the two examples: repeated “in order to,” padded transitions, and several “there is/it is” constructions. I’m checking the remainder and any chapter-specific editing guidance before deciding which instances can be tightened without changing the technical distinctions.
+
+Searched for files matching `**/AGENTS.md`, no matches
+
+Searched for files matching `**/*instructions*.md`, no matches
+
+Read , lines 241 to 268
+
+I’ve got the whole chapter now. The cleanest test for each candidate is whether a shorter subject-and-verb phrasing preserves the same claim; I’m checking the project’s review notes for any house style that would affect those choices.
+
+Read 
+
+Searched for regex `in order to|in the case of|there (is|are)|it is|the fact that|in this situation|in terms of|the purpose of|in which|a kind of|one of the|for example|for instance|we can|what we can say|there is the possibility` (`**/Chap-10-tradeoffs.qmd`), 26 results
+
+I found several recurring constructions worth tightening. The most useful general patterns are **“there is/are” openings**, **“in order to”**, **“is a topic/tool that…”**, **“the purpose of…”**, and repeated setup phrases such as **“another way to…”**. I’d treat these as editing cues, not rules: the chapter’s conversational “we can” and deliberate repetition sometimes help teach the reasoning.
+
+- **“There are…” → direct subject:** “There are many technical situations in which optimization techniques are useful” → “Optimization is useful in many technical settings.” (`Chap-10-tradeoffs.qmd:21`)
+- **“in order to” → “to”:** “buy a cheaper lunch in order to have money for a movie” → “buy a cheaper lunch to afford a movie.” (`Chap-10-tradeoffs.qmd:12`, `Chap-10-tradeoffs.qmd:233`)
+- **“is a topic/tool that…” → name the action:** “Optimization is a mathematical topic that deals with finding…” → “Optimization is the mathematical search for…”; “An objective function is a tool that allows systematic comparison…” → “An objective function systematically compares…” (`Chap-10-tradeoffs.qmd:21`, `Chap-10-tradeoffs.qmd:25`)
+- **“can be seen as” → direct statement:** “apartment hunting can be seen as an optimization problem” → “apartment hunting is an optimization problem.” (`Chap-10-tradeoffs.qmd:29`)
+- **“the purpose of…” → direct verb:** “Often, the purpose of finding an argmax is to guide a decision or choice” → “An argmax often guides a decision.” (`Chap-10-tradeoffs.qmd:91`)
+- **“produces as output” → “returns”:** “takes an automobile’s speed as input and produces as output the time…” → “takes an automobile’s speed as input and returns the time…” (`Chap-10-tradeoffs.qmd:93`)
+- **“For easier comparison…” → active voice:** “For easier comparison between the two functions, they have been overlaid…” → “We overlay the functions to compare them…” (`Chap-10-tradeoffs.qmd:151`)
+- **“Let’s switch to…” → state what the next section does:** “Let’s switch to another graphical format to illustrate the trade-off” → “A second graph illustrates the trade-off.” (`Chap-10-tradeoffs.qmd:196`)
+- **“In order to…” → “To…”:** “In order to claim that one … is better…” → “To claim that one … is better…” (`Chap-10-tradeoffs.qmd:233`)
+- **“Another way to say this is that…” → “In other words…” or a direct claim:** “Another way to say this is that there is a *price* for Score in terms of Savings” → “In other words, Score has a price measured in Savings.” (`Chap-10-tradeoffs.qmd:248`)
 

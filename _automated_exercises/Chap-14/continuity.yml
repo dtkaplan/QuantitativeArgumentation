@@ -1,0 +1,29 @@
+word: continuity
+for-chapter: 14
+valid:
+  - The property that small input changes produce small output changes.
+  - A smooth connection in which a function's output does not jump abruptly as input changes.
+  - A function property often pictured as tracing its graph without lifting a pencil.
+  - The absence of abrupt output jumps in response to small changes in input.
+  - A relationship where nearby inputs lead to nearby outputs.
+invalid:
+  - text: "The property that every input produces the same output."
+    justification: "A continuous function can vary; continuity means small input changes cause small output changes."
+  - text: "A guarantee that a function's output is always increasing."
+    justification: "Continuity concerns jumps, not whether the function increases or decreases."
+  - text: "A property requiring a function's graph to be a straight line."
+    justification: "Continuous graphs can be curved; straightness is not required."
+  - text: "A function with a sudden jump whenever its input crosses a threshold."
+    justification: "A jump violates continuity at that point."
+  - text: "A measure of the spread of values around the mean."
+    justification: "That describes standard deviation; continuity is a property of a function."
+  - text: "The process of calculating the derivative of a function."
+    justification: "That is differentiation; continuity describes how outputs respond to nearby inputs."
+  - text: "A rule stating that small output changes must cause small input changes."
+    justification: "The chapter describes continuity in the forward direction: small input changes lead to small output changes."
+  - text: "A condition that can only apply to functions of time."
+    justification: "Continuity applies to functions with many kinds of inputs, including income or expenditure."
+  - text: "The total amount accumulated under a function's graph."
+    justification: "That concerns accumulation; continuity is about the behavior of output under small input changes."
+  - text: "A function that has no defined values at any input."
+    justification: "A continuous function is defined across the relevant region without abrupt jumps."

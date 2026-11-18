@@ -1,0 +1,47 @@
+word: operationalization
+for-chapter: 2
+valid:
+- A procedure for translating a dimension into a measurable quantity.
+- The method used to measure or quantify a characteristic of a system.
+- A defined way to turn an abstract dimension, such as comfort, into a quantity.
+- A measurement process that gives a dimension a usable quantitative representation.
+- The choice of how a characteristic will be measured for a particular purpose.
+invalid:
+- text: A subset of specimens selected from a larger population for study.
+  justification: This describes sample, not operationalization. In this chapter, operationalization
+    refers to a procedure for translating a dimension into a measurable quantity.
+- text: One individual object or event represented by a row in a data frame.
+  justification: This describes specimen, not operationalization. In this chapter,
+    operationalization refers to a procedure for translating a dimension into a measurable
+    quantity.
+- text: The entry at the intersection of one specimen and one variable in a data frame.
+  justification: This describes value, not operationalization. In this chapter, operationalization
+    refers to a procedure for translating a dimension into a measurable quantity.
+- text: A column in a data frame that records one property across its specimens.
+  justification: This describes variable, not operationalization. In this chapter,
+    operationalization refers to a procedure for translating a dimension into a measurable
+    quantity.
+- text: Examining a system by breaking it into contributing components.
+  justification: This describes analysis, not operationalization. In this chapter,
+    operationalization refers to a procedure for translating a dimension into a measurable
+    quantity.
+- text: Fundamental dimensions from which derived dimensions are formed.
+  justification: This describes base dimensions, not operationalization. In this chapter,
+    operationalization refers to a procedure for translating a dimension into a measurable
+    quantity.
+- text: Fundamental SI units that are not defined in terms of one another.
+  justification: This describes base units, not operationalization. In this chapter,
+    operationalization refers to a procedure for translating a dimension into a measurable
+    quantity.
+- text: A unit for counting people, from the Latin word for head.
+  justification: This describes capita, not operationalization. In this chapter, operationalization
+    refers to a procedure for translating a dimension into a measurable quantity.
+- text: Accounting for other variables while examining a relationship of interest.
+  justification: This describes controlling for, not operationalization. In this chapter,
+    operationalization refers to a procedure for translating a dimension into a measurable
+    quantity.
+- text: A dimensionless ratio of equal quantities used to convert between commensurate
+    units.
+  justification: This describes conversion factor, not operationalization. In this
+    chapter, operationalization refers to a procedure for translating a dimension
+    into a measurable quantity.

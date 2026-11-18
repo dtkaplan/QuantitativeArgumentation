@@ -1,0 +1,16 @@
+/* styles.css */
+.callout.callout-note.callout-style-default {
+  border-left-color: #CC79A7;
+}
+
+.callout.callout-note.callout-style-default > .callout-header {
+  background-color: #E6BCD3
+}
+
+.callout.callout-tip.callout-style-default {
+  border-left-color: #E69F00;
+}
+
+.callout.callout-tip.callout-style-default > .callout-header {
+  background-color: #F3CF80
+}

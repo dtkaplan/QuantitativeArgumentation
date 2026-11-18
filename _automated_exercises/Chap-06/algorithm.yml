@@ -1,0 +1,49 @@
+word: algorithm
+for-chapter: 6
+valid:
+  - A complete operational description of the process that turns a function's inputs into its output.
+  - A sequence of steps for calculating a function's output from given inputs.
+  - An explicit procedure that can be followed to calculate an output for specified inputs.
+  - The ordered operations a function applies to its inputs to determine its output.
+  - Instructions that describe how to transform a function's input values into an output.
+invalid:
+  - text: |
+      The names assigned to a function's inputs and output, without describing how the inputs produce the output.
+    justification: |
+      This describes a function's interface, not the operational steps that produce its output.
+  - text: |
+      A collection of possible outputs chosen in advance, regardless of the values supplied as inputs.
+    justification: |
+      An algorithm is a process applied to inputs, not a list of predetermined outputs.
+  - text: |
+      A function's name, such as heat_index(), with no steps for calculating its output.
+    justification: |
+      A function name identifies the function; the algorithm describes the process it follows.
+  - text: |
+      A single remembered result, such as sin(pi) = 0, that replaces the process for every possible input.
+    justification: |
+      A memorized input-output pair gives only one result. An algorithm specifies how to find outputs for inputs more generally.
+  - text: |
+      A procedure that takes the function's output as input and produces the original inputs.
+    justification: |
+      This reverses the direction described in the chapter: an algorithm turns the inputs into the output.
+  - text: |
+      The set of dimensions treated as given from outside a model.
+    justification: |
+      Those are exogenous dimensions. An algorithm is the operational process for producing a function's output from its inputs.
+  - text: |
+      The act of supplying values to a function and running it once.
+    justification: |
+      Supplying values and running a function is evaluating or executing it. The algorithm is the process the function follows.
+  - text: |
+      A method for assigning numerical measurements to a real-world dimension, without specifying a function's input-to-output process.
+    justification: |
+      This describes operationalization. An algorithm specifies the steps a function uses to turn inputs into an output.
+  - text: |
+      A claim supported by evidence and a chain of reasoning.
+    justification: |
+      That is an argument in this book's terminology. An algorithm is a process made up of steps for calculating a function's output.
+  - text: |
+      A label for the output quantity, with no instructions for deriving it from the inputs.
+    justification: |
+      Naming the output does not describe the process. The algorithm must specify how the inputs are used to produce that output.

@@ -1,0 +1,53 @@
+word: quantitative models
+for-chapter: 1
+valid:
+- Models built from mathematical components to support reasoning about real-world
+  situations.
+- Numerical representations that bridge informal reasoning and formal calculation.
+- Models that use quantities and mathematical relationships to represent a situation.
+- Representations that make real-world questions accessible to calculation and formal
+  reasoning.
+- Mathematical models used to strengthen arguments and guide decisions about real
+  systems.
+invalid:
+- text: An epidemic model that tracks susceptible, infective, and recovered people
+    over time.
+  justification: This describes SIR model, not quantitative models. In this chapter,
+    quantitative models refers to models built from mathematical components to support
+    reasoning about real-world situations.
+- text: A highlighted term whose meaning is specifically defined for use in the book.
+  justification: This describes word or phrase, not quantitative models. In this chapter,
+    quantitative models refers to models built from mathematical components to support
+    reasoning about real-world situations.
+- text: Recorded facts, findings, and measurements.
+  justification: This describes data, not quantitative models. In this chapter, quantitative
+    models refers to models built from mathematical components to support reasoning
+    about real-world situations.
+- text: A rectangular array of data organized into rows and columns.
+  justification: This describes data frame, not quantitative models. In this chapter,
+    quantitative models refers to models built from mathematical components to support
+    reasoning about real-world situations.
+- text: An aspect, property, or characteristic of an object or system.
+  justification: This describes dimension, not quantitative models. In this chapter,
+    quantitative models refers to models built from mathematical components to support
+    reasoning about real-world situations.
+- text: The kind of object represented by every specimen in a data frame.
+  justification: This describes object type, not quantitative models. In this chapter,
+    quantitative models refers to models built from mathematical components to support
+    reasoning about real-world situations.
+- text: A procedure for translating a dimension into a measurable quantity.
+  justification: This describes operationalization, not quantitative models. In this
+    chapter, quantitative models refers to models built from mathematical components
+    to support reasoning about real-world situations.
+- text: A subset of specimens selected from a larger population for study.
+  justification: This describes sample, not quantitative models. In this chapter,
+    quantitative models refers to models built from mathematical components to support
+    reasoning about real-world situations.
+- text: One individual object or event represented by a row in a data frame.
+  justification: This describes specimen, not quantitative models. In this chapter,
+    quantitative models refers to models built from mathematical components to support
+    reasoning about real-world situations.
+- text: The entry at the intersection of one specimen and one variable in a data frame.
+  justification: This describes value, not quantitative models. In this chapter, quantitative
+    models refers to models built from mathematical components to support reasoning
+    about real-world situations.

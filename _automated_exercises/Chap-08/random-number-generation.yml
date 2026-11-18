@@ -1,0 +1,29 @@
+word: random number generation
+for-chapter: 8
+valid:
+  - Producing values at random according to a specified probability distribution.
+  - A computational process for drawing likely values from a probability model.
+  - Generating random inputs, with values more likely when the distribution assigns higher relative probability.
+  - Using a computer to sample possible values from a distribution.
+  - A method for obtaining random values that reflect a model of uncertainty.
+invalid:
+  - text: "Choosing the single most likely value from a distribution every time."
+    justification: "Random generation can produce many possible values; it does not always return only the most likely one."
+  - text: "Listing every possible value in increasing order."
+    justification: "Generation produces sampled values; it does not enumerate or sort the whole number line."
+  - text: "Assigning a probability model to every possible value."
+    justification: "That describes constructing a probability distribution; generation draws values from such a distribution."
+  - text: "Calculating the average and standard deviation of observed data."
+    justification: "Those are data summaries, not the process of generating random values."
+  - text: "Producing values that are all equally likely regardless of the model."
+    justification: "Generated values should reflect the chosen distribution, which need not be uniform."
+  - text: "A guarantee that the next generated value will match the real-world quantity."
+    justification: "Random draws represent possibilities under a model; they are not guaranteed forecasts."
+  - text: "A method for converting an output back into its original inputs."
+    justification: "That reverses a function; random number generation samples inputs or outcomes from a distribution."
+  - text: "An operation that removes uncertainty by observing every possible outcome."
+    justification: "Generation samples possible outcomes; it does not observe the entire set or eliminate uncertainty."
+  - text: "A distribution family centered at a mean with a standard deviation."
+    justification: "That describes a normal distribution, one possible source model for random values."
+  - text: "The process of deciding which hypothesis best explains existing data."
+    justification: "That is model comparison or inference; random number generation creates simulated values."

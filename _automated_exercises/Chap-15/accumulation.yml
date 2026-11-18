@@ -1,0 +1,29 @@
+word: accumulation
+for-chapter: 15
+valid:
+  - The process of adding marginal changes over an interval to obtain a total change.
+  - Building a total quantity by successively adding the contributions at each input level.
+  - The accounting process that converts a rate-of-change function into a total function.
+  - Summing successive small increments, such as marginal tax amounts, into an accumulated total.
+  - A process that tracks a quantity by combining its changes starting from an initial amount.
+invalid:
+  - text: "The process of calculating a function's rate of change."
+    justification: "That is differentiation; accumulation combines marginal changes to recover totals."
+  - text: "A single marginal rate measured at one input level."
+    justification: "A marginal rate is an increment's rate; accumulation adds such contributions over an interval."
+  - text: "A procedure that multiplies the initial value by the final rate."
+    justification: "Accumulation accounts for contributions across input levels, not just one rate and endpoint."
+  - text: "The difference between two quantities without considering intermediate changes."
+    justification: "Accumulation accounts for successive contributions between the starting and ending levels."
+  - text: "A probability distribution describing possible total values."
+    justification: "A distribution can express uncertainty, but accumulation is the process of adding marginal contributions."
+  - text: "The amount of new cases of a disease arising in a year."
+    justification: "That is incidence, a rate or count of new cases; accumulation turns rates into totals."
+  - text: "A rule that finds the average value in a collection of observations."
+    justification: "A mean averages data; accumulation combines successive changes into a total."
+  - text: "A method for increasing a quantity by the same fixed amount each year."
+    justification: "That is one possible pattern of change; accumulation is the general accounting process for totals from rates."
+  - text: "The output of a function at one specified input."
+    justification: "A function value is a single evaluation; accumulation combines changes across an interval."
+  - text: "A process that reverses the order of inputs and outputs."
+    justification: "Accumulation relates rates to totals; it is not function inversion."

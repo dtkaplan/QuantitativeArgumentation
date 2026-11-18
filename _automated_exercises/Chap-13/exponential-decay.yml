@@ -1,0 +1,29 @@
+word: exponential decay
+for-chapter: 13
+valid:
+  - A pattern in which a quantity repeatedly falls by the same proportion over equal time intervals.
+  - Decline characterized by successive halvings taking the same amount of time.
+  - A process in which a quantity decreases exponentially, with a constant halving time.
+  - A pattern of repeated proportional decreases rather than equal additive decreases.
+  - Declining change that mirrors exponential growth but moves toward smaller values.
+invalid:
+  - text: "A pattern in which a quantity repeatedly doubles over equal intervals."
+    justification: "That is exponential growth; exponential decay involves repeated proportional decreases."
+  - text: "A fixed amount is subtracted from a quantity in every time period."
+    justification: "That describes steady additive decline, not exponential decay."
+  - text: "A quantity falls by half once and then remains constant forever."
+    justification: "Exponential decay continues through successive halvings over equal intervals."
+  - text: "A process whose rate of decline becomes zero immediately."
+    justification: "The quantity continues to decline according to its exponential pattern."
+  - text: "A distribution describing waiting time between random events."
+    justification: "That is an exponential distribution; exponential decay is a pattern of change in a quantity."
+  - text: "A quantity that decreases by the same number of units each year."
+    justification: "Exponential decay is proportional; a constant number of units describes steady decline."
+  - text: "A quantity that reaches zero after one fixed interval."
+    justification: "Exponential decay approaches smaller values through repeated proportional reductions, rather than a single cutoff."
+  - text: "A measure of the time required for a growing quantity to double."
+    justification: "That is doubling time for exponential growth; decay is characterized by halving time."
+  - text: "A model in which each successive decrease is larger by the same fixed amount."
+    justification: "The defining pattern is repeated proportional change, not fixed additive changes."
+  - text: "A system state that changes at a constant positive rate."
+    justification: "That describes steady growth; exponential decay is a declining pattern."

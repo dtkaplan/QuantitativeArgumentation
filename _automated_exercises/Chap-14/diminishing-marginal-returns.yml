@@ -1,0 +1,29 @@
+word: diminishing marginal returns
+for-chapter: 14
+valid:
+  - A pattern where each additional input produces a smaller benefit relative to its added cost.
+  - The decline in benefit gained from each marginal increment of expenditure or effort.
+  - A situation in which marginal benefits become smaller compared with the resources added.
+  - A falling return on additional investment as more resources are committed.
+  - A pattern where extra spending yields progressively less additional benefit per unit spent.
+invalid:
+  - text: "A pattern where every additional unit of input produces a larger proportional benefit."
+    justification: "Diminishing marginal returns means additional inputs yield smaller marginal benefits, not larger ones."
+  - text: "A decrease in the total benefit even when no additional input is supplied."
+    justification: "The term concerns the return from an added input, not simply a decrease in total benefit."
+  - text: "A guarantee that each extra dollar produces exactly the same benefit as the previous dollar."
+    justification: "Diminishing returns means the marginal benefit declines as more is added."
+  - text: "A situation where the first purchase provides less benefit than later optional additions."
+    justification: "The chapter contrasts a strong initial benefit with smaller marginal benefits from added options."
+  - text: "The total benefit divided by the total cost of a program."
+    justification: "That is an average benefit-cost ratio; diminishing marginal returns concerns the changing marginal benefit."
+  - text: "The rate at which a function's output changes at one input."
+    justification: "That is a marginal rate of change; diminishing returns describes how marginal benefit declines."
+  - text: "A decline in the quantity of money available after spending."
+    justification: "The concept concerns the benefit of additional spending, not simply a smaller remaining budget."
+  - text: "A relationship where output falls by half over equal time intervals."
+    justification: "That describes exponential decay; diminishing marginal returns concerns benefits from additional inputs."
+  - text: "A situation where increasing one objective improves every competing objective."
+    justification: "That is a win-win improvement; diminishing returns concerns reduced benefit from additional input."
+  - text: "A fixed maximum amount of benefit that cannot be exceeded."
+    justification: "Diminishing marginal returns means additional gains get smaller, not necessarily that growth stops at a hard maximum."

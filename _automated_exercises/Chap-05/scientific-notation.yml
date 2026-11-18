@@ -1,0 +1,57 @@
+word: scientific notation
+for-chapter: 5
+valid:
+- A number format that expresses a value as a mantissa multiplied by a power of ten.
+- A compact representation using a coefficient and an integer exponent on ten.
+- A way to write very large or small values without listing many zeros.
+- A numerical format in which the mantissa and exponent separately show significant
+  digits and scale.
+- A notation such as 9.461 times ten to the twelfth for representing a large value.
+invalid:
+- text: Arranging values in order so their relative sizes are easier to compare.
+  justification: This describes sorting, not scientific notation. In this chapter,
+    scientific notation refers to a number format that expresses a value as a mantissa
+    multiplied by a power of ten.
+- text: The process of constructing good arguments from evidence and reasoning.
+  justification: This describes argumentation, not scientific notation. In this chapter,
+    scientific notation refers to a number format that expresses a value as a mantissa
+    multiplied by a power of ten.
+- text: Reasoning that applies explicit rules whose correct application yields certain
+    conclusions.
+  justification: This describes formal reasoning, not scientific notation. In this
+    chapter, scientific notation refers to a number format that expresses a value
+    as a mantissa multiplied by a power of ten.
+- text: The facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+  justification: This describes givens, not scientific notation. In this chapter,
+    scientific notation refers to a number format that expresses a value as a mantissa
+    multiplied by a power of ten.
+- text: Fast, broadly applicable reasoning that uses useful but fallible rules of
+    thumb.
+  justification: This describes heuristic reasoning, not scientific notation. In this
+    chapter, scientific notation refers to a number format that expresses a value
+    as a mantissa multiplied by a power of ten.
+- text: A machine-learning system that uses patterns and alignments in text to generate
+    language.
+  justification: This describes Large language model (LLM), not scientific notation.
+    In this chapter, scientific notation refers to a number format that expresses
+    a value as a mantissa multiplied by a power of ten.
+- text: Representations of items, processes, or settings that are easier to use than
+    the reality.
+  justification: This describes models, not scientific notation. In this chapter,
+    scientific notation refers to a number format that expresses a value as a mantissa
+    multiplied by a power of ten.
+- text: Models built from mathematical components to support reasoning about real-world
+    situations.
+  justification: This describes quantitative models, not scientific notation. In this
+    chapter, scientific notation refers to a number format that expresses a value
+    as a mantissa multiplied by a power of ten.
+- text: An epidemic model that tracks susceptible, infective, and recovered people
+    over time.
+  justification: This describes SIR model, not scientific notation. In this chapter,
+    scientific notation refers to a number format that expresses a value as a mantissa
+    multiplied by a power of ten.
+- text: A highlighted term whose meaning is specifically defined for use in the book.
+  justification: This describes word or phrase, not scientific notation. In this chapter,
+    scientific notation refers to a number format that expresses a value as a mantissa
+    multiplied by a power of ten.

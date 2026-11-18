@@ -1,0 +1,29 @@
+word: maximum
+for-chapter: 10
+valid:
+  - The greatest output value attained by an objective function.
+  - The highest value a function produces over its domain.
+  - The largest objective outcome, distinct from the input that produces it.
+  - The top output value achieved among the available choices.
+  - The greatest function value associated with some input in the domain.
+invalid:
+  - text: "The input value at which the function's output is greatest."
+    justification: "That input is the argmax; the maximum is the output value."
+  - text: "The lowest output value a function can produce."
+    justification: "That is the minimum, not the maximum."
+  - text: "The largest input value in the function's domain."
+    justification: "The maximum refers to output, not the size of the input."
+  - text: "The average output value across all choices."
+    justification: "The average is not necessarily the greatest output."
+  - text: "A set of all possible input values."
+    justification: "That is the domain; the maximum is the greatest output attained."
+  - text: "An option that is best on every competing objective."
+    justification: "That is a dominance comparison; maximum is the highest output of one objective function."
+  - text: "A price ratio used to compare competing goals."
+    justification: "That is a shadow price, not the greatest objective output."
+  - text: "A point where the function crosses the horizontal axis."
+    justification: "That is a zero or root, not necessarily a maximum."
+  - text: "A value guaranteed to occur in every evaluation of the function."
+    justification: "A maximum is attained only for inputs that produce the highest output."
+  - text: "The input that produces the smallest objective value."
+    justification: "That is an argmin; maximum names an output, not an input."

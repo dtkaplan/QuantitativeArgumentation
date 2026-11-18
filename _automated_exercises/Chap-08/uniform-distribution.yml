@@ -1,0 +1,29 @@
+word: uniform distribution
+for-chapter: 8
+valid:
+  - A distribution that assigns equal relative probability throughout a specified range.
+  - A model for values that can occur anywhere within known bounds without favoring one location.
+  - A probability distribution with a constant level across its interval of possible values.
+  - A distribution used when the value is bounded but could be anywhere within those bounds.
+  - A range-based model in which all permitted values are equally likely.
+invalid:
+  - text: "A distribution that favors values near a center and tapers toward both extremes."
+    justification: "That describes a normal distribution; a uniform distribution assigns equal likelihood within its range."
+  - text: "A distribution whose likelihood declines exponentially as values increase."
+    justification: "That describes an exponential distribution, not a uniform one."
+  - text: "A model that assigns positive probability to every value on the number line."
+    justification: "A uniform distribution in this chapter is bounded; values outside its range are impossible."
+  - text: "A distribution whose endpoints are merely unlikely but still possible."
+    justification: "The uniform model's known range excludes values outside the bounds, unlike a normal model's soft tails."
+  - text: "A list of observations ranked from most to least likely."
+    justification: "A uniform distribution gives equal likelihood across its range, not a ranking of observed data."
+  - text: "A single number describing the center of an uncertain quantity."
+    justification: "A mean is a central parameter; a uniform distribution describes likelihood across an interval."
+  - text: "A method for randomly sampling from any chosen distribution."
+    justification: "That is random number generation; uniform is one particular distribution family."
+  - text: "A probability model with a bell-shaped, symmetric curve."
+    justification: "That describes a normal distribution; a uniform distribution is flat over its range."
+  - text: "A model in which only the two endpoints can occur."
+    justification: "Every value within the range is possible in a uniform distribution, not just its endpoints."
+  - text: "A distribution requiring a positive mean and standard deviation."
+    justification: "Those parameters describe a normal distribution; a uniform distribution is specified by its range."

@@ -1,0 +1,29 @@
+word: objective function
+for-chapter: 10
+valid:
+  - A function that assigns an outcome value to each available choice.
+  - A model function whose output quantifies a goal being optimized.
+  - A function used to compare possible inputs according to the outcome each produces.
+  - A mathematical representation of a goal, with choices as inputs and outcomes as outputs.
+  - A function constructed to measure how well each available choice serves a particular objective.
+invalid:
+  - text: "A list of choices with no function mapping them to outcomes."
+    justification: "An objective function maps possible choices to outcome values."
+  - text: "The input that produces the highest value of a function."
+    justification: "That is the argmax; the objective function is the function being optimized."
+  - text: "A value that measures uncertainty about a single quantity."
+    justification: "That describes uncertainty; an objective function represents a goal over choices."
+  - text: "A rule that must combine every objective into one common score."
+    justification: "An optimization problem may have multiple objective functions, especially when goals conflict."
+  - text: "A function whose inputs are observed data and whose output is a random sample."
+    justification: "That describes neither the chapter's role for an objective function nor necessarily an optimization goal."
+  - text: "A statement of personal preference that cannot be quantified."
+    justification: "An objective function is a quantitative tool for comparing outcomes of choices."
+  - text: "The largest output value achieved by a function."
+    justification: "That is the maximum; the objective function is the model mapping choices to outcomes."
+  - text: "A conversion factor that changes the units of an input."
+    justification: "A coefficient may convert units inside a model; an objective function maps choices to goal outcomes."
+  - text: "A process for collecting data about a system."
+    justification: "Data collection can inform a model, but the objective function evaluates choices."
+  - text: "A guarantee that the chosen input will be best for every possible goal."
+    justification: "Each objective function represents a particular goal and may conflict with others."

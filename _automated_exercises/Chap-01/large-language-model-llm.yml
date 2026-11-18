@@ -1,0 +1,56 @@
+word: Large language model (LLM)
+for-chapter: 1
+valid:
+- A machine-learning system that uses patterns and alignments in text to generate
+  language.
+- A computer model that builds language responses from learned relationships among
+  text segments.
+- An AI system that uses patterns in large collections of language to produce text.
+- A model that processes language by identifying text alignments and using them to
+  build chains of response.
+- A language-generating machine-learning model, often used as a form of artificial
+  intelligence.
+invalid:
+- text: Representations of items, processes, or settings that are easier to use than
+    the reality.
+  justification: This describes models, not Large language model (LLM). In this chapter,
+    Large language model (LLM) refers to a machine-learning system that uses patterns
+    and alignments in text to generate language.
+- text: Models built from mathematical components to support reasoning about real-world
+    situations.
+  justification: This describes quantitative models, not Large language model (LLM).
+    In this chapter, Large language model (LLM) refers to a machine-learning system
+    that uses patterns and alignments in text to generate language.
+- text: An epidemic model that tracks susceptible, infective, and recovered people
+    over time.
+  justification: This describes SIR model, not Large language model (LLM). In this
+    chapter, Large language model (LLM) refers to a machine-learning system that uses
+    patterns and alignments in text to generate language.
+- text: A highlighted term whose meaning is specifically defined for use in the book.
+  justification: This describes word or phrase, not Large language model (LLM). In
+    this chapter, Large language model (LLM) refers to a machine-learning system that
+    uses patterns and alignments in text to generate language.
+- text: Recorded facts, findings, and measurements.
+  justification: This describes data, not Large language model (LLM). In this chapter,
+    Large language model (LLM) refers to a machine-learning system that uses patterns
+    and alignments in text to generate language.
+- text: A rectangular array of data organized into rows and columns.
+  justification: This describes data frame, not Large language model (LLM). In this
+    chapter, Large language model (LLM) refers to a machine-learning system that uses
+    patterns and alignments in text to generate language.
+- text: An aspect, property, or characteristic of an object or system.
+  justification: This describes dimension, not Large language model (LLM). In this
+    chapter, Large language model (LLM) refers to a machine-learning system that uses
+    patterns and alignments in text to generate language.
+- text: The kind of object represented by every specimen in a data frame.
+  justification: This describes object type, not Large language model (LLM). In this
+    chapter, Large language model (LLM) refers to a machine-learning system that uses
+    patterns and alignments in text to generate language.
+- text: A procedure for translating a dimension into a measurable quantity.
+  justification: This describes operationalization, not Large language model (LLM).
+    In this chapter, Large language model (LLM) refers to a machine-learning system
+    that uses patterns and alignments in text to generate language.
+- text: A subset of specimens selected from a larger population for study.
+  justification: This describes sample, not Large language model (LLM). In this chapter,
+    Large language model (LLM) refers to a machine-learning system that uses patterns
+    and alignments in text to generate language.

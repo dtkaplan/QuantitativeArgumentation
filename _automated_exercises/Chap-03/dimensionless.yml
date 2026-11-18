@@ -1,0 +1,44 @@
+word: dimensionless
+for-chapter: 3
+valid:
+- Having the pure-number dimension, with no combination of base dimensions.
+- A quantity dimension whose dimensional expression reduces to one.
+- Describes a ratio such as length divided by length, which has no dimension.
+- Having no base-dimension component, even if a unit such as degrees is used.
+- A dimensional status shared by pure numbers and ratios of like dimensions.
+invalid:
+- text: Dimensionless ratios formed by dividing two exactly equal quantities.
+  justification: This describes flavors of one, not dimensionless. In this chapter,
+    dimensionless refers to having the pure-number dimension, with no combination
+    of base dimensions.
+- text: A one-dimensional line on which points represent values of a quantity.
+  justification: This describes number line, not dimensionless. In this chapter, dimensionless
+    refers to having the pure-number dimension, with no combination of base dimensions.
+- text: Change in a primary quantity with respect to one variable while other variables
+    are held constant.
+  justification: This describes partial change, not dimensionless. In this chapter,
+    dimensionless refers to having the pure-number dimension, with no combination
+    of base dimensions.
+- text: A word that signals division, with the following quantity in the denominator.
+  justification: This describes per, not dimensionless. In this chapter, dimensionless
+    refers to having the pure-number dimension, with no combination of base dimensions.
+- text: A location in a space that corresponds to one or more coordinate values.
+  justification: This describes point, not dimensionless. In this chapter, dimensionless
+    refers to having the pure-number dimension, with no combination of base dimensions.
+- text: A number with no unit designation, such as seven or pi.
+  justification: This describes pure number, not dimensionless. In this chapter, dimensionless
+    refers to having the pure-number dimension, with no combination of base dimensions.
+- text: A standardized measure consisting of a pure number and a unit, optionally
+    with a descriptor.
+  justification: This describes quantity, not dimensionless. In this chapter, dimensionless
+    refers to having the pure-number dimension, with no combination of base dimensions.
+- text: The International System of Units, the primary official system for defining
+    units.
+  justification: This describes SI, not dimensionless. In this chapter, dimensionless
+    refers to having the pure-number dimension, with no combination of base dimensions.
+- text: A collection of quantities whose values identify locations within it.
+  justification: This describes space, not dimensionless. In this chapter, dimensionless
+    refers to having the pure-number dimension, with no combination of base dimensions.
+- text: Standardized measures that specify how much of a quantity is present.
+  justification: This describes units, not dimensionless. In this chapter, dimensionless
+    refers to having the pure-number dimension, with no combination of base dimensions.

@@ -1,0 +1,42 @@
+word: derived units
+for-chapter: 3
+valid:
+- Units formed by multiplying or dividing base units.
+- Measurement units such as meters per second that combine base units arithmetically.
+- Units for quantities like area, force, or power, composed from foundational units.
+- Products or ratios of base units used to measure more complex quantities.
+- Units whose composition records the multiplication or division of other units.
+invalid:
+- text: Having the pure-number dimension, with no combination of base dimensions.
+  justification: This describes dimensionless, not derived units. In this chapter,
+    derived units refers to units formed by multiplying or dividing base units.
+- text: Dimensionless ratios formed by dividing two exactly equal quantities.
+  justification: This describes flavors of one, not derived units. In this chapter,
+    derived units refers to units formed by multiplying or dividing base units.
+- text: A one-dimensional line on which points represent values of a quantity.
+  justification: This describes number line, not derived units. In this chapter, derived
+    units refers to units formed by multiplying or dividing base units.
+- text: Change in a primary quantity with respect to one variable while other variables
+    are held constant.
+  justification: This describes partial change, not derived units. In this chapter,
+    derived units refers to units formed by multiplying or dividing base units.
+- text: A word that signals division, with the following quantity in the denominator.
+  justification: This describes per, not derived units. In this chapter, derived units
+    refers to units formed by multiplying or dividing base units.
+- text: A location in a space that corresponds to one or more coordinate values.
+  justification: This describes point, not derived units. In this chapter, derived
+    units refers to units formed by multiplying or dividing base units.
+- text: A number with no unit designation, such as seven or pi.
+  justification: This describes pure number, not derived units. In this chapter, derived
+    units refers to units formed by multiplying or dividing base units.
+- text: A standardized measure consisting of a pure number and a unit, optionally
+    with a descriptor.
+  justification: This describes quantity, not derived units. In this chapter, derived
+    units refers to units formed by multiplying or dividing base units.
+- text: The International System of Units, the primary official system for defining
+    units.
+  justification: This describes SI, not derived units. In this chapter, derived units
+    refers to units formed by multiplying or dividing base units.
+- text: A collection of quantities whose values identify locations within it.
+  justification: This describes space, not derived units. In this chapter, derived
+    units refers to units formed by multiplying or dividing base units.

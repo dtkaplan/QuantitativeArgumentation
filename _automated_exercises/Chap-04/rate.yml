@@ -1,0 +1,58 @@
+word: rate
+for-chapter: 4
+valid:
+- A ratio of two quantities where division expresses a relationship between their
+  underlying dimensions.
+- A quantity formed by dividing one quantity by another to describe their relationship.
+- A ratio used to relate dimensions, such as distance traveled to fuel consumed.
+- A quantity whose units show how one measured amount relates to another.
+- A quotient of quantities interpreted as a relationship, such as dollars per hour.
+invalid:
+- text: The change in a primary quantity divided by the corresponding change in a
+    context-setting quantity.
+  justification: This describes rate of change, not rate. In this chapter, rate refers
+    to a ratio of two quantities where division expresses a relationship between their
+    underlying dimensions.
+- text: A number format that condenses scientific notation into a single magnitude
+    value.
+  justification: This describes logarithm, not rate. In this chapter, rate refers
+    to a ratio of two quantities where division expresses a relationship between their
+    underlying dimensions.
+- text: A measure of the size of a number, closely related to its exponent in scientific
+    notation.
+  justification: This describes magnitude, not rate. In this chapter, rate refers
+    to a ratio of two quantities where division expresses a relationship between their
+    underlying dimensions.
+- text: A factor-of-ten scale used to describe how much larger or smaller one number
+    is than another.
+  justification: This describes order of magnitude, not rate. In this chapter, rate
+    refers to a ratio of two quantities where division expresses a relationship between
+    their underlying dimensions.
+- text: A number format that expresses a value as a mantissa multiplied by a power
+    of ten.
+  justification: This describes scientific notation, not rate. In this chapter, rate
+    refers to a ratio of two quantities where division expresses a relationship between
+    their underlying dimensions.
+- text: Arranging values in order so their relative sizes are easier to compare.
+  justification: This describes sorting, not rate. In this chapter, rate refers to
+    a ratio of two quantities where division expresses a relationship between their
+    underlying dimensions.
+- text: The process of constructing good arguments from evidence and reasoning.
+  justification: This describes argumentation, not rate. In this chapter, rate refers
+    to a ratio of two quantities where division expresses a relationship between their
+    underlying dimensions.
+- text: Reasoning that applies explicit rules whose correct application yields certain
+    conclusions.
+  justification: This describes formal reasoning, not rate. In this chapter, rate
+    refers to a ratio of two quantities where division expresses a relationship between
+    their underlying dimensions.
+- text: The facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+  justification: This describes givens, not rate. In this chapter, rate refers to
+    a ratio of two quantities where division expresses a relationship between their
+    underlying dimensions.
+- text: Fast, broadly applicable reasoning that uses useful but fallible rules of
+    thumb.
+  justification: This describes heuristic reasoning, not rate. In this chapter, rate
+    refers to a ratio of two quantities where division expresses a relationship between
+    their underlying dimensions.

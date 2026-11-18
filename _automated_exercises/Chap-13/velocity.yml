@@ -1,0 +1,29 @@
+word: velocity
+for-chapter: 13
+valid:
+  - The rate of change of position with respect to time.
+  - A measure of how quickly and in what direction position changes.
+  - The derivative of position over time, describing an object's motion.
+  - The change in position per unit time, including direction.
+  - A state-change quantity that tells how position evolves from one instant to the next.
+invalid:
+  - text: "The position of an object at one instant."
+    justification: "Position is a state quantity; velocity is its rate of change over time."
+  - text: "The rate at which velocity itself changes."
+    justification: "That is acceleration, the second derivative of position."
+  - text: "The total distance traveled over the entire journey."
+    justification: "Total distance is accumulated motion; velocity is an instantaneous rate of position change."
+  - text: "The time required for a quantity to double."
+    justification: "That is doubling time; velocity describes position change per unit time."
+  - text: "A function that gives position directly from a time input."
+    justification: "That is a position trajectory; velocity is the rate of change of position."
+  - text: "A measure of how quickly time passes as position changes."
+    justification: "Velocity is position change with respect to time, not the reverse ratio."
+  - text: "A quantity that must always be positive, regardless of direction."
+    justification: "Velocity includes direction and can be negative depending on the coordinate convention."
+  - text: "The set of all possible positions and velocities of a system."
+    justification: "That is a state space; velocity is a rate-of-change quantity."
+  - text: "A constant amount of position added each day, independent of time."
+    justification: "Velocity can vary over time; it is a rate, not a fixed accumulated position."
+  - text: "A probability distribution describing uncertain event intervals."
+    justification: "That is an exponential distribution; velocity describes the motion of an object's position."

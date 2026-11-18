@@ -19,10 +19,10 @@ setupKnitr(autoprint = TRUE)
 Previous chapters introduced a framework for quantitative thinking, highlighting dimensionality, which relates aspects of the world through mathematical relationships, such as between location and velocity or between energy and power.
 
 * Functions and their input spaces describe how different aspects of the world are related. They also provide a way to express uncertainty and likelihood, and to extract information from data in a Bayesian style.
-* magnitudes as a device for relating the very large to the very small;
+* Magnitudes as a device for relating the very large to the very small;
 * Rates of change and accumulation are versatile tools. They represent dynamics, guide decisions, and capture common relationships among aspects of the world.
 
-This framework developed over centuries, spurred by ingenuity, insight, and technological advances like computing.
+This framework developed over centuries, spurred by ingenuity, insight, and technological advances such as computing.
 
 In this final chapter, we bring together these components to show how the framework enables new forms of quantitative reasoning. These new approaches take on many forms; for example, the emergence of Large Language Models that attempt to capture meaning in text.
 
@@ -34,16 +34,24 @@ To start, we examine two familiar high school algebra problems. Techniques for t
 
 1. Find "solutions", "x-intercepts," and "roots." These words signal the same kind of problem: finding function inputs that result in a specified output. Here, a "solution" is a value of x that makes the equation true, an "x-intercept" is a point where the graph crosses the x-axis, and a "root" is another term for a solution. For example, you might be asked to find the roots of a polynomial such as $x^2 - 2 x - 3$. This is the same as "solving" $x^2 - 2x - 3 = 0$.
 
-2. Solve `r xf_definition("simultaneous equations")`. There is more than one function, each sharing the same inputs. You want to find the input values that make each function reach a specified value. In textbooks, a simultaneous equation problem usually appears like this: there are always the same number of equations as input variables.
 
-$$\begin{array}{ccccc}
+
+2. Solve `r xf_definition("simultaneous equations")`. There is more than one function, each sharing the same inputs. You want to find the input values that make each function reach a specified value. The classical textbook situation posits that the number of functions equals the number of unknown inputs, but so far as modeling is concerned there can be more flexibility.
+
+
+$\begin{array}{ccccc}
 5\, x & - & 2\,  y & = & 4\\
 2\, x & + & 3\, y & = & -2\\
-\end{array}$$
+\end{array}$
 
-A third problem setting, `r xf_definition("optimization")`, is important across applications of quantitative reasoning. It is just beyond the reach of high school algebra methods. An example in the style of high-school algebra is: Given that $x,y = 100$, what values of $x$ and $y$ give the smallest value for $x + y$?^[Or, given that the area of a rectangle is 100 in^2^, what should the side lengths be so the perimeter is as short as possible.]
+
+A third problem setting, `r xf_definition("optimization")`, is important across applications of quantitative reasoning. It is just beyond the reach of high school algebra methods. An example in the style of high-school algebra is: Given that $x \times y = 100$, what values of $x$ and $y$ give the smallest value for $x + y$?[Or, given that the area of a rectangle is 100 in^2^, what should the side lengths be so the perimeter is as short as possible.]{.column-margin}
+
+
 
 These three problem settings are important in practice. Imagine yourself controlling a complex system: adjusting valves, pumps, and burners in a chemical plant, or managing logistics to source components for a product like a cell phone. `r xf("fig-control-panel")` shows a generic image of this situation.
+
+
 
 ::: {#fig-control-panel}
 ![](www/control-panel.png){width="3in"}
@@ -51,7 +59,7 @@ These three problem settings are important in practice. Imagine yourself control
 A control panel for managing a complex system.
 :::
 
-Perhaps your task for the day is to adjust the controls so the tank's temperature and pressure stay at the right levels. You need to adjust dials, flip switches, and so on. Or, in a bigger task, you might have to maximize plant productivity while staying within limits on quality and safety.
+Perhaps your task for the day is adjusting the controls so the tank's temperature and pressure stay at the right levels. You need to adjust dials, flip switches, and so on. Or, in a bigger task, you might have to maximize plant productivity while staying within quality and safety limits.
 
 These tasks fit into a framework for finding solutions or optimizing. You don’t have the system’s "equations," but you have some basic knowledge, outputs from various gauges, and switches and dials to set inputs. Quantitative tools here differ from the symbol manipulation found in high school problems. Let’s examine these tools and how they relate to topics from previous chapters.
 
@@ -61,7 +69,7 @@ Every child knows how to get to the top of a hill: walk uphill! In this section,
 
 We want to solve quantitative problems by walking uphill (or downhill) to find solutions and optimize. For illustration, we create mathematical hills and explore ways to move in the right direction.
 
-Our mathematical hills will be functions. The function's output is the hill's elevation. The inputs are the location where you are standing, and the latitude and longitude. For simplicity, we start with functions with a single input, as if you were obliged to walk along a road to get to the top of the hill. The function's input is the position along the road.
+Our mathematical hills will be functions. The function's output is the hill's elevation. The inputs are the latitude and longitude of your location. For simplicity, we start with functions with a single input, as if you were obliged to walk along a road to get to the top of the hill. The function's input is the position along the road.
 
 ```{r}
 #| label: fig-hill-1
@@ -75,7 +83,7 @@ slice_plot(f(distance) ~ distance, domain(distance = 0:10), color = .slice_color
   gf_labs(x = "Position on road (km)", y = "Elevation (m)") 
 ```
 
-`r xf("fig-hill-1")` provides an example of such a function. Where should you walk on the road to reach the highest elevation? A glance is enough to find the answer: about 5 miles.
+`r xf("fig-hill-1")` provides an example of such a function. Where should you walk on the road to reach the highest elevation? A glance is enough to find the answer: about 5 km.
 
 `r xf("fig-hill-1")`(b) shows a more realistic view. You can’t see the whole function. You only know the elevation at your current spot and whatever you note in your notebook. We start the walker at position 2 on the road, where the elevation is about 12 m.
 
@@ -106,16 +114,16 @@ While building an LLM is far beyond our scope—we would need significant resour
 
 \newpage
 
-::: {.callout-note}
+::: {.callout-note icon="false"}
 ## An interactive web app.
 
-There is a collection of interactive web apps for QR-A at [https://dtkaplan.shinyapps.io/QR-A-shiny/](https://dtkaplan.shinyapps.io/QR-A-shiny/) including one that lets you evaluate a function without graphing it. Go to the Optimization/g(x,y) menu and experiment. It's hard to find the maximum of a function with two inputs without a graph. But if you turn on the "Follow Gradient" feature, you'll always know which direction is up. Take small, successive steps along the arrow; you’ll trace an uphill path. Until you develop intuition, you may get stuck. Use the "training wheels" option for help when needed.
+A collection of interactive web apps for QR-A is provided at [https://dtkaplan.shinyapps.io/QR-A-shiny/](https://dtkaplan.shinyapps.io/QR-A-shiny/), including one that lets you evaluate a function without graphing it. Go to the Optimization/g(x,y) menu and experiment. It's hard to find the maximum of a function with two inputs without a graph. But if you turn on the "Follow Gradient" feature, you'll always know which direction is up. Take small, successive steps along the arrow; you’ll trace an uphill path. Until you develop intuition, you may get stuck. Use the "training wheels" option when you need help.
 ::: 
 
 
 This strategy of walking uphill also applies to functions with 2 or more inputs, including functions with hundreds, thousands, or millions of inputs. With two inputs, we can create a visualization that guides our intuition for dealing with functions with many inputs.
 
-Recall that for a function with two inputs, say $f(x, y)$, there are two different rate-of-change functions. Imagine standing at your position on the hill. That position is the intersection of two roads. One road runs east-west, the other runs north-south, as in `r xf("fig-hill-with-roads")`.
+Recall that a function with two inputs, say $f(x, y)$, has two different rate-of-change functions. Imagine standing at your position on the hill. That position is the intersection of two roads. One road runs east-west, the other runs north-south, as in `r xf("fig-hill-with-roads")`.
 
 
 ```{r}
@@ -131,8 +139,8 @@ Recall that for a function with two inputs, say $f(x, y)$, there are two differe
 g <- doodle_fun( ~ x + y, seed = 8332)
 contour_plot(g(longitude, latitude) ~ longitude & latitude,
              domain(longitude = -5:5, latitude = -5:5)) |>
-  gf_hline(yintercept = ~ -1.25, color = .hline_color.) |>
-  gf_vline(xintercept = ~ -3.5, color = .vline_color.) |>
+  gf_hline(yintercept = ~ -1.25, color = .hline_color., linewidth = 2) |>
+  gf_vline(xintercept = ~ -3.5, color = .vline_color., linewidth = 2) |>
   gf_point(-1.25 ~ -3.5, color = "tomato", size=2, alpha = 0.1, inherit = FALSE) |>
   gf_refine(coord_fixed()) 
 # ggsave("fig-hill-with-roads-a.png") # for pdf version
@@ -151,28 +159,26 @@ contour_plot(g(longitude, latitude) ~ longitude & latitude,
 # ggsave("fig-hill-with-roads-b.png") # for the pdf version
 ```
 
-To start, you are at elevation 11.98 m. Take a step to the east, that is, right on the gray road. For the sake of definiteness, each step will length of the green arrows. The eastward step will take you to an elevation of about 12.06 m, that is, an elevation gain of 0.08 m. In contrast, the step to the north will bring you downhill to an elevation of about 11.93, a loss of 0.05 m.
+To start, you are at elevation 11.98 m. Take a step to the east, that is, right on the gray road. For definiteness, each step will be thelength of the green arrows. The eastward step will take you to an elevation of about 12.06 m, that is, an elevation gain of 0.08 m. In contrast, the step to the north will take you downhill to an elevation of about 11.93 m, a loss of 0.05 m.
 
+From this information, you can calculate the steepest uphill direction. To judge from `r xf("fig-hill-with-roads")`, the steepest step will be in the east-south-east direction.
 
+The step to the east gives you what’s needed to calculate the rate of change of the output with respect to longitude evaluated at the red dot. The step to the north gives you the rate of change of the output with respect to latitude. Each step is a quantity with units of meters (of elevation) per degree (of latitude) for the north step or meters (of elevation) per degree (of longitude) for the east step. Combining the two rates of change gives the direction of steepest ascent on the hill and the amount of elevation gain achieved by taking a unit-length step. This information—direction and amount—is called the `r xf_definition("gradient")`.
 
-From this information, you can calculate the direction of the step that will take you in the steepest uphill direction. To judge from `r xf("fig-hill-with-roads")`, the steepest step will be in the east-south-east direction.
-
-The step to the east gives you what’s needed to calculate the rate of change of the output with respect to longitude evaluated at the red dot. The step to the north gives you the rate of change of the output with respect to latitude. Each of these is a quantity with units of meters (of elevation) per degree (of latitude) for the north step or meters (of elevation) per degree (of longitude) for the east step. Combining the two rates of change gives the direction of steepest ascent on the hill and the amount of elevation gain achieved by taking a unit-length step. This information—direction and amount—is called the `r xf_definition("gradient")`.
-
-The word "gradient" comes from a Latin root gradi, meaning "to step" or "to advance." The gradient is a `r xf_definition("vector")`. The word "vector" stems from the Latin vehere, which means "to carry." The gradient vector carries you uphill. The algorithm for optimizing by following the gradient vector dates back to 1847.
+The word "gradient" comes from a Latin root gradi, meaning "to step" or "to advance." The gradient is a `r xf_definition("vector")`. The word "vector" stems from the Latin vehere, meaning "to carry." The gradient vector carries you uphill. The algorithm for optimizing by following the gradient vector dates back to 1847.
 
 
 
 ## Another description of the gradient
 
-The rate-of-change functions give important information about the way uphill. We use the plural "functions" because each direction has its own rate of change function. The goal for the mathematical hill climber is to find the direction with the greatest rate of change.
+The rate-of-change functions give important information about the way uphill. We use the plural "functions" because each direction has its own rate of change function. The goal for the mathematical hill climber: find the direction with the greatest rate of change.
 
 The problem setup is this:
 
-1. There is a function $f(x, y, \ldots)$ for which you seek to find the value for each input that will give the greatest possible output. We will denote these input values as $x^\star, y^\star, \ldots$, but we do not yet know their values.
+1. You have a function $f(x, y, \ldots)$ for which you seek to find the value for each input that will give the greatest possible output. We will denote these input values as $x^\star, y^\star, \ldots$, but we do not yet know their values.
 2. We are standing at a position $(x_0, y_0, \ldots)$. This is our starting position. It is often chosen at random, as if we drifted downward into the terrain like a leaf or raindrop.
 3. We want to find a direction that points uphill and, ideally, uphill in the steepest possible direction.
-4. Upon finding this direction, take a small step forward to a new position $(x_1, y_1, \ldots)$. The new position will be higher than the previous one, since the gradient always points uphill. Repeat (3) and (4) many times. In `r xf("fig-gradient-climb")`, these successive steps are marked by circles.
+4. Once you find this direction, take a *tiny* step forward to a new position $(x_1, y_1, \ldots)$. The new position will be higher than the previous one, since the gradient always points uphill. Repeat (3) and (4) many times. In `r xf("fig-gradient-climb")`, these successive steps are marked by circles.
 
 ```{r}
 #| label: fig-gradient-climb
@@ -209,17 +215,19 @@ contour_plot(g(x, y) ~ x & y, domain(x = -5:5, y = -5:5), alpha = 0.5, label_alp
 
 
 
-The walk started at a random position, marked by a circle with the number 0. From position 0, we find the uphill direction. This is the gray arrow from 0. We go a small distance that way and reach position 1. Find the uphill direction again and walk a small distance to point . Continue the process. As we approach the maximum, the steps become shorter. We can stop whenever the steps are too small to matter.
+The walk started at a random position, marked by a circle labeled 0. From position 0, we find the uphill direction. This is the gray arrow from 0. We go a small distance that way and reach position 1. Find the uphill direction again and walk a small distance to point. Continue the process. As we approach the maximum, the steps become shorter. We can stop whenever the steps are too small to matter.
 
-To implement this simple algorithm, we need to find the (steepest) uphill direction. We can do this with purely local information about the rate of change around our current position. For a function with two inputs, there are two rates of change: one with an east-west orientation, the other oriented north to south. These rates of change are easy to calculate:
+To implement this simple algorithm, we need to find the (steepest) uphill direction. We can do this with purely local information about the rate of change around our current position. A function with two inputs, has two rates of change. We can imagine one rate-of-change refers to north-south movements, the other to east-west movements. These rates of change are easy to calculate:
 
 For the east-west direction, the rate of change is
 $$\partial_x f(x_0, y_0) = \frac{f(x_0 + h, y_0) - f(x_0, y_0)}{h} .$$ Similarly, the north-south rate of change is $$\partial_y f(x_0, y_0) = \frac{f(x_0, y_0 + h) - f(x_0, y_0)}{h} .$$
-As discussed in `r xf("sec-rates-of-change")`, we can set $h$ to be any small value. The most uphill direction at an input location $(x_0, y_0)$ turns out to be simply $$\left(\partial_x f(x_0, y_0),\  \partial_y(x_0, y_0)\right)\ .$${#eq-partial-gradient} This coordinate pair can be interpreted as a direction and length in the $(x, y)$ space. In mathematics, a coordinate pair such as (3, 4) can be interpreted either as a position in Cartesian coordinates or, equally well, as the direction and distance to that position from the point (0, 0). When we interpret a coordinate pair as a direction/distance, we call the pair a *vector*. 
+As discussed in `r xf("sec-rates-of-change")`, we can set $h$ to be any small value. The most uphill direction at an input location $(x_0, y_0)$ turns out to be $$\left(\partial_x f(x_0, y_0),\  \partial_y f(x_0, y_0)\right)\ .$${#eq-partial-gradient} This coordinate pair can be interpreted as a direction and length in the $(x, y)$ space. In mathematics, a coordinate pair such as (3, 4) can be interpreted either as a position in Cartesian coordinates or, equally well, as the direction and distance from the point (0, 0) to that position. When we interpret a coordinate pair as a direction/distance, we call the pair a *vector*. 
 
 Vectors serve many important purposes throughout science and technology. The "gradient vector" at the input location $(x_0, y_0)$ is an ordinary vector, which we create by calculating `r xf("eq-partial-gradient")` for the inputs $x_0$ and $y_0$.
 
 The gradient ascent algorithm works with almost any function with any number of inputs. It doesn’t matter if the function is expressed as a formula or as a real-world setting, such as a chemical plant or a logistics operation. The only information needed is local. Following the chemical plant analogy, imagine a set of dials that control the plant, as in `r xf("fig-set-of-dials")`.
+
+
 
 ::: {#fig-set-of-dials}
 ![](www/dials-output.png)
@@ -231,14 +239,21 @@ Each dial's setting specifies one input. All input dials together determine a po
 
 In `r xf("fig-set-of-dials")`, all the dials are set to 1.
 
-To calculate the rate of change for a dial, record the output displayed: 43.8. Then turn the X dial a small amount, say to 3. This is a change of 2 in the dial position. Suppose, in consequence of the change, that the output now reads 42.2. Then the rate of change is $\frac{43.8 - 42.2}{+2} = 0.8$. This tells us that $\partial_X f(1, 1, 1, 1) = 0.8$.
+To calculate the rate of change for a dial, record the output displayed: 43.8. Then turn the X dial a small amount, say to 3. This is a change of 2 in the dial position. Suppose, in consequence of the change, that the output now reads 42.2. Then the rate of change is $\frac{42.2 - 43.8}{+2} = -0.8$. This manipulation tells us that $\partial_X f(1, 1, 1, 1) = -0.8$.
 
-Turn the X dial back to its original position. Then repeat the procedure with the Y dial. Suppose the rate of change with respect to Y is $\partial_Y f(1, 1, 1, 1) = 1.3$. Turn Y back to its original position, then again repeat the procedure with Z, and once again with W. Suppose that the manipulation of Z gives $\partial_Z f(1, 1, 1, 1) = -0.9$ and W gives $\partial_Z f(1, 1, 1, 1)= 2.2$. You now assemble the gradient vector: 
-$$\left(\partial_X f(1, 1, 1, 1),\  \partial_Y f(1, 1, 1, 1),\  \partial_Z  f(1, 1, 1, 1),\  \partial_W f(1, 1, 1, 1)\right) = (0.8, 1.3, -0.9, 2.2)\ .$$ This four-component vector is a direction in the four-dimensional dial space. Take a small step in dial space by turning the dials by 0.08 for X, 0.13 for Y, -0.08 for Z, and 0.22 for W. At the new setting, the output will be higher.^[We can actually estimate how much higher the output will be. Taking the step (0.08, 0.13, -0.08, 0.22), the output will increase by about 0.8]
+Turn the X dial back to its original position. Then repeat the procedure with the Y dial. Suppose the rate of change with respect to Y is $\partial_Y f(1, 1, 1, 1) = 1.3$. Turn Y back to its original position, then again repeat the procedure with Z, and once again with W. Suppose that the manipulation of Z gives $\partial_Z f(1, 1, 1, 1) = -0.9$ and W gives $\partial_W f(1, 1, 1, 1)= 2.2$. You now assemble the gradient vector: 
+$$\left(\partial_X f(1, 1, 1, 1),\  \partial_Y f(1, 1, 1, 1),\  \partial_Z  f(1, 1, 1, 1),\  \partial_W f(1, 1, 1, 1)\right) = (-0.8, 1.3, -0.9, 2.2)\ .$$
+
+This four-component vector is a direction in the four-dimensional dial space. The gradient vector accounts for changes in output even when multiple dials are moved. For instance, suppose we turn down X by 0.5, increase Y by 1, increase Z by 0.2, and turn down W by 1. Take this change vector, multiply it by the gradient, and sum to find the overall change to the output from the multiple changes to the dials. 
+
+$$-0.8 \times 0.5 + 1.3 \times 1 + -0.9 \times 0.2 + 2.2 \times -1 = -1.4\ \text{change in output}$$
+
+
+
 
 ## Example: Training a neural network
 
-One very widely used function type used in AI and other areas of technology is the "neural network." A neural network is a function that maps input data to output predictions. It consists of layers of interconnected nodes, or "neurons," each performing a seemingly simple computation to produce an output that is a single numerical value. 
+One very widely used function type used in AI and other areas of technology is the "neural network." A neural network is a function; it maps input data to output predictions. It consists of layers of interconnected nodes, or "neurons," each performing a seemingly simple computation to produce a numerical output. 
 
 `r xf("fig-nn-playground")` shows a relatively simple neural network provided for demonstration purposes by the organization <tensorflow.org>.  Since the network is small, <tensorflow.org> can provide an excellent graphical depiction. (The neural networks used in AI are vastly more complex and not well understood even by the people who build them.)
 
@@ -248,109 +263,177 @@ One very widely used function type used in AI and other areas of technology is t
 A snapshot from a demonstrator web app showing training for a simple neural network model. You can interact with the demonstrator at <https://playground.tensorflow.org/>
 :::
 
-
-The *interactive* form of the demonstration displays the process of building a network to serve a particular purpose. To start, let's work through the structure from left to right in `r xf("fig-nn-playground")`.
+The *interactive* demonstration shows the process of building a network to serve a particular purpose. To start, let's work through the structure from left to right in `r xf("fig-nn-playground")`.
 
 The area labeled "Data" on the left represents a data frame. Each row of the data frame records the x-y position of a point, together with a column holding the group to which the point belongs, like this:
 
 X | Y | Group
--- | -- | --
+--|--|--
 0.43 |-0.21 | orange  
 0.12 | 0.34 | blue  
 -0.56 | 0.78 | blue
 
-The rows are displayed graphically on the right-side of the panel; each row is one dot.
+The rows are displayed graphically on the right side of the panel; each row is one dot.
 
-Next to the "Data" area is a stack of seven small squares labeled "Features." Each of those squares stands for a function that takes x-y coordinates as input and produces as output a value between -1 and 1. For instance, the topmost "feature" outputs a value close to 1 for points in the right half of the plane and a value close to -1 for points in the left half. The other features perform similar transformations, capturing different aspects of the input space.
+Next to the "Data" area is a stack of seven small squares labeled "Features." Each of those squares stands for a function that takes x-y coordinates as input and produces an output between -1 and 1. For instance, the topmost "feature" outputs a value close to 1 for points in the right half of the plane and a value close to -1 for points in the left half. The other features perform similar transformations, capturing different aspects of the input space.
 
-The result of applying those seven functions to the input data is seven new columns for the data frame, each of which holds the output from the corresponding function. For simplicity, we will show just the top two functions, `f1()` and `f2()`:
+Applying those seven functions to the input data produces seven new columns for the data frame, each holding the output from the corresponding function. For simplicity, we will show just the top two functions, `f1()` and `f2()`:
 
 X | Y | Group | f1 | f2 | $\cdots$ to f7
--- | -- | -- | -- | -- | --
+--|--|--|--|--|--
 0.43  |-0.21 | orange | 0.92 | -0.64 | $\cdots$
 0.12  | 0.34 | blue   | 0.31 |  0.75 | $\cdots$
 -0.56 | 0.78 | blue   |-0.87 |  0.84 | $\cdots$
 
 To the right of the "features" is a stack of four functions. Each function takes as input a linear combination of the f1(), f2(), ..., f7() output values. The output of each of those four functions transforms the input so that the output ranges from -1 to 1. 
 
-As always, a linear combination is a sum of the form $$a_1 f_1 + a_2 f_2 + \cdots + a_7 f_7$$, where $a_1, a_2, \ldots, a_7$ are coefficients that determine the contribution of each feature. In `r xf("fig-nn-playground")` the coefficients are displayed as dashed curves. The color of each curve indicates whether the coefficient is positive (blue) or negative (orange). The width of each curve is proportional to the size of the corresponding coefficient. 
+
+As always, a linear combination is a sum of the form $$a_1 f_1 + a_2 f_2 + \cdots + a_7 f_7$$, where $a_1, a_2, \ldots, a_7$ are coefficients that determine each feature's contribution. In `r xf("fig-nn-playground")`, the coefficients are displayed as dashed curves. The color of each curve indicates whether the coefficient is positive (blue) or negative (orange). The width of each curve is proportional to the size of the corresponding coefficient. 
 
 Ultimately, the input to the four functions is the x-y coordinate of the corresponding row of the data frame. The output---as a function of x-y position---is shown by the color in the small square representing each of the four functions. You can see that the four functions are more complicated than the original feature functions. Next in the display is a stack of two neurons. These take as input a linear combination of the outputs from the four neurons to the left. Again, the coefficients for this linear combination are displayed by the color and thickness of the dashed curves leading into the two neurons.
 
-Finally, the outputs of the two neurons are combined linearly to produce the overall function shown in the larger square to the right of the two neurons. Since there are only two neurons being combined, its easy to read the coefficients in the final linear combination from the graph. The top neuron has a small, slightly negative coefficient. The bottom neuron has a stronger negative coefficient.
+Finally, the outputs of the two neurons are combined linearly to produce the overall function shown in the larger square to the right. Since only two neurons are being combined, it's easy to read the coefficients in the final linear combination from the graph. The top neuron has a small, slightly negative coefficient. The bottom neuron has a stronger negative coefficient.
 
-Focus now on the large square display on the right side of the graphic. As mentioned before, the individual rows of the data frame are represented by dots. The end-function implemented by the seven features and the six neurons is shown by the background color in the square. That end-function is intended to be a classifier for new data, that is, to take any x-y coordinate as input and provide as output the predicted class (i.e., orange or blue) for that coordinate.
+Focus now on the large square display on the right side of the graphic. As mentioned before, each row of the data frame is represented by a dot. The background color shows the end-function implemented by the seven features and the six neurons. That end-function classifies for new data, that is, the function takes any x-y coordinate as input and provide as output the predicted class (i.e., orange or blue) for that coordinate.
 
-As you can see, the neural network has learned enough about the pattern in the data to provide a reasonable classification for any new x-y coordinate. The orange dots lie in the orange area of the end-function: likewise, for the blue dots.
+As you can see, the neural network has learned enough about the pattern in the data to provide a reasonable classification for any new x-y coordinate. The orange dots lie in the orange area of the end-function output; likewise, the blue dots occupy the blue area.
 
 None of the original features resemble the pattern of the data points. Yet the coefficients of the various linear combinations turn these features into an end-function that captures the data pattern. How did that happen? 
 
-In abstract, we can say that the neural network was *trained* on the data from the data frame. Here, the goal of training is to establish the value for each of the coefficients in the network. 
+In abstract terms, we can say that the neural network was *trained* on the data frame. Here, determining the value of each coefficients in the network is the goal.
 
-We can count the coefficients that have to be determined during training. Each of the seven features provides an input to each of the 4 neurons in the first hidden layer, resulting in $7 \times 4 = 28$ coefficients. Each of the 4 neurons in the first hidden layer provides an input to each of the 2 neurons in the second hidden layer, resulting in $4 \times 2 = 8$ coefficients. Finally, each of the 2 neurons in the second hidden layer provides an input to the single output neuron, resulting in $2 \times 1 = 2$ coefficients. In total, there are $28 + 8 + 2 = 38$ coefficients that need to be determined during training.
+We can count the coefficients that have to be determined during training. Each of the seven features provides an input to each of the 4 neurons in the first hidden layer, resulting in $7 \times 4 = 28$ coefficients. Each of the 4 neurons in the first hidden layer provides an input to each of the 2 neurons in the second hidden layer, resulting in $4 \times 2 = 8$ coefficients. Finally, each of the 2 neurons in the second hidden layer provides an input to the single output neuron, resulting in $2 \times 1 = 2$ coefficients. This gives $28 + 8 + 2 = 38$ coefficients to be determined during training.
 
-Here's how the training works. To start, the coefficients are set to 38 random values. Naturally, the resulting function is unlikely to capture the pattern in the data. The training process looks at the function output for each of the dots in turn. Suppose the output from the initial end-function for row 1 of the data frame is 0.37 which can be translated to words: slightly blue. Since row one is actually in the orange class, the function provides an incorrect prediction. The goal of training is to adjust the coefficients so that the end-function gives a more appropriate output for row 1 (and all the other rows in the training data).
+Here's how the training works. To start, the coefficients are set to 38 random values. Naturally, the resulting function is unlikely to capture the pattern in the data. The training process looks at the function output for each dot in turn. Suppose the output from the initial end-function for row 1 of the data frame is 0.37, which can be translated into words as "slightly blue." Since row one is actually in the orange class, the function provides an incorrect prediction. Training adjusts the coefficients so that the end-function gives a more appropriate output for row 1 (and all the other rows in the training data).
 
-The end-function, as we've said, has 38 coefficients. The output of the end-function depends on each of these coefficients. We can differentiate the end-function with respect to each coefficient, producing a gradient vector in the 38-dimensional space of the coefficients. If we changed the coefficients slightly in the direction of this gradient, the output of the end-function would increase slightly. That would make the end-function output worse with respect to the data in row 1 of the data frame. To make the end-function output better, we simply need to change the coefficients slightly in the opposite direction of the gradient. 
+The end-function, as we've said, has 38 coefficients. The output of the end-function depends on each of these coefficients. 
 
-This change in the 38 coefficients might make the output of the end-function better or worse with respect to the other rows of data. The training process repeats this adjustment for each row in the data frame, each repetition making the end-function output slightly better with respect to that row.
+In the training phase of building the neural network, we know what should be, ideally, the end-function output for each training example. Comparing the ideal to the actual output allows us to calculate the *error* in the end-function output. Training makes the error smaller. Typically, the square of the error is the objective function that we want to minimize by setting the 38 coefficients. The derivative of this objective function with respect to each of the 38 coefficients---that is, the *gradient* of the objective function---tells us which direction to change the 38 coefficients. The gradient vector points up, so to minimize the objective function we take a small step in the direction opposite the gradient. 
 
-The observed behavior of this iterative adjustment process is, very gradually, to improve the overall performance of the end-function with respect to all the rows in the data frame. 
+This change in the 38 coefficients might make the output of the end-function better or worse for other rows of training data. The training process repeats this take-a-small-step adjustment for each row in the data frame, each repetition making the end-function output slightly better with respect to that row.
 
-Consider now the upper right corner of the display, shown here. [![](www/NN-training.png)]{.column-margin} This shows the progress of the training over time, as each successive move is taken along or opposite to the gradient. At each step, the "training loss," that is, the total error of the end-function is calculated. Over thousands of adjustment steps, the training loss fluctuates up and down but overall, decreases. When further adjustment steps don't reduce the training loss, the training algorithm stops, giving us the best set of 38 coefficients that was found. 
+The observed behavior of this iterative adjustment process is, very gradually, to improve the overall performance of the end-function averaged across all rows in the data frame. 
+
+Consider now the upper right corner of the display, shown here. [![](www/NN-training.png)]{.column-margin} This shows the progress of the training over time, as each successive move is taken along or opposite to the gradient. Each step calculates, the "training loss," that is, the total error of the end-function. Over thousands of adjustment steps, the training loss fluctuates up and down but trends downwards. When further adjustment steps no longer produce such a trend, the training algorithm stops, giving us the best set of 38 coefficients that was found. 
+
 
 `r qr_margin_note("https://playground.tensorflow.org/", "Link to the neural network playground")`
 
-The interactive, online version of the demonstrator shows the training process over time. As training proceeds, you can observe at each step the current end-function and how it changes in response to the adjustments of the coefficients. The behavior is very complex, yet it amounts to many, many steps along the gradient vector.
+The interactive, online version of the demonstrator shows the training process over time. As training proceeds, you can observe at each step the current end-function and how it changes in response to the adjustments of the coefficients. The behavior is very complex, yet it amounts to many, many steps along---or, rather, opposite to---the gradient vector.
 
 
 
+## "Similarity" and Space exploration
+
+We all use the idea of "similarity" to describe and compare things. A horse is similar to a donkey or a zebra but not to a raven. Two people can have similar personalities, looks, or tastes. Or they might have opposite traits. Books or movies can be in a similar *genre*, allowing us to distinguish them as a class from others. 
+
+There can be degrees of similarity. Two things might be almost identical, very similar, only somewhat alike, or "not dissimilar."
+
+Consider now how one might operationalize similarity. Can we define one or more quantities that capture much of what makes us regard two things as similar or different? If we could, and if we could apply the operationalization to recorded data, we might find patterns that give us insight into the workings of the world, or enable us to create new objects that share desired traits. As an example, we can look at AI large language models and how they enable a machine to generate new text similar to human-generated text in style, content, and meaning.
+
+Undoubtedly, capitalizing on similarity has been a key force behind the development of humanoids into today's humans. Perhaps a Neanderthal woman finds a rock that cuts animal skin effectively. This shows others what to look for to acquire similar tools or, importantly, to reshape found materials into useful forms. Animal and plant breeders have, from prehistory, brought together for breeding individuals who bring different advantages to their offspring. For example, two different varieties of a plant can be hybridized to produce offspring that combine positive traits from each and minimize negative ones.
+
+Famously, in his book *On the Origin of Species*, Darwin pointed to the heritability of traits as key to evolution. The biochemical basis of inheritance was unknown in Darwin's time. In the late 1800s, early statisticians tried to develop ways to measure the *extent* of heritability of traits. They needed a way to quantify the similarity of parents and their offspring. That is, they needed to operationalize similarity. 
+
+
+To illustrate, let us turn to some data collected by Francis Galton in his efforts to quantify heritability, that is, the similarity between parents and their children. Everyday experience suggested that the trait of height is, in part, inherited from one's parents. So Galton collected data on the heights of adult-aged children and their parents. We presented a small fragment of Galton's data in `r xf("fig-data-frame-schematic")`. Let's turn to it again to see how geometry emerges from data.
+
+@tbl-small-heights shows a small data frame sampled from Galton's measurements. Recall that a data frame consists of rows and columns. Each row represents a "specimen," in this case one person. Each column is a "variable," a recording of a measured trait. @tbl-small-heights shows five specimens and four variables; that is, four measurements made on each specimen.
 
 
 
-## Space exploration
+::: {#tbl-small-heights}
+
+| Mother | Father | Sex | Height |
+|--------|--------|-----|-------|
+| 65.0   | 65     | F   | 59.0    |
+| 67.0   | 73     | M   | 67.0    |
+| 68.5   | 69     | M   | 70.0    |
+| 69.0   | 70     | M   | 68.7    |
+| 63.0   | 70     | F   | 62.0    |
+
+A fragment of a data frame about adult heights (in inches) of people and their parents.
+:::
 
 
+In `r xf("sec-systems")` we introduced the organization of data as a rectangular array: a data frame. Each column of a data frame is a *variable*, the operationalization of a system dimension into a quantity. 
 
-```{r label="first-rgl-chunk", eval=knitr::is_html_output()}
+As you may remember, we use the word "specimen" as the name for each row of a data frame. You can think of a data frame as a collection of specimens of the sort seen in museums. Each specimen has its own identity and properties. The data frame records selected properties from each specimen. 
+
+To illustrate, let's return to the small data frame depicted in `r xf("fig-data-frame-schematic")`. The specimens in this data frame are adult people. Only a very limited amount of information is recorded about each person; the data frame contains just four variables. This is certainly not enough to give a detailed portrait of the person, but it is nonetheless useful for exploring some aspects of humankind. Three of the variables relate to height: the height of the specimen itself and the heights of the specimen's mother and father. Another variable records the specimen's sex. 
+
+The data displayed in @tbl-small-heights is a small fragment of data on almost 1000 specimens collected in London in the 1880s. Even considering the entire sample of 1000 specimens may not generalize well to people today and in other places. Similarly, measurements of height and sex can inform only a very limited understanding of similarities and variation between people generally since they leave out socio-economic dimensions as well as health, education, lifestyle, and a vast array of other features and characteristics.
+
+The motivation behind collecting this sample was to develop a way to operationalize the idea of "heritability of traits," what we now call *genetics.* The mathematical methods developed in the 1880s and 1890s based on this and like data from other settings had to do with quantifying the similarity and diversity of people and the relationships between their various attributes, for instance, the relationship between a mother's height and her child's height.
+
+First, we attend to one detail. In general, variables can be either quantitative or *categorical*. However, it is always possible to translate categorical information, such as sex, into a quantitative form. Computers implement many schemes for doing this, which is how they store all sorts of non-quantitative information---sounds, images, videos, text documents---as a series of numbers, the bits and bytes of computer memory. In the case of @tbl-small-heights, the *sex* variable could be replaced with a *female* variable consisting of ones and zeros. So the first row would look like a numerical coordinate: (65, 65, 1, 59). The general point is this: each specimen in @tbl-small-heights is effectively a *location* in a four-dimensional space. 
+
+To develop some ideas, let's treat each row of @tbl-small-heights as a numerical coordinate in four-dimensional space. We don't have a conventional way to draw in four-dimensional space, so we start with a simplification and consider only two dimensions at a time. Let's make these two dimensions the person's height and the zero-one indicator for being female.
+
+@fig-height-vecs shows the sex and height dimension of the five specimens as locations in space marked by black dots. If we used these *locations* to describe similarity, we would consider specimens to be close if they are *close* to one another. So specimens 2, 3, and 4 are similar to one another, while dissimilar from specimens 1 and 5 (which are, in turn, similar to each other).
+
+```{r}
+#| label: fig-height-vecs
 #| echo: false
-source("_software/rgl.R")
+#| fig-cap: "The sex and height variables from @tbl-small-heights shown as locations and as vectors."
+TwoD <- tibble::tibble(
+  heights = c(59, 67, 70, 68.7, 62),
+  mothers = c(65, 63, 68.7, 70, 62),
+  sex = c(1, 0, 0, 0, 1),
+  row = paste("Row", 1:5))
+ggplot(TwoD, aes(x = sex, y = heights)) + 
+  geom_point(color = "#002618", size=3) +
+  geom_text(aes(label = row), color="#0072B2", vjust = -1) +
+  labs(x = "Female", y = "Height (in)") +
+  geom_point(x = 0.4, y = 65.34, size = 10, alpha = 0.3, color = "#D55E00")  +
+  geom_segment(aes(x = 0.4, y = 65.34, xend = sex, yend=heights), color = "#D55E00", arrow = grid::arrow(length = unit(0.12, "inches"), type="closed")) +
+  geom_text(x = 0.4, y = 65.34, label = '"Typical" person', hjust = -0.3, color = "#D55E00") +
+  coord_fixed(ratio = 1/6)
 ```
 
-Chapters 11 and 12 introduced vectors in two-dimensional space, where simple tasks can be performed intuitively. For example, to measure the *length* of a vector, use a ruler! To find out whether two vectors are parallel, just look! 
+The [orange]{style="color:#D55E00"} shows a different way of thinking about similarity geometrically. Consider that if we want to measure the similarity and differences between persons, we had better start with an idea of what a typical person is. Drawing on the idea of location describing a specimen, we find a location (marked by the big dot) that is in the middle of all the people, that is, as close as we can get to all of the people in aggregate. 
 
-Now we want to extend our capabilities into higher-dimensional space. The motivation for this is, for example, making sense of complex data or constructing a model of language.
+Then, we find the *difference* between each specimen's location and the central point. Note that a *difference in location* is not itself a location. The *difference* is about the direction and distance from the central point.
 
-We start with three-dimensional space, where the geometry can be conveyed by moving the viewing perspective. This will let us explore how pairs of vectors can be used to specify a unique `r xf_definition("plane")`. This leads to a new operation, `r xf_definition("projection")`, which casts the shadow of a vector onto another vector or onto a plane. 
+[We have drawn @fig-height-vecs using the actual units of height and the 0-1 encoding for `female`. It's common in practice to rescale the axes so that the center is near (0,0) and about 95% of the values for each variable fall within a similar range, for instance [-2, 2].]{.column-margin}
+
+We have drawn this difference as vectors, one for each specimen in the data frame. Thinking about the specimens as vectors gives an easy way to quantify similarity: the degree to which they point in the same direction. This has a simple measure: the angle between vectors. Again, you can see that specimens 1 and 5 are strongly aligned: they are similar to one another. The same is true for specimens 2, 3, and 4. 
+
+You could measure the angle between any pair of vectors in @fig-height-vecs with a protractor. And if we added another dimension to the space, say, mother's height, we could construct a ball-and-stick model (as with molecular models in chemistry) to which we could apply the same protractor to measure the angles.
+
+But we can't use a protractor with all four variables, that is, the vectors in a four-dimensional space. We need a different way to measure angles in higher dimensions. It turns out that calculating the angle between two vectors can be done with arithmetic, whatever the dimensionality of the space. We'll leave the details for an exercise, so that we can emphasize the use of geometry in making sense of data. In particular, we want to think about similarity when each specimen has a *rich* description, that is, has measurements along many dimensions, each of which is translated into one or more variables.
+
+Angle between vectors is a key concept in understanding similarity. Appropriate intuition about it can be developed with examples in two dimensions. But some other concepts make sense only in higher dimensions. Fortunately, three-dimensional space provides access to the key concepts. And we can draw 3-dimensional pictures with the aid of computer controls that enable us to rotate and view the object from different perspectives. 
 
 :::: {.content-hidden unless-format="pdf"}
-[Several of the following diagrams represent 3-dimensional space, starting with `r xf("fig-blue-gray")` and through `r xf("fig-penguins-3d")`. In this printed edition, the diagrams are static and, flattened onto the page, do a poor job of representing three-dimensional space. You will have a better experience of the space by following the link to the online interactive diagrams that allow you to rotate the space. Doing this is extremely helpful being able to see the objects from different directions in space.]{.column-margin}
+In this printed version of the book, we can't provide the manipulable pictures directly. The diagrams printed on the page, starting with `r xf("fig-blue-gray")` and through `r xf("fig-penguins-3d")`, are static and fail to make the geometrical principles clear. Use the QR code to access interactive versions via a web browser. Only through the interactive versions will you be able to grasp the key ideas easily.
 ::::
-
-
-The projection operation is key to working with data, for instance, building statistical models or identifying patterns in the data. But projection is especially powerful when working in high-dimensional spaces.
-
-
-In four- and higher-dimensional spaces, it is practically impossible to draw a meaningful graphic. But the operations we can see in three dimensions can be calculated in any dimension using arithmetic. This includes vector length, angles between vectors, and projections onto planes or higher-dimensional extensions of planes. 
-
-To build intuition, let’s return to 3-dimensional space. Consider `r xf("fig-blue-gray")`, which shows two vectors, one in [blue]{style="color: blue;"} and the other [gray]{style="color: gray;"}. They are drawn on a green background. At a glance, one can see that the angle between the vectors is obtuse, perhaps about 130 degrees. Also, the gray vector is shorter than the blue vector. Easy! 
 
 `r qr_margin_note(
   "https://dtkaplan.github.io/QA-exercises/Apps/App-rotations.html",
   "Link to interactive diagrams"
 )`
 
-In fact, each vector is 3-dimensional. And the green "background" is actually a plane that contains both the vectors. Try rotating the scene to see this more clearly.
+
+`r xf("fig-blue-gray")` shows a simple setting of two vectors in 3-dimensional space. We've drawn them emanating from a common point, just as with the vectors in @fig-height-vecs.
+In fact, each vector indicates a specific direction in 3-dimensional space. And the green "background" is actually a plane that contains both the vectors. Try rotating the scene to see this more clearly.
 
 
 :::: {.content-hidden unless-format="pdf"}
 ![](www/rgl-box-1.png){width="3in"}
 
-[`r xf("fig-blue-gray")`: Interactive 3D view of two vectors: blue and gray. You can position the cursor over the scene and press/drag to rotate the vectors in three dimensions.]{.column-margin}
+[`r xf("fig-blue-gray")`: Interactive 3D view of two vectors: blue and gray. You can hover the cursor over the scene and press/drag to rotate the vectors in three dimensions.]{.column-margin}
 
 ::::
 
 :::: {.content-hidden when-format="pdf"}
+
+```{r label="first-rgl-chunk", eval=knitr::is_html_output()}
+#| echo: false
+source("_software/rgl.R")
+```
+
+
 ::: {#fig-blue-gray}
 ```{r dss, results="hide", echo=FALSE, eval=knitr::is_html_output()}
 open3d()
@@ -364,76 +447,13 @@ Two vectors: blue and gray. You can position the cursor over the scene and press
 :::
 ::::
 
-As you change the viewing perspective in `r xf("fig-blue-gray")`, the apparent lengths of the vectors as well as the angle between them can change. And, you'll see that the green "background" is actually a plane, with both vectors contained in the plane. 
+As you change the viewing perspective in `r xf("fig-blue-gray")`, the apparent lengths of the vectors as well as the angle between them can change. And you'll see that the green "background" is actually a plane, with both vectors contained in the plane. 
 
-Indeed, if you change the perspective to view the plane edge-on, the blue and gray vectors will appear to lie on the same line. And depending on which angle you take (keeping the plane edge on), the two vectors will be arranged variously in opposite directions or in the same direction.
+Indeed, if you change the perspective to view the plane edge-on, the blue and gray vectors will appear to lie on the same line. And depending on which perspective you take (keeping the plane edge-on), the two vectors will be arranged variously in opposite directions or in the same direction. This variation does not imply that the angle between vectors is a question of perspective. The angle is *defined* to be that which a protractor would measure if it were placed on the green plane that entirely contains the vectors. 
 
-To measure the proper *length* of a vector, you need to lay down a ruler on top of the vector, parallel to it. Similarly, the measure the proper *angle* between the two vectors, you need to lay a protractor in the green plane that contains both vectors.
+We call the green plane a two-dimensional `r xf_definition("subspace")` of the three-dimensional space. [Unless the two vectors are themselves exactly aligned, in which case the subspace is one-dimensional.]{.column-margin} And, in higher-dimensions space, two vectors define a two-dimensional subspace.
 
-We can represent the situation *arithmetically*. Since the vectors live in three-dimensional space, the tip of each vector can be written in (x,y,z) coordinates. (For simplicity, the base of each vector will always be at the origin, that is, (0,0,0).) We could have put tick marks along the x-, y-, and z-axes to let you measure the coordinates of each vector, but for convenience, here they are.
-
-$$ \color{blue}{\vec{v} \equiv \left(\begin{array}{c}7\\4\\0\end{array}\right)}\ \ \ \text{and}\ \ \ \color{magenta}{\vec{w}\equiv\left(\begin{array}{c}1.5\\-4\\0\end{array}\right)}$$
-Note that, for future reference, we have given names, $\vec{v}$ and $\vec{w}$ to the two vectors.
-
-With the arithmetic representation, we don't need a ruler to measure the `r xf_definition("length of a vector")`; the Pythagorean formula does the job.
-
-$$\color{blue}{\sqrt{7^2 + 4^2 + 0^2} = 8.06}\ \  \text{and}\ \ \  \color{magenta}{\sqrt{1.5^2 + 4^2 + 0^2} = 4.27}\ .$${#eq-pythag}
-
-We won't do very much arithmetic here. But for what we will do, it will help to have a much more concise notation. Here are two parts of that notation:
-
-- A function, called the `r xf_definition("dot product")` which involves simple multiplication and addition. Here's an example, the dot product between $\vec{v}$ and $\vec{w}$: $$\vec{v} \odot \vec{w} = 1.5 \times 7\ + \ -4 \times 4\ +\ 0 \times 0 = -5.5 .$$ The dot product takes two vectors as input and produces an ordinary number as output.
-
-Sometimes it is helpful to dot a vector with itself. For instance:
-
-$$\vec{v} \odot \vec{v} = 7^2 + 4^2 + 0^2 = 65\ \ \ $$ and $$\ \ \ \vec{w} \odot \vec{w} = 1.5^2 + (-4)^2 + 0^2 = 18.25\ .$$ 
-
-This use of the dot product captures a large part of the Pythagorean formula for vector length (`r xf("eq-pythag")`).
-
-- The **length** of $\vec{v}$ is written $\|\vec{v}\|$. There is a simple formula for the length of a vector that uses the dot product:
-
-$$\|\vec{v}\| = \sqrt{\ \strut\vec{v} \odot \vec{v}\ }\ \ \  \text{and}\ \ \  \|\vec{w}\| = \sqrt{\ \strut\vec{w} \odot \vec{w}\ }\ .$$
-This dot-produce notation pays off with slightly more elaborate calculations. For instance,
-
-- The `r xf_definition("alignment between two vectors")` is calculated like this:
-$$\text{alignment}(\vec{v}, \vec{w}) \equiv \frac{\ \ \ \ \vec{v} \odot \vec{w}}{\sqrt{\strut\ \|\vec{v}\|\ \|\vec{w}\|\ }}$${#eq-alignment}
-
-
-
-## Spaces with dimension greater than 3
-
-Understandably, people have difficulty visualizing scenes in 4- or higher dimensions, or even imagining that such scenes might exist. Our cognitive abilities are tuned to perception in the familiar 3-D space of everyday life. 
-
-With the arithmetic representation of vectors, however, it's easy to see how to construct vectors in 4-space, 5-space, or any-dimensional space. A vector in such a space is merely a column of numbers. Here are a few examples. 
-
-$$\color{magenta}{\vec{a} \equiv \left(\begin{array}{r}1.5\\3.0\end{array}\right)}\ \ \ \ \ \color{green}{\vec{b}\equiv\left(\begin{array}{r}4.2\\-7.1\\2.3\end{array}\right)} \ \ \ \ \ \color{blue}{\vec{c}\equiv\left(\begin{array}{r}0.3\\4.1\\1.9\\-3.2\end{array}\right)}$$ $$ \ \ \ \ \ \color{purple}{\vec{d}\equiv\left(\begin{array}{r}1.0\\ -7.0\\  2.9\\  1.2\\ -4.1\end{array}\right)} \ \ \ \ \ \color{green}{\vec{g}\equiv\left(\begin{array}{r}-0.1\\ -8.8\\ -4.6\\  6.5\\  5.2\\ -4.2\end{array}\right)} \ \ \ \ \      $$
-
-The count of components in each vector tells the dimension of the space where the vector exists or "lives in."
-
-The reader may object. "Of course, you can make a column of numbers with as many components as you like. What does that have to do with 'space?'"
-
-What makes these simple columns of numbers into an "object in space" is the calculations we can do with them, for instance, the "length" of a vector or the alignment between two vectors. Both of these calculations are rooted in the dot product, whose formula is a simple extension of that already shown. For instance, here's a dot product in 5-dimensional space:
-
-$$\color{olive}{\left(\begin{array}{r}1.0\\ -7.0\\  2.9\\  1.2\\ -4.1\end{array}\right)} \odot \color{black}{\left(\begin{array}{r}2.6\\8.3\\6.4\\1.6\\2.7\end{array}\right)}= \text{ }1.0 \times 2.6 \ -\ 7.0 \times 8.3\ +\ 2.9 \times 6.4 \ +\ 1.2 \times 1.6 \ -\ 4.1\times 2.7 = -46.09$$
-
-
-## Alignment, projection, and decomposition {#sec-alignment}
-
-Three important spatial operations in modern technology are
-
-i. Finding the **alignment** between two vectors. 
-
-ii. Defining a `r xf_definition("subspace")` of a larger space. As you will see, subspaces are a way of encoding information about patterns.
-
-iii. `r xf_definition("Projecting")` a vector in the larger space down into a subspace. Since subspaces encode patterns, projection determines to what extent a vector displays those patterns.
-
-The alignment quantifies how *similar* the two vectors are, that is, whether they have information in common. An alignment of 1 indicates that the vectors share all information. An alignment of zero means that they have no information in common. (An alignment of -1 means that the vectors share information completely, but that one vector has been reversed in direction.) The reader who has studied statistics may recall the "correlation coefficient." This is essentially the same  as the alignment.
-
-In a two-dimension space, a subspace is a line: an infinite set of points that all lie within the bigger space. The line is a *one-dimensional subspace*. In three-dimensional space, there are two different kinds of subspaces: a line (1-dimensional) and a plane (2-dimensional). In higher-dimensional spaces, say one with $n$ dimensions, there can be 3-, 4-, and up to $(n-1)$-dimensional subspaces.
-
-A one-dimensional subspace is defined by a single vector. A two-dimensional subspace is defined by two vectors.^[The vectors must not be exactly aligned. Otherwise, the subspace is one-dimensional.] Similarly, an $(n-1)$-dimensional subspace is defined by $n-1$ vectors.
-
-`r xf("fig-decomp-1")` shows a two-dimensional subspace (that is, a plane) of the three-dimensional space. The two vectors drawn in the same color as the subspace have been used to define the subspace. We have colored the subspace-defining vectors to be inconspicuous, so the reader can focus attention on the subspace itself.
-
+Now consider a third vector, for instance, the black vector in `r xf("fig-decomp-1")`. To the extent that the black vector aligns with the planar subspace, the specimen it represents shares properties with the two other specimens. The extent to which the black vector sticks out from the subspace reflects its dissimilarity with the subspace. 
 
 ::: {.content-hidden unless-format="pdf"}
 
@@ -461,14 +481,6 @@ close3d()
 ```
 ::::
 
-
-
-You can verify that the two green vectors are in the subspace by rotating the scene. Whatever way you rotate it, you will never see the tips of the green vectors outside of the subspace. The black vector, however, does not lie in the subspace. (Of course, the green vectors must be in the subspace. We defined the subspace *using* the two green vectors.)    
-
-**Projection** of a vector onto a subspace means to find a new vector *in the subspace* that is a close as possible to the vector being projected. `r xf("fig-decomp-2")` shows the projection of the black vector onto the green subspace. We have drawn in gray the "new" vector, that is, the one that lies in the subspace and is as close as possible to the black vector.
-
-
-
 :::: {.content-hidden unless-format="pdf"}
 
 
@@ -477,6 +489,16 @@ You can verify that the two green vectors are in the subspace by rotating the sc
 ![](www/rgl-box-2.png){width="3in"}
 
 ::::
+
+
+A compact way to represent the similarity of the black vector with the subspace is the *angle* between the vector and the subspace. There's a catch, however. Angles are defined between any *two* vectors, but not so obviously between a vector and a subspace. 
+
+You can see the difficulty of defining the angle between a vector and a subspace by manipulating `r xf("fig-decomp-1")`. First, rotate the picture until you are looking at the subspace edge-on. You will have accomplished this when the subspace appears as a line, rather than a plane. Keeping the view edge-on, continue to rotate the picture and notice how the black vector moves relative to the line. (It will take some practice to learn how to do this.) Depending on the perspective, the angle between the black vector and the line of the subspace will change. 
+
+If we are going to define an angle between a vector and a subspace, we need a consistent way to measure it. This is provided by the idea of `r xf_definition("decomposing")` a vector into components. 
+
+To see the properties of such a decomposition, turn to `r xf("fig-decomp-2")`. The Figure shows the same subspace and black vector as in `r xf("fig-decomp-1")`, two two additional vectors added, one red and one gray.
+
 
 :::: {.content-hidden when-format="pdf"}
 ```{r eval=knitr::is_html_output()}
@@ -500,37 +522,27 @@ close3d()
   "Link to interactive diagrams"
 )`
 
-To confirm that the gray vector really is the one in the subspace that is as close as possible to the black vector, observe these facts by rotating the scene:
+First, observe that the gray vector is perfectly aligned with the subspace, even though it is not perfectly aligned with either of the two vectors that define the subspace. How can you see this? First, rotate the picture so that you are looking "down" on the subspace, that is, so that you can see the green plane fill the view. From this perspective, the gray vector is not aligned with *either* of the two vectors defining the subspace. Next, rotate the picture so that you are looking at the subspace edge-on. You will see that the gray vector is entirely contained within the plane.
 
-a. The [gray]{style="color: darkgray;"} vector is in the green subspace. No matter how you rotate the scene, the gray vector never emerges from the subspace.
+Now consider the red vector. It is obviously not contained in the subspace; you can see it sticking out, like the black vector, from the edge-on view of the subspace. But the direction of the red vector is special. It is *perpendicular* to the subspace. To see this, look at the subspace edge-on so it collapses to a line in the picture. Notice that the red vector is perpendicular to this line. It will remain perpendicular no matter which edge-on perspective you take on the subspace. (This wasn't true for the black vector, whose perceived angle with the subspace depends on the view.) The red vector, being perpendicular to the subspace, is perpendicular to any vector that's perfectly aligned with the subspace. One such vector is the gray vector discussed in the previous paragraph. 
 
-b. The tip of the black vector is directly above the tip of the gray vector. Admittedly, it can be hard to be sure of this just by observing the co-movement of the black and gray vectors. 
+Now we can define the decomposition of the black vector into a component aligned with the subspace and a component perpendicular to it. Rotate the picture so that you are looking straight along the red vector. You will have accomplished this when you see the red vector as a simple point. Now compare the black vector with the gray vector. They appear to be the same. That is, the gray vector is the component of the black vector aligned with the subspace. The red vector is the component perpendicular to the black vector. That is [red]{style="color: red;"} plus [gray]{style="color: gray;"} equals black.
 
-To allow greater precision of observation, we have added a [red]{style="color: red;"} that is perpendicular to the green subspace. You will want to confirm that this statement is accurate. Do so by rotating the space until you are looking at the subspace edge on. Whichever such perspective you take, the red vector will be perpendicular to the vestigial line of the subspace.
-
-Now rotate the space so you are looking straight down the red vector. When you have this right, the red vector will look like a single dot. You will also see that the tip of the gray vector is exactly covered by the tip of the black vector.
-
-Go back to looking at the subspace edge on. You should be able to see the black, red, and gray vectors. Notice that if the red vector were moved so that its base is at the tip of the gray vector, it would reach directly to the tip of the black vector. That is, 
-
-$${\color{darkgray}{\text{gray}}} + {\color{red}{\text{red}}} = \text{black}\ .$$
-
-Writing a vector as a sum of two other vectors is a form of decomposition. This decomposition of the black vector involves a part *directly in* the subspace ([gray]{style="color: darkgray;"}) and a part entirely outside the subspace ([red]{style="color: red"}).
-
-In three-dimensional space, this is just fun and games. But in higher-dimensional space, where we need to perform the projection using arithmetic, it is the core technique of statistical modeling, a method that underlies many published scientific findings and that gives a more nuanced view of relationships than the simple rates described in `r xf("sec-rates")`.
+These geometrical ideas provide important capabilities for understanding patterns in data and ideas of similarity and dissimilarity. The next section provides an example where position in a subspace helps to identify similarity and dissimilarity among penguin species.
 
 ## Example: Learning to identify different species
 
 We are going to take on a `r xf_definition("learning")` task: figuring out how to classify the species of a penguin. For people, such learning comes from experience. Spend enough time with penguins, and you'll figure out how to discern one type of penguin from another.
 
-Consider now the problem of getting a computer to discern the different species from one another using physical measurements. Our motivation here is to demonstrate a process of *learning*. I don't know that there is a practical, ecological motivation behind this problem. 
+As an example of learning, consider the task of getting a computer, using physical measurements, to discern the different species from one another. 
 
 In this learning task, we will start by sending human experts out to collect data from penguins: the species, but also quantitative data such as the penguin's mass, beak length, and width, and so on. The data collected constitute a `r xf_definition("training data set")` that we will use to establish quantitative rules for identifying a penguin's species.
 
-`r xf("fig-penguins-3d")` shows training data from 344 penguins across three species: Adélie, Chinstrap, and Gentoo. Each penguin is one dot in the picture. The judgement of the human experts about the species is indicated by the *color* of the dot: Adelie is blue, Chinstrap green, and Gentoo red. Five different quantitative measurements were taken for each penguin, so the dots rightfully belong in a five-dimensional space. But we can only show three dimensions graphically, so we work with those.
+`r xf("fig-penguins-3d")` shows training data from 344 penguins across three species: Adélie, Chinstrap, and Gentoo. Each penguin is one dot in the picture. The judgment of the human experts about the species is indicated by the *color* of the dot: Adelie is blue, Chinstrap green, and Gentoo red. Five different quantitative measurements were taken for each penguin, so the dots rightfully belong in a five-dimensional space. But we can only show three dimensions graphically. Our picture shows three variables from the penguin data set.
 
 
 :::: {.content-hidden unless-format="pdf"}
-[`r xf("fig-penguins-3d")`:Representing the penguin data as points in space.  (See the online, interactive version to explore this space.)
+[`r xf("fig-penguins-3d")`: Representing the penguin data as points in space.  (See the online, interactive version to explore this space.)
 ]{.column-margin}
 
 ![](www/rgl-box-3.png){width="3in"}
@@ -569,15 +581,15 @@ library(palmerpenguins)
 ```
 ::::
 
-From the perspective shown initially, it's easy to distinguish the [Chinstrap]{style="color: green;"} penguins from the other two species. But the Adelie and Gentoo species are all mixed up; we can't divide the space into distinct regions that separate one species from another.
+From the initial perspective, it's easy to distinguish the [Chinstrap]{style="color: green;"} penguins from the other two species. But the Adelie and Gentoo species are all mixed up; we can't divide the space into distinct regions that separate one species from another.
 
-Now rotate the scene until each of the three species occupies a distinct region. By rotating, you are determining how to combine the various measurements to obtain the cleanest results from the training data. Once that learning has been accomplished, you'll know how to classify any new penguin that comes along without a species label.
+Now rotate the scene until each species occupies a distinct region. By rotating, you are determining how to combine the various measurements to obtain the cleanest results from the training data. Once that learning is done, you will have a function that can classify any new penguin that comes along without a species label.
 
 Think about how you learned the pattern. You rotated the space more or less at random, keeping track of which perspective best separates the groups of different-colored dots. Such a perspective optimization can also be automated, without human involvement. In fact, that is how the subspace shown in `r xf("fig-penguins-3d")` was determined. The information about species corresponds to the pattern encoded by the subspace.
 
-This was a pretty easy learning task since it can be done in three dimensions. The next example demonstrates a more impressive feat performed in a space of more than 100 dimensions. What's more, there is no expert providing the training data; the method will figure out how to perform classification without knowing the goal!
+This was a pretty easy learning task since it can be done in three dimensions. The next example demonstrates a more impressive feat performed in a space of more than 100 dimensions. What's more, no expert provides the training data; the method will figure out how to classify without knowing the goal!
 
-## Example: Voting patterns
+## Example: Voting patterns {sec-voting-patterns}
 
 ```{r echo=FALSE, warning=FALSE}
 #| label: ch16-r-87a1f188
@@ -643,13 +655,13 @@ show_votes <- function(array) {
 
 
 
-In high-dimensional space, random vectors tend to have an alignment close to zero. This is an important clue to help us spot patterns in data. As described previously, patterns are encoded by a choice of subspace. To search for patterns, we look for subspaces where projecting onto the space tends to produce vectors that are more closely aligned. 
+In high-dimensional space, random vectors tend to have an alignment close to zero. This is an important clue to spot patterns in data. As described previously, patterns are encoded by a choice of subspace. To search for patterns, we look for subspaces where projecting onto the space tends to produce vectors that are more closely aligned. 
 
-To avoid unnecessary abstraction and the mystique that can arise from leaving the familiar realm of three dimensions, we have selected an easy-to-understand setting: votes by legislators in a council. In particular, we will examine a series of 773 votes by 135 lawmakers in the Scottish Parliament in 1999-2000.^[This example was provided soon after the session of Parliament by then-undergraduate Caroline Ettinger and Professor Andrew Beveridge at Macalester College.] This might seem an obscure topic, but the advantage for us is that few readers will have direct knowledge of the parliament's political structure, for instance, the number and make-up of political parties. Similarly, the reader will not know how the 773 recorded ballots are related to one another. 
+To avoid unnecessary abstraction and the mystique that can arise from leaving the familiar realm of three dimensions, we have selected an easy-to-understand setting: votes by legislators in a council. In particular, we will examine a series of 773 votes by 134 lawmakers in the Scottish Parliament in 1999-2000.^[This example was provided soon after the session of Parliament by then-undergraduate Caroline Ettinger and Professor Andrew Beveridge at Macalester College.] This might seem an obscure topic, but the advantage for us is that few readers will have direct knowledge of the parliament's political structure, for instance, the number and make-up of political parties. Similarly, the reader will not know how the 773 recorded ballots are related to one another. 
 
-This is an example of `r xf_definition("unsupervised learning")`. In *supervised* learning, as with the penguin species assignment, we have *training data* about the patterns we seek to uncover: the different colored points in `r xf("fig-penguins-3d")` that enable us to find an advantageous projection onto a low-dimensional subspace. In *unsupervised* we have no such knowledge. The problem is then to find a low-dimensional subspace without knowing in advance what we are looking for.
+This is an example of `r xf_definition("unsupervised learning")`. In *supervised* learning, as with the penguin species assignment, we have *training data* about the patterns we seek to uncover: the different colored points in `r xf("fig-penguins-3d")` that enable us to find an advantageous projection onto a low-dimensional subspace. In *unsupervised learning* we have no such knowledge. The problem is then to find a low-dimensional subspace without knowing in advance what we are looking for.
 
-To orient the reader, consider some of the data for one of the 135 members of parliament, Bruce Crawford. Mr. Crawford voted "For" 235 ballots, "Against" 264, and didn't register a vote in 274. For instance, Bill S1M-786 was entitled "Ethical Standards in Public Life." Mr. Crawford was in favor, as were 98 of his colleagues. (It is likely that most members of parliament are in favor of ethical standards in public life, but evidently, 17 members objected to something or another in the bill. There were 2 abstentions and 16 absences.)
+To orient the reader, consider some of the data for one of the 134 members of parliament, Bruce Crawford. Mr. Crawford voted "For" 235 ballots, "Against" 264, and didn't register a vote in 274. For instance, Bill S1M-786 was entitled "Ethical Standards in Public Life." Mr. Crawford was in favor, as were 98 of his colleagues. (Likely, most members of Parliament are in favor of ethical standards in public life, but evidently, 17 members objected to something or another in the bill. There were 2 abstentions and 16 absences.)
 
 A diligent researcher can read through the minutes of Parliament, which record which party each member belongs to and the content of each bill. But, in the spirit of unsupervised learning, we will not use this information.
 
@@ -671,9 +683,9 @@ show_votes(VAlpha)
 :::
 -->
 
-Our goal is to find and interpret patterns in the data. There are many ways to define "pattern." For instance, the reader will, possibly, see the overall pattern in `r xf("fig-all-votes")` as a *plaid*, a common fabric pattern. (Satisfyingly, plaid is culturally associated with Scotland, although that has nothing to do with the matter at hand.) Here, however, we will stick with the sorts of patterns that can be seen through the lens of quantitative reasoning, particularly the alignment of vectors and the detection of low-dimensional subspaces that provide a good approximation to the raw data.
+We seek to find and interpret patterns in the data. But what exactly is meant by "pattern." For instance, the reader will, possibly, see the overall pattern in `r xf("fig-all-votes")` as a *plaid*, a common fabric pattern. (Satisfyingly, plaid is culturally associated with Scotland, although that has nothing to do with the matter at hand.) Here, however, we will stick to patterns seen through the lens of quantitative reasoning, particularly the alignment of vectors and the detection of low-dimensional subspaces that provide a good approximation to the raw data.
 
-We start with alignment, a useful measure that can be calculated using the formula in `r xf("eq-alignment")`, which involves simple arithmetic. We start by measuring the alignment among the various members of parliament. For each of the 133 members of parliament, we have a vector of votes on the 773 bills. For example, Bruce Crawford's voting record is represented by the vector we have named $\vec{M}_{100}$ in `r xf("eq-bruce-crawford")`. We also show vectors for a randomly selected few of his colleagues: Colin Campbell ($\vec{M}_{99}$), Paul Martin $\vec{M}_{57}$, and Scott Barrie ($\vec{M}_{25}$). Each of the vectors has 773 components; we're leaving out most of them for human readability. 
+We start by measuring the alignment among the various members of parliament. For each of the 134 members of parliament, we have a vector of votes on the 773 bills. For example, Bruce Crawford's voting record is represented by the vector we have named $\vec{M}_{100}$ in `r xf("eq-bruce-crawford")`. We also show vectors for a few randomly selected colleagues: Colin Campbell ($\vec{M}_{99}$), Paul Martin $\vec{M}_{57}$, and Scott Barrie ($\vec{M}_{25}$). Each vector has 773 components; we're leaving out most of them for human readability. 
 
 $$\vec{M}_{100} = {\small\left(\begin{array}{r}1\\-1\\-1\\1\\1\\1\\1\\-1\\\vdots\\-1\\-1\\1 \end{array}\right)}\ \ \ \ 
 \vec{M}_{99} = \small{\left(\begin{array}{r}-1\\1\\1\\-1\\-1\\-1\\-1\\1\\\vdots\\1\\1\\0 \end{array}\right)}\ \ \ \ 
@@ -684,20 +696,18 @@ $${#eq-bruce-crawford}
 
 Note that the first component of all the vectors in `r xf("eq-bruce-crawford")` corresponds to the vote on the same bill, S1M-1, and similarly for all the other bills up to S1M-4064.
 
-Observe that $\vec{M}_{100}$ is almost entirely the opposite voting pattern of $\vec{M}_{99}$. To find the quantitative alignment, first take the dot product of the two vectors, 
-$$ (-1) \times 1 + (-1)\times 1  + 1 \times (-1) + 1 \times (-1) + \cdots = - 8$$
-then divide by the square root of the lengths of the two vectors, $\sqrt{11}$ and $\sqrt{10}$ respectively. This arithmetic operation gives an alignment of -76%.
+Observe that $\vec{M}_{100}$ is almost entirely the opposite voting pattern of $\vec{M}_{99}$. The quantitative alignment works out to be -76%. 
 
-The point here is not to emphasize this particular calculation, but to show that the alignment is a straightforward statistic to compute. And, in any event, we should take into account all 773 bills when computing the alignment between two members of parliament. `r xf("tbl-4MPs-alignment")` shows the result.
+A more complete analysis would take into account all 773 bills when computing the alignment, rather than just the 11 dimensions of the vectors shown in @eq-bruce-crawford.  `r xf("tbl-4MPs-alignment")` shows the result.
 
 ::: {#tbl-4MPs-alignment tbl-cap-location="top"}
 
-  &nbsp;    | Scott | Paul  | Colin | Bruce
+  &nbsp;  | Scott | Paul  | Colin | Bruce
 ----------|-------|-------|-------|------
-**Scott** | 1     |  -0.33| 0.68  | -0.31 
-**Paul**  | -0.33 |  1    | -0.39 |  0.85
-**Colin** |  0.68 | -0.39 | 1     | -0.37
-**Bruce** | -0.31 |  0.85 | -0.37 |  1  
+**Scott** | 100%  |  -33% | 68%   | -31% 
+**Paul**  | -33%  |  100% | -39%  |  85%
+**Colin** |  68%  | -39%  | 100%  | -37%
+**Bruce** | -31%  |  85%  | -37%  |  100% 
 
 Alignments among the voting patterns of four members of parliament.
 :::
@@ -707,11 +717,11 @@ Notice that (of course!) each MP is *perfectly aligned* with themself. And, the 
 
 The alignment array, however, shows some patterns. Notice that Scott and Colin are strongly aligned. Paul and Bruce are even more so. But Scott and Paul are somewhat negatively aligned, as are Colin and Bruce. 
 
-Re-arranging the names to place strongly aligned ones near each other and negatively aligned ones far away gives the following order:
+Rearranging the names to place strongly aligned ones near each other and negatively aligned ones far away gives the following order:
 
 **Scott**, **Colin**, **Bruce**, **Paul**
 
-`r xf("tbl-4MPs-re-ordered")` puts `r xf("tbl-4MPs-alignment")` into this order. The re-arrangement suggests that among these four MPs there are two voting blocks, [blue]{style="color:blue;"} and [green]{style="color:green;"}.
+`r xf("tbl-4MPs-re-ordered")` puts `r xf("tbl-4MPs-alignment")` into this order. The re-arrangement suggests that these four MPs fall into two voting blocks, [blue]{style="color:blue;"} and [green]{style="color:green;"}.
 
 
 ::: {#tbl-4MPs-re-ordered}
@@ -745,9 +755,9 @@ long_align <- function(n, m) {
 }
 ```
 
-Another way to look at the voting data is as 773 vectors, each having 134 components. That is, we make 134 measurements on each of the 773 bills. Looking at the alignments among the 773 vectors lets us organized the bills into blocks (`r xf("fig-arranged-votes")`).
+Alternatively, look at the voting data is as 773 vectors, each having 134 components. That is, we make 134 measurements on each of the 773 bills. Looking at the alignments among the 773 vectors lets us organize the bills into blocks (`r xf("fig-arranged-votes")`).
 
-`r xf("fig-arranged-votes")` shows the entire data set from `r xf("fig-all-votes")` with both the rows and columns re-arranged to enhance the "blockiness" of the data.
+`r xf("fig-arranged-votes")` shows the entire data set from `r xf("fig-all-votes")` with both the rows and columns rearranged to enhance the "blockiness" of the data.
 
 ```{r}
 #| label: fig-arranged-votes
@@ -756,13 +766,13 @@ Another way to look at the voting data is as 773 vectors, each having 134 compon
 show_votes(SVAlpha)
 ```
 
-The strong block structure in `r xf("fig-arranged-votes")` is evident. Looking across the *columns*, there are four factions. The largest, by far, includes the members numbered 60 and higher. The second largest faction consists of members numbered 1 through 36. This second faction is distinguished from the first by voting "for" bills 1-230 and against bills 580+. They also have many absences for bills 450-550. 
+The strong block structure in `r xf("fig-arranged-votes")` is evident. Looking across the *columns*, we see four factions. The largest, by far, includes the members numbered 60 and higher. The second largest faction consists of members numbered 1 through 36. This second faction is distinguished from the first by voting "for" bills 1-230 and against bills 580+. They also have many absences for bills 450-550. 
 
 Having identified two major factions, we can compare the voting patterns of members of parliament who are not in either faction. A third faction, contrasting with the first two, occupies 37-55. Meanwhile, a small fourth "faction," rows 56 to 59, is a mix of opinions and absences. 
 
-To facilitate further discussion, let's call the three substantial factions the "Top," "Middle," and "Bottom." It turns out, by referring to the known party registration of each MP, the Top faction consists of a mix of Scottish Labour and Scottish Liberal Democrats, the Bottom faction is the Scottish National Party, and the Middle faction is the Scottish Liberal Democrats. The party registration information, however, played no role in the construction of `r xf("fig-arranged-votes")`.
+To facilitate further discussion, let's call the three substantial factions the "Top," "Middle," and "Bottom." [It turns out that, based on the known party registration of each MP, the Top faction consists of a mix of Scottish Labour and Scottish Liberal Democrats, the Bottom faction is the Scottish National Party, and the Middle faction is the Scottish Liberal Democrats. The party registration information, however, played no role in the construction of `r xf("fig-arranged-votes")`.]{.column-margin}
 
-With these names for the horizontal bands in `r xf("fig-arranged-votes")`, we can discuss the vertical bands: the types of bills considered by Parliament. Bills 1 to 230 have the Top faction voting "for" and the Bottom faction voting "against." Bills 231 to 325 are opposed by both factions. Bills numbered 600+ are opposed by the Bottom faction but supported by the Top faction. Bills 326 to 450 receive support from both factions.
+With these names for the horizontal bands in `r xf("fig-arranged-votes")`, we can discuss the vertical bands: the types of bills considered by Parliament. Bills 1 to 230 have the Top faction voting "for" and the Bottom faction voting "against." Both factions oppose Bills 231 to 325. Bills numbered 600+ are opposed by the Bottom faction but supported by the Top faction. Bills 326 to 450 receive support from both factions.
 
 This is a lot to find out about a session of Parliament from a set of 100,000 "for" and "against" votes. It is not, of course, everything to know about the session. For instance, although we have identified four types of bills, we would need to read the actual bills or the debate record to determine which social, economic, or administrative features characterize each type. Here, modern quantitative reasoning provides a tool that can inform other types of description and argument. 
 
@@ -777,7 +787,7 @@ i. Gradient ascent for setting optimal parameters.
 
 ii. Representing words and word contexts as vectors in high-dimensional spaces.
 
-iii. Finding projections that collapse words and their contexts so that sets nearby geometrically are also similar semantically.
+iii. Finding projections that collapse words and their contexts so that sets that are nearby geometrically are also similar semantically.
 
 This chapter does not equip the reader to use such methods in practice. Realizing current AI capabilities required many billions in research on quantitative methods. Researchers also discovered new quantitative methods, unknown to previous generations. For example, the 2017 paper [Attention is all you need](https://en.wikipedia.org/wiki/Attention_Is_All_You_Need) made a major step toward effective AI.
 
@@ -786,4 +796,4 @@ This chapter does not equip the reader to use such methods in practice. Realizin
   "*Attention is All You Need*"
 )`
 
-Readers who are daunted by the richness of the quantitative concepts in this book should keep in mind that mastery comes only after years of study and effort. This is true across many fields, including the humanities, medicine, the social sciences, and engineering. Even experts of one decade can be challenged by innovations in the next. For instance, this author has not yet understood the "Attention" method enough to describe it or outline its key ideas.
+Readers who are daunted by the richness of the quantitative concepts in this book should keep in mind that mastery comes only after years of study and effort. This is true across many fields, including the humanities, medicine, the social sciences, and engineering. Even experts of one decade can be challenged by innovations in the next. For instance, this author has not yet understood the "Attention" method well enough to describe it or outline its key ideas.

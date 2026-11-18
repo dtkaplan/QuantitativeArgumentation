@@ -1,0 +1,56 @@
+word: formal reasoning
+for-chapter: 1
+valid:
+- Reasoning that applies explicit rules whose correct application yields certain conclusions.
+- A chain of steps where each link is either correct or in error.
+- Deduction or proof-like reasoning based on reliable rules.
+- A narrow but dependable form of reasoning when its rules are followed correctly.
+- Reasoning whose validity depends on the correctness of each step, not on how plausible
+  it sounds.
+invalid:
+- text: The facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+  justification: This describes givens, not formal reasoning. In this chapter, formal
+    reasoning refers to reasoning that applies explicit rules whose correct application
+    yields certain conclusions.
+- text: Fast, broadly applicable reasoning that uses useful but fallible rules of
+    thumb.
+  justification: This describes heuristic reasoning, not formal reasoning. In this
+    chapter, formal reasoning refers to reasoning that applies explicit rules whose
+    correct application yields certain conclusions.
+- text: A machine-learning system that uses patterns and alignments in text to generate
+    language.
+  justification: This describes Large language model (LLM), not formal reasoning.
+    In this chapter, formal reasoning refers to reasoning that applies explicit rules
+    whose correct application yields certain conclusions.
+- text: Representations of items, processes, or settings that are easier to use than
+    the reality.
+  justification: This describes models, not formal reasoning. In this chapter, formal
+    reasoning refers to reasoning that applies explicit rules whose correct application
+    yields certain conclusions.
+- text: Models built from mathematical components to support reasoning about real-world
+    situations.
+  justification: This describes quantitative models, not formal reasoning. In this
+    chapter, formal reasoning refers to reasoning that applies explicit rules whose
+    correct application yields certain conclusions.
+- text: An epidemic model that tracks susceptible, infective, and recovered people
+    over time.
+  justification: This describes SIR model, not formal reasoning. In this chapter,
+    formal reasoning refers to reasoning that applies explicit rules whose correct
+    application yields certain conclusions.
+- text: A highlighted term whose meaning is specifically defined for use in the book.
+  justification: This describes word or phrase, not formal reasoning. In this chapter,
+    formal reasoning refers to reasoning that applies explicit rules whose correct
+    application yields certain conclusions.
+- text: Recorded facts, findings, and measurements.
+  justification: This describes data, not formal reasoning. In this chapter, formal
+    reasoning refers to reasoning that applies explicit rules whose correct application
+    yields certain conclusions.
+- text: A rectangular array of data organized into rows and columns.
+  justification: This describes data frame, not formal reasoning. In this chapter,
+    formal reasoning refers to reasoning that applies explicit rules whose correct
+    application yields certain conclusions.
+- text: An aspect, property, or characteristic of an object or system.
+  justification: This describes dimension, not formal reasoning. In this chapter,
+    formal reasoning refers to reasoning that applies explicit rules whose correct
+    application yields certain conclusions.

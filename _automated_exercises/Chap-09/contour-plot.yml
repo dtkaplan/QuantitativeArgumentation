@@ -1,0 +1,29 @@
+word: contour plot
+for-chapter: 9
+valid:
+  - A graph of a function with two inputs that connects locations having equal output.
+  - A map-like display where contour lines mark constant values of a two-input function.
+  - A visualization that shows how a function's output varies across its input plane.
+  - A plot whose lines represent equal output values at different pairs of inputs.
+  - A topographical-map-style representation of a function of two variables.
+invalid:
+  - text: "A graph showing one output value against a single input value."
+    justification: "That is a slice plot; a contour plot shows a function with two inputs in a map-like view."
+  - text: "A table listing input pairs and their outputs in separate columns."
+    justification: "A table records values, while a contour plot displays equal-output lines across the input plane."
+  - text: "A curve connecting all input values that produce different outputs."
+    justification: "Each contour connects input pairs with the same output value."
+  - text: "A graph where line height represents the function output."
+    justification: "A contour plot uses lines in the input plane to represent constant outputs, not vertical height."
+  - text: "A diagram showing the direction of steepest increase as arrows only."
+    justification: "Gradient arrows can be added, but contour lines show levels of equal function output."
+  - text: "A plot of the distribution of one uncertain quantity over time."
+    justification: "A contour plot represents a function of two inputs; a distribution may be a one-input function."
+  - text: "A drawing of the input quantities as points with no output information."
+    justification: "Contour levels encode the function's output for input pairs."
+  - text: "A map in which every line traces equal distance from a central point."
+    justification: "That describes distance contours in a special case; generally contour lines mark equal function output."
+  - text: "A regression coefficient that scales one input variable."
+    justification: "A coefficient is a model multiplier; a contour plot is a graphical representation of a function."
+  - text: "A graph that can only represent functions with one input."
+    justification: "Contour plots are especially useful for functions with two inputs."

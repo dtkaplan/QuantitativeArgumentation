@@ -1,0 +1,43 @@
+word: object type
+for-chapter: 2
+valid:
+- The kind of object represented by every specimen in a data frame.
+- The shared category of entities described by the rows of a data frame.
+- A specification of what each row in a dataset represents, such as a child or house.
+- The common kind of thing whose specimens are recorded in a data frame.
+- A description that ensures the rows of a data frame refer to objects of the same
+  kind.
+invalid:
+- text: A procedure for translating a dimension into a measurable quantity.
+  justification: This describes operationalization, not object type. In this chapter,
+    object type refers to the kind of object represented by every specimen in a data
+    frame.
+- text: A subset of specimens selected from a larger population for study.
+  justification: This describes sample, not object type. In this chapter, object type
+    refers to the kind of object represented by every specimen in a data frame.
+- text: One individual object or event represented by a row in a data frame.
+  justification: This describes specimen, not object type. In this chapter, object
+    type refers to the kind of object represented by every specimen in a data frame.
+- text: The entry at the intersection of one specimen and one variable in a data frame.
+  justification: This describes value, not object type. In this chapter, object type
+    refers to the kind of object represented by every specimen in a data frame.
+- text: A column in a data frame that records one property across its specimens.
+  justification: This describes variable, not object type. In this chapter, object
+    type refers to the kind of object represented by every specimen in a data frame.
+- text: Examining a system by breaking it into contributing components.
+  justification: This describes analysis, not object type. In this chapter, object
+    type refers to the kind of object represented by every specimen in a data frame.
+- text: Fundamental dimensions from which derived dimensions are formed.
+  justification: This describes base dimensions, not object type. In this chapter,
+    object type refers to the kind of object represented by every specimen in a data
+    frame.
+- text: Fundamental SI units that are not defined in terms of one another.
+  justification: This describes base units, not object type. In this chapter, object
+    type refers to the kind of object represented by every specimen in a data frame.
+- text: A unit for counting people, from the Latin word for head.
+  justification: This describes capita, not object type. In this chapter, object type
+    refers to the kind of object represented by every specimen in a data frame.
+- text: Accounting for other variables while examining a relationship of interest.
+  justification: This describes controlling for, not object type. In this chapter,
+    object type refers to the kind of object represented by every specimen in a data
+    frame.

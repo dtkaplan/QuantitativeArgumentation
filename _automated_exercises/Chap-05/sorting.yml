@@ -1,0 +1,49 @@
+word: sorting
+for-chapter: 5
+valid:
+- Arranging values in order so their relative sizes are easier to compare.
+- Putting data from smallest to largest or largest to smallest.
+- An ordering operation that makes patterns in a set of values easier to see.
+- Rearranging records according to a value, such as GDP, to support visual comparison.
+- Organizing observations by rank rather than leaving them in an arbitrary order.
+invalid:
+- text: The process of constructing good arguments from evidence and reasoning.
+  justification: This describes argumentation, not sorting. In this chapter, sorting
+    refers to arranging values in order so their relative sizes are easier to compare.
+- text: Reasoning that applies explicit rules whose correct application yields certain
+    conclusions.
+  justification: This describes formal reasoning, not sorting. In this chapter, sorting
+    refers to arranging values in order so their relative sizes are easier to compare.
+- text: The facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+  justification: This describes givens, not sorting. In this chapter, sorting refers
+    to arranging values in order so their relative sizes are easier to compare.
+- text: Fast, broadly applicable reasoning that uses useful but fallible rules of
+    thumb.
+  justification: This describes heuristic reasoning, not sorting. In this chapter,
+    sorting refers to arranging values in order so their relative sizes are easier
+    to compare.
+- text: A machine-learning system that uses patterns and alignments in text to generate
+    language.
+  justification: This describes Large language model (LLM), not sorting. In this chapter,
+    sorting refers to arranging values in order so their relative sizes are easier
+    to compare.
+- text: Representations of items, processes, or settings that are easier to use than
+    the reality.
+  justification: This describes models, not sorting. In this chapter, sorting refers
+    to arranging values in order so their relative sizes are easier to compare.
+- text: Models built from mathematical components to support reasoning about real-world
+    situations.
+  justification: This describes quantitative models, not sorting. In this chapter,
+    sorting refers to arranging values in order so their relative sizes are easier
+    to compare.
+- text: An epidemic model that tracks susceptible, infective, and recovered people
+    over time.
+  justification: This describes SIR model, not sorting. In this chapter, sorting refers
+    to arranging values in order so their relative sizes are easier to compare.
+- text: A highlighted term whose meaning is specifically defined for use in the book.
+  justification: This describes word or phrase, not sorting. In this chapter, sorting
+    refers to arranging values in order so their relative sizes are easier to compare.
+- text: Recorded facts, findings, and measurements.
+  justification: This describes data, not sorting. In this chapter, sorting refers
+    to arranging values in order so their relative sizes are easier to compare.

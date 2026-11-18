@@ -1,0 +1,53 @@
+word: givens
+for-chapter: 1
+valid:
+- The facts, beliefs, assumptions, and observations available at the start of reasoning.
+- Starting information from which reasoning extracts new meaning or beliefs.
+- What a reasoner brings to a reasoning process before drawing a conclusion.
+- Premises, perceptions, knowledge, and impressions used as starting points for reasoning.
+- Initial information that reasoning uses to reach new understandings.
+invalid:
+- text: Fast, broadly applicable reasoning that uses useful but fallible rules of
+    thumb.
+  justification: This describes heuristic reasoning, not givens. In this chapter,
+    givens refers to the facts, beliefs, assumptions, and observations available at
+    the start of reasoning.
+- text: A machine-learning system that uses patterns and alignments in text to generate
+    language.
+  justification: This describes Large language model (LLM), not givens. In this chapter,
+    givens refers to the facts, beliefs, assumptions, and observations available at
+    the start of reasoning.
+- text: Representations of items, processes, or settings that are easier to use than
+    the reality.
+  justification: This describes models, not givens. In this chapter, givens refers
+    to the facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+- text: Models built from mathematical components to support reasoning about real-world
+    situations.
+  justification: This describes quantitative models, not givens. In this chapter,
+    givens refers to the facts, beliefs, assumptions, and observations available at
+    the start of reasoning.
+- text: An epidemic model that tracks susceptible, infective, and recovered people
+    over time.
+  justification: This describes SIR model, not givens. In this chapter, givens refers
+    to the facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+- text: A highlighted term whose meaning is specifically defined for use in the book.
+  justification: This describes word or phrase, not givens. In this chapter, givens
+    refers to the facts, beliefs, assumptions, and observations available at the start
+    of reasoning.
+- text: Recorded facts, findings, and measurements.
+  justification: This describes data, not givens. In this chapter, givens refers to
+    the facts, beliefs, assumptions, and observations available at the start of reasoning.
+- text: A rectangular array of data organized into rows and columns.
+  justification: This describes data frame, not givens. In this chapter, givens refers
+    to the facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+- text: An aspect, property, or characteristic of an object or system.
+  justification: This describes dimension, not givens. In this chapter, givens refers
+    to the facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+- text: The kind of object represented by every specimen in a data frame.
+  justification: This describes object type, not givens. In this chapter, givens refers
+    to the facts, beliefs, assumptions, and observations available at the start of
+    reasoning.

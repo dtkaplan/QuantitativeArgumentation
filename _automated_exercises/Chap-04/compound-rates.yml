@@ -1,0 +1,49 @@
+word: compound rates
+for-chapter: 4
+valid:
+- Rates formed by arithmetic combinations of other rates.
+- A rate with multiple divisions, such as calories per mile per pound.
+- A quantity created by combining rates, whose interpretation depends on the order
+  of operations.
+- A rate that relates a numerator quantity to a product or ratio involving several
+  other quantities.
+- A composite rate whose units encode more than one context or multiplier.
+invalid:
+- text: A ratio of two quantities where division expresses a relationship between
+    their underlying dimensions.
+  justification: This describes rate, not compound rates. In this chapter, compound
+    rates refers to rates formed by arithmetic combinations of other rates.
+- text: The change in a primary quantity divided by the corresponding change in a
+    context-setting quantity.
+  justification: This describes rate of change, not compound rates. In this chapter,
+    compound rates refers to rates formed by arithmetic combinations of other rates.
+- text: A number format that condenses scientific notation into a single magnitude
+    value.
+  justification: This describes logarithm, not compound rates. In this chapter, compound
+    rates refers to rates formed by arithmetic combinations of other rates.
+- text: A measure of the size of a number, closely related to its exponent in scientific
+    notation.
+  justification: This describes magnitude, not compound rates. In this chapter, compound
+    rates refers to rates formed by arithmetic combinations of other rates.
+- text: A factor-of-ten scale used to describe how much larger or smaller one number
+    is than another.
+  justification: This describes order of magnitude, not compound rates. In this chapter,
+    compound rates refers to rates formed by arithmetic combinations of other rates.
+- text: A number format that expresses a value as a mantissa multiplied by a power
+    of ten.
+  justification: This describes scientific notation, not compound rates. In this chapter,
+    compound rates refers to rates formed by arithmetic combinations of other rates.
+- text: Arranging values in order so their relative sizes are easier to compare.
+  justification: This describes sorting, not compound rates. In this chapter, compound
+    rates refers to rates formed by arithmetic combinations of other rates.
+- text: The process of constructing good arguments from evidence and reasoning.
+  justification: This describes argumentation, not compound rates. In this chapter,
+    compound rates refers to rates formed by arithmetic combinations of other rates.
+- text: Reasoning that applies explicit rules whose correct application yields certain
+    conclusions.
+  justification: This describes formal reasoning, not compound rates. In this chapter,
+    compound rates refers to rates formed by arithmetic combinations of other rates.
+- text: The facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+  justification: This describes givens, not compound rates. In this chapter, compound
+    rates refers to rates formed by arithmetic combinations of other rates.

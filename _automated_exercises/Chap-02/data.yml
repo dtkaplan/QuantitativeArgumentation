@@ -1,0 +1,39 @@
+word: data
+for-chapter: 2
+valid:
+- Recorded facts, findings, and measurements.
+- Information captured in a record, rather than all facts or beliefs one knows.
+- Recorded observations or measurements that can be organized and analyzed.
+- Facts and findings represented in a form that can be stored and examined.
+- Recorded information about specimens, variables, or events.
+invalid:
+- text: A rectangular array of data organized into rows and columns.
+  justification: This describes data frame, not data. In this chapter, data refers
+    to recorded facts, findings, and measurements.
+- text: An aspect, property, or characteristic of an object or system.
+  justification: This describes dimension, not data. In this chapter, data refers
+    to recorded facts, findings, and measurements.
+- text: The kind of object represented by every specimen in a data frame.
+  justification: This describes object type, not data. In this chapter, data refers
+    to recorded facts, findings, and measurements.
+- text: A procedure for translating a dimension into a measurable quantity.
+  justification: This describes operationalization, not data. In this chapter, data
+    refers to recorded facts, findings, and measurements.
+- text: A subset of specimens selected from a larger population for study.
+  justification: This describes sample, not data. In this chapter, data refers to
+    recorded facts, findings, and measurements.
+- text: One individual object or event represented by a row in a data frame.
+  justification: This describes specimen, not data. In this chapter, data refers to
+    recorded facts, findings, and measurements.
+- text: The entry at the intersection of one specimen and one variable in a data frame.
+  justification: This describes value, not data. In this chapter, data refers to recorded
+    facts, findings, and measurements.
+- text: A column in a data frame that records one property across its specimens.
+  justification: This describes variable, not data. In this chapter, data refers to
+    recorded facts, findings, and measurements.
+- text: Examining a system by breaking it into contributing components.
+  justification: This describes analysis, not data. In this chapter, data refers to
+    recorded facts, findings, and measurements.
+- text: Fundamental dimensions from which derived dimensions are formed.
+  justification: This describes base dimensions, not data. In this chapter, data refers
+    to recorded facts, findings, and measurements.

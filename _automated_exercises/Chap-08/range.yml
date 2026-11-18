@@ -1,0 +1,29 @@
+word: range
+for-chapter: 8
+valid:
+  - An interval bounded by lower and upper values used to express uncertainty.
+  - A way to report uncertainty by giving lower and upper plausible values.
+  - The span between two stated endpoints that summarizes possible quantity values.
+  - A compact uncertainty description that identifies a lower and an upper bound.
+  - An interval of values within which a quantity is considered likely to fall.
+invalid:
+  - text: "A function giving the relative probability of every possible value."
+    justification: "That is a probability distribution; a range gives only lower and upper values."
+  - text: "A single best estimate of a quantity with no bounds."
+    justification: "A range has endpoints and represents more than one possible value."
+  - text: "A statement that values outside the endpoints are absolutely impossible."
+    justification: "The chapter cautions that a statistical range usually means outside values are unlikely, not impossible."
+  - text: "The average of all values observed in a sample."
+    justification: "That is a mean, not an interval used to express uncertainty."
+  - text: "The difference between a function's output and its input."
+    justification: "A range is an interval of values; it is not a function comparison."
+  - text: "A list of equally likely outcomes from a uniform distribution."
+    justification: "A range can bound a uniform distribution, but the range itself is not a list of outcomes or probabilities."
+  - text: "A model that gives greater likelihood to values near a central mean."
+    justification: "That describes the normal distribution, which can extend beyond a typical range."
+  - text: "A measure of how far values tend to lie from their mean."
+    justification: "That describes spread such as standard deviation; a range specifies two bounds."
+  - text: "The complete set of values a computer randomly generated."
+    justification: "A generated sample is not the same as an interval used to summarize uncertainty."
+  - text: "A rule for combining uncertain inputs by multiplying their endpoints."
+    justification: "A range does not specify a reliable arithmetic rule for propagating uncertainty through functions."

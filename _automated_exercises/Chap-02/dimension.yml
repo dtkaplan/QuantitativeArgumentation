@@ -1,0 +1,39 @@
+word: dimension
+for-chapter: 2
+valid:
+- An aspect, property, or characteristic of an object or system.
+- A feature of an object that can be described or operationalized as a quantity.
+- One attribute by which objects or systems can be distinguished or studied.
+- A characteristic such as height, temperature, honesty, or genre.
+- A named quality of an object or system that may vary across contexts.
+invalid:
+- text: The kind of object represented by every specimen in a data frame.
+  justification: This describes object type, not dimension. In this chapter, dimension
+    refers to an aspect, property, or characteristic of an object or system.
+- text: A procedure for translating a dimension into a measurable quantity.
+  justification: This describes operationalization, not dimension. In this chapter,
+    dimension refers to an aspect, property, or characteristic of an object or system.
+- text: A subset of specimens selected from a larger population for study.
+  justification: This describes sample, not dimension. In this chapter, dimension
+    refers to an aspect, property, or characteristic of an object or system.
+- text: One individual object or event represented by a row in a data frame.
+  justification: This describes specimen, not dimension. In this chapter, dimension
+    refers to an aspect, property, or characteristic of an object or system.
+- text: The entry at the intersection of one specimen and one variable in a data frame.
+  justification: This describes value, not dimension. In this chapter, dimension refers
+    to an aspect, property, or characteristic of an object or system.
+- text: A column in a data frame that records one property across its specimens.
+  justification: This describes variable, not dimension. In this chapter, dimension
+    refers to an aspect, property, or characteristic of an object or system.
+- text: Examining a system by breaking it into contributing components.
+  justification: This describes analysis, not dimension. In this chapter, dimension
+    refers to an aspect, property, or characteristic of an object or system.
+- text: Fundamental dimensions from which derived dimensions are formed.
+  justification: This describes base dimensions, not dimension. In this chapter, dimension
+    refers to an aspect, property, or characteristic of an object or system.
+- text: Fundamental SI units that are not defined in terms of one another.
+  justification: This describes base units, not dimension. In this chapter, dimension
+    refers to an aspect, property, or characteristic of an object or system.
+- text: A unit for counting people, from the Latin word for head.
+  justification: This describes capita, not dimension. In this chapter, dimension
+    refers to an aspect, property, or characteristic of an object or system.

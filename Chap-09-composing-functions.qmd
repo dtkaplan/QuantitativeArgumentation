@@ -86,7 +86,7 @@ Recall the SIR model introduced in `r xf("sec-modeling-an-epidemic")`, where it 
 
 Consider how new infectives are *produced*: a current infective comes into contact with a currently susceptible person. Each such encounter or *interaction* carries a risk that the susceptible person will become infected. Imagine that the infective encounters several other people each day. Those other people might currently have the illness, or have already recovered from the illness. But some of the contacts will be susceptible. How many? It depends on the fraction of the population who are susceptible. The fraction is S / N, where N is the total population. In terms of our core modeling functions, the fraction of people who are susceptible is `same(S)` with some output scaling. Likewise, the risk that a susceptible who has been in contact with a current infective is just another layer of output scaling on the `same(S)` function. 
 
-Naturally, each of the I current infectives interacts with other people. The bigger is I, the larger is the number of such encounters. Overall, the number of new infectives is an output scaled version of I $\times$ S. This from of function often appears in modeling, so often that it has a name: an `r xf_definition("interaction term")`. This is an instance where the name is descriptive of the underlying mechanism that's being modeled. 
+Naturally, each current infective interacts with other people. The bigger is I, the larger is the number of such encounters. Overall, the number of new infectives is an output scaled version of I $\times$ S. This from of function often appears in modeling, so often that it has a name: an `r xf_definition("interaction term")`. This is an instance where the name is descriptive of the underlying mechanism that's being modeled. 
 
 Interaction terms appear in many modeling contexts, not just epidemics. For example, in chemistry the speed of a chemical reaction between two reagents, A and B, depends on the product of their concentrations: [A] [B] in the chemists' notation. But the name used in chemistry is different: the "Law of Mass Action." But an interaction, is still an interaction, whether it be between two molecules or between an infective and a susceptible, or between a fox and a rabbit.
 :::
@@ -102,11 +102,12 @@ With input scaling, we can adjust the time at which the pill is taken. Let's use
 
 The drug from each pill adds to whatever is already in the bloodstream. So the function giving the drug concentration for pills taken at 8-hour intervals (starting at 10 am on day 1) is:
 
-::: {.callout-note icon=false title="R definition of `all_pills()`"}
+::: {.callout-tip icon=false title="R definition of `all_pills()`"}
 ```{r eval = FALSE}
 all_pills <- function(t) {
-  one_pill(t - 10) + one_pill(t - 18) + one_pill(t - 26) + 
-  one_pill(t - 34) + one_pill(t - 42) + one_pill(t - 50) + 
+  one_pill(t - 10) + one_pill(t - 18) + 
+  one_pill(t - 26) + one_pill(t - 34) + 
+  one_pill(t - 42) + one_pill(t - 50) + 
   one_pill(t - 58) # ... and so on.
 }
 ```
@@ -135,13 +136,13 @@ slice_plot(one_pill(t - 10) + one_pill(t - 18) +
   gf_theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-@fig-drug-bloodstream shows how each additional pill raises the drug concentration. Suppose the pharmacist's goal is to maintain at all times a drug concentration above the therapeutic level of 1 mg/liter, providing no respite to the bacteria causing the infection. 
+@fig-drug-bloodstream shows how each additional pill raises the drug concentration. The pharmacist designs a dose schedule to maintain at all times a drug concentration above the therapeutic level of 1 mg/liter. This provides no respite to the bacteria causing the infection. 
 
 Compare the situation in `r xf("fig-triple-dose")` to that of `r xf("fig-one-pill")`. A single pill per day regimen would result in the drug concentration falling below 1 mg/liter for most of the day. That's not acceptable. The most obvious fix comes from recognizing that pill every 8 hours is three pills a day. So to be fair, the comparison the daily pill should have three times the dose of the 8-hour pill. Taking this into account, will the one-pill-per-day regimen work if we *tripled* the dose of each pill?
 
 This situation also falls under the aegis of the *linear combination* technique. In linear combinations, the modeler is free to set the output scale the functions being combined. For the one-dose-per-day plan (at triple the dose) the model of drug concentration looks like this:
 
-::: {.callout-note icon=false title="R function for one pill per day"}
+::: {.callout-tip icon=false title="R function for one pill per day"}
 ```{r}
 once_per_day <- function(t) {
   3 * one_pill(t - 10) + 3 * one_pill(t - 34) + 
@@ -206,14 +207,14 @@ We've identified four input quantities: teacher `performance`, parent's `educati
 [Linear regression involves basing the construction]{.smallcaps} of the function using data.  For the example, let's imagine a data frame where the specimen is an individual student in grade 5 and the columns correspond to the input quantities (`performance`, `education`, `income`, `size`) and the output (`score`). 
 
 
-Typically, as in this example, the input quantities have different dimension and are measured in different units. For example, in this example, `income` is measured in dollars (dimension {{< var dim.currency >}}), `education` in years of schooling (dimension {{< var dim.time >}}), `performance` as a score on an evaluation (dimension {{< var dim.number >}}), and `size` as the number of students in a class (also dimension {{< var dim.number >}}). [There are many scales for measuring school performance. When we talk about them, we don't typically give a unit name. For instance, a score of"600 on the SAT math test," which is roughly equivalent to a score of "25 on the ACT text," or a "gradepoint of 3.5."]{.column-margin} The output quantity, `score`, also has dimension {{< var dim.number >}} and its own units. 
+Typically, as in this example, the input quantities have different dimension and are measured in different units. For example, in this example, `income` is measured in dollars (dimension {{< var dim.currency >}}), `education` in years of schooling (dimension {{< var dim.time >}}), `performance` as a score on an evaluation (dimension {{< var dim.number >}}), and `size` as the number of students in a class (also dimension {{< var dim.number >}}). [Many scales measure school performance. When we talk about them, we don't typically give a unit name. For instance, a score of"600 on the SAT math test," which is roughly equivalent to a score of "25 on the ACT text," or a "gradepoint of 3.5."]{.column-margin} The output quantity, `score`, also has dimension {{< var dim.number >}} and its own units. 
 
 A linear combination is an ideal format for combining input quantities with different dimensions. It is a generalization of the **output scaling** introduced in `r xf("sec-core-functions")` which we used to convert the pure-number output of the core modeling functions to an output quantity with dimension and units. For our example, the function might be written this way:
 
 \newpage
 
-::: {.callout-note icon=false title="R syntax for a linear combination"}
-[Caution: these are placeholders for the coefficients]{.column-margin}
+::: {.callout-tip icon=false title="R syntax for a linear combination"}
+[Caution: A, B, C, D, and E are placeholders for the coefficients]{.column-margin}
 ```{r eval=FALSE}
 score_model <- 
   function(performance, education, income, size) {
@@ -226,20 +227,21 @@ score_model <-
 ```
 :::
 
-The quantity `A` is a conversion factor that turns `performance` into a quantity that has the same units and dimension as `score`. Similarly, `B` converts years of `education` into a `score` and so on for `C`, `D`, and `E`. [Another word for "coefficient" is `r xf_definition("scalar")`. This name is a reminder that the point is to "scale" something.]{.column-margin} These conversion factors are called `r xf_definition("coefficient", text="coefficients")`.
+The quantity `A` is a conversion factor that turns `performance` into a quantity that has the same units and dimension as `score`. Similarly, `B` converts years of `education` into a `score` and so on for `C`, `D`, and `E`. [Another word for "coefficient" is `r xf_definition("scalar")`. This name reminds us: the point is to "scale" something.]{.column-margin} These conversion factors are called `r xf_definition("coefficient", text="coefficients")`.
  
-We can figure out the units and dimension of each of the coefficients using the *conversion factor* ideas from `r xf("sec-quantities")`. For instance, the `C` coefficient has to turn `income` (dimension {{< var dim.currency >}}) into a `score` (dimension {{< var dim.number >}}), so its dimension would be {{< var dim.number >}} / {{< var dim.currency >}}. Even more, we can say what are the *units* of `C`: if `income` is measured in dollars and `score` is measured in SAT points, then the units of `C` would be SAT points per dollar.
+We can figure out the units and dimension of each coefficient using the *conversion factor* ideas from `r xf("sec-quantities")`. For instance, the `C` coefficient has to turn `income` (dimension {{< var dim.currency >}}) into a `score` (dimension {{< var dim.number >}}), so its dimension would be {{< var dim.number >}} / {{< var dim.currency >}}. Even more, we can say what are the *units* of `C`: if `income` is measured in dollars and `score` is measured in SAT points, then the units of `C` would be SAT points per dollar.
 
-Knowing the units and dimensions of the coefficients helps, but it does not directly tell what the numerical value of the quantity should be. This is where the method of linear regression comes in: to find the numerical values of the coefficients that best match the observed data. The calculations themselves are based on theory beyond the scope of this book, but that poses no problem at all since linear regression is implemented in software that anyone can use. [IN DRAFT: Some computing skill development exercises demonstrate how.]{.column-margin}
+Knowing the units and dimensions of the coefficients helps, but it does not directly tell what the numerical value of the quantity should be. This is where the method of linear regression comes in: to find the numerical values of the coefficients that best match the observed data. The calculations themselves are based on theory beyond the scope of this book, but that poses no problem at all since linear regression is implemented in software that anyone can use. 
 
 Given that software finds the values of the coefficients, the modeler can focus on two critical tasks:
+
 
 1. Identifying the relevant input and output quantities for the model.
 2. Interpreting the coefficients and what they tell us about the workings of the system being modeled. 
 
 These two tasks are intimately related . Let's start with (2). 
 
-Each of the coefficients on an input is not just a rate (for instance SAT-points/dollar for `C`); it is also a **rate of change**. In other words, the coefficient tells us how much the model output quantity changes when the input quantity changes by one unit. In the example, each of the four coefficients `A`, `B`, `C`, and `D` is a rate of change that quantifies how the model output will change with a unit change in the corresponding model input. All the terms in the linear combination add together, giving the total change in the model output as a result of changes in all the inputs.
+Each coefficient on an input is not just a rate (for instance SAT-points/dollar for `C`); it is also a **rate of change**. In other words, the coefficient tells us how much the model output quantity changes when the input quantity changes by one unit. In the example, each coefficient---`A`, `B`, `C`, and `D`---is a rate of change that quantifies how the model output will change with a unit change in the corresponding model input. All the terms in the linear combination add together, giving the total change in the model output as a result of changes in all the inputs.
 
 One consequence of this is that each coefficient has meaning only within the context set by the other coefficients. If the modeler were to change the input quantities (for example, leaving out teacher `performance`), the numerical value of each of the other coefficients would also likely change.
 
@@ -254,7 +256,7 @@ In reporting research results, the phrases `r xf_definition("after adjusting for
 
 ## Function graphics
 
-One function that we live with every day is the terrain around us: elevation as a function of latitude and longitude. There is a well-accepted graphical format for showing terrain: the topographical map. `r xf("fig-saint-john")` shows an example: the terrain of an island.
+One function that we live with every day is the terrain around us: elevation as a function of latitude and longitude. A well-accepted graphical format for showing terrain is the topographical map. `r xf("fig-saint-john")` shows an example: the terrain of an island.
 
 ::: {#fig-saint-john}
 ![](www/St-John-topo-map.png)
@@ -271,7 +273,7 @@ The topographical map has many curved lines, called *contours*. These are easies
 
 On land, the contours are brown and are very closely spaced. Here, each contour depicts where the elevation is at a constant elevation above sea level. Many of the contours are labeled. On land, the label gives the elevation; in the sea, the label gives the depth of the water. The map also labels with a number the elevation of a few outstanding points such as the peak of hills or the depth of undersea bowls.
 
-It takes practice to learn how to extract information from topographical maps. Let's get started by focussing on the terrain around Hansen Bay, just to the left of center on the map. The shoreline is marked as a blue curve. More important for our purposes, that blue curve is a contour line that marks elevation 0, at sea level. You can trace the contour around the island: it never goes inland or out to sea. Moving inland, there are several more contours pretty much parallel to the shoreline and to each other. On this map, each successive contour is at a higher elevation than the one previous; the elevation difference between adjacent contours is 40 feet. Walking inland from Hansen Bay toward Nancy Hill, you cross four light brown contours until you arrive a darker brown one. That darker brown contour indicates an elevation of 200 feet above sea level. (If you trace the dark brown contour around the island, you will find a label on it: 200.) Continuing toward Nancy Hill, you cross another 4 light-brown contours then, having ascended another 200 feet, alight on a dark-brown one circling Nancy Hill. The dark-brown contour marks an elevation of 200 + 200 = 400 feet above sea level. Continuing to climb from the 400 foot contour toward the peak, you cross one, two, and a third contour barely visible under the marker for the peak. We have reached 200 + 200 + 120 = 520 feet when we reach the last, highest contour. The peak is just a little higher: marked as 523 feet on the map.
+It takes practice to learn how to extract information from topographical maps. Let's get started by focussing on the terrain around Hansen Bay, just to the left of center on the map. The shoreline is marked as a blue curve. More important for our purposes, that blue curve is a contour line that marks elevation 0, at sea level. You can trace the contour around the island: it never goes inland or out to sea. Moving inland, we encounter more contours, each pretty much parallel to the shoreline. On this map, each successive contour is at a higher elevation than the one previous; the elevation difference between adjacent contours is 40 feet. Walking inland from Hansen Bay toward Nancy Hill, you cross four light brown contours until you arrive a darker brown one. That darker brown contour indicates an elevation of 200 feet above sea level. (If you trace the dark brown contour around the island, you will find a label on it: 200.) Continuing toward Nancy Hill, you cross another 4 light-brown contours then, having ascended another 200 feet, alight on a dark-brown one circling Nancy Hill. The dark-brown contour marks an elevation of 200 + 200 = 400 feet above sea level. Continuing to climb from the 400 foot contour toward the peak, you cross one, two, and a third contour barely visible under the marker for the peak. We have reached 200 + 200 + 120 = 520 feet when we reach the last, highest contour. The peak is just a little higher: marked as 523 feet on the map.
 
 The contours tell you more about the terrain than the elevation at each point. For example, the steepest route up from any given point is perpendicular to the contour through that point. Steep areas of terrain have closely spaced contours. Conversely, areas with widely spaced contours are relatively flat, as you can see along the shoreline of Hansen Bay. Naturally, the steepness of a path depends on which direction the path goes. Paths perpendicular to contours are steep, paths parallel to contours are flat. With this in mind, look at the road that links Hansen Bay to Princess Creek in the far northwest corner of the map. Roads are generally designed to avoid going steeply uphill, and you can see that the Princess Creek/Hansen Bay road tends to follow the contours, crossing obliquely at shallow angles rather than cutting straight up the steepest slopes.
 
@@ -281,7 +283,7 @@ The equivalent of a topographical map for functions is called a `r xf_definition
 
 Panel (a) of `r xf("fig-sultriness-contour")` is a too-small-to-read reproduction of `r xf("tbl-sultriness")`. It is used here to show an important spatial pattern in the table, that the heat index is undefined for high temperatures and humidities. 
 
-Panel (b) shows the heat index function as a *contour plot*. By avoiding the table's visual clutter of a grid of numbers, some simple patterns can be seen. For instance, consider on (b) the heat index output for input temperatures lower than 30°C; the contours run in parallel with a slight upward slope from left to right. 
+Panel (b) shows the heat index function as a *contour plot*. By avoiding the table's visual clutter of a grid of numbers, some simple patterns appear. For instance, consider on (b) the heat index output for input temperatures lower than 30°C; the contours run in parallel with a slight upward slope from left to right. 
 
 
 ```{r echo=FALSE, eval=FALSE, warning=FALSE}
@@ -309,7 +311,7 @@ Such parallel contours correspond to the function being a linear combination of 
 
 Now consider dry-bulb temperatures higher than 30°C, especially for humidities greater than, say, 50%. The contours are still parallel but they are heavily inclined from left to right and closely spaced together. 
 
-The close spacing of the contours indicates, as in the topographical map of `r xf("fig-saint-john")`, the function is very steep: a small change in either input produces a large change in the output. This relationship is what's behind the common summertime complaint: "It's not the heat, it's the humidity."
+The close spacing of the contours indicates, as in the topographical map of `r xf("fig-saint-john")`, the function is very steep: a small change in either input produces a large change in the output. This relationship is behind the common summertime complaint: "It's not the heat, it's the humidity."
 
 The inclination of the contours tells us something else: the heat index for high ambient temperatures is closely linked to both humidity and temperature. And the curvature of the contour lines indicates an *interaction* between temperature and humidity.
 

@@ -1,0 +1,29 @@
+word: state space
+for-chapter: 13
+valid:
+  - The set of all possible states of a dynamical system.
+  - A space whose points represent the possible configurations of a system.
+  - The collection of allowable values for the quantities that make up a system's state.
+  - The space in which a system's current state is a point and its changes trace a path.
+  - A representation of every possible configuration that the system can occupy.
+invalid:
+  - text: "The one state the system occupies at the present instant."
+    justification: "That is the current state; the state space contains all possible states."
+  - text: "A rule giving the rate of change for each state."
+    justification: "That is the dynamical rule, which maps states to their changes."
+  - text: "A graph of the state quantity against time."
+    justification: "That is a time series; state space represents possible configurations."
+  - text: "The path followed by one system from its initial condition."
+    justification: "That path is a trajectory within state space."
+  - text: "A probability distribution over the time between events."
+    justification: "That is a probability model; state space describes possible system configurations."
+  - text: "A physical region where a mechanism is installed."
+    justification: "State space is a mathematical space of system configurations, not necessarily a physical location."
+  - text: "A list of measurements collected from one specimen."
+    justification: "A specimen's measurements may form one state, but the space includes all possible states."
+  - text: "The set of time values during which the system is observed."
+    justification: "Time is the input to a time series; state space concerns possible state values."
+  - text: "The output of a dynamical rule at a particular state."
+    justification: "That output describes the rate and direction of change, not the set of possible states."
+  - text: "A collection of all trajectories generated from one initial state."
+    justification: "A trajectory is a path through state space; state space contains possible states, not paths."

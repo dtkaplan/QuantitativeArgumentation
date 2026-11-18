@@ -1,0 +1,49 @@
+word: arg
+for-chapter: 6
+valid:
+  - The name assigned to an input role in a function definition.
+  - A label that identifies what a particular function input represents.
+  - One of the named positions a function uses to organize its inputs.
+  - The name inside a function's parentheses that indicates an input's role.
+  - A function-input name that lets values be supplied by position or by name.
+invalid:
+  - text: |
+      A value returned by a function after its algorithm finishes.
+    justification: |
+      That is the function's output. An arg is the name for an input role.
+  - text: |
+      A number supplied as the value for an input, such as 30 in heat_index(30, 0.80).
+    justification: |
+      The chapter distinguishes the input's name, the arg, from the value supplied for that input.
+  - text: |
+      A claim supported by evidence and a chain of reasoning.
+    justification: |
+      That is an argument in the book's terminology, not an arg. An arg names a function input.
+  - text: |
+      The complete sequence of operations that converts inputs into an output.
+    justification: |
+      That is an algorithm. An arg names an input role used by a function.
+  - text: |
+      The name of a function, such as heat_index, rather than a name inside its parentheses.
+    justification: |
+      The function name identifies the function itself. An arg names one of its inputs.
+  - text: |
+      A dimension that a model calculates from within the model.
+    justification: |
+      That describes an endogenous dimension. An arg is a name assigned to a function input.
+  - text: |
+      A unit of measurement, such as degrees Celsius or percent humidity.
+    justification: |
+      Units describe quantities, not the named roles of a function's inputs.
+  - text: |
+      The output quantity that a function is designed to calculate.
+    justification: |
+      An arg names an input, not the output produced by the function.
+  - text: |
+      A complete description of a system and all its interconnected dimensions.
+    justification: |
+      This describes a system, not an arg. An arg is a name for one function input.
+  - text: |
+      Any word written inside a function's parentheses, including the values used when calling it.
+    justification: |
+      The chapter uses arg for the input names; values supplied in a function call are not those names.

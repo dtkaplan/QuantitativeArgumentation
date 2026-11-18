@@ -1,0 +1,29 @@
+word: null hypothesis
+for-chapter: 11
+valid:
+  - A baseline hypothesis representing a no-effect or ordinary-condition explanation for comparison.
+  - The reference hypothesis that specifies no unusual effect, such as an unbiased coin.
+  - A baseline model against which a proposed research hypothesis is evaluated.
+  - A hypothesis representing the default or no-departure-from-baseline claim in a test.
+  - The comparison model that treats an observed pattern as expected under ordinary conditions.
+invalid:
+  - text: "The research hypothesis that specifies the particular effect being proposed."
+    justification: "The null is the baseline; the research hypothesis specifies the alternative effect."
+  - text: "A claim that the observed data contain no measurements."
+    justification: "Null does not mean missing data; it names a baseline hypothesis about the process."
+  - text: "A hypothesis that is automatically accepted as true."
+    justification: "The null is compared with alternatives and is not guaranteed to be true."
+  - text: "A model that gives every outcome equal likelihood."
+    justification: "A null hypothesis need not assign equal likelihood to outcomes; it specifies a baseline claim."
+  - text: "A probability distribution describing knowledge after observing the data."
+    justification: "That is the posterior distribution, not the null hypothesis."
+  - text: "The likelihood score of a model for one observed outcome."
+    justification: "That is a likelihood; the null hypothesis is a model being evaluated."
+  - text: "A hypothesis that no data can ever be collected."
+    justification: "The null is a baseline about the phenomenon, not a prohibition on data collection."
+  - text: "A claim that the researcher's preferred explanation must be correct."
+    justification: "The null is the comparison baseline, not the favored research claim."
+  - text: "The average number of successes in a sample."
+    justification: "A sample average is a statistic; the null hypothesis is a proposed model or baseline."
+  - text: "A rule for repeatedly sampling values from a probability distribution."
+    justification: "That describes random number generation; a null hypothesis is a claim evaluated against evidence."

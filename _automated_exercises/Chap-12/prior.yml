@@ -1,0 +1,29 @@
+word: prior
+for-chapter: 12
+valid:
+  - A distribution representing knowledge about a hypothesis before considering the data.
+  - The before-data distribution that is updated using observed evidence.
+  - A probability distribution encoding initial beliefs or knowledge in Bayesian analysis.
+  - The starting state of knowledge before new observations are incorporated.
+  - A distribution that expresses what is believed about possible values before the experiment's evidence.
+invalid:
+  - text: "The distribution representing knowledge after all data have been incorporated."
+    justification: "That is the posterior; the prior represents knowledge before considering the data."
+  - text: "The likelihood score assigned to an observation under a hypothesis."
+    justification: "That is a likelihood, which is combined with the prior to form the posterior."
+  - text: "A distribution that must assign zero probability to every alternative view."
+    justification: "The chapter recommends broad priors that leave room for reasonable competing views."
+  - text: "A random sample drawn from a probability model."
+    justification: "A sample is an outcome; a prior is a distribution describing before-data knowledge."
+  - text: "A claim that the researcher's preferred hypothesis is certainly true."
+    justification: "A prior represents initial knowledge or belief, not certainty that a hypothesis is true."
+  - text: "A model that is chosen only after seeing the results."
+    justification: "The prior is specified before the data are considered, though it may later be updated."
+  - text: "A summary of the observed data's mean and standard deviation."
+    justification: "Those are data summaries; the prior expresses knowledge before the observations are incorporated."
+  - text: "A fixed parameter that cannot be revised during analysis."
+    justification: "Bayesian updating combines the prior with likelihoods to produce a posterior state of knowledge."
+  - text: "The probability that a future observation will match the past exactly."
+    justification: "A prior describes initial knowledge about possible values or hypotheses, not exact repetition."
+  - text: "A statement that no information exists before data collection."
+    justification: "A vague prior can express limited information, but a prior is still the framework's before-data distribution."

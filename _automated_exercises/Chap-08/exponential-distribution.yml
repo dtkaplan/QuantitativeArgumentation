@@ -1,0 +1,29 @@
+word: exponential distribution
+for-chapter: 8
+valid:
+  - A distribution for nonnegative waiting times between events occurring at a constant rate.
+  - A model in which the likelihood of an event in each short interval stays fixed over time.
+  - A distribution whose density decreases exponentially with the waiting time after an event.
+  - A probability model often used for the time between randomly occurring events.
+  - A one-parameter family describing intervals between events with a constant event rate.
+invalid:
+  - text: "A distribution that assigns equal probability to every value in a fixed interval."
+    justification: "That describes a uniform distribution; the exponential density decreases over waiting time."
+  - text: "A symmetric, bell-shaped model centered at its mean."
+    justification: "That describes a normal distribution; the exponential distribution is asymmetric and decays to the right."
+  - text: "A model that permits negative waiting times but excludes positive ones."
+    justification: "Waiting times in this model are nonnegative, with probability extending toward larger times."
+  - text: "A distribution for the total number of events in a fixed interval."
+    justification: "The chapter uses the exponential distribution for intervals between events, not event counts."
+  - text: "A rule that makes an event increasingly certain the longer it has not occurred."
+    justification: "The model applies the same event probability to each short interval; it has no increasing hazard over time."
+  - text: "A distribution determined by a center and a standard deviation."
+    justification: "The chapter describes the exponential family with a rate parameter; mean waiting time is its reciprocal."
+  - text: "A list of the minimum and maximum possible values of a quantity."
+    justification: "That is a range, whereas an exponential distribution assigns relative probabilities across waiting times."
+  - text: "A process for drawing random values from any probability model."
+    justification: "That is random number generation; the exponential distribution is one particular probability model."
+  - text: "A function that reports the exact date of the next event."
+    justification: "The distribution models uncertainty about the waiting time; it does not identify an exact future event time."
+  - text: "A distribution in which all values after the starting event are impossible."
+    justification: "The exponential model allows positive waiting times, with likelihood declining rather than ending at a cutoff."

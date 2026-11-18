@@ -1,0 +1,29 @@
+word: posterior
+for-chapter: 12
+valid:
+  - The distribution representing knowledge about hypotheses after incorporating the data.
+  - The updated distribution formed by combining a prior with the likelihoods of observed data.
+  - A probability distribution summarizing what is known after the evidence has been considered.
+  - The result of Bayesian updating, reflecting both prior knowledge and collected data.
+  - The after-data state of knowledge about a quantity or hypothesis.
+invalid:
+  - text: "The distribution expressing knowledge before any data are examined."
+    justification: "That is the prior; the posterior reflects evidence after it is incorporated."
+  - text: "The likelihood of one observation under a specific model."
+    justification: "That is a likelihood; the posterior combines likelihood information with a prior."
+  - text: "A distribution that can never change when new data arrive."
+    justification: "Bayesian updating changes the state of knowledge as evidence is incorporated."
+  - text: "A list of all values that were observed in a sample."
+    justification: "Observed values are data; the posterior is a distribution representing updated knowledge."
+  - text: "A prior belief that excludes every view except the researcher's favorite."
+    justification: "The chapter recommends broad priors that acknowledge reasonable alternative views."
+  - text: "A random number selected before an experiment begins."
+    justification: "A random draw is not the posterior distribution of knowledge after data."
+  - text: "The distribution assigning equal likelihood to every possible outcome."
+    justification: "A posterior need not be uniform; it reflects both the prior and the evidence."
+  - text: "A measure of how widely observations spread around their mean."
+    justification: "That describes spread, such as standard deviation; a posterior summarizes updated knowledge."
+  - text: "A guaranteed true description of the system after one observation."
+    justification: "A posterior represents updated knowledge and uncertainty; it does not guarantee truth."
+  - text: "The probability distribution used to generate the observed data."
+    justification: "That may be a likelihood model; the posterior is the updated distribution after combining it with prior knowledge."

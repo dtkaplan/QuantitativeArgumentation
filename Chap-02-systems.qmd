@@ -35,7 +35,7 @@ In the traditional curriculum, mathematics and statistics are treated largely in
 
 ## Dimension
 
-There are several synonyms for scientist's or statistician’s `r xf_definition("variable")`" Familiar among these are  "characteristic", "factor," and "aspect" as well as "trait," "feature," "attribute," and "property." In this book, all such synonyms will be grouped under the word `r xf_definition("dimension")`. An example sentence: "Her personality has several dimensions: intelligence, honesty, anxiety, and diligence."
+The scientist's or statistician’s `r xf_definition("variable")`" has many synonyms. Familiar among these are  "characteristic", "factor," and "aspect" as well as "trait," "feature," "attribute," and "property." This book groups all such synonyms under the word `r xf_definition("dimension")`. An example sentence: "Her personality has several dimensions: intelligence, honesty, anxiety, and diligence."
 
 `r xf("sec-quantities")` uses the geometrical idea of "space." As you know, objects or spaces are often described using their "dimensions." For instance, a book has three spatial dimensions: width, length, and height. Of course, a book has other attributes as well, each of which we will call a dimension: weight, price, page-count, genre, and so on.
 
@@ -43,7 +43,7 @@ Many of the dimensions of a book are easily measured. Others, such as "genre," r
 
 Often, to construct a mathematical model, we will need to quantify a dimension such as anxiety, honesty, or genre. That is, we need to translate a dimension into some measurable quantity. 
 
-The way that the dimension (as in aspect or property) is translated is called `r xf_definition("operationalization")`. We can operationalize length using a ruler. We can operationalize weight using a scale. Such operationalizations are obvious and familiar. But what's familiar to us in the 21st century was not always familiar. The measurement of temperature is a case in point. Before 1600, "temperature" was sensed by skin or the glowing color of hot metal, but not measured quantitatively. Around 1610, the "thermoscope" enabled visualization of temperature using the level of water in a tube. Not until more than a decade later was a quantitative scale—a ruler—added to the thermoscope, turning it into a thermometer.  From a modeling perspective, a thermometer is a device that operationalizes the quantitative measurement of temperature. Today, of course, thermometers are the obvious and familiar ways to measure temperature.
+The way that the dimension (as in aspect or property) is translated is called `r xf_definition("operationalization")`. We can operationalize length using a ruler. We can operationalize weight using a scale. Such operationalizations are obvious and familiar. But what's familiar to us in the 21st century was not always familiar. The measurement of temperature is a case in point. Before 1600, "temperature" was sensed by skin or the glowing color of hot metal, but not measured quantitatively. Around 1610, the "thermoscope" enabled visualization of temperature using the level of water in a tube. Not until more than a decade later was a quantitative scale—a ruler—added to the thermoscope, turning it into a thermometer.  From a modeling perspective, a thermometer operationalizes the quantitative measurement of temperature. Today, of course, thermometers are the obvious and familiar ways to measure temperature.
 
 Age and height are also familiar dimensions. We operationalize height, for instance, by marking the top of a person’s head on a wall or door frame, then using a ruler to measure (that is, "quantify") the distance from the floor to the mark. We operationalize age—this will be obvious—by calculating the time difference between birth and the moment of measurement. (More commonly, we ask the person!)
 
@@ -59,7 +59,7 @@ Imagine a hot, humid, sultry summer afternoon in the US. The relative humidity i
 
 It is helpful to provide people with a quantitative scale of comfort so they can make decisions about outdoor activities. The context is a system composed of three quantities: humidity, temperature, and comfort. (There may be other quantities we will eventually need to tell a complete story—wind speed, for instance—but for simplicity, we work with just the three.)
 
-It may be evident that humidity and temperature are inherently quantities, but what about comfort? In modeling, we often deal with concepts that are not inherently quantitative and may be vague. There are many ways to operationalize comfort to a quantitative scale, each imperfect in its own way. A favored operationalization of weather-related comfort is the "feels like" scale, known as the "heat index." The heat index derives from a technical model of convective heat transfer from the skin. The heat index is not a comprehensive operationalization of the general concept of comfort. Still, the heat index captures an important aspect of comfort quantitatively.
+It may be evident that humidity and temperature are inherently quantities, but what about comfort? In modeling, we often deal with concepts that are not inherently quantitative and may be vague. Operationalizing comfort to a quantitative scale can and has been done in many ways, each imperfect. A favored operationalization of weather-related comfort is the "feels like" scale, known as the "heat index." The heat index derives from a technical model of convective heat transfer from the skin. The heat index is not a comprehensive operationalization of the general concept of comfort. Still, the heat index captures an important aspect of comfort quantitatively.
 
 Another example of an imperfect, but practical operationalization is the pain-rating scale shown in @fig-wong-baker-scale.
 
@@ -73,7 +73,7 @@ A common criticism of quantitative analysis is that any particular quantitative 
 
 \newpage
 
-## Data
+## Data {#sec-data}
 
 We use "givens" use to refer to the entire scope of facts, knowledge, and belief about the world. Some people informally use "data" here. Indeed "Data" is rooted in a Latin root: "to give" or "given." But for us `r xf_definition("data")` will stand for recorded facts, findings, and measurements. 
 
@@ -83,13 +83,12 @@ A `r xf_definition("data frame")` is a particular, simple but highly structured 
 
 It pays to be familiar with the specific structure of data frames. Even if you don’t work with data, the vocabulary used to describe data frames corresponds to a set of concepts that are ubiquitous in quantitative argumentation. For reference, `r xf("fig-data-frame-schematic")` shows a schematic diagram of a data frame. The data frame itself is just the text and numbers in the rectangular array. The contents of the data frame are measurements made in the 1880s of the heights (in inches) of adult children, along with the child’s sex and the heights of the child’s mother and father.
 
-::: {#fig-data-frame-schematic}
+::: {#fig-data-frame-schematic fig-cap-location="bottom"}
 
 
 ![](www/dataframe-schematic/dataframe-diagram-matrix-v3.png)
 
 A schematic picture of a small data frame.
-
 :::
 
 A data frame is a rectangular array of cells, organized into rows and columns. Each row represents the records for one specific object or event, which we will call a `r xf_definition("specimen")`. In `r xf("fig-data-frame-schematic")`, the specimen is an adult child. The five rows of `r xf("fig-data-frame-schematic")` correspond to five different children.
@@ -123,5 +122,5 @@ The specimens in every data frame are often a sample from a potentially larger e
 
 You might have assembled your collection in the usual way, by wandering along a beach and picking up the shells that caught your eye. The abstract word for such a process is `r xf_definition("sampling")`. It is helpful to have a term for the larger entity from which each specimen was sampled. The word "population" is often used here. Even though the root of "population" is the same as for the word "people," when it comes to data frames we use "population" to refer to any source of specimens. For instance, we might have a population of stars or a population of events such as daily weather or forest fires.
 
-In this book, when we say that a population has dimensions, we mean the set of aspects or qualities of the elements in the population. Those dimensions may be related to one another, for example the relationship between age and height of young children. But there is something subtle going on. When it comes to data, any detected relationships are collective properties across all the specimens in your sample. You can only discern a relationship from data when you have multiple specimens to compare to one another.
+In this book, when we say that a population has dimensions, we mean the set of aspects or qualities of the elements in the population. Those dimensions may be related to one another, for example the relationship between age and height of young children. But something subtle is going on. When it comes to data, any detected relationships are collective properties across all the specimens in your sample. You can only discern a relationship from data when you have multiple specimens to compare to one another.
 

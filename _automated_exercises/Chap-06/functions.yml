@@ -1,0 +1,49 @@
+word: functions
+for-chapter: 6
+valid:
+  - A mathematical or computing representation that organizes a process from inputs to an output.
+  - A way to represent how specified inputs determine an output.
+  - A mapping that takes one or more inputs and produces an output.
+  - A named model component that relates input dimensions to an output dimension.
+  - A representation of a process whose inputs and output can be identified.
+invalid:
+  - text: |
+      A collection of dimensions with no specified relationships among them.
+    justification: |
+      A function organizes a relationship between inputs and an output; unrelated dimensions alone do not define one.
+  - text: |
+      A list of input names that produces an output without any process or relationship.
+    justification: |
+      Naming inputs is not enough. A function represents how inputs relate to an output.
+  - text: |
+      A set of possible outputs that is fixed regardless of the input values.
+    justification: |
+      A function's output depends on its inputs; a fixed list unrelated to inputs does not describe that relationship.
+  - text: |
+      A process that takes an output and reconstructs the inputs that must have produced it.
+    justification: |
+      The chapter describes functions as transforming inputs into outputs, not reversing that direction.
+  - text: |
+      The written steps alone, without any inputs or output quantity.
+    justification: |
+      Those steps are an algorithm. A function organizes the input-to-output relationship that the algorithm implements.
+  - text: |
+      A physical machine that must have gears and moving parts to calculate a result.
+    justification: |
+      The machine is an analogy. A function is a mathematical or computing concept and need not be a physical device.
+  - text: |
+      A dimension treated as given from outside the model.
+    justification: |
+      That describes an exogenous dimension, not a function relating inputs to an output.
+  - text: |
+      A name for the inputs to a function, without the function's input-output relationship.
+    justification: |
+      Those names are args. A function is the representation that organizes the process from inputs to output.
+  - text: |
+      A quantity that describes how quickly another quantity changes over time.
+    justification: |
+      That describes a rate. A function is a relationship that maps its inputs to an output.
+  - text: |
+      A system dimension that cannot be represented with numerical quantities.
+    justification: |
+      The chapter uses functions to model relationships among dimensions; this definition incorrectly rules out such representations.

@@ -1,0 +1,29 @@
+word: learning
+for-chapter: 16
+valid:
+  - Using examples or experience to develop rules that perform a task on new cases.
+  - The process of adjusting a model so its outputs capture patterns in data.
+  - Developing a function or classification rule from examples rather than specifying every answer manually.
+  - A process that improves a model by changing its parameters in response to its errors.
+  - Finding patterns in data and encoding them in a model that can be applied to new inputs.
+invalid:
+  - text: "Memorizing every training example and refusing to classify new cases."
+    justification: "The goal is to establish rules that can classify new inputs, not merely store the examples."
+  - text: "A method that requires the correct answer to be known for every possible future case."
+    justification: "Training examples guide the model; the learned function is meant to handle new cases."
+  - text: "A process that changes data labels without adjusting any model."
+    justification: "The chapter describes learning as determining or adjusting the rules and coefficients in a model."
+  - text: "A guarantee that a model will never make an incorrect prediction."
+    justification: "Learning improves a model's performance but does not guarantee error-free predictions."
+  - text: "A method that can use only human intuition and no recorded examples."
+    justification: "The chapter illustrates computer learning from data, though people also learn from experience."
+  - text: "The process of assigning an outcome to a specimen using a fixed, hand-written rule."
+    justification: "A fixed classifier applies a rule; learning is the process of developing or adjusting the rule."
+  - text: "A way to make all input vectors have identical lengths."
+    justification: "Vector scaling is a geometric operation, not the chapter's general learning process."
+  - text: "A calculation that finds the average of all output values."
+    justification: "A mean summarizes values; learning adjusts a model to capture patterns in data."
+  - text: "A process that uses only unlabeled data and never any examples with known outcomes."
+    justification: "That restriction describes unsupervised learning; learning also includes supervised examples."
+  - text: "The act of collecting data without using it to build or adjust a model."
+    justification: "Data collection can support learning, but learning involves developing rules from data or experience."

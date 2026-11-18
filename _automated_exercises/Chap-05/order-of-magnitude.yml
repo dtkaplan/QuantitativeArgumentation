@@ -1,0 +1,59 @@
+word: order of magnitude
+for-chapter: 5
+valid:
+- A factor-of-ten scale used to describe how much larger or smaller one number is
+  than another.
+- A difference in magnitude that indicates a ratio by a power of ten.
+- A way to compare sizes by counting powers of ten rather than subtracting values.
+- A scale comparison such as two orders of magnitude between one hundred and ten thousand.
+- A logarithmic measure of relative size that is useful when quantities span a broad
+  range.
+invalid:
+- text: A number format that expresses a value as a mantissa multiplied by a power
+    of ten.
+  justification: This describes scientific notation, not order of magnitude. In this
+    chapter, order of magnitude refers to a factor-of-ten scale used to describe how
+    much larger or smaller one number is than another.
+- text: Arranging values in order so their relative sizes are easier to compare.
+  justification: This describes sorting, not order of magnitude. In this chapter,
+    order of magnitude refers to a factor-of-ten scale used to describe how much larger
+    or smaller one number is than another.
+- text: The process of constructing good arguments from evidence and reasoning.
+  justification: This describes argumentation, not order of magnitude. In this chapter,
+    order of magnitude refers to a factor-of-ten scale used to describe how much larger
+    or smaller one number is than another.
+- text: Reasoning that applies explicit rules whose correct application yields certain
+    conclusions.
+  justification: This describes formal reasoning, not order of magnitude. In this
+    chapter, order of magnitude refers to a factor-of-ten scale used to describe how
+    much larger or smaller one number is than another.
+- text: The facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+  justification: This describes givens, not order of magnitude. In this chapter, order
+    of magnitude refers to a factor-of-ten scale used to describe how much larger
+    or smaller one number is than another.
+- text: Fast, broadly applicable reasoning that uses useful but fallible rules of
+    thumb.
+  justification: This describes heuristic reasoning, not order of magnitude. In this
+    chapter, order of magnitude refers to a factor-of-ten scale used to describe how
+    much larger or smaller one number is than another.
+- text: A machine-learning system that uses patterns and alignments in text to generate
+    language.
+  justification: This describes Large language model (LLM), not order of magnitude.
+    In this chapter, order of magnitude refers to a factor-of-ten scale used to describe
+    how much larger or smaller one number is than another.
+- text: Representations of items, processes, or settings that are easier to use than
+    the reality.
+  justification: This describes models, not order of magnitude. In this chapter, order
+    of magnitude refers to a factor-of-ten scale used to describe how much larger
+    or smaller one number is than another.
+- text: Models built from mathematical components to support reasoning about real-world
+    situations.
+  justification: This describes quantitative models, not order of magnitude. In this
+    chapter, order of magnitude refers to a factor-of-ten scale used to describe how
+    much larger or smaller one number is than another.
+- text: An epidemic model that tracks susceptible, infective, and recovered people
+    over time.
+  justification: This describes SIR model, not order of magnitude. In this chapter,
+    order of magnitude refers to a factor-of-ten scale used to describe how much larger
+    or smaller one number is than another.

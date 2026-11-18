@@ -1,0 +1,53 @@
+word: SIR model
+for-chapter: 1
+valid:
+- An epidemic model that tracks susceptible, infective, and recovered people over
+  time.
+- A bookkeeping model that uses population counts to represent infection and recovery.
+- A model with susceptible, infective, and recovered groups that simulates an epidemic's
+  progression.
+- A representation of an outbreak in which infections move people from susceptible
+  to infective and then recovered.
+- An epidemic model that calculates changing counts of susceptible, infective, and
+  recovered people.
+invalid:
+- text: A highlighted term whose meaning is specifically defined for use in the book.
+  justification: This describes word or phrase, not SIR model. In this chapter, SIR
+    model refers to an epidemic model that tracks susceptible, infective, and recovered
+    people over time.
+- text: Recorded facts, findings, and measurements.
+  justification: This describes data, not SIR model. In this chapter, SIR model refers
+    to an epidemic model that tracks susceptible, infective, and recovered people
+    over time.
+- text: A rectangular array of data organized into rows and columns.
+  justification: This describes data frame, not SIR model. In this chapter, SIR model
+    refers to an epidemic model that tracks susceptible, infective, and recovered
+    people over time.
+- text: An aspect, property, or characteristic of an object or system.
+  justification: This describes dimension, not SIR model. In this chapter, SIR model
+    refers to an epidemic model that tracks susceptible, infective, and recovered
+    people over time.
+- text: The kind of object represented by every specimen in a data frame.
+  justification: This describes object type, not SIR model. In this chapter, SIR model
+    refers to an epidemic model that tracks susceptible, infective, and recovered
+    people over time.
+- text: A procedure for translating a dimension into a measurable quantity.
+  justification: This describes operationalization, not SIR model. In this chapter,
+    SIR model refers to an epidemic model that tracks susceptible, infective, and
+    recovered people over time.
+- text: A subset of specimens selected from a larger population for study.
+  justification: This describes sample, not SIR model. In this chapter, SIR model
+    refers to an epidemic model that tracks susceptible, infective, and recovered
+    people over time.
+- text: One individual object or event represented by a row in a data frame.
+  justification: This describes specimen, not SIR model. In this chapter, SIR model
+    refers to an epidemic model that tracks susceptible, infective, and recovered
+    people over time.
+- text: The entry at the intersection of one specimen and one variable in a data frame.
+  justification: This describes value, not SIR model. In this chapter, SIR model refers
+    to an epidemic model that tracks susceptible, infective, and recovered people
+    over time.
+- text: A column in a data frame that records one property across its specimens.
+  justification: This describes variable, not SIR model. In this chapter, SIR model
+    refers to an epidemic model that tracks susceptible, infective, and recovered
+    people over time.

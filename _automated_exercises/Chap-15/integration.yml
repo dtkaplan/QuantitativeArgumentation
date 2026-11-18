@@ -1,0 +1,29 @@
+word: integration
+for-chapter: 15
+valid:
+  - The calculus operation that accumulates a rate-of-change function to recover a total function.
+  - A mathematical process for adding contributions across an interval, often undoing differentiation.
+  - The operation that relates marginal rates to accumulated quantities.
+  - Calculating an accumulated total from a function describing marginal change.
+  - The traditional mathematical name for the process of anti-differentiation.
+invalid:
+  - text: "The process of finding a rate-of-change function from an original function."
+    justification: "That is differentiation; integration accumulates rates to recover a total function."
+  - text: "A technique for estimating model coefficients from observed data."
+    justification: "That is regression; integration is an operation on functions and rates."
+  - text: "The process of multiplying a quantity by a conversion factor."
+    justification: "That is scaling; integration accumulates contributions over an interval."
+  - text: "A method for sorting a sequence of values from low to high."
+    justification: "Sorting orders values; integration combines marginal contributions into a total."
+  - text: "A probability distribution assigning likelihood to each possible value."
+    justification: "That is a probability model; integration here is the calculus process of accumulation."
+  - text: "A single rate measured at one input point."
+    justification: "A rate is an input to accumulation; integration combines rates across an interval."
+  - text: "A process that guarantees a unique accumulated function without a starting value."
+    justification: "The reconstructed function can be shifted vertically; a starting value fixes that freedom."
+  - text: "A technique that adds only the first and last values of a function."
+    justification: "Integration accumulates contributions throughout an interval, not just the endpoints."
+  - text: "The count of new cases that arise in a year."
+    justification: "That is incidence; integration can accumulate incidence into a total number of cases."
+  - text: "A model of how a quantity changes at an instantaneous rate."
+    justification: "That describes a rate-of-change function; integration accumulates it to obtain the quantity."

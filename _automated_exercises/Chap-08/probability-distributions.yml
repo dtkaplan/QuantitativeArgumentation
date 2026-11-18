@@ -1,0 +1,29 @@
+word: probability distributions
+for-chapter: 8
+valid:
+  - Functions assigning relative probabilities to possible values of an uncertain quantity.
+  - Models that represent how likely every possible value of a quantity is.
+  - Functions whose inputs are possible values and whose outputs indicate relative likelihood.
+  - A way to describe uncertainty across all possible values, rather than only range endpoints.
+  - Probability models that associate each possible outcome with a measure of its likelihood.
+invalid:
+  - text: "A pair of numbers giving only the lower and upper bounds of a range."
+    justification: "A range gives two endpoints; a probability distribution represents relative likelihood across possible values."
+  - text: "A list containing only the values already observed in a sample."
+    justification: "A distribution can describe possible values that have not yet been observed."
+  - text: "A function that maps each possible input to one certain future outcome."
+    justification: "A probability distribution expresses likelihood, not a deterministic guarantee about an outcome."
+  - text: "A table of measurements with no indication of how likely they are."
+    justification: "A data table records observations; a probability distribution assigns relative likelihood to possibilities."
+  - text: "A single average value used to represent a quantity."
+    justification: "A mean is one summary or parameter; a distribution describes likelihood across many possible values."
+  - text: "A process that generates random values from any chosen model."
+    justification: "That is random number generation; a probability distribution is the model from which values may be drawn."
+  - text: "A curve that must be bell-shaped and symmetric."
+    justification: "Normal distributions are one family; distributions can also be uniform, exponential, or other shapes."
+  - text: "A set of outcomes that all have exactly the same probability."
+    justification: "Equal likelihood is a special case, not a requirement for probability distributions."
+  - text: "A claim that a scientific explanation has been proven true."
+    justification: "A distribution can represent a hypothesis about observations; it does not prove that hypothesis."
+  - text: "A measure of the average distance between two quantities."
+    justification: "That is not the chapter's definition; distributions map possible values to relative probabilities."

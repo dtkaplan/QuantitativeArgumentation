@@ -13,7 +13,7 @@ source("_start-up.R")
 
 `r xf("sec-modeling-an-epidemic")` introduced a model of an epidemic: the SIR model. SIR tracks the numbers of infective and susceptible people from day to day, week to week, and month to month. Such models, and the systems the models represent, are called `r xf_definition("dynamical systems")`.
 
-In simple language, a dynamical system is one that *changes over time*. A pendulum, swinging back and forth, is a dynamical system. A skyscraper shifting in the wind is a dynamical system. A flying airplane or rocket is a dynamical system. So are a building's heating and cooling systems. Engineers and others often model these real-world dynamical systems to determine the strength, stability, and motion of the objects and, importantly, to design the control systems that govern their behavior. In a modern airplane, the pilot flies a model, and the control system brings the airplane into compliance with the model.
+In simple language, a dynamical system is one that *changes over time*. A pendulum, swinging back and forth, changes velocity and position. A building's heating and cooling systems turn on and off. Modeling such systems helps us understand them better. This understanding allows us to intervene in the system to guide the changes where we want. Such an intervention is called a "control system."
 
 We have to be careful in understanding "changes over time." The pendulum, airplane, and skyscraper are not changing; they are fixed *mechanisms*. It is their state that changes. The angle and speed of the pendulum bob oscillate up and down. An airplane's control surfaces change with every whisper of air turbulence, and with them, the pitch, roll, and yaw of the plane change second by second. Builders may have installed a home heating system a decade ago; the "changes in time" consist of the furnace turning on and off in response to fluctuations in indoor temperature.
 
@@ -31,10 +31,10 @@ We will use the `r xf_definition("Euler framework")` for introducing the quantit
 The Euler framework involves three mathematical components:
 
 State
-: The `r xf_definition("State")` is a collection of one or more quantities that give a *complete description* of the instantaneous configuration of the system. It can be helpful to consider the instantaneous state to be a *point* in a space, just as we did in `r xf("sec-spaces")`. We use the term `r xf_definition("state space")` as the set of possible states for a dynamical system.
+: The `r xf_definition("state")` is a collection of one or more quantities that give a *complete description* of the instantaneous configuration of the system. It can be helpful to consider the instantaneous state to be a *point* in a space, just as we did in `r xf("sec-spaces")`. We use the term `r xf_definition("state space")` as the set of possible states for a dynamical system.
 
 Dynamical rule
-: The `r xf_definition("Dynamical rule")` specifies how the state changes over time. The dynamical rule is a *function* that takes a state as input and produces as output a description of the near future. That is, the dynamical rule tells, for each possible state, how the state changes over the next *instant*. Since the dynamical rule is a *function*, for each input there can be only *one output value*. 
+: The `r xf_definition("dynamical rule")` specifies how the state changes over time. The dynamical rule---a function---takes a state as input and produces as output a description of the near future. That is, the dynamical rule tells, for each possible state, how the state changes over the next *instant*. Since the dynamical rule is a *function*, for each input there can be only *one output value*. 
 
 As an example, consider the position of a ball dropped from a tower. At any instant, the ball's altitude quantifies how far it has moved since it was released. The altitude is, of course, changing. The `r xf_definition("velocity")` is the rate of change of the position. Similarly, the output of the dynamical rule is the *rate of change* of the state.
 
@@ -43,7 +43,7 @@ Thinking of the picture in terms of a *state space*, the state at any instant is
 Accounting system
 : The dynamical rule tells how the state changes, but only over the next instant. Often, we want to trace the state's movement over a substantial interval of time. The accounting system keeps track of the state's instantaneous rate of change, accumulating it to compute the state as a function of time. This function is called the `r xf_definition("trajectory")` of the state.
 
-There are different ways to do the accounting. The methods traditionally taught in college-level math involve algebra that many students find daunting. The method we will use is arithmetical, invented by Leonhard Euler (1707-1783), one of the greatest mathematicians of all time.
+One accounting method involves straightforward, if tedious, arithmetic. [The methods traditionally taught in college-level math involve algebra that would be exact ... in the unlikely event that the simple dynamical rules for which they work hold exactly.]{.column-margin} The method we will was invented by Leonhard Euler (1707-1783), one of the greatest mathematicians of all time. 
 
 The accounting method is entirely mechanical. To start, the user gives an initial state for the system. This state is fed into the dynamical rule which produces the instantaneous rate of change for the state, much like a "velocity" for the state. The method multiplies the velocity by a small time increment, producing a change of state, then adds the change to the initial state. This process of 
 
@@ -53,7 +53,7 @@ is repeated over and over, leading to a sequence of states: the trajectory of th
 
 We will return to the accounting method and give it a dignified mathematical name in Chapters `r xf("sec-rates-of-change", suppress_label = TRUE)`, `r xf("sec-accumulation", suppress_label = TRUE)`, and `r xf("sec-moving-past-two-inputs", suppress_label = TRUE)`. Since it is automatic, the modeler need not be particularly concerned with how it works. Think of it as an appliance, say, a toaster.
 
-Dividing the mathematical work between the dynamical rule and the accounting method greatly simplifies the dynamical rule. The rule needs only to tell the change in the state over the briefest imaginable interval of time. This feature of dynamical rules enables the concise description of scientific theories of nature's operation. 
+Dividing the mathematical work between the instantaneous dynamical rule and the accounting method greatly simplifies the dynamical rule. The rule needs only to tell the change in the state over the briefest imaginable interval of time. This feature of dynamical rules enables the concise description of scientific theories of nature's operation. 
 
 \newpage
 
@@ -95,7 +95,7 @@ The animation in `r xf("fig-pendulum-gif")` consists of a series of frames. @fig
 
 ![Frame 5](www/pend-p11.png)  
 
-Five successive frames from the movie. The spacing between tick marks is 1 degree. Between frames 1 and 2, the pendulum is swinging slightly to the left. Thereafter, the swing is to the right.
+Five successive frames from the movie. The spacing between tick marks is 1 degree. Between frames 1 and 2, the pendulum swings slightly to the left before turning back.
 
 :::
 
@@ -105,31 +105,43 @@ The position changes from frame to frame: $$7.2^\circ \rightarrow 6.3^\circ  \ri
 
 In both frames 1 and 3, the position is 7.2 degrees. Following frame 1, the position moves to 6.3 degrees, then back to 7.2 degrees for frame 3. Continuing in that direction, the position arrives at 8.9 degrees for frame 4. 
 
-Recall from @sec-euler-framework that a dynamical rule is a *function*. A function can produce only one output for each particular input. Consequently, the dynamical rule for a pendulum cannot produce two different outputs for the input state of 7.2 degrees. 
+Recall from @sec-euler-framework that a dynamical rule is a *function*. A function can produce only one output for each particular input. Consequently, a proper dynamical rule for a pendulum cannot produce both leftward and rightward movement at the same input state. We need to augment the state with information that can distinguish the two cases. 
 
-Tempting though it might be to deal with this problem by allowing the dynamical rule to be something other than a function, there is a good reason for the (arbitrarily sounding) restriction, introduced in `r xf("sec-intro-to-functions")`, that there be a unique output for any given input.
+What should be the new state quantity to pair with position? The answer requires an insight of Isaac Newton in the late 1600s. Rather than using only position as the state quantity, Newton's insight was that the state should be a coordinate *pair*: (position, velocity).
 
-Instead of changing the *framework*, we need to redefine the state. For a pendulum, this change is straightforward: add another state component. An excellent way to do this is to add the bob's instantaneous *velocity* to the state, so that the state space becomes the coordinate pair (position, velocity).
+At first glance, this might seem like circular logic. After all, the rate of change of position is, by definition, velocity. Including velocity as part of the state seems to short circuit the dynamical rule. But a proper dynamical rule describes the rate of change of each component of state. Here, the full dynamical rule gives the rate of change of both position *and* velocity. 
 
-The markings in @fig-pend-several-frames suffice to mark the position, but the individual frames say nothing about velocity. For velocity, we need to do a calculation. The position at frame 1 is 7.2 degrees, then 6.3 degrees at frame 2. So the change in position from frame 1 to 2 is $6.3 - 7.2 = -0.9$ degrees. Velocity, however, is not just a change; velocity is a *rate of change* with respect to time.
-
-The *frame rate* of the video in `r xf("fig-pendulum-gif")` is 10 per second. That is, the time between successive snapshots in @fig-pend-several-frames is 0.1 seconds. Consequently, the rate of change of position with respect to time---in other words, the velocity---from frame 1 to 2 is -0.9 / 0.1 = -9.0 deg per sec.
-
-In contrast, from frame 3 to 4, the change of position is $8.9^\circ - 7.2^\circ = 1.7^\circ$. The *velocity* over the 0.1 seconds between frames is therefore 17 degrees per second. 
-
-Defining the state as the pair (position, velocity) allows us to construct a dynamical rule that has a unique output for each state input.
-
-Since the state has two components, the output of the dynamical rule must also have two components: the rate of change for each of the components in the state.
-
-The rule for the first component is straightforward because the velocity is the rate of change of position. So the rule (in part) looks like this:
+Let's write down the dynamical rule for the pendulum. Since the state has two components, the output of the dynamical rule must also have two components: the rate of change for each component in the state. We write this pair of rates of change as a coordinate pair. As a start, we fill in what we already know: the rate of change of position is velocity.
 
 $$\text{pendulum\_rule(pos, vel)} \equiv (\text{vel}, \Large{\textbf{???}})$${#eq-pen-rule-1}
 
-We placed ??? in the slot for the rate of change of the "vel" component of the state in @eq-pen-rule-1. The rate of change of the velocity---that is, the acceleration---is given by the physics of gravity, the extent to which gravity tugs with or against the current velocity. Still, we can model the acceleration as a function of position very simply. Recognize that at the very bottom of the pendulum's swing---position 19---gravity is exactly countered by the vertical rod, so at position 19, the acceleration is zero. That lets us specify more of the dynamical rule for the pendulum:
+The **???** in @eq-pen-rule-1 marks the place where we need to write the second component of the rule: the rate of change of *velocity*. Of course, we have a standard name for the rate of change of velocity: **acceleration**. But that is just a name. We need a formula for the rate of change of velocity in terms of the system's *state* quantities: position and velocity. 
+
+The rate of change of the velocity---that is, the acceleration---is given by the physics of gravity, the extent to which gravity tugs with or against the current velocity. But we can simplify. Rather than using trigonometric analysis of the geometry, we will build a model based on a simple core modeling function: `steady()`. 
+
+To start, recognize that at the very bottom of the pendulum's swing---position 19---gravity is exactly countered by the vertical rod and give no acceleration. That is, at position 19 the acceleration is zero. This gives us the dynamical rule for velocity whenever the position is 19.
 
 $$\text{pendulum\_rule}(\text{pos}=19, \text{vel}) \equiv (\text{vel}, 0)$${#eq-pen-rule-1b}
 
-To construct a complete dynamical rule, we still need to generalize this to apply to any position, not just 19 degrees. A straight-line function of position will be a good start. We know the output of the straight-line function will be zero when the position is 19. By the argument in @nte-find-accel-pendulum, the acceleration at position 7.2 is  $80^\circ \text{per sec}^2$. The linear function that connects velocity 0 at position 19 and velocity  $80^\circ \text{per sec}^2$ at position 7.2 is $-6.78(\text{pos} - 19)$. Slotting this formula in place of the ??? in @eq-pen-rule-1b  gives the complete dynamical rule:
+Our modeling strategy will be to use the data in @fig-pend-several-frames to estimate the velocity in the interval between successive frames of the movie. Doing this for one pair of frames gives the velocity at the position shown in the frame. Making the estimate for a second pair of frames give the velocity at the new position, but also tells us the change in velocity between the two intervals.
+
+The position at frame 1 is 7.2 degrees, then 6.3 degrees at frame 2. So the change in position from frame 1 to 2 is $6.3 - 7.2 = -0.9$ degrees. Velocity, however, is not just a change; velocity is a *rate of change* with respect to time.
+
+The *frame rate* of the video in `r xf("fig-pendulum-gif")` is 10 per second. That is, the time between successive snapshots in @fig-pend-several-frames is 0.1 seconds. Consequently, the rate of change of position with respect to time---in other words, the velocity---from frame 1 to 2 is -0.9 / 0.1 = -9.0 deg per sec.
+
+In contrast, from frame 3 to 4, the change of position is $8.9^\circ - 7.2^\circ = 1.7^\circ$. The *velocity* over the 0.1 seconds between the consecutive frames is therefore 17 degrees per second. 
+
+With these two estimated velocities, we can calculate the *rate of change* of the velocity. From frames 1-2 to frames 3-4, that is, during a change of two frames, the velocity changes from -9 to 17. The change from frames 1-2 to 3-4 takes 0.2 s. So, the rate of change is 
+$$\frac{17 - (-9)}{0.2} = 140 \ \text{deg per sec}^2.$$
+
+We now know the acceleration for two different positions:
+
+Position <br>(input) | Acceleration<br>(output)
+---------|--------
+19 | 0 deg per sec^2^
+7.2 | 140 deg per sec^2^
+
+The straight-line function that connects velocity 0 at position 19 and velocity  $140^\circ \text{per sec}^2$ at position 7.2 is $$\text{accel}(\text{pos}) \equiv -12(\text{pos} - 19)\ .$$ Slotting this formula in place of the ??? in @eq-pen-rule-1b  gives the complete dynamical rule:
 
 $$\text{pendulum\_rule}(\text{pos}, \text{vel}) \equiv \left(\text{vel},\  -6.78(\text{pos} - 19)\right)$${#eq-pen-rule-2}
 
@@ -143,14 +155,15 @@ Rules in this form are suitable for calculation, but to get a better understandi
 #| message: false
 #| fig-cap: "The dynamical rule for the system of `r('fig-pendulum-gif')`. The rate of change at selected points in the state space is a vector since both components of the state are changing." 
 #| fig-cap-location: "top"
-pend_gif<- makeODE(dp ~ v, dv ~ - 6.78 * (p - 19))
+pend_gif<- makeODE(dp ~ v, dv ~ - 1.2 * (p - 19))
 soln <- integrateODE(pend_gif, domain(t=0:2), p = 8, v=2)
 
-flow_field(pend_gif,
-           domain(p = 5:33, v = -30:30), 
-           npts = 14, scale = 0.75) |>
+P <- flow_field(pend_gif,
+           domain(p = 5:33, v = -15:15), 
+           npts = 14, scale = 0.4) |>
   gf_labs(x = "Position (deg)", y = "Velocity (deg/sec)" ) |>
-  gf_refine(coord_fixed(ratio=.4)) 
+  gf_refine(coord_fixed(ratio=0.8)) 
+P
 ```
 
 Applying the accounting method turns the dynamical rule into a trajectory. @fig-pendulum-traj shows a trajectory. The starting point for the trajectory, that is, the initial state (time = 0) is marked 0. The other boxed numbers indicate the time (in seconds) at which the state reached that point along the trajectory. 
@@ -158,36 +171,32 @@ Applying the accounting method turns the dynamical rule into a trajectory. @fig-
 ```{r}
 #| label: fig-pendulum-traj
 #| echo: false
-#| fig.cap: "Trajectory of the pendulum."
-traj_plot(v(t) ~ p(t), soln, linewidth = 1, alpha = 0.5,
-            color = "blue",
-          nt = 10) |>
-    gf_refine(coord_fixed(ratio=.4)) |>
-    gf_labs(x = "Position (deg)", y = "Velocity (deg/sec)")
+#| fig.cap: "Tracing the trajectory of the pendulum. Dots are spaced by 0.05 s."
+Pts <- tibble::tibble(
+  t = seq(0,2, by = 0.01),
+  p = soln$p(t),
+  v = soln$v(t)
+)
+
+P |>
+gf_path(v ~ p, data = Pts, inherit=FALSE, color = "#CC79A7",
+linewidth=2, alpha = 0.5) |>
+gf_point(v ~ p, data = Pts[seq(1, 200, by = 20),], size=3, color = "#CC79A7", inherit = FALSE)
+
+# traj_plot(v(t) ~ p(t), soln, linewidth = 1, alpha = 0.5,
+#            color = "blue",
+#          nt = 10) |>
+#    gf_refine(coord_fixed(ratio=.4)) |>
+#    gf_labs(x = "Position (deg)", y = #"Velocity (deg/sec)") 
 ```
 
 Naturally, a different initial state would give a different trajectory. The dynamical rule accounting method turns any given initial state into the corresponding trajectory.
 
-Comparing `r xf("fig-pendulum-state-space")` with `r xf("fig-pendulum-traj")` reveals that at each instant, the direction of the trajectory matches that of the flow from the dynamical rule. 
+Comparing `r xf("fig-pendulum-state-space")` with `r xf("fig-pendulum-traj")` reveals that at each instant, that is, at each point on the trajectory, the direction of the trajectory matches that of the flow from the dynamical rule. 
 
-We draw the dynamical rule at the various points in the state space with a straight arrow. The arrow has two components, horizontal and vertical. Similarly, there is an *instantaneous rate of change* for each component of the state. The arrows show both instantaneous rates of change simultaneously. In contrast, the trajectory traces out the evolving state over a period of time: two seconds in @fig-pendulum-state-space. The trajectory is a smooth curve. The accounting method does the mathematical work to turn the straight arrows of the dynamical rule into a curved trajectory.
+We draw the dynamical rule at the various points in the state space with a straight arrow. The arrow can be straight even though the trajectory is curved. The reason for the straight arrow is that the dynamical rule tells only the instantaneous rate of change when the state is exactly at that specific point in state space. After a short moment, the state will have moved in the direction and at the speed indicated by the arrow. This brings the state to a new point in state space where the arrow may well be slightly different, pointing in a slightly different direction. The trajectory is accumulating these momentary movements over an extended period of time. In @fig-pendulum-state-space the overall elapsed time covered by the trajectory segment is about 0.5 second. The accounting method does the mathematical work to turn the straight arrows of the simple dynamical rule into a curved trajectory.
 
-You can see from `r xf("fig-pendulum-traj")` that the trajectory is looping around a circle. A complete loop would take about 2.5 seconds. If we had plotted the trajectory further into the future, it would follow the loop over and over again, just as the pendulum swings back and forth. The back and forth movement in position is translated into a circle when we include the velocity axis of the state space. Velocity is alternatingly positive and negative. Notice from `r xf("fig-pendulum-traj")` that when velocity is negative, the position decreases with time. When velocity is positive, position *increases* with time. The overall motion in state space is a circle.
-
-::: {.callout-note #nte-find-accel-pendulum}
-## Estimating acceleration
-
-We can estimate the acceleration at position 7.2 by examining the short three-frame movie $6.3^\circ  \rightarrow  7.2^\circ  \rightarrow 8.9^\circ$. The velocity represented by the first arrow is, as before, 
-$$\frac{7.2^\circ - 6.3^\circ}{0.1\ \text{sec}} = 9^\circ \text{per sec}$$
-Likewise, the velocity at the second arrow is 
-$$\frac{8.9^\circ - 7.2^\circ}{0.1\ \text{sec}} = 17^\circ \text{per sec}$$
-
-The acceleration is the rate of change of the velocity:
-
-$$\frac{17^\circ \text{per sec} - 9^\circ \text{per sec}}{0.1\ \text{sec}} = 80^\circ \text{per sec}^2$$
-:::
-
-
+You can anticipate from `r xf("fig-pendulum-traj")` that the trajectory will eventually form loop around a circle. A complete loop would take about 2 seconds. If we had plotted the trajectory further into the future, it would follow the loop over and over again, just as the pendulum swings back and forth. The back and forth movement in position is translated into a circle when we include the velocity axis of the state space. Velocity is alternatingly positive and negative. Notice from `r xf("fig-pendulum-traj")` that when velocity is negative, the position decreases with time. When velocity is positive, position *increases* with time. The overall motion in state space is a circle.
 
 ## The SIR model
 
@@ -321,43 +330,42 @@ Compare the trajectory in `r xf("fig-chain-of-arrows-SIR")` with the correspondi
 
 ## SIR dynamical rule
 
-As mentioned previously, a dynamical rule is a *function* that takes the state as input and produces the instantaneous change of state as output. In `r xf("sec-customizing-functions")`, we introduced ways to build custom functions to represent a given situation. We are going to put those techniques to work, now.
+As mentioned previously, a dynamical rules takes the state as input and produces the instantaneous change of state as output. In `r xf("sec-customizing-functions")`, we introduced ways to build custom functions to represent a given situation. We are going to put those techniques to work, now.
 
 The two state quantities in SIR are the number of susceptibles ($S$) and the number of infectives ($I$). Even without thinking much about the mechanism of epidemics, we can write down a skeleton form for the instantaneous rate of change. We will use the abbreviation ROC to stand for "instantaneous rate of change," and the ROC of $S$ will be named $ROC_{S}()$ and likewise for $I$.
 Both $ROC_{S}()$ and $ROC_{I}()$ will take the state $(S, I)$ as input. Each will be a linear combination of four simple functions.
 
 $$ROC_{S}(S, I) \equiv a_s + b_s \, S + c_s\, I + d_s\, S\,I$$ {#eq-roc-s} and $$ROC_{I}(S, I) \equiv a_I + b_I \, S + c_I\, I + d_I\, S\,I$${#eq-roc-i}
 
-The first thing to notice about the proposed functions in Expressions [-@eq-roc-s] and [-@eq-roc-i] is that they are *almost* the same. That might be surprising, since they describe the ROC of two different quantities, $S$ and $I$. Keep in mind that we are building a `r xf_definition("skeleton")` for the functions. We will flesh out the skeleton in different ways.
+The first thing to notice about the proposed functions in Expressions [-@eq-roc-s] and [-@eq-roc-i] is that they are *almost* the same. That might be surprising, since they describe the ROC of two different quantities, $S$ and $I$. Keep in mind that we are building a **skeleton** for the functions. We will flesh out the skeleton in different ways.
 
 The "flesh" on the skeleton is the coefficients used in the linear combination. We combine four simple functions, so each expression has four coefficients. We have (uncreatively) named these coefficients $a$, $b$, $c$, and $d$.
 
-We need a dynamical-rule function for each of the two state variables.
-For simplicity, we will use the same skeleton for each function, but endow each with its own flesh. That is, we will use different coefficient values for each dynamical rule. A simple notation helps make the skeletons' similarities clear while at the same time signalling that the values of the corresponding coefficients in each skeleton can differ. We do this by adding a subscript, I or s, to each coefficient, depending on whether it is in the dynamical rule for the infectives or for the susceptibles. For instance, $a_I$ is the coefficient on flat() for the $ROC\_I$-skeleton. Similarly, $d_S$ is the coefficient on the *interaction* between $S$ and $I$ for the $ROC\_S$-skeleton.
+We need a dynamical-rule function for each state variable. For simplicity, we will use the same skeleton for each function, but endow each with its own flesh. That is, we will use different coefficient values for each dynamical rule. A simple notation helps make the skeletons' similarities clear while at the same time signalling that the values of the corresponding coefficients in each skeleton can differ. Do this by adding a subscript, I or s, to each coefficient, depending on whether it is in the dynamical rule for the infectives or for the susceptibles. For instance, $a_I$ is the coefficient on flat() for the $ROC\_I$-skeleton. Similarly, $d_S$ is the coefficient on the *interaction* between $S$ and $I$ for the $ROC\_S$-skeleton.
 
 Ultimately, we will want to give quantitative values for each of the eight coefficients $a_s, b_s, c_s, d_s, a_I, b_I, c_I, d_I$.
 
-Experienced modelers have a trick to facilitate the initial construction of a model. Rather than specifying a value for each coefficient, they state, based on their understanding of the system they are modeling, the *sign* for each coefficient: negative, positive, or zero. Going slightly further, they explore a limited set of scenarios: the state variables are either "large" or "small." (The state variables in SIR cannot be negative, since there is no such thing as a negative number of infectives or susceptibles.)
+Experienced modelers have a trick to facilitate the initial construction of a model. Rather than specifying a value for each coefficient, they state, based on their understanding of the system they are modeling, the *sign* for each coefficient: negative, positive, or zero. Going slightly further, they explore a limited set of scenarios: the state variables are either "large" or "small." Small means near zero since the number of infectives or susceptibles can never be negative.
 
 Let us start with the coefficients in $ROC\_I$. 
 
-- $a_I$: Think about what this term would indicate if both $S$ and $I$ were zero, the hypothetical world with no infectives or susceptibles. It seems reasonable to suppose that new infectives (that is, the rate of change of infectives) would not come out of the air. So $a_I = 0$. [If the model is to allow influx of infectives from other places, the model would call for a positive $a_I$.]{.column-margin}
+- $a_I$: Think about what this term would indicate if both $S$ and $I$ were zero, the hypothetical world with no infectives or susceptibles. It seems reasonable to suppose that new infectives (that is, the rate of change of infectives) would not come out of the air. So $a_I = 0$. [If the model were to allow influx of infectives from other places, the model would call for a positive $a_I$.]{.column-margin}
 
-- $b_I$: This is the coefficient on $S$. Imagine that $S$ is large, but $I$ is zero. What will happen to the ROC of I? Without any infectives, there is no way for a susceptible person to become sick. So $b_I$ must be zero. [If the model is to allow *spontaneous* generation of infection, $b_I$ would be positive.]{.column-margin}
+- $b_I$: This is the coefficient on $S$. Imagine that $S$ is large, but $I$ is zero. What will happen to the ROC of I? Without any infectives, a susceptible person cannot become sick. So $b_I$ must be zero. [To allow *spontaneous* generation of infection, $b_I$ would be positive.]{.column-margin}
 
-- $c_I$: This is the coefficient on $I$. Imagine, contrary to the discussion of $b_I$, that $I$ is large and $S$ is zero. In such a hypothetical world, there are no susceptibles who can become sick so that no new infectives will arise from the susceptibles. However, there is a mechanism for a change in $I$ even when $S$ is zero: Infectives can recover and stop being infectives. The more infectives there are, the larger the rate (say, infectives/day) at which they recover. In consequence, $c_I$ is a negative number. Without susceptibles, the number of infectives decreases over time.
+- $c_I$: This is the coefficient on $I$. Imagine, contrary to the discussion of $b_I$, that $I$ is large and $S$ is zero. In such a hypothetical world, which has no susceptibles who can become sick,  no new infectives will arise. However, even when $S$ is zero, $I$ can still change: Infectives can recover and stop being infectives. The more infectives, the larger the rate (say, infectives/day) at which they recover. In consequence, $c_I$ is a negative number. Without susceptibles, the number of infectives decreases over time.
 
 - $d_I$: The coefficient on the interaction term $S\ I$ for $ROC\_I()$. This is a case where standard nomenclaturee gets things right: "Interaction" is an excellent name for this term. A nice way to think about interaction is that it refers to what happens when an $S$ meets an $I$: they interact. With infectious illness, the possible outcomes of the interaction are either no change in the situation or, with some probability, the $S$ catches $I$'s infection, and the $S$ becomes infectious. So when an $S$ meets an $I$, the number of infectives increases. Thus, $d_I$ must be positive; it is creating new infectives.
 
 The analysis of $a_s$, $b_s$, $c_s$, and $d_s$ follows the same kind of logic. $a_s$ would correspond to immigration of susceptibles (if positive) or emigration (if negative). The SIR model does not consider this. SIR also does not consider births or deaths. The number of susceptibles only changes when an $S$ meets an $I$. When that happens, the number of susceptibles decreases as susceptibles are converted into infectives. So $d_s$ must be negative. What is more, since every susceptible individual who is infected becomes a new infective, it must be that $d_s = -d_I$.
 
-A nice convention when writing rate-of-change coefficients is to stipulate that all are positive. When a coefficient enters negatively into the rate-of-change function, we will use a *minus sign* instead of the $+$ used in Equations [-@eq-roc-i] and [-@eq-roc-s]
+A nice convention when writing rate-of-change coefficients stipulates that all are positive. When a coefficient enters negatively into the rate-of-change function, we will use a *minus sign* instead of the $+$ used in Equations [-@eq-roc-i] and [-@eq-roc-s]
 
 Taking into account all the coefficients that we argued are zero, we end up with two formulas for the rate of change functions:
 
 $$ROC_{S}(S, I) \equiv - d\,S\,I$$ and $$ROC_{I}(S, I) \equiv -b I + d\,S\,I$$ 
 
-There are only two coefficients, not three, since the decrease in susceptibles balances any increase in infectives! 
+Only two coefficients are needed, not three, since the decrease in susceptibles balances any increase in infectives! 
 
 ## Exponential growth and decay
 
@@ -413,7 +421,7 @@ phase_line <- function(P, aspect=2) {
 
 @fig-flat-dyn shows the dynamics of the flat() rule in three different ways. On top (panel (a)) is the the dynamical rule, namely, the function flat($P$). Panel (b) shows flow. In principle, since the state space is one-dimensional, all the flow arrows should be on the number line. To avoid the arrows overlapping, however, we have spread them out at random vertically. Panel (c) shows how the state $P$ changes with time. (The name given to how something changes with time is `r xf_definition("time series")`.)
 
-Keep in mind the substantial difference between the dynamical rule and the corresponding pattern of how $P$ changes with time, that is, the time series. The dynamical rule is a function that takes $P$ as input and produces the rate of change of $P$ as output. The time series is also a function, but instead of taking $P$ as input, it takes *time* (t) as the input. Moreover, in the time series, the output of the function is $P$ itself, not the rate of change in $P$. 
+Keep in mind the substantial difference between the dynamical rule and the corresponding pattern of how $P$ changes with time, that is, the time series. The dynamical rule takes $P$ as input and produces the rate of change of $P$ as output. The time series is also a function, but instead of taking $P$ as input, it takes *time* (t) as the input. Moreover, in the time series, the output of the function is $P$ itself, not the rate of change in $P$. 
 
 
 ```{r}
@@ -486,12 +494,11 @@ slice_plot(0.25 * exp(0.69315*t) ~ t, domain(t=0:6.3), color = .slice_contrast.)
 
 @fig-same-dyn shows *exponential growth*. It stems from using same() as the dynamical rule. With same() as the *dynamics*, the state itself follows *exponential* growth.
 
-It is important to point out a distinctive feature of exponential growth, the same feature that we see in the exp2(t) function. Referring to the time series (panel (c) in @fig-same-dyn), we see the doubling phenomenon. For instance, track $P$ as it increases from $P=0.5$ to $P=1$, a change that occurs in one time unit. Similarly, to grow from $P=1$ to $P=2$ takes one time unit. Same for the growth from $P=2$ to $P=4$: one time unit. And so on. 
+It is important to point out a distinctive feature of exponential growth, the same feature that we see in the exp2(t) function. Referring to the time series (panel (c) in @fig-same-dyn), we see the doubling phenomenon. For instance, track $P$ as it increases from $P=0.5$ to $P=1$, a change that occurs in one time unit. Similarly, another doubling of P, from $P=1$ to $P=2$, takes one time unit. Same for the doubling from $P=2$ to $P=4$: one time unit. And so on. 
 
 
-It is always the same: exponential growth corresponds to the state doubling every unit of time. In @fig-same-dyn, we arranged things so that the doubling time is 1. However, it is still exponential growth even when the doubling time is different. For instance, under ideal conditions, a bacterial population doubles every 20 minutes. 
 
-Doubling every 20 minutes means that there are three doublings in one hour. Starting with a population of p, the three doublings produce, successively, at intervals of 20 minutes, population 2p, 4p, and, at the end of the hour, 8p; the population increases 8-fold in one hour. In two hours, the 8-fold increase will repeat, giving a 64-fold increase over the two hours! When the dynamics are same(), the 64-fold increase will occur every two hours.
+Doubling every 20 minutes means that three doublings occur each hour. Starting with a population of p, the three doublings produce, successively, at intervals of 20 minutes, population 2p, 4p, and, at the end of the hour, 8p; the population increases 8-fold in one hour. In two hours, the 8-fold increase will repeat, giving a 64-fold increase over the two hours! When the dynamics are same(), the 64-fold increase will occur every two hours.
 
 The pattern of a 64-fold increase every two hours will produce unbelievable growth, as indicated in @tbl-every-20-minutes.
 

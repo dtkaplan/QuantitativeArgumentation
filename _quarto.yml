@@ -9,7 +9,7 @@ book:
   date: "Nov. 2027"
   chapters:
     - index.qmd   
-
+    
     - part: "Foundations"
       chapters:
         - Chap-01-models.qmd
@@ -46,6 +46,7 @@ book:
 
 format:
   html:
+    css: styles.css
     toc: true
     toc-depth: 1
     number-sections: true
@@ -71,8 +72,8 @@ format:
       - Numbers=Proportional   
 
     include-before-body:
-      text: |
-        \raggedbottom
+      file: before-body.tex
+       
  
     include-in-header:
       text: |
@@ -104,6 +105,16 @@ format:
           \vspace{10mm}
           \end{titlepage}
           \restoregeometry
+        }
+        \definecolor{myNoteAccent}{HTML}{CC79A7}
+        \definecolor{myNoteFrame}{HTML}{E6BCD3}
+        \definecolor{myTipAccent}{HTML}{E69F00}
+        \definecolor{myTipFrame}{HTML}{F3CF80}
+        \AtBeginDocument{%
+          \colorlet{quarto-callout-note-color}{myNoteAccent}%
+          \colorlet{quarto-callout-note-color-frame}{myNoteFrame}%
+          \colorlet{quarto-callout-tip-color}{myNoteAccent}%
+          \colorlet{quarto-callout-tip-color-frame}{myNoteFrame}%
         }
         \makeatother
     fig-pos: "htbp"

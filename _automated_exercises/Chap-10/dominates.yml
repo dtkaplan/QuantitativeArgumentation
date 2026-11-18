@@ -1,0 +1,29 @@
+word: dominates
+for-chapter: 10
+valid:
+  - One choice dominates another when it is better on every objective being compared.
+  - A choice dominates a competitor if its outcomes are at least as good in all respects and better in one.
+  - To dominate is to outperform another option on each relevant objective.
+  - A policy choice dominates another when both objective outputs improve.
+  - A relation between choices where one is better on all compared criteria.
+invalid:
+  - text: "One option dominates another whenever it is better on one objective, even if worse on others."
+    justification: "Dominance requires being better in all respects; a mixed outcome is a trade-off."
+  - text: "A choice dominates another when both have exactly the same outcomes."
+    justification: "Identical outcomes do not make one choice better than the other."
+  - text: "The option with the highest value on only the first objective."
+    justification: "Dominance compares all relevant objectives, not just one."
+  - text: "A method for converting objectives to a common unit."
+    justification: "That conversion may help evaluate trade-offs; dominance is direct improvement across objectives."
+  - text: "The choice that has the largest input value."
+    justification: "Dominance concerns objective outcomes, not the numerical size of an input."
+  - text: "A choice that is preferred by the greatest number of people."
+    justification: "Dominance is defined by objective outcomes, not by a vote or popularity."
+  - text: "A policy that maximizes one goal while making every other goal worse."
+    justification: "Such a policy involves a trade-off; it does not dominate options that improve other goals."
+  - text: "The objective function's highest output value."
+    justification: "That is a maximum; dominates describes how one choice compares with another across objectives."
+  - text: "A measure of the price paid to improve one objective."
+    justification: "That is a shadow price; dominance means one option is better on all objectives."
+  - text: "A claim that two objectives have identical units and can be added."
+    justification: "Commensurability concerns units; dominance compares choices on their separate objective outputs."

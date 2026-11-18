@@ -1,0 +1,29 @@
+word: argmin
+for-chapter: 10
+valid:
+  - The input value that produces the smallest output of an objective function.
+  - The argument, or input, at which a function reaches its minimum.
+  - A choice from the input domain that yields the objective function's lowest output.
+  - The setting of the inputs that achieves the least value of a function.
+  - The minimizing input, rather than the minimum output itself.
+invalid:
+  - text: "The smallest output value produced by an objective function."
+    justification: "That is the minimum; argmin names the input that produces it."
+  - text: "The input that produces the largest possible output."
+    justification: "That is an argmax; argmin identifies an input producing the smallest output."
+  - text: "The smallest input value in the function's domain."
+    justification: "The argmin need not be the smallest input; it is the input that minimizes the output."
+  - text: "The average of the function's output values."
+    justification: "An average summarizes outputs; argmin identifies an input where output is smallest."
+  - text: "A value where the function's output equals zero."
+    justification: "A root has output zero; an argmin is determined by the lowest output."
+  - text: "The function's entire input domain."
+    justification: "The domain is all possible inputs; argmin is a minimizing input within that domain."
+  - text: "A ratio comparing an input's cost with its benefit."
+    justification: "Argmin is an input choice for a minimization problem, not a cost-benefit ratio."
+  - text: "A claim that every possible input has the same output."
+    justification: "An argmin is an input attaining the lowest output; equal outputs are not necessary."
+  - text: "A method for producing random numbers from a distribution."
+    justification: "Random number generation can explore inputs, but argmin names the input with minimum output."
+  - text: "The lowest objective value, regardless of which input produced it."
+    justification: "That describes the minimum; argmin specifies which input attains that value."

@@ -1,0 +1,47 @@
+word: units
+for-chapter: 3
+valid:
+- Standardized measures that specify how much of a quantity is present.
+- The named measurement scale attached to a pure number, such as meters or seconds.
+- Conventional standards used to express amounts of a particular kind.
+- The measurement component that distinguishes five meters from five seconds.
+- Named measures that make the numerical part of a quantity interpretable.
+invalid:
+- text: A phrase identifying the context-setting quantity against which a change is
+    examined.
+  justification: This describes with respect to, not units. In this chapter, units
+    refers to standardized measures that specify how much of a quantity is present.
+- text: A base dimension used for monetary value, whose meaning depends on place and
+    time.
+  justification: This describes worth, not units. In this chapter, units refers to
+    standardized measures that specify how much of a quantity is present.
+- text: Rates formed by arithmetic combinations of other rates.
+  justification: This describes compound rates, not units. In this chapter, units
+    refers to standardized measures that specify how much of a quantity is present.
+- text: A ratio of two quantities where division expresses a relationship between
+    their underlying dimensions.
+  justification: This describes rate, not units. In this chapter, units refers to
+    standardized measures that specify how much of a quantity is present.
+- text: The change in a primary quantity divided by the corresponding change in a
+    context-setting quantity.
+  justification: This describes rate of change, not units. In this chapter, units
+    refers to standardized measures that specify how much of a quantity is present.
+- text: A number format that condenses scientific notation into a single magnitude
+    value.
+  justification: This describes logarithm, not units. In this chapter, units refers
+    to standardized measures that specify how much of a quantity is present.
+- text: A measure of the size of a number, closely related to its exponent in scientific
+    notation.
+  justification: This describes magnitude, not units. In this chapter, units refers
+    to standardized measures that specify how much of a quantity is present.
+- text: A factor-of-ten scale used to describe how much larger or smaller one number
+    is than another.
+  justification: This describes order of magnitude, not units. In this chapter, units
+    refers to standardized measures that specify how much of a quantity is present.
+- text: A number format that expresses a value as a mantissa multiplied by a power
+    of ten.
+  justification: This describes scientific notation, not units. In this chapter, units
+    refers to standardized measures that specify how much of a quantity is present.
+- text: Arranging values in order so their relative sizes are easier to compare.
+  justification: This describes sorting, not units. In this chapter, units refers
+    to standardized measures that specify how much of a quantity is present.

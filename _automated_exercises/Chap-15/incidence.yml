@@ -1,0 +1,29 @@
+word: incidence
+for-chapter: 15
+valid:
+  - The number of new cases of a condition arising during a specified time period.
+  - A measure of how many new cases occur in a population over time.
+  - The arrival rate of new cases, such as new cancer diagnoses in a year.
+  - A rate or count describing the occurrence of newly arising cases.
+  - The flow of new cases into a population, distinguished from the total number already affected.
+invalid:
+  - text: "The total number of people currently living with a condition."
+    justification: "That is prevalence; incidence counts new cases arising during a period."
+  - text: "The fraction of patients who survive for a given number of months."
+    justification: "That is a survival measure, not the rate of new cases."
+  - text: "The total number of cases ever recorded, regardless of date."
+    justification: "Incidence concerns newly arising cases over a specified period."
+  - text: "The average time between two unrelated observations."
+    justification: "Incidence describes new cases, not a general interval between observations."
+  - text: "A function giving the total benefit accumulated from treatment."
+    justification: "That is a total outcome; incidence is the number or rate of new cases."
+  - text: "The probability that an existing case will disappear."
+    justification: "Incidence measures new cases arising, not recovery or disappearance."
+  - text: "The change in cases divided by the change in medical spending."
+    justification: "That is a rate of change with respect to spending, not the occurrence of new cases."
+  - text: "A summary of how long people survive after diagnosis."
+    justification: "Survival time is distinct; incidence is about how many new cases arise."
+  - text: "The number of people who have ever been exposed to a risk."
+    justification: "Exposure is not a new case; incidence counts newly occurring cases."
+  - text: "The accumulated number of cases after adding the annual incidence rates."
+    justification: "That describes accumulated cases; incidence itself is the new-case flow during a period."

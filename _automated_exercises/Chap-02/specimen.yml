@@ -1,0 +1,42 @@
+word: specimen
+for-chapter: 2
+valid:
+- One individual object or event represented by a row in a data frame.
+- A particular member of the object type whose properties are recorded.
+- The entity described by one record in a structured dataset.
+- A single observation unit, such as one child in a data frame of children.
+- An individual from the population whose variable values are entered as a record.
+invalid:
+- text: The entry at the intersection of one specimen and one variable in a data frame.
+  justification: This describes value, not specimen. In this chapter, specimen refers
+    to one individual object or event represented by a row in a data frame.
+- text: A column in a data frame that records one property across its specimens.
+  justification: This describes variable, not specimen. In this chapter, specimen
+    refers to one individual object or event represented by a row in a data frame.
+- text: Examining a system by breaking it into contributing components.
+  justification: This describes analysis, not specimen. In this chapter, specimen
+    refers to one individual object or event represented by a row in a data frame.
+- text: Fundamental dimensions from which derived dimensions are formed.
+  justification: This describes base dimensions, not specimen. In this chapter, specimen
+    refers to one individual object or event represented by a row in a data frame.
+- text: Fundamental SI units that are not defined in terms of one another.
+  justification: This describes base units, not specimen. In this chapter, specimen
+    refers to one individual object or event represented by a row in a data frame.
+- text: A unit for counting people, from the Latin word for head.
+  justification: This describes capita, not specimen. In this chapter, specimen refers
+    to one individual object or event represented by a row in a data frame.
+- text: Accounting for other variables while examining a relationship of interest.
+  justification: This describes controlling for, not specimen. In this chapter, specimen
+    refers to one individual object or event represented by a row in a data frame.
+- text: A dimensionless ratio of equal quantities used to convert between commensurate
+    units.
+  justification: This describes conversion factor, not specimen. In this chapter,
+    specimen refers to one individual object or event represented by a row in a data
+    frame.
+- text: A two-dimensional space marked by two perpendicular number lines.
+  justification: This describes coordinate plane, not specimen. In this chapter, specimen
+    refers to one individual object or event represented by a row in a data frame.
+- text: Dimensions formed by multiplying or dividing base dimensions.
+  justification: This describes derived dimensions, not specimen. In this chapter,
+    specimen refers to one individual object or event represented by a row in a data
+    frame.

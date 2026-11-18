@@ -1,0 +1,29 @@
+word: shadow price
+for-chapter: 10
+valid:
+  - A ratio expressing how much one objective changes per unit change in another.
+  - A conversion rate that quantifies the trade between competing objective outputs.
+  - The amount of one objective exchanged for a unit of another objective.
+  - A price-like ratio that makes the cost of improving one goal measurable in another goal's units.
+  - A rate describing the sacrifice in one objective associated with a gain in another.
+invalid:
+  - text: "The market price paid in money for a single physical product."
+    justification: "A shadow price compares objective outputs and need not involve money or a market purchase."
+  - text: "The maximum value of an objective function."
+    justification: "That is the maximum; a shadow price is a ratio between changes in objectives."
+  - text: "The input value that produces the minimum objective output."
+    justification: "That is an argmin; a shadow price measures an exchange rate between goals."
+  - text: "A number measuring uncertainty in the amount of a quantity."
+    justification: "That concerns uncertainty; a shadow price quantifies a trade-off between objectives."
+  - text: "A fee charged by a government for exceeding a legal limit."
+    justification: "The chapter uses shadow price for an objective-to-objective exchange ratio, not a regulatory fee."
+  - text: "A conversion that makes two objective outputs exactly equal."
+    justification: "A shadow price gives a ratio between changes; it does not make the objectives equal."
+  - text: "The number of possible choices in an optimization problem."
+    justification: "That describes the size of the choice set; a shadow price is a ratio of objective changes."
+  - text: "A measure of how often one outcome occurs in a probability distribution."
+    justification: "That concerns probability; a shadow price measures the exchange between objective outcomes."
+  - text: "A guarantee that improving one goal will improve every other goal."
+    justification: "A trade-off often means a gain in one objective comes at a cost to another."
+  - text: "The output of an objective function before any choices are made."
+    justification: "A shadow price is a ratio of changes in objectives, not a standalone objective output."

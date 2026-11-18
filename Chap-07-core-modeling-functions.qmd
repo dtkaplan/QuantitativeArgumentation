@@ -10,14 +10,13 @@ library(QAfigs)
 `r paste(readLines("_Words/chap_7.txt"), collapse = "\n")` 
 :::
 
-The previous chapter introduced notation for functions and their args. Functions can have any number of args. In modeling, a function representing one of the sharp-cornered boxes---a quantity *endogenous* to the model, will have one arg for each of the incoming arrows originating from other boxes. 
+The previous chapter introduced notation for functions and their args. Functions can have any number of args. In modeling, a function representing one of the sharp-cornered boxes---a quantity *endogenous* to the model, will have one arg for each incoming arrow originating from other boxes. 
 
-This chapter introduces and names a small set of *one-arg* functions that are particularly useful in modeling. We call these the `r xf_definition("core modeling functions")`. In making selections for the core modeling functions, our primary goal is to provide a library of simple relationships of the sort that appear in many modeling contexts. Each core modeling function will have a name, so you can think of them as letting you refer to a relationship type by name: an aid to communication both with other people and with the computer.
+This chapter introduces and names a small set of *one-arg* functions that are particularly useful in modeling. We call these the `r xf_definition("core modeling functions")`. Our goal in selecting the core modeling functions, is to provide a library of simple relationships of the sort that appear in many modeling contexts. Each core modeling function will have a name, so you can think of them as letting you refer to a relationship type by name: an aid to communication both with other people and with the computer.
 
-## Shapes of the core modeling functions {#sec-core-library}
+[A graphing convention for the core modeling functions.]{.smallcaps}
 
-
-We display the shapes of the core modeling function in a conventional way: **graphing** the function on square-gridded graph paper. The core modeling functions have been specifically defined to take a pure number as input and to produce a pure number as output. To remind the reader of this, the graphs of the core modeling functions are placed on a small grid of unmarked graph paper with a major horizontal and a major vertical axis.
+The core modeling functions are specifically defined to take a pure number as input and to produce a pure number as output. To remind the reader of this, the graphs of the core modeling functions are placed on a small, square grid of unmarked graph paper with a major horizontal and a major vertical axis.
 
 ```{r}
 #| label: fig-just-the-grid
@@ -40,7 +39,7 @@ canonical_plot(
 
 In the displays of the core modeling functions, you can infer the numerical values of input and output by counting the vertical and horizontal grid lines respectively. The vertical axis marks zero on the horizontal scale. The successive vertical lines correspond to values separated by 1. The horizontal grid lines are interpreted in the same way. 
 
-Why not label the graph paper with the numerical values? It would be simple enough to do, but for the reasons described in @sec-input-output-transforms it would make the graphics too busy.
+Why not label the boundaries of the graphs with the numerical values, the convention for scientific (rather than mathematical) graphs? In @sec-input-output-transforms we will add the science-style labels to the boundaries but will continue use use the unit-grid as an aid. This will help to emphasize that modeling with the core functions involves changes of scale for both input and output.
 
 
 ```{r}
@@ -142,13 +141,11 @@ Pflat <- canonical_plot(
 
 ```
 
-We will work with eight core modeling functions. Often, one or another of these eight will suffice for modeling the relationship between two quantities. 
+## Eight core modeling functions
 
-[The eight core modeling functions.]{.smallcaps}
+We will work with a small set of eight core modeling functions. The choice of these specific eight comes the  collective experience of modelers over many generations. Our eight functions handle a surprisingly broad class of modeling needs.  
 
-We have constructed the core modeling collection from the collective experience of modelers over many generations. We have intentionally violated convention by giving even famous functions new names that are more descriptive than the traditional names. 
-
-Often, the name of a core function is a reminder of the shape. For instance, `hill()` has a graph that looks like a hill (in cross-section), while `hillside()` is just one side of the hill. `Osc()` is oscillatory, that is, goes up and down repeatedly, like a long chain of hills. On the other hand, sometimes, the names---`recip()`, `exp2()`, and `log2()`---honor traditional nomenclature.
+We have intentionally violated convention by giving even famous functions new names that are more descriptive than the traditional names. The name of a core function is a reminder of the shape. For instance, `hill()` has a graph that looks like a hill (in cross-section), while `hillside()` is just one side of the hill. `Osc()` is oscillatory, that is, goes up and down repeatedly, like a long chain of hills. On the other hand, sometimes, the names---`recip()`, `exp2()`, and `log2()`---honor traditional nomenclature.
 
 ```{r}
 #| label: Ch-07-canonical-graphs
@@ -322,7 +319,7 @@ print(Pexp2)
 :::
 
 ::: {}
-The function starts out almost flat then rises at an every-increasing rate. This pattern is called **exponential growth**. Another way to see this, exponential growth corresponds to steady, uniform growth in magnitude. (See `r xf("sec-order-of-magnitude")`) `exp10()` produces magnitude in the familiar steps by a factor of 10.
+The function starts out almost flat then rises at an every-increasing rate. This pattern is called **exponential growth**. An alternative way to to think about exponential growth: it corresponds to steady, uniform growth in magnitude. (See `r xf("sec-order-of-magnitude")`) `exp10()` produces magnitude in the familiar steps by a factor of 10.
 :::
 
 
@@ -347,7 +344,7 @@ print(Plog2)
 :::
 
 ::: {}
-For each doubling of the input value, the function output goes up by 1 unit. Only positive inputs are allowed. Another way to see this: the logarithm reads off the magnitude of a number. `log10()` gives the scientific-notation format of magnitude.
+For each doubling of the input value, the function output goes up by 1 unit. Only positive inputs are allowed. Consequently, the logarithm reads off the magnitude of a number. `log10()` gives the scientific-notation format of magnitude.
 :::
 
 ::::
@@ -396,7 +393,7 @@ print(Posc)
 :::
 
 ::: {}
-The name `osc()` is short for oscillatory; the function output oscillates up and down as the input increases. A complete cycle is accomplished in one unit of the input. Another way to say this: The period of `osc()` is 1.
+The name `osc()` is short for oscillatory; the function output oscillates up and down as the input increases. A complete cycle is accomplished in one unit of the input, that is, the period of `osc()` is 1.
 :::
 
 
@@ -406,7 +403,7 @@ The name `osc()` is short for oscillatory; the function output oscillates up and
 
 ## Input and output scaling {#sec-input-output-transforms}
 
-The core modeling functions have been defined always to take a pure number as input and produce a pure-number output. In modeling, however, typically the inputs to a function are *quantities* and so is the output. There is a simple strategy for using the core modeling functions to represent quantity-to-quantity relationships. We call this `r xf_definition("input and output scaling")`.
+The core modeling functions have been defined always to take a pure number as input and produce a pure-number output. In modeling, however, typically the inputs to a function are *quantities* and so is the output from the function. A simple strategy suffices for using the core modeling functions to represent quantity-to-quantity relationships. We call this `r xf_definition("input and output scaling")`.
 
 ```{r}
 #| label: fig-scaling-2-panels

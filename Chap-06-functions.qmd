@@ -86,7 +86,7 @@ We have already mentioned that the `heat_index()` function takes two inputs: tem
 
 Without going into detail, the definition of `heat_index()` looks like this:
 
-::: {#nte-heat-index-pseudocode .callout-note icon=false title="R syntax to define a function"}
+::: {#tip-heat-index-pseudocode .callout-tip icon=false title="R syntax to define a function"}
 ```{verbatim}
 heat_index <- function(temperature, humidity) {
   # Algorithm goes here.
@@ -94,7 +94,7 @@ heat_index <- function(temperature, humidity) {
 ```
 :::
 
-The algorithm is all important, but we will put off discussing it in detail for now. Instead, let's focus in the first line of @nte-heat-index-pseudocode. It is a bit of notation that  organizes four pieces of information:
+The algorithm is all important, but we will put off discussing it in detail for now. Instead, let's focus in the first line of @tip-heat-index-pseudocode. It is a bit of notation that  organizes four pieces of information:
 
 1. `function()` indicates that this is a function; 
 2. the name of the function is `heat_index`; 
@@ -107,7 +107,7 @@ When using `heat_index()` to perform a calculation, we give the arg values insid
 
 If the user wrote the inputs in the wrong order, `heat_index(0.80, 30)` it would be as if the user wanted to specify a very cold temperature (0.70 °F) and a meaninglessly high humidity (8500%). To avoid such problems, the R language allows the user to refer to the args by their names rather than their positions:
 
-::: {.callout-note icon=false title="R session: Invoking `heat_index()`"}
+::: {.callout-tip icon=false title="R session: Invoking `heat_index()`"}
 
 ```{r}
 heat_index(humidity = 0.80, temperature = 30)
@@ -116,7 +116,7 @@ heat_index(humidity = 0.80, temperature = 30)
 
 ## Algorithms
 
-In @nte-heat-index-pseudocode we merely wrote a comment to the human reader, "Algorithm goes here." To actually use an R function, the algorithm has to be described in valid computer code. We don't expect the reader to be able to write or even read elaborate computer code. But to be able to give a better image of what an algorithm is, let's write the algorithm in `heat_index()` in plain English, making use of the information printed in @tbl-sultriness. Said another way, we are going to pretend that the reader is a computer who is to be programmed.
+In @tip-heat-index-pseudocode we merely wrote a comment to the human reader, "Algorithm goes here." To actually use an R function, the algorithm has to be described in valid computer code. We don't expect the reader to be able to write or even read elaborate computer code. But to be able to give a better image of what an algorithm is, let's write the algorithm in `heat_index()` in plain English, making use of the information printed in @tbl-sultriness. In other words, we are going to pretend that the reader is a computer to be programmed.
 
 Every algorithm is built out of simpler algorithms. The simplest algorithms are those that you can immediately perform. In a computer processor, these are simple operations like addition that are built into the hardware. For our imagined programming language for the reader, we will build the `heat_index()` algorithm out of your capabilities when it comes to reading tables. The algorithm can be described using four operations, each of which is simple to do.
 
@@ -159,7 +159,7 @@ knitr::kable(
 #| echo: false
 #| warning: false
 #| tbl-cap: "'Temperature-humidity scale: Apparent temperature (°C) corresponding to each combination of dry-bulb temperature and relative humidity. Values in parentheses correspond to skin humidities above 90% and are approximate.'---quoted from original source."
-#| tbl-cap-location: margin
+#| tbl-cap-location: bottom
 knitr::kable(data.frame())
 ```
 \newpage
@@ -178,7 +178,7 @@ In the modern world, many of the objects we use productively every day are so co
 
 The same is true of functions. Using a function requires knowing what kinds of inputs it takes and observing what kind of output it produces. [Although the "t" in "mortgage" is silent, it refers to an important aspect mortgage loans. The root *mort* means "death", as in "mortality." In a mortgage, the borrower pays the lender a fixed amount each month. This gradually reduces the amount of money owed. When that amount reaches zero, the mortgage is dead: no more payments are required. Some people even have funereal rites to celebrate the death of a mortgage.]{.column-margin} To illustrate, consider a situation faced by people buying a home. Almost always, they buyer needs to borrow money, a form of loan called a "mortgage." 
 
-The internet has apps that calculate monthly mortgage payments. Behind such apps is a function that takes three inputs: the amount borrowed (the principal), the annual interest rate on the loan, and the loan duration (that is, the number of monthly payments needed to pay off the loan.) The function's output is the amount of the monthly payment. In internet apps, inputs are often specified with sliders or check-boxes or drop-down menus. To stay close to the `function(arg1, arg2, arg3)` notation, we provide an implementation using that convention. In the interactive version of this book, you can even find the output for any inputs you care to specify.
+The internet has apps that calculate monthly mortgage payments. The function behind such apps takes three inputs: the amount borrowed (the principal), the annual interest rate on the loan, and the loan duration (that is, the number of monthly payments needed to pay off the loan.) The function's output is the amount of the monthly payment. In internet apps, inputs are often specified with sliders or check-boxes or drop-down menus. To stay close to the `function(arg1, arg2, arg3)` notation, we provide an implementation using that convention. In the interactive version of this book, you can even find the output for any inputs you care to specify.
 
 ```{r}
 #| label: ch06-r-8ef51a62
@@ -192,14 +192,14 @@ monthly_payment <- function(principal, interest_rate, duration) {
 }
 ```
 
-::: {.callout-note icon=false title="R command and output"}
+::: {.callout-tip icon=false title="R command and output"}
 ```{r}
 #| label: ch06-r-payment
 monthly_payment(200000, 6, 30)
 ```
 :::
 
-Keep in mind that `monthly_payment()` is a *model* of what you have to pay. It takes into account the interest rate and the duration of the loan. But there are often other dimensions of the situation, for example, processing fees or mortgage insurance. You, or your real-estate agent, will need a more complete model of the situation. Even AI can easily get it wrong if it doesn't know the details of the mortgage contract you will eventually be signing.
+Keep in mind that `monthly_payment()` is a *model* of what you have to pay. It takes into account the interest rate and the duration of the loan. Other, often unanticipated dimensions can add complexity, for example, processing fees or mortgage insurance. You, or your real-estate agent, will need a more complete model of the situation. Even AI can easily get it wrong if it doesn't know the details of the mortgage contract you will eventually be signing.
 
 Typically, computer languages accept purely numerical inputs rather than a complete description of the quantity. So, the first input is `200000` rather than $200,000, the second is `6` rather than 6%, and the third is `30` rather than 30 years.
 
@@ -213,7 +213,7 @@ What is needed to know to use this function successfully? Here is a list:
     ii. `interest_rate`: a yearly interest rate
     iii. `duration`: the number of years
     iv. Output: A numerical amount. The currency will be the same as that of the `principal` input.
-4. A way to check the function's action and whether the user correctly works the interface. Such checking can take several forms. The simplest is to give the same inputs to a trusted source, as in @fig-mortgage-calculator-app, and compare the outputs.
+4. A way to check the function's action and whether the user correctly works the interface. Such checking can take several forms. The simplest: give the same inputs to a trusted source, as in @fig-mortgage-calculator-app, and compare the outputs.
 
 ::: {#fig-mortgage-calculator-app}
 ![](www/mortgage-calculator.png)

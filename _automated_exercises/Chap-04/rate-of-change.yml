@@ -1,0 +1,60 @@
+word: rate of change
+for-chapter: 4
+valid:
+- The change in a primary quantity divided by the corresponding change in a context-setting
+  quantity.
+- A ratio comparing how much one quantity changes to how much another quantity changes.
+- A two-quantity measure that relates a primary change to a change with respect to
+  another variable.
+- The slope-like quantity formed from paired differences in output and input quantities.
+- A measure of change per change in a second quantity, with units of primary quantity
+  divided by context quantity.
+invalid:
+- text: A number format that condenses scientific notation into a single magnitude
+    value.
+  justification: This describes logarithm, not rate of change. In this chapter, rate
+    of change refers to the change in a primary quantity divided by the corresponding
+    change in a context-setting quantity.
+- text: A measure of the size of a number, closely related to its exponent in scientific
+    notation.
+  justification: This describes magnitude, not rate of change. In this chapter, rate
+    of change refers to the change in a primary quantity divided by the corresponding
+    change in a context-setting quantity.
+- text: A factor-of-ten scale used to describe how much larger or smaller one number
+    is than another.
+  justification: This describes order of magnitude, not rate of change. In this chapter,
+    rate of change refers to the change in a primary quantity divided by the corresponding
+    change in a context-setting quantity.
+- text: A number format that expresses a value as a mantissa multiplied by a power
+    of ten.
+  justification: This describes scientific notation, not rate of change. In this chapter,
+    rate of change refers to the change in a primary quantity divided by the corresponding
+    change in a context-setting quantity.
+- text: Arranging values in order so their relative sizes are easier to compare.
+  justification: This describes sorting, not rate of change. In this chapter, rate
+    of change refers to the change in a primary quantity divided by the corresponding
+    change in a context-setting quantity.
+- text: The process of constructing good arguments from evidence and reasoning.
+  justification: This describes argumentation, not rate of change. In this chapter,
+    rate of change refers to the change in a primary quantity divided by the corresponding
+    change in a context-setting quantity.
+- text: Reasoning that applies explicit rules whose correct application yields certain
+    conclusions.
+  justification: This describes formal reasoning, not rate of change. In this chapter,
+    rate of change refers to the change in a primary quantity divided by the corresponding
+    change in a context-setting quantity.
+- text: The facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+  justification: This describes givens, not rate of change. In this chapter, rate
+    of change refers to the change in a primary quantity divided by the corresponding
+    change in a context-setting quantity.
+- text: Fast, broadly applicable reasoning that uses useful but fallible rules of
+    thumb.
+  justification: This describes heuristic reasoning, not rate of change. In this chapter,
+    rate of change refers to the change in a primary quantity divided by the corresponding
+    change in a context-setting quantity.
+- text: A machine-learning system that uses patterns and alignments in text to generate
+    language.
+  justification: This describes Large language model (LLM), not rate of change. In
+    this chapter, rate of change refers to the change in a primary quantity divided
+    by the corresponding change in a context-setting quantity.

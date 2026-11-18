@@ -1,0 +1,29 @@
+word: projection
+for-chapter: 16
+valid:
+  - The component of a vector that lies within a chosen subspace.
+  - A vector's representation within a subspace, separating its in-space part from its perpendicular part.
+  - The part of a vector aligned with a subspace when the vector is decomposed into components.
+  - A lower-dimensional representation of data obtained by mapping vectors onto a subspace.
+  - The vector in a subspace that captures the portion of another vector aligned with that space.
+invalid:
+  - text: "The component of a vector that is perpendicular to a subspace."
+    justification: "The projection is the component aligned with the subspace; the perpendicular part is the residual component."
+  - text: "The original vector together with every possible direction outside the subspace."
+    justification: "Projection keeps the in-subspace component rather than including all perpendicular directions."
+  - text: "A scalar measuring only the length of the original vector."
+    justification: "A projection is a vector component or mapping, not simply the original vector's length."
+  - text: "A probability that a specimen belongs to a particular category."
+    justification: "Projection is a geometric operation on vectors; it is not a classification probability."
+  - text: "A new subspace chosen to be perpendicular to the original data."
+    justification: "Projection maps vectors onto a chosen subspace; it does not itself create that subspace."
+  - text: "A process that rotates a vector without changing its components or position."
+    justification: "Projection decomposes or maps a vector into a subspace, rather than merely changing the viewpoint."
+  - text: "A vector that must equal the original vector in every case."
+    justification: "A projected vector equals the original only when the original already lies in the subspace."
+  - text: "The difference between two specimens' measured values."
+    justification: "A difference vector can be projected, but projection means finding its component within a subspace."
+  - text: "The set of every possible vector in a high-dimensional space."
+    justification: "That is the full space; projection represents vectors within a selected subspace."
+  - text: "A direction of steepest ascent calculated from function derivatives."
+    justification: "That is the gradient; projection is a vector's component within a subspace."

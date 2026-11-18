@@ -1,0 +1,29 @@
+word: alignment between two vectors
+for-chapter: 16
+valid:
+  - A measure of how closely two vectors point in the same or opposite directions.
+  - The directional similarity of two vectors, represented by the angle between them.
+  - A comparison of two vectors' directions that can be positive, zero, or negative.
+  - The degree to which two vectors point alike, quantified by a normalized dot product.
+  - A measure of similarity between vectors that is symmetric when the vectors are exchanged.
+invalid:
+  - text: "A measure of how close the endpoints of two vectors are in space."
+    justification: "Alignment compares directions; endpoint distance can differ even when vectors point the same way."
+  - text: "A comparison that depends on which vector is named first."
+    justification: "The chapter notes that alignment is symmetric between the two vectors."
+  - text: "The number of components contained in each vector."
+    justification: "Component count is dimensionality; alignment measures similarity of direction."
+  - text: "A value that must be positive whenever two vectors are compared."
+    justification: "Vectors pointing in opposite directions have negative alignment."
+  - text: "A measure of the size of one vector, regardless of any other vector."
+    justification: "Length measures a vector's size; alignment compares the directions of two vectors."
+  - text: "The location of a vector's endpoint in the coordinate space."
+    justification: "An endpoint gives a location; alignment describes the relationship between two directions."
+  - text: "A projection of one vector onto a subspace."
+    justification: "Projection identifies a component within a subspace; alignment compares two vectors."
+  - text: "The sum of two vectors' component values."
+    justification: "A component sum is not the alignment measure; the chapter relates alignment to the dot product."
+  - text: "The angle between a vector and a plane, which changes with viewing perspective."
+    justification: "The term concerns two vectors; the chapter emphasizes defining angles independently of viewing perspective."
+  - text: "A count of how many measurements two specimens share."
+    justification: "Alignment measures how their vector directions agree, not how many dimensions they have."

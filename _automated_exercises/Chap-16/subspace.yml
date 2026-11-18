@@ -1,0 +1,29 @@
+word: subspace
+for-chapter: 16
+valid:
+  - A lower-dimensional space contained within a larger space.
+  - A space formed by combinations of vectors and lying within the full vector space.
+  - A flat set of directions or positions embedded in a higher-dimensional space.
+  - A selected lower-dimensional space used to represent patterns in data.
+  - A space in which vectors can lie even though they also belong to a larger ambient space.
+invalid:
+  - text: "A set of points that must lie outside the larger space containing it."
+    justification: "A subspace is contained within the larger space."
+  - text: "The entire higher-dimensional space with no lower-dimensional restriction."
+    justification: "A subspace is a space within a larger one and can have fewer dimensions."
+  - text: "A single vector that points in one direction."
+    justification: "A vector is an element; a subspace is a space containing vectors and their combinations."
+  - text: "A curved path traced by a system over time."
+    justification: "That is a trajectory; a subspace is a geometric space within a larger space."
+  - text: "A function that assigns likelihood to every point in a space."
+    justification: "That describes a probability distribution; a subspace is a geometric structure."
+  - text: "A plane that must always have exactly three dimensions."
+    justification: "A subspace can have any dimension up to that of its containing space."
+  - text: "A set of unrelated vectors that cannot be combined."
+    justification: "A subspace is formed by vector combinations and contains its constituent directions."
+  - text: "A line or plane that changes its dimension as it is viewed."
+    justification: "Viewing perspective does not change a subspace's dimension."
+  - text: "The part of a vector perpendicular to a selected plane."
+    justification: "That is the perpendicular component; a subspace is the space onto which a vector may be projected."
+  - text: "A group label assigned to each observation in a training set."
+    justification: "Labels are data for supervised learning; a subspace is a geometric space used to represent patterns."

@@ -1,0 +1,50 @@
+word: SI
+for-chapter: 3
+valid:
+- The International System of Units, the primary official system for defining units.
+- An internationally used framework of base and derived measurement units.
+- The unit system built from seven base units and many derived units.
+- The standard system whose base units include the second, meter, kilogram, and kelvin.
+- The Système international d'unités used as the main reference for scientific units.
+invalid:
+- text: A collection of quantities whose values identify locations within it.
+  justification: This describes space, not SI. In this chapter, SI refers to the international
+    system of units, the primary official system for defining units.
+- text: Standardized measures that specify how much of a quantity is present.
+  justification: This describes units, not SI. In this chapter, SI refers to the international
+    system of units, the primary official system for defining units.
+- text: A phrase identifying the context-setting quantity against which a change is
+    examined.
+  justification: This describes with respect to, not SI. In this chapter, SI refers
+    to the international system of units, the primary official system for defining
+    units.
+- text: A base dimension used for monetary value, whose meaning depends on place and
+    time.
+  justification: This describes worth, not SI. In this chapter, SI refers to the international
+    system of units, the primary official system for defining units.
+- text: Rates formed by arithmetic combinations of other rates.
+  justification: This describes compound rates, not SI. In this chapter, SI refers
+    to the international system of units, the primary official system for defining
+    units.
+- text: A ratio of two quantities where division expresses a relationship between
+    their underlying dimensions.
+  justification: This describes rate, not SI. In this chapter, SI refers to the international
+    system of units, the primary official system for defining units.
+- text: The change in a primary quantity divided by the corresponding change in a
+    context-setting quantity.
+  justification: This describes rate of change, not SI. In this chapter, SI refers
+    to the international system of units, the primary official system for defining
+    units.
+- text: A number format that condenses scientific notation into a single magnitude
+    value.
+  justification: This describes logarithm, not SI. In this chapter, SI refers to the
+    international system of units, the primary official system for defining units.
+- text: A measure of the size of a number, closely related to its exponent in scientific
+    notation.
+  justification: This describes magnitude, not SI. In this chapter, SI refers to the
+    international system of units, the primary official system for defining units.
+- text: A factor-of-ten scale used to describe how much larger or smaller one number
+    is than another.
+  justification: This describes order of magnitude, not SI. In this chapter, SI refers
+    to the international system of units, the primary official system for defining
+    units.

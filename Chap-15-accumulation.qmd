@@ -26,11 +26,11 @@ The previous chapter focused on turning a function into another function that gi
 
 2. An intern works at a large accounting firm during rush season. He gets paid $25/hour, increasing to $37.50 if he works "overtime," that is, more than 40 hours in a week. At the end of the week, he has worked 68 hours. What are his accumulated earnings for the week?
 
-3. An epidemic spreads through a community. On the first day, only a couple of people catch the virus. But as more people become infected, the infection rate increases, reaching 20 new cases on the 7th day. The health department keeps a daily list of new cases. Overall, how many names accumulate during the first ten days?
+3. An epidemic spreads through a community. On the first day, only a couple of people catch the virus. But as more people become infected, the infection rate increases, reaching 20 new cases on the 7th day. The health department keeps a daily list of new cases. Overall, how many total cases accumulate during the first seven days?
 
-Each of these three scenarios involves a quantity accumulating over time: shells, money, and people falling ill. And each involves one or more *rates of change* and a *duration*
+Each scenario involves a quantity accumulating over time: shells, money, and people falling ill. And each involves one or more *rates of change* and a *duration*
 
-1. One shell per 5 minutes over a two-hour walk. 
+1. One shell per 5 minutes over a two-hour walk. This is equivalent to 12 shells per hour.
 2. $25 per hour, going up to the "time-and-a-half" rate of $37.50 per hour after 40 hours worked over 68 total hours.
 3. Two new cases per day, increasing to a rate of 20 new cases per day at the end of the first seven days.
 
@@ -82,7 +82,7 @@ F2 <- antiD(f2(t) ~ t)
 F3 <- antiD(f3(t) ~ t)
 
 slice_plot(f1(t) ~ t, domain(t = -0.5:2.5), npts=1000, color = .slice_color.) |>
-  gf_labs(x = "Hours into walk", y = "Shells collection rate (shells per minute)") |> 
+  gf_labs(x = "Hours into walk", y = "Shells collection rate (shells per hour)") |> 
   
   gf_lims(y = c(0, 12))
 
@@ -113,7 +113,8 @@ slice_plot(F3(d) ~ d, domain(d = 0:7), color = .slice_color.) |>
   gf_lims(y = c(0,NA))
 ```
 
-The right-hand column of @fig-three-problems-roc shows accumulations of the rate-of-change functions in the left column. Calculating the accumulation from the rate-of-change function is a fully automated process called "anti-differentiation" that requires little or no creative input.
+The right-hand column of @fig-three-problems-roc shows accumulations of the rate-of-change functions in the left column. The left-hand column is where modeling creativity and judgment come into play. Translation to the corresponding functions in the right-hand column is a matter of applying the general accumulation algorithm to each case: a process that is mechanical.
+
 
 ## Example: Figuring taxes owed
 
@@ -121,34 +122,32 @@ The right-hand column of @fig-three-problems-roc shows accumulations of the rate
 
 As discussed in `r xf("sec-rates-of-change")`, *differentiation* is the name given to finding a marginal function from a "mother" function. The function so derived is called a *derivative*. These names point to a critically important habit of mind for quantitative reasoners: we think about relationships such as `r xf("tbl-1913-brackets")` as *functions*. Why is this important? Knowing that the relationship is a function reminds us of a set of operations that can be performed on it to put it in a more useful form for whatever purpose is at hand.
 
-Consider the purpose originally served by the tax-bracket table: to inform members of Congress the exact policy they were imposing on taxpayers. The tax-bracket table does not serve another purpose very well: enabling taxpayers to easily figure out what they owe. The result is tax forms like that in `r xf("fig-1913-1040")` which are potentially off-putting.
+Consider the purpose originally served by the tax-bracket table: to inform members of Congress the exact policy they were imposing on taxpayers. The marginal tax-rate format serves this purpose well. But that format is harder for taxpayers to use to calculate how much tax they need to pay. The strange-looking form in `r xf("fig-1913-1040")` Makes clear the difficulty of using the marginal tax-rate format for determining total tax owed.
 
 <!--[Possibly, the legislators did not completely understand their own policy, not envisioning the sort of calculation illustrated in `r xf("fig-1913-1040")`. Senator Elihu Root wrote to a correspondent: "I guess you will have to go to jail. If that is the result of not understanding the Income Tax law I shall meet you there. We will have a merry, merry time, for all our friends will be there. It will be an intellectual center, for no one understands the Income Tax law except persons who have not sufficient intelligence to understand the questions that arise under it." [Source](https://www.taxnotes.com/tax-history-project/tax-history-original-intent-and-revenue-act-1913/2013/09/30/f7h8)]{.column-margin} -->
 
 
 
-Quantitative reasoners who know about differentiation and derivatives have a powerful framework for simplifying the presentation of marginal tax-rate information to taxpayers. Since the *marginal* tax rate is a function, we can graph it. (@fig-tax-rate-functions(a))
+Quantitative reasoners who know about differentiation and derivatives have a powerful framework for simplifying the presentation of marginal tax-rate information to taxpayers. Since the *marginal* tax rate is a function, we can graph it. (@fig-tax-rate-marginal)
 
 ```{r}
-#| label: fig-tax-rate-functions
+#| label: fig-tax-rate-marginal
 #| echo: false
-#| layout-ncol: 2
-#| fig-cap: "Tax-rate functions"
+#| fig-cap: "Marginal tax-rate as a function of income. This is merely a graphical version of `r xf(\"tbl-1913-brackets\")`. Remember, these are the marginal rates in 1913, not today!"
 #| fig-cap-location: top
-#| fig-subcap: 
-#| - "Marginal rate"
+
 #| - "Total rate"
 T1913 <- tibble::tribble(
   ~ income, ~ rate, ~ cumulative,
   0, 0, 0,
   3000, 1, 0,
   20000, 2, 170,
-  50000, 3, 1070,
-  75000, 4, 2070,
-  100000, 5, 3320,
-  250000, 6, 12320,
-  500000, 7, 29820,
-  1000000, 7, 64820
+  50000, 3, 770,
+  75000, 4, 1520,
+  100000, 5, 2520,
+  250000, 6, 10020,
+  500000, 7, 25020,
+  1000000, 7, 60020
 ) |>
   mutate(cum_rate = ifelse(cumulative > 0, 100*cumulative/income, 0))
 
@@ -168,49 +167,42 @@ slice_plot(margfun(income) ~ income, domain(income = 0:1e6),
   gf_labs(x = "Income ($)", y = "Marginal Rate") |>
   gf_vline(xintercept = 200000, color = "blue") 
 
+```
+
+The marginal tax rate is the rate that applies to the next dollar of income *at whatever the current income is*. However, it's awkward to use the margin rate for the purpose of computing the total tax owed at the current income level. A simple operation solves the problem, *accumulate* the marginal rate as a function of income. The resulting, accumulated function, plotted in @fig-tax-rate-total, provides a simple function look-up to find the total tax owed for any income.
+
+
+```{r}
+#| label: fig-tax-rate-total
+#| echo: false
+#| fig-cap: "Total tax owed as a function of income. This is the accumulated form of the marginal tax rate function."
 totalfun <- antiD(margfun(income) ~ income)
 slice_plot(totalfun(C=0, income) ~ income, 
            domain(income = 0:1e6), npts=1000,
            color = .slice_color.) |>
   gf_labs(x = "Income ($)", y = "Total Tax Owed ($)") |>
   gf_vline(xintercept = 200000, color = "blue")
-
 ```
 
+The two functions in @fig-tax-rate-marginal and @fig-tax-rate-total convey the same information, but in different forms. With the *marginal rate* function (@fig-tax-rate-marginal), you can look up the *marginal* tax rate at any income. For example, a blue vertical line has been drawn at an income of $200,000. The marginal tax rate at that income is exactly 5%. 
 
-The two functions in @fig-tax-rate-functions convey the same information, but in different forms. The *marginal rate* function (@fig-tax-rate-functions(a)) literally the Congressional policy. Using it, you can look up the *marginal* tax rate at any income. For example, a blue vertical line has been drawn at an income of $200,000. The marginal tax rate at that income is exactly 5%. Even so, the tax-payer does *not* owe $200,000 $\times$ 5% = $10,000. The 5% refers to the additional tax owed on a small incremental increase in income. 
+The *total tax owed* function (@fig-tax-rate-total) is set up to suit people calculating how much to pay. The output is the amount of tax owed. At the blue line for a $200,000 income, the tax owed is $7520. Notice that a total tax calculation using the 5% marginal rate on its own would give a different amount owed: $200,000 $\times$ 5% = $10,000. 
 
-The *total tax owed* function (@fig-tax-rate-functions(b)) is set up to suit people calculating how much to pay. The output is the amount of tax owed. At the blue line for a $200,000 income, the tax owed is $860.
+This is not a book about income tax calculations. But marginal rates appear in myriad contexts where our primary interest is in the total. For instance, in all the dynamics examples in `r xf("sec-dynamics")` the dynamical rule tells the marginal change of state. To calculate the state itself, starting from some initial state we *accumulate* the marginal state. The important point is about the connection between the two functions shown in @fig-tax-rate-marginal and @fig-tax-rate-total. This sort of connection is fundamental to quantitative reasoning. The accounting process for accumulation is the same in any context. We need just one method to handle many different settings, not a special method for taxes or for epidemics or for swinging pendulums.
 
-This is not a book about income tax calculations. The important point is about the connection between the two functions shown in @fig-tax-rate-functions. This sort of connection is fundamental to quantitative reasoning. 
-@fig-tax-rate-functions(a) is the *derivative* of @fig-tax-rate-functions(b). No new information is needed to construct @fig-tax-rate-functions(a) from @fig-tax-rate-functions(b); they are merely different ways of representing the same information.
+The idea of accumulating a function first emerged in the 1600s in the context of motion. Knowing the force on an object, e.g. the constant gravitational force acting on it, allows one to find the acceleration simply by dividing by the object's mass. [Remember, Newton's Second Law of motion says that force equals mass time acceleration, so acceleration equals force divided by mass.]{.column-margin} Accumulating *acceleration* over time gives the function for velocity versus time. Accumulating velocity gives the function for the object's position versus time. The same accounting process, accumulation, is used *twice* in succession. Velocity and acceleration are related as mother and daughter; acceleration is the derivative of velocity. Similarly, velocity is the derivative of position. 
 
-As we said, function (a) is the *derivative* of (b). The derivation of (a) from (b) is done by the process of *differentiation*, that is, calculating marginal rates of change 
+Many mathematics textbooks use the word `r xf_definition("integration")` to refer to the accounting process that undoes differentiation, for example turning acceleration into velocity in one context or transforming marginal tax rates into total tax rates in another. A more telling mathematical word for this process is `r xf_definition("anti-differentiation")`, which makes explicit the point of the operation: undo differentiation. 
 
-It is equally possible to compute function (b) from function (a). Math textbooks call the computational process `r xf_definition("integration")` or, almost the same thing, `r xf_definition("anti-differentiation")`. A good, everyday word to describe the process is `r xf_definition("accumulation")`. Function (b) accumulates the marginal tax payments over the entirety of the taxpayer's income.
+`r xf_definition("Accumulation")` provides a simple, everyday word for the process. You accumulate the marginal tax rate by starting with the first dollar of income. Apply the marginal rate for that $1 income level and place the result into a basket. Now move on to the second dollar of income. Apply the marginal rate for the income level $2 to that second income dollar and add that to the basket. Keep on going. By the time you get to the two-hundred thousandth dollar of income, the marginal rate is 5% and so for that last dollar you would toss 5 cents into the basket. That last toss---the last of 200,000 such tosses---brings the accumulated amount to $7520.
 
-The connection between *differentiation* and *anti-differentiation* (which is so clear from the words used) is important in practice. Many of our core modeling functions are derivative/anti-derivative pairs.
+Traditionally, calculus students are taught to use algebra to carry out anti-differentiation, at least for functions that are expressed algebraically. They start by memorizing the anti-derivative of a small set of functions, many of which are in our core modeling function collection. Before computers, such algebraic techniques were often used. In practice, however, only a small cadre of skilled mathematicians used the algebraic techniques. These skilled people wrote books consisting of a long list of functions alongside their anti-derivatives. Such book are called "tables of integration." These days, however, computers store the tables and make it easy to look up the anti-derivatives of algebraically-expressed functions. Continuing to emphasize algebra in teaching is analogous to teaching long division in arithmetic. It is a tedious, error-prone process that is hard to master manually. In practice, however, we use calculators or computers for long division.
 
-Calculus students memorize such patterns. We defer to the exercises a description of the processes by which anti-derivatives can be computed. This is for two reasons: 1) the process is automatic, 2) the main point is to know, whenever you are working with a function, whether its derivative or anti-derivative might be a better form than the function itself for the purpose a model is being built for. 
+Much more important than an algebraic process is developing a modeling understanding of what quantities are related by differentiation and anti-differentiation, for instance total tax and marginal tax rates, or position and velocity.
 
-## Anti-differentiation
+## Anti-differentiation, graphically
 
-There are various algorithms for calculating the anti-derivative of a rate-of-change function. Traditional calculus students learn---or, at least, study!---algebraic techniques that can become puzzle-solving problems of considerable difficulty. Sometimes, there is no algebraic solution. But finding the anti-derivative need not be a puzzle. Here, we will demonstrate the idea graphically. To illustrate, we will use an important pair of functions related by differentiation and anti-differentiation. 
-
-
-
-
-::: {#fig-diff-antidiff}
-![](www/hill-to-hillside.png)
-
-`hill()` and `hillside()` are a derivative/anti-derivative pair.
-:::
-
-The hill() function gives the *derivative*---that is, the rate-of-change function---of the hillside() function. Conversely, the hillside() function is the *anti-derivative* of the hill() function. Differentiation turns a function into its rate-of-change function. Anti-differentiation undoes differentiation.
-
-A homey metaphor may help here. Imagine a family of functions mutually related by differentiation or anti-differentiation. We'll label the functions Francis, Georgia, Heather, Ulrika, and Victoria: F(), G(), H(), U(), V(). The relationships among these functions are that G() is the derivative of F(), H() is the derivative of G(), H() is the derivative of H(), and so on. In human terms, these functions correspond to succesive generations in a family. Francis is the great-grandmother, Georger the grandmother, Heather the mother, Ulrika the daughter, and the grand-daughter is Victoria. Differentiation is the function that takes a person and produces their direct offspring. Anti-differentiation takes a function and produces their mother.
-
-For demonstration purposes, to see how an anti-derivative can be calculated, let's break convention and use a special graphical format to display a rate-of-change function. 
+For demonstration purposes, to see how an anti-derivative can be calculated even by a child, let's break convention and use a special graphical format to display a rate-of-change function. 
 
 Keep in mind that differentiation constructs an new "daughter" function from a "mother" function. Finding the daughter is straightforward; it is the function whose **value** at any input corresponds to the **slope** of the mother at that same input. @fig-segmentize shows a function F(x) in blue, annotated with a red compass for measuring slopes. The slope of F() varies across the input values. We can calculate that slope for many different input values. Ordinarily we would plot the derivative---that is, the daughter function---using the vertical axis for the measured slope. 
 
@@ -254,11 +246,11 @@ slice_plot(f(x) ~ x, domain(x=-5:5), alpha = 0, color = .slice_color.) |>
   gf_refine(scale_color_manual(values=c(.slice_contrast., .slice_color.), guide = "none"))
 ```
 
-Anti-differentiation is the process of accumulating the sloped segments to reconstruct a function with those slopes. The accumulation itself is child's play. Start with the leftmost segment. Raise the segment next to it so that the two segments match. Continue the process by moving to the next segment, and so on.
+Anti-differentiation is the process of accumulating the sloped segments to reconstruct a function with those slopes. The accumulation itself is child's play. Leave the leftmost segment in place. [Actually, you can move the segment up or down to any level you like. (See the next marginal note.)]{.column-margin} Now move right to the next segment. Raise or lower that until the two segments connect: the right end of the leftmost segment touching the left end of the segment next to it. Continue the process by moving to the next segment, and so on.
 
 Playing this child's game of connecting the segments by moving each segment vertically traces out the green curve. Evidently, the green curve has the same **shape** as the original mother function F(). 
 
-The green curve runs parallel to the original F() but can have a different vertical position. Why? The game-playing child is free to place the first segment at any vertical position she likes. The reconstructed function will be moved up or down accordingly. When we accumulate, whether seashells or inclined segments, we are free to specify how much was "in the basket" when we started.
+The green curve runs parallel to the original F() but can have a different vertical position. [This is where the freedom to move the first segment to any desired vertical position comes in.]{.callout-note} Why? The game-playing child is free to place the first segment at any vertical position she likes. The reconstructed function will be moved up or down accordingly. When we accumulate, whether seashells or inclined segments, we are free to specify how much was "in the basket" when we started.
 
 
 ## Example: QALYs versus cost
@@ -280,7 +272,7 @@ Comparative survival curves for people undergoing surgery for colon cancer. [Sou
   paste("Source for", xf("fig-colon-survival"))
 )` 
 
-@fig-colon-survival shows two survival "curves" constructed from patients' records in a clinical study. Each curve is a function that takes months of survival as input and returns as output the fraction of all patients who survived that long. For instance, about 60% of patients who underwent radical surgery survived for 100 months, whereas only about 15% of palliative-treatment patients survived that long.
+@fig-colon-survival shows two survival "curves" constructed from patients' records in a clinical study. Each curve models the fraction of patients who survive any given number of months after diagnosis. For instance, about 60% of patients who underwent radical surgery survived for 100 months after diagnosis, whereas only about 15% of palliative-treatment patients survived that long.
 
 `r qr_margin_note(
   "https://www3.mdanderson.org/app/medcalc/index.cfm?pagename=coloncancer",
@@ -318,22 +310,22 @@ slice_plot(survive(age) ~ age, domain(age = 30:80), color = .slice_color.) |>
 
 ```
 
-The detailed calculation needed to translate @fig-survival-sketch into a function of QALYs saved per person treated is hard to understand without extensive modeling experience. But the general outline is accessible. Using only the treatment cost and the age distribution of incidence, we can translate the horizontal axis into the total cost of treating all people up to any given age. The result will be a graph showing the marginal years saved at each cost. Accumulating (anti-differentiating) that marginal years saved function over the cost produces the curve shown in `r xf("fig-QALY-vs-cost")`(b). 
+A detailed calculation is needed to translate @fig-survival-sketch into a function of QALYs saved per person treated. The calculation is hard to understand without extensive modeling experience, but the general outline is accessible. Using only the treatment cost and the age distribution of incidence, we can translate the horizontal axis into the total cost of treating all people up to any given age. The result will be a graph showing the marginal QALYs saved at each cost. Accumulating (anti-differentiating) that marginal QALYs saved function over the cost produces the curve shown in `r xf("fig-QALY-vs-cost")`(b). 
 
 The point for us is that figuring out relationships like that in `r xf("fig-QALY-vs-cost")`(b) is based on several habits of experienced quantitative reasoners:
 
-1. Thinking of years saved *on the margin*, that is, the function that describes how many years are saved for each additional unit of cost.
+1. Thinking of QALYs saved *on the margin*, that is, the function that describes how many additional QALYs are saved for each additional unit of cost.
 
-2. Knowing that the on-the-margin function corresponds to another function, total years saved versus cost, that is an ordinary anti-derivative of the function in (1). 
+2. Knowing that the on-the-margin function corresponds to another function, total QALYs saved versus cost, that is, an ordinary anti-derivative of the function in (1). 
 
-3. Realizing that the function in (1) is much easier to justify, a good format for representing the relationship between years saved and cost, so putting our effort into modeling (1) and then using the automatic process of anti-differentiation to produce the function in (2).
+3. Realizing that the function in (1) is much easier to justify in an argument. Consequently, it is a good format for modeling the relationship between QALYs saved and cost. Then, the automated process of anti-differentiation, not modeling judgment, will produce the function in (2). Knowing that we are free to model with (1) but automatically reframe the result as (2) makes the process easier.
 
 
 ## Example: Predicting peak population {#sec-peak-population}
 
 Sometimes, clear patterns in the rate-of-change function can be easily modeled, but then need to be translated via anti-differentiation to display the information of interest. An instance of this is seen in the population of the US, as it has grown over the centuries.
 
-Every 10 years, starting in 1790, the US Census Bureau carries out a constitutionally mandated census: a count of the current population. The overall count as a function of year is shown in @fig-pop-growth. 
+Every 10 years, starting in 1790, the US Census Bureau carries out a constitutionally mandated census: a count of the current population. The overall count as a function of year is shown in @fig-population-vs-year. 
 
 ```{r}
 #| label: get-us-pop
@@ -356,20 +348,13 @@ Table <- if (knitr::is_html_output()) {
 
 `r qr_margin_note(
   "https://en.wikipedia.org/wiki/Demographic_history_of_the_United_States",
-  paste("Data source for", xf("fig-pop-growth"))
+  paste("Data source for", xf("fig-population-vs-year"))
 )`
 
-In the 230 years spanned by the census data, the US population has grown 100-fold, from about 4 million in 1790 to about 330,000,000 in 2020. @fig-pop-growth shows the growth. Note that there is a lot of fluctuation in the data. These are not just random. The deviations correspond to historical events. There is a relatively low growth rate from 1860 to 1870, due to the US Civil War. The Great Depression is evident in the very low growth rates from 1930 to 1940. Baby Boom: look at the growth from 1950 to 1960. The bump from 1990 to 2000? Not coincidentally, the 1990 Immigration Act substantially increased the yearly rate of immigration.
+In the 230 years spanned by the census data, the US population has grown 100-fold, from about 4 million in 1790 to about 330,000,000 in 2020. @fig-population-vs-year shows the growth as a steadily climbing function output over time.. 
 
 
 ```{r echo=FALSE, warning=FALSE} 
-#| label: fig-pop-growth 
-#| layout-ncol: 2
-#| fig-cap: "Two views of population growth in the US."
-#| fig-cap-location: top
-#| fig-subcap: 
-#| - Population
-#| - Rate of change in population with respect to time
 popfun <- spliner(population ~ year, data = USPop)
 USPop <- USPop |>
   mutate(growth = population - lag(population)) |>
@@ -396,74 +381,95 @@ P1 <-gf_point(population ~ year, data = USPop) |>
 #   gf_refine(scale_y_log10(breaks=100*(0:5))) |>
 #   gf_lims(x = c(1790, 2100))
 P2 <- gf_point(ygrowth ~ year, data = USPop) |>
-  gf_line(ygrowth ~ year) |>
-  gf_lm(ygrowth ~ year, color = "blue") |>
+  gf_line(ygrowth ~ year, color = .slope_color.) |>
+  gf_lm(ygrowth ~ year, color = .slice_contrast.) |>
   gf_labs(y="Yearly population growth (millions)", x = "Year") |>
-  gf_lims(x = c(1790, 2100), y=c(0,3.5))
+  gf_lims(x = c(1790, 2100), y=c(0,3.5)) |>
+  gf_vline(xintercept = c(1870, 1940, 1960, 2000), color = .vline_color.)
 
-mod <- lm(ygrowth ~ population - 1, data = USPop)
+mod <- lm(yearly_growth_rate ~ year, data = USPop)
 P3 <- gf_point(ygrowth ~ population, data = USPop) |>
   gf_line(ygrowth ~ population) |>
   # gf_abline( intercept = 0, slope = coef(mod), color = "blue") |>
-  gf_line(theory ~ population, color = "blue") |>
-  gf_labs(y="Yearly population growth (millions)", x = "Population (millions)") |>
+  gf_line(theory ~ population, color = .slice_color.) |>
+  gf_labs(y="Rate of change of population (millions/year)", x = "Population (millions)") |>
   gf_lims(x = c(0,500), y=c(0,3.5))
 P4 <- gf_point(yearly_growth_rate ~ year, data = USPop) |>
   gf_line(yearly_growth_rate ~ year) |>
-  gf_lm(yearly_growth_rate ~ year, color = "blue") |>
-  gf_labs(y="10-year population growth (millions)", x = "Year") |>
+  gf_lm(yearly_growth_rate ~ year, color = .slice_contrast.) |>
+  gf_labs(y="Per capita growth rate (percent/year)", x = "Year") |>
   gf_lims(x = c(1790, 2100), y=c(0,3.5))
+```
+
+```{r}
+#| label: fig-population-vs-year 
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "The US population since the first census in 1790. The annotations show what exponential growth at different rates would look like."
+#| fig-cap-location: top
 P1 
+```
+
+The growth *appears* smooth in @fig-population-vs-year. Perhaps it is reminiscent of exponential growth. It turns out that this is not the case. The exponential annotations in @fig-population-vs-year are clearly different from the actual data.
+
+We can get a better look at the population growth if, rather than inferring it from the *slope* of the graph in @fig-population-vs-year, we look at the *rate of change directly* as the quantity on the vertical axis. The units of the rate of change are millions of people per year, that is, the yearly increment in the population. This is shown in @fig-pop-ROC.
+
+```{r}
+#| label: fig-pop-ROC
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Rate of change of US population. The units are millions of people per year. Vertical lines mark the historical events mentioned in the text: Civil War, Depression, Baby Boom, Immigration reform. The sloping [reddish trend line]{style='color: \"#D55E00;\"'} shows a long term trend."
 P2 
 ```
 
-Both panels in @fig-pop-growth are based on the Census data. Panel (a) plots the actual population. The upward curving pattern of the data (in black) in panel (a) is reminiscent of exponential growth. We annotated the data with two curves, both with strict exponential growth at the year percentage rates indicated. In the context of actual exponential growth, the data do not convincingly show exponential growth.
+The overall pattern is that yearly population increase has grown over the 210 years since the first census. Currently, the growth rate is about 2.5 million people per year, but during the interval from 1790 to 1800, population growth was much smaller: 0.14 million per year.That shouldn't be surprising, since a larger population tends to add more people each year.
 
-The rate of change in population (with respect to time) is the slope of the segments in panel (a). Panel (b) translates that slope into position along the vertical axis. The blue line in panel (b) guides the eye to see an ascending, straight-line pattern in the data, admittedly with some sharp, decade-long deviations from the line.
+The data show fluctuations---ups and downs deviating from the overall straight-line trend. These are not just random. The deviations correspond to historical events. The decade 1860-1870, due to the US Civil War, growth rate was relatively low. The Great Depression is evident in the very low growth rates from 1930 to 1940. Baby Boom: look at the growth from 1950 to 1960. The bump from 1990 to 2000? Not coincidentally, the 1990 Immigration Act substantially increased the yearly rate of immigration.
 
-One is tempted to conclude from @fig-pop-growth that, if the US population follows the historical pattern, it will continue to grow at an ever-faster rate. However, that conclusion is not well-founded. The problem is the lack of a theoretical framework for interpreting the data.
+The rate of change in population (with respect to time) is the slope of the segments in @fig-population-vs-year. In contrast, @fig-pop-ROC translates that slope into position along the vertical axis. The [reddish trend line]{style="color: \"#D55E00;\""} guides the eye to see an ascending, straight-line pattern in the data. This trend line makes it easier to see the deviations from the trend in the data. 
 
-`r xf("sec-dynamics")` has some lessons to teach about growth, particularly exponential growth. Remember that the Euler framework for dynamics does not start with a time series, such as those in @fig-pop-growth. Instead, the Euler framework starts with a *dynamical rule*, the function that takes the *state* of the system (population, here) and turns it into a rate of change with respect to time. The plots in @fig-pop-growth have *time* on the horizontal axis, not population. @fig-pop-dynamics(a) presents the data in dynamical rule format: change in state (with respect to time) versus state.
+One is tempted to conclude from @fig-population-vs-year that, if the US population follows the historical pattern, it will continue to grow at an ever-faster rate of around 2.5 million people per year. At that rate, the US population would grow to about 500 million by the end of the century. However, that conclusion is not well-founded. The problem is the lack of a theoretical framework for interpreting the data.
+
+`r xf("sec-dynamics")` has some lessons to teach about growth, particularly exponential growth. Remember that the Euler framework for dynamics does not start with a time series, such as those in @fig-population-vs-year. Instead, the Euler framework starts with a *dynamical rule*, the function that takes the *state* of the system (population, here) and turns it into a rate of change with respect to time. The plots in @fig-population-vs-year and @fig-pop-ROC have *time* on the horizontal axis, not population.  A dynamical rule, on the other hand, would show the rate of change in population versus *population* itself. @fig-pop-dynamics re-arranges the census data in this way.
 
 ```{r}
 #| label: fig-pop-dynamics
 #| echo: false
 #| warning: false
-#| layout-ncol: 2
-#| fig-cap: Plotting dynamics of growth
+#| fig-cap: "Dynamical rule format for the yearly population growth (millions/year) versus population. The annotation shows the rule *if growth were proportional to population*, persisting at the same rate as in about 1800."
 #| fig-cap-location: top
-#| fig-subcap: 
-#| - Dynamical rule
-#| - Proportional change (%) of state
 P3 
+```
+
+The data in @fig-pop-dynamics suggest that yearly growth is leveling off as population increases. Certainly, the US is a long way from the fast growth seen around 1800.
+
+Wait! Doesn't @fig-pop-dynamics show that when the population was small, as it was around 1800, the yearly growth was also small? Why did we call that "fast growth"?
+
+The small population growth was fast in the sense that the population growth *per capita* per year was high. @fig-pop-dynamics shows total population growth, not per capita. To calculate the per capita rate, we need to divide the yearly growth by the population. We do this in @fig-rate-dynamics where the vertical axis is in percent per year rather than millions of people per year. 
+
+```{r}
+#| label: fig-rate-dynamics
+#| echo: false
+#| warning: false
+#| fig-cap: "Per capita yearly growth rate (%) over the years."
 P4 
 ```
 
+We have a choice of how to represent the trends in growth. We could look at per capita growth rate (percent per year) as a function of population. Or, we could plot per capita growth rate (percent per year) as a function of the *year*. The two approaches give similar results, but we prefer to use per capita growth rate as it changes over the years. Why? Because world-wide data shows that in most countries---including small and large countries---per capita growth rate has declined. This model reflects the intuition that changes in the economy and society are effecting growth. For example, contraception is much more available now than in the past. In the US, over the last 50 years the participation of women in the work force has growth. This makes it difficult to manage large families, especially when pre-school day care is so expensive. 
 
+The goal of the model is to support predictions about future population. We can start with the current (as of the 2020 census) population: about 330 million. Then, for 2020, calculate the yearly per capita growth rate using the model in @fig-rate-dynamics. The model gives a rate of 0.65 percent per year. So the predicted 2021 population is $$330 \text{million} \times 1.0065 \approx 332\ \text{million}.$$
 
-@fig-pop-dynamics(a) plots the yearly rate of change (with respect to time) versus the population. The format is exactly that of a dynamical rule in the Euler framework. True exponential growth corresponds to a same() dynamical rule. (See `r xf("fig-steady-dyn")`.) The particular dynamical rule shown corresponds to 1.94%. That is, the blue line shows the dynamical rule that is 
-$$\text{ROC population}(P) \equiv 1.0194\, P\ .$$ {#eq-194-percent}
+For 2021, the model growth rate is slightly less: 0.64 percent per year. So the predicted 2022 population is $332 \times 1.0064 \approx 334$ million. As the years progress, the per capita growth rate steadily declines. By 2075, the model has the growth rate at zero. That's when the population levels out. The growth rate becomes *negative* after 2075; the population starts declining!
 
-The 1.94% per year dramatically overstates population growth when the population exceeds 100 million, a level reached by 1920. At 100 million and above, the data *suggest* a lower rate of growth. Owing to the peaks and dips in the data, it is hard to see a straight line above 100 million population. Nonetheless, the dynamics are clearly different above 100 million than they were below that.
-
-One way to incorporate *changing dynamics* into @eq-194-percent is to replace the 1.0194 with a function of year. We will call it r(year), and we would like the data to show us what it is. For this, we need to plot r(year) versus *year*, not population. @eq-194-year re-arranges @eq-194-percent to emphasize that both ROC population and population themselves are functions of *year*.
-
-$$\text{ROC population}(year) \equiv r(year)\, P(year)$$
-or
-$$r(year)\equiv \frac{\text{ROC population}(year)}{\text{P}(year)} .$$ {#eq-194-year}
-
-To see the form of r(year) from the data, plot $\frac{\text{ROC population}(year)}{\text{P}(year)}$ versus year. @fig-pop-dynamics(b) does this. It is much easier to infer from the data in @fig-pop-dynamics(b) a pattern of a linearly decreasing (with respect to time) yearly growth rate (r(year)).
-
-
-If the trend (blue line in @fig-pop-dynamics(b)) in the growth rate continues, the US will reach zero net growth around 2070, then enter negative growth. Of course, negative growth is just decline. A simple prediction from `r xf("fig-pop-growth")`(b) is that the argmax of the US population---that is, the year that the growth rate reaches zero---will occur around 2070.
-
-Using the tools of mathematical accumulation, we can accumulate the rate of change (that is, r(year) P(year)) over future years to estimate the future population. @fig-population-future shows the result.
+@fig-population-future reports the predicted population calculated by accumulating the yearly growth from 2020 onward.
 
 ```{r}
 #| label: fig-population-future
 #| echo: false
 #| warning: false
-#| fig-cap: "The Census population data along with the function forecasting future population based on the rate-of-change model in @fig-pop-dynamics(b)"
+#| fig-cap: "The Census population data along with the function formed by accumulating the rate-of-change function from 2020 onward, using the model in @fig-pop-dynamics."
 growth_mod <- lm(yearly_growth_rate ~ year, data = USPop)
 growth_fun <- makeFun(growth_mod)
 accum <- tibble(year = 2021:2130,

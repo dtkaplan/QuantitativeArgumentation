@@ -1,0 +1,29 @@
+word: differentiation
+for-chapter: 14
+valid:
+  - The process of calculating the derivative of a function.
+  - Finding the rate-of-change function associated with an original function.
+  - The operation that derives a function describing local output change per input change.
+  - Calculating how a function's slope varies across its input values.
+  - The process that transforms a function into its derivative.
+invalid:
+  - text: "The process of accumulating a rate of change to recover a total function."
+    justification: "That is anti-differentiation or accumulation; differentiation calculates the derivative from a function."
+  - text: "The function produced by differentiating an original function."
+    justification: "That is the derivative; differentiation is the process of calculating it."
+  - text: "The act of sorting data into distinct categories."
+    justification: "Differentiation in this chapter is a mathematical operation on functions, not data classification."
+  - text: "A process for measuring only the average slope over an entire domain."
+    justification: "Differentiation produces the rate-of-change function, which can vary from input to input."
+  - text: "A method for finding the maximum output of any function."
+    justification: "Differentiation can help with optimization, but it means calculating derivatives."
+  - text: "A rule for converting the input units into output units."
+    justification: "That is unit conversion; differentiation relates changes in output to changes in input."
+  - text: "A process that changes a function's input values while leaving its rule unchanged."
+    justification: "Differentiation constructs a new rate-of-change function; it is not an input transformation."
+  - text: "A field of mathematics devoted only to arithmetic with constants."
+    justification: "Differentiation operates on functions and is a central process in calculus."
+  - text: "The condition that small input changes cause small output changes."
+    justification: "That is continuity; differentiation is the process of calculating a derivative."
+  - text: "The process of generating random samples from a probability distribution."
+    justification: "That is random number generation; differentiation concerns rates of change of functions."

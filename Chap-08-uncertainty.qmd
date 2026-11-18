@@ -7,28 +7,24 @@ source("_start-up.R")
 
 ::: {.aside}
 ```{=latex}
-\vspace*{-1.5in}
+\vspace*{-2.5in}
 ```
 
 `r paste(readLines("_Words/chap_8.txt"), collapse = "\n")` 
 :::
 
-We have looked at functions so far as our model representation of the relationship between one quantity (the function output) and one or more other quantities (the function inputs). This role for functions will remain central to how we use models for quantitative reasoning. Still, there are other important uses for functions.
+So far, we have used functions to model relationships between quantities. This chapter introduces a distinctly different use for functions: quantifying the `r xf_definition("uncertainty")` in the value of a single quantity. 
 
-This chapter considers a distinctly different use for functions: quantifying the `r xf_definition("uncertainty")` in the value of a single quantity. 
+Imagine a family in the process of constructing a budget for next year. The family likely has a good idea about their expected income next year. A family planning next year's budget estimates its income and expenses, including rent, utilities, food, and transportation. If rent rises from $1500 to $1560 after six months, their best guess annual rent budget is $18,360. This information guides them in planning for discretionary spending, such as vacations, clothing, and so on. 
 
-Imagine a family in the process of constructing a budget for next year. Naturally, the family has a good idea about their expected income next year. Likewise, they can estimate next year's expenses for rent, utilities, food, transportation, and so on. This information guides them in planning for discretionary spending, such as vacations, clothing, and so on. 
 
-Suppose the family's current rent is 1500 dollars per month. The lease is up for renewal in 6 months; they are almost sure the rent will increase—their best guess: a 4% increase to $1560 per month. 
 
-Most people making budgets use a best guess for quantities whose exact value is uncertain. Doing this, the family figures next year's total rent expenditures as six monthly payments of $1,500 per month, followed by another six months at $ 1,560 per month. Total: $18,360 per year.
+In situations where the stakes are higher, say, the possibility for a much larger rent increase, it can be worthwhile to keep track not just of the best guess but of the *uncertainty* in that guess. It is common to express uncertainty using `r xf_definition("range", text = "ranges")`  [An equivalent format is "approximately 80 $\pm$ 20 Cals per mile."]{.column-margin} For instance, in `r xf("sec-rates")`, an AI quoted a range for the number of Cals burned per mile while walking: "approximately 60 to 100 Cals." 
 
-In situations where the stakes are higher, it can be worthwhile to keep track not just of the best guess but of the *uncertainty* in that guess. It is common to express uncertainty using `r xf_definition("range", text = "ranges")`  [An equivalent format is "approximately 80 $\pm$ 20 Cals per mile."]{.column-margin} For instance, in `r xf("sec-rates")`, an AI quoted a range for the number of Cals burned per mile while walking: "approximately 60 to 100 Cals." 
+A statistical range such as [60, 100] usually marks a *likely* interval, not hard limits. [In the statistics interpretation of ranges like [60, 100], "likely" is interpreted as a 95% chance.]{.column-margin}
+It asserts that the value is *likely* to be in the range, and *unlikely* to be outside of it.
 
-The shorthand notation for the range just mentioned is [60, 100]. In statistics, such a range is not intended as an absolute statement that the value can never be less than 60 or greater than 100. [In the statistics interpretation of ranges like [60, 100], "likely" is interpreted as a 95% chance.]{.column-margin}
-Rather, it is a statement that the value is *likely* to be in the range, and *unlikely* to be outside of it.
-
-However, when doing calculations---such as adding up the uncertainties for each of the several budget categories---the range format does not suffice. To support quantitative reasoning, we need another format for expressing uncertainty.
+However, when doing calculations---such as adding up the uncertainties across the several budget categories---the range format does not suffice. To support quantitative reasoning, we need another format for expressing uncertainty.
 
 ## Relative probability {#sec-relative-probability}
 
@@ -37,12 +33,12 @@ The fundamental problem with the range format is this: It is not necessarily the
 To illustrate, consider the number of Cals burned by a person in a walk of about 3 to 4 miles. In addition to this walk length information, we know that the energy consumption per unit distance is 60 to 100 Cal/mile. As described in `r xf("sec-quantities")`, we combine quantities with different dimensions by either multiplication or division. The correct choice here is multiplication, since [Cal] = [miles] [Cal/mile]. This multiplication would directly provide the answer if there was no uncertainty attached to the distance or energy consumption per unit distance. But here, we are not just multiplying quantities but *uncertain quantities* described by ranges. Using the range notation the multiplication can be written like this: 
 $$[3 \ \text{ to }\  4]\, \text{miles} \times [60\ \text{ to }\ 100]\, \text{Cals/mile} =\ \LARGE{\textbf{?}}\ .$$ {#eq-range-walking-kinetics}
 
-The question mark in @eq-range-walking-kinetics is justified because there is no standard way to multiply uncertainty *ranges*. Anyone can invent a *reasonable-sounding* strategy for the calculation, for instance, multiply the lower ends of each range, and similarly for the upper end of the result:
-$$[3 \times 60\ \text{ to }\ 4 \times 100]\,\text{Cals} = [180 \ \text{ to }\  400]\, \text{Cals}\ .$$ As reasonable as this looks, there is a problem with the strategy: how can we tell whether it gives the *right* answer to the underlying question?
+The question mark in @eq-range-walking-kinetics reflects more than a question. There is no standard way to multiply uncertainty *ranges*. Anyone can invent a *reasonable-sounding* strategy for the calculation, for instance, multiply the lower ends of each range, and similarly for the upper end of the result:
+$$[3 \times 60\ \text{ to }\ 4 \times 100]\,\text{Cals} = [180 \ \text{ to }\  400]\, \text{Cals}\ .$$ As reasonable as this looks, the strategy has a problem: How can we tell whether it gives the *right* answer to the underlying question?
 
 \enlargethispage{3\baselineskip}
 
-Indeed, there are situations where the above strategy is clearly wrong. For instance, consider multiplying the two ranges [-3 to 5] by [-10 to 2]. Slavishly following the above procedure yields a range of [30 to 10]. Is this right? For both ranges, note that zero is well within the limits. Multiplying any number by zero gives zero, so zero ought to be inside the range produced by the multiplication. However, zero is not in [30 to 10]. 
+In many situations, the above strategy is wrong. For instance, consider multiplying the two ranges [-3 to 5] by [-10 to 2]. Slavishly following the above procedure yields a range of [30 to 10]. Is this right? For both ranges, note that zero is well within the limits. Multiplying any number by zero gives zero, so zero ought to be inside the range produced by the multiplication. However, zero is not in [30 to 10]. 
 
 Figuring out how to reliably handle calculations involving uncertainty involved the work of many mathematicians and scientists over the 18th and 19th centuries. A good answer to the walking energetics question in @eq-range-walking-kinetics is [200 to 360] Cals. Similarly, a good answer to [-3,5]$\times$[-10,2] is [-25 to 17], which correctly includes zero inside the range. 
 
@@ -50,7 +46,7 @@ The advent of the computer has made such uncertainty calculations much more acce
 
 A probability distribution can be created by assigning a positive number to each point on the number line. This number is called a `r xf_definition("relative probability")`. Relative probability numbers cannot be negative. 
 
-There are an infinite number of points on the number line, so to use probability distributions, we need to keep track of an infinite number of relative probabilities: one for each point on the number line. Fortunately, `r xf("sec-intro-to-functions")` has already provided a mechanism for handling the situation: *functions*.
+The number line includes an infinite set of points even over a finite interval. A probability distribution will therefore involve an infinite number of relative probabilities: one for each point in the interval. Fortunately, `r xf("sec-intro-to-functions")` has already provided a mechanism for handling the situation: *functions*.
 
 To illustrate, consider the uncertainty we previously represented as the range 60 to 100 Cals/mile. @fig-cal-per-mile-distribution shows the corresponding probability distribution as a *function*.
 
@@ -70,7 +66,7 @@ slice_plot(1000*dnorm(rate, mean=80, sd=10) ~ rate,
 A standard probability distribution corresponding to 60 to 100 Cal/mile.
 :::
 
-The *input* to the function is drawn from the set of possible values for the uncertain quantity. The *output* from the function is the relative probability for that particular value of the quantity. In @fig-cal-per-mile-distribution, the relative probability for 40 Cal/mile is very low —practically zero. On the other hand, the highest relative probability corresponds to 80 Cal/mile. The numerical value of the function output at 80 Cal/mile is 40. That particular value, 40, tells us very little on its own; it needs to be put in context. The context for a relative probability is the function output for other inputs, that is, for other possibilities of the Cal/mile value. For instance, the relative probability for 60 Cal/mile is about 5, while the relative probability for 80 Cal/mile is about 40—that is, eight times as likely as 60 Cal/mile. 
+The *input* to the function is drawn from the set of possible values for the uncertain quantity. The *output* from the function is the relative probability for that particular value of the quantity. In @fig-cal-per-mile-distribution, the relative probability for 40 Cal/mile is very low —practically zero. On the other hand, the highest relative probability corresponds to 80 Cal/mile. At 80 Cal/mile, the relative probability is 40, eight times its value at 60 Cal/mile (about 5); relative probabilities are meaningful through comparison. 
 
 When the output of a relative probability function is close to zero, the occurrence of the corresponding input value is vanishingly rare. We took advantage of this in @fig-cal-per-mile-distribution to avoid showing the entire number line on the input axis; we centered the display on the most likely values. 
 
@@ -88,7 +84,7 @@ Starting about 1900, statisticians looked at the question of how correctly to in
 
 ## Exemplary probability distributions {#sec-exemplary-distributions}
 
-There is an infinity of probability distributions simply because there is an infinity of functions. Nevertheless, almost always modelers draw from a small library of about twenty named distributions. More precisely, these are `r xf_definition("named families of distributions")`. Each of these families includes one or two parameters that, often, are equivalent to applying an *input transformation* and/or *output transformation*. In this section, we focus on three distributions that modelers use in everyday work: the *normal*, the *uniform*, and the *exponential*. 
+Although any function with a non-negative output can be considered a probability distribution. But in practice, modelers draw from a small library of about twenty named distributions. More precisely, these are `r xf_definition("named families of distributions")`. Each family includes one or two parameters that, often, are equivalent to applying an *input transformation* and/or *output transformation*. In this section, we focus on three distributions that modelers use in everyday work: the *normal*, the *uniform*, and the *exponential*. 
 
 Uniform distribution
 : The `r xf_definition("uniform distribution")` models a situation where the possibilities must be within a known range, but could be anywhere in that range. @fig-afternoon-uniform shows what a uniform distribution would be for a situation like this: "She texted that she will arrive in the afternoon, but I don't know exactly when." 
@@ -162,16 +158,10 @@ slice_plot(dexp(x-12, rate = 1 / 2.5) ~ x,
 The exponential distribution.
 :::
 
-A concrete way to think about the exponential distribution is as a description of the intervals *between* randomly occurring events. In @fig-afternoon-exp, the first event was assumed to be at noon; the second event will be the time that the friend arrives. The exponential model is based on the idea that there is a fixed probability that the second event will happen in a short interval after the first. But if it doesn't occur in that short interval, the same probability applies to the event happening in the next short interval, and so on. Perhaps contrary to intuition, this means that the probability of the second interval happening at time t after the first event decays exponentially with t, as in `r xf("fig-afternoon-exp")`.
+The exponential distribution models waiting times between random events. In @fig-afternoon-exp, starting at noon each short interval has the same chance of containing the friend's arrival. If she hasn't arrived, that chance is unchanged. If we look at each possible arrival time based on what we know at noon, the probability of arrival at time t decays exponentially with t to take into account that, from our perspecive at noon, the arrival might have happened earlier. (`r xf("fig-afternoon-exp")`
 
 
-
-
-
-
-
-
-The exponential model assumes that the second event is equally likely to occur at any time. There is one parameter for the distribution typically called "lambda" (which is $\lambda$ in the Greek alphabet). The mean time between events is $1/\lambda$. (In @fig-afternoon-exp, the mean corresponds to that for the distributions shown in @fig-afternoon-normal and @fig-afternoon-uniform.)
+The exponential model assumes that the second event is equally likely to occur at any time. The distribution has just one parametertypically called "lambda" (which is $\lambda$ in the Greek alphabet). The mean time between events is $1/\lambda$. (In @fig-afternoon-exp, the mean corresponds to that for the distributions shown in @fig-afternoon-normal and @fig-afternoon-uniform.)
 
 ## Simulation {#sec-simulation}
 

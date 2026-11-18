@@ -1,0 +1,36 @@
+```{r setup, echo=FALSE}
+library(devoirs3)
+devoirs3::devoirs_start(docID = "devoirs3-word-or-phrase-1-two")
+```
+
+```{devoirs_choices word_or_phrase_1_two_choices}
+- A word that can only be used in casual conversation.:
+    correct: false
+    feedback: The term is highlighted precisely because it has a technical meaning
+      beyond casual usage.
+- A phrase that must contain exactly two words.:
+    correct: false
+    feedback: The term may be one word or several words; there is no fixed length
+      requirement.
+- A label assigned to a specimen in a data frame.:
+    correct: false
+    feedback: That is a data label, not the chapter's defined sense of a highlighted
+      word or phrase.
+- A highlighted expression used with a specific technical meaning in the book.:
+    correct: true
+    feedback: Correct.
+- An expression marked to distinguish its technical sense from casual everyday usage.:
+    correct: true
+    feedback: Correct.
+```
+
+Two of the following are valid descriptions of word or phrase. The other three are not. Mark both of the VALID descriptions.
+
+```{r}
+devoirs3::devoirs_selection(
+  label = "word-or-phrase-1-two",
+  question = "Two of the following are valid descriptions of word or phrase. The other three are not. Mark both of the VALID descriptions.",
+  answers = word_or_phrase_1_two_choices,
+  multiple = TRUE
+)()
+```

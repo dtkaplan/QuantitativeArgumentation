@@ -1,0 +1,29 @@
+word: unsupervised learning
+for-chapter: 16
+valid:
+  - Learning patterns in data without prior labels identifying the patterns to find.
+  - A learning task that seeks a useful low-dimensional subspace without known target categories.
+  - Finding structure in examples when the desired groupings or answers are not supplied.
+  - A process for uncovering patterns in data without labeled training outcomes.
+  - Learning that searches for organization in data without being told in advance what to look for.
+invalid:
+  - text: "Training a model using known labels for every example."
+    justification: "That is supervised learning; unsupervised learning proceeds without labeled target patterns."
+  - text: "A process that cannot use data because no answers are supplied."
+    justification: "Unsupervised learning uses data to find patterns even when labels are unavailable."
+  - text: "A method that always identifies the correct categories before examining examples."
+    justification: "The task is to discover structure without knowing in advance what patterns to find."
+  - text: "A fixed rule written by a human and applied without adjustment."
+    justification: "Learning aims to find or develop patterns from data, rather than merely apply a fixed rule."
+  - text: "A method that predicts a known outcome using labeled training data."
+    justification: "That describes supervised learning, which uses known outcomes or categories."
+  - text: "A way to find the steepest direction of a function from its derivatives."
+    justification: "That is gradient-based optimization; unsupervised learning searches for structure in data without labels."
+  - text: "A technique that guarantees all observations belong to one meaningful group."
+    justification: "Unsupervised methods seek patterns; they do not guarantee that data have one meaningful grouping."
+  - text: "A procedure that discards all measurements and keeps only category names."
+    justification: "Without labels, the method analyzes measurements to discover structure rather than relying on category names."
+  - text: "A model that memorizes the training labels for later lookup."
+    justification: "Unsupervised learning has no labeled outcomes to memorize and instead seeks latent patterns."
+  - text: "A process that assigns equal probability to every possible data arrangement."
+    justification: "That concerns probability assignment; unsupervised learning searches data for patterns without target labels."

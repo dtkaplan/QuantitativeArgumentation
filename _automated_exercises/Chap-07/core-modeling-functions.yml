@@ -1,0 +1,49 @@
+word: core modeling functions
+for-chapter: 7
+valid:
+  - A selected set of eight one-input functions used to represent common relationships in models.
+  - A library of simple one-argument functions, each representing a useful relationship type.
+  - Named mathematical functions with pure-number inputs and outputs, chosen for common modeling patterns.
+  - Eight standard function shapes that modelers can use to describe relationships between quantities.
+  - A collection of familiar one-argument relationships that can be customized for modeling purposes.
+invalid:
+  - text: |
+      A collection of functions that must take several quantity-valued inputs and return a quantity with units.
+    justification: |
+      The chapter's core modeling functions each take one pure-number input and produce a pure-number output.
+  - text: |
+      Every possible function that could ever be used in a mathematical model.
+    justification: |
+      The core modeling functions are a selected set of eight useful relationship types, not all possible functions.
+  - text: |
+      A list of input names that identifies the roles of a function's arguments.
+    justification: |
+      Those names are args. Core modeling functions are mathematical relationships, not lists of input names.
+  - text: |
+      A set of procedures for converting quantity inputs into outputs by changing their units.
+    justification: |
+      The core functions use pure numbers; input and output scaling lets them represent quantity-to-quantity relationships.
+  - text: |
+      Eight physical devices that calculate values by moving parts through a mechanical process.
+    justification: |
+      These are mathematical or computing functions, not necessarily physical machines.
+  - text: |
+      A collection of functions whose outputs are fixed and never depend on their inputs.
+    justification: |
+      Some core functions, such as flat(), are constant, but the collection includes many functions whose outputs vary with input.
+  - text: |
+      A group of algorithms that each take an output and reconstruct the inputs that produced it.
+    justification: |
+      The functions represent input-to-output relationships; they are not inverse procedures that recover inputs from outputs.
+  - text: |
+      A group of statistical summaries used to describe a dataset's average and spread.
+    justification: |
+      The chapter's term refers to named function shapes for modeling relationships, not descriptive statistics.
+  - text: |
+      Functions that have no names and cannot be referred to in communication or computer code.
+    justification: |
+      Each core modeling function has a name, such as hill() or exp2(), so its relationship type can be identified.
+  - text: |
+      The interconnected dimensions that make up a real-world system.
+    justification: |
+      Those dimensions make up a system. Core modeling functions represent relationships among dimensions.

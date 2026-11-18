@@ -72,7 +72,7 @@ These notes give some context for the "Quantitative Argumentation" project that 
 
 13. Exercises and other supplementary materials will have these forms:
     - Drill, which refers to isolated questions that can be answered at a glance or with a very simple computation. The drill system will always give immediate feedback to students, not just correct/incorrect but often pointing out the problem with an incorrect answer. So these are formative and re-inforcing. Drill problems will be scored automatically, e.g. fixed response or word choice or numerical value.
-    - Exercises, which will be a typically more extended topic involving some judgement or modest levels of computing. Very short essays may be involved in exercises, perhaps one or two sentences. 
+    - Exercises, which will be a typically more extended topic involving some judgment or modest levels of computing. Very short essays may be involved in exercises, perhaps one or two sentences. 
     - Discussion topics, which an instructor might use to guide a classroom discussion or as an illustration of an application of methods. 
 
 * When working on this project, treat the principles above as constraints rather than suggestions. Do not assume that conventional calculus pedagogy, terminology, notation, or chapter organization represents the desired standard.

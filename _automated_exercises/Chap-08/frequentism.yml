@@ -1,0 +1,29 @@
+word: frequentism
+for-chapter: 8
+valid:
+  - A framework for statistical inference that emphasizes mathematically provable properties of procedures.
+  - An approach to inference built around long-run behavior under repeated sampling.
+  - A statistical perspective that grounds probability in the frequencies of outcomes across repetitions.
+  - A framework that supports formal claims about how statistical methods behave over repeated use.
+  - The school of inference associated with methods such as conventional hypothesis tests and p-values.
+invalid:
+  - text: "An approach that represents personal prior beliefs as probability distributions."
+    justification: "The chapter associates representing prior knowledge this way with Bayesian inference."
+  - text: "A claim that any single observed outcome has a guaranteed probability of one."
+    justification: "Frequentist reasoning concerns behavior across repetitions, not certainty about one outcome."
+  - text: "A method that never uses mathematical proofs."
+    justification: "The chapter says frequentism emphasizes mathematically provable statements about inference."
+  - text: "The process of generating random numbers from a distribution."
+    justification: "That is random number generation, which is a computational tool rather than an inference framework."
+  - text: "A probability distribution with equal relative probability across a range."
+    justification: "That describes a uniform distribution, not a school of statistical inference."
+  - text: "A rule that treats every proposed model as equally supported by data."
+    justification: "Frequentist methods assess evidence using statistical procedures; they do not declare all models equal."
+  - text: "A way to update a prior distribution after every new observation."
+    justification: "That describes Bayesian updating, not frequentism as introduced in this chapter."
+  - text: "A method for finding the average and spread of a dataset only."
+    justification: "Mean and spread are summaries; frequentism is a broader framework for statistical inference."
+  - text: "The belief that uncertainty can never be quantified mathematically."
+    justification: "Frequentist statistics is a mathematical framework for inference under uncertainty."
+  - text: "The name for any hypothesis that has been confirmed as true."
+    justification: "Frequentism is a statistical approach, not a label for a confirmed hypothesis."

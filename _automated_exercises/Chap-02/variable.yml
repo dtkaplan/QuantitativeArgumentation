@@ -1,0 +1,42 @@
+word: variable
+for-chapter: 2
+valid:
+- A column in a data frame that records one property across its specimens.
+- A named feature whose values are recorded for each row or specimen.
+- A data-frame column containing values of a consistent type for different objects.
+- A characteristic recorded across a collection of specimens, such as height or sex.
+- One field in a data table whose entries describe the corresponding specimens.
+invalid:
+- text: Examining a system by breaking it into contributing components.
+  justification: This describes analysis, not variable. In this chapter, variable
+    refers to a column in a data frame that records one property across its specimens.
+- text: Fundamental dimensions from which derived dimensions are formed.
+  justification: This describes base dimensions, not variable. In this chapter, variable
+    refers to a column in a data frame that records one property across its specimens.
+- text: Fundamental SI units that are not defined in terms of one another.
+  justification: This describes base units, not variable. In this chapter, variable
+    refers to a column in a data frame that records one property across its specimens.
+- text: A unit for counting people, from the Latin word for head.
+  justification: This describes capita, not variable. In this chapter, variable refers
+    to a column in a data frame that records one property across its specimens.
+- text: Accounting for other variables while examining a relationship of interest.
+  justification: This describes controlling for, not variable. In this chapter, variable
+    refers to a column in a data frame that records one property across its specimens.
+- text: A dimensionless ratio of equal quantities used to convert between commensurate
+    units.
+  justification: This describes conversion factor, not variable. In this chapter,
+    variable refers to a column in a data frame that records one property across its
+    specimens.
+- text: A two-dimensional space marked by two perpendicular number lines.
+  justification: This describes coordinate plane, not variable. In this chapter, variable
+    refers to a column in a data frame that records one property across its specimens.
+- text: Dimensions formed by multiplying or dividing base dimensions.
+  justification: This describes derived dimensions, not variable. In this chapter,
+    variable refers to a column in a data frame that records one property across its
+    specimens.
+- text: Units formed by multiplying or dividing base units.
+  justification: This describes derived units, not variable. In this chapter, variable
+    refers to a column in a data frame that records one property across its specimens.
+- text: Having the pure-number dimension, with no combination of base dimensions.
+  justification: This describes dimensionless, not variable. In this chapter, variable
+    refers to a column in a data frame that records one property across its specimens.

@@ -1,0 +1,46 @@
+word: number line
+for-chapter: 3
+valid:
+- A one-dimensional line on which points represent values of a quantity.
+- A spatial representation of the admissible values for a single quantity.
+- A line marked with numerical positions that can stand for quantity values.
+- A one-quantity space where each location corresponds to a value.
+- A geometric aid for reasoning about ordered values along one dimension.
+invalid:
+- text: Change in a primary quantity with respect to one variable while other variables
+    are held constant.
+  justification: This describes partial change, not number line. In this chapter,
+    number line refers to a one-dimensional line on which points represent values
+    of a quantity.
+- text: A word that signals division, with the following quantity in the denominator.
+  justification: This describes per, not number line. In this chapter, number line
+    refers to a one-dimensional line on which points represent values of a quantity.
+- text: A location in a space that corresponds to one or more coordinate values.
+  justification: This describes point, not number line. In this chapter, number line
+    refers to a one-dimensional line on which points represent values of a quantity.
+- text: A number with no unit designation, such as seven or pi.
+  justification: This describes pure number, not number line. In this chapter, number
+    line refers to a one-dimensional line on which points represent values of a quantity.
+- text: A standardized measure consisting of a pure number and a unit, optionally
+    with a descriptor.
+  justification: This describes quantity, not number line. In this chapter, number
+    line refers to a one-dimensional line on which points represent values of a quantity.
+- text: The International System of Units, the primary official system for defining
+    units.
+  justification: This describes SI, not number line. In this chapter, number line
+    refers to a one-dimensional line on which points represent values of a quantity.
+- text: A collection of quantities whose values identify locations within it.
+  justification: This describes space, not number line. In this chapter, number line
+    refers to a one-dimensional line on which points represent values of a quantity.
+- text: Standardized measures that specify how much of a quantity is present.
+  justification: This describes units, not number line. In this chapter, number line
+    refers to a one-dimensional line on which points represent values of a quantity.
+- text: A phrase identifying the context-setting quantity against which a change is
+    examined.
+  justification: This describes with respect to, not number line. In this chapter,
+    number line refers to a one-dimensional line on which points represent values
+    of a quantity.
+- text: A base dimension used for monetary value, whose meaning depends on place and
+    time.
+  justification: This describes worth, not number line. In this chapter, number line
+    refers to a one-dimensional line on which points represent values of a quantity.

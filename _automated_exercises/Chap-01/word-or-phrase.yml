@@ -1,0 +1,29 @@
+word: word or phrase
+for-chapter: 1
+valid:
+  - A highlighted expression used with a specific technical meaning in the book.
+  - A word or group of words whose meaning is defined for a particular subject or context.
+  - An expression marked to distinguish its technical sense from casual everyday usage.
+  - A vocabulary item whose precise meaning readers should recognize when it appears again.
+  - A highlighted term that carries a defined meaning beyond its ordinary conversational use.
+invalid:
+  - text: "Any pair of words that happen to appear next to each other in a sentence."
+    justification: "The chapter means a highlighted expression with a defined technical meaning, not any adjacent words."
+  - text: "A word that can only be used in casual conversation."
+    justification: "The term is highlighted precisely because it has a technical meaning beyond casual usage."
+  - text: "A sentence that summarizes an entire chapter."
+    justification: "A word or phrase is a vocabulary expression, not a chapter summary."
+  - text: "A mathematical model made from equations and measured quantities."
+    justification: "That describes a quantitative model, not a word or phrase."
+  - text: "A list of observations and measurements collected during research."
+    justification: "That describes data; a word or phrase is a highlighted vocabulary expression."
+  - text: "A verbal disagreement between two people."
+    justification: "That is an everyday sense of argument, not the chapter's use of a highlighted technical expression."
+  - text: "A word whose meaning must remain informal and undefined."
+    justification: "The chapter says highlighted words and phrases have a technical meaning defined for use in the book."
+  - text: "A rule that transforms givens into new beliefs."
+    justification: "That describes reasoning; a word or phrase is a vocabulary expression."
+  - text: "A phrase that must contain exactly two words."
+    justification: "The term may be one word or several words; there is no fixed length requirement."
+  - text: "A label assigned to a specimen in a data frame."
+    justification: "That is a data label, not the chapter's defined sense of a highlighted word or phrase."

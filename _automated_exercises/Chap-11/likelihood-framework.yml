@@ -1,0 +1,29 @@
+word: likelihood framework
+for-chapter: 11
+valid:
+  - An approach that puts competing hypotheses in comparison using their likelihoods for observed data.
+  - A method of evaluating models by comparing how well each accounts for the same observations.
+  - A framework in which hypotheses compete and likelihood serves as each hypothesis's data-based score.
+  - A way to rank or compare hypotheses according to the likelihood of the observed evidence under each.
+  - A model-comparison approach that treats hypotheses as competitors rather than simply true or false.
+invalid:
+  - text: "A framework that assigns each hypothesis a probability of being true based only on prior belief."
+    justification: "The likelihood framework compares hypotheses by their likelihoods for data; prior belief is addressed in Bayesian updating."
+  - text: "A rule that declares the hypothesis with the largest likelihood certainly true."
+    justification: "A larger likelihood provides relative support, not certainty or proof."
+  - text: "A method that compares models without using any observations."
+    justification: "Likelihood evaluates hypotheses in the setting of observed data."
+  - text: "A process for generating possible observations from a random-number generator."
+    justification: "That is simulation or random number generation, not likelihood-based model comparison."
+  - text: "A framework that treats each hypothesis as either correct or incorrect with no comparison."
+    justification: "The framework emphasizes competition and relative support among hypotheses."
+  - text: "A distribution assigning equal probability to all observed outcomes."
+    justification: "Hypotheses may use many kinds of probability distributions; equal likelihood is not required."
+  - text: "A technique for estimating the mean of a sample."
+    justification: "The framework compares hypotheses using likelihood, rather than only summarizing data with a mean."
+  - text: "A method for combining conflicting objective functions into one score."
+    justification: "That concerns optimization trade-offs; the likelihood framework compares hypotheses against data."
+  - text: "The probability distribution that summarizes knowledge after data are processed."
+    justification: "That is the posterior distribution in the Bayesian framework."
+  - text: "A scientific method that forbids revising a model once proposed."
+    justification: "The framework evaluates and compares models; scientific model refinement remains possible."

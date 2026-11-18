@@ -1,0 +1,29 @@
+word: mean
+for-chapter: 8
+valid:
+  - The parameter that locates the center of a normal distribution.
+  - The central value around which a normal distribution is arranged.
+  - A distribution parameter describing its average or central location.
+  - The value that sets the center of a normal model, while its spread is set separately.
+  - The average-value parameter of a normal distribution.
+invalid:
+  - text: "The parameter that determines how widely a normal distribution spreads."
+    justification: "Spread is described by the standard deviation; the mean sets the distribution's center."
+  - text: "The square of the standard deviation."
+    justification: "That is the variance, not the mean."
+  - text: "The difference between the largest and smallest values."
+    justification: "That is the range; the mean is an average or central-location parameter."
+  - text: "The value that every observation in a dataset must equal."
+    justification: "A mean does not require all observations to be identical."
+  - text: "The most likely value in every probability distribution."
+    justification: "A distribution's mean need not be its most likely value, especially for asymmetric distributions."
+  - text: "A number describing how likely one value is relative to another."
+    justification: "That is relative probability; the mean describes a distribution's center."
+  - text: "The probability that an observation falls inside a stated interval."
+    justification: "An interval probability is different from the mean parameter."
+  - text: "A random value generated from a probability distribution."
+    justification: "A random draw is a possible observation; the mean is a parameter describing the distribution."
+  - text: "The rate at which independent events occur per unit time."
+    justification: "That is a rate parameter used in an exponential distribution, not the normal distribution's mean."
+  - text: "The endpoints that define the possible values in a uniform distribution."
+    justification: "Those endpoints define the range of a uniform distribution; the mean is a central value."

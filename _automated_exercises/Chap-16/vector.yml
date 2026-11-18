@@ -1,0 +1,29 @@
+word: vector
+for-chapter: 16
+valid:
+  - A coordinate tuple interpreted as a direction and distance from the origin.
+  - A quantity with components that represents both direction and magnitude in a space.
+  - A mathematical object that can represent a specimen's location relative to a center.
+  - A list of numerical components that can be treated geometrically as a direction and length.
+  - A directed quantity used to represent positions, differences, and patterns in multidimensional data.
+invalid:
+  - text: "A single number with no components, direction, or magnitude."
+    justification: "A vector has components and can be interpreted geometrically by direction and length."
+  - text: "A point that can only represent a location, never a direction."
+    justification: "A coordinate tuple can be interpreted either as a location or as direction and distance from the origin."
+  - text: "A function that maps each input to one output value."
+    justification: "That is a function; a vector is a geometric or numerical object with components."
+  - text: "A plane containing every possible data specimen."
+    justification: "A plane is a geometric space; an individual specimen's measurements may be represented by a vector."
+  - text: "A scalar that measures how closely two directions align."
+    justification: "That is an alignment value; vectors are the objects whose directions are compared."
+  - text: "A probability distribution over possible outcomes."
+    justification: "A distribution assigns likelihoods; a vector is a list of components with a geometric interpretation."
+  - text: "A list of measurements whose order can be changed without affecting its meaning."
+    justification: "Vector components correspond to specific dimensions; rearranging them generally changes the represented vector."
+  - text: "The distance between any two points in a data set."
+    justification: "A vector can represent a difference or position, but distance is a scalar measurement."
+  - text: "A set of all directions in a lower-dimensional space."
+    justification: "That describes a subspace; a vector is one element with components and a direction."
+  - text: "A model parameter that scales an input variable."
+    justification: "That is a coefficient; a vector is a multidimensional quantity."

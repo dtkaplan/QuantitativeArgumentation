@@ -1,0 +1,29 @@
+word: likelihood
+for-chapter: 11
+valid:
+  - The probability of observing the data under a specific, hypothesized model.
+  - A model's numerical score for how well it accounts for observed data.
+  - The value of a hypothesis's probability distribution at the observed outcome.
+  - A measure used to compare competing hypotheses by their support for the data.
+  - The probability-model output for the observation, evaluated under a proposed hypothesis.
+invalid:
+  - text: "The probability that a hypothesis itself is true."
+    justification: "In this framework, likelihood scores how well a hypothesis accounts for observed data, not its probability of being true."
+  - text: "The probability of every possible dataset averaged together."
+    justification: "Likelihood concerns the observed data under a specific hypothesized model."
+  - text: "A guarantee that the observed data will occur again."
+    justification: "Likelihood evaluates observed data under a model; it does not guarantee future repetition."
+  - text: "A measure of how much a quantity varies around its mean."
+    justification: "That describes spread, such as standard deviation; likelihood evaluates data under a hypothesis."
+  - text: "The range of values that a quantity could possibly take."
+    justification: "That is a range; likelihood is a model-based score for observed data."
+  - text: "A random sample produced by a simulation."
+    justification: "A simulated sample is data; likelihood is the model's score for those observed values."
+  - text: "The prior distribution before any observations are collected."
+    justification: "A prior represents before-data knowledge; likelihood evaluates data under a hypothesis."
+  - text: "A number that must be large whenever a model is correct."
+    justification: "Likelihood values depend on the data and model and are interpreted comparatively, often by ratios."
+  - text: "The frequency with which a hypothesis appears in a textbook."
+    justification: "Likelihood is a numerical measure tied to observed data, not a count of mentions."
+  - text: "The probability distribution over hypotheses after all data are included."
+    justification: "That describes a posterior; likelihood is the data-based score combined with prior information."

@@ -1,0 +1,29 @@
+word: doubling time
+for-chapter: 13
+valid:
+  - The fixed interval required for an exponentially growing quantity to double.
+  - A parameter describing exponential growth by how long each successive doubling takes.
+  - The elapsed time for a growing state to become twice its current value.
+  - The characteristic time between successive doublings in exponential growth.
+  - A time-scale that distinguishes exponential growth rates: shorter doubling means faster growth.
+invalid:
+  - text: "The interval required for an exponentially declining quantity to fall by half."
+    justification: "That is halving time, the decay counterpart to doubling time."
+  - text: "The fixed percentage increase in a quantity during each year."
+    justification: "A percentage rate may determine growth, but doubling time is the interval for the quantity to double."
+  - text: "The time it takes a quantity to increase by one unit."
+    justification: "Doubling time concerns a factor of two, not a fixed additive increase."
+  - text: "The total lifespan of a dynamical system."
+    justification: "A system can continue changing beyond any doubling interval; doubling time characterizes its growth pattern."
+  - text: "The rate at which a quantity changes at one instant."
+    justification: "That is a rate of change; doubling time measures an interval associated with exponential growth."
+  - text: "The delay between two independent events in an exponential distribution."
+    justification: "That is a waiting time modeled by an exponential distribution, not the growth parameter described here."
+  - text: "The number of times a quantity has already doubled."
+    justification: "Doubling time is a duration, not a count of doubling events."
+  - text: "The time at which exponential growth begins."
+    justification: "The start time is not the repeated interval that characterizes exponential growth."
+  - text: "The duration for a population to grow by an equal amount each period."
+    justification: "Equal additive increases describe steady growth; exponential growth doubles over equal intervals."
+  - text: "A time unit that must equal one year for all exponential models."
+    justification: "Doubling time depends on the system; it need not be one year."

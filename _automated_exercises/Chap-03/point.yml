@@ -1,0 +1,46 @@
+word: point
+for-chapter: 3
+valid:
+- A location in a space that corresponds to one or more coordinate values.
+- A position on a number line representing one value of a quantity.
+- A geometric location that identifies a specific combination of quantities.
+- An element of a number line or coordinate space whose coordinates give quantity
+  values.
+- A spatial marker for a particular value or tuple of values.
+invalid:
+- text: A number with no unit designation, such as seven or pi.
+  justification: This describes pure number, not point. In this chapter, point refers
+    to a location in a space that corresponds to one or more coordinate values.
+- text: A standardized measure consisting of a pure number and a unit, optionally
+    with a descriptor.
+  justification: This describes quantity, not point. In this chapter, point refers
+    to a location in a space that corresponds to one or more coordinate values.
+- text: The International System of Units, the primary official system for defining
+    units.
+  justification: This describes SI, not point. In this chapter, point refers to a
+    location in a space that corresponds to one or more coordinate values.
+- text: A collection of quantities whose values identify locations within it.
+  justification: This describes space, not point. In this chapter, point refers to
+    a location in a space that corresponds to one or more coordinate values.
+- text: Standardized measures that specify how much of a quantity is present.
+  justification: This describes units, not point. In this chapter, point refers to
+    a location in a space that corresponds to one or more coordinate values.
+- text: A phrase identifying the context-setting quantity against which a change is
+    examined.
+  justification: This describes with respect to, not point. In this chapter, point
+    refers to a location in a space that corresponds to one or more coordinate values.
+- text: A base dimension used for monetary value, whose meaning depends on place and
+    time.
+  justification: This describes worth, not point. In this chapter, point refers to
+    a location in a space that corresponds to one or more coordinate values.
+- text: Rates formed by arithmetic combinations of other rates.
+  justification: This describes compound rates, not point. In this chapter, point
+    refers to a location in a space that corresponds to one or more coordinate values.
+- text: A ratio of two quantities where division expresses a relationship between
+    their underlying dimensions.
+  justification: This describes rate, not point. In this chapter, point refers to
+    a location in a space that corresponds to one or more coordinate values.
+- text: The change in a primary quantity divided by the corresponding change in a
+    context-setting quantity.
+  justification: This describes rate of change, not point. In this chapter, point
+    refers to a location in a space that corresponds to one or more coordinate values.

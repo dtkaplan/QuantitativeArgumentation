@@ -1,0 +1,57 @@
+word: partial change
+for-chapter: 3
+valid:
+- Change in a primary quantity with respect to one variable while other variables
+  are held constant.
+- The contribution to overall change associated with varying one context-setting quantity
+  at a time.
+- A focused change that isolates one influence while controlling other influences.
+- A change in one quantity examined against a single other quantity, with remaining
+  factors fixed.
+- One component of total change, attributed to one context variable under constant
+  conditions.
+invalid:
+- text: A word that signals division, with the following quantity in the denominator.
+  justification: This describes per, not partial change. In this chapter, partial
+    change refers to change in a primary quantity with respect to one variable while
+    other variables are held constant.
+- text: A location in a space that corresponds to one or more coordinate values.
+  justification: This describes point, not partial change. In this chapter, partial
+    change refers to change in a primary quantity with respect to one variable while
+    other variables are held constant.
+- text: A number with no unit designation, such as seven or pi.
+  justification: This describes pure number, not partial change. In this chapter,
+    partial change refers to change in a primary quantity with respect to one variable
+    while other variables are held constant.
+- text: A standardized measure consisting of a pure number and a unit, optionally
+    with a descriptor.
+  justification: This describes quantity, not partial change. In this chapter, partial
+    change refers to change in a primary quantity with respect to one variable while
+    other variables are held constant.
+- text: The International System of Units, the primary official system for defining
+    units.
+  justification: This describes SI, not partial change. In this chapter, partial change
+    refers to change in a primary quantity with respect to one variable while other
+    variables are held constant.
+- text: A collection of quantities whose values identify locations within it.
+  justification: This describes space, not partial change. In this chapter, partial
+    change refers to change in a primary quantity with respect to one variable while
+    other variables are held constant.
+- text: Standardized measures that specify how much of a quantity is present.
+  justification: This describes units, not partial change. In this chapter, partial
+    change refers to change in a primary quantity with respect to one variable while
+    other variables are held constant.
+- text: A phrase identifying the context-setting quantity against which a change is
+    examined.
+  justification: This describes with respect to, not partial change. In this chapter,
+    partial change refers to change in a primary quantity with respect to one variable
+    while other variables are held constant.
+- text: A base dimension used for monetary value, whose meaning depends on place and
+    time.
+  justification: This describes worth, not partial change. In this chapter, partial
+    change refers to change in a primary quantity with respect to one variable while
+    other variables are held constant.
+- text: Rates formed by arithmetic combinations of other rates.
+  justification: This describes compound rates, not partial change. In this chapter,
+    partial change refers to change in a primary quantity with respect to one variable
+    while other variables are held constant.

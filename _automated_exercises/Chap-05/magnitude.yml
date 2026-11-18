@@ -1,0 +1,58 @@
+word: magnitude
+for-chapter: 5
+valid:
+- A measure of the size of a number, closely related to its exponent in scientific
+  notation.
+- A logarithmic description of how large or small a pure number is.
+- The scale position that indicates a number's size across powers of ten.
+- A value used to compare numbers that differ greatly in size.
+- A concise indicator of numerical scale, distinct from the number's exact value.
+invalid:
+- text: A factor-of-ten scale used to describe how much larger or smaller one number
+    is than another.
+  justification: This describes order of magnitude, not magnitude. In this chapter,
+    magnitude refers to a measure of the size of a number, closely related to its
+    exponent in scientific notation.
+- text: A number format that expresses a value as a mantissa multiplied by a power
+    of ten.
+  justification: This describes scientific notation, not magnitude. In this chapter,
+    magnitude refers to a measure of the size of a number, closely related to its
+    exponent in scientific notation.
+- text: Arranging values in order so their relative sizes are easier to compare.
+  justification: This describes sorting, not magnitude. In this chapter, magnitude
+    refers to a measure of the size of a number, closely related to its exponent in
+    scientific notation.
+- text: The process of constructing good arguments from evidence and reasoning.
+  justification: This describes argumentation, not magnitude. In this chapter, magnitude
+    refers to a measure of the size of a number, closely related to its exponent in
+    scientific notation.
+- text: Reasoning that applies explicit rules whose correct application yields certain
+    conclusions.
+  justification: This describes formal reasoning, not magnitude. In this chapter,
+    magnitude refers to a measure of the size of a number, closely related to its
+    exponent in scientific notation.
+- text: The facts, beliefs, assumptions, and observations available at the start of
+    reasoning.
+  justification: This describes givens, not magnitude. In this chapter, magnitude
+    refers to a measure of the size of a number, closely related to its exponent in
+    scientific notation.
+- text: Fast, broadly applicable reasoning that uses useful but fallible rules of
+    thumb.
+  justification: This describes heuristic reasoning, not magnitude. In this chapter,
+    magnitude refers to a measure of the size of a number, closely related to its
+    exponent in scientific notation.
+- text: A machine-learning system that uses patterns and alignments in text to generate
+    language.
+  justification: This describes Large language model (LLM), not magnitude. In this
+    chapter, magnitude refers to a measure of the size of a number, closely related
+    to its exponent in scientific notation.
+- text: Representations of items, processes, or settings that are easier to use than
+    the reality.
+  justification: This describes models, not magnitude. In this chapter, magnitude
+    refers to a measure of the size of a number, closely related to its exponent in
+    scientific notation.
+- text: Models built from mathematical components to support reasoning about real-world
+    situations.
+  justification: This describes quantitative models, not magnitude. In this chapter,
+    magnitude refers to a measure of the size of a number, closely related to its
+    exponent in scientific notation.
