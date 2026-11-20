@@ -1,0 +1,55 @@
+\begin{tikzpicture}[
+  x=0.33mm,          % GS1 100% nominal module width (0.33 mm)
+  y=1mm,
+  font=\ttfamily\fontsize{9}{10}\selectfont
+]
+  % Solid white background including GS1 quiet zones (left: 11 modules, right: 7 modules)
+  \fill[white] (-11, -5.5) rectangle (161, 29.5);
+
+  % EAN-13 bit pattern for 978-0-9839658-9-3 (95 modules: indices 0..94)
+  \def\eanThirteen{10101110110001001010011100010110001001011110101010111010010100001001110100100011101001000010101}
+
+  % Draw EAN-13 bars (guard bars at 0..2, 45..49, 92..94 extend 1.65 mm lower)
+  \foreach \b [count=\i from 0] in \eanThirteen {} % placeholder for expansion
+  \makeatletter
+  \@tfor\bit:=\eanThirteen\do{%
+    \ifx\bit\@empty\else
+      \ifnum\value{enumi}<0\fi
+    \fi
+  }
+  \makeatother
+
+  % Reliable loop over the 95 EAN-13 modules
+  \foreach \i in {0,...,94} {
+    \edef\moduleIndex{\number\numexpr\i+1\relax}
+    \StrChar{\eanThirteen}{\moduleIndex}[\bit]
+    \ifnum\bit=1
+      \pgfmathsetmacro{\isGuard}{(\i<3) || (\i>44 && \i<50) || (\i>91)}
+      \ifnum\isGuard=1
+        \fill[black] (\i, -1.65) rectangle (\i+1, 22.85);
+      \else
+        \fill[black] (\i, 0) rectangle (\i+1, 22.85);
+      \fi
+    \fi
+  }
+
+  % EAN-5 bit pattern for 90000 (47 modules, placed 9 modules after EAN-13 at x = 104..150)
+  \def\eanFive{10110001011010100111010001101010100111010001101}
+  \foreach \i in {0,...,46} {
+    \edef\moduleIndex{\number\numexpr\i+1\relax}
+    \StrChar{\eanFive}{\moduleIndex}[\bit]
+    \ifnum\bit=1
+      \fill[black] ({104+\i}, -1.65) rectangle ({105+\i}, 19.2);
+    \fi
+  }
+
+  % Human-readable text
+  \node[anchor=south, inner sep=0pt, font=\ttfamily\fontsize{8.5}{9}\selectfont]
+    at (47.5, 24.2) {ISBN 978-0-9839658-9-3};
+
+  \node[anchor=north east, inner sep=0pt] at (-1.5, -0.4) {9};
+  \node[anchor=north, inner sep=0pt]      at (24,   -0.4) {780983};
+  \node[anchor=north, inner sep=0pt]      at (71,   -0.4) {965893};
+
+  \node[anchor=south, inner sep=0pt] at (127.5, 20.2) {90000};
+\end{tikzpicture}

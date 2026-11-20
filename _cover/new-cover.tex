@@ -1,0 +1,85 @@
+\documentclass{article}
+
+\usepackage[paperwidth=17.89in,paperheight=11.25in,margin=0in]{geometry}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xstring}
+\usepackage{fix-cm}
+\usepackage{bera}
+\renewcommand{\rmdefault}{ppl}
+
+\definecolor{coverboxcolor}{HTML}{FDB973}
+\definecolor{covertextcolor}{HTML}{0C2340}
+\newcommand{\coverboxopacity}{0.85}
+\newlength{\isbnCodeXShift}
+\setlength{\isbnCodeXShift}{7.875in}
+\addtolength{\isbnCodeXShift}{-53.13mm}
+\newlength{\isbnCodeYShift}
+\setlength{\isbnCodeYShift}{0.5in}
+\addtolength{\isbnCodeYShift}{5.5mm}
+
+\pagestyle{empty}
+
+\begin{document}
+\null
+\begin{tikzpicture}[remember picture,overlay]
+  \begin{scope}[shift={(current page.south west)}]
+    \node[anchor=south west,inner sep=0] at (0,0) {%
+      \includegraphics[width=\paperwidth,height=\paperheight]{JJ-tiles.png}%
+    };
+
+    \fill[fill=coverboxcolor,fill opacity=\coverboxopacity]
+      (8.625in,0in) rectangle (9.262in,11.25in);
+    \fill[fill=coverboxcolor,fill opacity=\coverboxopacity,rounded corners=12pt]
+      (10.385in,5.25in) rectangle (16.635in,9.25in);
+    \fill[fill=coverboxcolor,fill opacity=\coverboxopacity,rounded corners=12pt]
+      (10.385in,2in) rectangle (16.635in,3.25in);
+    \fill[fill=coverboxcolor,fill opacity=\coverboxopacity,rounded corners=12pt]
+      (1.58in,2.25in) rectangle (7.08in,10.25in);
+
+    \node[align=center,text=covertextcolor] at (13.51in,7.25in) {%
+      \shortstack[c]{%
+        {\bfseries\fontsize{64}{72}\selectfont Quantitative}\\[0.5in]
+        \resizebox{6in}{!}{\bfseries\fontsize{64}{72}\selectfont Argumentation}\\[0.12in]
+        \resizebox{6in}{!}{\itshape\fontsize{50}{60}\selectfont Making Sense with Numbers}%
+      }%
+    };
+
+    \node[align=center,text=covertextcolor] at (13.51in,2.625in) {%
+      {\fontsize{50}{60}\selectfont Daniel T. Kaplan}%
+    };
+
+    \node[anchor=north west,inner sep=0pt] at (1.83in,10in) {%
+      \begin{minipage}[t][7.5in][t]{5in}
+        \input{description-text.tex}
+      \end{minipage}%
+    };
+
+    \node[rotate=270,anchor=west,text=covertextcolor,
+      font=\bfseries\fontsize{28}{30}\selectfont]
+      at (8.9435in,10.5in)
+      {Quantitative Argumentation\hspace{1in}Kaplan};
+
+    \node[align=center,text=black] at (8.9435in,0.85in) {%
+      \includegraphics[width=0.6in]{photos/mosaic-block.png}\\[-0.03in]
+      \resizebox{0.6in}{!}{%
+        \shortstack[c]{%
+          {\fontsize{16}{18}\selectfont\textsc{Project}}\\[-0.04in]
+          {\fontsize{16}{18}\selectfont\bfseries MOSAIC}%
+        }%
+      }%
+    };
+  \end{scope}
+\end{tikzpicture}
+
+\begingroup
+\tikzset{every picture/.append style={
+  remember picture,
+  overlay,
+  shift={(current page.south west)},
+  xshift=\isbnCodeXShift,
+  yshift=\isbnCodeYShift
+}}
+\input{photos/ISBN-code.tex}
+\endgroup
+\end{document}
